@@ -1,10 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
     <title></title>
+    <style>
+        canvas {
+            width: 300px;
+            height: 300px;
+            background: #000;
+        }
+    </style>
 </head>
 <body>
+<canvas width="300" height="300">
 
+</canvas>
+<script src="Delaunay.js"></script>
+
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var ctx = canvas.getContext( "2d" );
+
+        var p = [];
+
+        p[0] = [150, 150];
+        p[1] = [150, 20];
+        p[2] = [0, 0];
+        p[3] = [300, 0];
+        p[4] = [300, 300];
+        p[5] = [0, 300];
+
+        var indices = Delaunay.triangulate( p );
+
+        console.log( indices );
+
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'square';
+
+        var colors = ["blue", "yellow", "orange", "white", "green", "gray"];
+
+        for ( var i = 0; i < indices.length / 3; i++ ) {
+            console.log( indices[i], indices[i + 1], indices[i + 2] );
+            ctx.beginPath();
+            ctx.strokeStyle = colors[i / 3];
+            ctx.moveTo( p[indices[i]][0], p[indices[i]][1] );
+            ctx.lineTo( p[indices[i + 1]][0], p[indices[i + 1]][1] );
+            ctx.lineTo( p[indices[i + 2]][0], p[indices[i + 2]][1] );
+            ctx.lineTo( p[indices[i]][0], p[indices[i]][1] );
+            ctx.stroke();
+        }
+        ctx.fillStyle = "red";
+        for ( var m = 0; m < p.length; m++ ) {
+            ctx.beginPath();
+            ctx.moveTo( p[m][0], p[m][1] );
+            ctx.arc( p[m][0], p[m][1], 5, 0, Math.PI * 2 );
+            ctx.fill();
+        }
+
+    })();
+</script>
 </body>
 </html>
