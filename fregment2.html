@@ -11,14 +11,14 @@
     <title></title>
     <style>
         canvas {
-            width: 300px;
-            height: 300px;
+            width: 768px;
+            height: 485px;
             background: #000;
         }
     </style>
 </head>
 <body>
-<canvas width="300" height="300">
+<canvas width="768" height="485">
 
 </canvas>
 <script src="Delaunay.js"></script>
@@ -33,9 +33,9 @@
         p[0] = [150, 150];
         p[1] = [150, 20];
         p[2] = [0, 0];
-        p[3] = [300, 0];
-        p[4] = [300, 300];
-        p[5] = [0, 300];
+        p[3] = [768, 0];
+        p[4] = [0, 485];
+        p[5] = [500, 400];
 
         var indices = Delaunay.triangulate( p );
 
@@ -46,7 +46,7 @@
 
         var colors = ["blue", "yellow", "orange", "white", "green", "gray"];
 
-        for ( var i = 0; i < indices.length / 3; i++ ) {
+        for ( var i = 0; i < indices.length; i += 3 ) {
             console.log( indices[i], indices[i + 1], indices[i + 2] );
             ctx.beginPath();
             ctx.strokeStyle = colors[i / 3];
