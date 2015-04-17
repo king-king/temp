@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .border {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            overflow: hidden;
+        }
+
+        img {
+            height: 100%;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="border"><img></div>
+<script src="zMobile.js"></script>
+<script src="Delaunay.js"></script>
+<script>
+    (function () {
+        var loop = Z.loop;
+        var css = Z.css;
+        var insertCSSRules = Z.insertCSSRules;
+        loop( 22, function ( i ) {
+            var at = {};
+            var t = {};
+            t["canvas.canvas" + i] = {
+                "-webkit-transform" : "translate3d(0,0,0) scale(1) rotateZ(0)",
+                "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
+                opacity : 1
+            };
+            at["canvas.animate.canvas" + i] = {
+                "-webkit-transform" : "translate3d(10px,10px,0) scale(" + Math.random() + ") rotateZ(" + (45 * (Math.random() - 0.5)) + "deg)",
+                "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
+                opacity : 0
+            };
+            insertCSSRules( t );
+            insertCSSRules( at );
+        } );
+
+
+        var img = document.querySelector( "img" );
+        var border = document.querySelector( ".border" );
+        img.src = "img/1.jpg";
+        var points = [];
+        img.onload = function () {
+            loop( 10, function ( i ) {
+                points.push( [
+                    Math.random() * 500 << 0,
+                    Math.random() * 500 << 0
+                ] );
+            } );
+            points.push( [0, 0] );
+            points.push( [0, 500] );
+            points.push( [500, 0] );
+            points.push( [500, 500] );
+
+            var tran = Delaunay.triangulate( points );
+            for ( var i = 0; i < tran.length; i += 3 ) {
+                var canvas = getOneTran( points[tran[i]], points[tran[i + 1]], points[tran[i + 2]] );
+                canvas.classList.add( "animate" );
+                canvas.classList.add( "canvas" + i / 3 );
+                doA( canvas );
+            }
+
+            function doA( el ) {
+                setTimeout( function () {
+                    el.classList.remove( "animate" );
+                }, 0 );
+            }
+
+        };
+
+        function min() {
+            var m = arguments[0];
+            for ( var i = 0; i < arguments.length; i++ ) {
+                m = Math.min( m, arguments[i] );
+            }
+            return m;
+        }
+
+        function max() {
+            var m = arguments[0];
+            for ( var i = 0; i < arguments.length; i++ ) {
+                m = Math.max( m, arguments[i] );
+            }
+            return m;
+        }
+
+        function getOneTran( p1, p2, p3 ) {
+            // 先得到bounds
+            var x = min( p1[0], p2[0], p3[0] );
+            var y = min( p1[1], p2[1], p3[1] );
+            var w = max( p1[0], p2[0], p3[0] ) - x;
+            var h = max( p1[1], p2[1], p3[1] ) - y;
+
+            var canvas = document.createElement( "canvas" );
+            canvas.width = w;
+            canvas.height = h;
+            var ctx = canvas.getContext( "2d" );
+            ctx.drawImage( img, x, y, w, h, 0, 0, w, h );
+            ctx.globalCompositeOperation = "destination-in";
+            ctx.beginPath();
+            ctx.fillStyle = "red";
+            ctx.moveTo( p1[0] - x, p1[1] - y );
+            ctx.lineTo( p2[0] - x, p2[1] - y );
+            ctx.lineTo( p3[0] - x, p3[1] - y );
+            ctx.lineTo( p1[0] - x, p1[1] - y );
+            ctx.fill();
+            css( canvas, {
+                left : x + "px",
+                top : y + "px",
+                width : w + "px",
+                height : h + "px"
+            } );
+            border.appendChild( canvas );
+            return canvas;
+        }
+
+    })();
+</script>
+</body>
+</html>
