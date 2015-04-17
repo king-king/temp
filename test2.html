@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img {
+            width: 400px;
+            -webkit-mask: url("img/hong.png");
+            -webkit-mask-size: 0 0;
+            -webkit-mask-position: 0 0;
+            -webkit-animation: 6s an linear forwards;
+            -webkit-mask-repeat: no-repeat;
+        }
+
+        img.oo {
+
+        }
+
+        @-webkit-keyframes an {
+            0% {
+                -webkit-mask-size: 0 0;
+                -webkit-mask-position: 200px 200px;
+            }
+            50% {
+                -webkit-mask-size: 400px auto;
+                -webkit-mask-position: 0 0;
+            }
+            100% {
+                -webkit-mask-size: 800px auto;
+                -webkit-mask-position: -200px -200px;
+            }
+        }
+    </style>
+</head>
+<body>
+<img src="img/1.jpg">
+<img src="1.png">
+<img src="2.jpg">
+</body>
+</html>
