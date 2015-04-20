@@ -21,12 +21,12 @@
 
         img {
             height: 100%;
-            display: none;
+            /*display: none;*/
         }
     </style>
 </head>
 <body>
-<div class="border"><img></div>
+<div class="border"><img src="img/2.jpg"></div>
 <script src="zMobile.js"></script>
 <script src="Delaunay.js"></script>
 <script>
@@ -37,13 +37,13 @@
         loop( 22, function ( i ) {
             var at = {};
             var t = {};
-            t["canvas.canvas" + i] = {
-                "-webkit-transform" : "translate3d(0,0,0) scale(1) rotateZ(0)",
+            t["canvas.animate.canvas" + i] = {
+                "-webkit-transform" : "translate3d(0,0,0)   rotateZ(0)",
                 "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
                 opacity : 1
             };
-            at["canvas.animate.canvas" + i] = {
-                "-webkit-transform" : "translate3d(10px,10px,0) scale(" + Math.random() + ") rotateZ(" + (45 * (Math.random() - 0.5)) + "deg)",
+            at["canvas.canvas" + i] = {
+                "-webkit-transform" : "translate3d(10px,200px,0)   rotateZ(" + (45 * (Math.random() - 0.5)) + "deg)",
                 "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
                 opacity : 0
             };
@@ -52,12 +52,12 @@
         } );
 
 
-        var img = document.querySelector( "img" );
+        var img = new Image();
         var border = document.querySelector( ".border" );
         img.src = "img/1.jpg";
         var points = [];
         img.onload = function () {
-            loop( 10, function ( i ) {
+            loop( 10, function () {
                 points.push( [
                     Math.random() * 500 << 0,
                     Math.random() * 500 << 0
