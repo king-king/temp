@@ -34,30 +34,13 @@
         var loop = Z.loop;
         var css = Z.css;
         var insertCSSRules = Z.insertCSSRules;
-        loop( 22, function ( i ) {
-            var at = {};
-            var t = {};
-            t["canvas.animate.canvas" + i] = {
-                "-webkit-transform" : "translate3d(0,0,0)   rotateZ(0)",
-                "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
-                opacity : 1
-            };
-            at["canvas.canvas" + i] = {
-                "-webkit-transform" : "translate3d(10px,200px,0)   rotateZ(" + (45 * (Math.random() - 0.5)) + "deg)",
-                "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
-                opacity : 0
-            };
-            insertCSSRules( t );
-            insertCSSRules( at );
-        } );
-
 
         var img = new Image();
         var border = document.querySelector( ".border" );
         img.src = "img/1.jpg";
         var points = [];
         img.onload = function () {
-            loop( 10, function () {
+            loop( 20, function () {
                 points.push( [
                     Math.random() * 500 << 0,
                     Math.random() * 500 << 0
@@ -69,6 +52,24 @@
             points.push( [500, 500] );
 
             var tran = Delaunay.triangulate( points );
+
+            loop( tran.length / 3, function ( i ) {
+                var at = {};
+                var t = {};
+                t["canvas.animate.canvas" + i] = {
+                    "-webkit-transform" : "translate3d(0,0,0)   rotateZ(0)",
+                    "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
+                    opacity : 1
+                };
+                at["canvas.canvas" + i] = {
+                    "-webkit-transform" : "translate3d(10px,200px,0)   rotateZ(" + (45 * (Math.random() - 0.5)) + "deg)",
+                    "-webkit-transition" : "1s linear " + Math.random() * 2 + "s",
+                    opacity : 0
+                };
+                insertCSSRules( t );
+                insertCSSRules( at );
+            } );
+
             for ( var i = 0; i < tran.length; i += 3 ) {
                 var canvas = getOneTran( points[tran[i]], points[tran[i + 1]], points[tran[i + 2]] );
                 canvas.classList.add( "animate" );
@@ -79,7 +80,7 @@
             function doA( el ) {
                 setTimeout( function () {
                     el.classList.remove( "animate" );
-                }, 0 );
+                }, 2000 );
             }
 
         };
