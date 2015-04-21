@@ -48,24 +48,26 @@
 
         var preW = 0;
 
-        loop( 44, function ( i ) {
+        var len = 44;
+
+        loop( len, function ( i ) {
             faces.push( "img/head/h" + i + ".jpg" );
             var img = new Image();
             img.src = "img/head/h" + i + ".jpg";
             page.appendChild( img );
-            var curw = 50 + Math.random() * 30;
+            var curw = (len > 24 ? 2200 : 1800) / len + Math.random() * 30;
             img.style.width = curw + "px";
             preX += preW * 0.8 + Math.random() * 0.5;
             img.style.left = preX + "px";
             img.style.top = preY + 20 * (Math.random() - 0.5) + "px";
-            img.style.zIndex = Math.random() * 10 << 0;
+            img.style.zIndex = Math.random() * (len > 20 ? 10 : 3) << 0;
             img.style.transform = "rotateZ(" + (Math.random() - 0.5) * 30 + "deg)";
             preW = curw;
             if ( preX + curw >= width ) {
                 preX = 0;
                 preW = 0;
                 preY += 60 + 30 * Math.random();
-                img.style.zIndex = 10;
+                img.style.zIndex = (len > 20 ? 10 : 3);
             }
 
 
