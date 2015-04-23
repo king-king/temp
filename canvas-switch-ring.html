@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            width: 320px;
+            height: 504px;
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+<canvas width="320" height="504">
+</canvas>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+
+        var img = new Image();
+        img.src = "img/1.jpg";
+
+        img.onload = function () {
+            gc.drawImage( img, 0, 0 );
+            gc.globalCompositeOperation = "destination-in";
+            gc.arc( 160, 252, 200, 0, 2 * Math.PI, true );
+            gc.fillStyle = "red";
+            gc.fill();
+
+            gc.beginPath();
+            gc.globalCompositeOperation = "destination-out";
+            gc.arc( 160, 252, 100, 0, 2 * Math.PI, true );
+            gc.fillStyle = "black";
+            gc.fill();
+        };
+
+
+    })();
+</script>
+</body>
+</html>
