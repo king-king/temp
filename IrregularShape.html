@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            width: 320px;
+            height: 504px;
+            background: #aaa;
+        }
+    </style>
+</head>
+<body>
+<canvas width="320" height="504"></canvas>
+<script src="zMobile.js"></script>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+
+        function draw( points ) {
+            gc.beginPath();
+            gc.fillStyle = "red";
+            gc.moveTo( points[0][0], points[0][1] );
+            Z.loop( points.length - 1, function ( i ) {
+                gc.lineTo( points[i + 1][0], points[i + 1][1] );
+            } );
+            gc.lineTo( points[0][0], points[0][1] );
+            gc.fill();
+        }
+
+        var clientWidth = 320;
+        var clientHeight = 504;
+        var x0 = clientWidth / 2 << 0;
+        var y0 = clientHeight / 2 << 0;
+
+        draw( [[x0, y0], [x0, clientHeight], [0, clientHeight], [0, y0 + x0]] )
+
+    })();
+</script>
+</body>
+</html>
