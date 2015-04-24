@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            padding: 0;
+            margin: 0;
+            background: #aaa;
+        }
+
+        canvas {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+
+        img {
+            width: 300px;
+            position: absolute;
+            top: -100px;
+
+        }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <img src="img/qr4.JPG">
+</div>
+<script>
+    (function () {
+
+        document.addEventListener( "touchstart", function ( e ) {
+            e.preventDefault();
+        }, true );
+
+        document.addEventListener( "touchmove", function ( e ) {
+            e.preventDefault();
+        }, true );
+
+        document.addEventListener( "touchend", function ( e ) {
+            e.preventDefault();
+        }, true );
+
+        document.querySelector( "img" ).addEventListener( "touchstart", function () {
+            console.log( "ok" )
+        }, false );
+
+    })();
+</script>
+</body>
+</html>
