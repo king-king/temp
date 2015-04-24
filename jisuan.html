@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title>测试</title>
+    <style>
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: red;
+        }
+
+        .text-view {
+            color: #000;
+            position: absolute;
+            top: 50%;
+            width: 60%;
+            left: 20%;
+            bottom: 20%;
+        }
+
+        span {
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <input type="text">
+    <div class="text-view"></div>
+</div>
+<script>
+    (function () {
+        var rules = [];
+        var job = "程序員";
+        var name = "李大力";
+        var count = 5000;
+        var disease = "腦殘";
+        var probability = "120%";
+        var judge = "6星";
+        var text = "经苦力专家评估：<p><span>" + job + "</span>岗位苦力<span>" +
+                name + "</span>先生，兢兢业业！每日工作量=搬砖<span>" + 5000 + "</span>块,<span>"
+                + disease + "</span>发病率高达<span>" + probability +
+                "</span>。特被评为<span>" + judge + "</span>劳模，特批五一7天假";
+
+
+        var textView = document.querySelector( ".text-view" );
+        textView.innerHTML = text;
+
+
+        textView.addEventListener( "touchstart", function () {
+            document.querySelector( "input" ).onfocus();
+        }, true );
+    })();
+</script>
+</body>
+</html>
