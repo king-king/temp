@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+        canvas.width = canvas.height = 400;
+        var g = gc.createLinearGradient( 0, 0, 0, 400 );
+        g.addColorStop( 0, "rgba(255,0,0,1)" );
+        g.addColorStop( 0.5, "rgba(255,0,0,0.4)" );
+        g.addColorStop( 1, "rgba(255,0,0,0)" );
+        gc.fillStyle = g;
+        gc.fillRect( 0, 0, 400, 400 );
+    })();
+</script>
+</body>
+</html>
