@@ -16,24 +16,24 @@
 <script>
 
 
-        (function () {
-            var file = document.querySelector( "input" );
-            file.onchange = function () {
-                console.log( file );
-                $.ajax( {
-                    type : "POST",
-                    url : "http://192.168.0.146:8585/view.html",
-                    contentType : "application/octet-stream",
-                    processData : !1,
-                    data : file.files[0],
-                    success : function ( n ) {
-                        console.log( n, "ok" )
-                    }, error : function () {
-                        console.log( "err" )
-                    }
-                } );
+    (function () {
+        var file = document.querySelector( "input" );
+        file.onchange = function () {
+
+            var xhr = new XMLHttpRequest();
+            xhr.open( "post", "http://192.168.0.146:8585/view", true );
+            xhr.setRequestHeader( "Access-Control-Allow-Origin", "*" );
+            xhr.setRequestHeader( "Content-Type", "application/octet-stream" );
+            xhr.send( file.files[0] );
+            xhr.onreadystatechange = function () {
+                if ( xhr.readyState == 4 ) {
+                    console.log( xhr.responseText );
+                }
             };
-        })();
+
+
+        };
+    })();
 </script>
 </body>
 </html>
