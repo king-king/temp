@@ -1,28 +1,84 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
     <title></title>
     <style>
-        canvas {
-            width: 400px;
-            height: 400px;
+        .body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-<canvas></canvas>
+<div class="body"></div>
 <script>
     (function () {
-        var canvas = document.querySelector( "canvas" );
-        var gc = canvas.getContext( "2d" );
-        canvas.width = canvas.height = 400;
-        var g = gc.createLinearGradient( 0, 0, 0, 400 );
-        g.addColorStop( 0, "rgba(255,0,0,1)" );
-        g.addColorStop( 0.5, "rgba(255,0,0,0.4)" );
-        g.addColorStop( 1, "rgba(255,0,0,0)" );
-        gc.fillStyle = g;
-        gc.fillRect( 0, 0, 400, 400 );
+        function Canvas( w, h ) {
+            var canvas = document.createElement( "canvas" );
+            canvas.width = w;
+            canvas.height = h;
+            canvas.context = canvas.getContext( "2d" );
+            return canvas;
+        }
+
+        function loop( count, func ) {
+            for ( var i = 0; i < count; i++ ) {
+                func( i );
+            }
+        }
+
+        // 生成一个不规则形状
+        function getOneIrregularShape( img, bound, points ) {
+            var layer = Canvas( bound.w, bound.h );
+            var gc = layer.context;
+            gc.drawImage( img, bound.x, bound.y, bound.w, bound.h, 0, 0, bound.w, bound.h );
+            gc.globalCompositeOperation = "destination-in";
+            gc.beginPath();
+            gc.moveTo( points[0][0] - bound.x, points[0][1] - bound.y );
+            loop( points.length - 1, function ( i ) {
+                gc.lineTo( points[i + 1][0] - bound.x, points[i + 1][1] - bound.y );
+            } );
+            gc.lineTo( points[0][0] - bound.x, points[0][1] - bound.y );
+            gc.fillStyle = "green";
+            gc.fill();
+            return layer;
+        }
+
+        var body = document.querySelector( ".body" );
+
+        setTimeout( function () {
+            var clientWidth = body.offsetWidth;
+            var clientHeight = body.offsetHeight;
+            var x0 = clientWidth / 2 << 0;
+            var y0 = clientHeight / 2 << 0;
+
+            var shape = [[x0, y0], [clientWidth, y0 - x0], [clientWidth, y0]];
+            var bound = {x : clientWidth - x0, y : y0 - x0, w : clientWidth - x0, h : x0};
+
+            var img = new Image();
+            img.src = "img/1.jpg";
+            img.onload = function () {
+                try {
+                    var layer = getOneIrregularShape( img, bound, shape );
+                }
+                catch ( e ) {
+                    alert( e )
+                }
+                body.appendChild( layer );
+            }
+
+        }, 1000 );
+
     })();
 </script>
 </body>
