@@ -6,6 +6,7 @@
     <style>
         .page {
             position: absolute;
+            top: 40px;
             width: 320px;
             height: 504px;
             background: red;
@@ -18,7 +19,17 @@
             left: 0;
             width: 250px;
             height: 100px;
-            -webkit-transform: translate3d(100px, 100px, 0) rotateZ(-390deg);
+            -webkit-transform: translate3d(100px, 100px, 0) rotateZ(45deg);
+        }
+
+        input {
+            width: 100px;
+            text-align: center;
+            color: dodgerblue;
+        }
+
+        .scale {
+            width: inherit;
         }
     </style>
 </head>
@@ -26,11 +37,18 @@
 <div class="page">
     <div class="target"></div>
 </div>
+
+x(px):<input type="text" class="x">
+y(px):<input type="text" class="y">
+w(px):<input type="text" class="w">
+h(px):<input type="text" class="h">
+rotate(deg):<input type="text" class="rotate">
+scale:<input type="checkbox" class="scale">
 <script>
     (function () {
 
         var clientHeight = 504, clientWidth = 320, x = 100,
-                y = 100, rotate = -2 * Math.PI * 390 / 360, w = 250, h = 100;
+                y = 100, rotate = 2 * Math.PI * 45 / 360, w = 250, h = 100;
 
         // 旋转角度是弧度
         function process( x, y, rotate, w, h ) {
@@ -66,7 +84,7 @@
                     },
                     {
                         x : x0 - h * Math.sin( rotate ),
-                        y : rotate > 0 ? y0 - h * Math.cos( rotate ) : y0 + h * Math.cos( rotate )
+                        y : y0 + h * Math.cos( rotate )
                     }
                 ]
             }
@@ -178,11 +196,37 @@
             }
         }
 
-        var re = process( x, y, rotate, w, h );
-        console.log( re );
-
+//        var re = process( x, y, rotate, w, h );
+//        console.log( re );
         var t = document.querySelector( ".target" );
-        t.style.setProperty( "-webkit-transform", " translate3d(100px, 100px, 0) rotateZ(-390deg) scale(" + re + ")", null )
+//        t.style.setProperty( "-webkit-transform", " translate3d(100px, 100px, 0) rotateZ(45deg) scale(" + re + ")", null )
+
+        var inputs = document.querySelectorAll( "input" );
+
+        inputs[0].value = 100;
+        inputs[1].value = 100;
+        inputs[2].value = 250;
+        inputs[3].value = 100;
+        inputs[4].value = 45;
+        inputs[5].checked = true;
+
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+        loopArray( inputs, function ( input ) {
+            input.onchange = function () {
+//                console.log( "change" );
+                var re = process( parseInt( inputs[0].value ), parseInt( inputs[1].value ), (2 * Math.PI * parseInt( inputs[4].value ) / 360), parseInt( inputs[2].value ), parseInt( inputs[3].value ) );
+                t.style.setProperty( "-webkit-transform", " translate3d(" + inputs[0].value +
+                        "px, " + inputs[1].value + "px, 0) rotateZ(" + inputs[4].value + "deg) scale(" + (  inputs[5].checked ? re : 1 ) + ")", null )
+                t.style.setProperty( "width", inputs[2].value + "px", null );
+                t.style.setProperty( "height", inputs[3].value + "px", null );
+            }
+        } )
+
     })();
 </script>
 </body>
