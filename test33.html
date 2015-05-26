@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+
+    var img = new Image();
+    img.src = "img/bg-circle2.png";
+    img.onload = function () {
+        var canvas = document.createElement( "canvas" );
+        document.body.appendChild( canvas );
+        var gc = canvas.getContext( "2d" );
+        canvas.width = canvas.height = 300;
+        gc.drawImage( img, 0, 0, 300, 300 );
+        var i = 0;
+
+        var deg = Math.PI / 180;
+        gc.translate( 150, 150 );
+        function animate() {
+            gc.clearRect( -150, -150, 300, 300 );
+            i += 0.0001;
+            gc.rotate( i * deg );
+            gc.drawImage( img, -150, -150, 300, 300 );
+            setTimeout( animate, 1000 / 60 );
+        }
+
+        animate();
+    }
+
+
+</script>
+</body>
+</html>
