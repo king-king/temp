@@ -10,29 +10,96 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        .plane {
+        body {
+            background: #333;
+        }
+
+        img {
             width: 100px;
-            height: 100px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            margin: -50px 0 0 -50px;
-            opacity: .3;
-        }
-
-        .plane.a {
-            -webkit-transform: perspective(400px) translate3d(0, 0, 50px) rotateX(30deg);
-            background: green;
-        }
-
-        .plane.b {
-            -webkit-transform: perspective(400px) translate3d(0, 0, -50px);
-            background: orangered;
         }
     </style>
 </head>
 <body>
-<div class="plane a"></div>
-<!--<div class="plane b"></div>-->
+<script>
+    (function () {
+        var images = [
+            "img/1.png",
+            "img/2.png",
+            "img/3.png",
+            "img/4.png",
+            "img/5.png",
+            "img/6.png",
+            "img/7.png",
+            "img/8.png"
+        ];
+
+        // 并发
+        function concurrent( tasks, callback ) {
+            var len = tasks.length;
+            var count = 0;
+            tasks.forEach( function ( task ) {
+                task( function () {
+                    count++;
+                    if ( count == len ) {
+                        callback();
+                    }
+                } );
+            } );
+        }
+
+        function map( array, func ) {
+            var mapArray = [];
+            array.forEach( function ( item, i ) {
+                mapArray.push( func( item, i ) );
+            } );
+            return mapArray;
+        }
+
+//        concurrent( map( images, function ( src, i ) {
+//            return function ( done ) {
+//                var img = new Image();
+//                img.src = src;
+//                document.body.appendChild( img );
+//                img.onload = function () {
+//                    console.log( i );
+//                    done();
+//                }
+//            }
+//        } ), function () {
+//            console.log( "ok" )
+//        } );
+
+        // 顺序执行
+        function serial( tasks, callback ) {
+            var index = 0;
+            var len = tasks.length;
+            tasks[index]( function () {
+                index++;
+                if ( index == len ) {
+                    callback();
+                }
+                else {
+                    tasks[index]( arguments.callee )
+                }
+            } );
+        }
+
+        serial( map( images, function ( src, i ) {
+            return function ( done ) {
+                var img = new Image();
+                img.src = src;
+                console.log( i );
+//                img.onload = function () {
+//                    document.body.appendChild( img );
+//                    done();
+//                }
+                img.onload = done;
+            }
+        } ), function () {
+            console.log( "end" )
+        } )
+
+    })();
+</script>
 </body>
 </html>
