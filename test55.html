@@ -13,38 +13,15 @@
 <script>
     (function () {
 
-        function map( array, func ) {
-            var mapArray = [];
-            array.forEach( function ( item, i ) {
-                mapArray.push( func( item, i ) );
-            } );
-            return mapArray;
+        function inner() {
+            console.log( arguments.callee.caller.toString() );
         }
 
-        function sequence( requests, callback ) {
-            var index = 0;
-            requests[index] && requests[index]( function () {
-                ++index == requests.length ? callback() : requests[index]( arguments.callee );
-            } );
+        function outer() {
+            inner();
         }
 
-        var images = [
-            "img/1.png",
-            "img/2.png",
-            "img/3.png"
-        ];
-
-        sequence( map( images, function ( src, i ) {
-            return function ( done ) {
-                var img = new Image();
-                img.src = src;
-                document.body.appendChild( img );
-                console.log( i );
-                done();
-            }
-        } ), function () {
-            console.log( "end" )
-        } );
+        outer();
 
     })();
 </script>
