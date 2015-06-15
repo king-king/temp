@@ -7,21 +7,39 @@
         img {
             width: 100px;
         }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .target {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            background: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+        }
+
+        .target.animate {
+            -webkit-transform-origin: 0 50%;
+            -webkit-transform: scale(2);
+            -webkit-transition: 5s linear;
+        }
     </style>
 </head>
 <body>
+<div class="target"></div>
 <script>
     (function () {
 
-        function inner() {
-            console.log( arguments.callee.caller.toString() );
-        }
-
-        function outer() {
-            inner();
-        }
-
-        outer();
+        setTimeout( function () {
+            document.querySelector( ".target" ).classList.add( "animate" );
+        }, 3000 )
 
     })();
 </script>
