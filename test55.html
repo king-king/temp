@@ -15,31 +15,22 @@
             margin: 0;
         }
 
-        .target {
-            width: 100px;
-            height: 100px;
-            border-radius: 100px;
-            background: red;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-        }
 
-        .target.animate {
-            -webkit-transform-origin: 0 50%;
-            -webkit-transform: scale(2);
-            -webkit-transition: 5s linear;
-        }
     </style>
 </head>
 <body>
-<div class="target"></div>
 <script>
     (function () {
+        function test() {
+            test.count++;
+            console.log( test.count )
+        }
 
-        setTimeout( function () {
-            document.querySelector( ".target" ).classList.add( "animate" );
-        }, 3000 )
+        test.count = 0;
+
+        test();
+        test();
+        test();
 
     })();
 </script>
