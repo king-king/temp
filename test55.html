@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
     <title></title>
     <style>
         img {
@@ -19,20 +25,13 @@
     </style>
 </head>
 <body>
+<span>hello</span>
+<div contenteditable="true">可以编辑里面的内容</div>
 <script>
-    (function () {
-        function test() {
-            test.count++;
-            console.log( test.count )
-        }
-
-        test.count = 0;
-
-        test();
-        test();
-        test();
-
-    })();
+    function cathot( data ) {
+        console.log( data )
+    }
 </script>
+<script src="http://dc.3.cn/cathot/get?callback=cathot"></script>
 </body>
 </html>
