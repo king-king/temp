@@ -27,11 +27,16 @@
 <body>
 <span>hello</span>
 <div contenteditable="true">可以编辑里面的内容</div>
+<script src="basic.js"></script>
 <script>
-    function cathot( data ) {
-        console.log( data )
-    }
+    (function () {
+        var script = document.createElement( "script" );
+        script.src = "package.js";
+        document.head.appendChild( script );
+        script.onload = function () {
+            console.log( "load" );
+        }
+    })();
 </script>
-<script src="http://dc.3.cn/cathot/get?callback=cathot"></script>
 </body>
 </html>
