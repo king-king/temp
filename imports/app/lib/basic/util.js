@@ -15,6 +15,15 @@ Package( function ( exports ) {
         }
     }
 
+    function map( arr, func ) {
+        var newArray = [];
+        loopArray( arr, function ( item ) {
+            newArray.push( func( item ) );
+        } );
+        return newArray;
+    }
+
     exports.loop = loop;
     exports.loopArray = loopArray;
+    exports.map = map;
 } );
