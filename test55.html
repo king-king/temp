@@ -10,32 +10,12 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        img {
-            width: 100px;
-        }
-
-        html, body {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-        }
-
-
     </style>
 </head>
 <body>
-<span>hello</span>
-<div contenteditable="true">可以编辑里面的内容</div>
-<script src="basic.js"></script>
 <script>
     (function () {
-        var script = document.createElement( "script" );
-        script.src = "package.js";
-        document.head.appendChild( script );
-        script.onload = function () {
-            console.log( "load" );
-        }
+        window.name = "wangqun";
     })();
 </script>
 </body>
