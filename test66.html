@@ -7,30 +7,41 @@
         .target {
             width: 100px;
             height: 100px;
-            background: red;
             -webkit-transform: translate3d(100px, 100px, 0);
-            -webkit-animation: 2s animate steps(4, end) infinite;
+            -webkit-animation: 2s animate infinite;
+            background-color: red;
         }
 
         @-webkit-keyframes animate {
             0% {
-                -webkit-transform: translate3d(100px, 100px, 0) rotateZ(0deg);
+                background-color: red;
             }
             100% {
-                -webkit-transform: translate3d(100px, 100px, 0) rotateZ(360deg);
                 background-color: blue;
-                width: 200px;
-                height: 200px;
             }
         }
     </style>
 </head>
 <body>
 
-<!--<div class="target"></div>-->
+<div class="target"></div>
 
 <script>
-    console.log( "ok" );
+    (function () {
+        var insertCSSRules = function () {
+            var style = document.createElement( "style" );
+            document.querySelector( "head" ).appendChild( style );
+            return function ( rules ) {
+                for ( var selector in rules ) {
+                    var temp = selector + "" + JSON.stringify( rules[selector] ).replace( /"/g, "" );
+                    console.log( temp );
+                    style.sheet.insertRule( temp, style.sheet.rules.length );
+                }
+            }
+        }();
+
+
+    })();
 </script>
 </body>
 </html>
