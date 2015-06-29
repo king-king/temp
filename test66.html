@@ -3,8 +3,32 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        .target {
+            width: 100px;
+            height: 100px;
+            background: red;
+            -webkit-transform: translate3d(100px, 100px, 0);
+            -webkit-animation: 2s animate steps(4, end) infinite;
+        }
+
+        @-webkit-keyframes animate {
+            0% {
+                -webkit-transform: translate3d(100px, 100px, 0) rotateZ(0deg);
+            }
+            100% {
+                -webkit-transform: translate3d(100px, 100px, 0) rotateZ(360deg);
+                background-color: blue;
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
+
+<div class="target"></div>
+
 <script>
 
 
