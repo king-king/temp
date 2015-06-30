@@ -38,7 +38,7 @@ var dirs = [],
     paths = [];
 
 
-var curPath = "test/t800";
+var curPath = "test/c7";
 
 readDir( curPath, function ( arr ) {
     loopArray( arr, function ( obj ) {
