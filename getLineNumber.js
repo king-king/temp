@@ -11,17 +11,20 @@ var colors = require( "colors" );
 
 function readDir( path, callback ) {
     if ( pt.extname( path ) != "" ) {
+        // 是文件
         callback( [] );
     }
-    fs.readdir( path, function ( err, arr ) {
-        if ( err ) {
-            console.log( err );
-            callback( [] );
-        }
-        else {
-            callback( arr );
-        }
-    } );
+    else {
+        fs.readdir( path, function ( err, arr ) {
+            if ( err ) {
+                console.log( colors.red( "处理失败: " + path ) );
+                callback( [] );
+            }
+            else {
+                callback( arr );
+            }
+        } );
+    }
 }
 
 function loopArray( arr, func ) {
@@ -35,7 +38,7 @@ var dirs = [],
     paths = [];
 
 
-var curPath = "imports";
+var curPath = "test/firstpage3";
 
 readDir( curPath, function ( arr ) {
     loopArray( arr, function ( obj ) {
@@ -76,7 +79,8 @@ var line = {
     css : 0,
     js : 0
 };
-
+var scriptFileNum = 0;
+var cssFileNum = 0;
 
 function end() {
     function getFileLineNumber( path, callback ) {
@@ -91,12 +95,13 @@ function end() {
             if ( extName == "js" || extName == "css" ) {
                 getFileLineNumber( file, function ( err, number ) {
                     if ( err ) {
-                        err.push( file );
+                        console.log( colors.red( "处理失败: " + file ) );
                         done();
                     }
                     else {
                         console.log( colors.green( "成功处理: " + file ) );
                         line[extName] += number;
+                        extName == "js" ? scriptFileNum++ : cssFileNum++;
                         done();
                     }
                 } );
@@ -111,9 +116,9 @@ function end() {
         console.log( "--------------------------------------------------" );
         console.log( "over~!!" );
         console.log( "--------------------------------------------------" );
-        console.log( colors.green( "js文件有  " + line.js + "  行" ) );
+        console.log( colors.green( "js文件有 " + scriptFileNum + " 个, 共 " + line.js + "  行" ) );
         console.log( "--------------------------------------------------" );
-        console.log( colors.green( "js文件有  " + line.css + "  行" ) );
+        console.log( colors.green( "js文件有 " + cssFileNum + " 个, 共 " + line.css + "  行" ) );
     } );
 
 
