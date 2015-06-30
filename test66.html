@@ -29,19 +29,26 @@
 <script>
     (function () {
 
-        function change( obj ) {
-            obj.name = "wanguqn";
+        function loop( time, func ) {
+            for ( var i = 0; i < time; i++ ) {
+                if ( func( i ) ) {
+                    break;
+                }
+            }
         }
 
-        var person = {
-            name : "lili",
-            year : 24
-        };
+//        loop( 10, function ( i ) {
+//            console.log( i );
+//            if ( 5 == i ) {
+//                return true;
+//            }
+//        } )
 
-        change( person );
+        function test() {
+            console.log( arguments.callee );
+        }
 
-        console.log( person.toString() );
-
+        test();
     })();
 </script>
 </body>

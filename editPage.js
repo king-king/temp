@@ -1,6 +1,7 @@
 /**
  * Created by Json on 2015/1/4.
  */
+
 (function () {
     window.onerror = function () {
         console.log( "err", arguments )
@@ -16,7 +17,6 @@
     window.color = {"background" : "#FFFFFF"};
 
     var MB = 1024 * 1024;
-    var KB = 1024;
     var querySelector = document.querySelector.bind( document );
     var querySelectorAll = document.querySelectorAll.bind( document );
     var systemTemPlate = makeTemplate();
@@ -148,13 +148,14 @@
 
     // 编辑图片 包括页面的弹出、关闭以及一切与此有关的操作
     function slidePageEditBgImg() {
-        var openBtn = querySelector( ".edit-page-edit-bgimg-btn" );
+        var openBtn = querySelector( ".edit-page-edit-bgimg-btn" ),
         // 编辑背景图片页面
-        var updateImgBtn = querySelector( ".slide-edit-bgimg-updata-btn" );
-        var updateImgTips = querySelector( ".slide-edit-bgimg-updata-tips" );
-        var fileInput = querySelector( ".slide-page-edit-bgimg .cropit-image-input" );
-        var page = querySelector( ".slide-page-edit-bgimg" );
-        var saveBtn = page.querySelector( ".slide-edit-bgimg-save-btn" );
+            updateImgBtn = querySelector( ".slide-edit-bgimg-updata-btn" ),
+            updateImgTips = querySelector( ".slide-edit-bgimg-updata-tips" ),
+            fileInput = querySelector( ".slide-page-edit-bgimg .cropit-image-input" ),
+            page = querySelector( ".slide-page-edit-bgimg" ),
+            saveBtn = page.querySelector( ".slide-edit-bgimg-save-btn" );
+
         updateImgBtn.onmouseover = function () {
             updateImgTips.classList.remove( "hide" );
         };
@@ -178,11 +179,12 @@
             page.classList.contains( "slide-out" ) ? closeSlidePage( page ) : openSlidePage( page );
         };
         saveBtn.onclick = function () {
-            var pageData = page.pageData;
-            var mediaData = page.mediaData;
-            var mediaAtrr = JSON.parse( mediaData.Attributes );
-            var crop = $( '.slide-page-edit-bgimg .crop-img-border' ).cropit( "cropInfo" );
-            var inputFile = page.querySelector( ".cropit-image-input" );
+            var pageData = page.pageData,
+                mediaData = page.mediaData,
+                mediaAtrr = JSON.parse( mediaData.Attributes ),
+                crop = $( '.slide-page-edit-bgimg .crop-img-border' ).cropit( "cropInfo" ),
+                inputFile = page.querySelector( ".cropit-image-input" );
+
             if ( inputFile.files.length == 0 ) {
                 fp.message( {
                     text : "请选择更换的图片"
@@ -196,7 +198,7 @@
                 return;
             }
             // 保存對圖片的修改
-            var parms = {
+            var parameter = {
                 "omid" : mediaData.ID,
                 "pid" : pageData.Guid,
                 "attr" : mediaData.Attributes,
@@ -213,7 +215,7 @@
                 CornerRadius : mediaAtrr.CornerRadius
             };
             var fd = new window.FormData();
-            loopObj( parms, function ( key, value ) {
+            loopObj( parameter, function ( key, value ) {
                 fd.append( key, value );
             } );
             fd.append( "blob-fileName", inputFile.files[0].name );
@@ -235,7 +237,7 @@
                         var curLi = null;
                         var lis = document.querySelectorAll( "li.page-list.show" );
                         for ( var j = 0; j < lis.length; j++ ) {
-                            if ( lis[j].pageData.Guid == parms.pid ) {
+                            if ( lis[j].pageData.Guid == parameter.pid ) {
                                 curLi = lis[j];
                                 break;
                             }
@@ -1767,7 +1769,7 @@
         };
         // 上一页
         querySelector( ".preview-page-pre-page" ).onclick = function () {
-            iframe.contentWindow.curPageIndex --;
+            iframe.contentWindow.curPageIndex--;
         };
         //　下一页
         querySelector( ".preview-page-next-page" ).onclick = function () {
