@@ -38,7 +38,7 @@ var dirs = [],
     paths = [];
 
 
-var curPath = "test/firstpage3";
+var curPath = "test/t800";
 
 readDir( curPath, function ( arr ) {
     loopArray( arr, function ( obj ) {
@@ -85,7 +85,9 @@ var cssFileNum = 0;
 function end() {
     function getFileLineNumber( path, callback ) {
         fs.readFile( path, function ( err, str ) {
-            callback( err, str.toString().match( /\n/g ).length + 1 );
+            var match = str.toString().match( /\n/g );
+            var num = match ? match.length + 1 : 1;
+            callback( err, num );
         } );
     }
 
