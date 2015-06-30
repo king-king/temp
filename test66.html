@@ -24,22 +24,23 @@
 </head>
 <body>
 
-<div class="target"></div>
+<!--<div class="target"></div>-->
 
 <script>
     (function () {
-        var insertCSSRules = function () {
-            var style = document.createElement( "style" );
-            document.querySelector( "head" ).appendChild( style );
-            return function ( rules ) {
-                for ( var selector in rules ) {
-                    var temp = selector + "" + JSON.stringify( rules[selector] ).replace( /"/g, "" );
-                    console.log( temp );
-                    style.sheet.insertRule( temp, style.sheet.rules.length );
-                }
-            }
-        }();
 
+        function change( obj ) {
+            obj.name = "wanguqn";
+        }
+
+        var person = {
+            name : "lili",
+            year : 24
+        };
+
+        change( person );
+
+        console.log( person.toString() );
 
     })();
 </script>
