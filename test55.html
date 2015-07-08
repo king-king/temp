@@ -10,12 +10,39 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
+        .target {
+            width: 50px;
+            height: 50px;
+            -webkit-animation: animate 2s forwards;
+            background-color: #006699;
+        }
+
+        @-webkit-keyframes animate {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -webkit-transform: translate3d(0, 200px, 0);
+            }
+        }
+
+        img {
+            width: 100px;
+        }
     </style>
 </head>
 <body>
+<img src="img/qr.jpg">
+<div class="target"></div>
 <script>
     (function () {
-        window.name = "wangqun";
+        var tar = document.querySelector( ".target" );
+        var time = (new Date()).getMilliseconds();
+        tar.addEventListener( "webkitAnimationEnd", function () {
+            var span = document.createElement( "span" );
+            span.innerHTML = "end" + ((new Date()).getMilliseconds() - time);
+            document.body.appendChild( span );
+        }, false );
     })();
 </script>
 </body>
