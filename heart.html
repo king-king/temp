@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        .heart {
+            width: 10px;
+            height: 10px;
+            position: absolute;
+            opacity: 0;
+        }
+
+        @-webkit-keyframes kuosan-0 {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate3d(-300%, 200%, 0) scale(1.2) rotateZ(-30deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes kuosan-1 {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate3d(-300%, -200%, 0) scale(1.1) rotateZ(30deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes kuosan-2 {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate3d(-300%, -150%, 0) scale(1.2) rotateZ(20deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes kuosan-3 {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate3d(-300%, 170%, 0) scale(1.1) rotateZ(30deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes kuosan-4 {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translate3d(-300%, 0, 0) scale(1.1) rotateZ(30deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<img class=" heart" src="img/heart.png">
+
+<script src="zMobile.js"></script>
+<script>
+    (function () {
+
+
+        var process = 0;
+
+        function doanimate( duration ) {
+            var s = (new Date()).getTime();
+            var sumd = duration * 1000;
+
+            function animate() {
+                process = ((new Date()).getTime() - s) / sumd;
+                Z.element( "img", {
+                    src : "img/heart.png",
+                    classList : "heart",
+                    css : {
+                        left : ((10 + 300 * process) << 0) + "px",
+                        top : "400px",
+                        "-webkit-animation" : "kuosan-" + ((Math.random() * 10 % 5) << 0) + " " + (Math.random() * 2 + 0.2) + "s ease-out " + (Math.random() / 10) + "s forwards"
+                    }
+                }, document.body );
+                Z.element( "img", {
+                    src : "img/heart.png",
+                    classList : "heart",
+                    css : {
+                        left : ((10 + 300 * process) << 0 ) + "px",
+                        top : "400px",
+                        "-webkit-animation" : "kuosan-" + ((Math.random() * 10 % 5) << 0) + " " + (Math.random() * 2 + 0.2) + "s ease-out " + (Math.random() / 10) + "s forwards"
+                    }
+                }, document.body );
+                process < 0.99 && setTimeout( function () {
+                    animate();
+                }, 1000 / 60 );
+            }
+
+            animate();
+        }
+
+
+        setTimeout( function () {
+            document.querySelector( "img" ).classList.add( "test" );
+        }, 3000 );
+
+        doanimate( 1 );
+    })();
+</script>
+</body>
+</html>
