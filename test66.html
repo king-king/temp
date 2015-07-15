@@ -11,60 +11,36 @@
     <title></title>
     <style>
 
-        .target {
-            width: 20px;
-            height: 20px;
-            border-radius: 10px;
-            -webkit-animation: down-top-down 2s linear infinite;
-            background: red;
-        }
-
-        .border {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            -webkit-animation: right-left 2s linear infinite;
-        }
-
-        @-webkit-keyframes right-left {
-            0% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-            100% {
-                -webkit-transform: translate3d(400px, 0, 0);
-            }
-        }
-
-        @-webkit-keyframes down-top-down {
-            0% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-            50% {
-                -webkit-transform: translate3d(0, -200px, 0);
-            }
-            100% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-        }
-
-        @-webkit-keyframes rotate-left {
-            0% {
-                -webkit-transform: rotate(60deg) translate(-125px) rotate(-60deg);
-            }
-            100% {
-                -webkit-transform: rotate(420deg) translate(-125px) rotate(-420deg);
-            }
+        canvas {
+            width: 300px;
+            height: 300px;
         }
 
     </style>
 </head>
 <body>
-<div class="border">
-    <div class="target"></div>
-</div>
+<canvas width="300" height="300"></canvas>
 <script>
     (function () {
 
+        var img = new Image();
+        img.src = "img/page.jpg";
+        var w = 300, h = 300;
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+
+        img.onload = function () {
+            gc.drawImage( img, 0, 0, w, h );
+            var data = gc.getImageData( 0, 0, w, h );
+            var len = data.data.length;
+            for ( var i = 0; i < len; i += 4 ) {
+                if ( i >= 4 ) {
+                    data.data[i + 2] = (data.data[i - 4] + data.data[i - 3]) / 2 << 0;
+                    data.data[i + 3] = (data.data[i - 4]  ) << 0;
+                }
+            }
+            gc.putImageData( data, 0, 0 );
+        }
 
     })();
 </script>
