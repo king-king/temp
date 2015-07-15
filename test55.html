@@ -32,17 +32,12 @@
     </style>
 </head>
 <body>
-<img src="img/qr.jpg">
 <div class="target"></div>
 <script>
     (function () {
-        var tar = document.querySelector( ".target" );
-        var time = (new Date()).getMilliseconds();
-        tar.addEventListener( "webkitAnimationEnd", function () {
-            var span = document.createElement( "span" );
-            span.innerHTML = "end" + ((new Date()).getMilliseconds() - time);
-            document.body.appendChild( span );
-        }, false );
+        var a = [1, 2, 3];
+        a[-1] = 23;
+        console.log( a );
     })();
 </script>
 </body>
