@@ -1,0 +1,6 @@
+<div class="property x">x:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></div>
+            <div class="property y">y:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"></div>
+            <div class="property scale">scale:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text">(>1)</div>
+            <div class="property opacity">opacity:&nbsp;&nbsp;&nbsp;<input type="text">(0~1)</div>
+            <div class="property duration">duration:&nbsp;<input type="text">&nbsp;s</div>
+            <div class="property rotate">rotate:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text">(deg)</div>
