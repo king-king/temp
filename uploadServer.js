@@ -40,7 +40,6 @@ MongoClient.connect( dburl, function ( err, db ) {
                                 var hex = hash.digest( "hex" );
                                 // 到数据库中查找，如果查找不到，才进行文件的创建
                                 checkExist( db, hex, function ( err, isExist, name ) {
-                                    console.log( isExist );
                                     if ( err ) {
                                         res.end( JSON.stringify( {
                                             code : 604,
