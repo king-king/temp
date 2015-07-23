@@ -19,10 +19,14 @@ MongoClient.connect( dburl, function ( err, db ) {
         http.createServer( function ( req, res ) {
             // 上传组件
             if ( req.url == "/upload" ) {
-                doUpload();
+                doUploadPlugin();
+            }
+            // 得到组件列表
+            else if ( req.url == "/get-plugin-list" ) {
+                doGetPluginList();
             }
 
-            function doUpload() {
+            function doUploadPlugin() {
                 (new multiparty.Form()).parse( req, function ( err, fields, files ) {
                         res.writeHead( 200, {'Content-Type' : 'text/plain', "Access-Control-Allow-Origin" : "*"} );
                         // 读取到文件的内容
@@ -57,7 +61,7 @@ MongoClient.connect( dburl, function ( err, db ) {
                                         fs.writeFile( "out/" + files["wq-file"][0].originalFilename, buffer, function ( err ) {
                                             if ( !err ) {
                                                 // 将记录写入到数据库中
-                                                insertIntoImgCollection( db, {
+                                                insertIntoPluginCollection( db, {
                                                     name : files["wq-file"][0].originalFilename.slice( 0, files["wq-file"][0].originalFilename.indexOf( "." ) ),
                                                     hash : hex
                                                 }, function ( err ) {
@@ -91,19 +95,45 @@ MongoClient.connect( dburl, function ( err, db ) {
                 );
             }
 
+            function doGetPluginList() {
+                getPluginList( db, function ( err, data ) {
+                    res.writeHead( 200, {'Content-Type' : 'text/plain', "Access-Control-Allow-Origin" : "*"} );
+                    if ( err ) {
+                        res.end( JSON.stringify( {
+                            code : 700,
+                            message : "查询失败"
+                        } ) );
+                    }
+                    else {
+                        res.end( JSON.stringify( {
+                            code : 200,
+                            message : data
+                        } ) );
+                    }
+                } );
+            }
+
 
         } ).listen( 7474, '127.0.0.1' );
     }
 } );
 
-function insertIntoImgCollection( db, data, callback ) {
-    var collection = db.collection( "customplugin" );
-    collection.insertOne( {name : data.name, hash : data.hash}, callback );
+var customPluginCollection = null;
+
+function insertIntoPluginCollection( db, data, callback ) {
+    !customPluginCollection && (customPluginCollection = db.collection( "customplugin" ));
+    customPluginCollection.insertOne( {name : data.name, hash : data.hash}, callback );
+}
+
+function getPluginList( db, callback ) {
+    !customPluginCollection && (customPluginCollection = db.collection( "customplugin" ));
+
+    customPluginCollection.find( {} ).toArray( callback );
 }
 
 function checkExist( db, hash, callback ) {
-    var collection = db.collection( "customplugin" );
-    collection.find( {hash : hash} ).toArray( function ( err, docs ) {
+    !customPluginCollection && (customPluginCollection = db.collection( "customplugin" ));
+    customPluginCollection.find( {hash : hash} ).toArray( function ( err, docs ) {
         callback( err, docs.length != 0, docs[0] ? docs[0].name : null );
     } );
 }
