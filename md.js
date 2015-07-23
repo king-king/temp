@@ -23,6 +23,11 @@ MongoClient.connect( url, function ( err, db ) {
 } );
 
 
+process.on( "exit", function () {
+    console.log( "结束" );
+} );
+
+
 function insertIntoImgCollection( db, data, callback ) {
     var collection = db.collection( "customplugin" );
     collection.insertOne( {name : data.name, hash : data.hash}, callback );
@@ -31,7 +36,8 @@ function insertIntoImgCollection( db, data, callback ) {
 function checkExist( db, hash, callback ) {
     var collection = db.collection( "customplugin" );
     collection.find( {hash : hash} ).toArray( function ( err, docs ) {
-        callback( err, docs.length != 0 );
+        console.log( docs );
+        callback( err, docs.length != 0, docs[0] ? docs[0].name : null );
     } );
 }
 
