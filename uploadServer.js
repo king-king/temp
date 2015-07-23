@@ -39,8 +39,15 @@ MongoClient.connect( dburl, function ( err, db ) {
                                 hash.update( buffer );
                                 var hex = hash.digest( "hex" );
                                 // 到数据库中查找，如果查找不到，才进行文件的创建
-                                checkExist( db, hash, function ( isExist, name ) {
-                                    if ( isExist ) {
+                                checkExist( db, hex, function ( err, isExist, name ) {
+                                    console.log( isExist );
+                                    if ( err ) {
+                                        res.end( JSON.stringify( {
+                                            code : 604,
+                                            message : "校验失败"
+                                        } ) );
+                                    }
+                                    else if ( isExist ) {
                                         // 如果已经存在，则返回
                                         res.end( JSON.stringify( {
                                             code : 602,

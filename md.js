@@ -15,7 +15,7 @@ MongoClient.connect( url, function ( err, db ) {
         //insertIntoImgCollection( db, {name : "plugin-redpoint", hash : "twe23fdf34rdsf46t"}, function ( err, i ) {
         //    process.exit();
         //} );
-        checkExist( db, "twe23fdf34rdsf46t", function ( err, isExist ) {
+        checkExist( db, "d67e34cb2d0dd72af922ba73052cec4c", function ( err, isExist ) {
             console.log( isExist );
             process.exit();
         } );
