@@ -38,6 +38,12 @@
             cursor: pointer;
             border: 1px solid black;
         }
+
+        textarea {
+            width: 400px;
+            height: 400px;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +53,8 @@
 <div class="btn get-plugin-list">get-list</div>
 <input type="text" class="cinema-name">给你的动画起个有意义的名字吧
 <div class="create-cinema">创建</div>
+<textarea class="config"></textarea>
+
 <script src="jquery.js"></script>
 <script>
     (function () {
@@ -56,7 +64,7 @@
         var getPluginListBtn = document.querySelector( ".get-plugin-list" );
         var cinemaName = document.querySelector( ".cinema-name" );
         var createBtn = document.querySelector( ".create-cinema" );
-
+        var textarea = document.querySelector( "textarea" );
 
         file.onchange = function () {
             var fd = new FormData();
@@ -101,7 +109,6 @@
             };
         };
 
-
         createBtn.onclick = function () {
             var xhr = new XMLHttpRequest();
             xhr.open( "get", encodeURI( "http://127.0.0.1:7474/create-cinema?name=" + cinemaName.value.trim() ), true );
@@ -115,8 +122,25 @@
             xhr.onerror = function () {
                 console.log( "err" )
             };
-        }
+        };
 
+        textarea.onblur = function () {
+            var fd = new FormData();
+            fd.append( "data", textarea.value );
+            fd.append( "name", "使徒对战" );
+            var xhr = new XMLHttpRequest();
+            xhr.open( "post", "http://127.0.0.1:7474/save-cinema-data", true );
+            xhr.send( fd );
+            form.reset();
+            xhr.onreadystatechange = function () {
+                if ( xhr.readyState == 4 && xhr.status == 200 ) {
+                    console.log( xhr.responseText );
+                }
+            };
+            xhr.onerror = function () {
+                console.log( "err" )
+            };
+        }
 
     })();
 </script>

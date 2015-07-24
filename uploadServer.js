@@ -28,7 +28,7 @@ MongoClient.connect( dburl, function ( err, db ) {
             }
             // 保存动画数据
             else if ( req.url == "/save-cinema-data" ) {
-
+                doSavePluginCinema();
             }
             // 检查动画名字是否被占用
             else if ( (/check-cinema-name\?name=.*/).test( req.url ) ) {
@@ -127,6 +127,36 @@ MongoClient.connect( dburl, function ( err, db ) {
             }
 
             function doSavePluginCinema() {
+                res.writeHead( 200, {'Content-Type' : 'text/plain', "Access-Control-Allow-Origin" : "*"} );
+
+                var postdata = "";
+
+                req.on( "data", function ( data ) {
+                    postdata += data;
+                } );
+                req.on( "end", function () {
+                    postdata = postdata.replace( "------WebKitFormBoundary", "" );
+                    var data = postdata.substring( postdata.indexOf( "name=\"data\"" ) + 11, postdata.indexOf( "------WebKitFormBoundary" ) );
+                    postdata = postdata.replace( "------WebKitFormBoundary", "" );
+                    var name = postdata.substring( postdata.indexOf( "name=\"name\"" ) + 11, postdata.indexOf( "------WebKitFormBoundary" ) ).trim();
+
+                    saveCinema( db, name, data, function ( err ) {
+                        if ( err ) {
+                            res.end( JSON.stringify( {
+                                code : 1001,
+                                message : "数据库故障"
+                            } ) );
+                        }
+                        else {
+                            res.end( JSON.stringify( {
+                                code : 200,
+                                message : "ok"
+                            } ) );
+                        }
+                    } );
+
+                } );
+
 
             }
 
@@ -199,8 +229,11 @@ function checkExist( db, hash, callback ) {
 var cinemaCollection = null;
 
 // 实际上是根据名字update动画数据
-function saveCinema( name ) {
-
+function saveCinema( db, name, animate, callback ) {
+    !cinemaCollection && (cinemaCollection = db.collection( "cinemadata" ));
+    cinemaCollection.findOneAndUpdate( {name : name}, {
+        $set : {animate : animate}
+    }, callback )
 }
 
 // 每次创建一个新的动画时候，都要起名字，这个会创建一个doc，name就是传进来的参数
@@ -215,5 +248,4 @@ function checkTheCinemaNameIsUsed( db, name, callback ) {
     cinemaCollection.findOne( {name : name}, function ( err, docs ) {
         callback( err, !!docs && docs.length != 0 );
     } );
-
 }
