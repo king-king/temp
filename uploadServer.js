@@ -8,7 +8,8 @@ var http = require( "http" ),
     util = require( 'util' ),
     MongoClient = require( 'mongodb' ).MongoClient,
     dburl = 'mongodb://localhost:27017/cinema',
-    crypto = require( "crypto" );
+    crypto = require( "crypto" ),
+    url = require( "url" );
 
 MongoClient.connect( dburl, function ( err, db ) {
     if ( err ) {
@@ -24,6 +25,18 @@ MongoClient.connect( dburl, function ( err, db ) {
             // 得到组件列表
             else if ( req.url == "/get-plugin-list" ) {
                 doGetPluginList();
+            }
+            // 保存动画数据
+            else if ( req.url == "/save-cinema-data" ) {
+
+            }
+            // 检查动画名字是否被占用
+            else if ( (/check-cinema-name\?name=.*/).test( req.url ) ) {
+                checkCinemaName();
+            }
+            // 创建动画
+            else if ( (/create-cinema\?name=.*/).test( decodeURIComponent( req.url ) ) ) {
+                createCinema();
             }
 
             function doUploadPlugin() {
@@ -113,6 +126,51 @@ MongoClient.connect( dburl, function ( err, db ) {
                 } );
             }
 
+            function doSavePluginCinema() {
+
+            }
+
+            function checkCinemaName() {
+                res.writeHead( 200, {'Content-Type' : 'text/plain', "Access-Control-Allow-Origin" : "*"} );
+                var query = url.parse( decodeURI( req.url ) ).query,
+                    name = query.slice( query.indexOf( "=" ) + 1 );
+
+                checkTheCinemaNameIsUsed( db, name, function ( err, isUsed ) {
+                    if ( err ) {
+                        res.end( JSON.stringify( {
+                            code : 801,
+                            message : "数据库查询故障"
+                        } ) );
+                    }
+                    else {
+                        res.end( JSON.stringify( {
+                            code : 200,
+                            message : isUsed
+                        } ) );
+                    }
+                } );
+            }
+
+            function createCinema() {
+                var query = url.parse( decodeURI( req.url ) ).query,
+                    name = query.slice( query.indexOf( "=" ) + 1 );
+                res.writeHead( 200, {'Content-Type' : 'text/plain', "Access-Control-Allow-Origin" : "*"} );
+                createOneCinema( db, name, function ( err, r ) {
+                    if ( err ) {
+                        res.end( JSON.stringify( {
+                            code : 901,
+                            message : "数据库故障"
+                        } ) );
+                    }
+                    else {
+                        res.end( JSON.stringify( {
+                            code : 200,
+                            message : "ok"
+                        } ) );
+                    }
+                } );
+            }
+
 
         } ).listen( 7474, '127.0.0.1' );
     }
@@ -136,4 +194,26 @@ function checkExist( db, hash, callback ) {
     customPluginCollection.find( {hash : hash} ).toArray( function ( err, docs ) {
         callback( err, docs.length != 0, docs[0] ? docs[0].name : null );
     } );
+}
+
+var cinemaCollection = null;
+
+// 实际上是根据名字update动画数据
+function saveCinema( name ) {
+
+}
+
+// 每次创建一个新的动画时候，都要起名字，这个会创建一个doc，name就是传进来的参数
+function createOneCinema( db, name, callback ) {
+    !cinemaCollection && (cinemaCollection = db.collection( "cinemadata" ));
+    cinemaCollection.insertOne( {name : name}, callback );
+}
+
+// 每次创建名字之前都需要检验一下名字有没有被占用，name不能重复
+function checkTheCinemaNameIsUsed( db, name, callback ) {
+    !cinemaCollection && (cinemaCollection = db.collection( "cinemadata" ));
+    cinemaCollection.findOne( {name : name}, function ( err, docs ) {
+        callback( err, !!docs && docs.length != 0 );
+    } );
+
 }

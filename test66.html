@@ -20,6 +20,24 @@
             margin-top: 10px;
             border: 2px solid #aaa;
         }
+
+        .cinema-name {
+            height: 30px;
+            line-height: 30px;
+            margin: 10px;
+            outline: none;
+            text-align: center;
+        }
+
+        .create-cinema {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            font-size: 30px;
+            cursor: pointer;
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -27,6 +45,8 @@
     <input type="file" value="wq">
 </form>
 <div class="btn get-plugin-list">get-list</div>
+<input type="text" class="cinema-name">给你的动画起个有意义的名字吧
+<div class="create-cinema">创建</div>
 <script src="jquery.js"></script>
 <script>
     (function () {
@@ -34,6 +54,9 @@
         var file = document.querySelector( "input" );
         var form = document.querySelector( "form" );
         var getPluginListBtn = document.querySelector( ".get-plugin-list" );
+        var cinemaName = document.querySelector( ".cinema-name" );
+        var createBtn = document.querySelector( ".create-cinema" );
+
 
         file.onchange = function () {
             var fd = new FormData();
@@ -60,9 +83,40 @@
                 if ( xhr.readyState == 4 && xhr.status == 200 ) {
                     console.log( JSON.parse( xhr.responseText ) );
                 }
-
             }
+        };
+
+        cinemaName.onblur = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open( "get", encodeURI( "http://127.0.0.1:7474/check-cinema-name?name=" + cinemaName.value.trim() ), true );
+            xhr.send();
+            form.reset();
+            xhr.onreadystatechange = function () {
+                if ( xhr.readyState == 4 && xhr.status == 200 ) {
+                    console.log( xhr.responseText );
+                }
+            };
+            xhr.onerror = function () {
+                console.log( "err" )
+            };
+        };
+
+
+        createBtn.onclick = function () {
+            var xhr = new XMLHttpRequest();
+            xhr.open( "get", encodeURI( "http://127.0.0.1:7474/create-cinema?name=" + cinemaName.value.trim() ), true );
+            xhr.send();
+            form.reset();
+            xhr.onreadystatechange = function () {
+                if ( xhr.readyState == 4 && xhr.status == 200 ) {
+                    console.log( xhr.responseText );
+                }
+            };
+            xhr.onerror = function () {
+                console.log( "err" )
+            };
         }
+
 
     })();
 </script>
