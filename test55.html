@@ -10,34 +10,55 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        .target {
-            width: 50px;
-            height: 50px;
-            -webkit-animation: animate 2s forwards;
-            background-color: #006699;
+        body {
+            background: #f00;
         }
 
-        @-webkit-keyframes animate {
-            0% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-            100% {
-                -webkit-transform: translate3d(0, 200px, 0);
-            }
+        * {
+            font-size: 40px;
+            font-family: "微软雅黑", sans-serif;
         }
 
-        img {
+        .time {
+            display: inline-block;
             width: 100px;
+            text-align: center;
+            height: 60px;
+            line-height: 60px;
+            color: #000;
         }
     </style>
 </head>
 <body>
-<div class="target"></div>
+<div class="time s"></div>
+:
+<div class="time m"></div>
 <script>
     (function () {
-        var a = [1, 2, 3];
-        a[-1] = 23;
-        console.log( a );
+        function timer( duration, callback ) {
+            var s = (new Date()).getTime();
+            var st = document.querySelector( ".time.s" );
+            var mt = document.querySelector( ".time.m" );
+            var id = setTimeout( function () {
+                var cha = (new Date()).getTime() - s;
+                if ( cha >= duration ) {
+                    st.innerText = duration / 1000 << 0;
+                    mt.innerText = duration % 1000;
+                    callback();
+                }
+                else {
+                    st.innerText = cha / 1000 << 0;
+                    mt.innerText = cha % 1000;
+                    clearTimeout( id );
+                    id = setTimeout( arguments.callee, 10 );
+                }
+            }, 10 );
+        }
+
+        timer( 9282, function () {
+            console.log( "end" )
+        } );
+
     })();
 </script>
 </body>

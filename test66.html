@@ -129,7 +129,7 @@
             fd.append( "data", textarea.value );
             fd.append( "name", "使徒对战" );
             var xhr = new XMLHttpRequest();
-            xhr.open( "post", "http://127.0.0.1:7474/save-cinema-data", true );
+            xhr.open( "post", "http://192.168.0.122:7474/save-cinema-data", true );
             xhr.send( fd );
             form.reset();
             xhr.onreadystatechange = function () {
