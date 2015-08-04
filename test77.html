@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    </style>
+</head>
+<body>
+<script>
+    (function () {
+        var isIsomorphic = function ( s, t ) {
+            function replaceCharAll( str, start, char1, char2 ) {
+                var s = str.slice( 0, start );
+                for ( var i = start; i < str.length; i++ ) {
+                    if ( str[i] == char1 ) {
+                        s += char2;
+                    }
+                    else {
+                        s += str[i];
+                    }
+                }
+                return s;
+            }
+
+            if ( s.length != t.length ) {
+                return false;
+            }
+            else {
+                for ( var i = 0; i < s.length; i++ ) {
+                    if ( s[i] != t[i] ) {
+                        s = replaceCharAll( s, i, s[i], t[i] );
+                    }
+                }
+                console.log( s, t );
+                return s == t;
+            }
+        };
+
+        console.log( isIsomorphic( "egg", "foo" ) );
+
+    })();
+</script>
+</body>
+</html>

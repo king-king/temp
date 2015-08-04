@@ -27,12 +27,19 @@
             line-height: 60px;
             color: #000;
         }
+
+        .stop {
+            width: 100px;
+            height: 50px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 <div class="time s"></div>
 :
 <div class="time m"></div>
+<div class="stop">stop</div>
 <script>
     (function () {
         function timer( duration, callback ) {
@@ -53,12 +60,22 @@
                     id = setTimeout( arguments.callee, 10 );
                 }
             }, 10 );
+            return {
+                destroy : function () {
+                    clearTimeout( id );
+                }
+            }
         }
 
-        timer( 9282, function () {
+        var handle = timer( 9282, function () {
             console.log( "end" )
         } );
 
+
+        var stop = document.querySelector( ".stop" );
+        stop.onclick = function () {
+            handle.destroy();
+        }
     })();
 </script>
 </body>

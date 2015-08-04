@@ -42,6 +42,7 @@ MongoClient.connect( dburl, function ( err, db ) {
             function doUploadPlugin() {
                 (new multiparty.Form()).parse( req, function ( err, fields, files ) {
                         res.writeHead( 200, {'Content-Type' : 'text/plain', "Access-Control-Allow-Origin" : "*"} );
+                        console.log( fields.alias[0] );
                         // 读取到文件的内容
                         fs.readFile( files["wq-file"][0].path, null, function ( err, buffer ) {
                             if ( err ) {
