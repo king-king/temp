@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
     <title></title>
     <style>
         * {
@@ -23,7 +29,6 @@
     </style>
 </head>
 <body>
-<div class="header"></div>
 <script src="filter-sobel.js"></script>
 <script src="delaunay.js"></script>
 <script>
@@ -108,12 +113,9 @@
         }
 
 
-        lowPoly( "img/h.jpg" );
-        lowPoly( "img/h2.jpg" );
-        lowPoly( "img/h3.jpg" );
-        lowPoly( "img/h4.jpg" );
-        lowPoly( "img/h5.jpg" );
-        lowPoly( "img/h6.jpg" );
+        lowPoly( "img/h6.jpg", function ( data ) {
+            alert( "总时间:" + data.sum );
+        } );
     })();
 </script>
 </body>
