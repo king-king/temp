@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .header {
+            width: 100%;
+            height: 100px;
+            line-height: 100px;
+        }
+
+        canvas {
+            float: left;
+            width: 320px;
+            height: 480px;
+        }
+    </style>
+</head>
+<body>
+<div class="header"></div>
+<script src="filter-sobel.js"></script>
+<script src="delaunay.js"></script>
+<script>
+    (function () {
+
+        function Canvas() {
+            var canvas = document.createElement( "canvas" );
+            canvas.width = 320;
+            canvas.height = 480;
+            return canvas;
+        }
+
+        function getPoint( imgdata, w, h ) {
+            var result = [];
+            var pre = 0;
+            for ( var y = 0; y < h; y += 10 ) {
+                for ( var x = 0; x < w; ) {
+                    var index = (y * w + x) * 4;
+                    var cur = imgdata[index] + imgdata[index + 1] + imgdata[index + 2];
+                    if ( cur > 150 && Math.abs( cur - pre ) > 120 ) {
+                        result.push( [x, y] );
+                        pre = cur;
+                        x += 10;
+                    }
+                    else {
+                        x += 1;
+                    }
+                }
+            }
+            return result;
+        }
+
+        function lowPoly( src ) {
+            var img = new Image();
+            img.src = src;
+            img.onload = function () {
+                var startTime = (new Date()).getTime();
+                var ocanvas = Canvas();
+                var ogc = ocanvas.getContext( "2d" );
+                ogc.drawImage( img, 0, 0 );
+                var ogcdata = ogc.getImageData( 0, 0, 320, 480 );
+                document.body.appendChild( ocanvas );
+
+                ogc.putImageData( Sobel( ogcdata ), 0, 0 );
+
+                var point = getPoint( ogc.getImageData( 0, 0, 320, 480 ).data, 320, 480 );
+
+                var getPointTime = (new Date()).getTime();
+                console.log( "获取到 " + point.length + " 个点共花费：" + (getPointTime - startTime) / 1000 + "s" );
+
+                ogc.clearRect( 0, 0, 320, 480 );
+
+                ogc.lineWidth = 1;
+
+                var line = delaunay.triangulate( point );
+                for ( var i = 0; i < line.length; i += 3 ) {
+                    ogc.beginPath();
+                    var x = point[line[i]][0], y = point[line[i]][1];
+                    ogc.moveTo( x, y );
+                    ogc.lineTo( point[line[i + 1]][0], point[line[i + 1]][1] );
+                    ogc.lineTo( point[line[i + 2]][0], point[line[i + 2]][1] );
+                    ogc.closePath();
+
+                    var my = ((y + point[line[i + 1]][1] + point[line[i + 2]][1]) / 3) << 0;
+                    var mx = ((x + point[line[i + 1]][0] + point[line[i + 2]][0]) / 3) << 0;
+
+                    var oindex = (my * 320 + mx) * 4;
+                    ogc.strokeStyle = "rgba(" + ogcdata.data[oindex] + "," + ogcdata.data[oindex + 1] + "," + ogcdata.data[oindex + 2] + ",1)";
+                    ogc.fillStyle = "rgba(" + ogcdata.data[oindex] + "," + ogcdata.data[oindex + 1] + "," + ogcdata.data[oindex + 2] + ",1)";
+                    ogc.stroke();
+                    ogc.fill();
+                }
+
+                var endTime = (new Date()).getTime();
+
+                console.log( "绘制线条一共花费：" + (endTime - getPointTime) / 1000 + "s" );
+                console.log( "绘制线条一共花费：" + (endTime - startTime) / 1000 + "s" );
+            };
+        }
+
+
+        lowPoly( "img/h.jpg" );
+        lowPoly( "img/h2.jpg" );
+        lowPoly( "img/h3.jpg" );
+        lowPoly( "img/h4.jpg" );
+        lowPoly( "img/h5.jpg" );
+        lowPoly( "img/h6.jpg" );
+    })();
+</script>
+</body>
+</html>
