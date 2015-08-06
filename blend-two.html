@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            float: left;
+            width: 320px;
+            height: 480px;
+        }
+    </style>
+</head>
+<body>
+<script src="filter-blend.js"></script>
+<script>
+    (function () {
+
+        function Canvas() {
+            var canvas = document.createElement( "canvas" );
+            canvas.width = 320;
+            canvas.height = 480;
+            return canvas;
+        }
+
+
+        // 并发
+        function concurrentTask( tasks, callback ) {
+            var len = tasks.length,
+                    count = 0;
+            tasks.forEach( function ( task ) {
+                task( function () {
+                    count++;
+                    if ( count == len ) {
+                        callback();
+                    }
+                } );
+            } );
+        }
+
+        var img1, img2;
+        concurrentTask( [
+            function ( done ) {
+                img1 = new Image();
+                img1.src = "img/h5.jpg";
+                img1.onload = done;
+            },
+            function ( done ) {
+                img2 = new Image();
+                img2.src = "img/h.jpg";
+                img2.onload = done;
+            }
+        ], function () {
+            var canvas = Canvas();
+            var gc = canvas.getContext( "2d" );
+            document.body.appendChild( canvas );
+            var canvas2 = Canvas();
+            var gc2 = canvas2.getContext( "2d" );
+
+            gc.drawImage( img1, 0, 0 );
+            gc2.drawImage( img2, 0, 0 );
+
+            var data = blend( gc2.getImageData( 0, 0, 320, 480 ), gc.getImageData( 0, 0, 320, 480 ), "overlap" );
+
+            gc.putImageData( data, 0, 0 );
+
+
+        } );
+
+
+    })();
+</script>
+</body>
+</html>
