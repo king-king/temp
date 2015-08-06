@@ -12,7 +12,82 @@
     </style>
 </head>
 <body>
+<script src="filter-blend.js"></script>
 <script>
+    (function () {
+
+        function Canvas() {
+            var canvas = document.createElement( "canvas" );
+            canvas.width = 320;
+            canvas.height = 480;
+            return canvas;
+        }
+
+        var w = 320, h = 480;
+        var img = new Image();
+        img.src = "img/h.jpg";
+        img.onload = function () {
+            var canvas = Canvas();
+            var gc = canvas.getContext( "2d" );
+            document.body.appendChild( canvas );
+            gc.drawImage( img, 0, 0 );
+            var imgdata = gc.getImageData( 0, 0, w, h );
+            var resultdata = gc.createImageData( w, h );
+            var r, g, b;
+            var index = 0;
+            resultdata.data[index] = r = imgdata.data[index];
+            resultdata.data[index + 1] = g = imgdata.data[index + 1];
+            resultdata.data[index + 2] = b = imgdata.data[index + 2];
+            resultdata.data[index + 3] = 255;
+
+            // 制作浮雕效果
+            for ( var y = 0; y < h; y++ ) {
+                for ( var x = 1; x < w; x++ ) {
+                    index += 4;
+                    resultdata.data[index] = r - imgdata.data[index] + 127;
+                    resultdata.data[index + 1] = g - imgdata.data[index + 1] + 127;
+                    resultdata.data[index + 2] = b - imgdata.data[index + 2] + 127;
+                    resultdata.data[index + 3] = 255;
+                    if ( resultdata.data[index] > 255 ) {
+                        resultdata.data[index] = 255;
+                    }
+                    if ( resultdata.data[index + 1] > 255 ) {
+                        resultdata.data[index + 1] = 255;
+                    }
+                    if ( resultdata.data[index + 2] > 255 ) {
+                        resultdata.data[index + 2] = 255;
+                    }
+                    r = imgdata.data[index];
+                    g = imgdata.data[index + 1];
+                    b = imgdata.data[index + 2];
+                }
+                index += 4;
+                resultdata.data[index] = r = imgdata.data[index];
+                resultdata.data[index + 1] = g = imgdata.data[index + 1];
+                resultdata.data[index + 2] = b = imgdata.data[index + 2];
+                resultdata.data[index + 3] = 255;
+            }
+
+
+            // 图像混合
+            var data = blend( resultdata, imgdata, "overlap" );
+
+            var ocavans = Canvas();
+            ocavans.getContext( "2d" ).putImageData( imgdata, 0, 0 );
+            document.body.appendChild( ocavans );
+
+            var ocavans2 = Canvas();
+            ocavans2.getContext( "2d" ).putImageData( resultdata, 0, 0 );
+            document.body.appendChild( ocavans2 );
+
+            gc.putImageData( data, 0, 0 );
+
+            i = 4;
+            console.log( imgdata.data[i], imgdata.data[i + 1], imgdata.data[i + 2] );
+            console.log( resultdata.data[i], resultdata.data[i + 1], resultdata.data[i + 2] );
+            console.log( data.data[i], data.data[i + 1], data.data[i + 2] );
+        }
+    })()
 </script>
 </body>
 </html>
