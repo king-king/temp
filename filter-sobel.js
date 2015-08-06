@@ -19,8 +19,8 @@
                 [0, 0, 0],
                 [1, 2, 1]
             ],
-            SobelData = [],
-            grayScaleData = [];
+            grayScaleData = [],
+            imgData = document.createElement( "canvas" ).getContext( "2d" ).createImageData( w, h );
 
         function bindPixelAt( data ) {
             return function ( x, y, i ) {
@@ -76,11 +76,13 @@
 
                 isReverse && (magnitude = magnitude > 125 ? 0 : 255);
 
-                SobelData.push( magnitude, magnitude, magnitude, 255 );
+                var index = (y * w + x) * 4;
+                imgData.data[index] = imgData.data[index + 1] = imgData.data[index + 2] = magnitude;
+                imgData.data[index + 3] = 255;
             }
         }
 
-        return new ImageData( new Uint8ClampedArray( SobelData ), w, h );
+        return imgData;
     }
 
     window.Sobel = Sobel;
