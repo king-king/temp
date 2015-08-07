@@ -9,15 +9,55 @@
 <body>
 <script>
     (function () {
-        console.log( navigator.onLine );
 
-        window.addEventListener( "offline", function () {
-            console.log( "offline" );
-        }, false );
 
-        window.addEventListener( "online", function () {
-            console.log( "online" );
-        }, false );
+        function isRoot( root, p, q ) {
+            if ( (root.val > p.val && root.val < q.val) || (root.val > q.val && root.val < p.val) ) {
+                return root;
+            }
+            if ( root.val == p.val || root.val == q.val ) {
+                return root;
+            }
+            else {
+                return null;
+            }
+        }
+
+        var lowestCommonAncestor = function ( root, p, q ) {
+            var rr = null;
+
+            function visit( root ) {
+                if ( rr ) {
+                    return;
+                }
+                if ( root ) {
+                    var r = isRoot( root, p, q );
+                    if ( r ) {
+                        rr = r;
+                        return;
+                    }
+                    root.left && visit( root.left );
+                    root.right && visit( root.right );
+                }
+            }
+
+            visit( root );
+            return rr;
+        };
+
+        var b = {
+            val : 1,
+            left : null,
+            right : null
+        };
+        var a = {
+            val : 2,
+            left : null,
+            right : b
+        };
+
+        var c = lowestCommonAncestor( a, 2, 1 );
+        console.log( c );
 
     })();
 </script>
