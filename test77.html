@@ -11,53 +11,40 @@
     (function () {
 
 
-        function isRoot( root, p, q ) {
-            if ( (root.val > p.val && root.val < q.val) || (root.val > q.val && root.val < p.val) ) {
-                return root;
+        var isPalindrome = function ( head ) {
+            if ( !head ) {
+                return true;
             }
-            if ( root.val == p.val || root.val == q.val ) {
-                return root;
-            }
-            else {
-                return null;
-            }
-        }
 
-        var lowestCommonAncestor = function ( root, p, q ) {
-            var rr = null;
+            var len;
 
-            function visit( root ) {
-                if ( rr ) {
-                    return;
+            function change( head ) {
+                var p = head;
+                len = 1;
+                while ( p.next ) {
+                    len++;
+                    p.next.pre = p;
+                    p = p.next;
                 }
-                if ( root ) {
-                    var r = isRoot( root, p, q );
-                    if ( r ) {
-                        rr = r;
-                        return;
-                    }
-                    root.left && visit( root.left );
-                    root.right && visit( root.right );
+                return p;
+            }
+
+            var l = change( head );
+            var f = head;
+            len = len / 2 << 0;
+            for ( var i = 0; i < len; i++ ) {
+                if ( f.val != l.val ) {
+                    return false;
+                }
+                else {
+                    f = f.next;
+                    l = l.pre;
                 }
             }
 
-            visit( root );
-            return rr;
-        };
+            return true;
 
-        var b = {
-            val : 1,
-            left : null,
-            right : null
         };
-        var a = {
-            val : 2,
-            left : null,
-            right : b
-        };
-
-        var c = lowestCommonAncestor( a, 2, 1 );
-        console.log( c );
 
     })();
 </script>
