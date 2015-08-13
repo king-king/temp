@@ -1,35 +1,124 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
     <title></title>
     <style>
+        * {
+            -webkit-user-select: none;
+        }
+
+        .body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .page {
+            overflow: hidden;
+            position: absolute;
+            display: block;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+        }
+
+        .page img {
+            width: 100%;
+        }
+
+        .border {
+            position: absolute;
+            display: block;
+            left: 21px;
+            top: 68px;
+            width: 277px;
+            height: 303px;
+            z-index: 0;
+            opacity: 1;
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            background: transparent;
+        }
+
+        .border .mask {
+            position: absolute;
+            display: block;
+            left: 0;
+            top: 0;
+            width: 277px;
+            height: 303px;
+            z-index: 0;
+        }
+
+        .border .word {
+            position: absolute;
+            display: block;
+            left: 10px;
+            top: 21px;
+            width: 256px;
+            height: 74px;
+            z-index: 0;
+            opacity: 1;
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+        }
+
+        img.qr {
+            position: absolute;
+            z-index: 1000;
+            left: 19px;
+            top: 127px;
+            width: 243px;
+            padding-bottom: 64px;
+            -webkit-transform: translateZ(100000px);
+            pointer-events: auto;
+        }
+
+        canvas {
+            display: block;
+            width: 243px;
+            height: 138px;
+            position: absolute;
+            left: 19px;
+            top: 127px;
+            z-index: 0;
+            opacity: 1;
+            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+            visibility: hidden;
+        }
     </style>
 </head>
 <body>
+<div class="body">
+    <div class="page">
+        <img src="img/h3.jpg">
+    </div>
+    <div class="border">
+        <img src="http://static01.cloud7.com.cn/assets/553b15f4/content/firstpage2/image/qrcode-frame.png" class="mask">
+        <img class="word" src="http://img01.cloud7.com.cn/6700f60deebb9beab96330047292b5fa.png">
+        <canvas width="243px" height="138px"></canvas>
+        <img class="qr">
+    </div>
+</div>
 <script>
     (function () {
 
-        function outer() {
-            function inner() {
-                console.log( arguments.callee );
-                console.log( inner.caller );
-            }
-
-            inner();
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+        var img = document.querySelector( "img.qr" );
+        img.src = "img/qr.png";
+        img.onload = function () {
+            gc.drawImage( img, 0, 0, 243, 138 );
         }
-
-        outer();
-
-
-        var a = new String( "1234" );
-
-        var b = [1, 2, 3, 4, 5];
-
-        b.forEach( function ( i ) {
-            console.log( i )
-        } );
-
 
     })();
 </script>
