@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <title></title>
+    <style>
+        *, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        a, a:hover {
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .stairTitle {
+            height: 50px;
+            background-color: #ff437d;
+            padding: 0 18px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .stairTitle p {
+            font-size: 15px;
+            color: #ffffff;
+            width: 270px;
+            line-height: 50px;
+        }
+
+        .title {
+            border-bottom: 1px solid #c8c7cc;
+            background-color: #f7f7f7;
+            padding: 0 18px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .title p {
+            font-size: 15px;
+            color: #666666;
+            width: 270px;
+            line-height: 50px;
+            float: left;
+        }
+
+        .title img {
+            float: right;
+            margin-top: 17px;
+            width: 7px;
+            height: 12px;
+            -webkit-animation: Rotate 0.3s forwards;
+        }
+
+        .title2 {
+            border-bottom: 1px solid #c8c7cc;
+            background-color: #f7f7f7;
+            padding: 15px 18px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .title2 p {
+            font-size: 15px;
+            color: #666666;
+            width: 270px;
+            line-height: 28px;
+            float: left;
+        }
+
+        .title2 img {
+            float: right;
+            margin-top: 18px;
+            width: 7px;
+            height: 12px;
+            -webkit-animation: Rotate 0.3s forwards;
+        }
+
+        .content {
+            border-bottom: 1px solid #dbdbdb;
+            padding: 23px 15px;
+            color: #000000;
+            background-color: #ededed;
+            display: none;
+
+        }
+
+        .p1, .p2 {
+            width: 100%;
+            height: auto;
+        }
+
+        .cur .title {
+            background-color: #c9c7cd;
+        }
+
+        .show .content {
+            display: block;
+        }
+
+        .show .title img {
+
+            -webkit-animation: curRotate 0.3s forwards;
+        }
+
+        .content p {
+            font-size: 15px;
+            color: #525456;
+            line-height: 27px;
+        }
+
+        .icon1 {
+            height: 15px;
+        }
+
+        .icon2 {
+            height: 17px;
+        }
+
+        @-webkit-keyframes curRotate {
+            100% {
+                -webkit-transform: rotateZ(90deg);
+            }
+        }
+
+        @-webkit-keyframes Rotate {
+            100% {
+                -webkit-transform: rotateZ(0deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="stairTitle">
+    <p>一、登录环节的那些事；</p>
+</div>
+<div class="list">
+    <div class="title">
+        <p>
+            1、为什么我用微信/微博无法登录初页？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答： 提示出错？加我们微信 ichuye ，把错误信息截屏发过来，让我们看看问题在哪里！还可以，用初页ID登录（页猫们可以参看下一条提前记住ID号）。
+            还是没有搞定？打电话给我们吧（<a href="tel:400-804-4007">400-804-4007</a>），工作时间【周一至周五9:00-18:00】 。
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            2、初页ID是什么东东？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：它是根据登录的微信或微博自动分配的账号，在我 - 设置（左上角）- 修改密码 中可以查看。
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            3、登录后说昵称不可用诶？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：因为初页昵称是唯一滴！这种情况只能修改啦，昵称一周可以修改一次，但是不能有特殊字符噢。
+        </p>
+    </div>
+</div>
+
+<div class="stairTitle">
+    <p>二、制作环节的那些事；</p>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            1、我想做个初页，怎么开始呢？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：点击屏幕中下方最红的相机框，开始制作biangbiang的初页！
+        </p>
+    </div>
+</div>
+
+<div class="list s1">
+    <div class="title title2">
+        <p>
+            2、选照片时，为什么没有显示出来所有的相片呢？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：初页可没有吞相片的功能哟~各位看官请往下瞧↓（仅限苹果用户）
+            <img src="http://static01.cloud7.com.cn/qa/img/p1.png" class="p1">
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            3、选照片时出现一堆英文是几个意思啊?
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：这…. 谁让你不准初页访问相册啦！在手机设置中一直向下拉，找到“初页”将照片打开就好。（仅限苹果用户）
+            <img src="http://static01.cloud7.com.cn/qa/img/p2.png" class="p2">
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            4、凭什么我的作品只能有7张（安卓）/9张（苹果）照片？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：不止哟~只是第一次批量加图最多加7张/9张照片，点击编辑页中的“＋”还能继续添加页面，支持到20页。
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            5、我想要在图片上加文字或者删除文字，怎么做？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：加文字简单，选择带字的模板就好了；然后点击文字，duang一下红框出现，从此开启百变模式：单点一下修改文字；长按选择字体和颜色；拖动改变文字位置；点击小箭头改变文字方向！
+        </p>
+
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            6、如何修改文字颜色和字体？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：我叫小雷锋，请抬眼往上看看（5）↑！
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            7、作品中某个页面我不想要了，怎么删除？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：还记得编辑页右上角的[…]吗？点击一下，你会惊喜发现，原来页面删除、页面排序、音乐选择都被它承包了！
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            8、编辑和预览显示不一样，总有一部分保存不上！
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：万万没想到，程序猿竟弄了个这么讨嫌的问题！暂时可以这样：哪个图文保存不上，你就去摸摸ta，挪动放大缩小，都行，再预览，说不定就行哦~ （PS：我要去狂揍程序猿了）
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            9、预览时顺序为什么老乱？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：额~还是一个万恶的Bug！要不试试：点我-设置-清理缓存-退出登录-重新登录-然后将有问题的作品顺序左拖拖右拽拽，打乱后重新排序。我知道很麻烦，但是新版本出来前就辛苦大家啦！（PS：程序猿你拜跑，我一定要打瘸你的手！）
+        </p>
+    </div>
+</div>
+
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            10、不想要主题音乐，可以修改或者上传手机里的歌吗？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：修改音乐有两招：一是预览时戳右上角的音乐图标；二是参看（7）条，找霸道塘主帮忙！
+            上传音乐哪家强，电脑登陆网页版（<a href="http://chuye.cloud7.com.cn/">http://chuye.cloud7.com.cn/</a>），点击【我的音乐】把喜欢的歌通通上传；手机登陆APP，在音乐界面下拉刷新，噌的一下~我的音乐就出现了！
+        </p>
+    </div>
+</div>
+
+
+<div class="list">
+    <div class="title">
+        <p>
+            11、如何修改作品标题和缩略图？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答： 拜托制作时能不能别猴急啊！点击【发布】的页面就不能多看两眼嘛！修改标题和缩略图这里都有！已经发布又想改？那就点进要改的作品，戳一下右下角的<img src="http://static01.cloud7.com.cn/qa/img/p3.png"
+                                                                                         class="icon1">选择【重新发布】。
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            12、不小心点退出，作品丢了怎么办？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：别急别急，开始制作的作品是不会丢的。看看在不在草稿箱；没有？那就退出应用，再次登录就能在草稿箱看见啦！
+        </p>
+    </div>
+</div>
+
+
+<div class="stairTitle">
+    <p>三、权限设置的那些事；</p>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            1、不想让别人看到我的作品，怎么弄？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：那就把权限之门关上吧！ 关门有两招：一制作过程的最后【发布】页面，点击“谁可以看”设置为“仅自己”；二已发布的作品点击<img src="http://static01.cloud7.com.cn/qa/img/p3.png" class="icon1">中的图标<img
+                src="http://static01.cloud7.com.cn/qa/img/p4.png" class="icon2">，进行同样的设置。
+        </p>
+    </div>
+</div>
+<div class="list">
+    <div class="title title2">
+        <p>
+            2、我只想给个别朋友看到我的作品，有办法吗？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：不就是特殊待遇嘛~有！按照↑（1）中的方法找到权限设置，然后选择——部分人→初页好友可见或设置密码，记得把密码告诉好友哟~
+        </p>
+    </div>
+</div>
+<div class="list">
+    <div class="title title2">
+        <p>
+            3、我把作品发给微信朋友，为什么他们看不了？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：想想你的作品设置了啥权限，是不是弄成了“仅自己可见”？没有？那是不是设置成了”部分人-初页好友可见“，这微信好友不一定是初页好友喔~要不你让ta也下个初页一起玩吧！（如何成为初页好友：互相关注就行啦）
+        </p>
+    </div>
+</div>
+<div class="list">
+    <div class="title title2">
+        <p>
+            4、我把作品分享到朋友圈，为什么看不了？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：如果你的标题含有“红包、转发、性感”等敏感字，就容易被微信屏蔽，除了修改标题，伦家也是无能为力滴！
+        </p>
+    </div>
+</div>
+
+
+<div class="stairTitle">
+    <p>四、和修改、删除有关的那些事</p>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            1、怎么都没有办法删除作品？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：不是不能，只是有两步，这是为了保护作品不被误删哟！第一步，点击作品右下角的<img src="http://static01.cloud7.com.cn/qa/img/p3.png" class="icon1">选择<img src="img/p5.png"
+                                                                                                                               class="icon1">把作品放入草稿箱；第二步在草稿箱中彻底删除。
+        </p>
+    </div>
+</div>
+<div class="list">
+    <div class="title">
+        <p>
+            2、新版不能修改旧版作品啦？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：是的！由于blabla的各种原因，暂时木能支持。你可以使用网页版（<a href="http://chuye.cloud7.com.cn/">chuye.cloud7.com.cn</a>）修改。
+        </p>
+    </div>
+</div>
+<div class="list">
+    <div class="title title2">
+        <p>
+            3、不想用网页版修改旧版作品，还有别的办法吗？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：有的有的，『其实还有个怀旧版可以下载。<a href="http://fir.im/3q9k1">去这个山洞下载吧</a>（仅限苹果用户）』，一般人我都不告诉。
+        </p>
+    </div>
+</div>
+<div class="list">
+    <div class="title">
+        <p>
+            4、网页版可以修改新版作品么?
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：不可以，它只能查看、修改和创建旧版作品，新版作品的一切，都只能在biangbiang的手机上操作，除了音乐上传（参看二-10条）。
+        </p>
+    </div>
+</div>
+
+<div class="stairTitle">
+    <p>五、初页圈里的杂拌事；</p>
+</div>
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            1、我怎么找不到以前的涂抹、地图、视频这些模板了？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：听说它们不太乖，被程序猿关起来了！所以大家多用用别的模板吧！
+        </p>
+    </div>
+</div>
+
+<div class="list">
+    <div class="title">
+        <p>
+            2、原来的报名信息哪里看？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：新版看不了了。（哭） 参看（四-3）条，到山洞里下个怀旧版吧（仅限苹果用户）。
+        </p>
+    </div>
+</div>
+
+
+<div class="list">
+    <div class="title">
+        <p>
+            3、初页ID、密码在哪找回？我忘了！
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：我 - 设置（左上角）- 修改密码。 记住你的初页ID和密码，可以登录 初页怀旧版的。
+        </p>
+    </div>
+</div>
+
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            4、我想上热门，怎么办？还有我怎么知道自己能不能上？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：叮咚！把”作品链接+上热门”发给微信公众号【初页】，听说合格的作品会在两个工作日内出现在热门。没事多逛逛哈！
+        </p>
+    </div>
+</div>
+
+
+<div class="list">
+    <div class="title title2">
+        <p>
+            5、急事急事，十万火急，怎样才能联系到初页活人？
+        </p>
+        <img src="http://static01.cloud7.com.cn/qa/img/arrow.png">
+    </div>
+    <div class="content">
+        <p>
+            答：淡定淡定，工作时间周一至周五9:00-18:00拨打<a href="tel:400-804-4007">400-804-4007</a>保证你找到，好不啦！非工作时间怎么办？那就在加我们微信 ichuye 留言吧~
+        </p>
+    </div>
+</div>
+
+
+<script>
+    (function () {
+
+        function foreach( array, func ) {
+            for ( var i = 0, len = array.length; i < len; ++i ) {
+                var retVal;
+                if ( ( retVal = func( array[i], i ) ) !== undefined ) {
+                    return retVal;
+                }
+            }
+        }
+
+        function bind( el, type, listen, capture ) {
+            el.addEventListener( type, listen, capture );
+            return {
+                remove : function () {
+                    el.removeEventListener( type, listen, capture );
+                }
+            }
+        }
+
+        function EventCoordinateGetter( coordinateName ) {
+            return function ( event ) {
+                return "touches" in event && event.touches[0] !== undefined ? event.touches[0][coordinateName] : event[coordinateName];
+            }
+        }
+
+        var getPageY = EventCoordinateGetter( "pageY" ),
+                querySelector = document.querySelector.bind( document ),
+                querySelectorAll = document.querySelectorAll.bind( document ),
+                titles = querySelectorAll( ".title" ),
+                lists = querySelectorAll( '.list' );
+
+
+        foreach( titles, function ( title, i ) {
+            title.i = i;
+            bind( title, 'touchstart', function ( e ) {
+                var startY = getPageY( e );
+                lists[i].classList.add( 'cur' );
+                var moveHandle = bind( document, "touchmove", function ( e ) {
+                    var curY = getPageY( e );
+                    if ( Math.abs( curY - startY ) > 10 ) {
+                        moveHandle.remove();
+                        endHandle.remove();
+                    }
+                    lists[i].classList.remove( 'cur' );
+                } );
+
+                var endHandle = bind( document, 'touchend', function () {
+                    lists[i].classList.remove( 'cur' );
+                    var show = querySelector( '.show' ),
+                            cur = querySelector( '.cur' );
+
+                    if ( show === lists[i] ) {
+                        lists[i].classList.remove( 'show' );
+                    }
+                    else {
+                        if ( show ) {
+                            if ( i > show.querySelector( ".title" ).i ) {
+                                document.body.scrollTop = document.body.scrollTop - show.querySelector( ".content" ).offsetHeight;
+                            }
+                            show.classList.remove( 'show' );
+                        }
+                        lists[i].classList.add( 'show' );
+                    }
+                    cur && cur.classList.remove( 'cur' );
+                    endHandle.remove();
+                } );
+            } );
+        } );
+    })();
+
+</script>
+</body>
+</html>
