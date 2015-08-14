@@ -616,6 +616,11 @@
                     }
                     else {
                         if ( show ) {
+                            /*
+                             * 主要是加上了这段代码，当前有选中的list，则如果再选中下面的list就要重新设置scrollTop
+                             * 选中上面的list不做处理
+                             * 处理的具体算法就是当前scrollTop减去当前选中list中content的高度，因为content会被隐藏
+                             * */
                             if ( i > show.querySelector( ".title" ).i ) {
                                 document.body.scrollTop = document.body.scrollTop - show.querySelector( ".content" ).offsetHeight;
                             }

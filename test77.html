@@ -10,115 +10,41 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        * {
-            -webkit-user-select: none;
-        }
-
-        .body {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-        .page {
-            overflow: hidden;
-            position: absolute;
-            display: block;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 0;
-        }
-
-        .page img {
-            width: 100%;
-        }
-
-        .border {
-            position: absolute;
-            display: block;
-            left: 21px;
-            top: 68px;
-            width: 277px;
-            height: 303px;
-            z-index: 0;
-            opacity: 1;
-            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-            background: transparent;
-        }
-
-        .border .mask {
-            position: absolute;
-            display: block;
-            left: 0;
-            top: 0;
-            width: 277px;
-            height: 303px;
-            z-index: 0;
-        }
-
-        .border .word {
-            position: absolute;
-            display: block;
-            left: 10px;
-            top: 21px;
-            width: 256px;
-            height: 74px;
-            z-index: 0;
-            opacity: 1;
-            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-        }
-
-        img.qr {
-            position: absolute;
-            z-index: 1000;
-            left: 19px;
-            top: 127px;
-            width: 243px;
-            padding-bottom: 64px;
-            -webkit-transform: translateZ(100000px);
-            pointer-events: auto;
-        }
-
-        canvas {
-            display: block;
-            width: 243px;
-            height: 138px;
-            position: absolute;
-            left: 19px;
-            top: 127px;
-            z-index: 0;
-            opacity: 1;
-            -webkit-transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
-            visibility: hidden;
+        .target {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            color: #000;
         }
     </style>
 </head>
 <body>
-<div class="body">
-    <div class="page">
-        <img src="img/h3.jpg">
-    </div>
-    <div class="border">
-        <img src="http://static01.cloud7.com.cn/assets/553b15f4/content/firstpage2/image/qrcode-frame.png" class="mask">
-        <img class="word" src="http://img01.cloud7.com.cn/6700f60deebb9beab96330047292b5fa.png">
-        <canvas width="243px" height="138px"></canvas>
-        <img class="qr">
-    </div>
-</div>
+<div class="target"></div>
 <script>
     (function () {
 
-        var canvas = document.querySelector( "canvas" );
-        var gc = canvas.getContext( "2d" );
-        var img = document.querySelector( "img.qr" );
-        img.src = "img/qr.png";
-        img.onload = function () {
-            gc.drawImage( img, 0, 0, 243, 138 );
+        function LateBloomer() {
+            this.petalCount = Math.ceil( Math.random() * 12 ) + 1;
         }
+
+        // 1 秒后声明 bloom
+        LateBloomer.prototype.bloom = function () {
+            window.setTimeout( this.declare.bind( this ), 1000 );
+        };
+
+        LateBloomer.prototype.declare = function () {
+            console.log( 'I am a beautiful flower with ' + this.petalCount + ' petals!' );
+        };
+
+        var flower = new LateBloomer();
+        flower.bloom();  // 1 秒钟后，调用 declare 方法
+
+
+        function call() {
+            console.log( arguments.callee );
+        }
+
+        call()
 
     })();
 </script>
