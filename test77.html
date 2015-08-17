@@ -36,11 +36,14 @@
 </head>
 <body>
 <div class="target"></div>
-<div class="target2"></div>
+<div class="target2" title="good"></div>
 
 <script>
     (function () {
 
+        document.addEventListener( "touchmove", function ( e ) {
+            console.log( e );
+        }, false );
 
     })();
 </script>
