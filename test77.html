@@ -10,41 +10,37 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         .target {
-            width: 100px;
+            width: 200px;
             height: 100px;
             background-color: red;
-            color: #000;
+            position: absolute;
+            left: 400px;
+            top: 100px;
+            -webkit-transform: rotateZ(45deg);
+        }
+
+        .target2 {
+            width: 200px;
+            height: 100px;
+            background-color: blue;
+            -webkit-transform: translate3d(400px, 100px, 0) rotateZ(45deg);
         }
     </style>
 </head>
 <body>
 <div class="target"></div>
+<div class="target2"></div>
+
 <script>
     (function () {
 
-        function LateBloomer() {
-            this.petalCount = Math.ceil( Math.random() * 12 ) + 1;
-        }
-
-        // 1 秒后声明 bloom
-        LateBloomer.prototype.bloom = function () {
-            window.setTimeout( this.declare.bind( this ), 1000 );
-        };
-
-        LateBloomer.prototype.declare = function () {
-            console.log( 'I am a beautiful flower with ' + this.petalCount + ' petals!' );
-        };
-
-        var flower = new LateBloomer();
-        flower.bloom();  // 1 秒钟后，调用 declare 方法
-
-
-        function call() {
-            console.log( arguments.callee );
-        }
-
-        call();
 
     })();
 </script>
