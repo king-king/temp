@@ -52,9 +52,9 @@
     </style>
 </head>
 <body>
-<canvas width="320" height="480" class="canvas1"></canvas>
-<div class="token">+</div>
 <canvas width="320" height="480" class="canvas2"></canvas>
+<div class="token">+</div>
+<canvas width="320" height="480" class="canvas1"></canvas>
 <div class="token">=</div>
 <canvas width="320" height="480" class="canvas"></canvas>
 
@@ -154,7 +154,16 @@
                         images[i] = new Image();
                         images[i].src = e.target.result;
                         images[i].onload = function () {
-                            gcs[i].drawImage( images[i], 0, 0, 320, 480 );
+                            var w, h;
+                            if ( images[i].naturalHeight / images[i].naturalWidth > 480 / 320 ) {
+                                w = images[i].naturalWidth;
+                                h = 480 * images[i].naturalWidth / 320;
+                            }
+                            else {
+                                w = 320 * images[i].naturalHeight / 480;
+                                h = images[i].naturalHeight;
+                            }
+                            gcs[i].drawImage( images[i], 0, 0, w, h, 0, 0, 320, 480 );
                             cs[i].classList.remove( "lock" );
                             doBlend();
                         };

@@ -23,6 +23,9 @@
             border: 3px solid gray;
         }
 
+        img {
+            width: 560px;
+        }
     </style>
 </head>
 <body>
@@ -33,6 +36,7 @@
     (function () {
 
         var img = new Image();
+        document.body.appendChild( img );
         var canvas = document.querySelector( "canvas" );
         var gc = canvas.getContext( "2d" );
 
