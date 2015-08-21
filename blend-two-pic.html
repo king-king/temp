@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            -webkit-user-select: none;
+        }
+
+        .canvas1, .canvas2 {
+            border: 3px dashed gray;
+            cursor: pointer;
+        }
+
+        canvas {
+            float: left;
+            width: 320px;
+            height: 480px;
+        }
+
+        .token {
+            font-size: 40px;
+            font-weight: bolder;
+            float: left;
+            height: 40px;
+            line-height: 40px;
+            margin: 220px 20px;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        .lock {
+            pointer-events: none !important;
+        }
+    </style>
+</head>
+<body>
+<canvas width="320" height="480" class="canvas1"></canvas>
+<div class="token">+</div>
+<canvas width="320" height="480" class="canvas2"></canvas>
+<div class="token">=</div>
+<canvas width="320" height="480" class="canvas"></canvas>
+
+<input type="file" accept=".png,.jpg,.jpeg" class="left-input-file hide">
+<input type="file" accept=".png,.jpg,.jpeg" class="right-input-file hide">
+
+
+<script src="filter-blend.js"></script>
+<script>
+    (function () {
+
+
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+
+        // 并发
+        function concurrentTask( tasks, callback ) {
+            var len = tasks.length,
+                    count = 0;
+            tasks.forEach( function ( task ) {
+                task( function () {
+                    count++;
+                    if ( count == len ) {
+                        callback();
+                    }
+                } );
+            } );
+        }
+
+        var querySelector = document.querySelector.bind( document ),
+                img1 = new Image(),
+                img2 = new Image(),
+                images = [img1, img2],
+                input1 = querySelector( ".left-input-file" ),
+                input2 = querySelector( ".right-input-file" ),
+                inputs = [input1, input2],
+                canvas1 = querySelector( ".canvas1" ),
+                canvas2 = querySelector( ".canvas2" ),
+                canvas = querySelector( ".canvas" ),
+                cs = [canvas1, canvas2],
+                gc1 = canvas1.getContext( "2d" ),
+                gc2 = canvas2.getContext( "2d" ),
+                gcs = [gc1, gc2],
+                gc = canvas.getContext( "2d" );
+
+
+        function doBlend() {
+            var data = blend( gc1.getImageData( 0, 0, 320, 480 ), gc2.getImageData( 0, 0, 320, 480 ), "overlap" );
+            gc.putImageData( data, 0, 0 );
+        }
+
+        concurrentTask( [
+            function ( done ) {
+                img1.src = "img/h.jpg";
+                img1.onload = done;
+            },
+            function ( done ) {
+                img2.src = "img/h5.jpg";
+                img2.onload = done;
+            }
+        ], function () {
+            gc1.drawImage( img1, 0, 0 );
+            gc2.drawImage( img2, 0, 0 );
+            doBlend();
+
+            canvas1.onclick = function () {
+                input1.click();
+            };
+            canvas2.onclick = function () {
+                input2.click();
+            };
+            loopArray( [input1, input2], function ( input, i ) {
+                input.onchange = function () {
+                    var fr = new FileReader();
+                    fr.readAsDataURL( inputs[i].files[0] );
+                    cs[i].classList.add( "lock" );
+                    fr.onloadend = function ( e ) {
+                        gcs[i].clearRect( 0, 0, 320, 480 );
+                        images[i] = null;
+                        images[i] = new Image();
+                        images[i].src = e.target.result;
+                        images[i].onload = function () {
+                            gcs[i].drawImage( images[i], 0, 0, 320, 480 );
+                            cs[i].classList.remove( "lock" );
+                            doBlend();
+                        };
+                    }
+                }
+            } );
+
+        } );
+
+
+    })();
+</script>
+</body>
+</html>
