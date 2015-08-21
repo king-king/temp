@@ -16,34 +16,30 @@
             padding: 0;
         }
 
-        .target {
-            width: 200px;
-            height: 100px;
-            background-color: red;
-            position: absolute;
-            left: 400px;
-            top: 100px;
-            -webkit-transform: rotateZ(45deg);
+        canvas {
+            width: 320px;
+            height: 480px;
+            margin: auto;
+            border: 3px solid gray;
         }
 
-        .target2 {
-            width: 200px;
-            height: 100px;
-            background-color: blue;
-            -webkit-transform: translate3d(400px, 100px, 0) rotateZ(45deg);
-        }
     </style>
 </head>
 <body>
-<div class="target"></div>
-<div class="target2" title="good"></div>
+
+<canvas width="320" height="480px"></canvas>
 
 <script>
     (function () {
 
-        document.addEventListener( "touchmove", function ( e ) {
-            console.log( e );
-        }, false );
+        var img = new Image();
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+
+        img.src = "img/6.jpg";
+        img.onload = function () {
+            gc.drawImage( img, 0, 0, 400 / 480 * 320, 400, 0, 0, 320, 480 );
+        }
 
     })();
 </script>

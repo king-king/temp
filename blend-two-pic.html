@@ -62,14 +62,14 @@
 <input type="file" accept=".png,.jpg,.jpeg" class="right-input-file hide">
 <div class="footer">
     <select>
-        <option value="" selected>滤色</option>
+        <option value="Soft-Light" selected>柔光</option>
+        <option value="">滤色</option>
         <option value="exclude">排除</option>
         <option value="D-value">差值</option>
         <option value="Hard-Mix">实色混合</option>
         <option value="Pin-Light">点光</option>
         <option value="Linear-Light">线性光</option>
         <option value="Hard-Light">强光</option>
-        <option value="Soft-Light">柔光</option>
         <option value="overlap">叠加</option>
     </select> 模式
 </div>
@@ -117,7 +117,7 @@
                 gc = canvas.getContext( "2d" ),
                 select = querySelector( "select" );
 
-        var model = null;
+        var model = "Soft-Light";
 
         function doBlend() {
             var data = blend( gc1.getImageData( 0, 0, 320, 480 ), gc2.getImageData( 0, 0, 320, 480 ), model );
