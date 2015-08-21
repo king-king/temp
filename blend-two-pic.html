@@ -20,12 +20,12 @@
         }
 
         .token {
-            font-size: 40px;
+            font-size: 50px;
             font-weight: bolder;
             float: left;
-            height: 40px;
+            height: 50px;
             line-height: 40px;
-            margin: 220px 20px;
+            margin: 215px 20px;
         }
 
         .hide {
@@ -34,6 +34,20 @@
 
         .lock {
             pointer-events: none !important;
+        }
+
+        .footer {
+            width: 100%;
+            height: 100px;
+            float: left;
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        select {
+            width: 200px;
+            height: 40px;
+            display: inline-block;
         }
     </style>
 </head>
@@ -46,19 +60,31 @@
 
 <input type="file" accept=".png,.jpg,.jpeg" class="left-input-file hide">
 <input type="file" accept=".png,.jpg,.jpeg" class="right-input-file hide">
+<div class="footer">
+    <select>
+        <option value="" selected>滤色</option>
+        <option value="exclude">排除</option>
+        <option value="D-value">差值</option>
+        <option value="Hard-Mix">实色混合</option>
+        <option value="Pin-Light">点光</option>
+        <option value="Linear-Light">线性光</option>
+        <option value="Hard-Light">强光</option>
+        <option value="Soft-Light">柔光</option>
+        <option value="overlap">叠加</option>
+    </select> 模式
+</div>
 
+<script src="filter-blend.js">
 
-<script src="filter-blend.js"></script>
+</script>
 <script>
     (function () {
-
 
         function loopArray( arr, func ) {
             for ( var i = 0; i < arr.length; i++ ) {
                 func( arr[i], i );
             }
         }
-
 
         // 并发
         function concurrentTask( tasks, callback ) {
@@ -88,11 +114,13 @@
                 gc1 = canvas1.getContext( "2d" ),
                 gc2 = canvas2.getContext( "2d" ),
                 gcs = [gc1, gc2],
-                gc = canvas.getContext( "2d" );
+                gc = canvas.getContext( "2d" ),
+                select = querySelector( "select" );
 
+        var model = null;
 
         function doBlend() {
-            var data = blend( gc1.getImageData( 0, 0, 320, 480 ), gc2.getImageData( 0, 0, 320, 480 ), "overlap" );
+            var data = blend( gc1.getImageData( 0, 0, 320, 480 ), gc2.getImageData( 0, 0, 320, 480 ), model );
             gc.putImageData( data, 0, 0 );
         }
 
@@ -109,7 +137,6 @@
             gc1.drawImage( img1, 0, 0 );
             gc2.drawImage( img2, 0, 0 );
             doBlend();
-
             canvas1.onclick = function () {
                 input1.click();
             };
@@ -134,8 +161,12 @@
                     }
                 }
             } );
-
         } );
+
+        select.onchange = function () {
+            model = select.value;
+            doBlend();
+        }
 
 
     })();
