@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            margin: 0;
+        }
+
+        .canvas1, .canvas2 {
+            border: 3px dashed gray;
+            cursor: pointer;
+        }
+
+        canvas {
+            float: left;
+            width: 320px;
+            height: 480px;
+        }
+
+        .token {
+            font-size: 50px;
+            font-weight: bolder;
+            float: left;
+            height: 50px;
+            line-height: 40px;
+            margin: 215px 20px;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        .lock {
+            pointer-events: none !important;
+        }
+
+        select {
+            width: 200px;
+            height: 40px;
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+<canvas width="320" height="480" class="canvas2 hide"></canvas>
+<canvas width="320" height="480" class="canvas1 hide"></canvas>
+<canvas width="320" height="480" class="canvas"></canvas>
+
+<select>
+    <option value="Soft-Light" selected>柔光</option>
+    <option value="">滤色</option>
+    <option value="exclude">排除</option>
+    <option value="D-value">差值</option>
+    <option value="Hard-Mix">实色混合</option>
+    <option value="Pin-Light">点光</option>
+    <option value="Linear-Light">线性光</option>
+    <option value="Hard-Light">强光</option>
+    <option value="overlap">叠加</option>
+</select>
+
+<script src="filter-blend.js">
+
+</script>
+<script>
+    (function () {
+
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+        // 并发
+        function concurrentTask( tasks, callback ) {
+            var len = tasks.length,
+                    count = 0;
+            tasks.forEach( function ( task ) {
+                task( function () {
+                    count++;
+                    if ( count == len ) {
+                        callback();
+                    }
+                } );
+            } );
+        }
+
+        var querySelector = document.querySelector.bind( document ),
+                img1 = new Image(),
+                img2 = new Image(),
+                canvas1 = querySelector( ".canvas1" ),
+                canvas2 = querySelector( ".canvas2" ),
+                canvas = querySelector( ".canvas" ),
+                gc1 = canvas1.getContext( "2d" ),
+                gc2 = canvas2.getContext( "2d" ),
+                gc = canvas.getContext( "2d" ),
+                select = querySelector( "select" );
+
+        var model = "Soft-Light";
+
+        function doBlend() {
+            var data = blend( gc1.getImageData( 0, 0, 320, 480 ), gc2.getImageData( 0, 0, 320, 480 ), model );
+            gc.putImageData( data, 0, 0 );
+        }
+
+        concurrentTask( [
+            function ( done ) {
+                img1.src = "img/h.jpg";
+                img1.onload = done;
+            },
+            function ( done ) {
+                img2.src = "img/h5.jpg";
+                img2.onload = done;
+            }
+        ], function () {
+            gc1.drawImage( img1, 0, 0 );
+            gc2.drawImage( img2, 0, 0 );
+            var sum = 0;
+            for ( var i = 0; i < 10; i++ ) {
+                var s = (new Date()).getTime();
+                doBlend();
+                sum = sum + ((new Date()).getTime() - s) / 1000;
+            }
+            alert( "一共花费：" + sum + "平均花费时间：" + (sum / 1000) );
+        } );
+
+        select.onchange = function () {
+            model = select.value;
+            var s = (new Date()).getTime();
+            doBlend();
+            alert( ((new Date()).getTime() - s) / 1000 );
+        }
+
+
+    })();
+</script>
+</body>
+</html>
