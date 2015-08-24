@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .border {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+            overflow: hidden;
+        }
+
+        .border img {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+        }
+
+        .fade-out {
+            -webkit-animation: 2s filter-fade-out linear both;
+            animation: 2s filter-fade-out linear both;
+        }
+
+        @-webkit-keyframes filter-fade-out {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+<input type="file">
+<div class="border">
+    <img>
+    <canvas></canvas>
+</div>
+<script src="filter-old.js"></script>
+<script src="filter-desaturate.js"></script>
+<script>
+    (function () {
+        var w = document.body.offsetWidth;
+
+        var border = document.querySelector( ".border" );
+        var img = document.querySelector( "img" );
+        var canvas = document.querySelector( "canvas" );
+        var b = w * 0.5;
+
+        border.style.width = b + "px";
+        border.style.height = b + "px";
+        canvas.height = canvas.width = b;
+        var gc = canvas.getContext( "2d" );
+
+        window.doAnimate = function ( src, id ) {
+            img.src = src;
+            img.onload = function () {
+                var w = img.naturalWidth, h = img.naturalHeight;
+                gc.drawImage( img, 0, 0, w < h ? w : h, w < h ? w : h, 0, 0, b, b );
+                switch ( id ) {
+                    case "desaturate":
+                        gc.putImageData( window.desaturate( gc.getImageData( 0, 0, b, b ) ), 0, 0 );
+                        break;
+                    case "old":
+                        gc.putImageData( window.doOld( gc.getImageData( 0, 0, b, b ) ), 0, 0 );
+                        break;
+                    default :
+                        gc.putImageData( window.doOld( gc.getImageData( 0, 0, b, b ) ), 0, 0 );
+                }
+                canvas.classList.add( "fade-out" );
+            }
+        };
+
+
+        var file = document.querySelector( "input" );
+        file.onchange = function () {
+            doAnimate( window.URL.createObjectURL( file.files[0] ), "desaturate" )
+        }
+
+    })();
+</script>
+</body>
+</html>
