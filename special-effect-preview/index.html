@@ -52,6 +52,10 @@
 
 
         window.doAnimate = function ( src, id ) {
+            if ( src == "" && id == "" ) {
+                document.querySelector( ".border" ).innerHTML = "";
+                return;
+            }
             var w = document.body.offsetWidth;
             var h = document.body.offsetHeight;
             var img = new Image();
@@ -104,9 +108,6 @@
             }
 
         };
-
-
-        doAnimate( "../img/h2.jpg", "old" );
 
     })();
 </script>
