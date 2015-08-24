@@ -52,8 +52,6 @@
 
 
         window.doAnimate = function ( src, id ) {
-            var border = document.querySelector( ".border" );
-            border.innerHTML = "";
             var w = document.body.offsetWidth;
             var h = document.body.offsetHeight;
             var img = new Image();
@@ -61,8 +59,6 @@
             img.src = src;
             var canvas = document.createElement( "canvas" );
             var gc = canvas.getContext( "2d" );
-            border.appendChild( img );
-            border.appendChild( canvas );
 
             function draw( w, h ) {
                 gc.drawImage( img, 0, 0, w, h );
@@ -80,6 +76,10 @@
             }
 
             img.onload = function () {
+                var border = document.querySelector( ".border" );
+                border.innerHTML = "";
+                border.appendChild( img );
+                border.appendChild( canvas );
                 if ( img.naturalWidth / img.naturalHeight > w / h ) {
                     // 原图更宽
                     canvas.style.height = img.style.height = h + "px";
@@ -106,7 +106,7 @@
         };
 
 
-        doAnimate( "../img/h2.jpg", "desaturate" );
+        doAnimate( "../img/h2.jpg", "old" );
 
     })();
 </script>
