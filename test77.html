@@ -16,33 +16,34 @@
             padding: 0;
         }
 
-        canvas {
-            width: 320px;
-            height: 480px;
-            margin: auto;
-            border: 3px solid gray;
+        img {
+            width: 100%;
         }
 
-        img {
-            width: 560px;
+        img.begin {
+            -webkit-animation: 4s gray linear both;
+        }
+
+        @-webkit-keyframes gray {
+            0% {
+                -webkit-filter: grayscale(1);
+            }
+            100% {
+                -webkit-filter: grayscale(0);
+            }
         }
     </style>
 </head>
 <body>
 
-<canvas width="320" height="480px"></canvas>
+<img src="img/h9.jpg">
 
 <script>
     (function () {
 
-        var img = new Image();
-        document.body.appendChild( img );
-        var canvas = document.querySelector( "canvas" );
-        var gc = canvas.getContext( "2d" );
-
-        img.src = "img/6.jpg";
-        img.onload = function () {
-            gc.drawImage( img, 0, 0, 400 / 480 * 320, 400, 0, 0, 320, 480 );
+        document.body.onload = function () {
+            var img = document.querySelector( "img" );
+            img.classList.add( "begin" )
         }
 
     })();
