@@ -1,0 +1,10 @@
+{
+	"css": [
+		"common.css",
+		"layout/*.css"
+	],
+	"js": [
+		"switch-animation/*.js",
+		"layout/*.js"
+	]
+}

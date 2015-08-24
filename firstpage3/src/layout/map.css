@@ -1,0 +1,76 @@
+.map-slide-page {
+    background: white;
+}
+
+.map-slide-page .title-bar {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 143px;
+    height: 38px;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+}
+
+.map-slide-page .title-bar .back {
+    position: absolute;
+    width: 49px;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.map-slide-page .title-bar .line {
+    position: absolute;
+    left: 49px;
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    background-color: #000;
+    box-shadow: 1px 0 rgba(113, 113, 113, .75);
+}
+
+.map-slide-page .title-bar .caption {
+    position: absolute;
+    left: 50px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    line-height: 38px;
+    font-size: 16px;
+    color: #e7e7e7;
+    letter-spacing: 2px;
+}
+
+.map-slide-page .title-bar .caption:after {
+    content: "地图";
+}
+
+/*百度地图*/
+.map-info-window .name {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 22px;
+    padding-bottom: 6px;
+    margin-bottom: 0;
+    width: 220px;
+}
+
+.map-info-window div {
+    font-size: 12px;
+    line-height: 16px;
+    vertical-align: top;
+}
+
+.map-info-window span {
+    margin-left: 5px;
+    display: inline-block;
+    width: 184px;
+    vertical-align: top;
+}
+
+.BMap_Marker img {
+    width: 100%;
+}

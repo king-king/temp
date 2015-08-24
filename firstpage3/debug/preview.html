@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>初页预览</title>
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+
+    <script src="../lib/zach/client.js"></script>
+    <script>
+        main( function () {
+            var debug = imports( "./debug.js" );
+            var pointer = imports( "pointer" );
+            var array = imports( "array" );
+            var debugSystem = debug.DebugSystem( "preview-info", {
+                music : "false"
+            } );
+
+            var previewInfo = debugSystem.info();
+            window.noMusic = previewInfo.music === "false";
+
+            debugSystem.Option( "music", {
+                "有音乐" : true,
+                "无音乐" : false
+            } );
+
+            debug.loadFirstPage( {
+                type : "release"
+            }, function () {
+                window.runFirstPage();
+            } );
+        } );
+    </script>
+</head>
+<body>
+</body>
+</html>

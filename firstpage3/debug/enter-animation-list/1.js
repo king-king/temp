@@ -1,0 +1,50 @@
+/**
+ * Created by 白 on 2015/4/9.
+ */
+
+!function () {
+	window.out = {
+		"飞入上" : enterAnimation.FlyInto( 0 ),
+		"飞入右" : enterAnimation.FlyInto( 1 ),
+		"飞入下" : enterAnimation.FlyInto( 2 ),
+		"飞入左" : enterAnimation.FlyInto( 3 ),
+		"果冻" : enterAnimation.rubberBand,
+		"得瑟" : enterAnimation.tada,
+		"钟摆" : enterAnimation.wobble,
+		"抖动" : enterAnimation.shake,
+		"落下抖动" : enterAnimation.fallDownAndShake,
+		"弹性" : enterAnimation.bounceIn,
+		"弹入上" : enterAnimation.BounceFlying( 0 ),
+		"弹入右" : enterAnimation.BounceFlying( 1 ),
+		"弹入下" : enterAnimation.BounceFlying( 2 ),
+		"弹入左" : enterAnimation.BounceFlying( 3 ),
+		"挂摆" : enterAnimation.swing,
+		"闪烁" : enterAnimation.flash,
+		"回旋" : enterAnimation.circleRound,
+		"远近翻转" : enterAnimation.roundFromFarAndNear,
+		"淡入" : enterAnimation.fadeIn,
+		"浮现上" : enterAnimation.Emerge( 0 ),
+		"浮现右" : enterAnimation.Emerge( 1 ),
+		"浮现下" : enterAnimation.Emerge( 2 ),
+		"浮现左" : enterAnimation.Emerge( 3 ),
+		"缩小" : enterAnimation.shrink,
+		"从小到大" : enterAnimation.scale,
+		"翻转" : enterAnimation.overturn,
+		"硬币" : enterAnimation.coin,
+		"空翻" : enterAnimation.flip,
+		"缓冲横" : enterAnimation.FlipIn( "x" ),
+		"缓冲竖" : enterAnimation.FlipIn( "y" ),
+		"刹车上" : enterAnimation.LightSpeedIn( 0 ),
+		"刹车右" : enterAnimation.LightSpeedIn( 1 ),
+		"刹车下" : enterAnimation.LightSpeedIn( 2 ),
+		"刹车左" : enterAnimation.LightSpeedIn( 3 ),
+		"雨刷左上" : enterAnimation.RotateIn( 0 ),
+		"雨刷右上" : enterAnimation.RotateIn( 1 ),
+		"雨刷左下" : enterAnimation.RotateIn( 3 ),
+		"雨刷右下" : enterAnimation.RotateIn( 2 ),
+		"冲入左" : enterAnimation.ZoomIn( 3 ),
+		"冲入右" : enterAnimation.ZoomIn( 1 ),
+		"冲入上" : enterAnimation.ZoomIn( 0 ),
+		"冲入下" : enterAnimation.ZoomIn( 2 )
+	};
+}();

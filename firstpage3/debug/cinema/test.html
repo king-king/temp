@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            width: 500px;
+            height: 200px;
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            -webkit-transform: translate3d(0, -50%, 0);
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<canvas width="500" height="200"></canvas>
+<script src="../../lib/zach/client.js"></script>
+<script>
+    main( function () {
+        var array = imports( "array" ),
+                animate = imports( "animation" ),
+                $ = imports( "element" ),
+                cssAnimation = imports( "css-animation" );
+
+
+        function isFloat( number ) {
+            return Math.ceil( number ) - number > 0;
+        }
+
+        console.log( isFloat( 1.1 ) );
+        console.log( isFloat( 0.3 ) );
+        console.log( isFloat( -1.1 ) );
+        console.log( isFloat( -0.12 ) );
+    } );
+</script>
+</body>
+</html>

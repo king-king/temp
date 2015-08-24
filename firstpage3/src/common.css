@@ -1,0 +1,119 @@
+* {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-text-size-adjust: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+input, textarea {
+    -webkit-user-select: text;
+}
+
+/*隐藏*/
+.hidden {
+    visibility: hidden !important;
+}
+
+/*事件屏蔽*/
+.lock {
+    pointer-events: none !important;
+}
+
+.lock * {
+    pointer-events: none !important;
+}
+
+/*滚动*/
+.scroll {
+    overflow-y: scroll;
+}
+
+.win32 .scroll {
+    overflow-y: auto;
+}
+
+.ios .scroll {
+    -webkit-overflow-scrolling: touch;
+}
+
+.ios .scroll > * {
+    -webkit-transform: translateZ(0);
+}
+
+/*消息*/
+.msg-box {
+    position: absolute;
+    left: 60px;
+    right: 60px;
+    text-align: center;
+    z-index: 100000;
+    visibility: hidden;
+}
+
+.msg-box .msg {
+    display: inline-block;
+    opacity: 0;
+    font-size: 12px;
+    color: white;
+    line-height: 18px;
+    padding: 9px 15px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: left;
+}
+
+.msg-box.show {
+    visibility: visible;
+}
+
+.msg-box.show .msg {
+    opacity: 1;
+}
+
+.msg-box.remove .msg {
+    opacity: 0;
+    -webkit-transition: 0.15s;
+}
+
+/*提示*/
+.tips {
+    transition: 0.4s;
+}
+
+.hide-tips .tips {
+    -webkit-animation: none !important;
+    transition: none;
+    opacity: 0;
+}
+
+.hide-tips-fade .tips {
+    -webkit-animation: none !important;
+    opacity: 0;
+}
+
+/*最后一页powered by*/
+.powered-by {
+    -webkit-transition: 0.3s;
+    -webkit-transform: translate3d(0, 100%, 0);
+}
+
+.last-page .powered-by {
+    -webkit-transform: none;
+}
+
+.last-page .tips.switch {
+    -webkit-animation: none !important;
+    opacity: 0;
+}
+
+.layout img {
+    pointer-events: none;
+}
+
+.win32 .layout img {
+    pointer-events: auto;
+}
