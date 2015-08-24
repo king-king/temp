@@ -1,8 +1,0 @@
-Application has thrown an uncaught exception and is terminated:
-TypeError: Cannot read property 'length' of undefined
-    at foreach (D:\CODE\firstpage3\lib\zach\array.js:19:40)
-    at Object.map (D:\CODE\firstpage3\lib\zach\array.js:68:3)
-    at D:\CODE\firstpage3\server.js:43:19
-    at D:\CODE\firstpage3\server.js:30:5
-    at D:\CODE\firstpage3\lib\zach\fs.js:87:5
-    at FSReqWrap.oncomplete (fs.js:95:15)
