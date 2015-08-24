@@ -52,6 +52,7 @@
             var w = document.body.offsetWidth;
             var h = document.body.offsetHeight;
             var img = new Image();
+            img.crossOrigin = "*";
             var canvas = document.createElement( "canvas" );
             var gc = canvas.getContext( "2d" );
             img.src = src;
