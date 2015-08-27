@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        canvas {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<canvas width="300" height="300"></canvas>
+
+<button onclick="location.reload()">reload</button>
+
+<script src="filter-sobel.js"></script>
+<script src="filter-blur-stack.js"></script>
+<script src="filter-desaturate.js"></script>
+<script src="filter-old.js"></script>
+<script>
+    (function () {
+
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
+
+        var img = new Image();
+        img.src = "img/1.jpg";
+        img.onload = function () {
+            var s = (new Date()).getTime();
+            gc.drawImage( img, 0, 0, 300, 300 );
+            gc.putImageData( BlurStack( gc.getImageData( 0, 0, 300, 300 ),20), 0, 0 );
+            alert( (new Date()).getTime() - s );
+        }
+
+    })()
+</script>
+</body>
+</html>

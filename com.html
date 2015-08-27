@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        canvas {
+            width: 400px;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+
+<canvas width="400" height="400" class="left"></canvas>
+
+<canvas width="400" height="400" class="right"></canvas>
+<script>
+    (function () {
+
+        var canvas = document.querySelector( "canvas.left" );
+
+        var gc = canvas.getContext( "2d" );
+
+        var lcanvas = document.querySelector( "canvas.right" );
+
+        var lgc = lcanvas.getContext( "2d" );
+
+        var mask = new Image();
+        mask.src = "img/mask.png";
+        mask.onload = function () {
+            var img = new Image();
+            img.src = "img/1.jpg";
+            img.onload = function () {
+                gc.drawImage( img, 0, 0, 400, 400 );
+                gc.globalCompositeOperation = "destination-in";
+                gc.drawImage( mask, 0, 0, 400, 400 );
+
+                var imgData = gc.getImageData( 0, 0, 400, 400 );
+
+                var imgDataResult = document.createElement( "canvas" ).getContext( "2d" ).createImageData( imgData );
+
+                var av;
+                for ( var i = 0; i < imgData.data.length; i += 4 ) {
+                    av = (imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2]) / 3;
+                    imgDataResult.data[i] = imgDataResult.data[i + 1] = imgDataResult.data[i + 2] = av;
+                    imgDataResult.data[i + 3] = imgData.data[i + 3];
+                }
+
+                lgc.putImageData( imgDataResult, 0, 0 );
+            }
+        }
+    })();
+</script>
+
+</body>
+</html>

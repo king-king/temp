@@ -78,7 +78,7 @@
 
                 var index = (y * w + x) * 4;
                 imgData.data[index] = imgData.data[index + 1] = imgData.data[index + 2] = magnitude;
-                imgData.data[index + 3] = 255;
+                imgData.data[index + 3] = imageData.data[index + 3];
             }
         }
 
