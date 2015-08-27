@@ -10,6 +10,10 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
+        body {
+            height: 400px;
+            background: #000;
+        }
 
         * {
             margin: 0;
@@ -36,15 +40,25 @@
 </head>
 <body>
 
-<img src="img/h9.jpg">
+<!--<img src="img/h9.jpg">-->
 
 <script>
     (function () {
 
-        document.body.onload = function () {
-            var img = document.querySelector( "img" );
-            img.classList.add( "begin" )
+        var w = new Worker( "test.js" );
+
+        if ( w ) {
+            alert( w )
         }
+
+//        document.body.onclick = function () {
+//            alert( "ok" )
+//        };
+
+        document.body.addEventListener( "touchstart", function () {
+            alert( "ok" );
+            document.body.style.backgroundColor = "red"
+        }, false );
 
     })();
 </script>

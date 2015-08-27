@@ -10,6 +10,7 @@
         var imgDataResult = document.createElement( "canvas" ).getContext( "2d" ).createImageData( imgData ),
             av;
         for ( var i = 0; i < imgData.data.length; i += 4 ) {
+            ggg
             av = (imgData.data[i] + imgData.data[i + 1] + imgData.data[i + 2]) / 3;
             imgDataResult.data[i] = imgDataResult.data[i + 1] = imgDataResult.data[i + 2] = av;
             imgDataResult.data[i + 3] = imgData.data[i + 3];

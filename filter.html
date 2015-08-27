@@ -28,17 +28,20 @@
 <script>
     (function () {
 
-        var canvas = document.querySelector( "canvas" );
-        var gc = canvas.getContext( "2d" );
+        document.body.onclick = function () {
+            a = false;
+            console.log( "stop" )
+        };
 
-        var img = new Image();
-        img.src = "img/1.jpg";
-        img.onload = function () {
-            var s = (new Date()).getTime();
-            gc.drawImage( img, 0, 0, 300, 300 );
-            gc.putImageData( BlurStack( gc.getImageData( 0, 0, 300, 300 ),20), 0, 0 );
-            alert( (new Date()).getTime() - s );
-        }
+
+        var a = true;
+        setTimeout( function () {
+            var a = arguments.callee;
+            setTimeout( function () {
+                a();
+            } );
+        }, 0 );
+
 
     })()
 </script>
