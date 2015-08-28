@@ -20,45 +20,19 @@
             padding: 0;
         }
 
-        img {
-            width: 100%;
-        }
-
-        img.begin {
-            -webkit-animation: 4s gray linear both;
-        }
-
-        @-webkit-keyframes gray {
-            0% {
-                -webkit-filter: grayscale(1);
-            }
-            100% {
-                -webkit-filter: grayscale(0);
-            }
-        }
     </style>
 </head>
 <body>
 
-<!--<img src="img/h9.jpg">-->
 
 <script>
     (function () {
 
-        var w = new Worker( "test.js" );
-
-        if ( w ) {
-            alert( w )
+        function test() {
+            console.log( arguments.callee );
         }
 
-//        document.body.onclick = function () {
-//            alert( "ok" )
-//        };
-
-        document.body.addEventListener( "touchstart", function () {
-            alert( "ok" );
-            document.body.style.backgroundColor = "red"
-        }, false );
+        test();
 
     })();
 </script>
