@@ -1,25 +1,26 @@
-var addDigits = function ( num ) {
+var binaryTreePaths = function ( root ) {
+    var path = [];
+    var result = [];
 
-    function decompose( n ) {
-        var result = [];
-        while ( n >= 10 ) {
-            result.push( n % 10 );
-            n = n / 10 << 0;
+    function toString( arr ) {
+        return arr.join( "->" );
+    }
+
+    function visit( p ) {
+        if ( p ) {
+            path.push( p.val );
+            if ( !p.left && !p.right ) {
+                result.push( toString( path ) );
+                return;
+            }
+            visit( p.left );
+            p.left && path.pop();
+            visit( p.right );
+            p.right && path.pop();
+            return p;
         }
-        result.push( n );
-        return result;
     }
 
-    function add( arr ) {
-        var result = 0;
-        for ( var i = 0; i < arr.length; i++ ) {
-            result += arr[i];
-        }
-        return result;
-    }
-
-    while ( num >= 10 ) {
-        num = add( decompose( num ) );
-    }
-    return num;
+    visit( root );
+    return result;
 };
