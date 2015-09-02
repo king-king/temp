@@ -1,26 +1,9 @@
-var binaryTreePaths = function ( root ) {
-    var path = [];
-    var result = [];
-
-    function toString( arr ) {
-        return arr.join( "->" );
+var deleteNode = function ( node ) {
+    if ( !node.next ) {
+        node = null;
     }
-
-    function visit( p ) {
-        if ( p ) {
-            path.push( p.val );
-            if ( !p.left && !p.right ) {
-                result.push( toString( path ) );
-                return;
-            }
-            visit( p.left );
-            p.left && path.pop();
-            visit( p.right );
-            p.right && path.pop();
-            return p;
-        }
+    else {
+        node.val = node.next.val;
+        node.next = node.next.next;
     }
-
-    visit( root );
-    return result;
 };

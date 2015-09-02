@@ -14,59 +14,16 @@
 <script>
     (function () {
 
-
-        /**
-         * Definition for a binary tree node.
-         * function TreeNode(val) {
-         *     this.val = val;
-         *     this.left = this.right = null;
-         * }
-
-         * @param {TreeNode} root
-         * @return {string[]}
-         */
-        var binaryTreePaths = function ( root ) {
-            var path = [];
-            var result = [];
-
-            function toString( arr ) {
-                return arr.join( "->" );
+        var deleteNode = function ( node ) {
+            if ( !node.next ) {
+                node = null;
             }
-
-            function visit( p ) {
-                if ( p ) {
-                    path.push( p.val );
-                    if ( !p.left && !p.right ) {
-                        result.push( toString( path ) );
-                        return;
-                    }
-                    visit( p.left );
-                    p.left && path.pop();
-                    visit( p.right );
-                    p.right && path.pop();
-                    return p;
-                }
+            else {
+                node.val = node.next.val;
+                node.next = node.next.next;
             }
-
-            visit( root );
-            return result;
         };
-
-        function TreeNode( val ) {
-            this.val = val;
-            this.left = this.right = null;
-        }
-
-        var n1 = new TreeNode( 1 ),
-                n2 = new TreeNode( 2 ),
-                n3 = new TreeNode( 3 ),
-                n4 = new TreeNode( 4 );
-        n1.left = n2;
-        n1.right = n3;
-        n2.right = n4;
-
-
-        console.log( binaryTreePaths( n1 ) );
+//        console.log( countDigitOne( 13 ) );
 
     })();
 </script>
