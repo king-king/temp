@@ -16,26 +16,11 @@
 
         var lengthOfLastWord = function ( s ) {
             s = s.trim();
-            var len = s.length;
             if ( !s ) {
                 return 0;
             }
             else {
-                var arr = [], str = "";
-                for ( var i = 0; i < len; i++ ) {
-                    if ( i == len - 1 ) {
-                        str += s[i];
-                        arr.push( str );
-                        return arr[arr.length - 1].length;
-                    }
-                    if ( s[i] == " " ) {
-                        arr.push( str );
-                        str = "";
-                    }
-                    else {
-                        str += s[i];
-                    }
-                }
+                var arr = s.split( " " );
                 return arr[arr.length - 1].length;
             }
         };
