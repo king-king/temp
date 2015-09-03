@@ -2,21 +2,15 @@ var reverseList = function (head) {
     if (!head) {
         return head;
     }
-
-    function ListNode(val) {
-        this.val = val;
-        this.next = null;
+    var cur = head.next;
+    var pre = head;
+    var next;
+    while (cur) {
+        next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
     }
-
-    var arr = [];
-    var p = head;
-    while (p) {
-        arr.push(new ListNode(p.val));
-        p = p.next;
-    }
-    var len = arr.length - 1;
-    for (var i = len; i >= 0; i--) {
-        arr[i].next = arr[i - 1];
-    }
-    return arr[len];
+    head.next = null;
+    return pre;
 };
