@@ -1,16 +1,14 @@
-var reverseList = function (head) {
+var swapPairs = function (head) {
     if (!head) {
         return head;
     }
-    var cur = head.next;
-    var pre = head;
-    var next;
-    while (cur) {
-        next = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = next;
+    var p = head;
+    var temp;
+    while (p && p.next) {
+        temp = p.val;
+        p.val = p.next.val;
+        p.next.val = temp;
+        p = p.next.next;
     }
-    head.next = null;
-    return pre;
+    return head;
 };

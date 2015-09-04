@@ -22,25 +22,22 @@
  * }
          */
         /**
-         /**
          * @param {ListNode} head
          * @return {ListNode}
          */
-        var reverseList = function (head) {
+        var swapPairs = function (head) {
             if (!head) {
                 return head;
             }
-            var cur = head.next;
-            var pre = head;
-            var next;
-            while (cur) {
-                next = cur.next;
-                cur.next = pre;
-                pre = cur;
-                cur = next;
+            var p = head;
+            var temp;
+            while (p && p.next) {
+                temp = p.val;
+                p.val = p.next.val;
+                p.next.val = temp;
+                p = p.next.next;
             }
-            head.next = null;
-            return pre;
+            return head;
         };
 
         function ListNode(val) {
@@ -49,12 +46,14 @@
         }
 
         var head = new ListNode(1);
+        var n1 = new ListNode(2);
+        var n2 = new ListNode(3);
+//        var n3 = new ListNode(4);
+//        head.next = n1;
+//        n1.next = n2;
+//        n2.next = n3;
 
-        var p2 = new ListNode(2);
-        var p3 = new ListNode(3);
-        head.next = p2;
-        p2.next = p3;
-        console.log(reverseList(head));
+        console.log(swapPairs(head));
 
     })();
 </script>
