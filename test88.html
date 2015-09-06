@@ -44,31 +44,35 @@
             if ( nums.length == 1 ) {
                 return 1;
             }
-            nums.sort( function ( a, b ) {
-                return a - b;
-            } );
-            var len = 0;
-            var lens = [];
-            for ( var i = 1; i < nums.length; i++ ) {
-                if ( nums[i] == nums[i - 1] + 1 ) {
-                    len++;
-                    if ( i == nums.length - 1 ) {
-                        lens.push( len + 1 );
+            else {
+                var arg = {};
+                var length = 0;
+                for ( var i = 0; i < nums.length; i++ ) {
+                    if ( !arg[nums[i]] ) {
+                        arg[nums[i]] = 1;
+                        length += 1;
                     }
                 }
-                else if ( nums[i] == nums[i - 1] && i == nums.length - 1 ) {
-                    lens.push( len + 1 );
+                var lens = [], len = 1;
+                for ( var key in arg ) {
+                    if ( arg[key] == 1 ) {
+                        var k = parseInt( key ) + 1;
+                        while ( arg[k] ) {
+                            arg[k] = 2;
+                            len += 1;
+                            k += 1;
+                        }
+                        lens.push( len );
+                        len = 1;
+                    }
+                    arg[key] = 2;
                 }
-                else if ( nums[i] != nums[i - 1] && nums[i] != nums[i - 1] + 1 ) {
-                    lens.push( len + 1 );
-                    len = 0;
-                }
+                return Math.max.apply( this, lens );
             }
-            return Math.max.apply( this, lens );
         };
 
 
-        console.log( longestConsecutive( [0, 0] ) );
+        console.log( longestConsecutive( [100, 4, 200, 1, 3, 2] ) );
 //        [3,3,5,5,6,7]
 
     })();
