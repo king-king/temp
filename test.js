@@ -1,19 +1,11 @@
 /*
- Given an array nums, there is a sliding window of size k which is moving
- from the very left of the array to the very right. You can only see the k
- numbers in the window. Each time the sliding window moves right by one position.
+
+ Given an unsorted array of integers,
+  find the length of the longest consecutive elements sequence.
 
  For example,
- Given nums = [1,3,-1,-3,5,3,6,7], and k = 3.
+ Given [100, 4, 200, 1, 3, 2],
+ The longest consecutive elements sequence is [1, 2, 3, 4]. Return its length: 4.
 
- Window position                Max
- ---------------               -----
- [1  3  -1] -3  5  3  6  7       3
- 1 [3  -1  -3] 5  3  6  7       3
- 1  3 [-1  -3  5] 3  6  7       5
- 1  3  -1 [-3  5  3] 6  7       5
- 1  3  -1  -3 [5  3  6] 7       6
- 1  3  -1  -3  5 [3  6  7]      7
- Therefore, return the max sliding window as [3,3,5,5,6,7].
-
+ Your algorithm should run in O(n) complexity.
  */
