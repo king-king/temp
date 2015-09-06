@@ -9,78 +9,57 @@
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
     <title></title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .target {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 50%;
+            background-color: #556b88;
+        }
+    </style>
 </head>
 <body>
+<div class="target"></div>
 <script>
     (function () {
-
         /**
-         * @constructor
+         * @param {number[]} nums
+         * @param {number} target
+         * @return {number}
          */
-        var MinStack = function () {
-            this.stack = [];
-            this.min = 0;
-            this.length = 0;
-        };
-
-        /**
-         * @param {number} x
-         * @returns {void}
-         */
-        MinStack.prototype.push = function (x) {
-            this.length += 1;
-            this.stack.push(x);
-            if (this.length == 1) {
-                this.min = x;
+        var searchInsert = function ( nums, target ) {
+            if ( target <= nums[0] ) {
+                return 0;
             }
-            if (x < this.min) {
-                this.min = x;
+            else {
+                for ( var i = 0; i < nums.length; i++ ) {
+                    if ( target <= nums[i] ) {
+                        return i;
+                    }
+                }
+                return nums.length;
             }
         };
 
-        /**
-         * @returns {void}
-         */
-        MinStack.prototype.pop = function () {
-            this.length -= 1;
-            var val = this.stack.pop();
-            if (val == this.min) {
-                var arr = JSON.parse(JSON.stringify(this.stack));
-                arr.sort(function (a, b) {
-                    return a - b;
-                });
-                this.min = arr[0];
-            }
-        };
+        console.log( searchInsert( [1, 3, 5, 6], 5 ) );
+        console.log( searchInsert( [1, 3, 5, 6], 2 ) );
+        console.log( searchInsert( [1, 3, 5, 6], 7 ) );
+        console.log( searchInsert( [1, 3, 5, 6], 0 ) );
 
-        /**
-         * @returns {number}
-         */
-        MinStack.prototype.top = function () {
-            return this.stack[this.stack.length - 1];
-        };
-
-        /**
-         * @returns {number}
-         */
-        MinStack.prototype.getMin = function () {
-            console.log(this.min);
-            return this.min;
-        };
-
-        var s = new MinStack();
-        s.push(2);
-        s.push(0);
-        s.push(3);
-        s.push(0);
-        s.getMin();
-        s.pop();
-        s.getMin();
-        s.pop();
-        s.getMin();
-        s.pop();
-        s.getMin();
-        console.log();
 
     })();
 </script>
