@@ -38,22 +38,37 @@
     (function () {
 
 
+//        For example, with n = 7 and k = 3, the array
+//        [1,2,3,4,5,6,7] is rotated to
+//        [5,6,7,1,2,3,4].
+
         /**
-         * @param {string} s
-         * @return {number}
+         * @param {number[]} nums
+         * @param {number} k
+         * @return {void} Do not return anything, modify nums in-place instead.
          */
-        var titleToNumber = function ( s ) {
-            var base = 1;
-            var result = 0;
-            for ( var i = s.length - 1; i >= 0; i-- ) {
-                result = result + (s.charCodeAt( i ) - 64) * base;
-                base *= 26;
+        var rotate = function ( nums, k ) {
+            k = k % nums.length;
+            var i = 0;
+
+            function r( arr ) {
+                var len = arr.length - 1;
+                var last = arr[len];
+                for ( var i = len; i > 0; i-- ) {
+                    arr[i] = arr[i - 1];
+                }
+                arr[0] = last;
             }
-            return result;
+
+            while ( i < k ) {
+                r( nums );
+                i += 1;
+            }
         };
 
-        console.log( titleToNumber( 'AA' ) );
-        console.log( titleToNumber( 'AB' ) );
+        var array = [1, 2, 3, 4, 5, 6, 7];
+        console.log( rotate( array, 3 ) );
+        console.log( array );
 
 
     })();
