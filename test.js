@@ -1,41 +1,18 @@
-window.onload = function () {
-    // 移动端检测
-    if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test( navigator.userAgent ) || window.self !== window.top ) {
-        var script, scriptCode;
-        try {
-            if ( window.firstpageVersion ) {
-                window.localResource = JSON.parse( localStorage.getItem( "resource" ) || JSON.stringify( {
-                        list : []
-                    } ) );
-            }
-        }
-        catch ( e ) {
-        }
+var a = document.createElement( "div" );
+a.classList.add( "okok" );
+a.style.height = "100px";
+a.style.width = "200px";
+a.style.position = "absolute";
+a.style.background = "red";
+a.style.webkitTransition = "2s linear 0s";
+$0.body.appendChild( a );
 
-        setTimeout( function () {
-            if ( window.localResource && localResource.version === window.firstpageVersion && ( scriptCode = localStorage.getItem( "script" ) ) ) {
-                ( new Function( "return " + scriptCode ) )()();
-                window.runFirstPage();
-            }
-            else {
-                script = document.head.appendChild( document.createElement( "script" ) );
-                script.onload = function () {
-                    window.runFirstPage();
-                    script.onload = null;
-                };
-                script.src = window.contentPath + "firstpage.min.js";
-            }
-        }, 0 );
-    }
-    else {
-        // 如果是pc端 ……
-
-        with ( document )0[(getElementsByTagName( 'head' )[0] || body).appendChild( createElement( 'style' ) ).innerHTML = "body,html{ height:100%; overflow : hidden; }"];
-        var iframe = document.createElement( "iframe" ), url = "/Work/IndexPC?id=10321387&qrUrl=http://" + window.location.host + "/10321387";
-        iframe.src = encodeURI( url );
-        iframe.width = "100%";
-        iframe.height = "100%";
-        iframe.style.border = "none";
-        document.body.appendChild( iframe );
-    }
+var s;
+a.addEventListener( "webkitTransitionEnd", function () {
+    console.log( "end" );
+    console.log( (new Date()).getTime() - s )
+}, false );
+a.onclick = function () {
+    a.style.left = "200px";
+    s = (new Date()).getTime();
 };

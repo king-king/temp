@@ -26,17 +26,27 @@
             width: 100px;
             height: 100px;
             background-color: red;
+            position: absolute;
+            top: 0;
+            transition: 0.3s linear 0s;
         }
+
+
     </style>
 </head>
 <body>
-<div class="borader"></div>
+<div class="target"></div>
 <script>
     (function () {
-
-        document.addEventListener( "mousedown", function ( e ) {
-            console.log( e.which )
-        }, false );
+        document.body.onclick = function () {
+            var target = document.querySelector( ".target" );
+            target.style.top = "200px";
+            var s = (new Date()).getTime();
+            target.addEventListener( "webkitTransitionEnd", function () {
+                console.log( (new Date()).getTime() - s );
+                console.log( "end" );
+            }, false );
+        }
 
     })();
 </script>
