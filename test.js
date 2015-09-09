@@ -1,49 +1,41 @@
-/*
+window.onload = function () {
+    // 移动端检测
+    if ( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test( navigator.userAgent ) || window.self !== window.top ) {
+        var script, scriptCode;
+        try {
+            if ( window.firstpageVersion ) {
+                window.localResource = JSON.parse( localStorage.getItem( "resource" ) || JSON.stringify( {
+                        list : []
+                    } ) );
+            }
+        }
+        catch ( e ) {
+        }
 
- Given two binary strings, return their sum (also a binary string).
+        setTimeout( function () {
+            if ( window.localResource && localResource.version === window.firstpageVersion && ( scriptCode = localStorage.getItem( "script" ) ) ) {
+                ( new Function( "return " + scriptCode ) )()();
+                window.runFirstPage();
+            }
+            else {
+                script = document.head.appendChild( document.createElement( "script" ) );
+                script.onload = function () {
+                    window.runFirstPage();
+                    script.onload = null;
+                };
+                script.src = window.contentPath + "firstpage.min.js";
+            }
+        }, 0 );
+    }
+    else {
+        // 如果是pc端 ……
 
- For example,
- a = "11"
- b = "1"
- Return "100".
-
- */
-
-
-var addBinary = function ( a, b ) {
-    var ai = a.length - 1, bi = b.length - 1;
-    var carry = 0;
-    var result = [];
-    var aa, bb;
-    while ( ai >= 0 && bi >= 0 ) {
-        aa = parseInt( a[ai] );
-        bb = parseInt( b[bi] );
-        result.push( (aa + bb + carry) % 2 );
-        carry = (aa + bb + carry) / 2 << 0;
-        ai -= 1;
-        bi -= 1;
+        with ( document )0[(getElementsByTagName( 'head' )[0] || body).appendChild( createElement( 'style' ) ).innerHTML = "body,html{ height:100%; overflow : hidden; }"];
+        var iframe = document.createElement( "iframe" ), url = "/Work/IndexPC?id=10321387&qrUrl=http://" + window.location.host + "/10321387";
+        iframe.src = encodeURI( url );
+        iframe.width = "100%";
+        iframe.height = "100%";
+        iframe.style.border = "none";
+        document.body.appendChild( iframe );
     }
-    var li, last;
-    if ( ai >= 0 ) {
-        li = ai;
-        last = a;
-    }
-    if ( bi >= 0 ) {
-        li = bi;
-        last = b;
-    }
-    while ( li >= 0 ) {
-        aa = parseInt( last[li] );
-        result.push( (aa + carry) % 2 );
-        carry = (aa + carry) / 2 << 0;
-        li -= 1;
-    }
-    if ( carry == 1 ) {
-        result.push( 1 );
-    }
-    var re = "";
-    for ( aa = 0; aa < result.length; aa++ ) {
-        re = result[aa] + re;
-    }
-    return re;
 };

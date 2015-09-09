@@ -22,86 +22,25 @@
             bottom: 0;
         }
 
-        .outer {
-            position: absolute;
-        }
-
-        .inner1 {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200px;
-            height: 200px;
+        .target {
+            width: 100px;
+            height: 100px;
             background-color: red;
-            z-index: 2;
-        }
-
-        .inner2 {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 200px;
-            height: 200px;
-            background-color: deepskyblue;
-        }
-
-        .a {
-            opacity: 0.99;
         }
     </style>
 </head>
 <body>
-<div class="outer a">
-    <div class="inner1"></div>
-</div>
-<div class="outer b">
-    <div class="inner2"></div>
-</div>
+<div class="borader"></div>
 <script>
     (function () {
-        /**
-         * @param {string} a
-         * @param {string} b
-         * @return {string}
-         */
-        var addBinary = function ( a, b ) {
-            var ai = a.length - 1,
-                    bi = b.length - 1,
-                    carry = 0,
-                    aa, bb,
-                    re = "";
-            while ( ai >= 0 && bi >= 0 ) {
-                aa = parseInt( a[ai] );
-                bb = parseInt( b[bi] );
-                re = ((aa + bb + carry) % 2) + re;
-                carry = (aa + bb + carry) / 2 << 0;
-                ai -= 1;
-                bi -= 1;
-            }
-            var li, last;
-            if ( ai >= 0 ) {
-                li = ai;
-                last = a;
-            }
-            if ( bi >= 0 ) {
-                li = bi;
-                last = b;
-            }
-            while ( li >= 0 ) {
-                aa = parseInt( last[li] );
-                re = ((aa + carry) % 2) + re;
-                carry = (aa + carry) / 2 << 0;
-                li -= 1;
-            }
-            if ( carry == 1 ) {
-                re = 1 + re;
-            }
-            return re;
-        };
+
+        var a = null;
+        var b = a
 
 
-        console.log( addBinary( "11", "1" ) );
-//        [3,3,5,5,6,7]
+
+                || 23;
+        console.log( b )
 
     })();
 </script>
