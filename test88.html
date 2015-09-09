@@ -34,13 +34,9 @@
 <script>
     (function () {
 
-        var a = null;
-        var b = a
-
-
-
-                || 23;
-        console.log( b )
+        document.addEventListener( "mousedown", function ( e ) {
+            console.log( e.which )
+        }, false );
 
     })();
 </script>
