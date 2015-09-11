@@ -1,70 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head>
     <meta charset="utf-8">
+    <title>ios 3d</title>
     <meta name="mobileoptimized" content="0"/>
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
-    <title></title>
+
     <style>
         * {
+            padding: 0;
             margin: 0;
         }
 
+        @-webkit-keyframes spin {
+            0% {
+                perspective: 400px;
+                -webkit-transform: translateZ(-100px) rotateX(0deg);
+            }
+
+            100% {
+                perspective: 400px;
+                -webkit-transform: translateZ(-100px) rotateX(360deg);
+            }
+        }
+
+        @-webkit-keyframes a {
+            100% {
+                -webkit-transform: translateX(50px);
+            }
+        }
+
         body {
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
+            -webkit-transform-style: flat;
         }
 
-        .target {
-            width: 100px;
+        #a, #b {
+            position: absolute;
+        }
+
+        #a {
+            background: red;
+            -webkit-animation: spin 10s linear infinite;
+            height: 200px;
+            width: 200px;
+        }
+
+        #b {
             height: 100px;
-            background-color: red;
-            position: absolute;
-            top: 0;
-            left: 0;
-            /*-webkit-transition: 0.3s linear 0s;*/
+            width: 100px;
+            left: 50px;
+            top: 50px;
+            background: black;
+            -webkit-animation: a 10s linear infinite;
         }
-
-
     </style>
 </head>
 <body>
-<div class="target"></div>
-<script>
-    (function () {
-//        var a = document.createElement( "div" );
-//        a.classList.add( "okok" );
-//        a.style.height = "100px";
-//        a.style.width = "200px";
-//        a.style.position = "absolute";
-//        a.style.background = "red";
-//        document.body.appendChild( a );
-//        a.style.webkitTransition = "2s linear 0s";
-//        var s;
-        var a = document.querySelector( ".target" );
-        a.style.webkitTransition = "2s linear 0s";
-        a.addEventListener( "webkitTransitionEnd", function () {
-            console.log( "end" );
-            console.log( (new Date()).getTime() - s )
-        }, false );
-        a.onclick = function () {
-            if ( a.style.left == "200px" ) {
-                a.style.left = "0px";
-            }
-            else {
-                a.style.left = "200px";
-            }
-            s = (new Date()).getTime();
-        };
-
-    })();
-</script>
+<div id="a"></div>
+<div id="b"></div>
 </body>
 </html>
