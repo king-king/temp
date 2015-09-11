@@ -9,58 +9,72 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
-
     <style>
         * {
             padding: 0;
             margin: 0;
         }
 
-        @-webkit-keyframes spin {
-            0% {
-                perspective: 400px;
-                -webkit-transform: translateZ(-100px) rotateX(0deg);
-            }
-
-            100% {
-                perspective: 400px;
-                -webkit-transform: translateZ(-100px) rotateX(360deg);
-            }
-        }
-
-        @-webkit-keyframes a {
-            100% {
-                -webkit-transform: translateX(50px);
-            }
-        }
-
-        body {
-            -webkit-transform-style: flat;
-        }
-
-        #a, #b {
-            position: absolute;
-        }
-
-        #a {
-            background: red;
-            -webkit-animation: spin 10s linear infinite;
-            height: 200px;
+        img {
+            margin: 20px;
             width: 200px;
         }
 
-        #b {
-            height: 100px;
-            width: 100px;
-            left: 50px;
-            top: 50px;
-            background: black;
-            -webkit-animation: a 10s linear infinite;
+        .blur {
+            -webkit-filter: blur(1px);
+        }
+
+        .brightness {
+            -webkit-filter: brightness(0.4)
+        }
+
+        .contrast {
+            -webkit-filter: contrast(200%);
+        }
+
+        .drop-shadow {
+            -webkit-filter: drop-shadow(16px 16px 20px blue);
+        }
+
+        .grayscale {
+            -webkit-filter: grayscale(50%);
+        }
+
+        .hue-rotate {
+            -webkit-filter: hue-rotate(90deg);
+        }
+
+        .invert {
+            -webkit-filter: invert(75%);
+        }
+
+        .opacity {
+            -webkit-filter: opacity(25%);
+        }
+
+        .saturate {
+            -webkit-filter: saturate(30%);
+        }
+
+        .sepia {
+            -webkit-filter: sepia(60%);
+        }
+
+        .special {
+            -webkit-filter: contrast(175%) brightness(3%);
         }
     </style>
 </head>
 <body>
-<div id="a"></div>
-<div id="b"></div>
+<img src="img/2.jpg" class="blur">
+<img src="img/2.jpg" class="brightness">
+<img src="img/2.jpg" class="contrast">
+<img src="img/2.jpg" class="grayscale">
+<img src="img/2.jpg" class="hue-rotate">
+<img src="img/2.jpg" class="invert">
+<img src="img/2.jpg" class="opacity">
+<img src="img/2.jpg" class="saturate">
+<img src="img/2.jpg" class="sepia">
+<img src="img/2.jpg" class="special">
 </body>
 </html>
