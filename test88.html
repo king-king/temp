@@ -28,7 +28,8 @@
             background-color: red;
             position: absolute;
             top: 0;
-            transition: 0.3s linear 0s;
+            left: 0;
+            /*-webkit-transition: 0.3s linear 0s;*/
         }
 
 
@@ -38,15 +39,30 @@
 <div class="target"></div>
 <script>
     (function () {
-        document.body.onclick = function () {
-            var target = document.querySelector( ".target" );
-            target.style.top = "200px";
-            var s = (new Date()).getTime();
-            target.addEventListener( "webkitTransitionEnd", function () {
-                console.log( (new Date()).getTime() - s );
-                console.log( "end" );
-            }, false );
-        }
+//        var a = document.createElement( "div" );
+//        a.classList.add( "okok" );
+//        a.style.height = "100px";
+//        a.style.width = "200px";
+//        a.style.position = "absolute";
+//        a.style.background = "red";
+//        document.body.appendChild( a );
+//        a.style.webkitTransition = "2s linear 0s";
+//        var s;
+        var a = document.querySelector( ".target" );
+        a.style.webkitTransition = "2s linear 0s";
+        a.addEventListener( "webkitTransitionEnd", function () {
+            console.log( "end" );
+            console.log( (new Date()).getTime() - s )
+        }, false );
+        a.onclick = function () {
+            if ( a.style.left == "200px" ) {
+                a.style.left = "0px";
+            }
+            else {
+                a.style.left = "200px";
+            }
+            s = (new Date()).getTime();
+        };
 
     })();
 </script>
