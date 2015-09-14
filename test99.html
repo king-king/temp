@@ -9,44 +9,61 @@
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
     <title></title>
-    <style>
-        /*.target {*/
-        /*width: 200px;*/
-        /*}*/
-
-        /*.target.doit {*/
-        /*-webkit-animation: 2s filter linear both;*/
-        /*}*/
-
-        /*@-webkit-keyframes filter {*/
-        /*0% {*/
-        /*opacity: 1;*/
-        /*-webkit-filter: hue-rotate(86deg);*/
-        /*}*/
-        /*50% {*/
-        /*-webkit-filter: hue-rotate(-26deg);*/
-        /*}*/
-        /*100% {*/
-        /*opacity: 0;*/
-        /*}*/
-        /*}*/
-
-        img {
-            width: 400px;
-            -webkit-filter: saturate(0) invert(0%);
-        }
-
-    </style>
-</head>
 <body>
-<img src="img/2.jpg" class="target">
-<img src="img/8.jpg" class="target">
 <script>
     (function () {
-        var target = document.querySelector( ".target" );
-        window.onload = function () {
-            target.classList.add( "doit" );
+        var arga = {
+                    0 : {
+                        color : "red"
+                    },
+                    100 : {
+                        color : "blue"
+                    }
+                },
+                argb = {
+                    0 : {
+                        opacity : 1,
+                        background : "black"
+                    },
+                    50 : {
+                        "font-size" : "30px"
+                    },
+                    100 : {
+                        opacity : 0,
+                        background : "white"
+                    }
+                };
+
+
+        function blend( arg1, arg2, arg3 ) {
+            for ( var key in arg1 ) {
+                if ( arg2[key] ) {
+                    // 如果这个key在arg1和arg2中都有，那么继续调用combine
+                    arg3[key] = {};
+                    if ( typeof arg1[key] == "object" && typeof arg2[key] == "object" ) {
+                        arguments.callee( arg1[key], arg2[key], arg3[key] );
+                    }
+                    else {
+                        arg3[key] = arg1[key];
+                    }
+                    delete arg2[key];
+                }
+                else {
+                    arg3[key] = arg1[key];
+                }
+            }
+            for ( var key2 in arg2 ) {
+                arg3[key2] = arg2[key2];
+            }
         }
+
+        var res = {};
+
+        blend( arga, argb, res );
+
+        console.log( res )
+
+
     })();
 </script>
 </body>
