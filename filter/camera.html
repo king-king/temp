@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+</head>
+<style>
+    html, body {
+        width: 90%;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    img {
+        position: absolute;
+        width: 100%;
+
+    }
+
+    div {
+        overflow: hidden;
+    }
+
+    .camera.closer {
+        -webkit-animation: 2s closer linear both;
+    }
+
+    .camera.farther {
+        -webkit-animation: 2s farther linear both;
+    }
+
+    .camera.move-left {
+        -webkit-animation: 2s move-left linear both;
+    }
+
+    .camera.move-right {
+        -webkit-animation: 2s move-right linear both;
+    }
+
+    .camera.move-down {
+        -webkit-animation: 2s move-down linear both;
+    }
+
+    .camera.move-top {
+        -webkit-animation: 2s move-top linear both;
+    }
+
+    @-webkit-keyframes closer {
+        0% {
+            -webkit-transform: scale(1);
+        }
+        50% {
+            -webkit-transform: scale(1.15);
+        }
+        100% {
+            -webkit-transform: scale(1.15);
+        }
+    }
+
+    @-webkit-keyframes farther {
+        0% {
+            -webkit-transform: scale(1.15);
+        }
+        50% {
+            -webkit-transform: scale(1);
+        }
+        100% {
+            -webkit-transform: scale(1);
+        }
+    }
+
+    @-webkit-keyframes move-left {
+        0% {
+            -webkit-transform: scale(1.15) translate3d(7%, 0, 0);
+        }
+        100% {
+            -webkit-transform: scale(1.15) translate3d(0, 0, 0);
+        }
+    }
+
+    @-webkit-keyframes move-right {
+        0% {
+            -webkit-transform: scale(1.15) translate3d(-7%, 0, 0);
+        }
+        100% {
+            -webkit-transform: scale(1.15) translate3d(0, 0, 0);
+        }
+    }
+
+    @-webkit-keyframes move-down {
+        0% {
+            -webkit-transform: scale(1.15) translate3d(0, 7%, 0);
+        }
+        100% {
+            -webkit-transform: scale(1.15) translate3d(0, 0, 0);
+        }
+    }
+
+    @-webkit-keyframes move-top {
+        0% {
+            -webkit-transform: scale(1.15) translate3d(0, -7%, 0);
+        }
+        100% {
+            -webkit-transform: scale(1.15) translate3d(0, 0, 0);
+        }
+    }
+</style>
+<body>
+<div>
+    <img class="raw">
+    <img class="camera">
+</div>
+<script>
+    (function () {
+        var raw = document.querySelector( ".raw" );
+        var filter = document.querySelector( ".camera" );
+        window.selectCamera = function ( src, id ) {
+            if ( raw.src != src ) {
+                raw.src = filter.src = src;
+            }
+            filter.className = "";
+            filter.classList.add( "camera" );
+            filter.classList.add( id );
+        };
+    })()
+</script>
+</body>
+</html>

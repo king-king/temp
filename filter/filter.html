@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+</head>
+<style>
+    html, body {
+        width: 90%;
+    }
+
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+    }
+
+    img {
+        position: absolute;
+        width: 100%;
+
+    }
+
+    div {
+        overflow: hidden;
+    }
+
+    .filter.blur {
+        -webkit-animation: 2s blur linear both;
+    }
+
+    .filter.desaturate {
+        -webkit-animation: 2s desaturate linear both;
+    }
+
+    .filter.cool-to-warm {
+        -webkit-animation: 2s cool-to-warm linear both;
+    }
+
+    .filter.reminiscent {
+        -webkit-animation: 2.5s reminiscent linear both;
+    }
+
+    .filter.blur-reminiscent {
+        -webkit-animation: 2.5s blur-reminiscent linear both;
+    }
+
+    .filter.test {
+        -webkit-animation: 2.5s test linear both;
+    }
+
+    @-webkit-keyframes test {
+        0% {
+            opacity: 1;
+            -webkit-filter: hue-rotate(30deg) sepia(1);
+        }
+        100% {
+            opacity: 0;
+            -webkit-filter: hue-rotate(0deg) sepia(1);
+        }
+    }
+
+    @-webkit-keyframes blur {
+        0% {
+            opacity: 1;
+            -webkit-filter: blur(2px);
+        }
+        100% {
+            opacity: 0;
+            -webkit-filter: blur(2px);
+        }
+    }
+
+    @-webkit-keyframes desaturate {
+        0% {
+            opacity: 1;
+            -webkit-filter: saturate(0);
+        }
+        100% {
+            opacity: 0;
+            -webkit-filter: saturate(0);
+        }
+    }
+
+    @-webkit-keyframes cool-to-warm {
+        0% {
+            opacity: 1;
+            -webkit-filter: hue-rotate(93deg);
+        }
+        100% {
+            opacity: 0;
+            -webkit-filter: hue-rotate(93deg);
+        }
+    }
+
+    @-webkit-keyframes reminiscent {
+        0% {
+            opacity: 1;
+            -webkit-filter: sepia(100%);
+        }
+        100% {
+            opacity: 0;
+            -webkit-filter: sepia(100%);
+        }
+    }
+
+    @-webkit-keyframes blur-reminiscent {
+        0% {
+            opacity: 1;
+            -webkit-filter: sepia(100%) blur(4px);
+        }
+        100% {
+            opacity: 0;
+            -webkit-filter: sepia(100%) blur(4px);
+        }
+    }
+
+</style>
+<body>
+<div>
+    <img class="raw">
+    <img class="filter">
+</div>
+<script>
+    (function () {
+        var raw = document.querySelector( ".raw" );
+        var filter = document.querySelector( ".filter" );
+        window.selectFilter = function ( src, id ) {
+            if ( raw.src != src ) {
+                raw.src = filter.src = src;
+            }
+            filter.className = "";
+            filter.classList.add( "filter" );
+            filter.classList.add( id );
+        };
+
+        selectFilter( "../img/1.jpg", "test" );
+    })()
+</script>
+</body>
+</html>
