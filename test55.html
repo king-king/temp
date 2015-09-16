@@ -18,15 +18,26 @@
 
         .border {
             position: absolute;
+            left: 30px;
+            right: 30px;
             width: 300px;
             height: 300px;
+            -webkit-transform: rotateZ(10deg);
             overflow: hidden;
+            background-color: red;
+        }
+
+        .inner {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            -webkit-animation: 5s move linear both;
         }
 
         .border img {
             height: 100%;
             position: absolute;
-            -webkit-animation: 5s swap linear both;
+            -webkit-animation: 5s move linear both;
             /*-webkit-animation: 5s shake linear;*/
         }
 
@@ -39,34 +50,37 @@
             }
         }
 
-        @-webkit-keyframes shake {
-            2% {
-                -webkit-filter: hue-rotate(30deg);
+        @-webkit-keyframes move {
+            0% {
+                z-index: -100;
+                -webkit-transform: scale(1);
             }
-            40% {
-                -webkit-filter: hue-rotate(30deg);
+            10% {
+                -webkit-transform: scale(2);
             }
-            42% {
-                -webkit-filter: hue-rotate(130deg);
+            30% {
+                -webkit-transform: translate3d(50%, 0, 0) scale(2);
+            }
+            50% {
+                -webkit-transform: translate3d(-50%, 0, 0) scale(2);
+            }
+            65% {
+                -webkit-transform: translate3d(50%, -25%, 0) scale(2);
             }
             80% {
-                -webkit-filter: hue-rotate(130deg);
-            }
-            82% {
-                -webkit-filter: hue-rotate(260deg);
-            }
-            98% {
-                -webkit-filter: hue-rotate(260deg);
+                -webkit-transform: translate3d(0, 0, 0) scale(2);
             }
             100% {
-                -webkit-filter: hue-rotate(360deg);
+                -webkit-transform: scale(1);
+                z-index: -100;
             }
         }
     </style>
 </head>
 <body>
 <div class="border">
-    <img src="img/my-image.jpg">
+    <!--<div class="inner"></div>-->
+    <img src="img/1.jpg">
 </div>
 <script>
     (function () {
