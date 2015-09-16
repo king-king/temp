@@ -27,13 +27,6 @@
             background-color: red;
         }
 
-        .inner {
-            width: 200px;
-            height: 200px;
-            background-color: green;
-            -webkit-animation: 5s move linear both;
-        }
-
         .border img {
             height: 100%;
             position: absolute;
@@ -41,37 +34,13 @@
             /*-webkit-animation: 5s shake linear;*/
         }
 
-        @-webkit-keyframes swap {
-            0% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-            100% {
-                -webkit-transform: translate3d(-100%, 0, 0);
-            }
-        }
-
         @-webkit-keyframes move {
             0% {
                 z-index: -100;
                 -webkit-transform: scale(1);
             }
-            10% {
-                -webkit-transform: scale(2);
-            }
-            30% {
-                -webkit-transform: translate3d(50%, 0, 0) scale(2);
-            }
-            50% {
-                -webkit-transform: translate3d(-50%, 0, 0) scale(2);
-            }
-            65% {
-                -webkit-transform: translate3d(50%, -25%, 0) scale(2);
-            }
-            80% {
-                -webkit-transform: translate3d(0, 0, 0) scale(2);
-            }
             100% {
-                -webkit-transform: scale(1);
+                -webkit-transform: scale(2);
                 z-index: -100;
             }
         }
@@ -79,8 +48,8 @@
 </head>
 <body>
 <div class="border">
-    <!--<div class="inner"></div>-->
-    <img src="img/1.jpg">
+    <div class="inner"></div>
+    <!--<img src="img/1.jpg">-->
 </div>
 <script>
     (function () {
