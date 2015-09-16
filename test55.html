@@ -20,12 +20,35 @@
             position: absolute;
             width: 300px;
             height: 300px;
-            -webkit-mask: url("img/mask.png") 0 0;
-            -webkit-mask-size: 100% 100%;
         }
 
         .border img {
             width: 100%;
+            -webkit-animation: 5s shake linear;
+        }
+
+        @-webkit-keyframes shake {
+            2% {
+                -webkit-filter: hue-rotate(30deg);
+            }
+            40% {
+                -webkit-filter: hue-rotate(30deg);
+            }
+            42% {
+                -webkit-filter: hue-rotate(130deg);
+            }
+            80% {
+                -webkit-filter: hue-rotate(130deg);
+            }
+            82% {
+                -webkit-filter: hue-rotate(260deg);
+            }
+            98% {
+                -webkit-filter: hue-rotate(260deg);
+            }
+            100% {
+                -webkit-filter: hue-rotate(360deg);
+            }
         }
     </style>
 </head>
