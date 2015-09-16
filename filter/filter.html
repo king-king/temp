@@ -58,29 +58,22 @@
         -webkit-animation: 2.5s blur-reminiscent linear both;
     }
 
-    .filter.test {
-        -webkit-animation: 2.5s test linear both;
+    .filter.brighten {
+        -webkit-animation: 2.5s brighten linear both;
     }
 
-    @-webkit-keyframes test {
-        0% {
-            opacity: 1;
-            -webkit-filter: hue-rotate(30deg) sepia(1);
-        }
-        100% {
-            opacity: 0;
-            -webkit-filter: hue-rotate(0deg) sepia(1);
-        }
+    .filter.face-off {
+        -webkit-animation: 5s face-off linear both;
     }
 
     @-webkit-keyframes blur {
         0% {
             opacity: 1;
-            -webkit-filter: blur(2px);
+            -webkit-filter: blur(4px);
         }
         100% {
             opacity: 0;
-            -webkit-filter: blur(2px);
+            -webkit-filter: blur(4px);
         }
     }
 
@@ -102,7 +95,7 @@
         }
         100% {
             opacity: 0;
-            -webkit-filter: hue-rotate(93deg);
+            -webkit-filter: hue-rotate(0deg);
         }
     }
 
@@ -122,12 +115,63 @@
             opacity: 1;
             -webkit-filter: sepia(100%) blur(4px);
         }
+        50% {
+            opacity: 0;
+            -webkit-filter: sepia(100%) blur(4px);
+        }
         100% {
             opacity: 0;
             -webkit-filter: sepia(100%) blur(4px);
         }
     }
 
+    @-webkit-keyframes brighten {
+        0% {
+            opacity: 1;
+            -webkit-filter: brightness(1) contrast(1);
+        }
+        50% {
+            opacity: 1;
+            -webkit-filter: brightness(1.5) contrast(1.5);
+        }
+        100% {
+            opacity: 1;
+            -webkit-filter: brightness(1) contrast(1);
+        }
+    }
+
+    @-webkit-keyframes face-off {
+        20% {
+            -webkit-filter: hue-rotate(0deg);
+        }
+        21% {
+            -webkit-filter: hue-rotate(30deg);
+        }
+        33% {
+            -webkit-filter: hue-rotate(30deg);
+        }
+        34% {
+            -webkit-filter: hue-rotate(130deg);
+        }
+        50% {
+            -webkit-filter: hue-rotate(130deg);
+        }
+        51% {
+            -webkit-filter: hue-rotate(260deg);
+        }
+        73% {
+            -webkit-filter: hue-rotate(260deg);
+        }
+        74% {
+            -webkit-filter: hue-rotate(330deg);
+        }
+        99% {
+            -webkit-filter: hue-rotate(330deg);
+        }
+        100% {
+            -webkit-filter: hue-rotate(360deg);
+        }
+    }
 </style>
 <body>
 <div>
@@ -147,7 +191,7 @@
             filter.classList.add( id );
         };
 
-        selectFilter( "../img/1.jpg", "test" );
+        selectFilter( "../img/1.jpg", "face-off" )
     })()
 </script>
 </body>
