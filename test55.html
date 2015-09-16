@@ -10,72 +10,33 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        body {
-            background: #f00;
-        }
 
         * {
             font-size: 40px;
             font-family: "微软雅黑", sans-serif;
         }
 
-        .time {
-            display: inline-block;
-            width: 100px;
-            text-align: center;
-            height: 60px;
-            line-height: 60px;
-            color: #000;
+        .border {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            -webkit-mask: url("img/mask.png") 0 0;
+            -webkit-mask-size: 100% 100%;
         }
 
-        .stop {
-            width: 100px;
-            height: 50px;
-            cursor: pointer;
+        .border img {
+            width: 100%;
         }
     </style>
 </head>
 <body>
-<div class="time s"></div>
-:
-<div class="time m"></div>
-<div class="stop">stop</div>
+<div class="border">
+    <img src="img/1.jpg">
+</div>
 <script>
     (function () {
-        function timer( duration, callback ) {
-            var s = (new Date()).getTime();
-            var st = document.querySelector( ".time.s" );
-            var mt = document.querySelector( ".time.m" );
-            var id = setTimeout( function () {
-                var cha = (new Date()).getTime() - s;
-                if ( cha >= duration ) {
-                    st.innerText = duration / 1000 << 0;
-                    mt.innerText = duration % 1000;
-                    callback();
-                }
-                else {
-                    st.innerText = cha / 1000 << 0;
-                    mt.innerText = cha % 1000;
-                    clearTimeout( id );
-                    id = setTimeout( arguments.callee, 10 );
-                }
-            }, 10 );
-            return {
-                destroy : function () {
-                    clearTimeout( id );
-                }
-            }
-        }
-
-        var handle = timer( 9282, function () {
-            console.log( "end" )
-        } );
 
 
-        var stop = document.querySelector( ".stop" );
-        stop.onclick = function () {
-            handle.destroy();
-        }
     })();
 </script>
 </body>
