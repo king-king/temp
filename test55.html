@@ -20,11 +20,23 @@
             position: absolute;
             width: 300px;
             height: 300px;
+            overflow: hidden;
         }
 
         .border img {
-            width: 100%;
-            -webkit-animation: 5s shake linear;
+            height: 100%;
+            position: absolute;
+            -webkit-animation: 5s swap linear both;
+            /*-webkit-animation: 5s shake linear;*/
+        }
+
+        @-webkit-keyframes swap {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -webkit-transform: translate3d(-100%, 0, 0);
+            }
         }
 
         @-webkit-keyframes shake {
@@ -54,7 +66,7 @@
 </head>
 <body>
 <div class="border">
-    <img src="img/1.jpg">
+    <img src="img/my-image.jpg">
 </div>
 <script>
     (function () {
