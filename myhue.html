@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<style>
+    .hue-rotate {
+        width: 300px;
+        /*-webkit-filter: hue-rotate(90deg);*/
+    }
+
+    input.range {
+        width: 300px;
+    }
+</style>
+<body>
+<img src="img/2.jpg" class="hue-rotate"><br><br><br>
+0<input class="range" type="range" min="0" max="360" step="1">360
+当前数值：<input class="text" type="text">
+<script>
+    var range = document.querySelector( ".range" );
+    var img = document.querySelector( "img" );
+    var text = document.querySelector( ".text" );
+
+    range.addEventListener( "mousemove", function () {
+        img.style.webkitFilter = "hue-rotate(" + this.value + "deg)";
+        text.value = this.value;
+    }, false );
+</script>
+</body>
+</html>
