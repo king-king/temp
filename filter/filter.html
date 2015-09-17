@@ -21,20 +21,18 @@
     }
 
     div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        width: 300px;
+        height: 300px;
     }
 
     img {
         position: absolute;
         width: 100%;
-
     }
 
     div {
+        position: relative;
+        margin-bottom: 30px;
         overflow: hidden;
     }
 
@@ -178,6 +176,14 @@
     <img class="raw">
     <img class="filter">
 </div>
+<input type="radio" name="filter" value="blur">模糊
+<input type="radio" name="filter" value="desaturate">黑白
+<input type="radio" name="filter" value="cool-to-warm">冷暖
+<input type="radio" name="filter" value="reminiscent">怀旧
+<input type="radio" name="filter" value="blur-reminiscent">模糊怀旧
+<input type="radio" name="filter" value="brighten">耀眼
+<input type="radio" name="filter" value="face-off">变脸
+
 <script>
     (function () {
         var raw = document.querySelector( ".raw" );
@@ -191,7 +197,14 @@
             filter.classList.add( id );
         };
 
-        selectFilter( "../img/1.jpg", "face-off" )
+        var radios = document.querySelectorAll( "input" );
+
+        for ( var i = 0; i < radios.length; i++ ) {
+            radios[i].onclick = function () {
+                selectFilter( "../img/1.jpg", this.value )
+            }
+        }
+
     })()
 </script>
 </body>

@@ -20,18 +20,16 @@
         margin: 0;
     }
 
-    div {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+    div.border {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin-bottom: 30px;
+        background-color: #eeeeee;
     }
 
     img {
         position: absolute;
-        height: 100%;
-
     }
 
     div {
@@ -76,6 +74,10 @@
 
     .camera.swap {
         -webkit-animation: 3s swap linear both;
+    }
+
+    input {
+        margin: 10px;
     }
 
     @-webkit-keyframes closer {
@@ -189,7 +191,6 @@
         }
         20% {
             -webkit-transform: scale(2) rotateZ(0deg);
-
         }
         100% {
             -webkit-transform: scale(1);
@@ -305,29 +306,66 @@
     }
 </style>
 <body>
-<div>
-    <img class="camera">
+<div class="border">
 </div>
+<input type="radio" name="camera" value="closer">拉进
+<input type="radio" name="camera" value="move-left">向左
+<input type="radio" name="camera" value="move-right">向右
+<input type="radio" name="camera" value="move-down">向下
+<input type="radio" name="camera" value="move-top">向上
+<input type="radio" name="camera" value="rotate">旋转
+<input type="radio" name="camera" value="ramble">迷离
+<input type="radio" name="camera" value="shake">晃动
+<input type="radio" name="camera" value="swap">横移
+
 <script>
     (function () {
-        var camera = document.querySelector( ".camera" );
+        var camera = document.createElement( "img" );
+        camera.classList.add( "camera" );
         window.selectCamera = function ( src, id ) {
-            if ( id == "swap" ) {
-                var style = document.createElement( "style" );
-                document.head.appendChild( style );
-                style.sheet.insertRule( "@-webkit-keyframes swap{0%{-webkit-transform:translate3d(0,0,0)}," +
-                        "100%{-webkit-transform:translate3d(0,0,0)}}", 0 );
-                camera.onload = function () {
-
-                }
-            }
             camera.src = src;
             camera.className = "";
             camera.classList.add( "camera" );
-            camera.classList.add( id );
+            if ( id == "swap" ) {
+                var style = document.createElement( "style" );
+                document.head.appendChild( style );
+                camera.onload = function () {
+                    var border = document.querySelector( ".border" );
+                    border.appendChild( camera );
+                    var w = camera.naturalWidth || camera.width;
+                    var h = camera.naturalHeight || camera.height;
+                    var bw = border.offsetWidth;
+                    var bh = border.offsetHeight;
+                    if ( bw / bh >= w / h ) {
+                        camera.style.width = "100%";
+                    }
+                    else {
+                        camera.style.height = "100%";
+                        style.sheet.insertRule( "@-webkit-keyframes swap{0%{-webkit-transform:translate3d(0,0,0)}" +
+                                "100%{-webkit-transform:translate3d(-" + ((w * bh / h - bw) << 0) + "px,0,0)}}", 0 );
+                        camera.classList.add( id );
+                    }
+                }
+            }
+            else {
+                document.querySelector( ".border" ).appendChild( camera );
+                camera.style.height = "100%";
+                camera.classList.add( id );
+            }
         };
 
-        selectCamera( "../img/1.jpg", "swap" )
+        var radios = document.querySelectorAll( "input" );
+        for ( var i = 0; i < radios.length; i++ ) {
+            radios[i].onclick = function () {
+                if ( this.value == "swap" ) {
+                    selectCamera( "../img/hengtu.jpg", this.value );
+                }
+                else {
+                    selectCamera( "../img/1.jpg", this.value )
+                }
+            }
+        }
+
     })()
 </script>
 </body>
