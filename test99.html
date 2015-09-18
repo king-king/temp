@@ -9,60 +9,55 @@
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
     <title></title>
+    <style>
+        .border {
+            width: 200px;
+            margin: 2px;
+            height: 10px;
+            background: red;
+        }
+    </style>
 <body>
 <script>
     (function () {
-        var arga = {
-                    0 : {
-                        color : "red"
-                    },
-                    100 : {
-                        color : "blue"
-                    }
-                },
-                argb = {
-                    0 : {
-                        opacity : 1,
-                        background : "black"
-                    },
-                    50 : {
-                        "font-size" : "30px"
-                    },
-                    100 : {
-                        opacity : 0,
-                        background : "white"
-                    }
-                };
+
+        function test() {
+            var el = [];
 
 
-        function blend( arg1, arg2, arg3 ) {
-            for ( var key in arg1 ) {
-                if ( arg2[key] ) {
-                    // 如果这个key在arg1和arg2中都有，那么继续调用combine
-                    arg3[key] = {};
-                    if ( typeof arg1[key] == "object" && typeof arg2[key] == "object" ) {
-                        arguments.callee( arg1[key], arg2[key], arg3[key] );
-                    }
-                    else {
-                        arg3[key] = arg1[key];
-                    }
-                    delete arg2[key];
+            var i = 0;
+            var id = setTimeout( function () {
+                if ( i < 500 ) {
+                    clearTimeout( id );
+                    var e = document.createElement( "div" );
+                    e.classList.add( "border" );
+                    document.body.appendChild( e );
+                    e.onclick = function () {
+
+                    };
+                    el.push( e );
+                    id = setTimeout( arguments.callee, 10 );
+                    i++;
                 }
                 else {
-                    arg3[key] = arg1[key];
+                    console.log( "ok" );
+                    for ( var j = 0; j < el.length; j++ ) {
+                        document.body.removeChild( el[j] );
+                        el[j].onclick = null;
+                        el[j] = null;
+                    }
+                    el = null;
+                    console.log( "over" );
                 }
-            }
-            for ( var key2 in arg2 ) {
-                arg3[key2] = arg2[key2];
-            }
+            }, 10 );
+
+//            for ( var j = 0; j < el.length; j++ ) {
+////                el[j].parentNode.removeChild( el[j] );
+//            }
         }
 
-        var res = {};
 
-        blend( arga, argb, res );
-
-        console.log( res )
-
+        test();
 
     })();
 </script>
