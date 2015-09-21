@@ -21,44 +21,59 @@
 <script>
     (function () {
 
-        function test() {
-            var el = [];
+        /*
+         int maxSum(int* a, int n)
+         {
+         int sum=0;
+         //其实要处理全是负数的情况，很简单，如稍后下面第3点所见，直接把这句改成："int sum=a[0]"即可
+         //也可以不改，当全是负数的情况，直接返回0，也不见得不行。
+         int b=0;
+
+         for(int i=0; i<n; i++)
+         {
+         if(b<0)           //...
+         b=a[i];
+         else
+         b+=a[i];
+         if(sum<b)
+         sum=b;
+         }
+         return sum;
+         }
+
+         int main()
+         {
+         int a[10]={1, -2, 3, 10, -4, 7, 2, -5};
+         //int a[]={-1,-2,-3,-4};  //测试全是负数的用例
+         cout<<maxSum(a,8)<<endl;
+         return 0;
+         }
+         */
 
 
-            var i = 0;
-            var id = setTimeout( function () {
-                if ( i < 500 ) {
-                    clearTimeout( id );
-                    var e = document.createElement( "div" );
-                    e.classList.add( "border" );
-                    document.body.appendChild( e );
-                    e.onclick = function () {
+        function maxSum( arr ) {
+            var sum = 0;
+            //其实要处理全是负数的情况，很简单，如稍后下面第3点所见，直接把这句改成："int sum=a[0]"即可
+            //也可以不改，当全是负数的情况，直接返回0，也不见得不行。
+            var b = 0;
 
-                    };
-                    el.push( e );
-                    id = setTimeout( arguments.callee, 10 );
-                    i++;
+            for ( var i = 0; i < arr.length; i++ ) {
+                if ( b < 0 )           //...
+                {
+                    b = arr[i];
                 }
                 else {
-                    console.log( "ok" );
-                    for ( var j = 0; j < el.length; j++ ) {
-                        document.body.removeChild( el[j] );
-                        el[j].onclick = null;
-                        el[j] = null;
-                    }
-                    el = null;
-                    console.log( "over" );
+                    b += arr[i];
                 }
-            }, 10 );
-
-//            for ( var j = 0; j < el.length; j++ ) {
-////                el[j].parentNode.removeChild( el[j] );
-//            }
+                if ( sum < b ) {
+                    sum = b;
+                }
+            }
+            return sum;
         }
 
 
-        test();
-
+        console.log( maxSum( [1, -2, 3, 10, -4, 7, 2, -5] ) )
     })();
 </script>
 </body>
