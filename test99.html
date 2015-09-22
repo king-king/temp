@@ -13,67 +13,29 @@
         .border {
             width: 200px;
             margin: 2px;
-            height: 10px;
+            height: 200px;
             background: red;
         }
     </style>
 <body>
+<div class="border"></div>
 <script>
     (function () {
 
-        /*
-         int maxSum(int* a, int n)
-         {
-         int sum=0;
-         //其实要处理全是负数的情况，很简单，如稍后下面第3点所见，直接把这句改成："int sum=a[0]"即可
-         //也可以不改，当全是负数的情况，直接返回0，也不见得不行。
-         int b=0;
+        var border = document.querySelector( ".border" );
 
-         for(int i=0; i<n; i++)
-         {
-         if(b<0)           //...
-         b=a[i];
-         else
-         b+=a[i];
-         if(sum<b)
-         sum=b;
-         }
-         return sum;
-         }
+        border.onmousedown = function () {
+            console.log( "down" );
+        };
 
-         int main()
-         {
-         int a[10]={1, -2, 3, 10, -4, 7, 2, -5};
-         //int a[]={-1,-2,-3,-4};  //测试全是负数的用例
-         cout<<maxSum(a,8)<<endl;
-         return 0;
-         }
-         */
+        border.addEventListener( "mousedown", function () {
+            console.log( "down1" );
+        }, false );
 
+        border.addEventListener( "mousedown", function () {
+            console.log( "down2" );
+        }, false );
 
-        function maxSum( arr ) {
-            var sum = 0;
-            //其实要处理全是负数的情况，很简单，如稍后下面第3点所见，直接把这句改成："int sum=a[0]"即可
-            //也可以不改，当全是负数的情况，直接返回0，也不见得不行。
-            var b = 0;
-
-            for ( var i = 0; i < arr.length; i++ ) {
-                if ( b < 0 )           //...
-                {
-                    b = arr[i];
-                }
-                else {
-                    b += arr[i];
-                }
-                if ( sum < b ) {
-                    sum = b;
-                }
-            }
-            return sum;
-        }
-
-
-        console.log( maxSum( [1, -2, 3, 10, -4, 7, 2, -5] ) )
     })();
 </script>
 </body>
