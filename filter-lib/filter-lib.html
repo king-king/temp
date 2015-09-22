@@ -81,7 +81,7 @@
             display: none;
         }
 
-        input.duration {
+        input.duration, input.delay {
             width: 100px;
         }
 
@@ -113,7 +113,7 @@
     </div>
 
     <div class="filter-item">
-        0 <input type="range" class="saturate filter" min="0" max="1" step="0.1" value="1"> 1
+        0 <input type="range" class="saturate filter" min="0" max="3" step="0.1" value="1"> 3
         <span class="filter-name">饱和度<span class="txt"></span></span>
     </div>
 
@@ -143,7 +143,10 @@
     </div>
 
     <div class="filter-item">
-        动画时间：<input type="text" class="duration">s
+        持续时间：<input type="text" class="duration" value="2">s
+    </div>
+    <div class="filter-item">
+        延迟时间：<input type="text" class="delay" value="0">s
     </div>
 </div>
 <div class="button copy">复制</div>
@@ -164,8 +167,7 @@
         var border = document.querySelector( ".img-border" );
         var fileInput = document.querySelector( "input.file" );
         var duration = document.querySelector( "input.duration" );
-
-        duration.value = 2;
+        var delay = document.querySelector( "input.delay" );
 
         border.onclick = function () {
             fileInput.click();
@@ -221,7 +223,7 @@
             }
             var clipboard = event.clipboardData;
 
-            clipboard.setData( "text/plain", "duration:" + (duration.value || 2) + "  filter:" + (style.trim() || "null") );
+            clipboard.setData( "text/plain", "duration: " + (duration.value || 2) + "  delay:" + delay.value + "  filter:" + (style.trim() || "null") );
         } );
 
 
@@ -230,7 +232,7 @@
         }, false );
 
         document.querySelector( ".button.animate" ).onclick = function () {
-            img.style.webkitAnimation = ( duration.value || 2) + "s  " + "fade-out linear both";
+            img.style.webkitAnimation = ( duration.value || 2) + "s  " + "fade-out " + delay.value + "s linear both";
         }
 
     })()
