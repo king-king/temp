@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        .frame {
+            left: 100px;
+            right: 100px;
+            height: 20px;
+            position: absolute;
+            bottom: 100px;
+            background: #cecece;
+        }
+
+        .frame-item {
+            position: absolute;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .frame-item.indigo {
+            background-color: indigo;
+        }
+
+        .frame-item.purple {
+            background-color: purple;
+        }
+
+        .frame-item.green {
+            background-color: green;
+        }
+
+        .frame-item.yellow {
+            background-color: yellow;
+        }
+
+        .frame-item.red {
+            background-color: red;
+        }
+
+        .frame-item.orange {
+            background-color: orange;
+        }
+
+        .frame-item.blue {
+            background-color: blue;
+        }
+
+        .tip {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 10px;
+            background: #000;
+            cursor: e-resize;
+        }
+
+        .tip.right {
+            right: 0;
+        }
+
+        .tip.left {
+            left: 0;
+        }
+
+        .img-border {
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .board {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            right: 0;
+            bottom: 0;
+        }
+
+        .img-border img {
+            width: 100%;
+            position: absolute;
+        }
+
+        input.filter {
+            width: 200px;
+        }
+
+        span.txt {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+
+        .filter-item {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+        }
+
+        .filter-name {
+            position: absolute;
+            left: 50%;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .button {
+            width: 100px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 5px;
+            font-family: "微软雅黑", sans-serif;
+            position: absolute;
+            margin-left: -100px;
+            bottom: 200px;
+            font-size: 30px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            border: 2px solid black;
+        }
+
+        .button.copy {
+            right: 30%;
+        }
+
+        .button.add {
+            left: 30%;
+        }
+    </style>
+</head>
+<body>
+<input type="file" class="hide file" accept=".png,.jpg,.jpeg">
+<div class="img-border">
+    <img src="../img/2.jpg" class="down">
+    <img src="../img/2.jpg" class="up">
+</div>
+<div class="board">
+    <div class="filter-item">
+        0 <input type="range" class="grayscale filter" min="0" max="1" step="0.1" value="0"> 1
+        <span class="filter-name">灰度<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="sepia filter" min="0" max="1" step="0.1" value="0"> 1
+        <span class="filter-name">sepia<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="saturate filter" min="0" max="3" step="0.1" value="1"> 3
+        <span class="filter-name">饱和度<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="hue-rotate filter" min="0" max="360" step="1" value="0"> 360(deg)
+        <span class="filter-name">色相旋转<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="invert filter" min="0" max="1" step="0.1" value="0"> 1
+        <span class="filter-name">反色<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="brightness filter" min="0" max="3" step="0.1" value="1"> 3
+        <span class="filter-name">亮度<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="contrast filter" min="0" max="3" step="0.1" value="1"> 3
+        <span class="filter-name">对比度<span class="txt"></span></span>
+    </div>
+
+    <div class="filter-item">
+        0 <input type="range" class="blur filter" min="0" max="20" step="1" value="0"> 20(px)
+        <span class="filter-name">模糊<span class="txt"></span></span>
+    </div>
+
+</div>
+<div class="frame">
+    <!--<div class="frame-item orange">-->
+    <!--<div class="tip right"></div>-->
+    <!--<div class="tip left"></div>-->
+    <!--</div>-->
+    <!--<div class="frame-item blue"></div>-->
+</div>
+<div class="button copy">复制</div>
+<div class="button add">添加</div>
+<script>
+    (function () {
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+        var colors = [
+            "indigo",
+            "purple",
+            "green",
+            "yellow",
+            "red",
+            "orange",
+            "blue"
+        ];
+        var colorIndex = 0;
+        var querySelector = document.querySelector.bind( document );
+        var querySelectorAll = document.querySelectorAll.bind( document );
+        var tipWidth = 20;
+        var frame = querySelector( ".frame" );
+        var w = frame.offsetWidth;
+        var frameItems = [];
+
+        function addEventListener( el, type, listener, useCapture ) {
+            el.addEventListener( type, listener, useCapture );
+            return {
+                remove : function () {
+                    el.removeEventListener( type, listener, useCapture );
+                }
+            }
+        }
+
+        function onDragV( el, listener ) {
+            var prex;
+            addEventListener( el, "mousedown", function ( de ) {
+                prex = de.pageX;
+                var mhandle = addEventListener( document, "mousemove", function ( me ) {
+                    listener.onDrag && listener.onDrag( me.pageX - prex );
+                    prex = me.pageX;
+                } );
+
+                var uhandle = addEventListener( document, "mouseup", function ( me ) {
+                    listener.onUp && listener.onUp();
+                    mhandle.remove();
+                    uhandle.remove();
+                } );
+
+            } );
+        }
+
+        function element( tag, arg, parent ) {
+            var el = document.createElement( tag );
+            for ( var key in arg ) {
+                switch ( key ) {
+                    case "classList":
+                        loopArray( arg.classList, function ( klass ) {
+                            el.classList.add( klass );
+                        } );
+                        break;
+                    default :
+                        el[key] = arg[key];
+                }
+            }
+            parent && parent.appendChild( el );
+            return el;
+        }
+
+        function addFrame() {
+            frameItems = [];
+            // 弥补querySelectorAll得到的没有push方法
+            loopArray( querySelectorAll( ".frame-item" ), function ( item ) {
+                frameItems.push( item );
+            } );
+            // 每一个item的宽度减小50%（如果可以的话）
+            var x = 0;
+            loopArray( frameItems, function ( item, i ) {
+                i != 0 && (x += 10);
+                item.style.left = x + "px";
+                item.x = x;
+                if ( Math.floor( item.offsetWidth / 2 ) > tipWidth ) {
+                    item.style.width = Math.floor( item.offsetWidth / 2 ) + "px";
+                }
+                x += item.offsetWidth;
+                item.w = item.offsetWidth;
+            } );
+            if ( w - x - 10 <= tipWidth ) {
+                alert( "帧数太多了" );
+            }
+            else {
+                colorIndex = (colorIndex + 1) % colors.length;
+                var newItem = element( "div", {
+                    "classList" : ["frame-item", colors[colorIndex]]
+                }, frame );
+                var leftTip = element( "div", {
+                    "classList" : ["tip", "left"]
+                }, newItem );
+                var rightTip = element( "div", {
+                    "classList" : ["tip", "right"]
+                }, newItem );
+                if ( frameItems.length != 0 ) {
+                    x += 10;
+                }
+                newItem.index = frameItems.length;
+                newItem.style.left = x + "px";
+                newItem.style.width = (w - x) + "px";
+                newItem.x = x;
+                newItem.w = w - x;
+                frameItems.push( newItem );
+
+
+                newItem.onclick = function () {
+                    // todo:点击相应的条，将会切换到相应的滤镜
+
+                };
+                onDragV( leftTip, {
+                    onDrag : function ( dx ) {
+                        // todo: 拖动左边的条tip，形变frame
+                        console.log( dx );
+                    }
+                } );
+                onDragV( rightTip, {
+                    onDrag : function ( dx ) {
+                        // todo: 拖动右边的条tip，形变frame
+                        console.log( dx );
+                    }
+                } );
+            }
+        }
+
+
+        querySelector( ".button.add" ).onclick = function () {
+            addFrame();
+        };
+
+    })();
+</script>
+</body>
+</html>
