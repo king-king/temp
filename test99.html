@@ -24,10 +24,6 @@
 
         var border = document.querySelector( ".border" );
 
-        border.onmousedown = function () {
-            console.log( "down" );
-        };
-
         border.addEventListener( "mousedown", function () {
             console.log( "down1" );
         }, false );
@@ -35,6 +31,11 @@
         border.addEventListener( "mousedown", function () {
             console.log( "down2" );
         }, false );
+
+
+        border.onmousedown = function () {
+            console.log( "down" );
+        };
 
     })();
 </script>
