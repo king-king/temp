@@ -73,6 +73,7 @@
             left: 10px;
             right: 10px;
             color: #fff;
+            overflow: hidden;
         }
 
         .tip {
@@ -179,45 +180,47 @@
     <img src="../img/2.jpg" class="up">
 </div>
 <div class="board">
-    <div class="filter-item">
-        0 <input type="range" class="grayscale filter" min="0" max="1" step="0.1" value="0"> 1
-        <span class="filter-name">灰度<span class="txt"></span></span>
-    </div>
+    <form class="filter-form">
+        <div class="filter-item">
+            0 <input type="range" class="grayscale filter" min="0" max="1" step="0.1" value="0"> 1
+            <span class="filter-name">灰度<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="sepia filter" min="0" max="1" step="0.1" value="0"> 1
-        <span class="filter-name">sepia<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="sepia filter" min="0" max="1" step="0.1" value="0"> 1
+            <span class="filter-name">sepia<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="saturate filter" min="0" max="3" step="0.1" value="1"> 3
-        <span class="filter-name">饱和度<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="saturate filter" min="0" max="3" step="0.1" value="1"> 3
+            <span class="filter-name">饱和度<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="hue-rotate filter" min="0" max="360" step="1" value="0"> 360(deg)
-        <span class="filter-name">色相旋转<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="hue-rotate filter" min="0" max="360" step="1" value="0"> 360(deg)
+            <span class="filter-name">色相旋转<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="invert filter" min="0" max="1" step="0.1" value="0"> 1
-        <span class="filter-name">反色<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="invert filter" min="0" max="1" step="0.1" value="0"> 1
+            <span class="filter-name">反色<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="brightness filter" min="0" max="3" step="0.1" value="1"> 3
-        <span class="filter-name">亮度<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="brightness filter" min="0" max="3" step="0.1" value="1"> 3
+            <span class="filter-name">亮度<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="contrast filter" min="0" max="3" step="0.1" value="1"> 3
-        <span class="filter-name">对比度<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="contrast filter" min="0" max="3" step="0.1" value="1"> 3
+            <span class="filter-name">对比度<span class="txt"></span></span>
+        </div>
 
-    <div class="filter-item">
-        0 <input type="range" class="blur filter" min="0" max="20" step="1" value="0"> 20(px)
-        <span class="filter-name">模糊<span class="txt"></span></span>
-    </div>
+        <div class="filter-item">
+            0 <input type="range" class="blur filter" min="0" max="20" step="1" value="0"> 20(px)
+            <span class="filter-name">模糊<span class="txt"></span></span>
+        </div>
+    </form>
     <div class="filter-item">
         持续时间：<input type="text" class="duration" value="2"> 秒
     </div>
@@ -250,6 +253,23 @@
         var frame = querySelector( ".frame" );
         var WIDTH = frame.offsetWidth;
         var frameItems = [];
+        var curSelectIndex;
+        var img = querySelector( "img.up" );
+        var raw = querySelector( "img.down" );
+        var fileInput = querySelector( "input.file" );
+        var border = querySelector( ".img-border" );
+        var filterValue = [];
+        var spans = querySelectorAll( "span.txt" );
+        var form = querySelector( ".filter-form" );
+        var filters = querySelectorAll( ".filter" );
+
+        border.onclick = function () {
+            fileInput.click();
+        };
+
+        fileInput.onchange = function () {
+            raw.src = img.src = window.URL.createObjectURL( fileInput.files[0] );
+        };
 
         function addEventListener( el, type, listener, useCapture ) {
             el.addEventListener( type, listener, useCapture );
@@ -340,15 +360,42 @@
                 newItem.x = x;
                 newItem.w = WIDTH - x;
                 frameItems.push( newItem );
-                var cur = document.querySelector( ".frame-item.select" );
+                var cur = querySelector( ".frame-item.select" );
                 cur && cur.classList.remove( "select" );
                 newItem.classList.add( "select" );
+                curSelectIndex = newItem.index;
+                form.reset();
+
 
                 newItem.onclick = function () {
-                    // todo:点击相应的条，将会切换到相应的滤镜
-                    var cur = document.querySelector( ".frame-item.select" );
+                    var cur = querySelector( ".frame-item.select" );
                     cur && cur.classList.remove( "select" );
                     newItem.classList.add( "select" );
+                    curSelectIndex = newItem.index;
+                    // todo:点击相应的条，将会切换到相应的滤镜
+                    form.reset();
+                    // 根据newItem的filterObj设置range条
+                    if ( newItem.filterObj ) {
+                        console.log( newItem.filterObj );
+                        var fs = newItem.filterObj.split( " " );
+                        loopArray( fs, function ( str ) {
+                            if ( str ) {
+                                var key = str.slice( 0, str.indexOf( "(" ) );
+                                key = key.trim();
+                                var value;
+                                if ( str.indexOf( "px" ) != -1 ) {
+                                    value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "px" ) ) );
+                                }
+                                else if ( str.indexOf( "deg" ) != -1 ) {
+                                    value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "deg" ) ) );
+                                }
+                                else {
+                                    value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( ")" ) ) );
+                                }
+                                querySelector( ".filter." + key ).value = value;
+                            }
+                        } );
+                    }
                 };
 
                 // 因为不涉及排序，所以leftItem可以现在就获取
@@ -378,7 +425,7 @@
                             newItem.style.left = x + "px";
                             newItem.w = w;
                             newItem.style.width = w + "px";
-                            state.innerText = (new Number( newItem.w / WIDTH * duration )).toFixed( 2 );
+                            state.innerText = (new Number( newItem.w / WIDTH * duration )).toFixed( 2 ) + "s";
                         }
                         if ( x == leftThreshold && x != 0 ) {
                             leftTip.classList.add( "invalid" );
@@ -417,7 +464,7 @@
                         if ( x <= rightThreshold && w >= tipWidth ) {
                             newItem.w = w;
                             newItem.style.width = w + "px";
-                            state.innerText = (new Number( newItem.w / WIDTH * duration )).toFixed( 2 );
+                            state.innerText = (new Number( newItem.w / WIDTH * duration )).toFixed( 2 ) + "s";
                         }
                         if ( w != WIDTH && x == rightThreshold ) {
                             rightTip.classList.add( "invalid" );
@@ -441,10 +488,45 @@
             }
         }
 
-
         querySelector( ".button.add" ).onclick = function () {
             addFrame();
         };
+
+        img.addEventListener( "webkitAnimationEnd", function () {
+            img.style.webkitAnimation = "";
+        }, false );
+
+        // 控制滤镜
+        loopArray( filters, function ( range, i ) {
+            onDragV( range, {
+                onDrag : function () {
+                    var vv = range.value;
+                    if ( range.classList[0] == "blur" ) {
+                        vv = range.value + "px";
+                    }
+                    if ( range.classList[0] == "hue-rotate" ) {
+                        vv = range.value + "deg";
+                    }
+                    filterValue[i] = range.classList[0] + "(" + vv + ")";
+                    spans[i].innerText = range.value;
+                    var value = "";
+                    loopArray( filterValue, function ( v ) {
+                        if ( v ) {
+                            value += v;
+                        }
+                    } );
+                    if ( value.length != 0 ) {
+                        img.style.webkitFilter = value;
+                    }
+                },
+                onUp : function () {
+                    var style = querySelector( "img.up" ).style.webkitFilter;
+                    var cur = querySelector( ".frame-item.select" );
+                    cur && (cur.filterObj = style.trim());
+                }
+            } );
+        } );
+
 
     })();
 </script>
