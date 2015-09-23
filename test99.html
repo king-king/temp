@@ -28,25 +28,24 @@
 
         img {
             width: 400px;
-            -webkit-animation: 12s filter-animate both;
         }
     </style>
 <body>
 <script src="jquery2.js"></script>
+<img src="img/1.jpg">
 <script>
     (function () {
 
+        var img = document.querySelector( "img" );
+        img.style.webkitAnimation = "10s filter-animate both";
+        img.addEventListener( "webkitAnimationEnd", function () {
+            console.log( new Date() )
+        }, false );
 
-        $.ajax(
-                {
-                    type : "GET",
-                    url : "http://192.168.0.131:62622/",
-                    dataType : "json",
-                    async : false,
-                    success : function ( data ) {
-                        alert( data.result )
-                    }
-                } );
+
+        setTimeout( function () {
+            img.style.webkitAnimation = "5s filter-animate both";
+        }, 2000 );
 
     })();
 </script>
