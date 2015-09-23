@@ -335,8 +335,11 @@
             var x = 0;
 
             var item = frameItems[frameItems.length - 1];
-            if ( !item || (item && Math.floor( item.w / 2 ) >= tipWidth) ) {
-                if ( item ) {
+            if ( !item || (item && WIDTH - item.x - item.w > tipWidth) || (item && Math.floor( item.w / 2 ) >= tipWidth) ) {
+                if ( item && WIDTH - item.x - item.w > tipWidth ) {
+                    x = item.w + item.x;
+                }
+                else if ( item && Math.floor( item.w / 2 ) >= tipWidth ) {
                     item.w = Math.floor( item.offsetWidth / 2 );
                     item.style.width = item.w + "px";
                     x = item.w + item.x;
