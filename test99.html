@@ -16,21 +16,32 @@
             height: 200px;
             background: red;
         }
+
+        @-webkit-keyframes filter-animate {
+            10% {
+                -webkit-filter: blur(20px);
+            }
+            100% {
+                -webkit-filter: blur(0px);
+            }
+        }
+
+        img {
+            width: 400px;
+            -webkit-animation: 12s filter-animate both;
+        }
     </style>
 <body>
-<div class="border"></div>
+<img src="img/1.jpg">
 <script>
     (function () {
 
-        var border = document.querySelector( ".border" );
+        function aniamte( arg ) {
+            var duration = arg.duration;
+            setTimeout();
+        }
 
 
-        var a = new Number( "1.222" );
-
-        a.toFixed( 1 );
-
-        console.log( a.toFixed( 1 ) );
-        console.log( a )
     })();
 </script>
 </body>

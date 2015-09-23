@@ -234,6 +234,7 @@
 <div class="button copy">复制</div>
 <div class="button animate">做动画</div>
 <div class="button add">添加</div>
+<script src="ZeroClipboard.min.js"></script>
 <script>
     (function () {
         function loopArray( arr, func ) {
@@ -268,6 +269,8 @@
         var form = querySelector( ".filter-form" );
         var filters = querySelectorAll( ".filter" );
         var inputDurtaion = querySelector( ".duration" );
+        var animateBtn = querySelector( ".button.animate" );
+        var copy = querySelector( ".button.copy" );
 
 
         border.onclick = function () {
@@ -358,6 +361,9 @@
                 var rightTip = element( "div", {
                     "classList" : ["tip", "right"]
                 }, newItem );
+                newItem.leftTip = leftTip;
+                newItem.rightTip = rightTip;
+
                 if ( frameItems.length != 0 ) {
                     x += 10;
                 }
@@ -373,13 +379,13 @@
                 curSelectIndex = newItem.index;
                 form.reset();
 
-
                 newItem.onclick = function () {
                     var cur = querySelector( ".frame-item.select" );
                     cur && cur.classList.remove( "select" );
                     newItem.classList.add( "select" );
                     curSelectIndex = newItem.index;
                     form.reset();
+                    img.style.webkitFilter = newItem.filterObj;
                     // 根据newItem的filterObj设置range条
                     if ( newItem.filterObj ) {
                         console.log( newItem.filterObj );
@@ -538,6 +544,51 @@
             } );
         } );
 
+        var styleDom = element( "style", {}, document.head );
+
+        var isdoAnimate = false;
+        animateBtn.onclick = function () {
+            var arg = "@-webkit-keyframes filter-animate{";
+            loopArray( frameItems, function ( item, i ) {
+                // 先把左边的弄好
+                var percent;
+                if ( i == frameItems.length - 1 ) {
+                    percent = (item.x + item.w) / WIDTH * 100 << 0;
+                }
+                else {
+                    percent = item.x / WIDTH * 100 << 0;
+                }
+                arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
+                if ( !item.rightTip.classList.contains( "moment" ) && i != frameItems.length - 1 ) {
+                    percent = (item.x + item.w) / WIDTH * 100 << 0;
+                    arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
+                }
+            } );
+            arg += "}";
+            isdoAnimate && styleDom.sheet.deleteRule( 0 );
+            styleDom.sheet.insertRule( arg, 0 );
+            img.style.webkitAnimation = inputDurtaion.value + "s " + "filter-animate both";
+            isdoAnimate = true;
+        };
+
+        var client = new ZeroClipboard( document.querySelector( ".button.copy" ) );
+        client.on( "copy", function ( event ) {
+            var arg = {};
+            loopArray( frameItems, function ( item, i ) {
+                if ( item.leftTip.classList.contains( "moment" ) ) {
+                    var percent;
+                    if ( i == frameItems.length - 1 ) {
+                        percent = (item.x + item.w) / WIDTH * 100 << 0;
+                    }
+                    else {
+                        percent = item.x / WIDTH * 100 << 0;
+                    }
+                    arg[percent] = item.filterObj;
+                }
+            } );
+            var clipboard = event.clipboardData;
+            clipboard.setData( "text/plain", JSON.stringify( arg ) );
+        } );
 
     })();
 </script>
