@@ -165,11 +165,15 @@
         }
 
         .button.copy {
-            right: 30%;
+            left: 75%;
         }
 
         .button.add {
-            left: 30%;
+            left: 50%;
+        }
+
+        .button.animate {
+            left: 25%;
         }
     </style>
 </head>
@@ -228,6 +232,7 @@
 <div class="frame">
 </div>
 <div class="button copy">复制</div>
+<div class="button animate">做动画</div>
 <div class="button add">添加</div>
 <script>
     (function () {
@@ -262,6 +267,8 @@
         var spans = querySelectorAll( "span.txt" );
         var form = querySelector( ".filter-form" );
         var filters = querySelectorAll( ".filter" );
+        var inputDurtaion = querySelector( ".duration" );
+
 
         border.onclick = function () {
             fileInput.click();
@@ -443,9 +450,12 @@
                         }
                         if ( newItem.w == tipWidth ) {
                             leftTip.classList.add( "moment" );
+                            rightTip.classList.add( "moment" );
                         }
+                        leftTip.title = ( newItem.x / WIDTH * 100 << 0) + "%" + "  " + (parseFloat( inputDurtaion.value ) * newItem.x / WIDTH ).toFixed( 2 ) + "s";
                     }
                 } );
+
                 onDragV( rightTip, {
                     onTap : function () {
                         rightItem = frameItems[newItem.index + 1];
@@ -481,8 +491,10 @@
                             rightTip.classList.add( "invalid" );
                         }
                         if ( newItem.w == tipWidth ) {
+                            leftTip.classList.add( "moment" );
                             rightTip.classList.add( "moment" );
                         }
+                        rightTip.title = ( (newItem.x + newItem.w) / WIDTH * 100 << 0) + "%" + "  " + (parseFloat( inputDurtaion.value ) * (newItem.x + newItem.w) / WIDTH ).toFixed( 2 ) + "s";
                     }
                 } );
             }
