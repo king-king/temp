@@ -24,19 +24,13 @@
 
         var border = document.querySelector( ".border" );
 
-        border.addEventListener( "mousedown", function () {
-            console.log( "down1" );
-        }, false );
 
-        border.addEventListener( "mousedown", function () {
-            console.log( "down2" );
-        }, false );
+        var a = new Number( "1.222" );
 
+        a.toFixed( 1 );
 
-        border.onmousedown = function () {
-            console.log( "down" );
-        };
-
+        console.log( a.toFixed( 1 ) );
+        console.log( a )
     })();
 </script>
 </body>
