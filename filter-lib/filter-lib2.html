@@ -264,7 +264,6 @@
         var raw = querySelector( "img.down" );
         var fileInput = querySelector( "input.file" );
         var border = querySelector( ".img-border" );
-        var filterValue = [];
         var spans = querySelectorAll( "span.txt" );
         var form = querySelector( ".filter-form" );
         var filters = querySelectorAll( ".filter" );
@@ -334,24 +333,20 @@
             } );
             // 每一个item的宽度减小50%（如果可以的话）
             var x = 0;
-            loopArray( frameItems, function ( item, i ) {
-                i != 0 && (x += 10);
-                item.style.left = x + "px";
-                item.x = x;
-                if ( Math.floor( item.offsetWidth / 2 ) > tipWidth ) {
-                    item.style.width = Math.floor( item.offsetWidth / 2 ) + "px";
+
+            var item = frameItems[frameItems.length - 1];
+            if ( !item || (item && Math.floor( item.w / 2 ) >= tipWidth) ) {
+                if ( item ) {
+                    item.w = Math.floor( item.offsetWidth / 2 );
+                    item.style.width = item.w + "px";
+                    x = item.w + item.x;
                 }
-                x += item.offsetWidth;
-                item.w = item.offsetWidth;
-            } );
-            if ( WIDTH - x - 10 <= tipWidth ) {
-                alert( "帧数太多了" );
-            }
-            else {
+
                 colorIndex = (colorIndex + 1) % colors.length;
                 var newItem = element( "div", {
                     "classList" : ["frame-item", colors[colorIndex]]
                 }, frame );
+                newItem.filterValue = [];
                 var state = element( "div", {
                     "classList" : ["frame-item-state"]
                 }, newItem );
@@ -379,34 +374,61 @@
                 curSelectIndex = newItem.index;
                 form.reset();
 
-                newItem.onclick = function () {
-                    var cur = querySelector( ".frame-item.select" );
-                    cur && cur.classList.remove( "select" );
-                    newItem.classList.add( "select" );
-                    curSelectIndex = newItem.index;
-                    form.reset();
-                    img.style.webkitFilter = newItem.filterObj;
-                    // 根据newItem的filterObj设置range条
-                    if ( newItem.filterObj ) {
-                        console.log( newItem.filterObj );
-                        var fs = newItem.filterObj.split( " " );
-                        loopArray( fs, function ( str ) {
-                            if ( str ) {
-                                var key = str.slice( 0, str.indexOf( "(" ) );
-                                key = key.trim();
-                                var value;
-                                if ( str.indexOf( "px" ) != -1 ) {
-                                    value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "px" ) ) );
+                newItem.onclick = function ( e ) {
+                    function select() {
+                        var cur = querySelector( ".frame-item.select" );
+                        cur && cur.classList.remove( "select" );
+                        newItem.classList.add( "select" );
+                        curSelectIndex = newItem.index;
+                        form.reset();
+                        img.style.webkitFilter = newItem.filterObj || "";
+                        // 根据newItem的filterObj设置range条
+                        if ( newItem.filterObj ) {
+                            console.log( newItem.filterObj );
+                            var fs = newItem.filterObj.split( " " );
+                            loopArray( fs, function ( str ) {
+                                if ( str ) {
+                                    var key = str.slice( 0, str.indexOf( "(" ) );
+                                    key = key.trim();
+                                    var value;
+                                    if ( str.indexOf( "px" ) != -1 ) {
+                                        value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "px" ) ) );
+                                    }
+                                    else if ( str.indexOf( "deg" ) != -1 ) {
+                                        value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "deg" ) ) );
+                                    }
+                                    else {
+                                        value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( ")" ) ) );
+                                    }
+                                    querySelector( ".filter." + key ).value = value;
                                 }
-                                else if ( str.indexOf( "deg" ) != -1 ) {
-                                    value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "deg" ) ) );
-                                }
-                                else {
-                                    value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( ")" ) ) );
-                                }
-                                querySelector( ".filter." + key ).value = value;
-                            }
-                        } );
+                            } );
+                        }
+                    }
+
+                    if ( e.which == 1 ) {
+                        // 如果是左键，选中
+                        select();
+                    }
+                    else if ( e.which == 2 ) {
+                        // 如果是滚轮，则删除
+                        newItem.onclick = null;
+                        frame.removeChild( newItem );
+                        if ( frameItems[newItem.index - 1] ) {
+                            newItem = frameItems[newItem.index - 1];
+                            select();
+                        }
+                        else if ( frameItems[newItem.index + 1] ) {
+                            newItem = frameItems[newItem.index + 1];
+                            select();
+                        }
+                        else {
+                            form.reset();
+                        }
+                        frameItems = [];
+                        loopArray( querySelectorAll( ".frame-item" ), function ( item ) {
+                            frameItems.push( item );
+                        } )
                     }
                 };
 
@@ -503,6 +525,9 @@
                     }
                 } );
             }
+            else if ( item && Math.floor( item.w / 2 ) < tipWidth ) {
+                alert( "帧数太多了" );
+            }
         }
 
         querySelector( ".button.add" ).onclick = function () {
@@ -513,9 +538,14 @@
             img.style.webkitAnimation = "";
         }, false );
 
+
+        var curItem;
         // 控制滤镜
         loopArray( filters, function ( range, i ) {
             onDragV( range, {
+                onTap : function () {
+                    curItem = querySelector( ".frame-item.select" );
+                },
                 onDrag : function () {
                     var vv = range.value;
                     if ( range.classList[0] == "blur" ) {
@@ -524,10 +554,10 @@
                     if ( range.classList[0] == "hue-rotate" ) {
                         vv = range.value + "deg";
                     }
-                    filterValue[i] = range.classList[0] + "(" + vv + ")";
+                    curItem.filterValue[i] = range.classList[0] + "(" + vv + ")";
                     spans[i].innerText = range.value;
                     var value = "";
-                    loopArray( filterValue, function ( v ) {
+                    loopArray( curItem.filterValue, function ( v ) {
                         if ( v ) {
                             value += v;
                         }

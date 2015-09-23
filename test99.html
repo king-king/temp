@@ -32,15 +32,21 @@
         }
     </style>
 <body>
-<img src="img/1.jpg">
+<script src="jquery2.js"></script>
 <script>
     (function () {
 
-        function aniamte( arg ) {
-            var duration = arg.duration;
-            setTimeout();
-        }
 
+        $.ajax(
+                {
+                    type : "GET",
+                    url : "http://192.168.0.131:62622/",
+                    dataType : "json",
+                    async : false,
+                    success : function ( data ) {
+                        alert( data.result )
+                    }
+                } );
 
     })();
 </script>
