@@ -10,7 +10,17 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
+
+        * {
+            -webkit-user-select: none;
+        }
+
+        input {
+            -webkit-user-select: text;
+        }
+
         .img-border {
+            border: 5px solid black;
             width: 450px;
             height: 450px;
             top: 10px;
@@ -73,6 +83,7 @@
             height: 100%;
             width: 25px;
             background: deepskyblue;
+            cursor: e-resize;
         }
 
         .frame-item.select {
@@ -119,7 +130,7 @@
         var img = querySelector( ".img-border img" );
         var width = 25;
         var form = querySelector( "form" );
-        var inputs = querySelectorAll( ".panel-item .text" );
+        var inputs = querySelectorAll( ".panel-item input" );
 
         function loopArray( arr, func ) {
             for ( var i = 0; i < arr.length; i++ ) {
@@ -142,6 +153,15 @@
             }
             parent && parent.appendChild( el );
             return el;
+        }
+
+        function addEventListener( el, type, listener, useCapture ) {
+            el.addEventListener( type, listener, useCapture );
+            return {
+                remove : function () {
+                    el.removeEventListener( type, listener, useCapture );
+                }
+            }
         }
 
         function onDragV( el, listener ) {
@@ -195,8 +215,9 @@
                         inputs[i].value = data;
                     }
                 } );
-                img.style.webkitTransform = "translate3d(" + inputs[0].value +
-                        "px," + inputs[1].value + "px,0) scale(" + inputs[2].value + ") rotate(deg)";
+                img.style.webkitTransform = "translate3d(" + (inputs[0].value || 0) +
+                        "px," + (inputs[1].value || 0) + "px,0) scale(" + (inputs[2].value || 1) + ") rotate("
+                        + (inputs[3].value || 0) + "deg)";
             }
 
             frameItem.onclick = function ( e ) {
@@ -222,17 +243,30 @@
                         form.reset();
                         img.style.webkitFilter = "";
                     }
+                    frames = [];
+                    loopArray( querySelectorAll( ".frame-item" ), function ( item, i ) {
+                        item.index = i;
+                        frames.push( item );
+                    } )
                 }
             };
 
+            var leftThreshold, rightThreshold;
             onDragV( frameItem, {
                 onTap : function () {
-
+                    leftThreshold = frames[frameItem.index - 1];
+                    rightThreshold = frames[frameItem.index + 1];
+                    leftThreshold = leftThreshold ? leftThreshold.x + width : 0;
+                    rightThreshold = rightThreshold ? rightThreshold.x : WIDTH;
                 },
-                onDrag : function () {
-
+                onDrag : function ( dx ) {
+                    var x = dx + frameItem.x;
+                    if ( x + width <= rightThreshold && x >= leftThreshold ) {
+                        frameItem.x = x;
+                        frameItem.style.left = x + "px";
+                    }
                 },
-                onEnd : function () {
+                onUp : function () {
 
                 }
             } );
@@ -242,6 +276,17 @@
         querySelector( ".panel-item .add" ).onclick = function () {
             addOneFrame();
         };
+
+        // 处理编辑
+        loopArray( inputs, function ( input, i ) {
+            input.oninput = function () {
+                var cur = querySelector( ".frame-item.select" );
+                if ( cur ) {
+                    cur.data[i] = input.value;
+
+                }
+            }
+        } );
 
     })();
 </script>
