@@ -17,17 +17,15 @@
             background: red;
         }
 
-        @-webkit-keyframes filter-animate {
-            10% {
-                -webkit-filter: blur(20px);
-            }
-            100% {
-                -webkit-filter: blur(0px);
-            }
-        }
-
         img {
             width: 400px;
+            position: absolute;
+            left: 0;
+        }
+
+        img.animate {
+            left: 100px;
+            -webkit-transition: 2s linear;
         }
     </style>
 <body>
@@ -35,17 +33,15 @@
 <img src="img/1.jpg">
 <script>
     (function () {
-
         var img = document.querySelector( "img" );
-        img.style.webkitAnimation = "10s filter-animate both";
-        img.addEventListener( "webkitAnimationEnd", function () {
-            console.log( new Date() )
-        }, false );
+        window.onload = function () {
+            img.classList.add( "animate" );
+        };
 
+        img.addEventListener( "webkitTransitionEnd", function () {
+            alert( "end" )
+        } )
 
-        setTimeout( function () {
-            img.style.webkitAnimation = "5s filter-animate both";
-        }, 2000 );
 
     })();
 </script>

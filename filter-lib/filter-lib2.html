@@ -445,7 +445,8 @@
                             img.style.webkitFilter = "";
                         }
                         frameItems = [];
-                        loopArray( querySelectorAll( ".frame-item" ), function ( item ) {
+                        loopArray( querySelectorAll( ".frame-item" ), function ( item, i ) {
+                            item.index = i;
                             frameItems.push( item );
                         } )
                     }
@@ -459,7 +460,7 @@
 
                 onDragV( leftTip, {
                     onTap : function () {
-                        leftItem = frameItems[frameItems.length - 2];
+                        leftItem = frameItems[newItem.index - 1];
                         duration = new Number( querySelector( ".duration" ).value );
                         leftThreshold = leftItem ? leftItem.w + leftItem.x : 0;
                     },

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        .img-border {
+            width: 450px;
+            height: 450px;
+            top: 10px;
+            right: 50%;
+            position: absolute;
+            overflow: hidden;
+        }
+
+        .img-border img {
+            width: 100%;
+        }
+
+        .panel {
+            position: absolute;
+            left: 60%;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .panel-item {
+            height: 60px;
+            line-height: 60px;
+        }
+
+        .panel-item .title {
+            height: 60px;
+            line-height: 60px;
+            display: inline-block;
+            width: 100px;
+        }
+
+        .panel-item input {
+            width: 100px;
+            text-align: center;
+        }
+
+        .panel-item .btn {
+            height: 40px;
+            width: 50px;
+            line-height: 40px;
+            display: inline-block;
+            text-align: center;
+            cursor: pointer;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+
+        .frame {
+            height: 30px;
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            right: 50px;
+            background-color: #ddd;
+        }
+
+        .frame-item {
+            position: absolute;
+            height: 100%;
+            width: 25px;
+            background: deepskyblue;
+        }
+
+        .frame-item.select {
+            background-color: orange !important;
+        }
+    </style>
+</head>
+<body>
+<div class="img-border">
+    <img src="../img/1.jpg">
+</div>
+<div class="panel">
+    <form>
+        <div class="panel-item x value">
+            <div class="title">x:</div>
+            <input type="text" value="0"> px
+        </div>
+        <div class="panel-item y value">
+            <div class="title">y:</div>
+            <input type="text" value="0"> px
+        </div>
+        <div class="panel-item scale value">
+            <div class="title">scale:</div>
+            <input type="text" value="1">
+        </div>
+        <div class="panel-item rotate value">
+            <div class="title">rotate:</div>
+            <input type="text" value="0"> deg
+        </div>
+    </form>
+    <div class="panel-item">
+        <div class="btn add">添加</div>
+    </div>
+</div>
+<div class="frame"></div>
+<script>
+    (function () {
+        var querySelector = document.querySelector.bind( document );
+        var querySelectorAll = document.querySelectorAll.bind( document );
+        var frame = querySelector( ".frame" );
+        var WIDTH = frame.offsetWidth;
+        var frames = [];
+        var curSelectIndex;
+        var img = querySelector( ".img-border img" );
+        var width = 25;
+        var form = querySelector( "form" );
+        var inputs = querySelectorAll( ".panel-item .text" );
+
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+        function element( tag, arg, parent ) {
+            var el = document.createElement( tag );
+            for ( var key in arg ) {
+                switch ( key ) {
+                    case "classList":
+                        loopArray( arg.classList, function ( klass ) {
+                            el.classList.add( klass );
+                        } );
+                        break;
+                    default :
+                        el[key] = arg[key];
+                }
+            }
+            parent && parent.appendChild( el );
+            return el;
+        }
+
+        function onDragV( el, listener ) {
+            var prex;
+            addEventListener( el, "mousedown", function ( de ) {
+                listener.onTap && listener.onTap();
+                prex = de.pageX;
+                var mhandle = addEventListener( document, "mousemove", function ( me ) {
+                    listener.onDrag && listener.onDrag( me.pageX - prex );
+                    prex = me.pageX;
+                } );
+
+                var uhandle = addEventListener( document, "mouseup", function ( me ) {
+                    listener.onUp && listener.onUp();
+                    mhandle.remove();
+                    uhandle.remove();
+                } );
+
+            } );
+        }
+
+        function addOneFrame() {
+            var frameItem = element( "div", {
+                classList : ["frame-item"]
+            }, frame );
+            if ( frames.length == 0 ) {
+                frameItem.x = 0;
+                frameItem.style.left = frameItem.x + "px";
+            }
+            else {
+                var ww = Math.floor( (WIDTH - width - frames[frames.length - 1].x ) / 2 );
+                if ( ww < width ) {
+                    alert( "帧数太多了" );
+                    return;
+                }
+                else {
+                    frameItem.x = frames[frames.length - 1].x + width + ww;
+                    frameItem.style.left = frameItem.x + "px";
+                }
+            }
+            frameItem.index = frames.length;
+            frames.push( frameItem );
+
+            frameItem.data = [];
+
+            function flushData() {
+                // 刷新数据输入
+                form.reset();
+                loopArray( frameItem.data, function ( dat, i ) {
+                    if ( data ) {
+                        inputs[i].value = data;
+                    }
+                } );
+                img.style.webkitTransform = "translate3d(" + inputs[0].value +
+                        "px," + inputs[1].value + "px,0) scale(" + inputs[2].value + ") rotate(deg)";
+            }
+
+            frameItem.onclick = function ( e ) {
+                if ( e.which == 1 ) {
+                    // 选中
+                    var cur = querySelector( ".frame-item.select" );
+                    cur && cur.classList.remove( "select" );
+                    frameItem.classList.add( "select" );
+                    flushData();
+                }
+                else if ( e.which == 2 ) {
+                    // 删除
+                    frame.removeChild( frameItem );
+                    if ( frames[frameItem.index - 1] ) {
+                        frameItem = frames[frameItem.index - 1];
+                        flushData();
+                    }
+                    else if ( frames[frameItem.index + 1] ) {
+                        frameItem = frames[frameItem.index + 1];
+                        flushData();
+                    }
+                    else {
+                        form.reset();
+                        img.style.webkitFilter = "";
+                    }
+                }
+            };
+
+            onDragV( frameItem, {
+                onTap : function () {
+
+                },
+                onDrag : function () {
+
+                },
+                onEnd : function () {
+
+                }
+            } );
+
+        }
+
+        querySelector( ".panel-item .add" ).onclick = function () {
+            addOneFrame();
+        };
+
+    })();
+</script>
+</body>
+</html>
