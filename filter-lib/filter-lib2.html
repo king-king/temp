@@ -451,8 +451,7 @@
                     }
                 };
 
-                // 因为不涉及排序，所以leftItem可以现在就获取
-                var leftItem = frameItems[frameItems.length - 2],
+                var leftItem,
                         leftThreshold,
                         rightItem,
                         rightThreshold,
@@ -460,6 +459,7 @@
 
                 onDragV( leftTip, {
                     onTap : function () {
+                        leftItem = frameItems[frameItems.length - 2];
                         duration = new Number( querySelector( ".duration" ).value );
                         leftThreshold = leftItem ? leftItem.w + leftItem.x : 0;
                     },
