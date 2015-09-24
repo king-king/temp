@@ -403,7 +403,9 @@
                                     else {
                                         value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( ")" ) ) );
                                     }
-                                    querySelector( ".filter." + key ).value = value;
+                                    var range = querySelector( ".filter." + key );
+                                    range.value = value;
+                                    range.nextElementSibling.childNodes[1].innerText = value;
                                 }
                             } );
                         }

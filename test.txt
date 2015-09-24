@@ -1,1 +1,1 @@
-{}
+{"0":"contrast(2.6) blur(19px)","68":"contrast(0.9) blur(11px)","100":"contrast(1) blur(0px)"}
