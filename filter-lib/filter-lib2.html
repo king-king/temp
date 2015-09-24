@@ -131,6 +131,10 @@
             position: relative;
         }
 
+        .filter-item.change {
+            background-color: #eee;
+        }
+
         .filter-name {
             position: absolute;
             left: 50%;
@@ -344,7 +348,6 @@
                     item.style.width = item.w + "px";
                     x = item.w + item.x;
                 }
-
                 colorIndex = (colorIndex + 1) % colors.length;
                 var newItem = element( "div", {
                     "classList" : ["frame-item", colors[colorIndex]]
@@ -376,9 +379,17 @@
                 newItem.classList.add( "select" );
                 curSelectIndex = newItem.index;
                 form.reset();
+                function clearChangeSatate() {
+                    loopArray( querySelectorAll( ".filter-item.change" ), function ( item ) {
+                        item.classList.remove( "change" );
+                    } );
+                }
 
+                clearChangeSatate();
                 newItem.onclick = function ( e ) {
+
                     function select() {
+                        clearChangeSatate();
                         var cur = querySelector( ".frame-item.select" );
                         cur && cur.classList.remove( "select" );
                         newItem.classList.add( "select" );
@@ -404,6 +415,7 @@
                                         value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( ")" ) ) );
                                     }
                                     var range = querySelector( ".filter." + key );
+                                    range.parentNode.classList.add( "change" );
                                     range.value = value;
                                     range.nextElementSibling.childNodes[1].innerText = value;
                                 }
@@ -429,6 +441,8 @@
                         }
                         else {
                             form.reset();
+                            clearChangeSatate();
+                            img.style.webkitFilter = "";
                         }
                         frameItems = [];
                         loopArray( querySelectorAll( ".frame-item" ), function ( item ) {
@@ -575,6 +589,7 @@
                     var style = querySelector( "img.up" ).style.webkitFilter;
                     var cur = querySelector( ".frame-item.select" );
                     cur && (cur.filterObj = style.trim());
+                    range.parentNode.classList.add( "change" );
                 }
             } );
         } );
@@ -610,14 +625,17 @@
         client.on( "copy", function ( event ) {
             var arg = {};
             loopArray( frameItems, function ( item, i ) {
-                if ( item.leftTip.classList.contains( "moment" ) ) {
-                    var percent;
-                    if ( i == frameItems.length - 1 ) {
-                        percent = (item.x + item.w) / WIDTH * 100 << 0;
-                    }
-                    else {
-                        percent = item.x / WIDTH * 100 << 0;
-                    }
+                // 先把左边的弄好
+                var percent;
+                if ( i == frameItems.length - 1 ) {
+                    percent = (item.x + item.w) / WIDTH * 100 << 0;
+                }
+                else {
+                    percent = item.x / WIDTH * 100 << 0;
+                }
+                arg[percent] = item.filterObj;
+                if ( !item.rightTip.classList.contains( "moment" ) && i != frameItems.length - 1 ) {
+                    percent = (item.x + item.w) / WIDTH * 100 << 0;
                     arg[percent] = item.filterObj;
                 }
             } );
