@@ -15,16 +15,22 @@
             margin: 2px;
             height: 200px;
             background: red;
+            /*-webkit-transform: translate3d(0, 200px, 0);*/
+            position: absolute;
+            top: 300px;
         }
 
         img {
             width: 200px;
         }
 
+
     </style>
 <body>
 <script src="jquery2.js"></script>
-<img src="img/1.jpg"><img src="img/1.jpg"><img src="img/1.jpg"><img src="img/1.jpg">
+<div class="border">
+    <img src="img/1.jpg">
+</div>
 <script>
     (function () {
         var imgs = $( "img" );

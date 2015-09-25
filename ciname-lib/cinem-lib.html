@@ -258,10 +258,12 @@
                     frame.removeChild( frameItem );
                     if ( frames[frameItem.index - 1] ) {
                         frameItem = frames[frameItem.index - 1];
+                        frameItem.classList.add( "select" );
                         flushData();
                     }
                     else if ( frames[frameItem.index + 1] ) {
                         frameItem = frames[frameItem.index + 1];
+                        frameItem.classList.add( "select" );
                         flushData();
                     }
                     else {
