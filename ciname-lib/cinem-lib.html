@@ -184,6 +184,17 @@
 
         fileInput.onchange = function () {
             img.src = window.URL.createObjectURL( fileInput.files[0] );
+            img.onload = function () {
+                console.log( img.naturalHeight, img.naturalWidth );
+                if ( img.naturalHeight / img.naturalWidth > 1 ) {
+                    imgBorder.style.height = "400px";
+                    imgBorder.style.width = 400 / img.naturalHeight * img.naturalWidth + "px";
+                }
+                else {
+                    imgBorder.style.height = 400 * img.naturalHeight / img.naturalWidth + "px";
+                    imgBorder.style.width = "400px";
+                }
+            }
         };
 
         function loopArray( arr, func ) {
