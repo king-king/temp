@@ -126,17 +126,17 @@
         <div class="panel-item x value">
             <div class="title">x:</div>
             -100<input type="range" value="0" min="-100" max="100" step="1">100%
-            <span></span>
+            <span class="flag"></span>
         </div>
         <div class="panel-item y value">
             <div class="title">y:</div>
             -100<input type="range" value="0" min="-100" max="100" step="1">100%
-            <span></span>
+            <span class="flag"></span>
         </div>
         <div class="panel-item scale value">
             <div class="title">scale:</div>
             &nbsp;0&nbsp;<input type="range" value="1" min="0" max="5" step="0.1">5
-            <span></span>
+            <span class="flag"></span>
         </div>
         <div class="panel-item rotate value">
             <div class="title">rotate:</div>
@@ -276,14 +276,20 @@
             form.reset();
             img.style.webkitTransform = "";
             frameItem.classList.add( "select" );
-
+            loopArray( querySelectorAll( ".panel-item .flag" ), function ( span ) {
+                span.innerText = "";
+            } );
 
             function flushData() {
                 // 刷新数据输入
                 form.reset();
+                loopArray( querySelectorAll( ".panel-item .flag" ), function ( span ) {
+                    span.innerText = "";
+                } );
                 loopArray( frameItem.data, function ( data, i ) {
                     if ( data ) {
                         inputs[i].value = data;
+                        inputs[i].nextElementSibling.innerText = data;
                     }
                 } );
                 var x = inputs[0].value ? inputs[0].value << 0 : 0;
