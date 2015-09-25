@@ -31,6 +31,20 @@
             right: 0;
             bottom: 0;
         }
+
+        @-webkit-keyframes a {
+            0% {
+                -webkit-transform: translate3d(0%, 0%, 0) scale(4.1) rotate(0deg);
+                -webkit-filter: blur(19px)
+            }
+            98% {
+                -webkit-transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg)
+            }
+            100% {
+                -webkit-filter: blur(0px)
+            }
+        }
+
     </style>
 <body>
 <script src="jquery2.js"></script>
@@ -47,28 +61,59 @@
 <script>
     (function () {
 
-        var imgs = document.querySelectorAll( "img" );
-
-        var border = document.querySelector( ".border" );
-
-        function loopArray( arr, func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[i], i );
+        // progress
+        function blend( arg1, arg2, arg3 ) {
+            var arg_1 = JSON.parse( JSON.stringify( arg1 ) );
+            var arg_2 = JSON.parse( JSON.stringify( arg2 ) );
+            for ( var key in arg_1 ) {
+                if ( arg_2[key] ) {
+                    // 如果这个key在arg_1和arg_2中都有，那么继续调用combine
+                    arg3[key] = {};
+                    if ( typeof arg_1[key] == "object" && typeof arg_2[key] == "object" ) {
+                        arguments.callee( arg_1[key], arg_2[key], arg3[key] );
+                    }
+                    else {
+                        arg3[key] = arg_1[key];
+                    }
+                    delete arg_2[key];
+                }
+                else {
+                    arg3[key] = arg_1[key];
+                }
+            }
+            for ( var key2 in arg_2 ) {
+                arg3[key2] = arg_2[key2];
             }
         }
 
-        var height = document.body.offsetHeight;
 
-        document.addEventListener( "scroll", function ( e ) {
-            loopArray( imgs, function ( img ) {
-                if ( !img.classList.contains( "show" ) ) {
-                    if ( document.body.scrollTop + height >= img.offsetTop ) {
-                        img.classList.add( "show" );
-                    }
-                }
-            } );
-        } );
+        var res = {};
+        var arg1 = {
+            "0" : {"filter" : "blur(20px)"},
+            "100" : {"filter" : "blur(0px)"}
+        };
+        var arg2 = {
+            "0" : {"transform" : "translate3d(0%,0%,0) scale(1) rotate(0deg)}"},
+            "90" : {"transform" : "translate3d(35%,0%,0) scale(1) rotate(0deg)}"}
+        };
 
+        blend( arg1, arg2, res );
+
+
+        var a = "{";
+
+        function test() {
+            try {
+                var d = JSON.parse( a );
+            }
+            catch ( e ) {
+                console.log( e )
+            }
+            console.log( "go on" );
+        }
+
+        test();
+        console.log( "end" );
 
     })();
 </script>

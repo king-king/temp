@@ -153,7 +153,7 @@
         <div class="btn animate">动画</div>
         <div class="btn copy">复制</div>
     </div>
-    <div class="panel-item hide">
+    <div class="panel-item">
         <div class="title">滤镜：</div>
         <textarea></textarea>
     </div>
@@ -176,6 +176,7 @@
         var copyBtn = querySelector( ".btn.copy" );
         var fileInput = querySelector( "input.file" );
         var imgBorder = querySelector( ".img-border" );
+        var textarea = querySelector( "textarea" );
 
         imgBorder.onclick = function () {
             fileInput.click();
@@ -406,26 +407,107 @@
             img.style.webkitAnimation = "";
         }, false );
 
+        function blend( arg1, arg2, arg3 ) {
+            var arg_1 = JSON.parse( JSON.stringify( arg1 ) );
+            var arg_2 = JSON.parse( JSON.stringify( arg2 ) );
+            for ( var key in arg_1 ) {
+                if ( arg_2[key] ) {
+                    // 如果这个key在arg_1和arg_2中都有，那么继续调用combine
+                    arg3[key] = {};
+                    if ( typeof arg_1[key] == "object" && typeof arg_2[key] == "object" ) {
+                        arguments.callee( arg_1[key], arg_2[key], arg3[key] );
+                    }
+                    else {
+                        arg3[key] = arg_1[key];
+                    }
+                    delete arg_2[key];
+                }
+                else {
+                    arg3[key] = arg_1[key];
+                }
+            }
+            for ( var key2 in arg_2 ) {
+                arg3[key2] = arg_2[key2];
+            }
+        }
+
         var styleIndex = 0;
         var styleDom = element( "style", {}, document.head );
         animateBtn.onclick = function () {
-            var style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
-            loopArray( frames, function ( f, i ) {
-                var percent;
-                if ( i == frame.length - 1 ) {
-                    percent = (f.x + width) / WIDTH * 100 << 0;
+            var style;
+            var filterArg = null;
+            if ( textarea.value.trim() ) {
+                try {
+                    filterArg = JSON.parse( textarea.value );
                 }
-                else {
-                    percent = f.x / WIDTH * 100 << 0;
+                catch ( e ) {
+                    filterArg = null;
+                    alert( "滤镜的数据不对，检查是否缺失花括号和双引号" );
                 }
-                style += (percent + "%{-webkit-transform:translate3d(" + (f.data[0] || 0) +
-                "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
-                + (f.data[3] || 0) + "deg)}");
-            } );
-            style += "}";
-            styleDom.sheet.insertRule( style, 0 );
-            img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
-            styleIndex++;
+            }
+            if ( filterArg ) {
+                for ( var key in filterArg ) {
+                    var value = filterArg[key];
+                    filterArg[key + "%"] = {
+                        "-webkit-filter" : value
+                    };
+                    delete  filterArg[key];
+                }
+
+                var cinemaArg = {};
+                loopArray( frames, function ( f, i ) {
+                    var percent;
+                    if ( i == frame.length - 1 ) {
+                        percent = (f.x + width) / WIDTH * 100 << 0;
+                    }
+                    else {
+                        percent = f.x / WIDTH * 100 << 0;
+                    }
+                    cinemaArg[percent + "%"] = {
+                        "-webkit-transform" : "translate3d(" + (f.data[0] || 0) +
+                        "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
+                        + (f.data[3] || 0) + "deg)"
+                    }
+                } );
+                var res = {};
+                blend( cinemaArg, filterArg, res );
+                style = JSON.stringify( res );
+
+                while ( style.indexOf( "\"" ) != -1 ) {
+                    style = style.replace( "\"", "" );
+                }
+                while ( style.indexOf( ")," ) != -1 ) {
+                    style = style.replace( "),", ");" );
+                }
+                while ( style.indexOf( "}," ) != -1 ) {
+                    style = style.replace( "},", "}" );
+                }
+                while ( style.indexOf( "%:" ) != -1 ) {
+                    style = style.replace( "%:", "%" );
+                }
+                styleDom.sheet.insertRule( "@-webkit-keyframes cinema-animate" + styleIndex + style, 0 );
+                img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
+                styleIndex++;
+            }
+            else {
+                style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
+                loopArray( frames, function ( f, i ) {
+                    var percent;
+                    if ( i == frame.length - 1 ) {
+                        percent = (f.x + width) / WIDTH * 100 << 0;
+                    }
+                    else {
+                        percent = f.x / WIDTH * 100 << 0;
+                    }
+                    style += (percent + "%{-webkit-transform:translate3d(" + (f.data[0] || 0) +
+                    "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
+                    + (f.data[3] || 0) + "deg)}");
+                } );
+                style += "}";
+                styleDom.sheet.insertRule( style, 0 );
+                img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
+                styleIndex++;
+            }
         };
 
         var client = new ZeroClipboard( copyBtn );
@@ -446,7 +528,8 @@
             var clipboard = event.clipboardData;
             clipboard.setData( "text/plain", JSON.stringify( arg ) );
         } );
-    })();
+    })
+    ();
 </script>
 </body>
 </html>
