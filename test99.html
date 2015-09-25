@@ -10,41 +10,64 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        .border {
-            width: 200px;
-            margin: 2px;
-            height: 200px;
-            background: red;
-            /*-webkit-transform: translate3d(0, 200px, 0);*/
-            position: absolute;
-            top: 300px;
+        * {
+            margin: 0;
         }
 
         img {
-            width: 200px;
+            width: 100%;
+            opacity: 0;
         }
 
+        img.show {
+            opacity: 1;
+            transition: 2s;
+        }
 
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
     </style>
 <body>
 <script src="jquery2.js"></script>
 <div class="border">
     <img src="img/1.jpg">
+    <img src="img/1.jpg">
+    <img src="img/1.jpg">
+    <img src="img/1.jpg">
+    <img src="img/1.jpg">
+    <img src="img/1.jpg">
+    <img src="img/1.jpg">
+    <img src="img/1.jpg">
 </div>
 <script>
     (function () {
-        var imgs = $( "img" );
 
-        console.log( typeof imgs );
+        var imgs = document.querySelectorAll( "img" );
 
-        var img = document.querySelector( "img" );
-        window.onload = function () {
-            img.classList.add( "animate" );
-        };
+        var border = document.querySelector( ".border" );
 
-        img.addEventListener( "webkitTransitionEnd", function () {
-            alert( "end" )
-        } )
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+        var height = document.body.offsetHeight;
+
+        document.addEventListener( "scroll", function ( e ) {
+            loopArray( imgs, function ( img ) {
+                if ( !img.classList.contains( "show" ) ) {
+                    if ( document.body.scrollTop + height >= img.offsetTop ) {
+                        img.classList.add( "show" );
+                    }
+                }
+            } );
+        } );
 
 
     })();

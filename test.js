@@ -1,7 +1,1 @@
-var a = {
-    "0" : "blur(14px)",
-    "31" : "blur(14px)",
-    "42" : "blur(0px)",
-    "71" : "blur(3px)",
-    "100" : "blur(3px)"
-};
+var a = {"1" : "translate3d(0%,0%,0) scale(1) rotate(0deg)}"}
