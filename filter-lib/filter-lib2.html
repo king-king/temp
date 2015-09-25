@@ -601,16 +601,22 @@
         animateBtn.onclick = function () {
             var arg = "@-webkit-keyframes filter-animate{";
             loopArray( frameItems, function ( item, i ) {
-                // 先把左边的弄好
                 var percent;
-                if ( i == frameItems.length - 1 ) {
-                    percent = (item.x + item.w) / WIDTH * 100 << 0;
+                if ( item.rightTip.classList.contains( "moment" ) ) {
+                    // 如果合并了，则只计算一个点
+                    if ( i == frameItems.length - 1 ) {
+                        // 最后一个点按照后面计算
+                        percent = (item.x + item.w) / WIDTH * 100 << 0;
+                    }
+                    else {
+                        percent = item.x / WIDTH * 100 << 0;
+                    }
+                    arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
                 }
                 else {
+                    // 计算两个点
                     percent = item.x / WIDTH * 100 << 0;
-                }
-                arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
-                if ( !item.rightTip.classList.contains( "moment" ) && i != frameItems.length - 1 ) {
+                    arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
                     percent = (item.x + item.w) / WIDTH * 100 << 0;
                     arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
                 }
@@ -626,16 +632,22 @@
         client.on( "copy", function ( event ) {
             var arg = {};
             loopArray( frameItems, function ( item, i ) {
-                // 先把左边的弄好
                 var percent;
-                if ( i == frameItems.length - 1 ) {
-                    percent = (item.x + item.w) / WIDTH * 100 << 0;
+                if ( item.rightTip.classList.contains( "moment" ) ) {
+                    // 如果合并了，则只计算一个点
+                    if ( i == frameItems.length - 1 ) {
+                        // 最后一个点按照后面计算
+                        percent = (item.x + item.w) / WIDTH * 100 << 0;
+                    }
+                    else {
+                        percent = item.x / WIDTH * 100 << 0;
+                    }
+                    arg[percent] = item.filterObj;
                 }
                 else {
+                    // 计算两个点
                     percent = item.x / WIDTH * 100 << 0;
-                }
-                arg[percent] = item.filterObj;
-                if ( !item.rightTip.classList.contains( "moment" ) && i != frameItems.length - 1 ) {
+                    arg[percent] = item.filterObj;
                     percent = (item.x + item.w) / WIDTH * 100 << 0;
                     arg[percent] = item.filterObj;
                 }
