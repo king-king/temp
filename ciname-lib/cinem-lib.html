@@ -40,20 +40,20 @@
             right: 0;
         }
 
-        .panel-item {
+        .panel-item, .panel-item2 {
             height: 60px;
             line-height: 60px;
         }
 
-        .panel-item .title {
+        .panel-item .title, .panel-item2 .title {
             height: 60px;
             line-height: 60px;
             display: inline-block;
             width: 100px;
         }
 
-        .panel-item input {
-            width: 100px;
+        .panel-item input, .panel-item2 input {
+            width: 200px;
             text-align: center;
         }
 
@@ -62,11 +62,11 @@
             height: 40px;
             width: 50px;
             line-height: 40px;
-            display: inline-block;
             text-align: center;
             cursor: pointer;
             background-color: #eee;
             border-radius: 5px;
+            margin: 0 20px 0 0;
         }
 
         .panel-item .btn:hover {
@@ -97,6 +97,16 @@
         .frame-item.select {
             background-color: orange !important;
         }
+
+        textarea {
+            -webkit-user-select: text;
+            width: 230px;
+            height: 130px;
+        }
+
+        .hide {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -107,23 +117,23 @@
     <form>
         <div class="panel-item x value">
             <div class="title">x:</div>
-            <input type="text" value="0"> %
+            -100<input type="range" value="0" min="-100" max="100" step="1">100%
         </div>
         <div class="panel-item y value">
             <div class="title">y:</div>
-            <input type="text" value="0"> %
+            -100<input type="range" value="0" min="-100" max="100" step="1">100%
         </div>
         <div class="panel-item scale value">
             <div class="title">scale:</div>
-            <input type="text" value="1">
+            &nbsp;0&nbsp;<input type="range" value="1" min="0" max="5" step="0.1">5
         </div>
         <div class="panel-item rotate value">
             <div class="title">rotate:</div>
             <input type="text" value="0"> deg
         </div>
     </form>
-    <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
-    <div class="panel-item">
+    <hr style="height:1px;border:none;border-top:1px solid #ccc;"/>
+    <div class="panel-item2">
         <div class="title">持续时间：</div>
         <input type="text" value="2" class="duration"> s
     </div>
@@ -132,12 +142,9 @@
         <div class="btn animate">动画</div>
         <div class="btn copy">复制</div>
     </div>
-    <div class="panel-item">
+    <div class="panel-item hide">
         <div class="title">滤镜：</div>
-        <select>
-            <option value="null">(空)</option>
-
-        </select>
+        <textarea></textarea>
     </div>
 </div>
 <div class="frame"></div>
@@ -229,8 +236,14 @@
             }
             frameItem.index = frames.length;
             frames.push( frameItem );
-
             frameItem.data = [];
+
+            var cur = querySelector( ".frame-item.select" );
+            cur && cur.classList.remove( "select" );
+            form.reset();
+            img.style.webkitTransform = "";
+            frameItem.classList.add( "select" );
+
 
             function flushData() {
                 // 刷新数据输入
@@ -310,7 +323,6 @@
                     }
                 }
             } );
-
         }
 
         querySelector( ".panel-item .add" ).onclick = function () {
@@ -319,7 +331,7 @@
 
         // 处理编辑
         loopArray( inputs, function ( input, i ) {
-            input.oninput = function () {
+            function change() {
                 var cur = querySelector( ".frame-item.select" );
                 if ( cur ) {
                     cur.data[i] = parseFloat( input.value );
@@ -329,6 +341,42 @@
                             "%," + y + "%,0) scale(" + (inputs[2].value || 1) + ") rotate("
                             + (inputs[3].value || 0) + "deg)";
                 }
+            }
+
+            if ( i == inputs.length - 1 ) {
+                input.oninput = function () {
+                    change();
+                }
+            }
+            else {
+                input.onclick = function ( e ) {
+                    if ( e.which == 2 ) {
+                        switch ( i ) {
+                            case 0:
+                                input.value = 0;
+                                break;
+                            case 1:
+                                input.value = 0;
+                                break;
+                            case 2:
+                                input.value = 1;
+                                break;
+                        }
+                    }
+                    change();
+                };
+                onDragV( input, {
+                    onTap : function () {
+
+                    },
+                    onDrag : function () {
+                        change();
+                        console.log( "ok" )
+                    },
+                    onUp : function () {
+
+                    }
+                } );
             }
         } );
 
