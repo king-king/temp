@@ -69,6 +69,10 @@
             border-radius: 5px;
         }
 
+        .panel-item .btn:hover {
+            opacity: 0.5;
+        }
+
         .frame {
             height: 30px;
             position: absolute;
@@ -86,6 +90,10 @@
             cursor: e-resize;
         }
 
+        .frame-item.end {
+            background: red;
+        }
+
         .frame-item.select {
             background-color: orange !important;
         }
@@ -99,11 +107,11 @@
     <form>
         <div class="panel-item x value">
             <div class="title">x:</div>
-            <input type="text" value="0"> px
+            <input type="text" value="0"> %
         </div>
         <div class="panel-item y value">
             <div class="title">y:</div>
-            <input type="text" value="0"> px
+            <input type="text" value="0"> %
         </div>
         <div class="panel-item scale value">
             <div class="title">scale:</div>
@@ -114,11 +122,23 @@
             <input type="text" value="0"> deg
         </div>
     </form>
+    <hr style="height:1px;border:none;border-top:1px solid #555555;"/>
+    <div class="panel-item">
+        <div class="title">持续时间：</div>
+        <input type="text" value="2" class="duration"> s
+    </div>
     <div class="panel-item">
         <div class="btn add">添加</div>
     </div>
+    <div class="panel-item">
+        <div class="btn animate">动画</div>
+    </div>
+    <div class="panel-item">
+        <div class="btn copy">复制</div>
+    </div>
 </div>
 <div class="frame"></div>
+<script src="ZeroClipboard.min.js"></script>
 <script>
     (function () {
         var querySelector = document.querySelector.bind( document );
@@ -131,6 +151,9 @@
         var width = 25;
         var form = querySelector( "form" );
         var inputs = querySelectorAll( ".panel-item input" );
+        var duration = querySelector( ".duration" );
+        var animateBtn = querySelector( ".btn.animate" );
+        var copyBtn = querySelector( ".btn.copy" );
 
         function loopArray( arr, func ) {
             for ( var i = 0; i < arr.length; i++ ) {
@@ -210,13 +233,15 @@
             function flushData() {
                 // 刷新数据输入
                 form.reset();
-                loopArray( frameItem.data, function ( dat, i ) {
+                loopArray( frameItem.data, function ( data, i ) {
                     if ( data ) {
                         inputs[i].value = data;
                     }
                 } );
-                img.style.webkitTransform = "translate3d(" + (inputs[0].value || 0) +
-                        "px," + (inputs[1].value || 0) + "px,0) scale(" + (inputs[2].value || 1) + ") rotate("
+                var x = inputs[0].value ? inputs[0].value << 0 : 0;
+                var y = inputs[1].value ? inputs[1].value << 0 : 0;
+                img.style.webkitTransform = "translate3d(" + x +
+                        "%," + y + "%,0) scale(" + (inputs[2].value || 1) + ") rotate("
                         + (inputs[3].value || 0) + "deg)";
             }
 
@@ -265,9 +290,20 @@
                         frameItem.x = x;
                         frameItem.style.left = x + "px";
                     }
+                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
+                        frameItem.classList.add( "end" );
+                    }
+                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
+                        frameItem.classList.remove( "end" );
+                    }
                 },
                 onUp : function () {
-
+                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
+                        frameItem.classList.add( "end" );
+                    }
+                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
+                        frameItem.classList.remove( "end" );
+                    }
                 }
             } );
 
@@ -282,12 +318,60 @@
             input.oninput = function () {
                 var cur = querySelector( ".frame-item.select" );
                 if ( cur ) {
-                    cur.data[i] = input.value;
-
+                    cur.data[i] = parseFloat( input.value );
+                    var x = inputs[0].value ? inputs[0].value << 0 : 0;
+                    var y = inputs[1].value ? inputs[1].value << 0 : 0;
+                    img.style.webkitTransform = "translate3d(" + x +
+                            "%," + y + "%,0) scale(" + (inputs[2].value || 1) + ") rotate("
+                            + (inputs[3].value || 0) + "deg)";
                 }
             }
         } );
 
+        img.addEventListener( "webkitAnimationEnd", function () {
+            img.style.webkitAnimation = "";
+        }, false );
+
+        var styleIndex = 0;
+        var styleDom = element( "style", {}, document.head );
+        animateBtn.onclick = function () {
+            var style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
+            loopArray( frames, function ( f, i ) {
+                var percent;
+                if ( i == frame.length - 1 ) {
+                    percent = (f.x + width) / WIDTH * 100 << 0;
+                }
+                else {
+                    percent = f.x / WIDTH * 100 << 0;
+                }
+                style += (percent + "%{-webkit-transform:translate3d(" + (f.data[0] || 0) +
+                "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
+                + (f.data[3] || 0) + "deg)}");
+            } );
+            style += "}";
+            styleDom.sheet.insertRule( style, 0 );
+            img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
+            styleIndex++;
+        };
+
+        var client = new ZeroClipboard( copyBtn );
+        client.on( "copy", function ( event ) {
+            var arg = {};
+            loopArray( frames, function ( f, i ) {
+                var percent;
+                if ( i == frames.length - 1 ) {
+                    percent = (f.x + width) / WIDTH * 100 << 0;
+                }
+                else {
+                    percent = f.x / WIDTH * 100 << 0;
+                }
+                arg[percent] = "translate3d(" + (f.data[0] || 0) +
+                        "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
+                        + (f.data[3] || 0) + "deg)}";
+            } );
+            var clipboard = event.clipboardData;
+            clipboard.setData( "text/plain", JSON.stringify( arg ) );
+        } );
     })();
 </script>
 </body>
