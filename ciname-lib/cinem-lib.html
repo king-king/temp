@@ -151,6 +151,7 @@
     <div class="panel-item">
         <div class="btn add">添加</div>
         <div class="btn animate">动画</div>
+        <div class="btn put-in">导入</div>
         <div class="btn copy">复制</div>
     </div>
     <div class="panel-item">
@@ -162,31 +163,32 @@
 <script src="ZeroClipboard.min.js"></script>
 <script>
     (function () {
-        var querySelector = document.querySelector.bind( document );
-        var querySelectorAll = document.querySelectorAll.bind( document );
-        var frame = querySelector( ".frame" );
+        var querySelector = document.querySelector.bind(document);
+        var querySelectorAll = document.querySelectorAll.bind(document);
+        var frame = querySelector(".frame");
         var WIDTH = frame.offsetWidth;
         var frames = [];
-        var img = querySelector( ".img-border img" );
+        var img = querySelector(".img-border img");
         var width = 25;
-        var form = querySelector( "form" );
-        var inputs = querySelectorAll( ".panel-item input" );
-        var duration = querySelector( ".duration" );
-        var animateBtn = querySelector( ".btn.animate" );
-        var copyBtn = querySelector( ".btn.copy" );
-        var fileInput = querySelector( "input.file" );
-        var imgBorder = querySelector( ".img-border" );
-        var textarea = querySelector( "textarea" );
+        var form = querySelector("form");
+        var inputs = querySelectorAll(".panel-item input");
+        var duration = querySelector(".duration");
+        var animateBtn = querySelector(".btn.animate");
+        var copyBtn = querySelector(".btn.copy");
+        var fileInput = querySelector("input.file");
+        var imgBorder = querySelector(".img-border");
+        var textarea = querySelector("textarea");
+        var putIn = querySelector(".put-in.btn");
 
         imgBorder.onclick = function () {
             fileInput.click();
         };
 
         fileInput.onchange = function () {
-            img.src = window.URL.createObjectURL( fileInput.files[0] );
+            img.src = window.URL.createObjectURL(fileInput.files[0]);
             img.onload = function () {
-                console.log( img.naturalHeight, img.naturalWidth );
-                if ( img.naturalHeight / img.naturalWidth > 1 ) {
+                console.log(img.naturalHeight, img.naturalWidth);
+                if (img.naturalHeight / img.naturalWidth > 1) {
                     imgBorder.style.height = "400px";
                     imgBorder.style.width = 400 / img.naturalHeight * img.naturalWidth + "px";
                 }
@@ -197,69 +199,76 @@
             }
         };
 
-        function loopArray( arr, func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[i], i );
+        function loopArray(arr, func) {
+            for (var i = 0; i < arr.length; i++) {
+                func(arr[i], i);
             }
         }
 
-        function element( tag, arg, parent ) {
-            var el = document.createElement( tag );
-            for ( var key in arg ) {
-                switch ( key ) {
+        function replaceAll(str, oldStr, newStr) {
+            while (str.indexOf(oldStr) != -1) {
+                str = str.replace(oldStr, newStr);
+            }
+            return str;
+        }
+
+        function element(tag, arg, parent) {
+            var el = document.createElement(tag);
+            for (var key in arg) {
+                switch (key) {
                     case "classList":
-                        loopArray( arg.classList, function ( klass ) {
-                            el.classList.add( klass );
-                        } );
+                        loopArray(arg.classList, function (klass) {
+                            el.classList.add(klass);
+                        });
                         break;
                     default :
                         el[key] = arg[key];
                 }
             }
-            parent && parent.appendChild( el );
+            parent && parent.appendChild(el);
             return el;
         }
 
-        function addEventListener( el, type, listener, useCapture ) {
-            el.addEventListener( type, listener, useCapture );
+        function addEventListener(el, type, listener, useCapture) {
+            el.addEventListener(type, listener, useCapture);
             return {
-                remove : function () {
-                    el.removeEventListener( type, listener, useCapture );
+                remove: function () {
+                    el.removeEventListener(type, listener, useCapture);
                 }
             }
         }
 
-        function onDragV( el, listener ) {
+        function onDragV(el, listener) {
             var prex;
-            addEventListener( el, "mousedown", function ( de ) {
+            addEventListener(el, "mousedown", function (de) {
                 listener.onTap && listener.onTap();
                 prex = de.pageX;
-                var mhandle = addEventListener( document, "mousemove", function ( me ) {
-                    listener.onDrag && listener.onDrag( me.pageX - prex );
+                var mhandle = addEventListener(document, "mousemove", function (me) {
+                    listener.onDrag && listener.onDrag(me.pageX - prex);
                     prex = me.pageX;
-                } );
+                });
 
-                var uhandle = addEventListener( document, "mouseup", function ( me ) {
+                var uhandle = addEventListener(document, "mouseup", function (me) {
                     listener.onUp && listener.onUp();
                     mhandle.remove();
                     uhandle.remove();
-                } );
+                });
 
-            } );
+            });
         }
 
-        function addOneFrame() {
-            var frameItem = element( "div", {
-                classList : ["frame-item"]
-            }, frame );
-            if ( frames.length == 0 ) {
+        function addOneFrame(data, inputX) {
+            var frameItem = element("div", {
+                classList: ["frame-item"]
+            }, frame);
+            if (frames.length == 0) {
                 frameItem.x = 0;
                 frameItem.style.left = frameItem.x + "px";
             }
             else {
-                var ww = Math.floor( (WIDTH - width - frames[frames.length - 1].x ) / 2 );
-                if ( ww < width ) {
-                    alert( "帧数太多了" );
+                var ww = Math.floor((WIDTH - width - frames[frames.length - 1].x ) / 2);
+                if (ww < width) {
+                    alert("帧数太多了");
                     return;
                 }
                 else {
@@ -268,30 +277,35 @@
                 }
             }
             frameItem.index = frames.length;
-            frames.push( frameItem );
-            frameItem.data = [];
+            frames.push(frameItem);
+            frameItem.data = data || [];
+            if (inputX) {
+                frameItem.x == inputX;
+                frameItem.style.left = frameItem.x + "px";
+                flushData();
+            }
 
-            var cur = querySelector( ".frame-item.select" );
-            cur && cur.classList.remove( "select" );
+            var cur = querySelector(".frame-item.select");
+            cur && cur.classList.remove("select");
             form.reset();
             img.style.webkitTransform = "";
-            frameItem.classList.add( "select" );
-            loopArray( querySelectorAll( ".panel-item .flag" ), function ( span ) {
+            frameItem.classList.add("select");
+            loopArray(querySelectorAll(".panel-item .flag"), function (span) {
                 span.innerText = "";
-            } );
+            });
 
             function flushData() {
                 // 刷新数据输入
                 form.reset();
-                loopArray( querySelectorAll( ".panel-item .flag" ), function ( span ) {
+                loopArray(querySelectorAll(".panel-item .flag"), function (span) {
                     span.innerText = "";
-                } );
-                loopArray( frameItem.data, function ( data, i ) {
-                    if ( data ) {
+                });
+                loopArray(frameItem.data, function (data, i) {
+                    if (data) {
                         inputs[i].value = data;
                         inputs[i].nextElementSibling.innerText = data;
                     }
-                } );
+                });
                 var x = inputs[0].value ? inputs[0].value << 0 : 0;
                 var y = inputs[1].value ? inputs[1].value << 0 : 0;
                 img.style.webkitTransform = "translate3d(" + x +
@@ -299,25 +313,25 @@
                         + (inputs[3].value || 0) + "deg)";
             }
 
-            frameItem.onclick = function ( e ) {
-                if ( e.which == 1 ) {
+            frameItem.onclick = function (e) {
+                if (e.which == 1) {
                     // 选中
-                    var cur = querySelector( ".frame-item.select" );
-                    cur && cur.classList.remove( "select" );
-                    frameItem.classList.add( "select" );
+                    var cur = querySelector(".frame-item.select");
+                    cur && cur.classList.remove("select");
+                    frameItem.classList.add("select");
                     flushData();
                 }
-                else if ( e.which == 2 ) {
+                else if (e.which == 2) {
                     // 删除
-                    frame.removeChild( frameItem );
-                    if ( frames[frameItem.index - 1] ) {
+                    frame.removeChild(frameItem);
+                    if (frames[frameItem.index - 1]) {
                         frameItem = frames[frameItem.index - 1];
-                        frameItem.classList.add( "select" );
+                        frameItem.classList.add("select");
                         flushData();
                     }
-                    else if ( frames[frameItem.index + 1] ) {
+                    else if (frames[frameItem.index + 1]) {
                         frameItem = frames[frameItem.index + 1];
-                        frameItem.classList.add( "select" );
+                        frameItem.classList.add("select");
                         flushData();
                     }
                     else {
@@ -325,55 +339,100 @@
                         img.style.webkitFilter = "";
                     }
                     frames = [];
-                    loopArray( querySelectorAll( ".frame-item" ), function ( item, i ) {
+                    loopArray(querySelectorAll(".frame-item"), function (item, i) {
                         item.index = i;
-                        frames.push( item );
-                    } )
+                        frames.push(item);
+                    })
                 }
             };
 
             var leftThreshold, rightThreshold;
-            onDragV( frameItem, {
-                onTap : function () {
+            onDragV(frameItem, {
+                onTap: function () {
                     leftThreshold = frames[frameItem.index - 1];
                     rightThreshold = frames[frameItem.index + 1];
                     leftThreshold = leftThreshold ? leftThreshold.x + width : 0;
                     rightThreshold = rightThreshold ? rightThreshold.x : WIDTH;
                 },
-                onDrag : function ( dx ) {
+                onDrag: function (dx) {
                     var x = dx + frameItem.x;
-                    if ( x + width <= rightThreshold && x >= leftThreshold ) {
+                    if (x + width <= rightThreshold && x >= leftThreshold) {
                         frameItem.x = x;
                         frameItem.style.left = x + "px";
                     }
-                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
-                        frameItem.classList.add( "end" );
+                    if (frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH) {
+                        frameItem.classList.add("end");
                     }
-                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
-                        frameItem.classList.remove( "end" );
+                    else if (frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH) {
+                        frameItem.classList.remove("end");
                     }
                 },
-                onUp : function () {
-                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
-                        frameItem.classList.add( "end" );
+                onUp: function () {
+                    if (frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH) {
+                        frameItem.classList.add("end");
                     }
-                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
-                        frameItem.classList.remove( "end" );
+                    else if (frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH) {
+                        frameItem.classList.remove("end");
                     }
                 }
-            } );
+            });
         }
 
-        querySelector( ".panel-item .add" ).onclick = function () {
+        putIn.onclick = function () {
+            function getDataFromStyle(style) {
+                //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)}"
+                style = replaceAll(style, "%", "");
+                var data = [];
+                style = style.replace("scale", ";scale");
+                style = style.replace("rotate", ";rotate");
+                style = style.replace("}", "");
+                style = style.replace("deg", "");
+                style+=";";
+                function translate3d(x, y) {
+                    x && (data[0] = x);
+                    y && (data[1] = y);
+                }
+
+                function scale(s) {
+                    s && (data[2] = s);
+                }
+
+                function rotate(r) {
+                    r && (data[3] = r);
+                }
+
+                eval(style);
+                return data;
+            }
+
+            // 将已经编辑好的镜头数据导入
+            var cinemaData = prompt("输入已经编辑好的镜头数据", "");
+            if (cinemaData) {
+                try {
+                    cinemaData = JSON.parse(cinemaData);
+                } catch (e) {
+                    alert("数据错误");
+                    return;
+                }
+                frames = [];
+                for (var percent in cinemaData) {
+                    var x = parseInt(percent) * WIDTH / 100;
+                    addOneFrame(getDataFromStyle(cinemaData[percent]), x);
+                }
+
+            }
+        };
+
+        querySelector(".panel-item .add").onclick = function () {
             addOneFrame();
         };
 
         // 处理编辑
-        loopArray( inputs, function ( input, i ) {
+        loopArray(inputs, function (input, i) {
             function change() {
-                var cur = querySelector( ".frame-item.select" );
-                if ( cur ) {
-                    cur.data[i] = parseFloat( input.value );
+                var cur = querySelector(".frame-item.select");
+                if (cur) {
+                    cur.data[i] = parseFloat(input.value);
                     var x = inputs[0].value ? inputs[0].value << 0 : 0;
                     var y = inputs[1].value ? inputs[1].value << 0 : 0;
                     img.style.webkitTransform = "translate3d(" + x +
@@ -382,15 +441,15 @@
                 }
             }
 
-            if ( i == inputs.length - 1 ) {
+            if (i == inputs.length - 1) {
                 input.oninput = function () {
                     change();
                 }
             }
             else {
-                input.onclick = function ( e ) {
-                    if ( e.which == 2 ) {
-                        switch ( i ) {
+                input.onclick = function (e) {
+                    if (e.which == 2) {
+                        switch (i) {
                             case 0:
                                 input.nextElementSibling.innerText = input.value = 0;
                                 break;
@@ -404,35 +463,35 @@
                     }
                     change();
                 };
-                onDragV( input, {
-                    onTap : function () {
+                onDragV(input, {
+                    onTap: function () {
 
                     },
-                    onDrag : function () {
+                    onDrag: function () {
                         change();
                         input.nextElementSibling.innerText = input.value;
-                        console.log( "ok" )
+                        console.log("ok")
                     },
-                    onUp : function () {
+                    onUp: function () {
 
                     }
-                } );
+                });
             }
-        } );
+        });
 
-        img.addEventListener( "webkitAnimationEnd", function () {
+        img.addEventListener("webkitAnimationEnd", function () {
             img.style.webkitAnimation = "";
-        }, false );
+        }, false);
 
-        function blend( arg1, arg2, arg3 ) {
-            var arg_1 = JSON.parse( JSON.stringify( arg1 ) );
-            var arg_2 = JSON.parse( JSON.stringify( arg2 ) );
-            for ( var key in arg_1 ) {
-                if ( arg_2[key] ) {
+        function blend(arg1, arg2, arg3) {
+            var arg_1 = JSON.parse(JSON.stringify(arg1));
+            var arg_2 = JSON.parse(JSON.stringify(arg2));
+            for (var key in arg_1) {
+                if (arg_2[key]) {
                     // 如果这个key在arg_1和arg_2中都有，那么继续调用combine
                     arg3[key] = {};
-                    if ( typeof arg_1[key] == "object" && typeof arg_2[key] == "object" ) {
-                        arguments.callee( arg_1[key], arg_2[key], arg3[key] );
+                    if (typeof arg_1[key] == "object" && typeof arg_2[key] == "object") {
+                        arguments.callee(arg_1[key], arg_2[key], arg3[key]);
                     }
                     else {
                         arg3[key] = arg_1[key];
@@ -443,74 +502,74 @@
                     arg3[key] = arg_1[key];
                 }
             }
-            for ( var key2 in arg_2 ) {
+            for (var key2 in arg_2) {
                 arg3[key2] = arg_2[key2];
             }
         }
 
         var styleIndex = 0;
-        var styleDom = element( "style", {}, document.head );
+        var styleDom = element("style", {}, document.head);
         animateBtn.onclick = function () {
             var style;
             var filterArg = null;
-            if ( textarea.value.trim() ) {
+            if (textarea.value.trim()) {
                 try {
-                    filterArg = JSON.parse( textarea.value );
+                    filterArg = JSON.parse(textarea.value);
                 }
-                catch ( e ) {
+                catch (e) {
                     filterArg = null;
-                    alert( "滤镜的数据不对，检查是否缺失花括号和双引号" );
+                    alert("滤镜的数据不对，检查是否缺失花括号和双引号");
                 }
             }
-            if ( filterArg ) {
-                for ( var key in filterArg ) {
+            if (filterArg) {
+                for (var key in filterArg) {
                     var value = filterArg[key];
                     filterArg[key + "%"] = {
-                        "-webkit-filter" : value
+                        "-webkit-filter": value
                     };
                     delete  filterArg[key];
                 }
 
                 var cinemaArg = {};
-                loopArray( frames, function ( f, i ) {
+                loopArray(frames, function (f, i) {
                     var percent;
-                    if ( i == frame.length - 1 ) {
+                    if (i == frame.length - 1) {
                         percent = (f.x + width) / WIDTH * 100 << 0;
                     }
                     else {
                         percent = f.x / WIDTH * 100 << 0;
                     }
                     cinemaArg[percent + "%"] = {
-                        "-webkit-transform" : "translate3d(" + (f.data[0] || 0) +
+                        "-webkit-transform": "translate3d(" + (f.data[0] || 0) +
                         "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
                         + (f.data[3] || 0) + "deg)"
                     }
-                } );
+                });
                 var res = {};
-                blend( cinemaArg, filterArg, res );
-                style = JSON.stringify( res );
+                blend(cinemaArg, filterArg, res);
+                style = JSON.stringify(res);
 
-                while ( style.indexOf( "\"" ) != -1 ) {
-                    style = style.replace( "\"", "" );
+                while (style.indexOf("\"") != -1) {
+                    style = style.replace("\"", "");
                 }
-                while ( style.indexOf( ")," ) != -1 ) {
-                    style = style.replace( "),", ");" );
+                while (style.indexOf("),") != -1) {
+                    style = style.replace("),", ");");
                 }
-                while ( style.indexOf( "}," ) != -1 ) {
-                    style = style.replace( "},", "}" );
+                while (style.indexOf("},") != -1) {
+                    style = style.replace("},", "}");
                 }
-                while ( style.indexOf( "%:" ) != -1 ) {
-                    style = style.replace( "%:", "%" );
+                while (style.indexOf("%:") != -1) {
+                    style = style.replace("%:", "%");
                 }
-                styleDom.sheet.insertRule( "@-webkit-keyframes cinema-animate" + styleIndex + style, 0 );
+                styleDom.sheet.insertRule("@-webkit-keyframes cinema-animate" + styleIndex + style, 0);
                 img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
                 styleIndex++;
             }
             else {
                 style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
-                loopArray( frames, function ( f, i ) {
+                loopArray(frames, function (f, i) {
                     var percent;
-                    if ( i == frame.length - 1 ) {
+                    if (i == frame.length - 1) {
                         percent = (f.x + width) / WIDTH * 100 << 0;
                     }
                     else {
@@ -519,20 +578,20 @@
                     style += (percent + "%{-webkit-transform:translate3d(" + (f.data[0] || 0) +
                     "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
                     + (f.data[3] || 0) + "deg)}");
-                } );
+                });
                 style += "}";
-                styleDom.sheet.insertRule( style, 0 );
+                styleDom.sheet.insertRule(style, 0);
                 img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
                 styleIndex++;
             }
         };
 
-        var client = new ZeroClipboard( copyBtn );
-        client.on( "copy", function ( event ) {
+        var client = new ZeroClipboard(copyBtn);
+        client.on("copy", function (event) {
             var arg = {};
-            loopArray( frames, function ( f, i ) {
+            loopArray(frames, function (f, i) {
                 var percent;
-                if ( i == frames.length - 1 ) {
+                if (i == frames.length - 1) {
                     percent = (f.x + width) / WIDTH * 100 << 0;
                 }
                 else {
@@ -540,11 +599,12 @@
                 }
                 arg[percent] = "translate3d(" + (f.data[0] || 0) +
                         "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
-                        + (f.data[3] || 0) + "deg)}";
-            } );
+                        + (f.data[3] || 0) + "deg)";
+            });
             var clipboard = event.clipboardData;
-            clipboard.setData( "text/plain", JSON.stringify( arg ) );
-        } );
+            clipboard.setData("text/plain", JSON.stringify(arg));
+        });
+
     })
     ();
 </script>

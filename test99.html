@@ -60,60 +60,41 @@
 </div>
 <script>
     (function () {
-
-        // progress
-        function blend( arg1, arg2, arg3 ) {
-            var arg_1 = JSON.parse( JSON.stringify( arg1 ) );
-            var arg_2 = JSON.parse( JSON.stringify( arg2 ) );
-            for ( var key in arg_1 ) {
-                if ( arg_2[key] ) {
-                    // 如果这个key在arg_1和arg_2中都有，那么继续调用combine
-                    arg3[key] = {};
-                    if ( typeof arg_1[key] == "object" && typeof arg_2[key] == "object" ) {
-                        arguments.callee( arg_1[key], arg_2[key], arg3[key] );
-                    }
-                    else {
-                        arg3[key] = arg_1[key];
-                    }
-                    delete arg_2[key];
-                }
-                else {
-                    arg3[key] = arg_1[key];
-                }
+        function replaceAll(str, oldStr, newStr) {
+            while (str.indexOf(oldStr) != -1) {
+                str = str.replace(oldStr, newStr);
             }
-            for ( var key2 in arg_2 ) {
-                arg3[key2] = arg_2[key2];
-            }
+            return str;
         }
 
-
-        var res = {};
-        var arg1 = {
-            "0" : {"filter" : "blur(20px)"},
-            "100" : {"filter" : "blur(0px)"}
-        };
-        var arg2 = {
-            "0" : {"transform" : "translate3d(0%,0%,0) scale(1) rotate(0deg)}"},
-            "90" : {"transform" : "translate3d(35%,0%,0) scale(1) rotate(0deg)}"}
-        };
-
-        blend( arg1, arg2, res );
-
-
-        var a = "{";
-
-        function test() {
-            try {
-                var d = JSON.parse( a );
+        function getDataFromStyle(style) {
+            //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)}"
+            style = replaceAll(style, "%", "");
+            var data = [];
+            style = style.replace("scale", ";scale");
+            style = style.replace("rotate", ";rotate");
+            style = style.replace("}", "");
+            style = style.replace("deg", "");
+            style+=";";
+            function translate3d(x, y) {
+                x && (data[0] = x);
+                y && (data[1] = y);
             }
-            catch ( e ) {
-                console.log( e )
+
+            function scale(s) {
+                s && (data[2] = s);
             }
-            console.log( "go on" );
+
+            function rotate(r) {
+                r && (data[3] = r);
+            }
+
+            eval(style);
+            return data;
         }
 
-        test();
-        console.log( "end" );
+        console.log(getDataFromStyle("translate3d(0%,0%,0) scale(1.8) rotate(0deg)"));
+
 
     })();
 </script>
