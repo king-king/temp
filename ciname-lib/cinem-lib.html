@@ -8,7 +8,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
-    <title>v1.0</title>
+    <title>v2.0</title>
     <style>
         * {
             -webkit-user-select: none;
@@ -141,6 +141,7 @@
         <div class="panel-item rotate value">
             <div class="title">rotate:</div>
             <input type="text" value="0"> deg
+            <span class="flag"></span>
         </div>
     </form>
     <hr style="height:1px;border:none;border-top:1px solid #ccc;"/>
@@ -279,11 +280,6 @@
             frameItem.index = frames.length;
             frames.push(frameItem);
             frameItem.data = data || [];
-            if (inputX) {
-                frameItem.x == inputX;
-                frameItem.style.left = frameItem.x + "px";
-                flushData();
-            }
 
             var cur = querySelector(".frame-item.select");
             cur && cur.classList.remove("select");
@@ -293,7 +289,11 @@
             loopArray(querySelectorAll(".panel-item .flag"), function (span) {
                 span.innerText = "";
             });
-
+            if (inputX) {
+                frameItem.x = inputX;
+                frameItem.style.left = frameItem.x + "px";
+                flushData();
+            }
             function flushData() {
                 // 刷新数据输入
                 form.reset();
@@ -387,7 +387,7 @@
                 style = style.replace("rotate", ";rotate");
                 style = style.replace("}", "");
                 style = style.replace("deg", "");
-                style+=";";
+                style += ";";
                 function translate3d(x, y) {
                     x && (data[0] = x);
                     y && (data[1] = y);
@@ -414,9 +414,13 @@
                     alert("数据错误");
                     return;
                 }
+                frame.innerHTML = "";
                 frames = [];
                 for (var percent in cinemaData) {
                     var x = parseInt(percent) * WIDTH / 100;
+                    if (x + width > WIDTH) {
+                        x = WIDTH - width;
+                    }
                     addOneFrame(getDataFromStyle(cinemaData[percent]), x);
                 }
 
