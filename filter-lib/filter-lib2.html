@@ -362,37 +362,18 @@
                 newItem.leftTip = leftTip;
                 newItem.rightTip = rightTip;
                 newItem.index = frameItems.length;
-                if ( inputData ) {
-                    newItem.filterObj = inputStyle;
-                    newItem.filterValue = inputData;
-                    rightTip.classList.add( "moment" );
-                    leftTip.classList.add( "moment" );
-                    newItem.style.left = inputX + "px";
-                    newItem.style.width = tipWidth + "px";
-                    newItem.x = inputX;
-                    newItem.w = tipWidth;
-                }
-                else {
-                    newItem.style.left = x + "px";
-                    newItem.style.width = (WIDTH - x) + "px";
-                    newItem.x = x;
-                    newItem.w = WIDTH - x;
-                }
-
-
+                form.reset();
                 frameItems.push( newItem );
                 var cur = querySelector( ".frame-item.select" );
                 cur && cur.classList.remove( "select" );
                 newItem.classList.add( "select" );
                 curSelectIndex = newItem.index;
-                form.reset();
                 function clearChangeSatate() {
                     loopArray( querySelectorAll( ".filter-item.change" ), function ( item ) {
                         item.classList.remove( "change" );
                     } );
                 }
 
-                clearChangeSatate();
                 newItem.onclick = function ( e ) {
 
                     function select() {
@@ -458,6 +439,26 @@
                         } )
                     }
                 };
+                clearChangeSatate();
+                if ( inputData ) {
+                    newItem.filterObj = inputStyle;
+                    newItem.filterValue = inputData;
+                    rightTip.classList.add( "moment" );
+                    leftTip.classList.add( "moment" );
+                    newItem.style.left = inputX + "px";
+                    newItem.style.width = tipWidth + "px";
+                    newItem.x = inputX;
+                    newItem.w = tipWidth;
+                    newItem.click( {
+                        which : 1
+                    } );
+                }
+                else {
+                    newItem.style.left = x + "px";
+                    newItem.style.width = (WIDTH - x) + "px";
+                    newItem.x = x;
+                    newItem.w = WIDTH - x;
+                }
 
                 var leftItem,
                         leftThreshold,
