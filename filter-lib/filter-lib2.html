@@ -154,31 +154,24 @@
 
         .button {
             width: 100px;
-            height: 40px;
-            line-height: 40px;
+            line-height: 30px;
+            height: 100%;
             text-align: center;
             border-radius: 5px;
             font-family: "微软雅黑", sans-serif;
-            position: absolute;
-            margin-left: -100px;
+            margin: 0 20px 0 0;
             bottom: 200px;
-            font-size: 30px;
+            font-size: 22px;
             cursor: pointer;
             -webkit-user-select: none;
             border: 2px solid black;
+            float: left;
         }
 
-        .button.copy {
-            left: 75%;
+        .button:hover {
+            opacity: 0.5 !important;
         }
 
-        .button.add {
-            left: 50%;
-        }
-
-        .button.animate {
-            left: 25%;
-        }
     </style>
 </head>
 <body>
@@ -232,12 +225,16 @@
     <div class="filter-item">
         持续时间：<input type="text" class="duration" value="2"> 秒
     </div>
+    <div class="filter-item">
+        <div class="button animate">做动画</div>
+        <div class="button add">添加</div>
+        <div class="button copy">复制</div>
+        <div class="button inout-data">导入</div>
+    </div>
 </div>
-<div class="frame">
-</div>
-<div class="button copy">复制</div>
-<div class="button animate">做动画</div>
-<div class="button add">添加</div>
+
+<div class="frame"></div>
+
 <script src="ZeroClipboard.min.js"></script>
 <script>
     (function () {
@@ -274,6 +271,7 @@
         var inputDurtaion = querySelector( ".duration" );
         var animateBtn = querySelector( ".button.animate" );
         var copy = querySelector( ".button.copy" );
+        var inputDataBtn = querySelector( ".button.inout-data" );
 
 
         border.onclick = function () {
