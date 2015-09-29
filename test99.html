@@ -19,17 +19,71 @@
             bottom: 0;
         }
 
+        .test, .test2 {
+            width: 100px;
+            height: 100px;
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+
         .test {
-            width: 200px;
-            height: 200px;
             background: red;
         }
+
+        .test2 {
+            background: green;
+        }
+
+        .test2.animte {
+            -webkit-animation: 4s animate both;
+        }
+
+        .test.animte {
+            -webkit-transform: translate3d(100px, 0, 0);
+            -webkit-transition: 4s;
+        }
+
+        img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .btn {
+            width: 50px;
+            height: 50px;
+            background: #000;
+            color: #fff;
+        }
+
+        @-webkit-keyframes animate {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+            100% {
+                -webkit-transform: translate3d(100px, 0, 0);
+            }
+        }
+
     </style>
 <body>
-<a href="http://www.baidu.com">baidu</a>
 <div class="test"></div>
+<div class="test2"></div>
+<img src="img/1.jpg">
+<div class="btn">btn</div>
 <script>
+    var t = document.querySelector( ".test" );
+    var t2 = document.querySelector( ".test2" );
 
+    var btn = document.querySelector( ".btn" );
+    btn.onclick = function () {
+        if ( t.classList.contains( "animte" ) ) {
+            t.classList.remove( "animte" );
+            t2.classList.remove( "animte" );
+        }
+        else {
+            t.classList.add( "animte" );
+            t2.classList.add( "animte" );
+        }
+    }
 
 </script>
 </body>
