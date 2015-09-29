@@ -27,17 +27,24 @@
 <body>
 <div class="test">123</div>
 <script>
+
+    var lib = {
+        random : function () {
+
+        }
+    };
+
     (function () {
-        function z() {
+        function random() {
             // do something
         }
 
-        // 再能访问到z的地方写这段
-        window.z = z;
-
+        window.lib2 = {
+            random : random
+        }
     })();
 
-    // 这里可以直接调用z
+
 </script>
 </body>
 </html>

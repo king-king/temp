@@ -574,35 +574,35 @@
             var data = [];
 
             function grayscale( value ) {
-                data[0] = value;
+                data[0] = "grayscale(" + value + ")";
             }
 
             function sepia( value ) {
-                data[1] = value;
+                data[1] = "sepia(" + value + ")";
             }
 
             function saturate( value ) {
-                data[2] = value;
+                data[2] = "saturate(" + value + ")";
             }
 
             function huerotate( value ) {
-                data[3] = value;
+                data[3] = "hue-rotate(" + value + "deg)";
             }
 
             function invert( value ) {
-                data[4] = value;
+                data[4] = "invert(" + value + ")";
             }
 
             function brightness( value ) {
-                data[5] = value;
+                data[5] = "brightness(" + value + ")";
             }
 
             function contrast( value ) {
-                data[6] = value;
+                data[6] = "contrast(" + value + ")";
             }
 
             function blur( value ) {
-                data[7] = value;
+                data[7] = "blur(" + value + "px)";
             }
 
             eval( style );
