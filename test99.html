@@ -1,102 +1,43 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="utf-8">
-    <meta name="mobileoptimized" content="0"/>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="browsermode" content="application">
+    <!--<meta charset="utf-8">-->
+    <!--<meta name="mobileoptimized" content="0"/>-->
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
+    <!--<meta name="apple-mobile-web-app-capable" content="yes">-->
+    <!--<meta name="format-detection" content="telephone=no">-->
+    <!--<meta name="screen-orientation" content="portrait">-->
+    <!--<meta name="browsermode" content="application">-->
     <title></title>
     <style>
-        * {
-            margin: 0;
-        }
 
-        img {
-            width: 100%;
-            opacity: 0;
+        /*body {*/
+        /*position: absolute;*/
+        /*top: 0;*/
+        /*left: 0;*/
+        /*right: 0;*/
+        /*bottom: 0;*/
+        /*}*/
+        .test {
+            width: 200px;
+            height: 200px;
+            background: red;
         }
-
-        img.show {
-            opacity: 1;
-            transition: 2s;
-        }
-
-        body {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-        }
-
-        @-webkit-keyframes a {
-            0% {
-                -webkit-transform: translate3d(0%, 0%, 0) scale(4.1) rotate(0deg);
-                -webkit-filter: blur(19px)
-            }
-            98% {
-                -webkit-transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg)
-            }
-            100% {
-                -webkit-filter: blur(0px)
-            }
-        }
-
     </style>
 <body>
-<script src="jquery2.js"></script>
-<div class="border">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-    <img src="img/1.jpg">
-</div>
+<div class="test">123</div>
 <script>
     (function () {
-        function replaceAll(str, oldStr, newStr) {
-            while (str.indexOf(oldStr) != -1) {
-                str = str.replace(oldStr, newStr);
-            }
-            return str;
+        function z() {
+            // do something
         }
 
-        function getDataFromStyle(style) {
-            //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)}"
-            style = replaceAll(style, "%", "");
-            var data = [];
-            style = style.replace("scale", ";scale");
-            style = style.replace("rotate", ";rotate");
-            style = style.replace("}", "");
-            style = style.replace("deg", "");
-            style+=";";
-            function translate3d(x, y) {
-                x && (data[0] = x);
-                y && (data[1] = y);
-            }
-
-            function scale(s) {
-                s && (data[2] = s);
-            }
-
-            function rotate(r) {
-                r && (data[3] = r);
-            }
-
-            eval(style);
-            return data;
-        }
-
-        console.log(getDataFromStyle("translate3d(0%,0%,0) scale(1.8) rotate(0deg)"));
-
+        // 再能访问到z的地方写这段
+        window.z = z;
 
     })();
+
+    // 这里可以直接调用z
 </script>
 </body>
 </html>
