@@ -292,21 +292,19 @@
         }
 
         function onDragV( el, listener ) {
-            var prex;
+            var preX;
             addEventListener( el, "mousedown", function ( de ) {
                 listener.onTap && listener.onTap();
-                prex = de.pageX;
-                var mhandle = addEventListener( document, "mousemove", function ( me ) {
-                    listener.onDrag && listener.onDrag( me.pageX - prex );
-                    prex = me.pageX;
+                preX = de.pageX;
+                var mHandle = addEventListener( document, "mousemove", function ( me ) {
+                    listener.onDrag && listener.onDrag( me.pageX - preX );
+                    preX = me.pageX;
                 } );
-
-                var uhandle = addEventListener( document, "mouseup", function ( me ) {
+                var uHandle = addEventListener( document, "mouseup", function () {
                     listener.onUp && listener.onUp();
-                    mhandle.remove();
-                    uhandle.remove();
+                    mHandle.remove();
+                    uHandle.remove();
                 } );
-
             } );
         }
 
@@ -390,8 +388,7 @@
                             var fs = newItem.filterObj.split( " " );
                             loopArray( fs, function ( str ) {
                                 if ( str ) {
-                                    var key = str.slice( 0, str.indexOf( "(" ) );
-                                    key = key.trim();
+                                    var key = str.slice( 0, str.indexOf( "(" ) ).trim();
                                     var value;
                                     if ( str.indexOf( "px" ) != -1 ) {
                                         value = parseFloat( str.slice( str.indexOf( "(" ) + 1, str.indexOf( "px" ) ) );
@@ -566,7 +563,7 @@
         }
 
         function getDataFromStyle( style ) {
-            // "grayscale(0.4) sepia(0.2) saturate(1.2) hue-rotate(45deg) invert(0.1) brightness(1.2) contrast(1.3) blur(2px)"
+            // style样本："grayscale(0.4) sepia(0.2) saturate(1.2) hue-rotate(45deg) invert(0.1) brightness(1.2) contrast(1.3) blur(2px)"
             style = replaceAll( replaceAll( style, "px", "" ), "deg", "" );
             style = replaceAll( style, ")", "#" );
             style = replaceAll( style, "#", ");" );
@@ -687,13 +684,7 @@
                 var percent;
                 if ( item.w == tipWidth ) {
                     // 如果合并了，则只计算一个点
-                    if ( i == frameItems.length - 1 ) {
-                        // 最后一个点按照后面计算
-                        percent = (item.x + item.w) / WIDTH * 100 << 0;
-                    }
-                    else {
-                        percent = item.x / WIDTH * 100 << 0;
-                    }
+                    percent = i == frameItems.length - 1 ? (item.x + item.w) / WIDTH * 100 << 0 : item.x / WIDTH * 100 << 0;
                     arg += (percent + "%{-webkit-filter:" + item.filterObj + "}");
                 }
                 else {
@@ -718,13 +709,7 @@
                 var percent;
                 if ( item.w == tipWidth ) {
                     // 如果合并了，则只计算一个点
-                    if ( i == frameItems.length - 1 ) {
-                        // 最后一个点按照后面计算
-                        percent = (item.x + item.w) / WIDTH * 100 << 0;
-                    }
-                    else {
-                        percent = item.x / WIDTH * 100 << 0;
-                    }
+                    percent = i == frameItems.length - 1 ? (item.x + item.w) / WIDTH * 100 << 0 : item.x / WIDTH * 100 << 0;
                     arg[percent] = item.filterObj;
                 }
                 else {
@@ -738,7 +723,6 @@
             var clipboard = event.clipboardData;
             clipboard.setData( "text/plain", JSON.stringify( arg ) );
         } );
-
     })();
 </script>
 </body>
