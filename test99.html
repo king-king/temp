@@ -83,7 +83,11 @@
             t.classList.add( "animte" );
             t2.classList.add( "animte" );
         }
-    }
+    };
+
+    t2.addEventListener( "webkitAnimationEnd", function () {
+        alert( "ok" )
+    }, false );
 
 </script>
 </body>
