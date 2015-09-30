@@ -581,19 +581,12 @@
         client.on( "copy", function ( event ) {
             var arg = {};
             loopArray( frames, function ( f, i ) {
-                var percent;
-                if ( i == frames.length - 1 ) {
-                    percent = (f.x + width) / WIDTH * 100 << 0;
-                }
-                else {
-                    percent = f.x / WIDTH * 100 << 0;
-                }
+                var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
                 arg[percent] = "translate3d(" + (f.data[0] || 0) +
                         "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
                         + (f.data[3] || 0) + "deg)";
             } );
-            var clipboard = event.clipboardData;
-            clipboard.setData( "text/plain", JSON.stringify( arg ) );
+            event.clipboardData.setData( "text/plain", JSON.stringify( arg ) );
         } );
 
     })();
