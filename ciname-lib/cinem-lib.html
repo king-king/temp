@@ -240,19 +240,19 @@
         }
 
         function onDragV( el, listener ) {
-            var prex;
+            var preX;
             addEventListener( el, "mousedown", function ( de ) {
                 listener.onTap && listener.onTap();
-                prex = de.pageX;
-                var mhandle = addEventListener( document, "mousemove", function ( me ) {
-                    listener.onDrag && listener.onDrag( me.pageX - prex );
-                    prex = me.pageX;
+                preX = de.pageX;
+                var mHandle = addEventListener( document, "mousemove", function ( me ) {
+                    listener.onDrag && listener.onDrag( me.pageX - preX );
+                    preX = me.pageX;
                 } );
 
-                var uhandle = addEventListener( document, "mouseup", function ( me ) {
+                var uHandle = addEventListener( document, "mouseup", function () {
                     listener.onUp && listener.onUp();
-                    mhandle.remove();
-                    uhandle.remove();
+                    mHandle.remove();
+                    uHandle.remove();
                 } );
 
             } );
@@ -454,23 +454,12 @@
             else {
                 input.onclick = function ( e ) {
                     if ( e.which == 2 ) {
-                        switch ( i ) {
-                            case 0:
-                                input.nextElementSibling.innerText = input.value = 0;
-                                break;
-                            case 1:
-                                input.nextElementSibling.innerText = input.value = 0;
-                                break;
-                            case 2:
-                                input.nextElementSibling.innerText = input.value = 1;
-                                break;
-                        }
+                        input.nextElementSibling.innerText = input.value = i < 2 ? 0 : 1;
                     }
                     change();
                 };
                 onDragV( input, {
                     onTap : function () {
-
                     },
                     onDrag : function () {
                         change();
@@ -478,7 +467,6 @@
                         console.log( "ok" )
                     },
                     onUp : function () {
-
                     }
                 } );
             }
@@ -524,6 +512,7 @@
                 catch ( e ) {
                     filterArg = null;
                     alert( "滤镜的数据不对，检查是否缺失花括号和双引号" );
+                    return;
                 }
             }
             if ( filterArg ) {
@@ -534,16 +523,9 @@
                     };
                     delete  filterArg[key];
                 }
-
                 var cinemaArg = {};
                 loopArray( frames, function ( f, i ) {
-                    var percent;
-                    if ( i == frame.length - 1 ) {
-                        percent = (f.x + width) / WIDTH * 100 << 0;
-                    }
-                    else {
-                        percent = f.x / WIDTH * 100 << 0;
-                    }
+                    var percent = i == frame.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
                     cinemaArg[percent + "%"] = {
                         "-webkit-transform" : "translate3d(" + (f.data[0] || 0) +
                         "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
@@ -554,7 +536,6 @@
                 blend( cinemaArg, filterArg, res );
                 styleDom.sheet.insertRule( "@-webkit-keyframes cinema-animate"
                         + styleIndex + replaceAll( replaceAll( replaceAll( replaceAll( JSON.stringify( res ), "\"", "" ), "),", ");" ), "},", "}" ), "%:", "%" ), 0 );
-                img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
             }
             else {
                 style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
@@ -572,13 +553,12 @@
                 } );
                 style += "}";
                 styleDom.sheet.insertRule( style, 0 );
-                img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
             }
+            img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " both";
             styleIndex++;
         };
 
-        var client = new ZeroClipboard( copyBtn );
-        client.on( "copy", function ( event ) {
+        (new ZeroClipboard( copyBtn )).on( "copy", function ( event ) {
             var arg = {};
             loopArray( frames, function ( f, i ) {
                 var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
@@ -588,7 +568,6 @@
             } );
             event.clipboardData.setData( "text/plain", JSON.stringify( arg ) );
         } );
-
     })();
 </script>
 </body>
