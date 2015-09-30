@@ -76,12 +76,6 @@
 <script>
     (function () {
 
-        function loopArray( arr, func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[i], i );
-            }
-        }
-
         // 并发
         function concurrentTask( tasks, callback ) {
             var len = tasks.length,
