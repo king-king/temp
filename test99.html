@@ -65,10 +65,16 @@
 
     </style>
 <body>
-
-<div class="btn">btn</div>
+<p></p>
 <script>
+    (function () {
 
+        function test() {
+            alert( "ok" )
+        }
+
+        document.onclick = test;
+    })();
 </script>
 </body>
 </html>
