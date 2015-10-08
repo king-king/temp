@@ -65,29 +65,9 @@
 
     </style>
 <body>
-<div class="test"></div>
-<div class="test2"></div>
-<img src="img/1.jpg">
+
 <div class="btn">btn</div>
 <script>
-    var t = document.querySelector( ".test" );
-    var t2 = document.querySelector( ".test2" );
-
-    var btn = document.querySelector( ".btn" );
-    btn.onclick = function () {
-        if ( t.classList.contains( "animte" ) ) {
-            t.classList.remove( "animte" );
-            t2.classList.remove( "animte" );
-        }
-        else {
-            t.classList.add( "animte" );
-            t2.classList.add( "animte" );
-        }
-    };
-
-    t2.addEventListener( "webkitAnimationEnd", function () {
-        alert( "ok" )
-    }, false );
 
 </script>
 </body>
