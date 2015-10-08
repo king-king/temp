@@ -169,8 +169,8 @@
         var frame = querySelector( ".frame" );
         var WIDTH = frame.offsetWidth;
         var frames = [];
-        var img = querySelector( ".img-border img" );
         var width = 25;
+        var img = querySelector( ".img-border img" );
         var form = querySelector( "form" );
         var inputs = querySelectorAll( ".panel-item input" );
         var duration = querySelector( ".duration" );
@@ -188,7 +188,6 @@
         fileInput.onchange = function () {
             img.src = window.URL.createObjectURL( fileInput.files[0] );
             img.onload = function () {
-                console.log( img.naturalHeight, img.naturalWidth );
                 if ( img.naturalHeight / img.naturalWidth > 1 ) {
                     imgBorder.style.height = "400px";
                     imgBorder.style.width = 400 / img.naturalHeight * img.naturalWidth + "px";
@@ -254,7 +253,6 @@
                     mHandle.remove();
                     uHandle.remove();
                 } );
-
             } );
         }
 
@@ -262,12 +260,12 @@
             var frameItem = element( "div", {
                 classList : ["frame-item"]
             }, frame );
-            if ( frames.length == 0 ) {
+            if ( !frames.length ) {
                 frameItem.x = 0;
                 frameItem.style.left = frameItem.x + "px";
             }
             else {
-                var ww = Math.floor( (WIDTH - width - frames[frames.length - 1].x ) / 2 );
+                var ww = (WIDTH - width - frames[frames.length - 1].x ) >> 1;
                 if ( ww < width ) {
                     alert( "帧数太多了" );
                     return;
@@ -541,12 +539,7 @@
                 style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
                 loopArray( frames, function ( f, i ) {
                     var percent;
-                    if ( i == frame.length - 1 ) {
-                        percent = (f.x + width) / WIDTH * 100 << 0;
-                    }
-                    else {
-                        percent = f.x / WIDTH * 100 << 0;
-                    }
+                    percent = i == frame.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
                     style += (percent + "%{-webkit-transform:translate3d(" + (f.data[0] || 0) +
                     "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
                     + (f.data[3] || 0) + "deg)}");
