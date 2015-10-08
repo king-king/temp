@@ -17,40 +17,44 @@
             left: 0;
             right: 0;
             bottom: 0;
+            margin: 0;
         }
 
-        .btn {
-            width: 50px;
-            height: 50px;
-            background: #000;
-            color: #fff;
-        }
-
-        .red {
+        .box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: calc(100% - 80px);
+            height: 100%;
             background-color: red;
-        }
-
-        .green {
-            background-color: green;
         }
     </style>
 <body>
-<div class="btn red"></div>
-<div class="btn green"></div>
+<p>Heat the oven to
+    <meter min="200" max="1000" low="300" high="800" value="300">1000 degrees</meter>
+</p>
 <script>
     (function () {
 
-        var red = document.querySelector( ".red" );
-        var green = document.querySelector( ".green" );
+        var meter = document.querySelector( "meter" );
 
-        red.onclick = function () {
-            alert( "ok" )
-        };
+        function animate( s, e ) {
+            var cur = s;
+            var id;
 
-        green.onclick = function () {
-            red.click();
+            function f() {
+                clearTimeout( id );
+                if ( cur <= e ) {
+                    meter.value = cur;
+                    cur++;
+                    id = setTimeout( arguments.callee, 1000 / 60 );
+                }
+            }
+
+            f();
         }
 
+        animate( 200, 1000 );
 
     })();
 </script>
