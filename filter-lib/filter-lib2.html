@@ -335,7 +335,7 @@
                         x = item.w + item.x;
                     }
                     else if ( item && Math.floor( item.w / 2 ) >= tipWidth ) {
-                        item.w = Math.floor( item.offsetWidth / 2 );
+                        item.w = item.offsetWidth >> 1;
                         item.style.width = item.w + "px";
                         x = item.w + item.x;
                     }
@@ -366,7 +366,7 @@
                 cur && cur.classList.remove( "select" );
                 newItem.classList.add( "select" );
                 curSelectIndex = newItem.index;
-                function clearChangeSatate() {
+                function clearChangeState() {
                     loopArray( querySelectorAll( ".filter-item.change" ), function ( item ) {
                         item.classList.remove( "change" );
                     } );
@@ -375,7 +375,7 @@
                 newItem.onclick = function ( e ) {
 
                     function select() {
-                        clearChangeSatate();
+                        clearChangeState();
                         var cur = querySelector( ".frame-item.select" );
                         cur && cur.classList.remove( "select" );
                         newItem.classList.add( "select" );
@@ -426,7 +426,7 @@
                         }
                         else {
                             form.reset();
-                            clearChangeSatate();
+                            clearChangeState();
                             img.style.webkitFilter = "";
                         }
                         frameItems = [];
@@ -436,7 +436,7 @@
                         } )
                     }
                 };
-                clearChangeSatate();
+                clearChangeState();
                 if ( inputData ) {
                     newItem.filterObj = inputStyle;
                     newItem.filterValue = inputData;
@@ -457,11 +457,7 @@
                     newItem.w = WIDTH - x;
                 }
 
-                var leftItem,
-                        leftThreshold,
-                        rightItem,
-                        rightThreshold,
-                        duration;
+                var leftItem, leftThreshold, rightItem, rightThreshold, duration;
 
                 onDragV( leftTip, {
                     onTap : function () {
@@ -478,7 +474,7 @@
                          ***************************/
                         var x = newItem.x + dx;
                         var w = newItem.w - dx;
-                        //  leftThreshold可能是0，也可能是左边的边缘
+                        /**** leftThreshold可能是0，也可能是左边的边缘 ****/
                         if ( x >= leftThreshold && w >= tipWidth ) {
                             newItem.x = x;
                             newItem.style.left = x + "px";

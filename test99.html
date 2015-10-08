@@ -19,34 +19,6 @@
             bottom: 0;
         }
 
-        .test, .test2 {
-            width: 100px;
-            height: 100px;
-            -webkit-transform: translate3d(0, 0, 0);
-        }
-
-        .test {
-            background: red;
-        }
-
-        .test2 {
-            background: green;
-        }
-
-        .test2.animte {
-            -webkit-animation: 4s animate both;
-        }
-
-        .test.animte {
-            -webkit-transform: translate3d(100px, 0, 0);
-            -webkit-transition: 4s;
-        }
-
-        img {
-            width: 200px;
-            height: 200px;
-        }
-
         .btn {
             width: 50px;
             height: 50px;
@@ -54,28 +26,32 @@
             color: #fff;
         }
 
-        @-webkit-keyframes animate {
-            0% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-            100% {
-                -webkit-transform: translate3d(100px, 0, 0);
-            }
+        .red {
+            background-color: red;
         }
 
+        .green {
+            background-color: green;
+        }
     </style>
 <body>
-<p></p>
+<div class="btn red"></div>
+<div class="btn green"></div>
 <script>
     (function () {
 
-        function test() {
+        var red = document.querySelector( ".red" );
+        var green = document.querySelector( ".green" );
+
+        red.onclick = function () {
             alert( "ok" )
+        };
+
+        green.onclick = function () {
+            red.click();
         }
 
-        var a = new Date();
 
-        document.onclick = test;
     })();
 </script>
 </body>
