@@ -433,7 +433,7 @@
                         loopArray( querySelectorAll( ".frame-item" ), function ( item, i ) {
                             item.index = i;
                             frameItems.push( item );
-                        } )
+                        } );
                     }
                 };
                 clearChangeState();
@@ -643,30 +643,24 @@
                     curItem = querySelector( ".frame-item.select" );
                 },
                 onDrag : function () {
-                    var vv = range.value;
-                    if ( range.classList[0] == "blur" ) {
-                        vv = range.value + "px";
-                    }
-                    if ( range.classList[0] == "hue-rotate" ) {
-                        vv = range.value + "deg";
-                    }
-                    curItem.filterValue[i] = range.classList[0] + "(" + vv + ")";
-                    spans[i].innerText = range.value;
-                    var value = "";
-                    loopArray( curItem.filterValue, function ( v ) {
-                        if ( v ) {
-                            value += v;
-                        }
-                    } );
-                    if ( value.length != 0 ) {
-                        img.style.webkitFilter = value;
+                    if ( curItem ) {
+                        var vv = range.classList[0] == "blur" ? "(" + range.value + "px)" :
+                                range.classList[0] == "hue-rotate" ? "(" + range.value + "deg)" : "(" + range.value + ")";
+                        curItem.filterValue[i] = range.classList[0] + vv;
+                        spans[i].innerText = range.value;
+                        var value = "";
+                        loopArray( curItem.filterValue, function ( v ) {
+                            v && (value += v);
+                        } );
+                        value.length != 0 && (img.style.webkitFilter = value);
                     }
                 },
                 onUp : function () {
-                    var style = querySelector( "img.up" ).style.webkitFilter;
-                    var cur = querySelector( ".frame-item.select" );
-                    cur && (cur.filterObj = style.trim());
-                    range.parentNode.classList.add( "change" );
+                    if ( curItem ) {
+                        var style = querySelector( "img.up" ).style.webkitFilter;
+                        curItem.filterObj = style.trim();
+                        range.parentNode.classList.add( "change" );
+                    }
                 }
             } );
         } );

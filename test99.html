@@ -36,15 +36,9 @@
 <script>
     (function () {
 
-        var xhr = new XMLHttpRequest();
-        xhr.open( "get", "http://chuye.cloud7.com.cn/dataflow/hot?device=iOS&version=2.6.2&nettp=WIFI", true );
-        xhr.send();
-        xhr.onreadystatechange = function () {
-            if ( xhr.status == 4 ) {
-                console.log( xhr.responseText )
-            }
+        for ( var i = 0; ; i++ ) {
+            console.log( i );
         }
-
     })();
 </script>
 </body>
