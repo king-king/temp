@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+        }
+
+        .border {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 320px;
+            height: 504px;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            background-color: black;
+            border: 10px solid green;
+            overflow: hidden;
+        }
+
+        .layout {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+        }
+
+        .layout img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .loading-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin: -10px 0 0 -10px;
+            width: 20px;
+            height: 20px;
+            background: url("img/loading.png");
+            background-size: 20px 20px;
+            -webkit-animation: rotate 2s linear infinite;
+        }
+
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+            }
+            100% {
+                -webkit-transform: rotateZ(360deg);
+            }
+        }
+
+        @-webkit-keyframes keyframe0 {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0) scale(1);
+            }
+            10% {
+                -webkit-transform: translate3d(-0.1%, 0.1%, 0) scale(1.01);
+            }
+            20% {
+                -webkit-transform: translate3d(0.1%, 0.1%, 0) scale(1.01);
+            }
+            40% {
+                -webkit-transform: translate3d(0.1%, -0.1%, 0) scale(1.02);
+            }
+            60% {
+                -webkit-transform: translate3d(-0.2%, -0.1%, 0) scale(1.01);
+            }
+            70% {
+                -webkit-transform: translate3d(0.1%, -0.1%, 0) scale(1.01);
+            }
+            80% {
+                -webkit-transform: translate3d(-0.2%, -0.2%, 0) scale(1.01);
+            }
+            100% {
+                -webkit-transform: translate3d(0, 0, 0) scale(1);
+            }
+        }
+
+        @-webkit-keyframes keyframe1 {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0) rotateZ(0.5deg) scale(1);
+            }
+            10% {
+                -webkit-transform: translate3d(0, 0.1%, 0) rotateZ(0deg) scale(1.01);
+            }
+            20% {
+                -webkit-transform: translate3d(0, 0.2%, 0) rotateZ(0.2deg) scale(1.01);
+            }
+            40% {
+                -webkit-transform: translate3d(0, -0.2%, 0) rotateZ(-0.2deg) scale(1.02);
+            }
+            60% {
+                -webkit-transform: translate3d(-0.1%, -0.2%, 0) rotateZ(0deg) scale(1.01);
+            }
+            70% {
+                -webkit-transform: translate3d(0.1%, -0.2%, 0) rotateZ(0.1deg) scale(1.01);
+            }
+            80% {
+                -webkit-transform: translate3d(-0.1%, -0.1%, 0) rotateZ(-0.1deg) scale(1.01);
+            }
+            100% {
+                -webkit-transform: translate3d(0, 0, 0) scale(1);
+            }
+        }
+
+        @-webkit-keyframes keyframe2 {
+            0% {
+                -webkit-transform: rotateZ(0deg) scale(1);
+            }
+            40% {
+                -webkit-transform: rotateZ(0deg) scale(1);
+            }
+            41% {
+                -webkit-transform: rotateZ(5deg) scale(1.1);
+            }
+            70% {
+                -webkit-transform: rotateZ(5deg) scale(1.1);
+            }
+            71% {
+                -webkit-transform: rotateZ(-8deg) scale(1.2);
+            }
+            100% {
+                -webkit-transform: rotateZ(-8deg) scale(1.2);
+            }
+        }
+
+        @-webkit-keyframes keyframe3 {
+            0% {
+                -webkit-transform: rotateZ(-8deg) scale(1.2);
+            }
+            100% {
+                -webkit-transform: rotateZ(8deg) scale(1.2);
+            }
+        }
+
+        @-webkit-keyframes keyframe4 {
+            0% {
+                -webkit-transform: rotateZ(0.1deg) scale(1.01);
+            }
+            40% {
+                -webkit-transform: rotateZ(-0.2deg) scale(1.01);
+            }
+            41% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+            }
+            70% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+            }
+            71% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+            }
+            100% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+            }
+        }
+    </style>
+<body>
+<div class="border">
+    <div class="loading-icon"></div>
+</div>
+<audio src="music/Angelina.mp3" loop="loop"></audio>
+<script>
+    (function () {
+
+        var querySelector = document.querySelector.bind( document );
+
+        var border = querySelector( ".border" );
+        var loadingIcon = querySelector( ".loading-icon" );
+        var audio = querySelector( "audio" );
+
+
+        function loopArray( arr, func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[i], i );
+            }
+        }
+
+        function loop( i, func ) {
+            for ( var n = 0; n < i; n++ ) {
+                func( n );
+            }
+        }
+
+        // 并发
+        function concurrentTask( tasks, callback ) {
+            var len = tasks.length,
+                    count = 0;
+            tasks.forEach( function ( task ) {
+                task( function () {
+                    count++;
+                    if ( count == len ) {
+                        callback();
+                    }
+                } );
+            } );
+        }
+
+        function map( array, func ) {
+            var mapArray = [];
+            array.forEach( function ( item, i ) {
+                mapArray.push( func( item, i ) );
+            } );
+            return mapArray;
+        }
+
+        var srcs = [];
+        loop( 8, function ( i ) {
+            srcs.push( "img/doubi-" + i + ".jpg" );
+        } );
+
+        var images = [];
+        concurrentTask( map( srcs, function ( src, i ) {
+            return function ( done ) {
+                var img = new Image();
+                img.src = src;
+                images[i] = img;
+                img.onload = done;
+            }
+        } ), function () {
+            border.removeChild( loadingIcon );
+            audio.play();
+            play();
+        } );
+
+        var durations = [
+            1,
+            2,
+            1,
+            0.4,
+            0.2,
+            0.3,
+            1,
+            2,
+            0.2,
+            0.3,
+            0.4,
+            0.4
+        ];
+
+        function element( tag, arg, parent ) {
+            var el = document.createElement( tag );
+            for ( var key in arg ) {
+                switch ( key ) {
+                    case "classList":
+                        loopArray( arg.classList, function ( klass ) {
+                            el.classList.add( klass );
+                        } );
+                        break;
+                    default :
+                        el[key] = arg[key];
+                }
+            }
+            parent && parent.appendChild( el );
+            return el;
+        }
+
+        function css( el, style ) {
+            for ( var key in style ) {
+                el.style.setProperty( key, style[key], null );
+            }
+        }
+
+        var curLayouts = [];
+        var durationIndex = 0;
+        var imgIndex = 0;
+        var id;
+
+        function clear() {
+            loopArray( curLayouts, function ( layout ) {
+                layout.parentNode.removeChild( layout )
+            } );
+            curLayouts = [];
+        }
+
+        var s4 = [
+            {
+                left : "0",
+                top : "0",
+                "right" : "50%",
+                "bottom" : "50%"
+            },
+            {
+                left : "50%",
+                top : "0",
+                "right" : "0",
+                "bottom" : "50%"
+            },
+            {
+                left : "0",
+                top : "50%",
+                "right" : "50%",
+                "bottom" : "0"
+            },
+            {
+                left : "50%",
+                top : "50%",
+                "right" : "0",
+                "bottom" : "0"
+            }
+        ];
+
+        function play() {
+            clearTimeout( id );
+            var layout = element( "div", {"classList" : ["layout"]}, border );
+            layout.appendChild( images[imgIndex] );
+            clear();
+            curLayouts.push( layout );
+            if ( durationIndex < 3 ) {
+                images[imgIndex].style.webkitAnimation = "keyframe" + durationIndex + " " + durations[durationIndex] + "s both";
+            }
+            else if ( durationIndex == 6 ) {
+                // 4格
+                curLayouts[1] = layout.cloneNode( true );
+                curLayouts[2] = layout.cloneNode( true );
+                curLayouts[3] = layout.cloneNode( true );
+                loopArray( curLayouts, function ( l, i ) {
+                    if ( i > 0 ) {
+                        border.appendChild( l );
+                    }
+                    css( l, s4[i] );
+                } )
+            }
+            else {
+                images[imgIndex].style.webkitAnimation = "keyframe0" + " " + durations[durationIndex] + "s both";
+            }
+            id = setTimeout( play, durations[durationIndex] * 1000 );
+            durationIndex = (durationIndex + 1) % durations.length;
+            imgIndex = (imgIndex + 1) % images.length;
+        }
+
+
+    })();
+</script>
+</body>
+</html>
