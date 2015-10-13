@@ -11,6 +11,10 @@
     <title></title>
     <style>
 
+        * {
+            -webkit-user-select: none;
+        }
+
         body {
             position: absolute;
             top: 0;
@@ -58,6 +62,23 @@
             -webkit-animation: rotate 2s linear infinite;
         }
 
+        .button {
+            position: absolute;
+            height: 40px;
+            width: 80px;
+            line-height: 40px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .pause {
+            top: 20px;
+            right: 100px;
+            background-color: #1F2B39;
+            color: #fff;
+        }
+
         @-webkit-keyframes rotate {
             0% {
                 -webkit-transform: rotateZ(0deg);
@@ -84,7 +105,7 @@
                 -webkit-transform: translate3d(-0.2%, -0.1%, 0) scale(1.01);
             }
             70% {
-                -webkit-transform: translate3d(0.1%, -0.1%, 0) scale(1.01);
+                -webkit-transform: translate3d(0.1%, -0.1%, 0) scale(1.03);
             }
             80% {
                 -webkit-transform: translate3d(-0.2%, -0.2%, 0) scale(1.01);
@@ -171,11 +192,48 @@
                 -webkit-transform: rotateZ(0.2deg) scale(1.01);
             }
         }
+
+        @-webkit-keyframes keyframe5 {
+            0% {
+                -webkit-transform: rotateZ(0.2deg) scale(1);
+            }
+            10% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            }
+            20% {
+                -webkit-transform: rotateZ(-0.2deg) scale(1);
+            }
+            30% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            }
+            40% {
+                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
+            }
+            50% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            }
+            60% {
+                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
+            }
+            70% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            }
+            80% {
+                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
+            }
+            90% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            }
+            100% {
+                -webkit-transform: rotateZ(0deg) scale(1);
+            }
+        }
     </style>
 <body>
 <div class="border">
     <div class="loading-icon"></div>
 </div>
+<div class="button pause">mute</div>
 <audio src="music/Angelina.mp3" loop="loop"></audio>
 <script>
     (function () {
@@ -185,7 +243,24 @@
         var border = querySelector( ".border" );
         var loadingIcon = querySelector( ".loading-icon" );
         var audio = querySelector( "audio" );
+        var mute = querySelector( ".pause" );
 
+        if ( location.hash == "#raw" ) {
+            audio.src = "music/areuok.mp3";
+        }
+
+        mute.onclick = function () {
+            if ( audio.classList.contains( "puase" ) ) {
+                audio.classList.remove( "puase" );
+                audio.play();
+                mute.innerText = "mute";
+            }
+            else {
+                audio.classList.add( "puase" );
+                audio.pause();
+                mute.innerText = "play";
+            }
+        };
 
         function loopArray( arr, func ) {
             for ( var i = 0; i < arr.length; i++ ) {
@@ -242,13 +317,13 @@
 
         var durations = [
             1,
-            2,
+            1.4,
             1,
-            0.4,
-            0.2,
+            0.5,
             0.3,
-            1,
-            2,
+            0.4,
+            0.6,
+            1.2,
             0.2,
             0.3,
             0.4,
@@ -276,6 +351,7 @@
             for ( var key in style ) {
                 el.style.setProperty( key, style[key], null );
             }
+            return el;
         }
 
         var curLayouts = [];
@@ -317,6 +393,67 @@
             }
         ];
 
+        var s9 = [
+            {
+                left : "0",
+                top : "0",
+                right : "67%",
+                bottom : "67%"
+            },
+            {
+                left : "33%",
+                top : "0",
+                right : "34%",
+                bottom : "67%"
+            },
+            {
+                left : "66%",
+                top : "0",
+                right : "0",
+                bottom : "67%"
+            },
+
+
+            {
+                left : "0",
+                top : "33%",
+                right : "67%",
+                bottom : "34%"
+            },
+            {
+                left : "33%",
+                top : "33%",
+                right : "34%",
+                bottom : "34%"
+            },
+            {
+                left : "66%",
+                top : "33%",
+                right : "0",
+                bottom : "34%"
+            },
+
+
+            {
+                left : "0",
+                top : "66%",
+                right : "67%",
+                bottom : "0"
+            },
+            {
+                left : "33%",
+                top : "66%",
+                right : "34%",
+                bottom : "0"
+            },
+            {
+                left : "66%",
+                top : "66%",
+                right : "0",
+                bottom : "0"
+            }
+        ];
+
         function play() {
             clearTimeout( id );
             var layout = element( "div", {"classList" : ["layout"]}, border );
@@ -326,7 +463,7 @@
             if ( durationIndex < 3 ) {
                 images[imgIndex].style.webkitAnimation = "keyframe" + durationIndex + " " + durations[durationIndex] + "s both";
             }
-            else if ( durationIndex == 6 ) {
+            else if ( durationIndex == 5 ) {
                 // 4格
                 curLayouts[1] = layout.cloneNode( true );
                 curLayouts[2] = layout.cloneNode( true );
@@ -335,11 +472,23 @@
                     if ( i > 0 ) {
                         border.appendChild( l );
                     }
+                    l.childNodes[0].style.webkitAnimation = "keyframe5" + " " + durations[durationIndex] + "s both";
                     css( l, s4[i] );
-                } )
+                } );
+            }
+            else if ( durationIndex == 6 ) {
+                // 9格
+                loop( 8, function ( i ) {
+                    curLayouts[i + 1] = layout.cloneNode( true );
+                    border.appendChild( css( curLayouts[i + 1], s9[i + 1] ) );
+                    curLayouts[i + 1].childNodes[0].style.webkitAnimation = "keyframe5" + " " + durations[durationIndex] + "s both";
+                } );
+                css( layout, s9[0] );
+                images[imgIndex].style.webkitAnimation = "keyframe5" + " " + durations[durationIndex] + "s both";
+
             }
             else {
-                images[imgIndex].style.webkitAnimation = "keyframe0" + " " + durations[durationIndex] + "s both";
+                images[imgIndex].style.webkitAnimation = "keyframe0" + " " + durations[durationIndex] + "s cubic-bezier(.17,.67,.53,.95) both";
             }
             id = setTimeout( play, durations[durationIndex] * 1000 );
             durationIndex = (durationIndex + 1) % durations.length;
