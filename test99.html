@@ -51,26 +51,35 @@
             }
         }
 
-        canvas {
+        img {
             width: 320px;
             height: 508px;
+            opacity: 1;
+            transform: matrix(1, 0, 0, 1, 0, 0);
+
         }
 
         .target {
             transform: scale(-1);
         }
 
-        .test {
-            font-size: 30px;
-            color: red;
-            text-decoration: underline;
-            text-decoration-color: blue;
-            opacity: 0.2;
-            font-weight: bolder;
+        @keyframes keyframe11 {
+            40% {
+                opacity: 0.6;
+                transform: matrix(1, 0, 0, 1, 0, 0) scale(1.2, 1.2);
+            }
+            41% {
+                opacity: 0.4;
+                transform: matrix(1, 0, 0, 1, 0, 0) scale(1.15, 1.15);
+            }
+            42% {
+                opacity: 0;
+                transform: matrix(1, 0, 0, 1, 0, 0) scale(1.12, 1.12);
+            }
         }
     </style>
 <body>
-<div class="test">123123</div>
+<img src="img/doubi-0.jpg">
 <script>
     (function () {
 
