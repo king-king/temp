@@ -38,24 +38,23 @@
 
         @-webkit-keyframes keyframe5 {
             0% {
-                -webkit-transform: rotateZ(0.2deg) scale(1);
+                -webkit-transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg);
+                opacity: 0.33;
+                -webkit-filter: blur(6px)
             }
-            40% {
-                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
-            }
-            80% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            98% {
+                -webkit-transform: translate3d(0%, 0%, 0) scale(1) rotate(0deg);
+                opacity: 1
             }
             100% {
-                -webkit-transform: rotateZ(0deg) scale(1);
+                -webkit-filter: blur(0px)
             }
         }
 
         img {
             width: 320px;
             height: 508px;
-            opacity: 1;
-            -webkit-transform: scale(-1);
+            animation: cinema-animate16 3s;
         }
 
         .target {
@@ -68,6 +67,17 @@
 <script>
     (function () {
 
+
+        var str = "{0%{-webkit-transform:translate3d(0%,0%,0) scale(1) rotate(0deg);opacity:0.33,-webkit-filter:blur(6px)}98%{-webkit-transform:translate3d(0%,0%,0) scale(1) rotate(0deg);opacity:1}100%{-webkit-filter:blur(0px)}}";
+
+        var str2 = "231231";
+
+        var ii = str.search( /opacity:[0-9]+([.]{1}[0-9]+){0,1}/ );
+        console.log( str.charAt( ii ) );
+
+        var a = str2.match( /opacity:[0-9]+([.]{1}[0-9]+){0,1},/ );
+
+        console.log( a )
 
     })();
 </script>

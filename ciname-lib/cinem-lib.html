@@ -468,8 +468,14 @@
                 } );
                 var res = {};
                 blend( cinemaArg, filterArg, res );
+                var keyframe = replaceAll( replaceAll( replaceAll( replaceAll( JSON.stringify( res ), "\"", "" ), "),", ");" ), "},", "}" ), "%:", "%" );
+                while ( keyframe.match( /opacity:[0-9]+([.]{1}[0-9]+){0,1},/ ) ) {
+                    var aa = keyframe.match( /opacity:[0-9]+([.]{1}[0-9]+){0,1},/ )[0];
+                    keyframe = keyframe.replace( aa, aa.slice( 0, aa.length - 1 ) + ";" );
+
+                }
                 styleDom.sheet.insertRule( "@-webkit-keyframes cinema-animate"
-                        + styleIndex + replaceAll( replaceAll( replaceAll( replaceAll( JSON.stringify( res ), "\"", "" ), "),", ");" ), "},", "}" ), "%:", "%" ), 0 );
+                        + styleIndex + keyframe, 0 );
             }
             else {
                 style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
