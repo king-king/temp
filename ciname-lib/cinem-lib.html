@@ -47,8 +47,8 @@
         }
 
         .panel-item, .panel-item2 {
-            height: 60px;
-            line-height: 60px;
+            height: 50px;
+            line-height: 50px;
         }
 
         .panel-item .title, .panel-item2 .title {
@@ -138,6 +138,11 @@
             &nbsp;0&nbsp;<input type="range" value="1" min="0" max="5" step="0.1">5
             <span class="flag"></span>
         </div>
+        <div class="panel-item opacity value">
+            <div class="title">opacity:</div>
+            &nbsp;0&nbsp;<input type="range" value="1" min="0" max="1" step="0.01">1
+            <span class="flag"></span>
+        </div>
         <div class="panel-item rotate value">
             <div class="title">rotate:</div>
             <input type="text" value="0"> deg
@@ -221,12 +226,13 @@
             }
             frameItem.index = frames.length;
             frames.push( frameItem );
-            frameItem.data = data || [];
+            frameItem.data = data || [0, 0, 1, 1, 0];
 
             var cur = querySelector( ".frame-item.select" );
             cur && cur.classList.remove( "select" );
             form.reset();
             img.style.webkitTransform = "";
+            img.style.opacity = 1;
             frameItem.classList.add( "select" );
             loopArray( querySelectorAll( ".panel-item .flag" ), function ( span ) {
                 span.innerText = "";
@@ -252,7 +258,8 @@
                 var y = inputs[1].value ? inputs[1].value << 0 : 0;
                 img.style.webkitTransform = "translate3d(" + x +
                         "%," + y + "%,0) scale(" + (inputs[2].value || 1) + ") rotate("
-                        + (inputs[3].value || 0) + "deg)";
+                        + (inputs[4].value || 0) + "deg)";
+                img.style.opacity = inputs[3].value;
             }
 
             frameItem.onclick = function ( e ) {
@@ -320,15 +327,17 @@
             } );
         }
 
+        // 将已经编辑好的镜头数据导入
         putIn.onclick = function () {
             function getDataFromStyle( style ) {
-                //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)}"
+                //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)} opacity(1)"opacity有些可能没有
                 style = replaceAll( style, "%", "" );
                 var data = [];
                 style = style.replace( "scale", ";scale" );
                 style = style.replace( "rotate", ";rotate" );
                 style = style.replace( "}", "" );
                 style = style.replace( "deg", "" );
+                style = style.replace( "opacity", ";opacity" );
                 style += ";";
                 function translate3d( x, y ) {
                     x && (data[0] = x);
@@ -339,6 +348,10 @@
                     s && (data[2] = s);
                 }
 
+                function opacity( r ) {
+                    r && (data[3] = r);
+                }
+
                 function rotate( r ) {
                     r && (data[3] = r);
                 }
@@ -347,8 +360,8 @@
                 return data;
             }
 
-            // 将已经编辑好的镜头数据导入
             var cinemaData = prompt( "输入已经编辑好的镜头数据", "" );
+            cinemaData = replaceAll( replaceAll( cinemaData, "“", "\"" ), "”", "\"" );
             if ( cinemaData ) {
                 try {
                     cinemaData = JSON.parse( cinemaData );
@@ -366,7 +379,6 @@
                     }
                     addOneFrame( getDataFromStyle( cinemaData[percent] ), x );
                 }
-
             }
         };
 
@@ -384,7 +396,8 @@
                     var y = inputs[1].value ? inputs[1].value << 0 : 0;
                     img.style.webkitTransform = "translate3d(" + x +
                             "%," + y + "%,0) scale(" + (inputs[2].value || 1) + ") rotate("
-                            + (inputs[3].value || 0) + "deg)";
+                            + (inputs[4].value || 0) + "deg)";
+                    img.style.opacity = inputs[3].value;
                 }
             }
 
@@ -435,6 +448,7 @@
                 }
             }
             if ( filterArg ) {
+                // 滤镜导入数据
                 for ( var key in filterArg ) {
                     var value = filterArg[key];
                     filterArg[key + "%"] = {
@@ -448,7 +462,8 @@
                     cinemaArg[percent + "%"] = {
                         "-webkit-transform" : "translate3d(" + (f.data[0] || 0) +
                         "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
-                        + (f.data[3] || 0) + "deg)"
+                        + (f.data[4] || 0) + "deg)",
+                        opacity : f.data[3]
                     }
                 } );
                 var res = {};
@@ -463,7 +478,7 @@
                     percent = i == frame.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
                     style += (percent + "%{-webkit-transform:translate3d(" + (f.data[0] || 0) +
                     "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
-                    + (f.data[3] || 0) + "deg)}");
+                    + (f.data[4] || 0) + "deg);opacity:" + f.data[3] + "}");
                 } );
                 style += "}";
                 styleDom.sheet.insertRule( style, 0 );
@@ -478,7 +493,7 @@
                 var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
                 arg[percent] = "translate3d(" + (f.data[0] || 0) +
                         "%," + (f.data[1] || 0) + "%,0) scale(" + (f.data[2] || 1) + ") rotate("
-                        + (f.data[3] || 0) + "deg)";
+                        + (f.data[4] || 0) + "deg) opacity(" + f.data[3] + ")";
             } );
             event.clipboardData.setData( "text/plain", JSON.stringify( arg ) );
         } );
