@@ -154,20 +154,20 @@
         /*横向对称变换*/
         @-webkit-keyframes keyframe6 {
             0% {
-                -webkit-transform: scaleX(1);
+                -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
             }
             40% {
-                -webkit-transform: scaleX(1);
+                -webkit-transform: matrix(1, 0, 0, 1, 0, 0);
             }
             41% {
-                -webkit-transform: scaleX(-1);
+                -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
             }
             100% {
-                -webkit-transform: scaleX(-1);
+                -webkit-transform: matrix(-1, 0, 0, 1, 0, 0);
             }
         }
 
-        /*直接采用小清新第二页*/
+        /*直接采用小清新第二页的镜头*/
         @keyframes keyframe11 {
             40% {
                 opacity: 0.6;
@@ -183,7 +183,7 @@
             }
         }
 
-        /*直接采用小清新第二页*/
+        /*直接采用小清新第二页的镜头*/
         @keyframes keyframe16 {
             100% {
                 opacity: 1;
@@ -244,10 +244,16 @@
             audio.play();
             play();
         } );
+        function clear() {
+            loopArray( curLayouts, function ( layout ) {
+                layout.parentNode.removeChild( layout )
+            } );
+            curLayouts = [];
+        }
 
         var durations = [
             1,
-            0.5,
+            0.8,
             1,
             0.5,
             0.3,
@@ -264,13 +270,6 @@
         var imgIndex = 0;
         var id;
 
-        function clear() {
-            loopArray( curLayouts, function ( layout ) {
-                layout.parentNode.removeChild( layout )
-            } );
-            curLayouts = [];
-        }
-
         var s4 = [
             {
                 left : "0",
@@ -283,21 +282,21 @@
                 top : "0",
                 "right" : "0",
                 "bottom" : "50%",
-                transform : "scaleX(-1)"
+                transform : "matrix(-1, 0, 0, 1, 0, 0)"
             },
             {
                 left : "0",
                 top : "50%",
                 "right" : "50%",
                 "bottom" : "0",
-                transform : "scaleY(-1)"
+                transform : "matrix(1, 0, 0, -1, 0, 0)"
             },
             {
                 left : "50%",
                 top : "50%",
                 "right" : "0",
                 "bottom" : "0",
-                transform : "scale(-1)"
+                transform : "matrix(-1, 0, 0, -1, 0, 0)"
             }
         ];
 
@@ -368,15 +367,14 @@
             layout.appendChild( images[imgIndex] );
             clear();
             curLayouts.push( layout );
-            if ( durationIndex == 0 || durationIndex == 2 ) {
-                images[imgIndex].style.webkitAnimation = "keyframe" + durationIndex + " " + durations[durationIndex] + "s both";
-            }
-            else if ( durationIndex == 1 ) {
+            if ( durationIndex == 1 ) {
                 curLayouts[1] = layout.cloneNode( true );
                 border.appendChild( curLayouts[1] );
                 images[imgIndex].style.webkitAnimation = "keyframe16 " + durations[durationIndex] + "s both";
                 curLayouts[1].childNodes[0].style.webkitAnimation = "keyframe11 " + durations[durationIndex] + "s both";
-
+            }
+            else if ( durationIndex == 2 ) {
+                images[imgIndex].style.webkitAnimation = "keyframe" + durationIndex + " " + durations[durationIndex] + "s both";
             }
             else if ( durationIndex == 5 ) {
                 // 4格
@@ -406,6 +404,7 @@
                 images[imgIndex].style.webkitAnimation = "keyframe6" + " " + durations[durationIndex] + "s cubic-bezier(.17,.67,.53,.95) both";
             }
             else if ( durationIndex > 7 && durationIndex < 10 ) {
+                // 设为空字符串是为了清空，表明这两页没有动画
                 images[imgIndex].style.webkitAnimation = "";
             }
             else {
