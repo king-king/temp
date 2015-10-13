@@ -36,11 +36,38 @@
             }
         }
 
+        @-webkit-keyframes keyframe5 {
+            0% {
+                -webkit-transform: rotateZ(0.2deg) scale(1);
+            }
+            40% {
+                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
+            }
+            80% {
+                -webkit-transform: rotateZ(0.2deg) scale(1.1);
+            }
+            100% {
+                -webkit-transform: rotateZ(0deg) scale(1);
+            }
+        }
+
+        canvas {
+            width: 320px;
+            height: 508px;
+        }
+
+        .target {
+            transform: scale(-1);
+        }
     </style>
 <body>
-<div class="page"></div>
+<img src="img/doubi-0.jpg" class="target">
+<canvas width="320" height="508"></canvas>
 <script>
+    (function () {
 
+
+    })();
 </script>
 </body>
 </html>

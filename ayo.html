@@ -117,28 +117,10 @@
 
         @-webkit-keyframes keyframe1 {
             0% {
-                -webkit-transform: translate3d(0, 0, 0) rotateZ(0.5deg) scale(1);
-            }
-            10% {
-                -webkit-transform: translate3d(0, 0.1%, 0) rotateZ(0deg) scale(1.01);
-            }
-            20% {
-                -webkit-transform: translate3d(0, 0.2%, 0) rotateZ(0.2deg) scale(1.01);
-            }
-            40% {
-                -webkit-transform: translate3d(0, -0.2%, 0) rotateZ(-0.2deg) scale(1.02);
-            }
-            60% {
-                -webkit-transform: translate3d(-0.1%, -0.2%, 0) rotateZ(0deg) scale(1.01);
-            }
-            70% {
-                -webkit-transform: translate3d(0.1%, -0.2%, 0) rotateZ(0.1deg) scale(1.01);
-            }
-            80% {
-                -webkit-transform: translate3d(-0.1%, -0.1%, 0) rotateZ(-0.1deg) scale(1.01);
+                -webkit-transform: scale(1.2);
             }
             100% {
-                -webkit-transform: translate3d(0, 0, 0) scale(1);
+                -webkit-transform: scale(1);
             }
         }
 
@@ -150,46 +132,16 @@
                 -webkit-transform: rotateZ(0deg) scale(1);
             }
             41% {
-                -webkit-transform: rotateZ(5deg) scale(1.1);
-            }
-            70% {
-                -webkit-transform: rotateZ(5deg) scale(1.1);
-            }
-            71% {
-                -webkit-transform: rotateZ(-8deg) scale(1.2);
-            }
-            100% {
-                -webkit-transform: rotateZ(-8deg) scale(1.2);
-            }
-        }
-
-        @-webkit-keyframes keyframe3 {
-            0% {
-                -webkit-transform: rotateZ(-8deg) scale(1.2);
-            }
-            100% {
                 -webkit-transform: rotateZ(8deg) scale(1.2);
             }
-        }
-
-        @-webkit-keyframes keyframe4 {
-            0% {
-                -webkit-transform: rotateZ(0.1deg) scale(1.01);
-            }
-            40% {
-                -webkit-transform: rotateZ(-0.2deg) scale(1.01);
-            }
-            41% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.01);
-            }
             70% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+                -webkit-transform: rotateZ(8deg) scale(1.2);
             }
             71% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+                -webkit-transform: rotateZ(-12deg) scale(1.4);
             }
             100% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.01);
+                -webkit-transform: rotateZ(-12deg) scale(1.4);
             }
         }
 
@@ -197,37 +149,33 @@
             0% {
                 -webkit-transform: rotateZ(0.2deg) scale(1);
             }
-            10% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.1);
-            }
-            20% {
-                -webkit-transform: rotateZ(-0.2deg) scale(1);
-            }
-            30% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.1);
-            }
             40% {
                 -webkit-transform: rotateZ(-0.2deg) scale(1.1);
             }
-            50% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.1);
-            }
-            60% {
-                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
-            }
-            70% {
-                -webkit-transform: rotateZ(0.2deg) scale(1.1);
-            }
             80% {
-                -webkit-transform: rotateZ(-0.2deg) scale(1.1);
-            }
-            90% {
                 -webkit-transform: rotateZ(0.2deg) scale(1.1);
             }
             100% {
                 -webkit-transform: rotateZ(0deg) scale(1);
             }
         }
+
+        /*横向对称变换*/
+        @-webkit-keyframes keyframe6 {
+            0% {
+                -webkit-transform: scaleX(1);
+            }
+            40% {
+                -webkit-transform: scaleX(1);
+            }
+            41% {
+                -webkit-transform: scaleX(-1);
+            }
+            100% {
+                -webkit-transform: scaleX(-1);
+            }
+        }
+
     </style>
 <body>
 <div class="border">
@@ -235,10 +183,9 @@
 </div>
 <div class="button pause">mute</div>
 <audio src="music/Angelina.mp3" loop="loop"></audio>
+<script src="itools.js"></script>
 <script>
     (function () {
-
-        var querySelector = document.querySelector.bind( document );
 
         var border = querySelector( ".border" );
         var loadingIcon = querySelector( ".loading-icon" );
@@ -262,39 +209,6 @@
             }
         };
 
-        function loopArray( arr, func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[i], i );
-            }
-        }
-
-        function loop( i, func ) {
-            for ( var n = 0; n < i; n++ ) {
-                func( n );
-            }
-        }
-
-        // 并发
-        function concurrentTask( tasks, callback ) {
-            var len = tasks.length,
-                    count = 0;
-            tasks.forEach( function ( task ) {
-                task( function () {
-                    count++;
-                    if ( count == len ) {
-                        callback();
-                    }
-                } );
-            } );
-        }
-
-        function map( array, func ) {
-            var mapArray = [];
-            array.forEach( function ( item, i ) {
-                mapArray.push( func( item, i ) );
-            } );
-            return mapArray;
-        }
 
         var srcs = [];
         loop( 8, function ( i ) {
@@ -317,42 +231,18 @@
 
         var durations = [
             1,
-            1.4,
+            0.2,
             1,
             0.5,
             0.3,
             0.4,
             0.6,
-            1.2,
-            0.2,
-            0.3,
+            0.6,// 7
             0.4,
-            0.4
+            0.6,
+            0.2,
+            0.4// 11
         ];
-
-        function element( tag, arg, parent ) {
-            var el = document.createElement( tag );
-            for ( var key in arg ) {
-                switch ( key ) {
-                    case "classList":
-                        loopArray( arg.classList, function ( klass ) {
-                            el.classList.add( klass );
-                        } );
-                        break;
-                    default :
-                        el[key] = arg[key];
-                }
-            }
-            parent && parent.appendChild( el );
-            return el;
-        }
-
-        function css( el, style ) {
-            for ( var key in style ) {
-                el.style.setProperty( key, style[key], null );
-            }
-            return el;
-        }
 
         var curLayouts = [];
         var durationIndex = 0;
@@ -377,19 +267,22 @@
                 left : "50%",
                 top : "0",
                 "right" : "0",
-                "bottom" : "50%"
+                "bottom" : "50%",
+                transform : "scaleX(-1)"
             },
             {
                 left : "0",
                 top : "50%",
                 "right" : "50%",
-                "bottom" : "0"
+                "bottom" : "0",
+                transform : "scaleY(-1)"
             },
             {
                 left : "50%",
                 top : "50%",
                 "right" : "0",
-                "bottom" : "0"
+                "bottom" : "0",
+                transform : "scale(-1)"
             }
         ];
 
@@ -487,6 +380,12 @@
                 images[imgIndex].style.webkitAnimation = "keyframe5" + " " + durations[durationIndex] + "s both";
 
             }
+            else if ( durationIndex == 7 ) {
+                images[imgIndex].style.webkitAnimation = "keyframe6" + " " + durations[durationIndex] + "s cubic-bezier(.17,.67,.53,.95) both";
+            }
+            else if ( durationIndex > 7 && durationIndex < 10 ) {
+                images[imgIndex].style.webkitAnimation = "";
+            }
             else {
                 images[imgIndex].style.webkitAnimation = "keyframe0" + " " + durations[durationIndex] + "s cubic-bezier(.17,.67,.53,.95) both";
             }
@@ -494,8 +393,6 @@
             durationIndex = (durationIndex + 1) % durations.length;
             imgIndex = (imgIndex + 1) % images.length;
         }
-
-
     })();
 </script>
 </body>
