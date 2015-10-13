@@ -182,7 +182,7 @@
     <div class="loading-icon"></div>
 </div>
 <div class="button pause">mute</div>
-<audio src="music/Angelina.mp3" loop="loop"></audio>
+<audio src="music/areuok.mp3" loop="loop"></audio>
 <script src="itools.js"></script>
 <script>
     (function () {
@@ -191,10 +191,6 @@
         var loadingIcon = querySelector( ".loading-icon" );
         var audio = querySelector( "audio" );
         var mute = querySelector( ".pause" );
-
-        if ( location.hash == "#raw" ) {
-            audio.src = "music/areuok.mp3";
-        }
 
         mute.onclick = function () {
             if ( audio.classList.contains( "puase" ) ) {
@@ -208,7 +204,6 @@
                 mute.innerText = "play";
             }
         };
-
 
         var srcs = [];
         loop( 8, function ( i ) {
@@ -243,7 +238,6 @@
             0.2,
             0.4// 11
         ];
-
         var curLayouts = [];
         var durationIndex = 0;
         var imgIndex = 0;
