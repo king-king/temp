@@ -85,11 +85,11 @@ function onTap( el , func ) {
     addEventListener( el , "mousedown" , function () {
         el.classList.add( "tap" );
         var gh = addEventListener( document , "mouseup" , function () {
-            console.log( "document" );
             el.classList.remove( "tap" );
+            gh.remove();
+            jh.remove();
         } );
         var jh = addEventListener( el , "mouseup" , function () {
-            console.log( "el" );
             func();
         } );
     } );

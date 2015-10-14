@@ -63,13 +63,15 @@
             height: 50px;
             width: 50px;
             cursor: pointer;
+            -webkit-transform: scale(0.7);
+            margin-left: 50px;
         }
 
         .add-effect .button {
             -webkit-filter: blur(1px);
             -moz-filter: blur(1px);
             filter: blur(1px);
-            transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+            transition: 0.1s cubic-bezier(0.23, 1, 0.32, 1);
             box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.5), inset 0 -3px 4px -1px rgba(0, 0, 0, 0.2), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 3px 4px -1px rgba(255, 255, 255, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.8), inset 0 20px 30px 0 rgba(255, 255, 255, 0.2);
             border-radius: 40px;
             position: absolute;
@@ -83,7 +85,7 @@
             top: 50%;
         }
 
-        .add-effect:hover .button {
+        .add-effect.tap .button {
             box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 20px 0 rgba(0, 0, 0, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
         }
 
@@ -125,7 +127,7 @@
             top: 0;
             bottom: 0;
             z-index: 100;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.85);
         }
 
         .close-mask {
@@ -135,7 +137,7 @@
             text-align: center;
             color: #fff;
             border-radius: 30px;
-            background-color: black;
+            background-color: red;
             font-size: 20px;
             cursor: pointer;
             position: absolute;
@@ -145,6 +147,64 @@
 
         .close-mask:hover {
             opacity: 0.5;
+        }
+
+        .effect-name {
+            text-align: center;
+            width: 200px;
+            height: 30px;
+            outline: none;
+            border-radius: 6px;
+            position: absolute;
+            left: 50%;
+            margin-left: -100px;
+            top: 100px;
+            border-width: 1px;
+        }
+
+        .camera-data {
+            width: 30%;
+            height: 300px;
+            position: absolute;
+            top: 150px;
+            right: 50%;
+            margin-right: 20px;
+            border-radius: 20px;
+            outline: none;
+            text-align: center;
+        }
+
+        .filter-data {
+            width: 30%;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            top: 150px;
+            margin-left: 20px;
+            border-radius: 20px;
+            outline: none;
+            text-align: center;
+        }
+
+        .mask .ok-btn {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 20px;
+            position: absolute;
+            left: 50%;
+            margin-left: -50px;
+            top: 500px;
+            background: #fff;
+            color: #000;
+            cursor: pointer;
+            box-shadow: 0 5px 2px 2px #666;
+        }
+
+        .mask .ok-btn:active {
+            box-shadow: 0 1px 1px 1px #666;
+            top: 505px;
         }
     </style>
 </head>
@@ -174,19 +234,42 @@
 
         var addBtn = querySelector( ".add-effect" );
 
-
         var isConfig = location.hash == "#config";
 
         isConfig && addBtn.classList.remove( "hide" );
 
+        onTap( addBtn , function () {
+            var mask = element( "div" , { classList : [ "mask" ] } , document.body );
+            var closeBtn = element( "div" , { classList : [ "close-mask" ] , innerText : "X" } , mask );
+            closeBtn.onclick = function () {
+                mask.parentNode.removeChild( mask );
+            };
 
-//        addBtn.onclick = function () {
-//            var mask = element( "div" , { classList : [ "mask" ] } , document.body );
-//            var closeBtn = element( "div" , { classList : [ "close-mask" ] , innerText : "X" } , mask );
-//            closeBtn.onclick = function () {
-//                mask.parentNode.removeChild( mask );
-//            }
-//        }
+            var name = element( "input" , { classList : [ "effect-name" ] , placeholder : "输入名称" } , mask );
+
+            var camera = element( "textarea" , {
+                classList : [ "camera-data" ] ,
+                placeholder : "输入镜头数据（可选）"
+            } , mask );
+
+            var filter = element( "textarea" , {
+                classList : [ "filter-data" ] ,
+                placeholder : "输入滤镜数据（可选）"
+            } , mask );
+
+            var okBtn = element( "div" , {
+                classList : [ "ok-btn" ] ,
+                innerText : "保存"
+            } , mask );
+
+            okBtn.onclick = function () {
+                var cameraData = camera.value.trim();
+                var filterData = filter.value.trim();
+                var effctName = name.value.trim();
+                console.log( cameraData , filterData , effctName );
+            }
+
+        } );
 
     })();
 </script>
