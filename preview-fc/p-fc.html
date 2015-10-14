@@ -376,7 +376,7 @@
 
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
-            loopArray( data.data , function ( d ) {
+            loopArray( data.data , function ( d , index ) {
                 if ( (selectNames && selectNames[ d.name ]) || !selectNames ) {
                     var spanouter = element( "span" , {} , panel );
                     var input = element( "input" , {
@@ -384,13 +384,22 @@
                         filter : d.filter ,
                         camera : d.camera ,
                         type : "radio" ,
-                        name : "camera"
+                        name : "camera" ,
+                        index : index
                     } , spanouter );
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
                     // 构造一个以name为名字的keyframe
-//                    styleDom.sheet.insertRule( "@-webkit-keyframes " + d.name , 0 );
+                    var keyframe = "@-webkit-keyframes keyframe" + index + "{";
                     var style = parseData( d.camera , d.filter );
-                    console.log( style )
+                    for ( var percent in style ) {
+                        keyframe = keyframe + percent + "%{";
+                        for ( var key in style[ percent ] ) {
+                            keyframe = keyframe + key + ":" + style[ percent ][ key ];
+                        }
+                        keyframe += "}"
+                    }
+                    keyframe += "}";
+                    styleDom.sheet.insertRule( keyframe , 0 );
                 }
             } );
         } );
