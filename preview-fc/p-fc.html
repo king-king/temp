@@ -310,20 +310,20 @@
             style = style.replace( "opacity" , ";opacity" );
             style += ";";
             function translate3d( x , y ) {
-                x && (data[ 0 ] = x);
-                y && (data[ 1 ] = y);
+                data[ 0 ] = x;
+                data[ 1 ] = y;
             }
 
             function scale( s ) {
-                s && (data[ 2 ] = s);
+                data[ 2 ] = s;
             }
 
             function opacity( r ) {
-                r && (data[ 3 ] = r);
+                data[ 3 ] = r;
             }
 
             function rotate( r ) {
-                r && (data[ 4 ] = r);
+                data[ 4 ] = r;
             }
 
             eval( style );
