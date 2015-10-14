@@ -27,7 +27,6 @@
             margin-top: -225px;
             position: absolute;
             overflow: hidden;
-            cursor: pointer;
         }
 
         .img-border img {
@@ -291,6 +290,11 @@
                     }
                 } );
             }
+
+        } );
+
+        // 先获取全部数据
+        get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
 
         } );
 

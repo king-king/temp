@@ -21,11 +21,11 @@ MongoClient.connect( dbUrl , function ( err , db ) {
             col = db.collection( "effects" );
             // 开启http服务器
             http.createServer( function ( req , res ) {
+                res.writeHead( 200 , {
+                    'Content-Type' : 'application/json; charset=utf-8' ,
+                    "Access-Control-Allow-Origin" : "*"
+                } );
                 if ( req.url == "/insertOne" ) {
-                    res.writeHead( 200 , {
-                        'Content-Type' : 'application/json; charset=utf-8' ,
-                        "Access-Control-Allow-Origin" : "*"
-                    } );
                     var doc = {};
                     doc.date = new Date();
                     var data = "";
@@ -53,6 +53,22 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                             }
                             res.end();
                         } );
+                    } );
+                }
+                else if ( req.url == "/getAll" ) {
+                    col.find().toArray( function ( err , docs ) {
+                        if ( err ) {
+                            res.write( JSON.stringify( {
+                                code : 400 ,
+                                data : "操作失败"
+                            } ) );
+                        } else {
+                            res.write( JSON.stringify( {
+                                code : 200 ,
+                                data : docs
+                            } ) );
+                        }
+                        res.end();
                     } );
                 }
             } ).listen( 6024 );

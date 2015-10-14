@@ -106,3 +106,14 @@ function post( url , data , callback ) {
         }
     }
 }
+
+function get( url , callback ) {
+    var xhr = new XMLHttpRequest();
+    xhr.open( "get" , url , true );
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if ( xhr.readyState == 4 ) {
+            callback( JSON.parse( xhr.responseText ) );
+        }
+    }
+}
