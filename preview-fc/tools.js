@@ -94,3 +94,15 @@ function onTap( el , func ) {
         } );
     } );
 }
+
+
+function post( url , data , callback ) {
+    var xhr = new XMLHttpRequest();
+    xhr.open( "post" , url , true );
+    xhr.send( JSON.stringify( data ) );
+    xhr.onreadystatechange = function () {
+        if ( xhr.status == 4 ) {
+            callback( JSON.parse( xhr.responseText ) );
+        }
+    }
+}
