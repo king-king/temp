@@ -228,12 +228,7 @@
     <span class="label">c</span>
 </div>
 <div class="panel">
-    <span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>
-    <span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>
-    <span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>
-    <span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>
-    <span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>
-    <span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>
+    <!--<span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>-->
 </div>
 <script src="tools.js"></script>
 <script>
@@ -242,6 +237,7 @@
         var querySelectorAll = document.querySelectorAll.bind( document );
 
         var addBtn = querySelector( ".add-effect" );
+        var panel = querySelector( ".panel" );
 
         var isConfig = location.hash == "#config";
 
@@ -293,9 +289,110 @@
 
         } );
 
+        var search = decodeURIComponent( location.search );
+        var selectNames = null;
+        if ( search ) {
+            selectNames = {};
+            search = search.slice( 1 , search.length ).split( "&" );
+            loopArray( search , function ( name ) {
+                selectNames[ name ] = true;
+            } );
+        }
+
+        function getDataFromStyle( style ) {
+            //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)} opacity(1)"opacity有些可能没有
+            style = replaceAll( style , "%" , "" );
+            var data = [];
+            style = style.replace( "scale" , ";scale" );
+            style = style.replace( "rotate" , ";rotate" );
+            style = style.replace( "}" , "" );
+            style = style.replace( "deg" , "" );
+            style = style.replace( "opacity" , ";opacity" );
+            style += ";";
+            function translate3d( x , y ) {
+                x && (data[ 0 ] = x);
+                y && (data[ 1 ] = y);
+            }
+
+            function scale( s ) {
+                s && (data[ 2 ] = s);
+            }
+
+            function opacity( r ) {
+                r && (data[ 3 ] = r);
+            }
+
+            function rotate( r ) {
+                r && (data[ 4 ] = r);
+            }
+
+            eval( style );
+            return data;
+        }
+
+        function parseData( cameraStr , filterStr ) {
+            var cd , fd;
+            cameraStr = replaceAll( replaceAll( cameraStr , "“" , "\"" ) , "”" , "\"" );
+            filterStr = replaceAll( replaceAll( filterStr , "“" , "\"" ) , "”" , "\"" );
+            try {
+                cd = JSON.parse( cameraStr );
+                fd = JSON.parse( filterStr );
+            } catch ( e ) {
+                console.warn( "数据被破坏，解析失败" );
+                return;
+            }
+            var cameraData = {};
+            var filterData = {};
+            var key;
+            for ( key in cd ) {
+                cameraData[ key ] = {};
+                var d = getDataFromStyle( cd[ key ] );
+                var translate3d = "";
+                var scale = "";
+                var rotate = "";
+                if ( d[ 0 ] != undefined && d[ 1 ] != undefined ) {
+                    translate3d = "translate3d(" + d[ 0 ] + "%," + d[ 1 ] + "%,0) ";
+                }
+                if ( d[ 2 ] != undefined ) {
+                    scale = " scale(" + d[ 2 ] + ") ";
+                }
+                if ( d[ 4 ] != undefined ) {
+                    rotate = " rotateZ(" + d[ 4 ] + "deg) ";
+                }
+                cameraData[ key ][ "-webkit-transform" ] = translate3d + scale + rotate + ";";
+                d[ 3 ] && ( cameraData[ key ].opacity = d[ 3 ] + ";");
+            }
+            for ( key in fd ) {
+                filterData[ key ] = {
+                    "-webkit-filter" : fd[ key ] + ";"
+                };
+            }
+            var res = {};
+            blend( cameraData , filterData , res );
+            return res;
+        }
+
+        var styleDom = element( "style" , {} , document.head );
+
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
-
+            loopArray( data.data , function ( d ) {
+                if ( (selectNames && selectNames[ d.name ]) || !selectNames ) {
+                    var spanouter = element( "span" , {} , panel );
+                    var input = element( "input" , {
+                        classList : [ "name" ] ,
+                        filter : d.filter ,
+                        camera : d.camera ,
+                        type : "radio" ,
+                        name : "camera"
+                    } , spanouter );
+                    var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
+                    // 构造一个以name为名字的keyframe
+//                    styleDom.sheet.insertRule( "@-webkit-keyframes " + d.name , 0 );
+                    var style = parseData( d.camera , d.filter );
+                    console.log( style )
+                }
+            } );
         } );
 
     })();

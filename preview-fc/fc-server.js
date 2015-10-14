@@ -34,8 +34,8 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                     } );
                     req.on( "end" , function () {
                         data = JSON.parse( data );
-                        doc.filter = data.filter || "";
-                        doc.camera = data.camera || "";
+                        doc.filter = data.filter || {};
+                        doc.camera = data.camera || {};
                         doc.name = data.name || "";
                         // ≤Â»Î ˝æ›
                         col.insertOne( doc , function ( err , result ) {
