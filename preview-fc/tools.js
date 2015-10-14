@@ -101,7 +101,7 @@ function post( url , data , callback ) {
     xhr.open( "post" , url , true );
     xhr.send( JSON.stringify( data ) );
     xhr.onreadystatechange = function () {
-        if ( xhr.status == 4 ) {
+        if ( xhr.readyState == 4 ) {
             callback( JSON.parse( xhr.responseText ) );
         }
     }

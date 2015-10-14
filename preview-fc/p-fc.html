@@ -279,7 +279,6 @@
                 if ( !effectName ) {
                     alert( "名字不能为空" );
                 }
-                console.log( cameraData , filterData , effctName );
                 post( "http://" + location.hostname + ":6024/insertOne" , {
                     filter : filterData ,
                     camera : cameraData ,
