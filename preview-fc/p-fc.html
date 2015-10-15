@@ -58,6 +58,11 @@
 
         .panel > span .name {
             cursor: pointer;
+            font-weight: bolder;
+        }
+
+        .panel > span .name.selected {
+            color: orangered;
         }
 
         .header {
@@ -424,6 +429,8 @@
 
         var curIndex = 0;
 
+        var selectIndex = {};
+
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
             loopArray( data.data , function ( d , index ) {
@@ -439,6 +446,16 @@
                     } , spanouter );
                     !index && (input.checked = true);
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
+                    spaninner.onclick = function () {
+                        // 选中了
+                        if ( spaninner.classList.contains( "selected" ) ) {
+                            spaninner.classList.remove( "selected" );
+                            selectIndex[ d.index ] = false;
+                        } else {
+                            spaninner.classList.add( "selected" );
+                            selectIndex[ d.index ] = true;
+                        }
+                    };
                     // 构造一个以keyframe{index}为名字的keyframe
                     var keyframe = "@-webkit-keyframes keyframe" + index + "{";
                     var style = parseData( d.camera , d.filter );
