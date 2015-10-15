@@ -14,6 +14,19 @@ c = {
 
 v = { "0" : "blur(6px)" , "100" : "blur(0px)" }
 
-"http://192.168.0.229:55554/preview-fc/p-fc.html?0&1"
+c = {
+    "0" : "translate3d(0%,0%,0) scale(0.5) rotate(0deg) opacity(1)" ,
+    "2" : "translate3d(0%,0%,0) scale(0.5) rotate(0deg) opacity(0)" ,
+    "5" : "translate3d(0%,0%,0) scale(0.7) rotate(0deg) opacity(1)" ,
+    "7" : "translate3d(0%,0%,0) scale(0.7) rotate(0deg) opacity(0)" ,
+    "10" : "translate3d(0%,0%,0) scale(0.9) rotate(0deg) opacity(1)" ,
+    "12" : "translate3d(0%,0%,0) scale(0.9) rotate(0deg) opacity(0)" ,
+    "15" : "translate3d(0%,0%,0) scale(2) rotate(0deg) opacity(1)" ,
+    "97" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)"
+}
 
 
+a2 = {
+    "0" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)" ,
+    "5" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)"
+}
