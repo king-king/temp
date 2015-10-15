@@ -40,6 +40,7 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                         doc.camera = data.camera || "{}";
                         doc.name = data.name || "";
                         doc.duration = data.duration;
+                        doc.display = 1;
                         // 插入数据
                         //搞一个自增id
                         col.count( function ( err , count ) {
@@ -76,7 +77,7 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                         'Content-Type' : 'application/json; charset=utf-8' ,
                         "Access-Control-Allow-Origin" : "*"
                     } );
-                    col.find().toArray( function ( err , docs ) {
+                    col.find( { display : 1 } ).toArray( function ( err , docs ) {
                         if ( err ) {
                             res.write( JSON.stringify( {
                                 code : 400 ,
