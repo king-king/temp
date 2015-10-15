@@ -373,13 +373,31 @@
                 }
                 frame.innerHTML = "";
                 frames = [];
-                for ( var percent in cinemaData ) {
-                    var x = parseFloat( percent ) * WIDTH / 100;
+                var indata = [];
+                for ( var p in cinemaData ) {
+                    if ( p.indexOf( "." ) != -1 ) {
+                        indata.push( (parseFloat( p )).toFixed( 1 ) );
+                    } else {
+                        indata.push( parseFloat( p ) );
+                    }
+                }
+                indata = indata.sort( function ( a , b ) {
+                    return a - b;
+                } );
+                loopArray( indata , function ( percent ) {
+                    var x = percent * WIDTH / 100;
                     if ( x + width > WIDTH ) {
                         x = WIDTH - width;
                     }
                     addOneFrame( getDataFromStyle( cinemaData[ percent ] ) , x );
-                }
+                } );
+//                for ( var percent in cinemaData ) {
+//                    var x = parseFloat( percent ) * WIDTH / 100;
+//                    if ( x + width > WIDTH ) {
+//                        x = WIDTH - width;
+//                    }
+//                    addOneFrame( getDataFromStyle( cinemaData[ percent ] ) , x );
+//                }
             }
         };
 
