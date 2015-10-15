@@ -17,15 +17,17 @@ var dbUrl = 'mongodb://localhost:27017/effect' ,
 
 MongoClient.connect( dbUrl , function ( err , db ) {
         if ( !err ) {
+            console.log( "æ•°æ®åº“å¯åŠ¨" );
             database = db;
             col = db.collection( "effects" );
-            // ¿ªÆôhttp·şÎñÆ÷
+            // å¼€å¯httpæœåŠ¡å™¨
+            console.log( "æœåŠ¡å™¨å¯åŠ¨" );
             http.createServer( function ( req , res ) {
-                res.writeHead( 200 , {
-                    'Content-Type' : 'application/json; charset=utf-8' ,
-                    "Access-Control-Allow-Origin" : "*"
-                } );
                 if ( req.url == "/insertOne" ) {
+                    res.writeHead( 200 , {
+                        'Content-Type' : 'application/json; charset=utf-8' ,
+                        "Access-Control-Allow-Origin" : "*"
+                    } );
                     var doc = {};
                     doc.date = new Date();
                     var data = "";
@@ -37,7 +39,7 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                         doc.filter = data.filter || "{}";
                         doc.camera = data.camera || "{}";
                         doc.name = data.name || "";
-                        // ²åÈëÊı¾İ
+                        // æ’å…¥æ•°æ®
                         col.insertOne( doc , function ( err , result ) {
                             if ( !err ) {
                                 res.write( JSON.stringify( {
@@ -48,7 +50,7 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                             else {
                                 res.write( JSON.stringify( {
                                     code : 400 ,
-                                    result : "Êı¾İ¿â²åÈë²Ù×÷Ê§°Ü"
+                                    result : "æ•°æ®åº“æ’å…¥æ“ä½œå¤±è´¥"
                                 } ) );
                             }
                             res.end();
@@ -56,11 +58,15 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                     } );
                 }
                 else if ( req.url == "/getAll" ) {
+                    res.writeHead( 200 , {
+                        'Content-Type' : 'application/json; charset=utf-8' ,
+                        "Access-Control-Allow-Origin" : "*"
+                    } );
                     col.find().toArray( function ( err , docs ) {
                         if ( err ) {
                             res.write( JSON.stringify( {
                                 code : 400 ,
-                                data : "²Ù×÷Ê§°Ü"
+                                data : "æ“ä½œå¤±è´¥"
                             } ) );
                         } else {
                             res.write( JSON.stringify( {
@@ -71,11 +77,19 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                         res.end();
                     } );
                 }
+                else {
+                    // bad request
+                    res.writeHead( 400 , {
+                        'Content-Type' : 'application/json; charset=utf-8' ,
+                        "Access-Control-Allow-Origin" : "*"
+                    } );
+                    res.end();
+                }
             } ).listen( 6024 );
         }
         else {
-            console.log( "mongodb·şÎñÆ÷Á´½ÓÊ§°Ü£¬http·şÎñÆ÷ÒÑ¾­¹Ø±Õ" );
-            //  ÍË³ö³ÌĞò£¬ÓÉ¸¸½ø³Ì¼àÌıµ½exitÊÂ¼şºóÖØÆô
+            console.log( "mongodbæœåŠ¡å™¨é“¾æ¥å¤±è´¥ï¼ŒhttpæœåŠ¡å™¨å·²ç»å…³é—­" );
+            //  é€€å‡ºç¨‹åºï¼Œç”±çˆ¶è¿›ç¨‹ç›‘å¬åˆ°exitäº‹ä»¶åé‡å¯
             process.exit();
         }
     }
@@ -83,5 +97,6 @@ MongoClient.connect( dbUrl , function ( err , db ) {
 
 
 process.on( "exit" , function () {
+    console.log( "æœåŠ¡å™¨é‡å¯" );
     database && database.close();
 } );
