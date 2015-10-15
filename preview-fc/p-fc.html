@@ -19,7 +19,7 @@
         }
 
         .img-border {
-            border: 5px solid black;
+            border: 8px solid black;
             width: 450px;
             height: 450px;
             top: 50%;
@@ -27,6 +27,10 @@
             margin-top: -225px;
             position: absolute;
             overflow: hidden;
+        }
+
+        .img-border.running {
+            border: 8px solid red;
         }
 
         .img-border img {
@@ -39,14 +43,12 @@
 
         .panel {
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            right: 0;
-        }
-
-        .panel {
-            padding-top: 50px;
+            top: 50%;
+            left: 60%;
+            width: 40%;
+            height: 466px;
+            -webkit-transform: translate3d(0, -50%, 0);
+            overflow-y: auto;
         }
 
         .panel > span {
@@ -58,16 +60,23 @@
             cursor: pointer;
         }
 
+        .header {
+            height: 60px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            text-align: center;
+        }
+
         .btn-btn {
-            box-shadow: inset 0 0 35px 5px rgba(255, 255, 255, 0.75), inset 0 2px 1px 1px rgba(255, 255, 255, 0.9), inset 0 -2px 1px 0 rgba(255, 255, 255, 0.75);
             border-radius: 8px;
-            background: #ccd0d4;
             height: 50px;
             width: 50px;
             cursor: pointer;
             position: relative;
             -webkit-transform: scale(0.7);
-            float: left;
+            display: inline-block;
         }
 
         .btn-btn .button {
@@ -215,17 +224,19 @@
 <div class="img-border">
     <img src="../img/1.jpg">
 </div>
-<div class="btn-btn add-effect hide" title="添加新的效果">
-    <span class="button"></span>
-    <span class="label">+</span>
-</div>
-<div class="btn-btn do-animate" title="做动画">
-    <span class="button"></span>
-    <span class="label">a</span>
-</div>
-<div class="btn-btn copy-url" title="生成链接">
-    <span class="button"></span>
-    <span class="label">c</span>
+<div class="header">
+    <div class="btn-btn add-effect hide" title="添加新的效果">
+        <span class="button"></span>
+        <span class="label">+</span>
+    </div>
+    <div class="btn-btn do-animate" title="做动画">
+        <span class="button"></span>
+        <span class="label">a</span>
+    </div>
+    <div class="btn-btn copy-url" title="生成链接">
+        <span class="button"></span>
+        <span class="label">c</span>
+    </div>
 </div>
 <div class="panel">
     <!--<span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>-->
@@ -238,6 +249,8 @@
 
         var addBtn = querySelector( ".add-effect" );
         var panel = querySelector( ".panel" );
+        var image = querySelector( ".img-border img" );
+        var imgBorder = querySelector( ".img-border" );
 
         var isConfig = location.hash == "#config";
 
@@ -287,6 +300,10 @@
                 } );
             }
 
+        } );
+
+        addEventListener( image , "webkitAnimationEnd" , function () {
+            imgBorder.classList.remove( "running" );
         } );
 
         var search = decodeURIComponent( location.search );
@@ -388,7 +405,7 @@
                         index : index
                     } , spanouter );
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
-                    // 构造一个以name为名字的keyframe
+                    // 构造一个以keyframe{index}为名字的keyframe
                     var keyframe = "@-webkit-keyframes keyframe" + index + "{";
                     var style = parseData( d.camera , d.filter );
                     for ( var percent in style ) {
@@ -400,6 +417,10 @@
                     }
                     keyframe += "}";
                     styleDom.sheet.insertRule( keyframe , 0 );
+                    input.onclick = function () {
+                        image.style.webkitAnimation = "keyframe" + index + " 2s linear";
+                        imgBorder.classList.add( "running" );
+                    }
                 }
             } );
         } );
