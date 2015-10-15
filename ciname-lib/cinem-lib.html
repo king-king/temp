@@ -374,7 +374,7 @@
                 frame.innerHTML = "";
                 frames = [];
                 for ( var percent in cinemaData ) {
-                    var x = parseInt( percent ) * WIDTH / 100;
+                    var x = parseFloat( percent ) * WIDTH / 100;
                     if ( x + width > WIDTH ) {
                         x = WIDTH - width;
                     }
@@ -497,7 +497,18 @@
         (new ZeroClipboard( copyBtn )).on( "copy" , function ( event ) {
             var arg = {};
             loopArray( frames , function ( f , i ) {
-                var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
+                var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 : f.x / WIDTH * 100;
+                if ( i != 0 && i != frames.length - 1 ) {
+                    if ( f.x - frames[ i - 1 ].x < width * 2 ) {
+                        // 如果距离太小，则增加精度
+                        percent = (percent).toFixed( 1 );
+                    } else {
+                        percent = (percent).toFixed( 0 );
+                    }
+                }
+                else {
+                    percent = (percent).toFixed( 0 );
+                }
                 arg[ percent ] = "translate3d(" + (f.data[ 0 ] || 0) +
                         "%," + (f.data[ 1 ] || 0) + "%,0) scale(" + (f.data[ 2 ] || 1) + ") rotate("
                         + (f.data[ 4 ] || 0) + "deg) opacity(" + f.data[ 3 ] + ")";

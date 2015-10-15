@@ -28,5 +28,6 @@ c = {
 
 a2 = {
     "0" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)" ,
-    "5" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)"
+    "78" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(0)" ,
+    "2.9" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)"
 }
