@@ -117,6 +117,12 @@
             margin: 0;
         }
 
+        .do-animate.btn-btn .label {
+            font-size: 27px;
+            padding-left: 1px;
+            padding-top: 1px;
+        }
+
         .btn-btn:before {
             box-shadow: 0 0 17px 8px #fff;
             border-radius: 80px;
@@ -231,7 +237,7 @@
     </div>
     <div class="btn-btn do-animate" title="做动画">
         <span class="button"></span>
-        <span class="label">a</span>
+        <span class="label">▶</span>
     </div>
     <div class="btn-btn copy-url" title="生成链接">
         <span class="button"></span>
@@ -251,6 +257,7 @@
         var panel = querySelector( ".panel" );
         var image = querySelector( ".img-border img" );
         var imgBorder = querySelector( ".img-border" );
+        var animateBtn = querySelector( ".do-animate" );
 
         var isConfig = location.hash == "#config";
 
@@ -391,6 +398,8 @@
 
         var styleDom = element( "style" , {} , document.head );
 
+        var curIndex = 0;
+
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
             loopArray( data.data , function ( d , index ) {
@@ -404,6 +413,7 @@
                         name : "camera" ,
                         index : index
                     } , spanouter );
+                    !index && (input.checked = true);
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
                     // 构造一个以keyframe{index}为名字的keyframe
                     var keyframe = "@-webkit-keyframes keyframe" + index + "{";
@@ -418,6 +428,7 @@
                     keyframe += "}";
                     styleDom.sheet.insertRule( keyframe , 0 );
                     input.onclick = function () {
+                        curIndex = index;
                         image.style.webkitAnimation = "keyframe" + index + " 2s linear";
                         imgBorder.classList.add( "running" );
                     }
@@ -425,6 +436,13 @@
             } );
         } );
 
+        animateBtn.onclick = function () {
+            image.style.webkitAnimation = "";
+            setTimeout( function () {
+                image.style.webkitAnimation = "keyframe" + curIndex + " 2s linear";
+            } , 0 );
+            imgBorder.classList.add( "running" );
+        }
     })();
 </script>
 </body>
