@@ -257,7 +257,7 @@
         <span class="button"></span>
         <span class="label">▶</span>
     </div>
-    <div class="btn-btn copy-url" title="生成链接">
+    <div class="btn-btn copy-url hide" title="生成链接">
         <span class="button"></span>
         <span class="label">c</span>
     </div>
@@ -282,6 +282,8 @@
         var isConfig = location.hash == "#config";
 
         isConfig && addBtn.classList.remove( "hide" );
+        isConfig && copyBtn.classList.remove( "hide" );
+
 
         onTap( addBtn , function () {
             var mask = element( "div" , { classList : [ "mask" ] } , document.body );
@@ -438,7 +440,7 @@
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
             loopArray( data.data , function ( d , index ) {
-                if ( (selectNames && selectNames[ d.name ]) || !selectNames ) {
+                if ( (selectNames && selectNames[ d.index ]) || !selectNames ) {
                     var spanouter = element( "span" , {} , panel );
                     var input = element( "input" , {
                         classList : [ "name" ] ,
@@ -450,16 +452,25 @@
                     } , spanouter );
                     !index && (input.checked = true);
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
-                    spaninner.onclick = function () {
-                        // 选中了
-                        if ( spaninner.classList.contains( "selected" ) ) {
-                            spaninner.classList.remove( "selected" );
-                            selectIndex.length--;
-                            selectIndex[ d.index ] = false;
+                    spaninner.onclick = function ( e ) {
+                        if ( e.which == 2 ) {
+                            // 删除
+                            var isdelete = confirm( "要删除这个特效？" );
+                            if ( isdelete ) {
+                                post( "http://" + location.hostname + ":6024/deleteOne" , { id : d.id } , function ( data ) {
+                                } );
+                            }
                         } else {
-                            spaninner.classList.add( "selected" );
-                            selectIndex.length++;
-                            selectIndex[ d.index ] = true;
+                            // 选中
+                            if ( spaninner.classList.contains( "selected" ) ) {
+                                spaninner.classList.remove( "selected" );
+                                selectIndex.length--;
+                                selectIndex[ d.index ] = false;
+                            } else {
+                                spaninner.classList.add( "selected" );
+                                selectIndex.length++;
+                                selectIndex[ d.index ] = true;
+                            }
                         }
                     };
                     // 构造一个以keyframe{index}为名字的keyframe
@@ -493,19 +504,15 @@
 
 
         ( new ZeroClipboard( copyBtn ) ).on( "copy" , function ( event ) {
-                    if ( !selectIndex.length ) {
-                        alert( "还没有选择特效" );
-                    } else {
-                        var indexs = [];
-                        for ( var i in selectIndex ) {
-                            if ( selectIndex[ i ] && i != "length" ) {
-                                indexs.push( i );
-                            }
+                    var indexs = [];
+                    for ( var i in selectIndex ) {
+                        if ( selectIndex[ i ] && i != "length" ) {
+                            indexs.push( i );
                         }
-                        indexs = indexs.join( "&" );
-                        event.clipboardData.setData( "text/plain" , "链接westengine，访问以下网址：\n"
-                                + "http://192.168.0.229:55554/preview-fc/p-fc.html?" + indexs );
                     }
+                    indexs = indexs.join( "&" );
+                    event.clipboardData.setData( "text/plain" , "链接westengine，访问以下网址：\n"
+                            + "http://192.168.0.229:55554/preview-fc/p-fc.html?" + indexs );
                 }
         );
 

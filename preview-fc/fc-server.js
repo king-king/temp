@@ -91,6 +91,35 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                         res.end();
                     } );
                 }
+                else if ( req.url == "/deleteOne" ) {
+                    res.writeHead( 200 , {
+                        'Content-Type' : 'application/json; charset=utf-8' ,
+                        "Access-Control-Allow-Origin" : "*"
+                    } );
+                    var ddata = "";
+                    req.on( "data" , function ( s ) {
+                        ddata += s;
+                    } );
+                    req.on( "end" , function () {
+                        ddata = JSON.parse( ddata );
+                        col.updateOne( { id : ddata.id } , { $set : { display : 0 } } , function ( err ) {
+                            if ( err ) {
+                                res.write( JSON.stringify( {
+                                    code : 400 ,
+                                    result : "err"
+                                } ) );
+                            } else {
+                                res.write( JSON.stringify( {
+                                    code : 200 ,
+                                    result : ""
+                                } ) );
+                            }
+                            res.end();
+                        } );
+
+
+                    } );
+                }
                 else {
                     // bad request
                     res.writeHead( 400 , {
