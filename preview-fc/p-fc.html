@@ -102,7 +102,7 @@
             top: 50%;
         }
 
-        .btn-btn:active .button {
+        .btn-btn:active .button, .btn-btn.zeroclipboard-is-active .button {
             box-shadow: 0 15px 25px -4px rgba(0, 0, 0, 0.4), inset 0 -8px 25px -1px rgba(255, 255, 255, 0.9), 0 -10px 15px -1px rgba(255, 255, 255, 0.6), inset 0 8px 20px 0 rgba(0, 0, 0, 0.2), inset 0 0 5px 1px rgba(255, 255, 255, 0.6);
         }
 
@@ -265,6 +265,7 @@
 <div class="panel">
     <!--<span><input type="radio" name="camera" class="effect"><span class="name">拉进</span></span>-->
 </div>
+<script src="ZeroClipboard.min.js"></script>
 <script src="tools.js"></script>
 <script>
     (function () {
@@ -276,6 +277,7 @@
         var image = querySelector( ".img-border img" );
         var imgBorder = querySelector( ".img-border" );
         var animateBtn = querySelector( ".do-animate" );
+        var copyBtn = querySelector( ".copy-url" );
 
         var isConfig = location.hash == "#config";
 
@@ -429,7 +431,9 @@
 
         var curIndex = 0;
 
-        var selectIndex = {};
+        var selectIndex = {
+            length : 0
+        };
 
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
@@ -450,9 +454,11 @@
                         // 选中了
                         if ( spaninner.classList.contains( "selected" ) ) {
                             spaninner.classList.remove( "selected" );
+                            selectIndex.length--;
                             selectIndex[ d.index ] = false;
                         } else {
                             spaninner.classList.add( "selected" );
+                            selectIndex.length++;
                             selectIndex[ d.index ] = true;
                         }
                     };
@@ -483,7 +489,27 @@
                 image.style.webkitAnimation = "keyframe" + curIndex + " 2s linear";
             } , 0 );
             imgBorder.classList.add( "running" );
-        }
+        };
+
+
+        ( new ZeroClipboard( copyBtn ) ).on( "copy" , function ( event ) {
+                    if ( !selectIndex.length ) {
+                        alert( "还没有选择特效" );
+                    } else {
+                        var indexs = [];
+                        for ( var i in selectIndex ) {
+                            if ( selectIndex[ i ] && i != "length" ) {
+                                indexs.push( i );
+                            }
+                        }
+                        indexs = indexs.join( "&" );
+                        event.clipboardData.setData( "text/plain" , "链接westengine，访问以下网址：\n"
+                                + "http://192.168.0.229:55554/preview-fc/p-fc.html?" + indexs );
+                    }
+                }
+        );
+
+
     })();
 </script>
 </body>
