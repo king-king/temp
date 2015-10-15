@@ -39,21 +39,35 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                         doc.filter = data.filter || "{}";
                         doc.camera = data.camera || "{}";
                         doc.name = data.name || "";
+                        doc.duration = data.duration;
                         // 插入数据
-                        col.insertOne( doc , function ( err , result ) {
-                            if ( !err ) {
-                                res.write( JSON.stringify( {
-                                    code : 200 ,
-                                    result : ""
-                                } ) );
-                            }
-                            else {
+                        //搞一个自增id
+                        col.count( function ( err , count ) {
+                            if ( err ) {
                                 res.write( JSON.stringify( {
                                     code : 400 ,
-                                    result : "数据库插入操作失败"
+                                    result : "数据库自增id查询操作失败"
                                 } ) );
+                                res.end();
+                            } else {
+                                doc.index = count;
+                                col.insertOne( doc , function ( err , result ) {
+                                    if ( !err ) {
+                                        res.write( JSON.stringify( {
+                                            code : 200 ,
+                                            result : ""
+                                        } ) );
+                                    }
+                                    else {
+                                        res.write( JSON.stringify( {
+                                            code : 400 ,
+                                            result : "数据库插入操作失败"
+                                        } ) );
+                                    }
+                                    res.end();
+                                } );
                             }
-                            res.end();
+
                         } );
                     } );
                 }

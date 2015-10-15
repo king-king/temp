@@ -169,13 +169,26 @@
 
         .effect-name {
             text-align: center;
-            width: 200px;
+            width: 30%;
+            height: 30px;
+            outline: none;
+            border-radius: 6px;
+            position: absolute;
+            right: 50%;
+            margin-right: 20px;
+            top: 100px;
+            border-width: 1px;
+        }
+
+        .effect-duration {
+            text-align: center;
+            width: 30%;
             height: 30px;
             outline: none;
             border-radius: 6px;
             position: absolute;
             left: 50%;
-            margin-left: -100px;
+            margin-left: 20px;
             top: 100px;
             border-width: 1px;
         }
@@ -270,7 +283,11 @@
                 mask.parentNode.removeChild( mask );
             };
 
-            var name = element( "input" , { classList : [ "effect-name" ] , placeholder : "输入名称" } , mask );
+            var name = element( "input" , { classList : [ "effect-name" ] , placeholder : "输入名称（必填）" } , mask );
+            var duration = element( "input" , {
+                classList : [ "effect-duration" ] ,
+                placeholder : "输入持续时间，单位秒（必填）"
+            } , mask );
 
             var camera = element( "textarea" , {
                 classList : [ "camera-data" ] ,
@@ -291,13 +308,20 @@
                 var cameraData = camera.value.trim();
                 var filterData = filter.value.trim();
                 var effectName = name.value.trim();
+                var durationData = parseFloat( duration.value );
                 if ( !effectName ) {
-                    alert( "名字不能为空" );
+                    alert( "名字必填" );
+                    return;
+                }
+                if ( !durationData ) {
+                    alert( "时间必填" );
+                    return;
                 }
                 post( "http://" + location.hostname + ":6024/insertOne" , {
                     filter : filterData ,
                     camera : cameraData ,
-                    name : effectName
+                    name : effectName ,
+                    duration : durationData
                 } , function ( re ) {
                     if ( re.code == 200 ) {
                         closeBtn.click();
