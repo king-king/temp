@@ -30,7 +30,7 @@
         }
 
         .img-border.running {
-            border: 8px solid red;
+            border: 8px solid darkgreen;
         }
 
         .img-border img {
@@ -432,14 +432,14 @@
         var styleDom = element( "style" , {} , document.head );
 
         var curIndex = 0;
-
+        var curDuration;
         var selectIndex = {
             length : 0
         };
 
         // 先获取全部数据
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
-            loopArray( data.data , function ( d , index ) {
+            loopArray( data.data , function ( d , i ) {
                 if ( (selectNames && selectNames[ d.index ]) || !selectNames ) {
                     var spanouter = element( "span" , {} , panel );
                     var input = element( "input" , {
@@ -448,9 +448,13 @@
                         camera : d.camera ,
                         type : "radio" ,
                         name : "camera" ,
-                        index : index
+                        index : d.index
                     } , spanouter );
-                    !index && (input.checked = true);
+                    if ( !i ) {
+                        input.checked = true;
+                        curIndex = d.index;
+                        curDuration = d.duration;
+                    }
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
                     spaninner.onclick = function ( e ) {
                         if ( e.which == 2 ) {
@@ -474,7 +478,7 @@
                         }
                     };
                     // 构造一个以keyframe{index}为名字的keyframe
-                    var keyframe = "@-webkit-keyframes keyframe" + index + "{";
+                    var keyframe = "@-webkit-keyframes keyframe" + d.index + "{";
                     var style = parseData( d.camera , d.filter );
                     for ( var percent in style ) {
                         keyframe = keyframe + percent + "%{";
@@ -486,8 +490,12 @@
                     keyframe += "}";
                     styleDom.sheet.insertRule( keyframe , 0 );
                     input.onclick = function () {
-                        curIndex = index;
-                        image.style.webkitAnimation = "keyframe" + index + " 2s linear";
+                        curIndex = d.index;
+                        curDuration = d.duration;
+                        image.style.webkitAnimation = "";
+                        setTimeout( function () {
+                            image.style.webkitAnimation = "keyframe" + d.index + " " + d.duration + "s linear";
+                        } , 0 );
                         imgBorder.classList.add( "running" );
                     }
                 }
@@ -497,7 +505,7 @@
         animateBtn.onclick = function () {
             image.style.webkitAnimation = "";
             setTimeout( function () {
-                image.style.webkitAnimation = "keyframe" + curIndex + " 2s linear";
+                image.style.webkitAnimation = "keyframe" + curIndex + " " + curDuration + "s linear";
             } , 0 );
             imgBorder.classList.add( "running" );
         };
