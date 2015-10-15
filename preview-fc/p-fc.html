@@ -441,7 +441,10 @@
         get( "http://" + location.hostname + ":6024/getAll" , function ( data ) {
             loopArray( data.data , function ( d , i ) {
                 if ( (selectNames && selectNames[ d.index ]) || !selectNames ) {
-                    var spanouter = element( "span" , {} , panel );
+                    var spanouter = element( "span" , {
+                        index : d.index ,
+                        duration : d.duration
+                    } , panel );
                     var input = element( "input" , {
                         classList : [ "name" ] ,
                         filter : d.filter ,
@@ -462,6 +465,16 @@
                             var isdelete = confirm( "要删除这个特效？" );
                             if ( isdelete ) {
                                 post( "http://" + location.hostname + ":6024/deleteOne" , { id : d.id } , function ( data ) {
+                                    console.log( data );
+                                    if ( data.code == 200 ) {
+                                        spanouter.parentNode.removeChild( spanouter );
+                                        var next = querySelectorAll( ".panel > span" )[ 0 ];
+                                        if ( next ) {
+                                            next.querySelector( "input" ).checked = true;
+                                            curIndex = next.index;
+                                            curDuration = next.duration;
+                                        }
+                                    }
                                 } );
                             }
                         } else {
@@ -510,19 +523,17 @@
             imgBorder.classList.add( "running" );
         };
 
-
         ( new ZeroClipboard( copyBtn ) ).on( "copy" , function ( event ) {
-                    var indexs = [];
-                    for ( var i in selectIndex ) {
-                        if ( selectIndex[ i ] && i != "length" ) {
-                            indexs.push( i );
-                        }
-                    }
-                    indexs = indexs.join( "&" );
-                    event.clipboardData.setData( "text/plain" , "链接westengine，访问以下网址：\n"
-                            + "http://192.168.0.229:55554/preview-fc/p-fc.html?" + indexs );
+            var indexs = [];
+            for ( var i in selectIndex ) {
+                if ( selectIndex[ i ] && i != "length" ) {
+                    indexs.push( i );
                 }
-        );
+            }
+            indexs = indexs.join( "&" );
+            event.clipboardData.setData( "text/plain" , "链接westengine，访问以下网址：\n"
+                    + "http://192.168.0.229:55554/preview-fc/p-fc.html?" + indexs );
+        } );
 
 
     })();

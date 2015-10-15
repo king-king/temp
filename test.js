@@ -15,3 +15,5 @@ c = {
 v = { "0" : "blur(6px)" , "100" : "blur(0px)" }
 
 "http://192.168.0.229:55554/preview-fc/p-fc.html?0&1"
+
+
