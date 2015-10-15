@@ -32,3 +32,14 @@ a2 = {
     "80" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)" ,
     "2.2" : "translate3d(0%,0%,0) scale(1) rotate(0deg) opacity(1)"
 }
+
+aa = {
+    "0" : "translate3d(0%,0%,0) scale(0.5)opacity(1)" ,
+    "2" : "scale(0.5)  pacity(0)" ,
+    "5" : "scale(0.7)  pacity(1)" ,
+    "7" : "scale(0.7)  pacity(0)" ,
+    "9" : "scale(0.9)  pacity(1)" ,
+    "12" : "scale(0.9)  pacity(0)" ,
+    "14" : "scale(2)  pacity(1)" ,
+    "95" : "scale(1)  opacity(1)"
+};
