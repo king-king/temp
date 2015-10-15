@@ -226,7 +226,7 @@
             }
             frameItem.index = frames.length;
             frames.push( frameItem );
-            frameItem.data = data || [ 0 , 0 , 1 , 1 , 0 ];
+            frameItem.data = data || [];
 
             var cur = querySelector( ".frame-item.select" );
             cur && cur.classList.remove( "select" );
@@ -520,9 +520,23 @@
                 else {
                     percent = (percent).toFixed( 0 );
                 }
-                arg[ percent ] = "translate3d(" + (f.data[ 0 ] || 0) +
-                        "%," + (f.data[ 1 ] || 0) + "%,0) scale(" + (f.data[ 2 ] || 1) + ") rotate("
-                        + (f.data[ 4 ] || 0) + "deg) opacity(" + f.data[ 3 ] + ")";
+                var translate3d = "";
+                var scale = "";
+                var rotate = "";
+                var opacity = "";
+                if ( f.data[ 0 ] != undefined || f.data[ 1 ] != undefined ) {
+                    translate3d = "translate3d(" + (f.data[ 0 ] || 0) + "%," + ( f.data[ 1 ] || 0) + "%,0) ";
+                }
+                if ( f.data[ 2 ] != undefined ) {
+                    scale = " scale(" + f.data[ 2 ] + ") ";
+                }
+                if ( f.data[ 3 ] != undefined ) {
+                    opacity = " opacity(" + f.data[ 3 ] + ") ";
+                }
+                if ( f.data[ 4 ] != undefined ) {
+                    rotate = " rotateZ(" + f.data[ 4 ] + "deg) ";
+                }
+                (translate3d + scale + rotate + opacity).length && ( arg[ percent ] = translate3d + scale + rotate + opacity );
             } );
             event.clipboardData.setData( "text/plain" , JSON.stringify( arg ) );
         } );
