@@ -460,7 +460,7 @@
                     }
                     var spaninner = element( "span" , { classList : [ "name" ] , innerText : d.name } , spanouter );
                     spaninner.onclick = function ( e ) {
-                        if ( e.which == 2 ) {
+                        if ( e.which == 2 && isConfig ) {
                             // 删除
                             var isdelete = confirm( "要删除这个特效？" );
                             if ( isdelete ) {
@@ -477,7 +477,7 @@
                                     }
                                 } );
                             }
-                        } else {
+                        } else if ( e.which == 1 && isConfig ) {
                             // 选中
                             if ( spaninner.classList.contains( "selected" ) ) {
                                 spaninner.classList.remove( "selected" );
