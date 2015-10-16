@@ -417,7 +417,7 @@
                     rotate = " rotateZ(" + d[ 4 ] + "deg) ";
                 }
                 cameraData[ key ][ "-webkit-transform" ] = translate3d + scale + rotate + ";";
-                d[ 3 ] && ( cameraData[ key ].opacity = d[ 3 ] + ";");
+                d[ 3 ] != undefined && ( cameraData[ key ].opacity = d[ 3 ] + ";");
             }
             for ( key in fd ) {
                 filterData[ key ] = {
@@ -464,7 +464,7 @@
                             // 删除
                             var isdelete = confirm( "要删除这个特效？" );
                             if ( isdelete ) {
-                                post( "http://" + location.hostname + ":6024/deleteOne" , { id : d.id } , function ( data ) {
+                                post( "http://" + location.hostname + ":6024/deleteOne" , { index : d.index } , function ( data ) {
                                     console.log( data );
                                     if ( data.code == 200 ) {
                                         spanouter.parentNode.removeChild( spanouter );

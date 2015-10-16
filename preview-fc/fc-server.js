@@ -103,7 +103,7 @@ MongoClient.connect( dbUrl , function ( err , db ) {
                     } );
                     req.on( "end" , function () {
                         ddata = JSON.parse( ddata );
-                        col.updateOne( { id : ddata.id } , { $set : { display : 0 } } , function ( err ) {
+                        col.updateOne( { index : ddata.index } , { $set : { display : 0 } } , function ( err ) {
                             if ( err ) {
                                 res.write( JSON.stringify( {
                                     code : 400 ,
