@@ -27,7 +27,18 @@
             position: absolute;
             left: 300px;
             top: 300px;
+            -webkit-animation: my 4s;
+        }
 
+        @-webkit-keyframes my {
+            0% {
+                -webkit-transform: perspective(1500px) translate3d(0, 0, 200px) rotateX(0deg);
+                -webkit-transform-origin: 50% 50% -200px;
+            }
+            100% {
+                -webkit-transform: perspective(1500px) translate3d(0, 0, 200px) rotateX(360deg);
+                -webkit-transform-origin: 50% 50% -200px;
+            }
         }
     </style>
 <body>
