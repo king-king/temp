@@ -24,32 +24,6 @@
             margin: 0;
         }
 
-        .raw {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-top: -50px;
-            margin-left: -50px;
-            opacity: 0.3;
-        }
-
-        .standard {
-            width: 100px;
-            height: 100px;
-            background-color: darkgreen;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-top: -50px;
-            margin-left: -50px;
-            opacity: 0.5;
-            -webkit-transform: rotate3d(1, 0, 0, 45deg);
-            /*-webkit-transform-origin: 0 0;*/
-        }
-
         .item {
             width: 100px;
             height: 100px;
@@ -59,20 +33,8 @@
             top: 50%;
             margin-top: -50px;
             margin-left: -50px;
-            opacity: 0.5;
-            /*-webkit-animation: my 4s both;*/
-        }
-
-        .point {
-            width: 4px;
-            height: 4px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-top: -2px;
-            margin-left: -2px;
-            background-color: black;
-            border-radius: 4px;
+            opacity: 1;
+            -webkit-backface-visibility: hidden;
         }
 
         .border {
@@ -88,10 +50,6 @@
     </style>
 <body>
 <div class="border"></div>
-<!--<div class="point"></div>-->
-<!--<div class="raw"></div>-->
-<!--<div class="standard">a</div>-->
-<!--<div class="item">a</div>-->
 <script src="3d-css.js"></script>
 <script src="tools.js"></script>
 <script>
@@ -106,7 +64,7 @@
             "yellow" ,
             "green" ,
             "orange" ,
-            "darkmagenta"
+            "black"
         ];
 
         var initPos = [
@@ -127,17 +85,13 @@
             item.style.transform = "matrix3d(" + _3d.origin3d( pos , 0 , 0 , -50 ).matrixStringify() + ")"
         } );
 
-//        var matrix = _3d.eye();
 
         onDragH( border , {
             onDrag : function ( dy ) {
-                loopArray( items , function ( item ) {
-                    item.matrix = _3d.combine( item.matrix , _3d.rotate3dM( 1 , 0 , 0 , dy ) );
+                loopArray( items , function ( item , i ) {
+                    item.matrix = _3d.combine( item.matrix , i < 4 ? _3d.rotate3dM( 1 , 0 , 0 , dy ) : _3d.rotate3dM( 0 , 0 , 1 , dy ) );
                     item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , 0 , 0 , -50 ).matrixStringify() + ")";
                 } );
-//                matrix = _3d.combine( matrix , _3d.rotate3dM( 1 , 0 , 0 , dy ) );
-//                el.style.transform = "matrix3d(" + _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() + ")";
-//                console.log( _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() );
             }
         } );
 

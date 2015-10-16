@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+
+        * {
+            -webkit-user-select: none;
+        }
+
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+        }
+
+        .raw {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            opacity: 0.3;
+        }
+
+        .standard {
+            width: 100px;
+            height: 100px;
+            background-color: darkgreen;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            opacity: 0.5;
+            -webkit-transform: rotate3d(1, 0, 0, 45deg);
+            /*-webkit-transform-origin: 0 0;*/
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: brown;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            opacity: 0.5;
+            /*-webkit-animation: my 4s both;*/
+        }
+
+        .point {
+            width: 4px;
+            height: 4px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -2px;
+            margin-left: -2px;
+            background-color: black;
+            border-radius: 4px;
+        }
+
+        .border {
+            height: 500px;
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+            perspective: 1000px;
+        }
+    </style>
+<body>
+<div class="border"></div>
+<!--<div class="point"></div>-->
+<!--<div class="raw"></div>-->
+<!--<div class="standard">a</div>-->
+<!--<div class="item">a</div>-->
+<script src="3d-css.js"></script>
+<script src="tools.js"></script>
+<script>
+    (function () {
+
+        var el = document.querySelector( ".item" );
+        var p = document.querySelector( ".point" );
+        var border = document.querySelector( ".border" );
+        var colors = [
+            "red" ,
+            "blue" ,
+            "yellow" ,
+            "green" ,
+            "orange" ,
+            "darkmagenta"
+        ];
+
+        var initPos = [
+            _3d.rotate3dM( 1 , 0 , 0 , 0 ) ,
+            _3d.rotate3dM( 1 , 0 , 0 , 90 ) ,
+            _3d.rotate3dM( 1 , 0 , 0 , 180 ) ,
+            _3d.rotate3dM( 1 , 0 , 0 , 270 ) ,
+            _3d.rotate3dM( 0 , 1 , 0 , 90 ) ,
+            _3d.rotate3dM( 0 , 1 , 0 , 270 )
+        ];
+        var items = [];
+
+//        var item = element( "div" , { classList : [ "item" ] } , border );
+//        item.style.backgroundColor = "red";
+//        item.matrix = _3d.rotate3dM( 0 , 1 , 0 , 45 );
+//        item.style.transform = "matrix3d(" + _3d.origin3d( _3d.rotate3dM( 0 , 1 , 0 , 45 ) , 0 , 0 , -50 ).matrixStringify() + ")";
+//
+//        onDragH( border , {
+//            onDrag : function ( dy ) {
+//                item.matrix = _3d.combine( item.matrix , _3d.rotate3dM( 0 , 0 , 1 , dy ) );
+//                item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , 0 , 0 , -50 ).matrixStringify() + ")";
+//            }
+//        } );
+
+
+        _3d.rotate3dM( 0 , 1 , 0 , 90 );
+
+        function vm( vector , matrix ) {
+            return [
+                vector[ 0 ] * matrix[ 0 ][ 0 ] + vector[ 1 ] * matrix[ 0 ][ 1 ] + vector[ 2 ] * matrix[ 0 ][ 2 ] + vector[ 3 ] * matrix[ 0 ][ 3 ] ,
+                vector[ 0 ] * matrix[ 1 ][ 0 ] + vector[ 1 ] * matrix[ 1 ][ 1 ] + vector[ 2 ] * matrix[ 1 ][ 2 ] + vector[ 3 ] * matrix[ 1 ][ 3 ] ,
+                vector[ 0 ] * matrix[ 2 ][ 0 ] + vector[ 1 ] * matrix[ 2 ][ 1 ] + vector[ 2 ] * matrix[ 2 ][ 2 ] + vector[ 3 ] * matrix[ 2 ][ 3 ] ,
+                vector[ 0 ] * matrix[ 3 ][ 0 ] + vector[ 1 ] * matrix[ 3 ][ 1 ] + vector[ 2 ] * matrix[ 3 ][ 2 ] + vector[ 3 ] * matrix[ 3 ][ 3 ]
+            ];
+        }
+
+        var num = vm( [ 1 , 0 , 0 , 0 ] , _3d.rotate3dM( 0 , 1 , 0 , 90 ) );
+
+        console.log( num[ 0 ].toFixed( 10 ) )
+
+    })();
+</script>
+</body>
+</html>
