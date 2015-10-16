@@ -11,6 +11,10 @@
     <title></title>
     <style>
 
+        * {
+            -webkit-user-select: none;
+        }
+
         body {
             position: absolute;
             top: 0;
@@ -18,39 +22,82 @@
             right: 0;
             bottom: 0;
             margin: 0;
+            perspective: 1500px;
+        }
+
+        .raw {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            opacity: 0.3;
+        }
+
+        .standard {
+            width: 100px;
+            height: 100px;
+            background-color: darkgreen;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            opacity: 0.5;
+            -webkit-transform: rotate3d(1, 0, 0, 45deg);
+            /*-webkit-transform-origin: 0 0;*/
         }
 
         .item {
-            width: 300px;
-            height: 90px;
+            width: 200px;
+            height: 100px;
             background-color: brown;
             position: absolute;
-            left: 300px;
-            top: 300px;
-            -webkit-animation: my 4s;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -100px;
+            opacity: 0.5;
+            /*-webkit-animation: my 4s both;*/
         }
 
-        @-webkit-keyframes my {
-            0% {
-                -webkit-transform: perspective(1500px) translate3d(0, 0, 200px) rotateX(0deg);
-                -webkit-transform-origin: 50% 50% -200px;
-            }
-            100% {
-                -webkit-transform: perspective(1500px) translate3d(0, 0, 200px) rotateX(360deg);
-                -webkit-transform-origin: 50% 50% -200px;
-            }
+        .point {
+            width: 4px;
+            height: 4px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -2px;
+            margin-left: -2px;
+            background-color: black;
+            border-radius: 4px;
         }
+
     </style>
 <body>
-<div class="item"></div>
+<div class="point"></div>
+<!--<div class="raw"></div>-->
+<!--<div class="standard">a</div>-->
+<div class="item">a</div>
+<script src="3d-css.js"></script>
 <script src="tools.js"></script>
 <script>
     (function () {
 
+        var el = document.querySelector( ".item" );
+        var p = document.querySelector( ".point" );
+
+
+        var matrix = _3d.eye();
 
         onDragH( document.querySelector( ".item" ) , {
             onDrag : function ( dy ) {
-
+                matrix = _3d.combine( matrix , _3d.rotate3dM( 1 , 0 , 0 , dy ) );
+                el.style.transform = "matrix3d(" + _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() + ")";
+//                console.log( _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() );
             }
         } );
 
