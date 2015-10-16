@@ -22,7 +22,6 @@
             right: 0;
             bottom: 0;
             margin: 0;
-            perspective: 1500px;
         }
 
         .raw {
@@ -52,14 +51,14 @@
         }
 
         .item {
-            width: 200px;
+            width: 100px;
             height: 100px;
             background-color: brown;
             position: absolute;
             left: 50%;
             top: 50%;
             margin-top: -50px;
-            margin-left: -100px;
+            margin-left: -50px;
             opacity: 0.5;
             /*-webkit-animation: my 4s both;*/
         }
@@ -76,12 +75,23 @@
             border-radius: 4px;
         }
 
+        .border {
+            height: 500px;
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+            perspective: 1500px;
+        }
     </style>
 <body>
-<div class="point"></div>
+<div class="border"></div>
+<!--<div class="point"></div>-->
 <!--<div class="raw"></div>-->
 <!--<div class="standard">a</div>-->
-<div class="item">a</div>
+<!--<div class="item">a</div>-->
 <script src="3d-css.js"></script>
 <script src="tools.js"></script>
 <script>
@@ -89,14 +99,44 @@
 
         var el = document.querySelector( ".item" );
         var p = document.querySelector( ".point" );
+        var border = document.querySelector( ".border" );
+        var colors = [
+            "red" ,
+            "blue" ,
+            "yellow" ,
+            "green" ,
+            "orange" ,
+            "darkmagenta"
+        ];
 
+        var initPos = [
+            _3d.rotate3dM( 1 , 0 , 0 , 0 ) ,
+            _3d.rotate3dM( 1 , 0 , 0 , 90 ) ,
+            _3d.rotate3dM( 1 , 0 , 0 , 180 ) ,
+            _3d.rotate3dM( 1 , 0 , 0 , 270 ) ,
+            _3d.rotate3dM( 0 , 1 , 0 , 90 ) ,
+            _3d.rotate3dM( 0 , 1 , 0 , 270 )
+        ];
+        var items = [];
 
-        var matrix = _3d.eye();
+        loopArray( initPos , function ( pos , i ) {
+            var item = element( "div" , { classList : [ "item" ] } , border );
+            items.push( item );
+            item.matrix = pos;
+            item.style.backgroundColor = colors[ i ];
+            item.style.transform = "matrix3d(" + _3d.origin3d( pos , 0 , 0 , -50 ).matrixStringify() + ")"
+        } );
 
-        onDragH( document.querySelector( ".item" ) , {
+//        var matrix = _3d.eye();
+
+        onDragH( border , {
             onDrag : function ( dy ) {
-                matrix = _3d.combine( matrix , _3d.rotate3dM( 1 , 0 , 0 , dy ) );
-                el.style.transform = "matrix3d(" + _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() + ")";
+                loopArray( items , function ( item ) {
+                    item.matrix = _3d.combine( item.matrix , _3d.rotate3dM( 1 , 0 , 0 , dy ) );
+                    item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , 0 , 0 , -50 ).matrixStringify() + ")";
+                } );
+//                matrix = _3d.combine( matrix , _3d.rotate3dM( 1 , 0 , 0 , dy ) );
+//                el.style.transform = "matrix3d(" + _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() + ")";
 //                console.log( _3d.origin3d( matrix , 0 , 0 , -200 ).matrixStringify() );
             }
         } );
