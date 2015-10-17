@@ -22,7 +22,6 @@
             right: 0;
             bottom: 0;
             margin: 0;
-            cursor: pointer;
         }
 
         .item {
@@ -36,9 +35,12 @@
             margin-left: -50px;
             opacity: 1;
             -webkit-backface-visibility: hidden;
+            background-image: url(img/bg-circle2.png) ;
+            background-size: contain;
         }
 
         .border {
+            cursor: pointer;
             height: 500px;
             width: 500px;
             position: absolute;
@@ -91,7 +93,8 @@
         Drag(border, {
             onDrag: function (dx, dy) {
                 (dx || dy) && loopArray(items, function (item, i) {
-                    item.matrix = _3d.combine(_3d.rotate3dM(dy, -dx, 0,Math.abs(dy)), item.matrix);
+                    var s = Math.abs(dx) + Math.abs(dy);
+                    item.matrix = _3d.combine(_3d.rotate3dM(dy, -dx, 0, s), item.matrix);
                     item.style.transform = "matrix3d(" + _3d.origin3d(item.matrix, 0, 0, -50).matrixStringify() + ")";
                 });
             }
