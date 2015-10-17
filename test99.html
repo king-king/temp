@@ -55,45 +55,47 @@
 <script>
     (function () {
 
-        var el = document.querySelector( ".item" );
-        var p = document.querySelector( ".point" );
-        var border = document.querySelector( ".border" );
+        var el = document.querySelector(".item");
+        var p = document.querySelector(".point");
+        var border = document.querySelector(".border");
         var colors = [
-            "red" ,
-            "blue" ,
-            "yellow" ,
-            "green" ,
-            "orange" ,
+            "red",
+            "blue",
+            "yellow",
+            "green",
+            "orange",
             "black"
         ];
 
         var initPos = [
-            _3d.rotate3dM( 1 , 0 , 0 , 0 ) ,
-            _3d.rotate3dM( 1 , 0 , 0 , 90 ) ,
-            _3d.rotate3dM( 1 , 0 , 0 , 180 ) ,
-            _3d.rotate3dM( 1 , 0 , 0 , 270 ) ,
-            _3d.rotate3dM( 0 , 1 , 0 , 90 ) ,
-            _3d.rotate3dM( 0 , 1 , 0 , 270 )
+            _3d.rotate3dM(1, 0, 0, 0),
+            _3d.rotate3dM(1, 0, 0, 90),
+            _3d.rotate3dM(1, 0, 0, 180),
+            _3d.rotate3dM(1, 0, 0, 270),
+            _3d.rotate3dM(0, 1, 0, 90),
+            _3d.rotate3dM(0, 1, 0, 270)
         ];
         var items = [];
 
-        loopArray( initPos , function ( pos , i ) {
-            var item = element( "div" , { classList : [ "item" ] } , border );
-            items.push( item );
+
+        loopArray(initPos, function (pos, i) {
+            var item = element("div", {classList: ["item"]}, border);
+            items.push(item);
             item.matrix = pos;
-            item.style.backgroundColor = colors[ i ];
-            item.style.transform = "matrix3d(" + _3d.origin3d( pos , 0 , 0 , -50 ).matrixStringify() + ")"
-        } );
+            item.style.backgroundColor = colors[i];
+            item.style.transform = "matrix3d(" + _3d.origin3d(pos, 0, 0, -50).matrixStringify() + ")"
+        });
 
 
-        onDragH( border , {
-            onDrag : function ( dy ) {
-                loopArray( items , function ( item , i ) {
-                    item.matrix = _3d.combine( item.matrix , i < 4 ? _3d.rotate3dM( 1 , 0 , 0 , dy ) : _3d.rotate3dM( 0 , 0 , 1 , dy ) );
-                    item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , 0 , 0 , -50 ).matrixStringify() + ")";
-                } );
+        Drag(border, {
+            onDrag: function (dx, dy) {
+                (dx || dy) && loopArray(items, function (item, i) {
+                    item.matrix = _3d.combine(_3d.rotate3dM(dy, -dx, 0, dy), item.matrix);
+                    console.log(dx, dy, item.matrix.matrixStringify());
+                    item.style.transform = "matrix3d(" + _3d.origin3d(item.matrix, 0, 0, -50).matrixStringify() + ")";
+                });
             }
-        } );
+        });
 
     })();
 </script>

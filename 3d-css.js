@@ -82,11 +82,11 @@
     }
 
     function mul(m1, m2) {
-        if (m1.length == 1) {
+        if (m1[0].length == undefined) {
             return [
-                m1[0] * matrix[0][0] + m1[1] * matrix[0][1] + m1[2] * matrix[0][2] + m1[3] * matrix[0][3],
-                m1[0] * matrix[1][0] + m1[1] * matrix[1][1] + m1[2] * matrix[1][2] + m1[3] * matrix[1][3],
-                m1[0] * matrix[2][0] + m1[1] * matrix[2][1] + m1[2] * matrix[2][2] + m1[3] * matrix[2][3],
+                m1[0] * m2[0][0] + m1[1] * m2[0][1] + m1[2] * m2[0][2] + m1[3] * m2[0][3],
+                m1[0] * m2[1][0] + m1[1] * m2[1][1] + m1[2] * m2[1][2] + m1[3] * m2[1][3],
+                m1[0] * m2[2][0] + m1[1] * m2[2][1] + m1[2] * m2[2][2] + m1[3] * m2[2][3],
                 1
             ];
         } else {
