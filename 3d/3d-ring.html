@@ -40,6 +40,7 @@
 
         .border {
             -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
             cursor: pointer;
             height: 500px;
             width: 500px;
@@ -58,8 +59,6 @@
 <script>
     (function () {
 
-        var el = document.querySelector(".item");
-        var p = document.querySelector(".point");
         var border = document.querySelector(".border");
         var colors = [
             "red",
@@ -85,7 +84,7 @@
                 var item = element("div", {classList: ["item"]}, border);
                 item.style.marginLeft = initPos[index][0] + "px";
                 item.style.marginTop = initPos[index][1] + "px";
-                item.style.backgroundColor = colors[index];
+                item.style.backgroundColor = colors[i];
                 item.matrix = _3d.rotate3dM(0, 1, 0, 90 * i);
                 item.origin = origins[index];
                 items.push(item);
