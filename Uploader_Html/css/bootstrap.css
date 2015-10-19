@@ -681,10 +681,10 @@ a.bg-danger:hover {
 .page-header {
     padding-bottom: 9px;
     margin: 40px 0 20px;
-    height: 22px;
+    height: 47px;
     border-bottom: 1px solid #eee;
     background: url(../img/logo.png) no-repeat;
-    background-size: auto 22px;
+    background-size: auto 44px;
 }
 
 .page-header h1 {
