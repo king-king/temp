@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+
+        * {
+            -webkit-user-select: none;
+        }
+
+        body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border: 2px solid black;
+            box-sizing: border-box;
+            left: 50%;
+            top: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+            opacity: 1;
+            background-size: contain;
+        }
+
+        .border {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            cursor: pointer;
+            height: 500px;
+            width: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -250px;
+            margin-top: -250px;
+            perspective: 1500px;
+        }
+    </style>
+<body>
+<div class="border"></div>
+<script src="3d-css.js"></script>
+<script src="tools.js"></script>
+<script>
+    (function () {
+
+        var border = document.querySelector( ".border" );
+
+        var colors = [
+            "red" ,
+            "blue" ,
+            "yellow" ,
+            "green"
+        ];
+        var initPos = [
+            [ -50 , -50 ] ,
+            [ -150 , -50 ] ,
+            [ 50 , -50 ]
+        ];
+        var origins = [
+            [ 0 , 0 , -150 ] ,
+            [ 100 , 0 , -150 ] ,
+            [ -100 , 0 , -150 ]
+        ];
+        var items = [];
+
+        loopArray( initPos , function ( matrix , index ) {
+            loop( 4 , function ( i ) {
+                var item = element( "div" , { classList : [ "item" ] } , border );
+                item.style.marginLeft = initPos[ index ][ 0 ] + "px";
+                item.style.marginTop = initPos[ index ][ 1 ] + "px";
+                item.style.backgroundColor = colors[ i ];
+                item.matrix = _3d.rotate3dM( 0 , 1 , 0 , 90 * i );
+                item.origin = origins[ index ];
+                items.push( item );
+                item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , origins[ index ][ 0 ] , origins[ index ][ 1 ] , origins[ index ][ 2 ] ).matrixStringify() + ")"
+//                Drag( item , {
+//                    onDrag : function ( dx , dy ) {
+//                        (dx || dy) && loopArray( items , function ( item , i ) {
+//                            var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
+//                            var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
+//                            console.log( window.xaixs );
+//                            item.matrix = _3d.combine( t_matrix , item.matrix );
+//                            item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
+//                        } );
+//                    }
+//                } );
+            } );
+        } );
+
+        window.xaixs = [ 1 , 0 , 0 , 1 ];
+        window.yaixs = [ 0 , 1 , 0 , 1 ];
+
+        Drag( border , {
+            onDrag : function ( dx , dy ) {
+                (dx || dy) && loopArray( items , function ( item , i ) {
+                    var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
+                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
+                    window.xaixs = _3d.mul( window.xaixs , t_matrix );
+                    window.yaixs = _3d.mul( window.yaixs , t_matrix );
+                    console.log( window.xaixs );
+                    item.matrix = _3d.combine( t_matrix , item.matrix );
+                    item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
+                } );
+            }
+        } );
+
+    })();
+</script>
+</body>
+</html>
