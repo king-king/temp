@@ -59,49 +59,49 @@
 <script>
     (function () {
 
-        var border = document.querySelector(".border");
+        var border = document.querySelector( ".border" );
+
         var colors = [
-            "red",
-            "blue",
-            "yellow",
+            "red" ,
+            "blue" ,
+            "yellow" ,
             "green"
         ];
-
         var initPos = [
-            [-50, -50],
-            [-150, -50],
-            [50, -50]
+            [ -50 , -50 ] ,
+            [ -150 , -50 ] ,
+            [ 50 , -50 ]
         ];
         var origins = [
-            [0, 0, -150],
-            [100, 0, -150],
-            [-100, 0, -150]
+            [ 0 , 0 , -150 ] ,
+            [ 100 , 0 , -150 ] ,
+            [ -100 , 0 , -150 ]
         ];
         var items = [];
 
-        loopArray(initPos, function (matrix, index) {
-            loop(4, function (i) {
-                var item = element("div", {classList: ["item"]}, border);
-                item.style.marginLeft = initPos[index][0] + "px";
-                item.style.marginTop = initPos[index][1] + "px";
-                item.style.backgroundColor = colors[i];
-                item.matrix = _3d.rotate3dM(0, 1, 0, 90 * i);
-                item.origin = origins[index];
-                items.push(item);
-                item.style.transform = "matrix3d(" + _3d.origin3d(item.matrix, origins[index][0], origins[index][1], origins[index][2]).matrixStringify() + ")"
-            });
-        });
+        loopArray( initPos , function ( matrix , index ) {
+            loop( 4 , function ( i ) {
+                var item = element( "div" , { classList : [ "item" ] } , border );
+                item.style.marginLeft = initPos[ index ][ 0 ] + "px";
+                item.style.marginTop = initPos[ index ][ 1 ] + "px";
+                item.style.backgroundColor = colors[ i ];
+                item.matrix = _3d.rotate3dM( 0 , 1 , 0 , 90 * i );
+                item.origin = origins[ index ];
+                items.push( item );
+                item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , origins[ index ][ 0 ] , origins[ index ][ 1 ] , origins[ index ][ 2 ] ).matrixStringify() + ")"
+            } );
+        } );
 
 
-        Drag(border, {
-            onDrag: function (dx, dy) {
-                (dx || dy) && loopArray(items, function (item, i) {
-                    var s = Math.abs(dx) + Math.abs(dy);
-                    item.matrix = _3d.combine(_3d.rotate3dM(dy, -dx, 0, s), item.matrix);
-                    item.style.transform = "matrix3d(" + _3d.origin3d(item.matrix, item.origin[0], item.origin[1], item.origin[2]).matrixStringify() + ")";
-                });
+        Drag( border , {
+            onDrag : function ( dx , dy ) {
+                (dx || dy) && loopArray( items , function ( item , i ) {
+                    var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
+                    item.matrix = _3d.combine( _3d.rotate3dM( dy , -dx , 0 , s ) , item.matrix );
+                    item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
+                } );
             }
-        });
+        } );
 
     })();
 </script>
