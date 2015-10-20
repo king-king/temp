@@ -94,16 +94,16 @@
                 -webkit-transform: translate3d(0, 0, 0) scale(1);
             }
             10% {
-                -webkit-transform: translate3d(-0.1%, 0.1%, 0) scale(1.01);
+                -webkit-transform: translate3d(-0.2%, 0.1%, 0) scale(1.02);
             }
             20% {
-                -webkit-transform: translate3d(0.1%, 0.1%, 0) scale(1.01);
+                -webkit-transform: translate3d(0.1%, 0.2%, 0) scale(1.02);
             }
             40% {
-                -webkit-transform: translate3d(0.1%, -0.1%, 0) scale(1.02);
+                -webkit-transform: translate3d(0.2%, -0.1%, 0) scale(1.02);
             }
             60% {
-                -webkit-transform: translate3d(-0.2%, -0.1%, 0) scale(1.01);
+                -webkit-transform: translate3d(-0.2%, -0.1%, 0) scale(1.02);
             }
             70% {
                 -webkit-transform: translate3d(0.1%, -0.1%, 0) scale(1.03);
@@ -230,7 +230,7 @@
         }
 
         var srcs = [];
-        loop( 8, function ( i ) {
+        loop( 11, function ( i ) {
             srcs.push( "img/doubi-" + i + ".jpg" );
         } );
 
@@ -256,9 +256,9 @@
 
         // 一共11个镜头，以镜头为主，页数不够不齐，多了排到下一轮
         var durations = [
-            1,
-            0.8,
-            1,
+            1.7,
+            0.7,
+            0.5,
             0.5,
             0.3,
             0.4,

@@ -9,11 +9,65 @@
     <meta name="screen-orientation" content="portrait">
     <meta name="browsermode" content="application">
     <title></title>
+    <style>
+        .page {
+            width: 320px;
+            height: 480px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            background-color: black;
+            overflow: hidden;
+        }
+
+        .page img {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            -webkit-animation: animate0 3s linear;
+        }
+
+        @-webkit-keyframes animate0 {
+            0% {
+                -webkit-transform: perspective(1000px) rotateX(90deg);
+            }
+            50% {
+                -webkit-transform: perspective(1000px) rotateX(0deg);
+            }
+            100% {
+                -webkit-transform: perspective(1000px) rotateX(0deg);
+            }
+        }
+
+    </style>
 </head>
 <body>
-<input type="file">
+<div class="page">
+    <img src="img/h7.jpg">
+</div>
 <script>
-    var input = document.querySelector( "input" );
+    var durations = [
+        1 ,
+        0.8 ,
+        1 ,
+        0.5 ,
+        0.3 ,
+        0.4 ,
+        0.6 ,
+        0.6 ,// 7
+        0.4 ,
+        0.6 ,
+        0.2 ,
+        0.4// 11
+    ];
+
+    var sum = 0;
+    for ( var i = 0; i < durations.length; i++ ) {
+        sum += durations[ i ];
+    }
+    console.log( sum )
 </script>
 </body>
 </html>
