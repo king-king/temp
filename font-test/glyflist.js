@@ -29,7 +29,9 @@ function onReadFile( e ) {
 
         /** 各glyf描画 */
         for ( var i = 0 , l = font.glyf.length; i < l; i++ ) {
+            /**  每个font.glyf都有一个path属性，这点至关重要 **/
             var glyf = font.glyf[ i ];
+            /**  复制一块svg作为模板 **/
             var svg = glyfSVG.clone( true );
             svg.find( "h3" ).html( i );
             if ( glyf.path !== '' ) {
