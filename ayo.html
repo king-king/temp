@@ -79,6 +79,16 @@
             color: #fff;
         }
 
+        .end-mask {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 100;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
         @-webkit-keyframes rotate {
             0% {
                 -webkit-transform: rotateZ(0deg);
@@ -209,7 +219,7 @@
     <div class="loading-icon"></div>
 </div>
 <div class="button pause">mute</div>
-<audio src="music/areuok.mp3" loop="loop"></audio>
+<audio src="music/ayok-s.mp3"></audio>
 <!--<audio src="music/Angelina.mp3" loop="loop"></audio>-->
 <script src="itools.js"></script>
 <script>
@@ -433,6 +443,11 @@
             durationIndex = (durationIndex + 1) % durations.length;
             imgIndex = (imgIndex + 1) % images.length;
         }
+
+        audio.addEventListener( "ended" , function () {
+            var mask = element( "div" , { classList : [ "end-mask" ] } , border );
+            clearTimeout( id );
+        } );
     })();
 </script>
 </body>
