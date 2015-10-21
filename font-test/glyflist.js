@@ -26,7 +26,6 @@ function onReadFile( e ) {
         $( "#loading" ).hide();
 
         font = new ttfjs.TTF( e.target.result );
-
         /** 各glyf描画 */
         for ( var i = 0 , l = font.glyf.length; i < l; i++ ) {
             /**  每个font.glyf都有一个path属性，这点至关重要 **/
