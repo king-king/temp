@@ -547,15 +547,19 @@
             }
             img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " linear both";
             styleIndex++;
+            if ( frames.length == 1 ) {
+                var tstyle = img.style.transform;
+                img.style.transform = "";
+            }
             img.addEventListener( "webkitAnimationEnd" , function () {
                 img.style.webkitAnimation = "";
+                frames.length == 1 && (img.style.transform = tstyle);
                 img.removeEventListener( "webkitAnimationEnd" , arguments.callee , false );
             } , false );
         };
 
         (new ZeroClipboard( copyBtn )).on( "copy" , function ( event ) {
             var arg = {};
-            var len = 0;
             loopArray( frames , function ( f , i ) {
                 var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 : f.x / WIDTH * 100;
                 if ( i != 0 && i != frames.length - 1 ) {
@@ -591,12 +595,8 @@
                 }
                 if ( ( translate3d + scale + rotateX + rotateY + rotateZ + opacity).length ) {
                     arg[ percent ] = translate3d + scale + rotateX + rotateY + rotateZ + opacity;
-                    len++;
                 }
             } );
-            if ( len == 1 ) {
-                arg[ 0 ] = "translate3d(0,0,0) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) opacity(1)";
-            }
             event.clipboardData.setData( "text/plain" , JSON.stringify( arg ) );
         } );
     })();
