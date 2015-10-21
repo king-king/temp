@@ -26,7 +26,14 @@
             position: absolute;
             top: 0;
             left: 0;
-            -webkit-animation: animate0 3s linear;
+            -webkit-animation: cinema-animate5 3s linear;
+        }
+
+        @-webkit-keyframes cinema-animate5 {
+            98% {
+                transform: perspective(1000px) translate3d(0%, 0%, 0px) scale(1) rotateX(0deg) rotateY(20deg) rotateZ(0deg);
+                opacity: 1;
+            }
         }
 
         @-webkit-keyframes animate0 {

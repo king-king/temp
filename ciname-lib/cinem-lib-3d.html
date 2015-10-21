@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title>v2.0</title>
+    <style>
+        body.disable {
+            pointer-events: none;
+        }
+
+        * {
+            -webkit-user-select: none;
+        }
+
+        input {
+            -webkit-user-select: text;
+        }
+
+        .img-border {
+            border: 5px solid black;
+            width: 450px;
+            height: 450px;
+            top: 10px;
+            right: 50%;
+            position: absolute;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .img-border img {
+            width: 100%;
+        }
+
+        .panel {
+            position: absolute;
+            left: 60%;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        .panel-item span {
+            color: blue;
+            font-weight: bolder;
+        }
+
+        .panel-item, .panel-item2 {
+            height: 45px;
+            line-height: 45px;
+        }
+
+        .panel-item .title, .panel-item2 .title {
+            height: 60px;
+            line-height: 60px;
+            display: inline-block;
+            width: 100px;
+        }
+
+        .panel-item input, .panel-item2 input {
+            width: 200px;
+            text-align: center;
+        }
+
+        .panel-item .btn {
+            display: inline-block;
+            height: 40px;
+            width: 50px;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            background-color: #eee;
+            border-radius: 5px;
+            margin: 0 20px 0 0;
+        }
+
+        .panel-item .btn:hover {
+            opacity: 0.5;
+        }
+
+        .frame {
+            height: 30px;
+            position: absolute;
+            bottom: 60px;
+            left: 50px;
+            right: 50px;
+            background-color: #ddd;
+        }
+
+        .frame-item {
+            position: absolute;
+            height: 100%;
+            width: 25px;
+            background: deepskyblue;
+            cursor: e-resize;
+        }
+
+        .frame-item.end {
+            background: red !important;
+        }
+
+        .frame-item.select {
+            background-color: orange;
+        }
+
+        textarea {
+            -webkit-user-select: text;
+            width: 230px;
+            height: 130px;
+        }
+
+        .hide {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<div class="img-border">
+    <img src="../img/1.jpg">
+</div>
+<input type="file" class="hide file" accept=".png,.jpg,.jpeg">
+
+<div class="panel">
+    <form>
+        <div class="panel-item x value">
+            <div class="title">x:</div>
+            -100<input type="range" value="0" min="-100" max="100" step="1">100%
+            <span class="flag"></span>
+        </div>
+        <div class="panel-item y value">
+            <div class="title">y:</div>
+            -100<input type="range" value="0" min="-100" max="100" step="1">100%
+            <span class="flag"></span>
+        </div>
+        <div class="panel-item scale value">
+            <div class="title">scale:</div>
+            &nbsp;0&nbsp;<input type="range" value="1" min="0" max="5" step="0.1">5
+            <span class="flag"></span>
+        </div>
+        <div class="panel-item opacity value">
+            <div class="title">opacity:</div>
+            &nbsp;0&nbsp;<input type="range" value="1" min="0" max="1" step="0.01">1
+            <span class="flag"></span>
+        </div>
+        <div class="panel-item rotate value">
+            <div class="title">rotateZ:</div>
+            <input type="text" value="0"> deg
+            <span class="flag"></span>
+        </div>
+
+        <div class="panel-item rotateX value">
+            <div class="title">rotateX:</div>
+            <input type="text" value="0"> deg
+            <span class="flag"></span>
+        </div>
+        <div class="panel-item rotateY value">
+            <div class="title">rotateY:</div>
+            <input type="text" value="0"> deg
+            <span class="flag"></span>
+        </div>
+
+    </form>
+    <hr style="height:1px;border:none;border-top:1px solid #ccc;"/>
+    <div class="panel-item2">
+        <div class="title">持续时间：</div>
+        <input type="text" value="2" class="duration"> s
+    </div>
+    <div class="panel-item">
+        <div class="btn add">添加</div>
+        <div class="btn animate">动画</div>
+        <div class="btn put-in">导入</div>
+        <div class="btn copy">复制</div>
+    </div>
+    <div class="panel-item">
+        <div class="title">滤镜：</div>
+        <textarea></textarea>
+    </div>
+</div>
+<div class="frame"></div>
+<script src="ZeroClipboard.min.js"></script>
+<script src="tools.js"></script>
+<script>
+    (function () {
+        var querySelector = document.querySelector.bind( document );
+        var querySelectorAll = document.querySelectorAll.bind( document );
+        var frame = querySelector( ".frame" );
+        var WIDTH = frame.offsetWidth;
+        var frames = [];
+        var width = 25;
+        var img = querySelector( ".img-border img" );
+        var form = querySelector( "form" );
+        var inputs = querySelectorAll( ".panel-item input" );
+        var duration = querySelector( ".duration" );
+        var animateBtn = querySelector( ".btn.animate" );
+        var copyBtn = querySelector( ".btn.copy" );
+        var fileInput = querySelector( "input.file" );
+        var imgBorder = querySelector( ".img-border" );
+        var textarea = querySelector( "textarea" );
+        var putIn = querySelector( ".put-in.btn" );
+
+        imgBorder.onclick = function () {
+            fileInput.click();
+        };
+
+        fileInput.onchange = function () {
+            img.src = window.URL.createObjectURL( fileInput.files[ 0 ] );
+            img.onload = function () {
+                if ( img.naturalHeight / img.naturalWidth > 1 ) {
+                    imgBorder.style.height = "400px";
+                    imgBorder.style.width = 400 / img.naturalHeight * img.naturalWidth + "px";
+                }
+                else {
+                    imgBorder.style.height = 400 * img.naturalHeight / img.naturalWidth + "px";
+                    imgBorder.style.width = "400px";
+                }
+            }
+        };
+
+        function addOneFrame( data , inputX ) {
+            var frameItem = element( "div" , {
+                classList : [ "frame-item" ]
+            } , frame );
+            if ( !frames.length ) {
+                frameItem.x = 0;
+                frameItem.style.left = frameItem.x + "px";
+            }
+            else {
+                var ww = (WIDTH - width - frames[ frames.length - 1 ].x ) >> 1;
+                if ( ww < width ) {
+                    alert( "帧数太多了" );
+                    return;
+                }
+                else {
+                    frameItem.x = frames[ frames.length - 1 ].x + width + ww;
+                    frameItem.style.left = frameItem.x + "px";
+                }
+            }
+            frameItem.index = frames.length;
+            frames.push( frameItem );
+            frameItem.data = data || [];
+
+            var cur = querySelector( ".frame-item.select" );
+            cur && cur.classList.remove( "select" );
+            form.reset();
+            img.style.webkitTransform = "";
+            img.style.opacity = 1;
+            frameItem.classList.add( "select" );
+            loopArray( querySelectorAll( ".panel-item .flag" ) , function ( span ) {
+                span.innerText = "";
+            } );
+            if ( inputX ) {
+                frameItem.x = inputX;
+                frameItem.style.left = frameItem.x + "px";
+                flushData();
+            }
+
+            //  根据数据刷新input的内容，以及设置img的style
+            function flushData() {
+                form.reset();
+                loopArray( querySelectorAll( ".panel-item .flag" ) , function ( span ) {
+                    span.innerText = "";
+                } );
+                loopArray( frameItem.data , function ( data , i ) {
+                    if ( data != undefined ) {
+                        // 等于0可以，但是不能等于undefined
+                        inputs[ i ].value = data;
+                        inputs[ i ].nextElementSibling.innerText = data;
+                    }
+                } );
+                var x = inputs[ 0 ].value ? inputs[ 0 ].value << 0 : 0;
+                var y = inputs[ 1 ].value ? inputs[ 1 ].value << 0 : 0;
+
+                var perspective = "" , rotateX = "" , rotateY = "" , rotateZ = "";
+                (frameItem.data[ 5 ] || frameItem.data[ 6 ]  ) && (perspective = "perspective(1000px) ");
+                rotateZ = " rotateZ(" + inputs[ 4 ].value + "deg) ";
+                rotateX = " rotateX(" + inputs[ 5 ].value + "deg) ";
+                rotateY = " rotateY(" + inputs[ 6 ].value + "deg) ";
+
+                img.style.webkitTransform = perspective + "translate3d(" + x +
+                        "%," + y + "%,0) scale(" + (inputs[ 2 ].value || 1) + ")" + rotateX + rotateY + rotateZ;
+                img.style.opacity = inputs[ 3 ].value;
+            }
+
+            frameItem.onclick = function ( e ) {
+                if ( e.which == 1 ) {
+                    // 选中
+                    var cur = querySelector( ".frame-item.select" );
+                    cur && cur.classList.remove( "select" );
+                    frameItem.classList.add( "select" );
+                    flushData();
+                }
+                else if ( e.which == 2 ) {
+                    // 删除
+                    frame.removeChild( frameItem );
+                    if ( frames[ frameItem.index - 1 ] ) {
+                        frameItem = frames[ frameItem.index - 1 ];
+                        frameItem.classList.add( "select" );
+                        flushData();
+                    }
+                    else if ( frames[ frameItem.index + 1 ] ) {
+                        frameItem = frames[ frameItem.index + 1 ];
+                        frameItem.classList.add( "select" );
+                        flushData();
+                    }
+                    else {
+                        form.reset();
+                        img.style.webkitFilter = "";
+                    }
+                    frames = [];
+                    loopArray( querySelectorAll( ".frame-item" ) , function ( item , i ) {
+                        item.index = i;
+                        frames.push( item );
+                    } )
+                }
+            };
+
+            var leftThreshold , rightThreshold;
+            onDragV( frameItem , {
+                onTap : function () {
+                    leftThreshold = frames[ frameItem.index - 1 ];
+                    rightThreshold = frames[ frameItem.index + 1 ];
+                    leftThreshold = leftThreshold ? leftThreshold.x + width : 0;
+                    rightThreshold = rightThreshold ? rightThreshold.x : WIDTH;
+                } ,
+                onDrag : function ( dx ) {
+                    var x = dx + frameItem.x;
+                    if ( x + width <= rightThreshold && x >= leftThreshold ) {
+                        frameItem.x = x;
+                        frameItem.style.left = x + "px";
+                    }
+                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
+                        frameItem.classList.add( "end" );
+                    }
+                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
+                        frameItem.classList.remove( "end" );
+                    }
+                } ,
+                onUp : function () {
+                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
+                        frameItem.classList.add( "end" );
+                    }
+                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
+                        frameItem.classList.remove( "end" );
+                    }
+                }
+            } );
+        }
+
+        // 将已经编辑好的镜头数据导入
+        putIn.onclick = function () {
+            function getDataFromStyle( style ) {
+                //"translate3d(0%,0%,0) scale(1.8) rotate(0deg)} opacity(1)"opacity有些可能没有
+                style = replaceAll( style , "%" , "" );
+                var data = [];
+                style = style.replace( "scale" , ";scale" );
+                style = style.replace( "rotate" , ";rotate" );
+                style = style.replace( "rotateX" , ";rotateX" );
+                style = style.replace( "rotateY" , ";rotateY" );
+                style = style.replace( "rotateZ" , ";rotateZ" );
+                style = style.replace( "}" , "" );
+                style = replaceAll( style , "deg" , "" );
+                style = style.replace( "opacity" , ";opacity" );
+                style += ";";
+                function translate3d( x , y ) {
+                    data[ 0 ] = x;
+                    data[ 1 ] = y;
+                }
+
+                function scale( s ) {
+                    data[ 2 ] = s;
+                }
+
+                function opacity( o ) {
+                    data[ 3 ] = o;
+                }
+
+                function rotateZ( r ) {
+                    data[ 4 ] = r;
+                }
+
+                function rotateX( r ) {
+                    data[ 5 ] = r;
+                }
+
+                function rotateY( r ) {
+                    data[ 6 ] = r;
+                }
+
+                function rotate( r ) {
+                    data[ 4 ] = r;
+                }
+
+                eval( style );
+                return data;
+            }
+
+            var cinemaData = prompt( "输入已经编辑好的镜头数据" , "" );
+            cinemaData = replaceAll( replaceAll( cinemaData , "“" , "\"" ) , "”" , "\"" );
+            if ( cinemaData ) {
+                try {
+                    cinemaData = JSON.parse( cinemaData );
+                }
+                catch ( e ) {
+                    alert( "数据错误" );
+                    return;
+                }
+                frame.innerHTML = "";
+                frames = [];
+                var indata = [];
+                for ( var p in cinemaData ) {
+                    if ( p.indexOf( "." ) != -1 ) {
+                        indata.push( (parseFloat( p )).toFixed( 1 ) );
+                    } else {
+                        indata.push( parseFloat( p ) );
+                    }
+                }
+                indata = indata.sort( function ( a , b ) {
+                    return a - b;
+                } );
+                loopArray( indata , function ( percent ) {
+                    var x = percent * WIDTH / 100;
+                    if ( x + width > WIDTH ) {
+                        x = WIDTH - width;
+                    }
+                    addOneFrame( getDataFromStyle( cinemaData[ percent ] ) , x );
+                } );
+            }
+        };
+
+        querySelector( ".panel-item .add" ).onclick = function () {
+            addOneFrame();
+        };
+
+        // 处理编辑
+        loopArray( inputs , function ( input , i ) {
+
+            function change() {
+                var cur = querySelector( ".frame-item.select" );
+                if ( cur ) {
+                    cur.data[ i ] = parseFloat( input.value );
+                    var x = inputs[ 0 ].value ? inputs[ 0 ].value << 0 : 0;
+                    var y = inputs[ 1 ].value ? inputs[ 1 ].value << 0 : 0;
+
+                    var perspective = "" , rotateX = "" , rotateY = "" , rotateZ = "";
+                    (cur.data[ 5 ] || cur.data[ 6 ]  ) && (perspective = "perspective(1000px) ");
+                    rotateZ = " rotateZ(" + inputs[ 4 ].value + "deg) ";
+                    rotateX = " rotateX(" + inputs[ 5 ].value + "deg) ";
+                    rotateY = " rotateY(" + inputs[ 6 ].value + "deg) ";
+
+                    img.style.webkitTransform = perspective + "translate3d(" + x +
+                            "%," + y + "%,0) scale(" + (inputs[ 2 ].value || 1) + ")" + rotateX + rotateY + rotateZ;
+                    img.style.opacity = inputs[ 3 ].value;
+                }
+            }
+
+            if ( i > 3 ) {
+                input.oninput = function () {
+                    change();
+                }
+            }
+            else {
+                input.onclick = function ( e ) {
+                    if ( e.which == 2 ) {
+                        // reset
+                        input.nextElementSibling.innerText = input.value = i < 2 ? 0 : 1;
+                    }
+                    change();
+                };
+                onDragV( input , {
+                    onTap : function () {
+                    } ,
+                    onDrag : function () {
+                        change();
+                        input.nextElementSibling.innerText = input.value;
+                    } ,
+                    onUp : function () {
+                    }
+                } );
+            }
+        } );
+
+        var styleIndex = 0;
+        var styleDom = element( "style" , {} , document.head );
+
+        animateBtn.onclick = function () {
+            var style;
+            var filterArg = null;
+            if ( textarea.value.trim() ) {
+                try {
+                    filterArg = JSON.parse( textarea.value );
+                }
+                catch ( e ) {
+                    filterArg = null;
+                    alert( "滤镜的数据不对，检查是否缺失花括号和双引号" );
+                    return;
+                }
+            }
+            if ( filterArg ) {
+                // 滤镜导入数据
+                for ( var key in filterArg ) {
+                    var value = filterArg[ key ];
+                    filterArg[ key + "%" ] = {
+                        "-webkit-filter" : value
+                    };
+                    delete  filterArg[ key ];
+                }
+                var cinemaArg = {};
+                loopArray( frames , function ( f , i ) {
+                    var percent = i == frame.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
+                    var perspective = "";
+                    (f.data[ 5 ] || f.data[ 6 ]  ) && (perspective = "perspective(1000px) ");
+                    cinemaArg[ percent + "%" ] = {
+                        "-webkit-transform" : perspective + "translate3d(" + (f.data[ 0 ] || 0) +
+                        "%," + (f.data[ 1 ] || 0) + "%,0) scale(" + (f.data[ 2 ] || 1) + ") rotateX("
+                        + (f.data[ 5 ] || 0) + "deg)  rotateY(" + (f.data[ 6 ] || 0) + "deg)  rotateZ(" + (f.data[ 4 ] || 0) + "deg)" ,
+                        opacity : f.data[ 3 ]
+                    }
+                } );
+                var res = {};
+                blend( cinemaArg , filterArg , res );
+                var keyframe = replaceAll( replaceAll( replaceAll( replaceAll( JSON.stringify( res ) , "\"" , "" ) , ")," , ");" ) , "}," , "}" ) , "%:" , "%" );
+                while ( keyframe.match( /opacity:[0-9]+([.]{1}[0-9]+){0,1},/ ) ) {
+                    var aa = keyframe.match( /opacity:[0-9]+([.]{1}[0-9]+){0,1},/ )[ 0 ];
+                    keyframe = keyframe.replace( aa , aa.slice( 0 , aa.length - 1 ) + ";" );
+                }
+                styleDom.sheet.insertRule( "@-webkit-keyframes cinema-animate"
+                        + styleIndex + keyframe , 0 );
+            }
+            else {
+                style = "@-webkit-keyframes cinema-animate" + styleIndex + "{";
+                loopArray( frames , function ( f , i ) {
+                    var percent;
+                    var perspective = "";
+                    (f.data[ 5 ] || f.data[ 6 ]  ) && (perspective = "perspective(1000px) ");
+                    percent = i == frame.length - 1 ? (f.x + width) / WIDTH * 100 << 0 : f.x / WIDTH * 100 << 0;
+                    style += (percent + "%{-webkit-transform:" + perspective + "translate3d(" + (f.data[ 0 ] || 0) +
+                    "%," + (f.data[ 1 ] || 0) + "%,0) scale(" + (f.data[ 2 ] || 1) + ") rotateX("
+                    + (f.data[ 5 ] || 0) + "deg)  rotateY(" + (f.data[ 6 ] || 0) + "deg)  rotateZ(" + (f.data[ 4 ] || 0) + "deg);opacity:" + (f.data[ 3 ] == undefined ? 1 : f.data[ 3 ]) + "}");
+                } );
+                style += "}";
+                styleDom.sheet.insertRule( style , 0 );
+            }
+            img.style.webkitAnimation = duration.value + "s " + "cinema-animate" + styleIndex + " linear both";
+            styleIndex++;
+            img.addEventListener( "webkitAnimationEnd" , function () {
+                img.style.webkitAnimation = "";
+                img.removeEventListener( "webkitAnimationEnd" , arguments.callee , false );
+            } , false );
+        };
+
+        (new ZeroClipboard( copyBtn )).on( "copy" , function ( event ) {
+            var arg = {};
+            var len = 0;
+            loopArray( frames , function ( f , i ) {
+                var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 : f.x / WIDTH * 100;
+                if ( i != 0 && i != frames.length - 1 ) {
+                    if ( f.x - frames[ i - 1 ].x < width * 2 ) {
+                        // 如果距离太小，则增加精度
+                        percent = (percent).toFixed( 1 );
+                    } else {
+                        percent = (percent).toFixed( 0 );
+                    }
+                }
+                else {
+                    percent = (percent).toFixed( 0 );
+                }
+                var translate3d = "" , scale = "" , rotateZ = "" , opacity = "" , rotateX = "" , rotateY = "";
+
+                if ( f.data[ 0 ] != undefined || f.data[ 1 ] != undefined ) {
+                    translate3d = "translate3d(" + (f.data[ 0 ] || 0) + "%," + ( f.data[ 1 ] || 0) + "%,0) ";
+                }
+                if ( f.data[ 2 ] != undefined ) {
+                    scale = " scale(" + f.data[ 2 ] + ") ";
+                }
+                if ( f.data[ 3 ] != undefined ) {
+                    opacity = " opacity(" + f.data[ 3 ] + ") ";
+                }
+                if ( f.data[ 4 ] != undefined ) {
+                    rotateZ = " rotateZ(" + f.data[ 4 ] + "deg) ";
+                }
+                if ( f.data[ 5 ] != undefined ) {
+                    rotateX = " rotateX(" + f.data[ 5 ] + "deg) ";
+                }
+                if ( f.data[ 6 ] != undefined ) {
+                    rotateY = " rotateY(" + f.data[ 6 ] + "deg) ";
+                }
+                if ( ( translate3d + scale + rotateX + rotateY + rotateZ + opacity).length ) {
+                    arg[ percent ] = translate3d + scale + rotateX + rotateY + rotateZ + opacity;
+                    len++;
+                }
+            } );
+            if ( len == 1 ) {
+                arg[ 0 ] = "translate3d(0,0,0) scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) opacity(1)";
+            }
+            event.clipboardData.setData( "text/plain" , JSON.stringify( arg ) );
+        } );
+    })();
+</script>
+</body>
+</html>
