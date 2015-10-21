@@ -7,4 +7,4 @@ var a = {
     "100" : " rotateY(0deg) "
 }
 
-b = { "0" : "grayscale(0) sepia(0)" , "100" : "grayscale(0.5) sepia(0.7)" }
+b = { "100" : " perspective(1000)  rotateY(10deg) " }

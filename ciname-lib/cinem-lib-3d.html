@@ -371,6 +371,10 @@
                     data[ 1 ] = y;
                 }
 
+                function perspective() {
+
+                }
+
                 function scale( s ) {
                     data[ 2 ] = s;
                 }
@@ -573,7 +577,7 @@
                 else {
                     percent = (percent).toFixed( 0 );
                 }
-                var translate3d = "" , scale = "" , rotateZ = "" , opacity = "" , rotateX = "" , rotateY = "";
+                var translate3d = "" , scale = "" , rotateZ = "" , opacity = "" , rotateX = "" , rotateY = "" , perspective = "";
 
                 if ( f.data[ 0 ] != undefined || f.data[ 1 ] != undefined ) {
                     translate3d = "translate3d(" + (f.data[ 0 ] || 0) + "%," + ( f.data[ 1 ] || 0) + "%,0) ";
@@ -593,8 +597,11 @@
                 if ( f.data[ 6 ] != undefined ) {
                     rotateY = " rotateY(" + f.data[ 6 ] + "deg) ";
                 }
-                if ( ( translate3d + scale + rotateX + rotateY + rotateZ + opacity).length ) {
-                    arg[ percent ] = translate3d + scale + rotateX + rotateY + rotateZ + opacity;
+                if ( f.data[ 5 ] != undefined || f.data[ 6 ] != undefined ) {
+                    perspective = " perspective(1000) "
+                }
+                if ( ( perspective + translate3d + scale + rotateX + rotateY + rotateZ + opacity).length ) {
+                    arg[ percent ] = perspective + translate3d + scale + rotateX + rotateY + rotateZ + opacity;
                 }
             } );
             event.clipboardData.setData( "text/plain" , JSON.stringify( arg ) );

@@ -362,6 +362,9 @@
             var data = [];
             style = style.replace( "scale" , ";scale" );
             style = style.replace( "rotate" , ";rotate" );
+            style = style.replace( "rotateX" , ";rotateX" );
+            style = style.replace( "rotateY" , ";rotateY" );
+            style = style.replace( "rotateZ" , ";rotateZ" );
             style = style.replace( "}" , "" );
             style = style.replace( "deg" , "" );
             style = style.replace( "opacity" , ";opacity" );
@@ -369,6 +372,9 @@
             function translate3d( x , y ) {
                 data[ 0 ] = x;
                 data[ 1 ] = y;
+            }
+
+            function perspective() {
             }
 
             function scale( s ) {
@@ -385,6 +391,14 @@
 
             function rotateZ( r ) {
                 data[ 4 ] = r;
+            }
+
+            function rotateX( r ) {
+                data[ 5 ] = r;
+            }
+
+            function rotateY( r ) {
+                data[ 6 ] = r;
             }
 
             eval( style );
@@ -407,10 +421,14 @@
             var key;
             for ( key in cd ) {
                 cameraData[ key ] = {};
-                var d = getDataFromStyle( cd[ key ] );
-                var translate3d = "";
-                var scale = "";
-                var rotate = "";
+                var d = getDataFromStyle( cd[ key ] ) ,
+                        translate3d = "" ,
+                        scale = "" ,
+                        rotate = "" ,
+                        perspective = "" ,
+                        rotrateX = "" ,
+                        rotateY = "";
+
                 if ( d[ 0 ] != undefined || d[ 1 ] != undefined ) {
                     translate3d = "translate3d(" + (d[ 0 ] || 0) + "%," + (d[ 1 ] || 0) + "%,0) ";
                 }
@@ -420,7 +438,16 @@
                 if ( d[ 4 ] != undefined ) {
                     rotate = " rotateZ(" + d[ 4 ] + "deg) ";
                 }
-                cameraData[ key ][ "-webkit-transform" ] = translate3d + scale + rotate + ";";
+                if ( d[ 5 ] != undefined || d[ 6 ] != undefined ) {
+                    perspective = " perspective(1000px) "
+                }
+                if ( d[ 5 ] != undefined ) {
+                    rotrateX = " rotrateX(" + d[ 5 ] + "deg) ";
+                }
+                if ( d[ 6 ] != undefined ) {
+                    rotateY = " rotateY(" + d[ 6 ] + "deg) ";
+                }
+                cameraData[ key ][ "-webkit-transform" ] = perspective + translate3d + scale + rotrateX + rotateY + rotate + ";";
                 d[ 3 ] != undefined && ( cameraData[ key ].opacity = d[ 3 ] + ";");
             }
             for ( key in fd ) {
