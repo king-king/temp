@@ -7,12 +7,12 @@ var httpServer = child_process.fork( "fc-server.js" );
 
 httpServer.on( "exit" , function () {
     setTimeout( function () {
-        // 1min ºóÖØÆô
+        // 1min ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         httpServer = child_process.fork( "server-worker.js" )
     } , 1000 * 60 );
 } );
 
 process.on( "exit" , function () {
-    // ¸¸½ø³ÌÍË³ö×Ô¶¯¹Ø±Õ×Ó½ø³Ì
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë³ï¿½ï¿½Ô¶ï¿½ï¿½Ø±ï¿½ï¿½Ó½ï¿½ï¿½ï¿½
     httpServer && httpServer.kill();
 } );

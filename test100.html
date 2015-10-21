@@ -48,29 +48,24 @@
     <img src="img/h7.jpg">
 </div>
 <script>
-    var durations = [
-        1.7 ,
-        0.7 ,
-        0.5 ,
-        0.5 ,
-        0.3 ,
-        0.4 ,
-        0.6 ,
-        0.6 ,// 7
-        0.4 ,
-        0.5 ,
-        0.2 ,
-        0.4 ,// 11
-        0.5 ,
-        0.2 ,
-        0.4 //14
-    ];
+    var str = "天地玄黄 宇宙洪荒";
+    var a = {
+        unicode : str.split( '' ).map( function ( s ) {
+            return s.charCodeAt( 0 );
+        } )
+    };
+    var unicodeList = [ a ];
+    var unicodeHash = {};
+    unicodeList.forEach( function ( unicode ) {
+        if ( typeof unicode === 'string' ) {
+            unicode = Number( '0x' + unicode.slice( 1 ) );
+        }
+        unicodeHash[ unicode ] = true;
+    } );
 
-    var sum = 0;
-    for ( var i = 0; i < durations.length; i++ ) {
-        sum += durations[ i ];
-    }
-    console.log( sum )
+    console.log( unicodeHash );
+
+
 </script>
 </body>
 </html>
