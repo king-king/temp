@@ -55,6 +55,30 @@
         this._readTables();
     };
 
+    function getCMAP( view , offset ) {
+        var tableVersionNum = view.getUint16( offset , false );
+        var endcoingNum = view.getUint16( offset + 2 , false );
+        var platformID = view.getUint16( offset + 4 , false );
+        var edcodingID = view.getUint16( offset + 6 , false );
+        var encodingOffset = view.getUint32( offset + 8 , false );
+        if ( platformID == 3 && edcodingID == 1 ) {
+            var format = view.getUint16( offset + encodingOffset , false );
+            var length = view.getUint16( offset + encodingOffset + 2 , false );
+            var version = view.getUint16( offset + encodingOffset + 4 , false );
+            var segCountX2 = view.getUint16( offset + encodingOffset + 6 , false );
+            var searchRange = view.getUint16( offset + encodingOffset + 8 , false );
+            var entrySelector = view.getUint16( offset + encodingOffset + 10 , false );
+            var rangeShift = view.getUint16( offset + encodingOffset + 12 , false );
+            var endCount = view.getUint16( offset + encodingOffset + 14 , false );
+            var reservedPad = view.getUint16( offset + encodingOffset + 16 , false );
+            var startCount = view.getUint16( offset + encodingOffset + 18 , false );
+            var idDelta = view.getUint16( offset + encodingOffset + 20 , false );
+            var idRangeOffset = view.getUint16( offset + encodingOffset + 22 , false );
+            var glyphIdArray = view.getUint16( offset + encodingOffset + 24 , false );
+        }
+        console.log( edcodingID );
+    }
+
     /**
      * TrueTypeFontの各テーブルを読み込む
      */
@@ -86,6 +110,8 @@
         for ( var tag in this.tableDirectory ) {
             this[ tag ] = {};
         }
+
+        getCMAP( view , this.tableDirectory.cmap.offset );
 
         // head
         var headOffset = this.tableDirectory.head.offset;

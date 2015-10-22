@@ -91,6 +91,17 @@
     var b = eval( "\"" + c + "\"" );
     console.log( b )
 
+    var xhr = new XMLHttpRequest();
+    xhr.open( "get" , "http://wx.bmac.com.cn/h5/servlet/GetWxSignServlet?cardNo=10007510740044458&openid=o_kX_t4Nayh7jGXRRfEOhcUrAZfU&bind_flag=FALSE&jsonp_callback_name=query_result " , true )
+    xhr.send();
+
+    xhr.onreadystatechange = function () {
+        if ( xhr.status == 4 ) {
+
+        }
+    }
+
+
 </script>
 </body>
 </html>
