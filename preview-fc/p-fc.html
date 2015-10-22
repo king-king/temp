@@ -365,8 +365,10 @@
             style = style.replace( "rotateX" , ";rotateX" );
             style = style.replace( "rotateY" , ";rotateY" );
             style = style.replace( "rotateZ" , ";rotateZ" );
+            style = style.replace( "translate3d" , ";translate3d" );
+            style = style.replace( "perspective" , ";perspective" );
             style = style.replace( "}" , "" );
-            style = style.replace( "deg" , "" );
+            style = replaceAll( style , "deg" , "" );
             style = style.replace( "opacity" , ";opacity" );
             style += ";";
             function translate3d( x , y ) {
@@ -426,7 +428,7 @@
                         scale = "" ,
                         rotate = "" ,
                         perspective = "" ,
-                        rotrateX = "" ,
+                        rotateX = "" ,
                         rotateY = "";
 
                 if ( d[ 0 ] != undefined || d[ 1 ] != undefined ) {
@@ -442,12 +444,12 @@
                     perspective = " perspective(1000px) "
                 }
                 if ( d[ 5 ] != undefined ) {
-                    rotrateX = " rotrateX(" + d[ 5 ] + "deg) ";
+                    rotateX = " rotateX(" + d[ 5 ] + "deg) ";
                 }
                 if ( d[ 6 ] != undefined ) {
                     rotateY = " rotateY(" + d[ 6 ] + "deg) ";
                 }
-                cameraData[ key ][ "-webkit-transform" ] = perspective + translate3d + scale + rotrateX + rotateY + rotate + ";";
+                cameraData[ key ][ "-webkit-transform" ] = perspective + translate3d + scale + rotateX + rotateY + rotate + ";";
                 d[ 3 ] != undefined && ( cameraData[ key ].opacity = d[ 3 ] + ";");
             }
             for ( key in fd ) {

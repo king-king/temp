@@ -48,12 +48,21 @@
             }
         }
 
+        @-webkit-keyframes keyframe35 {
+            0% {
+                -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotrateX(0deg) rotateY(-20deg) rotateZ(0deg);
+            }
+            100% {
+                -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotateY(10deg);
+            }
+        }
     </style>
 </head>
 <body>
 <div class="page">
     <img src="img/h7.jpg">
 </div>
+<div>\u6029</div>
 <script>
     //    var str = "天地玄黄 宇宙洪荒";
     //    var a = {
@@ -70,33 +79,12 @@
     //        unicodeHash[ unicode ] = true;
     //    } );
     //
-//    console.log( unicodeHash );
+    //    console.log( unicodeHash );
 
 
+    var str = "天1234";
 
-
-    function concurrentTask( tasks , callback ) {
-        var len = tasks.length , count = 0;
-        tasks.forEach( function ( task ) {
-            task( function () {
-                count++;
-                count == len && callback();
-            } );
-        } );
-    }
-    // 示例用法
-    concurrentTask( [ "img/1.jpg" , "img/222.jpg" , "img/3.jpg" ].map( function ( s ) {
-        return function ( done ) {
-            var img = new Image();
-            img.src = s;
-            img.onload = done;
-            img.onerror = done;
-        }
-    } ) , function () {
-        //　全部加载完毕
-        console.log( "all loaded" )
-    } )
-
+    console.log( str.charCodeAt( 0 ) )
 
 </script>
 </body>
