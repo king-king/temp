@@ -55,22 +55,47 @@
     <img src="img/h7.jpg">
 </div>
 <script>
-    var str = "天地玄黄 宇宙洪荒";
-    var a = {
-        unicode : str.split( '' ).map( function ( s ) {
-            return s.charCodeAt( 0 );
-        } )
-    };
-    var unicodeList = [ a ];
-    var unicodeHash = {};
-    unicodeList.forEach( function ( unicode ) {
-        if ( typeof unicode === 'string' ) {
-            unicode = Number( '0x' + unicode.slice( 1 ) );
-        }
-        unicodeHash[ unicode ] = true;
-    } );
+    //    var str = "天地玄黄 宇宙洪荒";
+    //    var a = {
+    //        unicode : str.split( '' ).map( function ( s ) {
+    //            return s.charCodeAt( 0 );
+    //        } )
+    //    };
+    //    var unicodeList = [ a ];
+    //    var unicodeHash = {};
+    //    unicodeList.forEach( function ( unicode ) {
+    //        if ( typeof unicode === 'string' ) {
+    //            unicode = Number( '0x' + unicode.slice( 1 ) );
+    //        }
+    //        unicodeHash[ unicode ] = true;
+    //    } );
+    //
+//    console.log( unicodeHash );
 
-    console.log( unicodeHash );
+
+
+
+    function concurrentTask( tasks , callback ) {
+        var len = tasks.length , count = 0;
+        tasks.forEach( function ( task ) {
+            task( function () {
+                count++;
+                count == len && callback();
+            } );
+        } );
+    }
+    // 示例用法
+    concurrentTask( [ "img/1.jpg" , "img/222.jpg" , "img/3.jpg" ].map( function ( s ) {
+        return function ( done ) {
+            var img = new Image();
+            img.src = s;
+            img.onload = done;
+            img.onerror = done;
+        }
+    } ) , function () {
+        //　全部加载完毕
+        console.log( "all loaded" )
+    } )
 
 
 </script>
