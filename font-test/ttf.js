@@ -224,7 +224,7 @@
                 tag : tag ,
                 checkSum : checkSum ,
                 offset : offset ,
-                length : length ,
+                length : length
             };
 
         }
