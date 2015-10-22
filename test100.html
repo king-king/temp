@@ -50,7 +50,7 @@
 
         @-webkit-keyframes keyframe35 {
             0% {
-                -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotrateX(0deg) rotateY(-20deg) rotateZ(0deg);
+                -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotateX(0deg) rotateY(-20deg) rotateZ(0deg);
             }
             100% {
                 -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotateY(10deg);
@@ -84,7 +84,12 @@
 
     var str = "天1234";
 
-    console.log( str.charCodeAt( 0 ) )
+    console.log( str.charCodeAt( 0 ) );
+
+    var c = "\\u22825";
+
+    var b = eval( "\"" + c + "\"" );
+    console.log( b )
 
 </script>
 </body>
