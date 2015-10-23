@@ -319,6 +319,11 @@
                 }
             };
 
+            function addFlag() {
+                ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) && frameItem.classList.add( "end" );
+                ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) && frameItem.classList.remove( "end" );
+            }
+
             var leftThreshold , rightThreshold;
             onDragV( frameItem , {
                 onTap : function () {
@@ -328,26 +333,14 @@
                     rightThreshold = rightThreshold ? rightThreshold.x : WIDTH;
                 } ,
                 onDrag : function ( dx ) {
-                    var x = dx + frameItem.x;
+                    var x = dx + frameItem.x; // x不能省略
                     if ( x + width <= rightThreshold && x >= leftThreshold ) {
                         frameItem.x = x;
                         frameItem.style.left = x + "px";
                     }
-                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
-                        frameItem.classList.add( "end" );
-                    }
-                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
-                        frameItem.classList.remove( "end" );
-                    }
+                    addFlag();
                 } ,
-                onUp : function () {
-                    if ( frameItem.index == frames.length - 1 && frameItem.x + width == WIDTH ) {
-                        frameItem.classList.add( "end" );
-                    }
-                    else if ( frameItem.index == frames.length - 1 && frameItem.x + width != WIDTH ) {
-                        frameItem.classList.remove( "end" );
-                    }
-                }
+                onUp : addFlag
             } );
         }
 
@@ -374,7 +367,6 @@
                 }
 
                 function perspective() {
-
                 }
 
                 function scale( s ) {
@@ -419,11 +411,7 @@
                 frames = [];
                 var indata = [];
                 for ( var p in cinemaData ) {
-                    if ( p.indexOf( "." ) != -1 ) {
-                        indata.push( (parseFloat( p )).toFixed( 1 ) );
-                    } else {
-                        indata.push( parseFloat( p ) );
-                    }
+                    p.indexOf( "." ) != -1 ? indata.push( (parseFloat( p )).toFixed( 1 ) ) : indata.push( parseFloat( p ) );
                 }
                 indata = indata.sort( function ( a , b ) {
                     return a - b;
@@ -449,15 +437,13 @@
                 var cur = querySelector( ".frame-item.select" );
                 if ( cur ) {
                     cur.data[ i ] = parseFloat( input.value );
-                    var x = inputs[ 0 ].value ? inputs[ 0 ].value << 0 : 0;
-                    var y = inputs[ 1 ].value ? inputs[ 1 ].value << 0 : 0;
-
-                    var perspective = "" , rotateX = "" , rotateY = "" , rotateZ = "";
+                    var x = inputs[ 0 ].value ? inputs[ 0 ].value << 0 : 0 ,
+                            y = inputs[ 1 ].value ? inputs[ 1 ].value << 0 : 0 ,
+                            perspective = "" , rotateX = "" , rotateY = "" , rotateZ = "";
                     (cur.data[ 5 ] || cur.data[ 6 ]  ) && (perspective = "perspective(1000px) ");
                     rotateZ = " rotateZ(" + inputs[ 4 ].value + "deg) ";
                     rotateX = " rotateX(" + inputs[ 5 ].value + "deg) ";
                     rotateY = " rotateY(" + inputs[ 6 ].value + "deg) ";
-
                     img.style.webkitTransform = perspective + "translate3d(" + x +
                             "%," + y + "%,0) scale(" + (inputs[ 2 ].value || 1) + ")" + rotateX + rotateY + rotateZ;
                     img.style.opacity = inputs[ 3 ].value;
@@ -478,24 +464,18 @@
                     change();
                 };
                 onDragV( input , {
-                    onTap : function () {
-                    } ,
                     onDrag : function () {
                         change();
                         input.nextElementSibling.innerText = input.value;
-                    } ,
-                    onUp : function () {
                     }
                 } );
             }
         } );
 
-        var styleIndex = 0;
-        var styleDom = element( "style" , {} , document.head );
+        var styleIndex = 0 , styleDom = element( "style" , {} , document.head );
 
         animateBtn.onclick = function () {
-            var style;
-            var filterArg = null;
+            var style , filterArg = null;
             if ( textarea.value.trim() ) {
                 try {
                     filterArg = JSON.parse( textarea.value );
@@ -569,42 +549,20 @@
             loopArray( frames , function ( f , i ) {
                 var percent = i == frames.length - 1 ? (f.x + width) / WIDTH * 100 : f.x / WIDTH * 100;
                 if ( i != 0 && i != frames.length - 1 ) {
-                    if ( f.x - frames[ i - 1 ].x < width * 2 ) {
-                        // 如果距离太小，则增加精度
-                        percent = (percent).toFixed( 1 );
-                    } else {
-                        percent = (percent).toFixed( 0 );
-                    }
+                    percent = f.x - frames[ i - 1 ].x < width * 2 ? (percent).toFixed( 1 ) : (percent).toFixed( 0 );
                 }
                 else {
                     percent = (percent).toFixed( 0 );
                 }
-                var translate3d = "" , scale = "" , rotateZ = "" , opacity = "" , rotateX = "" , rotateY = "" , perspective = "";
-
-                if ( f.data[ 0 ] != undefined || f.data[ 1 ] != undefined ) {
-                    translate3d = "translate3d(" + (f.data[ 0 ] || 0) + "%," + ( f.data[ 1 ] || 0) + "%,0) ";
-                }
-                if ( f.data[ 2 ] != undefined ) {
-                    scale = " scale(" + f.data[ 2 ] + ") ";
-                }
-                if ( f.data[ 3 ] != undefined ) {
-                    opacity = " opacity(" + f.data[ 3 ] + ") ";
-                }
-                if ( f.data[ 4 ] != undefined ) {
-                    rotateZ = " rotateZ(" + f.data[ 4 ] + "deg) ";
-                }
-                if ( f.data[ 5 ] != undefined ) {
-                    rotateX = " rotateX(" + f.data[ 5 ] + "deg) ";
-                }
-                if ( f.data[ 6 ] != undefined ) {
-                    rotateY = " rotateY(" + f.data[ 6 ] + "deg) ";
-                }
-                if ( f.data[ 5 ] != undefined || f.data[ 6 ] != undefined ) {
-                    perspective = " perspective(1000) "
-                }
-                if ( ( perspective + translate3d + scale + rotateX + rotateY + rotateZ + opacity).length ) {
-                    arg[ percent ] = perspective + translate3d + scale + rotateX + rotateY + rotateZ + opacity;
-                }
+                var translate3d = ( f.data[ 0 ] != undefined || f.data[ 1 ] != undefined ) ? "translate3d(" + (f.data[ 0 ] || 0) + "%," + ( f.data[ 1 ] || 0) + "%,0) " : "" ,
+                        scale = f.data[ 2 ] != undefined ? " scale(" + f.data[ 2 ] + ") " : "" ,
+                        opacity = f.data[ 3 ] != undefined ? " opacity(" + f.data[ 3 ] + ") " : "" ,
+                        rotateZ = f.data[ 4 ] != undefined ? " rotateZ(" + f.data[ 4 ] + "deg) " : "" ,
+                        rotateX = f.data[ 5 ] != undefined ? " rotateX(" + f.data[ 5 ] + "deg) " : "" ,
+                        rotateY = f.data[ 6 ] != undefined ? " rotateY(" + f.data[ 6 ] + "deg) " : "" ,
+                        perspective = ( f.data[ 5 ] != undefined || f.data[ 6 ] != undefined ) ? " perspective(1000) " : "";
+                var style = perspective + translate3d + scale + rotateX + rotateY + rotateZ + opacity;
+                style.length && (arg[ percent ] = style);
             } );
             event.clipboardData.setData( "text/plain" , JSON.stringify( arg ) );
         } );

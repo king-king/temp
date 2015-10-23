@@ -11,6 +11,6 @@ b = { "100" : " perspective(1000)  rotateY(10deg) " }
 
 
 c = {
-    "0" : " perspective(1000) translate3d(0%,0%,0)  scale(1.2)  rotateX(0deg)  rotateY(-20deg)  rotateZ(0deg) " ,
-    "100" : " perspective(1000) translate3d(0%,0%,0)  scale(1.2)  rotateY(10deg) "
+    "0" : " perspective(1000)  scale(1.3)  rotateX(-10deg)  rotateY(-10deg) " ,
+    "100" : " perspective(1000)  scale(1.3)  rotateX(10deg)  rotateY(10deg) "
 }
