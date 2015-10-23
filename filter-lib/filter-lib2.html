@@ -172,6 +172,9 @@
             opacity: 0.5 !important;
         }
 
+        .zeroclipboard-is-active {
+            opacity: 0.5 !important;
+        }
     </style>
 </head>
 <body>
@@ -638,27 +641,53 @@
         var curItem;
         // 控制滤镜
         loopArray( filters , function ( range , i ) {
+
+            function change() {
+                range.parentNode.classList.add( "change" );
+                var vv = range.classList[ 0 ] == "blur" ? "(" + range.value + "px)" :
+                        range.classList[ 0 ] == "hue-rotate" ? "(" + range.value + "deg)" : "(" + range.value + ")";
+                curItem.filterValue[ i ] = range.classList[ 0 ] + vv;
+                spans[ i ].innerText = range.value;
+                var value = "";
+                loopArray( curItem.filterValue , function ( v ) {
+                    v && (value += v);
+                } );
+                value.length != 0 && (img.style.webkitFilter = value);
+            }
+
+            var initValue = [
+                0 ,
+                0 ,
+                1 ,
+                0 ,
+                0 ,
+                1 ,
+                1 ,
+                0
+            ];
+
+            range.onclick = function ( e ) {
+                curItem = querySelector( ".frame-item.select" );
+                if ( e.which == 2 && curItem ) {
+                    // reset
+                    console.log( "reset" );
+                    range.value = initValue[ i ];
+                    change();
+                    var style = img.style.webkitFilter;
+                    curItem.filterObj = style.trim();
+                }
+            };
+
             onDragV( range , {
                 onTap : function () {
                     curItem = querySelector( ".frame-item.select" );
                 } ,
                 onDrag : function () {
-                    if ( curItem ) {
-                        range.parentNode.classList.add( "change" );
-                        var vv = range.classList[ 0 ] == "blur" ? "(" + range.value + "px)" :
-                                range.classList[ 0 ] == "hue-rotate" ? "(" + range.value + "deg)" : "(" + range.value + ")";
-                        curItem.filterValue[ i ] = range.classList[ 0 ] + vv;
-                        spans[ i ].innerText = range.value;
-                        var value = "";
-                        loopArray( curItem.filterValue , function ( v ) {
-                            v && (value += v);
-                        } );
-                        value.length != 0 && (img.style.webkitFilter = value);
-                    }
+                    curItem && change();
                 } ,
                 onUp : function () {
                     if ( curItem ) {
-                        var style = querySelector( "img.up" ).style.webkitFilter;
+                        var style = img.style.webkitFilter;
                         curItem.filterObj = style.trim();
                     }
                 }
