@@ -243,6 +243,7 @@
 <script src="ZeroClipboard.min.js"></script>
 <script>
     (function () {
+        // arg
         var colors = [
             "indigo" ,
             "purple" ,
@@ -260,6 +261,8 @@
         var WIDTH = frame.offsetWidth;
         var frameItems = [];
         var curSelectIndex;
+
+        // dom
         var img = querySelector( "img.up" );
         var raw = querySelector( "img.down" );
         var fileInput = querySelector( "input.file" );
@@ -268,9 +271,12 @@
         var form = querySelector( ".filter-form" );
         var filters = querySelectorAll( ".filter" );
         var inputDuration = querySelector( ".duration" );
-        var animateBtn = querySelector( ".button.animate" );
         var copy = querySelector( ".button.copy" );
         var inputDataBtn = querySelector( ".button.inout-data" );
+
+        // special
+        var curItem = null;
+        var isDoAnimate = false;
 
         border.onclick = function () {
             fileInput.click();
@@ -578,7 +584,6 @@
             img.style.webkitAnimation = "";
         } , false );
 
-        var curItem;
         // 控制滤镜
         loopArray( filters , function ( range , i ) {
 
@@ -627,8 +632,7 @@
 
         var styleDom = element( "style" , {} , document.head );
 
-        var isDoAnimate = false;
-        animateBtn.onclick = function () {
+        querySelector( ".button.animate" ).onclick = function () {
             var arg = "@-webkit-keyframes filter-animate{";
             loopArray( frameItems , function ( item , i ) {
                 var percent;
