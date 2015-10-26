@@ -51,8 +51,18 @@
             margin-top: -250px;
             perspective: 1500px;
         }
+
+        canvas {
+            width: 500px;
+            height: 500px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+        }
     </style>
 <body>
+<canvas width="500" height="500"></canvas>
 <div class="border"></div>
 <script src="3d-css.js"></script>
 <script src="tools.js"></script>
@@ -60,6 +70,8 @@
     (function () {
 
         var border = document.querySelector( ".border" );
+        var canvas = document.querySelector( "canvas" );
+        var gc = canvas.getContext( "2d" );
 
         var colors = [
             "red" ,
@@ -89,6 +101,7 @@
                 item.origin = origins[ index ];
                 items.push( item );
                 item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , origins[ index ][ 0 ] , origins[ index ][ 1 ] , origins[ index ][ 2 ] ).matrixStringify() + ")"
+
 //                Drag( item , {
 //                    onDrag : function ( dx , dy ) {
 //                        (dx || dy) && loopArray( items , function ( item , i ) {
@@ -100,23 +113,30 @@
 //                        } );
 //                    }
 //                } );
+
             } );
         } );
 
-        window.xaixs = [ 1 , 0 , 0 , 1 ];
-        window.yaixs = [ 0 , 1 , 0 , 1 ];
-
+        var aixs = [ 0 , 1 , 0 , 1 ];
+        gc.lineWidth = 2;
+        gc.strokeStyle = "black";
         Drag( border , {
             onDrag : function ( dx , dy ) {
-                (dx || dy) && loopArray( items , function ( item , i ) {
+                if ( dx || dy ) {
                     var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
                     var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-                    window.xaixs = _3d.mul( window.xaixs , t_matrix );
-                    window.yaixs = _3d.mul( window.yaixs , t_matrix );
-                    console.log( window.xaixs );
-                    item.matrix = _3d.combine( t_matrix , item.matrix );
-                    item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
-                } );
+                    aixs = _3d.mul( aixs , t_matrix );
+                    gc.clearRect( 0 , 0 , 500 , 500 );
+                    gc.beginPath();
+                    gc.moveTo( 250 , 250 );
+                    gc.lineTo( aixs[ 0 ] * 100 + 250 , aixs[ 1 ] * 100 + 250 );
+                    gc.stroke();
+                    console.log( aixs[ 0 ] * 100 + 250 , aixs[ 1 ] * 100 + 250 );
+                    loopArray( items , function ( item , i ) {
+                        item.matrix = _3d.combine( t_matrix , item.matrix );
+                        item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
+                    } );
+                }
             }
         } );
 
