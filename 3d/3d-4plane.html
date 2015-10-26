@@ -117,6 +117,7 @@
             } );
         } );
 
+        var aixsX = [ 1 , 0 , 0 , 1 ];
         var aixs = [ 0 , 1 , 0 , 1 ];
         gc.lineWidth = 2;
         gc.strokeStyle = "black";
@@ -126,12 +127,14 @@
                     var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
                     var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
                     aixs = _3d.mul( aixs , t_matrix );
+                    aixsX = _3d.mul( aixsX , t_matrix );
                     gc.clearRect( 0 , 0 , 500 , 500 );
                     gc.beginPath();
                     gc.moveTo( 250 , 250 );
-                    gc.lineTo( aixs[ 0 ] * 100 + 250 , aixs[ 1 ] * 100 + 250 );
+                    gc.lineTo( -aixs[ 0 ] * 100 + 250 , -aixs[ 1 ] * 100 + 250 );
+                    gc.moveTo( 250 , 250 );
+                    gc.lineTo( -aixsX[ 0 ] * 100 + 250 , -aixsX[ 1 ] * 100 + 250 );
                     gc.stroke();
-                    console.log( aixs[ 0 ] * 100 + 250 , aixs[ 1 ] * 100 + 250 );
                     loopArray( items , function ( item , i ) {
                         item.matrix = _3d.combine( t_matrix , item.matrix );
                         item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
