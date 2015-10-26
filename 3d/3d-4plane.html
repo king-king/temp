@@ -98,44 +98,38 @@
                 item.origin = origins[ index ];
                 items.push( item );
                 item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , origins[ index ][ 0 ] , origins[ index ][ 1 ] , origins[ index ][ 2 ] ).matrixStringify() + ")"
-
-//                Drag( item , {
-//                    onDrag : function ( dx , dy ) {
-//                        (dx || dy) && loopArray( items , function ( item , i ) {
-//                            var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
-//                            var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-//                            console.log( window.xaixs );
-//                            item.matrix = _3d.combine( t_matrix , item.matrix );
-//                            item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
-//                        } );
-//                    }
-//                } );
-
             } );
         } );
 
         var aixsX = [ 1 , 0 , 0 , 1 ];
-        var aixs = [ 0 , 1 , 0 , 1 ];
+        var aixsY = [ 0 , 1 , 0 , 1 ];
         gc.lineWidth = 2;
         gc.strokeStyle = "black";
+        function transformObj( matrix ) {
+            aixsY = _3d.mul( aixsY , matrix );
+            aixsX = _3d.mul( aixsX , matrix );
+            gc.clearRect( 0 , 0 , 500 , 500 );
+            gc.beginPath();
+            gc.moveTo( 250 , 250 );
+            gc.lineTo( -aixsY[ 0 ] * 100 + 250 , -aixsY[ 1 ] * 100 + 250 );
+            gc.moveTo( 250 , 250 );
+            gc.lineTo( -aixsX[ 0 ] * 100 + 250 , -aixsX[ 1 ] * 100 + 250 );
+            gc.stroke();
+            loopArray( items , function ( item ) {
+                item.matrix = _3d.combine( matrix , item.matrix );
+                item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
+            } );
+        }
+
+        // 给一个初始的旋转角度
+        transformObj( _3d.rotate3dM( 10 , -10 , 0 , 45 ) );
         Drag( border , {
             onDrag : function ( dx , dy ) {
                 if ( dx || dy ) {
                     var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
-                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-                    aixs = _3d.mul( aixs , t_matrix );
-                    aixsX = _3d.mul( aixsX , t_matrix );
-                    gc.clearRect( 0 , 0 , 500 , 500 );
-                    gc.beginPath();
-                    gc.moveTo( 250 , 250 );
-                    gc.lineTo( -aixs[ 0 ] * 100 + 250 , -aixs[ 1 ] * 100 + 250 );
-                    gc.moveTo( 250 , 250 );
-                    gc.lineTo( -aixsX[ 0 ] * 100 + 250 , -aixsX[ 1 ] * 100 + 250 );
-                    gc.stroke();
-                    loopArray( items , function ( item , i ) {
-                        item.matrix = _3d.combine( t_matrix , item.matrix );
-                        item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
-                    } );
+//                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
+                    var t_matrix = _3d.rotate3dM( aixsY[ 0 ] , aixsY[ 1 ] , aixsY[ 2 ] , -dx );
+                    transformObj( t_matrix );
                 }
             }
         } );
