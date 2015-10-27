@@ -66,43 +66,15 @@
 
 <div>\u6029</div>
 <script>
-    //    var str = "天地玄黄 宇宙洪荒";
-    //    var a = {
-    //        unicode : str.split( '' ).map( function ( s ) {
-    //            return s.charCodeAt( 0 );
-    //        } )
-    //    };
-    //    var unicodeList = [ a ];
-    //    var unicodeHash = {};
-    //    unicodeList.forEach( function ( unicode ) {
-    //        if ( typeof unicode === 'string' ) {
-    //            unicode = Number( '0x' + unicode.slice( 1 ) );
-    //        }
-    //        unicodeHash[ unicode ] = true;
-    //    } );
-    //
-    //    console.log( unicodeHash );
 
-
-    var str = "天1234";
-
-    console.log( str.charCodeAt( 0 ) );
-
-    var c = "\\u22825";
-
-    var b = eval( "\"" + c + "\"" );
-    console.log( b )
-
-    var xhr = new XMLHttpRequest();
-    xhr.open( "get" , "http://wx.bmac.com.cn/h5/servlet/GetWxSignServlet?cardNo=10007510740044458&openid=o_kX_t4Nayh7jGXRRfEOhcUrAZfU&bind_flag=FALSE&jsonp_callback_name=query_result " , true )
-    xhr.send();
-
-    xhr.onreadystatechange = function () {
-        if ( xhr.status == 4 ) {
-
+    var doc = {
+        query : function () {
+            console.log( this );
         }
-    }
+    };
 
+    var doc2 = doc.query.bind( doc );
+    doc2();
 
 </script>
 </body>
