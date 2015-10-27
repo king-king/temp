@@ -10390,11 +10390,11 @@ ERNO.Controls = (function(){
 		var getMouseProjectionOnBall = function( x, y, vector ){
 
 			var view = getBoundingClientRect( api.domElement ),
-				aspect = view.height / view.width
+				aspect = view.height / view.width;
 
-			var dpr = window.devicePixelRatio || 1
-			x *= dpr
-			y *= dpr
+			var dpr = window.devicePixelRatio || 1;
+			x *= dpr;
+			y *= dpr;
 
 			return vector.set(
 				( x - view.width - view.left ) * 0.001 , // view.width,// * ( devicePixelRatio || 1 ) ,
@@ -10451,7 +10451,7 @@ ERNO.Controls = (function(){
 					mouse.add( direction );
 				
 				} else {
-					state = STATE.NONE
+					state = STATE.NONE;
 				}
 
 			};
