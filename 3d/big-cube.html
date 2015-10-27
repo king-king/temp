@@ -164,17 +164,6 @@
                 var item2 = makeItem( tinitPos[ index ] , torigins[ index ] , i );
                 var item3 = makeItem( binitPos[ index ] , borigins[ index ] , i );
                 !i && copyPlane( item1 , item2 , item3 );
-//                Drag( item , {
-//                    onDrag : function ( dx , dy ) {
-//                        (dx || dy) && loopArray( items , function ( item , i ) {
-//                            var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
-//                            var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-//                            console.log( window.xaixs );
-//                            item.matrix = _3d.combine( t_matrix , item.matrix );
-//                            item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , item.origin[ 0 ] , item.origin[ 1 ] , item.origin[ 2 ] ).matrixStringify() + ")";
-//                        } );
-//                    }
-//                } );
             } );
         } );
 
@@ -185,6 +174,7 @@
         gc.strokeStyle = "black";
         // 给一个初始的旋转角度
         transformCube( _3d.rotate3dM( 10 , -10 , 0 , 45 ) );
+
         function transformCube( t_matrix ) {
             // x轴和y轴
             aixs = _3d.mul( aixs , t_matrix );
