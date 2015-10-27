@@ -42,13 +42,13 @@
             -webkit-transform-style: preserve-3d;
             transform-style: preserve-3d;
             cursor: pointer;
-            height: 500px;
-            width: 500px;
+            height: 600px;
+            width: 600px;
             position: absolute;
             left: 50%;
             top: 50%;
-            margin-left: -250px;
-            margin-top: -250px;
+            margin-left: -300px;
+            margin-top: -300px;
             perspective: 1500px;
         }
 
@@ -98,6 +98,22 @@
                 item.origin = origins[ index ];
                 items.push( item );
                 item.style.transform = "matrix3d(" + _3d.origin3d( item.matrix , origins[ index ][ 0 ] , origins[ index ][ 1 ] , origins[ index ][ 2 ] ).matrixStringify() + ")"
+
+
+                Drag( item , {
+                    onTap : function ( e ) {
+                        e.stopPropagation();
+                    } ,
+                    onDrag : function ( dx , dy ) {
+                        if ( dx || dy ) {
+                            var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
+//                            var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
+                            var t_matrix = _3d.rotate3dM( aixsY[ 0 ] , aixsY[ 1 ] , aixsY[ 2 ] , -dx );
+                            transformObj( t_matrix );
+                        }
+                    }
+                } );
+
             } );
         } );
 
@@ -105,6 +121,7 @@
         var aixsY = [ 0 , 1 , 0 , 1 ];
         gc.lineWidth = 2;
         gc.strokeStyle = "black";
+
         function transformObj( matrix ) {
             aixsY = _3d.mul( aixsY , matrix );
             aixsX = _3d.mul( aixsX , matrix );
@@ -127,8 +144,8 @@
             onDrag : function ( dx , dy ) {
                 if ( dx || dy ) {
                     var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
-//                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-                    var t_matrix = _3d.rotate3dM( aixsY[ 0 ] , aixsY[ 1 ] , aixsY[ 2 ] , -dx );
+                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
+//                    var t_matrix = _3d.rotate3dM( aixsY[ 0 ] , aixsY[ 1 ] , aixsY[ 2 ] , -dx );
                     transformObj( t_matrix );
                 }
             }
