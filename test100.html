@@ -21,50 +21,16 @@
             overflow: hidden;
         }
 
-        .page img {
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            -webkit-animation: cinema-animate5 3s linear;
-        }
-
-        @-webkit-keyframes cinema-animate5 {
-            98% {
-                transform: perspective(1000px) translate3d(0%, 0%, 0px) scale(1) rotateX(0deg) rotateY(20deg) rotateZ(0deg);
-                opacity: 1;
-            }
-        }
-
-        @-webkit-keyframes animate0 {
-            0% {
-                -webkit-transform: perspective(1000px) rotateX(90deg);
-            }
-            50% {
-                -webkit-transform: perspective(1000px) rotateX(0deg);
-            }
-            100% {
-                -webkit-transform: perspective(1000px) rotateX(0deg);
-            }
-        }
-
-        @-webkit-keyframes keyframe35 {
-            0% {
-                -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotateX(0deg) rotateY(-20deg) rotateZ(0deg);
-            }
-            100% {
-                -webkit-transform: perspective(1000px) translate3d(0%, 0%, 0) scale(1.2) rotateY(10deg);
-            }
+        .target {
+            width: 100px;
+            height: 100px;
+            background-color: red !important;
         }
     </style>
+    <link href="test.css" rel="stylesheet">
 </head>
 <body>
-<div class="page">
-    <img src="img/h7.jpg">
-</div>
-<a href='http://www.baidu.com'></a>
-<span>42342</span>
-<div>\u6029</div>
+<div class="target"></div>
 <script>
 
     var doc = {
