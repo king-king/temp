@@ -105,7 +105,8 @@ var cube = (function () {
 
         rotateFloorData.floorNum = floorNum;
         //四边的数据
-        for ( var i = 0; i < 4; i++ ) {
+        var i;
+        for ( i = 0; i < 4; i++ ) {
             rotateFloorData.sizeEdges[ i ] = {};
             //rotateFloorData.sizeEdges[i] = faces[rotateDirObj.sizeEdges[i].face].getFloorData(rotateType, floorNum);
             rotateFloorData.sizeEdges[ i ].faceType = rotateDirObj.sizeEdges[ i ].face;
@@ -132,7 +133,7 @@ var cube = (function () {
 
         /* 旋转后会变成的数据 */
         var newIndex = (dir == 1 ? 1 : 3);
-        for ( var i = 0; i < 4; i++ ) {
+        for ( i = 0; i < 4; i++ ) {
             newSetFloorData.sizeEdges[ newIndex ].floorData = rotateFloorData.sizeEdges[ i ].floorData;
             newIndex = (++newIndex % 4);
         }
