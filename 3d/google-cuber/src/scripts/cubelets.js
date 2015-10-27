@@ -255,7 +255,7 @@ ERNO.Cubelet = function ( cube , id , colors ) {
         'edge' ,
         'corner'
 
-    ][ extrovertedFaces ]
+    ][ extrovertedFaces ];
 
 
     //  Convience accessors for the Cubelet's faces.
@@ -331,7 +331,7 @@ ERNO.Cubelet = function ( cube , id , colors ) {
 
     this.opacity = 1;
     this.radius = 0;
-}
+};
 
 
 //  Let's add some functionality to Cubelet's prototype
@@ -351,10 +351,10 @@ ERNO.extend( ERNO.Cubelet.prototype , {
 
     setAddress : function ( address ) {
 
-        this.address = address || 0
-        this.addressX = address.modulo( 3 ).subtract( 1 )
-        this.addressY = address.modulo( 9 ).divide( 3 ).roundDown().subtract( 1 ) * -1
-        this.addressZ = address.divide( 9 ).roundDown().subtract( 1 ) * -1
+        this.address = address || 0;
+        this.addressX = address.modulo( 3 ).subtract( 1 );
+        this.addressY = address.modulo( 9 ).divide( 3 ).roundDown().subtract( 1 ) * -1;
+        this.addressZ = address.divide( 9 ).roundDown().subtract( 1 ) * -1;
     } ,
 
 
