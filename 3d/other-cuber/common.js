@@ -30,7 +30,7 @@ var rotateDir = {
         ] ,
         'faceUp' : { 'face' : 'front' , 'rotateDegree' : 0 } ,
         'faceBottom' : { 'face' : 'back' , 'rotateDegree' : 0 }
-    } ,
+    }
 };
 //rotateDegree: 转多少个90(顺时针)度才能做成旋转层floor的顶面，底面 旋转层的底面是他的顶面向Y轴旋转180度做成的
 //floor的原始是z轴堆叠方向的，
@@ -57,9 +57,11 @@ function rotateSquareArr( arr , dir , step ) {
         rotate180 = true;
     }
 
+    var j , i;
+
     if ( rotate180 ) {
-        for ( var i = 0; i < floor; i++ ) {
-            for ( var j = 0; j < floor; j++ ) {
+        for ( i = 0; i < floor; i++ ) {
+            for ( j = 0; j < floor; j++ ) {
                 if ( !arrAfterRotate[ maxIndex - i ] ) {
                     arrAfterRotate[ maxIndex - i ] = [];
                 }
@@ -67,8 +69,8 @@ function rotateSquareArr( arr , dir , step ) {
             }
         }
     } else if ( dir == 1 ) {
-        for ( var i = 0; i < floor; i++ ) {
-            for ( var j = 0; j < floor; j++ ) {
+        for ( i = 0; i < floor; i++ ) {
+            for ( j = 0; j < floor; j++ ) {
                 if ( !arrAfterRotate[ j ] ) {
                     arrAfterRotate[ j ] = [];
                 }
@@ -76,8 +78,8 @@ function rotateSquareArr( arr , dir , step ) {
             }
         }
     } else if ( dir == -1 ) {
-        for ( var i = 0; i < floor; i++ ) {
-            for ( var j = 0; j < floor; j++ ) {
+        for ( i = 0; i < floor; i++ ) {
+            for ( j = 0; j < floor; j++ ) {
                 if ( !arrAfterRotate[ maxIndex - j ] ) {
                     arrAfterRotate[ maxIndex - j ] = [];
                 }

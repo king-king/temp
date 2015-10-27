@@ -19,7 +19,7 @@ var cube = (function () {
             'back' : null ,
             'left' : null ,
             'up' : null ,
-            'bottom' : null ,
+            'bottom' : null
         } ,
         colors = [] ,
         cubeSize = 200 ,
@@ -183,18 +183,18 @@ var cube = (function () {
             setData();
         }
 
-    }
+    };
 
     cube.reset = function ( _cubeSize , _colNum , _style ) {
         cubeSize = _cubeSize ? _cobeSize : cubeSize;
         cube_floor_num = _colNum ? _colNum : cube_floor_num;
         style = _style ? _style : style;
         reset();
-    }
+    };
 
     cube.getCurrentCubeSize = function () {
         return cubeSize;
-    }
+    };
 
     init();
     return cube;
@@ -204,7 +204,6 @@ var cube = (function () {
 //cubeHandler
 var cubeHandler = (function ( cube ) {
     var handler = {} ,
-        cube = cube ,
         lock = false ,//游戏已经开始，任何设置魔方的动作（行列风格），不允许
         motions = [] ,//已经旋转的每一次动作
         redoMotions = [] ,//已撤销的动作
@@ -232,7 +231,7 @@ var cubeHandler = (function ( cube ) {
                 var rotateInfo = target.getAttribute( 'alt' ).split( ',' );
                 handRotateCube( rotateInfo[ 0 ] , rotateInfo[ 1 ] , rotateInfo[ 2 ] , 500 , true );
             }
-        }
+        };
 
         //魔方大小
         cubeOptWrap.onclick = function ( e ) {
@@ -284,7 +283,7 @@ var cubeHandler = (function ( cube ) {
                     cube.setStyle( 'pretty' );
                     break;
             }
-        }
+        };
 
         //撤销
         cubePlayingOptWrap.onclick = function ( e ) {
@@ -331,7 +330,6 @@ var cubeHandler = (function ( cube ) {
             if ( randomRotateNum <= 0 ) {
                 lock = true;
                 stopRotateAnimate();
-                return;
             } else {
                 var rotateType = rotateTypes[ parseInt( Math.random() * 3 ) ] ,
                     dir = (Math.random() > 0.5 ? 1 : -1) ,

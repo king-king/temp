@@ -2,14 +2,14 @@ var Block = (function () {
 
 
     function Block( type , col , row , width , height , left , top , floorBlock ) {
-        this.type = 0,
-            this.belongFaceType = type,//所属面
-            this.col = 0,
-            this.row = 0,
-            this.width = 0,//百分比
-            this.height = 0,//百分比
-            this.left = 0,
-            this.top = 0;
+        this.type = 0;
+        this.belongFaceType = type;//所属面
+        this.col = 0;
+        this.row = 0;
+        this.width = 0;//百分比
+        this.height = 0;//百分比
+        this.left = 0;
+        this.top = 0;
         this.blockEle = document.createElement( 'div' );
 
         if ( floorBlock ) {
@@ -25,24 +25,24 @@ var Block = (function () {
     Block.prototype.setType = function ( type ) {
         this.type = type;
         this.blockEle.className = 'block block-' + type;
-    }
+    };
 
     Block.prototype.getType = function () {
         return this.type;
-    }
+    };
 
     Block.prototype.distory = function () {
         this.blockEle = null;
-    }
+    };
 
     Block.prototype.reset = function ( type , col , row , width , height , left , top ) {
-        this.type = type,
-            this.col = col,
-            this.row = row,
-            this.width = width,
-            this.height = height,
-            this.left = left,
-            this.top = top;
+        this.type = type;
+        this.col = col;
+        this.row = row;
+        this.width = width;
+        this.height = height;
+        this.left = left;
+        this.top = top;
 
         var that = this;
         //为了让每个block出现时有动画
@@ -69,9 +69,10 @@ var Block = (function () {
             colRotateData = {};//箭头竖向（up down）转的时候要用的旋转数据，在sizeEdges里
 
         //确定横竖分别会触发的旋转方向，主要就是用faceType查common.js的rotateDir
-        for ( var dir in rotateDir ) {
+        var dir , i;
+        for ( dir in rotateDir ) {
             var edges = rotateDir[ dir ].sizeEdges;
-            for ( var i = 0; i < edges.length; i++ ) {
+            for ( i = 0; i < edges.length; i++ ) {
                 if ( edges[ i ].face == this.belongFaceType ) {
                     if ( edges[ i ].rowOrCol == 'row' ) {
                         rowRotateData.rotateType = dir;
@@ -85,12 +86,11 @@ var Block = (function () {
                 }
             }
         }
-        for ( var i = 0; i < arrowEles.length; i++ ) {
+        for ( i = 0; i < arrowEles.length; i++ ) {
             var arrowType = arrowEles[ i ].className.replace( 'arrow-' , '' ) ,
                 rotateType = '' ,
-                dir = '' ,
                 floorNum = 0;
-
+            dir = '';
             switch ( arrowType ) {
                 case 'up':
                     rotateType = colRotateData.rotateType;
