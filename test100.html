@@ -37,12 +37,30 @@
     </style>
 </head>
 <body>
+<input type="file" accept="	chemical/x-synopsys-accord">
+
 <div class="target">123</div>
 <script>
 
-    var style = document.createElement( "style" );
-    document.head.appendChild( style );
-    style.sheet.insertRule( "div:after{content:'';width:100%;height:100%;display:block;background:red;}" , 0 );
+    var bt1 , bt2 , bt3 , list1 , list2 , list3;
+
+    var buttons = [ bt1 , bt2 , bt3 ] ,
+            lists = [ list1 , list2 , list3 ] ,
+            curIndex = undefined; // 初始状态全是关闭
+    buttons.forEach( buttons , function ( btn , i ) {  // 注意不要搞成for循环
+        btn.onclick = function () {
+            if ( curIndex == undefined ) {
+                // 初始状态，所有展示框均关闭
+                lists[ i ].style.display = "block";
+            } else {  // curindex已经有数值了
+                //先关闭当前处在打开状态的
+                lists[ curIndex ].style.display = "none";
+                // 开启当前点击的
+                lists[ i ].style.display = "none";
+            }
+            curIndex = i;
+        }
+    } );
 
 
 </script>
