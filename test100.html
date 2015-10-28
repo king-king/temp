@@ -47,7 +47,7 @@
     var buttons = [ bt1 , bt2 , bt3 ] ,
             lists = [ list1 , list2 , list3 ] ,
             curIndex = undefined; // 初始状态全是关闭
-    buttons.forEach( buttons , function ( btn , i ) {  // 注意不要搞成for循环
+    buttons.forEach( function ( btn , i ) {  // 注意不要搞成for循环
         btn.onclick = function () {
             if ( curIndex == undefined ) {
                 // 初始状态，所有展示框均关闭
