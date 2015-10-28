@@ -29,7 +29,6 @@ var gamer = (function () {
 
         //从毫秒转换成时间对象，该对象形如{day:'',hour:'',minute:'',second:''}
         function getTime( millisecond ) {
-
             var second = 1000 ,
                 minute = 60 * second ,
                 hour = 60 * minute ,
@@ -58,7 +57,6 @@ var gamer = (function () {
             return timeInfo;
         }
 
-
         timer.clearTick = function () {
             clearInterval( timeT );
             totalSec = 0;
@@ -79,6 +77,7 @@ var gamer = (function () {
         return timer;
     })();
 
+    // 在initEvent中调用
     function reset() {
         //view.reset();
         startBtn.style.display = 'block';
@@ -92,6 +91,7 @@ var gamer = (function () {
         }
     }
 
+    // 在initEvent中调用
     function start() {
         startBtn.style.display = 'none';
         timeEle.style.top = '10px';

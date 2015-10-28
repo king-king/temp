@@ -68,7 +68,8 @@ function rotateSquareArr( arr , dir , step ) {
                 arrAfterRotate[ maxIndex - i ][ maxIndex - j ] = arr[ i ][ j ];
             }
         }
-    } else if ( dir == 1 ) {
+    }
+    else if ( dir == 1 ) {
         for ( i = 0; i < floor; i++ ) {
             for ( j = 0; j < floor; j++ ) {
                 if ( !arrAfterRotate[ j ] ) {
@@ -77,7 +78,8 @@ function rotateSquareArr( arr , dir , step ) {
                 arrAfterRotate[ j ][ maxIndex - i ] = arr[ i ][ j ];
             }
         }
-    } else if ( dir == -1 ) {
+    }
+    else if ( dir == -1 ) {
         for ( i = 0; i < floor; i++ ) {
             for ( j = 0; j < floor; j++ ) {
                 if ( !arrAfterRotate[ maxIndex - j ] ) {
