@@ -1,6 +1,5 @@
 var Block = (function () {
 
-
     function Block( type , col , row , width , height , left , top , floorBlock ) {
         this.type = 0;
         this.belongFaceType = type;//所属面

@@ -23,7 +23,6 @@ var floor = (function () {
         blockWidthPercent = 0 ,//一块block的百分比25、33.333。。。。
         hasBeenInit = false;
 
-
     function init() {
         floorEles.floorWrap = document.getElementById( 'floorWrap' );
 
@@ -83,7 +82,6 @@ var floor = (function () {
         floorEles.floorWrap.appendChild( floorEles.floorBox );
     }
 
-
     //sizeBlockArr是sizeEdges中的某个，里面是block对象， sizeData 是形如['front','left','bottom'..]，一面中一层的颜色信息
     function setSizeData( sizeBlockArr , sizeData ) {
         for ( var i = 0; i < sizeData.length; i++ ) {
@@ -140,16 +138,13 @@ var floor = (function () {
     };
 
     floor.reset = function () {
-
         var cubeSize = cube.getCurrentCubeSize() ,
             blockSize = cubeSize / cube_floor_num ,
             blockWidthPercent = 100 / cube_floor_num;
-
         if ( !hasBeenInit ) {
             init();
             hasBeenInit = true;
         }
-
         floorEles.up.style.height = blockWidthPercent + '%';
         floorEles.left.style.height = blockWidthPercent + '%';
         floorEles.bottom.style.height = blockWidthPercent + '%';

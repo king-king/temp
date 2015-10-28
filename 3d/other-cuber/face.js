@@ -62,7 +62,7 @@ var Face = (function () {
         return floorData;
     };
 
-    //参数包括旋转类型xyz?， 层数 ,
+    //参数包括旋转类型xyz, 层数
     Face.prototype.getFloorData = function ( rotateType , floorNum ) {
         var sizeEdgesData = rotateDir[ rotateType ].sizeEdges ,
             edgeData = {};
@@ -81,7 +81,6 @@ var Face = (function () {
         }
         return (edgeData.readDir == 1 ? floorData : floorData.reverse());
     };
-
 
     Face.prototype.setFloorData = function ( rotateType , floorNum , floorData ) {
         var sizeEdgesData = rotateDir[ rotateType ].sizeEdges ,
@@ -125,7 +124,6 @@ var Face = (function () {
 
     Face.prototype.isAllSame = function () {
         var type = this.blocks[ 0 ][ 0 ].type;
-
         for ( var i = 0; i < this.blocks.length; i++ ) {
             for ( var j = 0; j < this.blocks[ i ].length; j++ ) {
                 if ( this.blocks[ i ][ j ].type != type ) {
@@ -140,13 +138,11 @@ var Face = (function () {
     };
 
     Face.prototype.hideCol = function ( rowIndex ) {
-
     };
 
     Face.prototype.getFaceEle = function () {
         return this.faceEle;
     };
-
 
     Face.prototype.reset = function () {
         for ( var i = 0; i < cube_floor_num; i++ ) {
@@ -155,7 +151,6 @@ var Face = (function () {
             }
             //如果该下标已经有block实例。就reset 该block
             for ( var j = 0; j < cube_floor_num; j++ ) {
-
                 if ( this.blocks[ i ][ j ] ) {
                     this.blocks[ i ][ j ].reset( this.faceType , j , i , (100 / cube_floor_num) , (100 / cube_floor_num) , (100 / cube_floor_num) * j , (100 / cube_floor_num) * i );
                 } else {

@@ -9,10 +9,10 @@ var rotateFloorRotating = false ,
         'sizeEdges' : [] ,//每一边数据形式{faceType:'',colOrRow: '', floorNum:'', floorData:[]}
         'faceUp' : { 'faceType' : '' , 'faceData' : [] } ,//当次旋转不涉及顶面则null
         'faceBottom' : { 'faceType' : '' , 'faceData' : [] }////当次旋转不涉及底面则null
-    };
+    } ,
+    cube;
 
-
-var cube = (function () {
+(function () {
     var faces = {
             'front' : null ,
             'right' : null ,
@@ -25,7 +25,6 @@ var cube = (function () {
         cubeSize = 200 ,
         style = 'cool' ,//风格,
         cubeWrapEle = null;
-    cube = {};
 
     function init() {
         cubeWrapEle = document.getElementById( 'cubeWrap' );
@@ -51,23 +50,6 @@ var cube = (function () {
         }
     }
 
-
-    cube.setSize = function ( _cubeSize ) {
-        cubeSize = _cubeSize;
-        reset();
-    };
-
-    cube.setColNum = function ( _colNum ) {
-        cube_floor_num = _colNum;
-        reset();
-    };
-
-    cube.setStyle = function ( _style ) {
-        style = _style;
-        reset();
-    };
-
-
     /*		rotateFloorData = {
      'floorNum': 0,
      'sizeEdges':[],
@@ -80,130 +62,135 @@ var cube = (function () {
      'faceUp': {'faceType':'', 'faceData':[]},//当次旋转不涉及顶面则null
      'faceBottom': {'faceType':'', 'faceData':[]}////当次旋转不涉及底面则null
      },//准备设置旋转之后的数据*/
-    cube.rotate = function ( rotateType , dir , floorNum , durTime , ani , successCallback ) {
-        //console.log(rotateType, dir, floorNum);
-        if ( rotateFloorRotating ) {
-            return;
-        } else {
-            rotateFloorRotating = true;
-        }
-
-        var rotateDirObj = rotateDir[ rotateType ];
-
-
-        /*-------------组织好要旋转的数据------------*/
-        rotateFloorData = {
-            'sizeEdges' : [] ,
-            'faceUp' : null ,
-            'faceBottom' : null
-        };//准备给旋转层的数据
-        newSetFloorData = {
-            'sizeEdges' : [] ,//每一边数据形式{faceType:'',colOrRow: '', floorNum:'', floorData:[]}
-            'faceUp' : { 'faceType' : '' , 'faceData' : [] } ,//当次旋转不涉及顶面则null
-            'faceBottom' : { 'faceType' : '' , 'faceData' : [] }////当次旋转不涉及底面则null
-        };//准备设置旋转之后的数据
-
-        rotateFloorData.floorNum = floorNum;
-        //四边的数据
-        var i;
-        for ( i = 0; i < 4; i++ ) {
-            rotateFloorData.sizeEdges[ i ] = {};
-            //rotateFloorData.sizeEdges[i] = faces[rotateDirObj.sizeEdges[i].face].getFloorData(rotateType, floorNum);
-            rotateFloorData.sizeEdges[ i ].faceType = rotateDirObj.sizeEdges[ i ].face;
-            rotateFloorData.sizeEdges[ i ].floorData = faces[ rotateDirObj.sizeEdges[ i ].face ].getFloorData( rotateType , floorNum );
-
-            //旋转后的facetype也顺便在这里赋值
-            newSetFloorData.sizeEdges[ i ] = {};
-            newSetFloorData.sizeEdges[ i ].faceType = rotateFloorData.sizeEdges[ i ].faceType;
-        }
-
-        //判断是否要上下面数据
-        rotateFloorData.faceUp = null;
-        rotateFloorData.faceBottom = null;
-        if ( floorNum == cube_floor_num - 1 ) {//需要顶面数据
-            rotateFloorData.faceUp = {};
-            rotateFloorData.faceUp.faceType = rotateDirObj.faceUp.face;//上层面类型
-            rotateFloorData.faceUp.faceData = rotateSquareArr( faces[ rotateDirObj.faceUp.face ].getFaceData() , 1 , rotateDirObj.faceUp.rotateDegree );//上层面数据
-        } else if ( floorNum == 0 ) {
-            rotateFloorData.faceBottom = {};
-            rotateFloorData.faceBottom.faceType = rotateDirObj.faceBottom.face;//下层面类型
-            rotateFloorData.faceBottom.faceData = rotateSquareArr( faces[ rotateDirObj.faceBottom.face ].getFaceData() , 1 , rotateDirObj.faceBottom.rotateDegree );//下层面数据
-        }
-
-
-        /* 旋转后会变成的数据 */
-        var newIndex = (dir == 1 ? 1 : 3);
-        for ( i = 0; i < 4; i++ ) {
-            newSetFloorData.sizeEdges[ newIndex ].floorData = rotateFloorData.sizeEdges[ i ].floorData;
-            newIndex = (++newIndex % 4);
-        }
-        newSetFloorData.faceUp = null;
-        newSetFloorData.faceBottom = null;
-        if ( rotateFloorData.faceUp ) {
-            newSetFloorData.faceUp = {};
-            newSetFloorData.faceUp.faceType = rotateDirObj.faceUp.face;
-            newSetFloorData.faceUp.faceData = rotateSquareArr( rotateFloorData.faceUp.faceData , dir , 1 );
-        }
-        if ( rotateFloorData.faceBottom ) {
-            newSetFloorData.faceBottom = {};
-            newSetFloorData.faceBottom.faceType = rotateDirObj.faceBottom.face;
-            if ( newSetFloorData.faceBottom.faceType == 'up' ) {
-                newSetFloorData.faceBottom.faceData = rotateSquareArr( rotateFloorData.faceBottom.faceData , dir , 1 );
+    cube = {
+        getCurrentCubeSize : function () {
+            return cubeSize;
+        } ,
+        setSize : function ( _cubeSize ) {
+            cubeSize = _cubeSize;
+            reset();
+        } ,
+        setColNum : function ( _colNum ) {
+            cube_floor_num = _colNum;
+            reset();
+        } ,
+        setStyle : function ( _style ) {
+            style = _style;
+            reset();
+        } ,
+        rotate : function ( rotateType , dir , floorNum , durTime , ani , successCallback ) {
+            //console.log(rotateType, dir, floorNum);
+            if ( rotateFloorRotating ) {
+                return;
             } else {
-                newSetFloorData.faceBottom.faceData = rotateSquareArr( rotateFloorData.faceBottom.faceData , -1 * dir , 1 );
+                rotateFloorRotating = true;
             }
-        }
+            var rotateDirObj = rotateDir[ rotateType ];
 
-        //将新的魔方数据设置魔方的函数
-        function setData() {
+            /*-------------组织好要旋转的数据------------*/
+            rotateFloorData = {
+                'sizeEdges' : [] ,
+                'faceUp' : null ,
+                'faceBottom' : null
+            };//准备给旋转层的数据
+            newSetFloorData = {
+                'sizeEdges' : [] ,//每一边数据形式{faceType:'',colOrRow: '', floorNum:'', floorData:[]}
+                'faceUp' : { 'faceType' : '' , 'faceData' : [] } ,//当次旋转不涉及顶面则null
+                'faceBottom' : { 'faceType' : '' , 'faceData' : [] }////当次旋转不涉及底面则null
+            };//准备设置旋转之后的数据
 
-            for ( var i = 0; i < 4; i++ ) {
-                faces[ newSetFloorData.sizeEdges[ i ].faceType ].setFloorData( rotateType , floorNum , newSetFloorData.sizeEdges[ i ].floorData );
+            rotateFloorData.floorNum = floorNum;
+            //四边的数据
+            var i;
+            for ( i = 0; i < 4; i++ ) {
+                rotateFloorData.sizeEdges[ i ] = {};
+                //rotateFloorData.sizeEdges[i] = faces[rotateDirObj.sizeEdges[i].face].getFloorData(rotateType, floorNum);
+                rotateFloorData.sizeEdges[ i ].faceType = rotateDirObj.sizeEdges[ i ].face;
+                rotateFloorData.sizeEdges[ i ].floorData = faces[ rotateDirObj.sizeEdges[ i ].face ].getFloorData( rotateType , floorNum );
+
+                //旋转后的facetype也顺便在这里赋值
+                newSetFloorData.sizeEdges[ i ] = {};
+                newSetFloorData.sizeEdges[ i ].faceType = rotateFloorData.sizeEdges[ i ].faceType;
             }
 
-            newSetFloorData.faceUp && faces[ newSetFloorData.faceUp.faceType ].setFaceData( newSetFloorData.faceUp.faceData );
-            newSetFloorData.faceBottom && faces[ newSetFloorData.faceBottom.faceType ].setFaceData( newSetFloorData.faceBottom.faceData );
-
-            //判断是否胜利
-            var success = true;
-            for ( var faceType in faces ) {
-                success = (success && faces[ faceType ].isAllSame());
+            //判断是否要上下面数据
+            rotateFloorData.faceUp = null;
+            rotateFloorData.faceBottom = null;
+            if ( floorNum == cube_floor_num - 1 ) {//需要顶面数据
+                rotateFloorData.faceUp = {};
+                rotateFloorData.faceUp.faceType = rotateDirObj.faceUp.face;//上层面类型
+                rotateFloorData.faceUp.faceData = rotateSquareArr( faces[ rotateDirObj.faceUp.face ].getFaceData() , 1 , rotateDirObj.faceUp.rotateDegree );//上层面数据
+            } else if ( floorNum == 0 ) {
+                rotateFloorData.faceBottom = {};
+                rotateFloorData.faceBottom.faceType = rotateDirObj.faceBottom.face;//下层面类型
+                rotateFloorData.faceBottom.faceData = rotateSquareArr( faces[ rotateDirObj.faceBottom.face ].getFaceData() , 1 , rotateDirObj.faceBottom.rotateDegree );//下层面数据
             }
-            if ( success ) {
-                successCallback();
-            }
-        }
 
-        if ( ani ) {//需要动画
-            floor.rotate( rotateType , floorNum , rotateFloorData , dir , durTime , function () {
+
+            /* 旋转后会变成的数据 */
+            var newIndex = (dir == 1 ? 1 : 3);
+            for ( i = 0; i < 4; i++ ) {
+                newSetFloorData.sizeEdges[ newIndex ].floorData = rotateFloorData.sizeEdges[ i ].floorData;
+                newIndex = (++newIndex % 4);
+            }
+            newSetFloorData.faceUp = null;
+            newSetFloorData.faceBottom = null;
+            if ( rotateFloorData.faceUp ) {
+                newSetFloorData.faceUp = {};
+                newSetFloorData.faceUp.faceType = rotateDirObj.faceUp.face;
+                newSetFloorData.faceUp.faceData = rotateSquareArr( rotateFloorData.faceUp.faceData , dir , 1 );
+            }
+            if ( rotateFloorData.faceBottom ) {
+                newSetFloorData.faceBottom = {};
+                newSetFloorData.faceBottom.faceType = rotateDirObj.faceBottom.face;
+                if ( newSetFloorData.faceBottom.faceType == 'up' ) {
+                    newSetFloorData.faceBottom.faceData = rotateSquareArr( rotateFloorData.faceBottom.faceData , dir , 1 );
+                } else {
+                    newSetFloorData.faceBottom.faceData = rotateSquareArr( rotateFloorData.faceBottom.faceData , -1 * dir , 1 );
+                }
+            }
+
+            //将新的魔方数据设置魔方的函数
+            function setData() {
+                for ( var i = 0; i < 4; i++ ) {
+                    faces[ newSetFloorData.sizeEdges[ i ].faceType ].setFloorData( rotateType , floorNum , newSetFloorData.sizeEdges[ i ].floorData );
+                }
+                newSetFloorData.faceUp && faces[ newSetFloorData.faceUp.faceType ].setFaceData( newSetFloorData.faceUp.faceData );
+                newSetFloorData.faceBottom && faces[ newSetFloorData.faceBottom.faceType ].setFaceData( newSetFloorData.faceBottom.faceData );
+                //判断是否胜利
+                var success = true;
+                for ( var faceType in faces ) {
+                    success = (success && faces[ faceType ].isAllSame());
+                }
+                if ( success ) {
+                    successCallback();
+                }
+            }
+
+            if ( ani ) {//需要动画
+                floor.rotate( rotateType , floorNum , rotateFloorData , dir , durTime , function () {
+                    rotateFloorRotating = false;
+                    setData();
+                } );
+            }
+            else {
                 rotateFloorRotating = false;
                 setData();
-            } );
-        } else {
-            rotateFloorRotating = false;
-            setData();
+            }
+        } ,
+        reset : function ( _cubeSize , _colNum , _style ) {
+            cubeSize = _cubeSize ? _cobeSize : cubeSize;
+            cube_floor_num = _colNum ? _colNum : cube_floor_num;
+            style = _style ? _style : style;
+            reset();
         }
-
     };
-
-    cube.reset = function ( _cubeSize , _colNum , _style ) {
-        cubeSize = _cubeSize ? _cobeSize : cubeSize;
-        cube_floor_num = _colNum ? _colNum : cube_floor_num;
-        style = _style ? _style : style;
-        reset();
-    };
-
-    cube.getCurrentCubeSize = function () {
-        return cubeSize;
-    };
-
     init();
-    return cube;
 })();
 
 
 //cubeHandler
-var cubeHandler = (function ( cube ) {
+var cubeHandler = (function () {
     var handler = {} ,
         lock = false ,//游戏已经开始，任何设置魔方的动作（行列风格），不允许
         motions = [] ,//已经旋转的每一次动作
@@ -217,7 +204,6 @@ var cubeHandler = (function ( cube ) {
         gamer.registerReset( resetCube );
         initEvent();
     }
-
 
     function initEvent() {
         //设置魔方，最好把在block.js 的旋转命令拿过来
@@ -307,19 +293,16 @@ var cubeHandler = (function ( cube ) {
 
     }
 
-
     function startRotateAnimate() {
         cubeWrapEle.className += ' cube-ani';
         cubeWrapEle.style.transition = 'all 1s';
     }
-
 
     function stopRotateAnimate() {
         cubeWrapEle.className = cubeWrapEle.className.replace( 'cube-ani' , '' );
         cubeWrapEle.style.transform = 'rotateX(0deg) rotateY(0deg)';
         cubeWrapEle.style.transition = '';
     }
-
 
     function startCube() {
         //随机转魔方
@@ -389,8 +372,6 @@ var cubeHandler = (function ( cube ) {
         } );
     }
 
-
     init();
-
     return handler;
-})( cube );
+})();

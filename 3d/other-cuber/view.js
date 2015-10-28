@@ -63,7 +63,6 @@ var view = (function () {
 
     }
 
-
     view.reset = function () {
         mouseHandle = false;
     };
@@ -78,7 +77,7 @@ var view = (function () {
 
 
 //网友视角旋转方法
-rotateCount = {
+var rotateCount = {
     fromRotation : function ( xsa , ag ) {
         var a = ag * (Math.PI / 180);
 
@@ -88,29 +87,24 @@ rotateCount = {
         return { 'x' : xsa[ 0 ] * sin , 'y' : xsa[ 1 ] * sin , 'z' : xsa[ 2 ] * sin , 'd' : cos };
     } ,
     multiply : function ( rotateInfo1 , rotateInfo2 ) {
-
         var x = rotateInfo1.d * rotateInfo2.x + rotateInfo1.x * rotateInfo2.d + rotateInfo1.y * rotateInfo2.z - rotateInfo1.z * rotateInfo2.y;
         var y = rotateInfo1.d * rotateInfo2.y + rotateInfo1.y * rotateInfo2.d + rotateInfo1.z * rotateInfo2.x - rotateInfo1.x * rotateInfo2.z;
         var z = rotateInfo1.d * rotateInfo2.z + rotateInfo1.z * rotateInfo2.d + rotateInfo1.x * rotateInfo2.y - rotateInfo1.y * rotateInfo2.x;
         var d = rotateInfo1.d * rotateInfo2.d - rotateInfo1.x * rotateInfo2.x - rotateInfo1.y * rotateInfo2.y - rotateInfo1.z * rotateInfo2.z;
-
-        return { 'x' : x , 'y' : y , 'z' : z , 'd' : d };
+        return { x : x , y : y , z : z , 'd' : d };
     } ,
 
     toRotation : function ( rotateInfo ) {
         var axis = [ rotateInfo.x , rotateInfo.y , rotateInfo.z ];
         var angle = (180 / Math.PI) * 2 * Math.acos( rotateInfo.d );
-
         return "rotate3d(" + axis[ 0 ].toFixed( 10 ) + "," + axis[ 1 ].toFixed( 10 ) + "," + axis[ 2 ].toFixed( 10 ) + "," + angle.toFixed( 10 ) + "deg)";
     } ,
 
     toRotations : function ( rotateInfo ) {
         var RAD2DEG = 180 / Math.PI;
-
         var x = RAD2DEG * Math.atan2( 2 * (rotateInfo.d * rotateInfo.x + rotateInfo.y * rotateInfo.z) , 1 - 2 * (rotateInfo.x * rotateInfo.x + rotateInfo.y * rotateInfo.y) );
         var y = RAD2DEG * Math.asin( 2 * (rotateInfo.d * rotateInfo.y - rotateInfo.x * rotateInfo.z) );
         var z = RAD2DEG * Math.atan2( 2 * (rotateInfo.d * rotateInfo.z + rotateInfo.x * rotateInfo.y) , 1 - 2 * (rotateInfo.y * rotateInfo.y + rotateInfo.z * rotateInfo.z) );
-
         if ( x < 0 ) {
             x += 360;
         }
@@ -120,7 +114,6 @@ rotateCount = {
         if ( z < 0 ) {
             z += 360;
         }
-
         return "rotateX(" + x.toFixed( 10 ) + "deg) rotateY(" + y.toFixed( 10 ) + "deg) rotate(" + z.toFixed( 10 ) + "deg)";
     }
 };
