@@ -6,7 +6,7 @@ var rotateDir = {
             { 'face' : 'front' , 'rowOrCol' : 'row' , 'stackDir' : '1' , 'readDir' : '1' } ,
             { 'face' : 'right' , 'rowOrCol' : 'row' , 'stackDir' : '1' , 'readDir' : '1' } ,
             { 'face' : 'back' , 'rowOrCol' : 'row' , 'stackDir' : '1' , 'readDir' : '1' } ,
-            { 'face' : 'left' , 'rowOrCol' : 'row' , 'stackDir' : '1' , 'readDir' : '1' } ,
+            { 'face' : 'left' , 'rowOrCol' : 'row' , 'stackDir' : '1' , 'readDir' : '1' }
         ] ,
         'faceUp' : { 'face' : 'bottom' , 'rotateDegree' : 0 } ,
         'faceBottom' : { 'face' : 'up' , 'rotateDegree' : 2 }
@@ -16,7 +16,7 @@ var rotateDir = {
             { 'face' : 'up' , 'rowOrCol' : 'col' , 'stackDir' : '1' , 'readDir' : '-1' } ,
             { 'face' : 'back' , 'rowOrCol' : 'col' , 'stackDir' : '-1' , 'readDir' : '1' } ,
             { 'face' : 'bottom' , 'rowOrCol' : 'col' , 'stackDir' : '1' , 'readDir' : '-1' } ,
-            { 'face' : 'front' , 'rowOrCol' : 'col' , 'stackDir' : '1' , 'readDir' : '-1' } ,
+            { 'face' : 'front' , 'rowOrCol' : 'col' , 'stackDir' : '1' , 'readDir' : '-1' }
         ] ,
         'faceUp' : { 'face' : 'right' , 'rotateDegree' : 0 } ,
         'faceBottom' : { 'face' : 'left' , 'rotateDegree' : 0 }
