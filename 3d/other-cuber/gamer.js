@@ -1,6 +1,5 @@
 var gamer = (function () {
-    var gamer = {} ,
-        startBtn = document.getElementById( 'startBtn' ) ,
+    var startBtn = document.getElementById( 'startBtn' ) ,
         resetBtn = document.getElementById( 'reset' ) ,
         startCallbacks = [] ,
         resetCallbacks = [] ,
@@ -104,24 +103,19 @@ var gamer = (function () {
 
     }
 
-    gamer.init = function () {
-        init();
+    return {
+        init : init ,
+        success : function () {
+            successTxt.style.display = 'block';
+            timer.clearTick();
+        } ,
+        registerStart : function ( callback ) {
+            //todo: 判断是否存在
+            startCallbacks.push( callback );
+        } ,
+        registerReset : function ( callback ) {
+            //todo: 判断是否存在
+            resetCallbacks.push( callback );
+        }
     };
-
-    gamer.success = function () {
-        successTxt.style.display = 'block';
-        timer.clearTick();
-    };
-
-    gamer.registerStart = function ( callback ) {
-        //todo: 判断是否存在
-        startCallbacks.push( callback );
-    };
-
-    gamer.registerReset = function ( callback ) {
-        //todo: 判断是否存在
-        resetCallbacks.push( callback );
-    };
-
-    return gamer;
 })();
