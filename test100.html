@@ -42,25 +42,22 @@
 <div class="target">123</div>
 <script>
 
-    var bt1 , bt2 , bt3 , list1 , list2 , list3;
+    var bt1 = 0 , bt2 = 0 , bt3 = 0 , list1 = 0 , list2 = 0 , list3 = 0;
 
-    var buttons = [ bt1 , bt2 , bt3 ] ,
-            lists = [ list1 , list2 , list3 ] ,
-            curIndex = undefined; // 初始状态全是关闭
+    var buttons = [ bt1 , bt2 , bt3 ] , lists = [ list1 , list2 , list3 ] , curIndex; // 初始状态全是关闭
     buttons.forEach( function ( btn , i ) {  // 注意不要搞成for循环
         btn.onclick = function () {
-            if ( curIndex == undefined ) {
-                // 初始状态，所有展示框均关闭
-                lists[ i ].style.display = "block";
-            } else {  // curindex已经有数值了
-                //先关闭当前处在打开状态的
-                lists[ curIndex ].style.display = "none";
-                // 开启当前点击的
-                lists[ i ].style.display = "none";
-            }
+            // 关闭当前关闭的，如果有的话
+            lists[ curIndex ] && ( lists[ curIndex ].style.display = "none");
+            // 开启当前点击的
+            lists[ i ].style.display = "block";
             curIndex = i;
         }
     } );
+
+    var a = [ 1 , 2 , 3 , 4 ];
+
+    var b = a[ undefined ]
 
 
 </script>
