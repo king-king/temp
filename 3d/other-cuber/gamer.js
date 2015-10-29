@@ -6,20 +6,13 @@ var gamer = (function () {
         timeEle = document.getElementById( 'time' ) ,
         successTxt = document.getElementById( 'successTxt' );
 
-    function init() {
-        //cube.reset(300, 3, 'cool');
-        reset();
-        initEvent();
-    }
+    startBtn.addEventListener( 'click' , function () {
+        start();
+    } );
 
-    function initEvent() {
-        startBtn.addEventListener( 'click' , function () {
-            start();
-        } );
-        resetBtn.addEventListener( 'click' , function () {
-            reset();
-        } );
-    }
+    resetBtn.addEventListener( 'click' , function () {
+        reset();
+    } );
 
     var timer = (function () {
         var timer = {} ,
@@ -76,7 +69,6 @@ var gamer = (function () {
         return timer;
     })();
 
-    // 在initEvent中调用
     function reset() {
         //view.reset();
         startBtn.style.display = 'block';
@@ -90,7 +82,6 @@ var gamer = (function () {
         }
     }
 
-    // 在initEvent中调用
     function start() {
         startBtn.style.display = 'none';
         timeEle.style.top = '10px';
@@ -104,7 +95,7 @@ var gamer = (function () {
     }
 
     return {
-        init : init ,
+        init : reset ,
         success : function () {
             successTxt.style.display = 'block';
             timer.clearTick();
