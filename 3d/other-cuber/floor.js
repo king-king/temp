@@ -1,6 +1,5 @@
 var floor = (function () {
-    var floor = {} ,
-        floorEles = {
+    var floorEles = {
             'frontMask' : null ,//当存在中间夹层是显示的盖板
             'backMask' : null ,//当存在中间夹层是显示的盖板
             'front' : null ,
@@ -89,144 +88,134 @@ var floor = (function () {
         }
     }
 
-    //rotateType旋转类型：x/y/z；floorNum：该方向下的第几层；旋转层数据；方向；持续时间；旋转完之后的回调
-    floor.rotate = function ( rotateType , floorNum , rotateFloorData , dir , durTime , callback ) {
-        var cubeSize = cube.getCurrentCubeSize() ,
-            blockSize = cubeSize / cube_floor_num ,
-            blockWidthPercent = 100 / cube_floor_num;
+    return {
+        //rotateType旋转类型：x/y/z；floorNum：该方向下的第几层；旋转层数据；方向；持续时间；旋转完之后的回调
+        rotate : function ( rotateType , floorNum , rotateFloorData , dir , durTime , callback ) {
+            var cubeSize = cube.getCurrentCubeSize() ,
+                blockSize = cubeSize / cube_floor_num ,
+                blockWidthPercent = 100 / cube_floor_num;
 
-        //设置旋转数据
-        rotateFloorData.faceUp && frontFace.setFaceData( rotateFloorData.faceUp.faceData );
-        rotateFloorData.faceBottom && backFace.setFaceData( rotateFloorData.faceBottom.faceData );
+            //设置旋转数据
+            rotateFloorData.faceUp && frontFace.setFaceData( rotateFloorData.faceUp.faceData );
+            rotateFloorData.faceBottom && backFace.setFaceData( rotateFloorData.faceBottom.faceData );
 
-        //设置四边的数据
-        setSizeData( sizeEdges.up , rotateFloorData.sizeEdges[ 0 ].floorData );
-        setSizeData( sizeEdges.right , rotateFloorData.sizeEdges[ 1 ].floorData );
-        setSizeData( sizeEdges.bottom , rotateFloorData.sizeEdges[ 2 ].floorData );
-        setSizeData( sizeEdges.left , rotateFloorData.sizeEdges[ 3 ].floorData );
+            //设置四边的数据
+            setSizeData( sizeEdges.up , rotateFloorData.sizeEdges[ 0 ].floorData );
+            setSizeData( sizeEdges.right , rotateFloorData.sizeEdges[ 1 ].floorData );
+            setSizeData( sizeEdges.bottom , rotateFloorData.sizeEdges[ 2 ].floorData );
+            setSizeData( sizeEdges.left , rotateFloorData.sizeEdges[ 3 ].floorData );
 
-        //设置floor位置，和transition时间
-        var floorWrapTransform = '';
-        switch ( rotateType ) {
-            case 'z':
-                floorWrapTransform = '';
-                break;
-            case 'x':
-                floorWrapTransform = 'rotateY(90deg)';
-                break;
-            case 'y':
-                floorWrapTransform = 'rotateX(-90deg)';
-        }
-        floorWrapTransform += 'translateZ(' + ((floorNum - (cube_floor_num - 1) / 2) * blockSize) + 'px)';
-        floorEles.floorWrap.style.transform = floorWrapTransform;
-
-        //设置上下蒙板
-        floorEles.backMask.style.opacity = (floorNum == 0 ? '0' : '1');
-        floorEles.frontMask.style.opacity = (floorNum == cube_floor_num - 1 ? '0' : '1');
-
-        floorEles.floorWrap.style.opacity = 1;
-
-        floorEles.floorBox.style.transition = 'transform ' + durTime / 1000 + 's';
-        floorEles.floorBox.style.transform = 'rotateZ(' + (dir == 1 ? 90 : -90) + 'deg)';
-
-        setTimeout( function () {
-            callback();
-            floorEles.floorWrap.style.opacity = 0;
-            floorEles.floorWrap.style.transform = 'scale(0.1)';
-            floorEles.floorBox.style.transform = '';
-        } , durTime - 100 );
-    };
-
-    floor.reset = function () {
-        var cubeSize = cube.getCurrentCubeSize() ,
-            blockSize = cubeSize / cube_floor_num ,
-            blockWidthPercent = 100 / cube_floor_num;
-        if ( !hasBeenInit ) {
-            init();
-            hasBeenInit = true;
-        }
-        floorEles.up.style.height = blockWidthPercent + '%';
-        floorEles.left.style.height = blockWidthPercent + '%';
-        floorEles.bottom.style.height = blockWidthPercent + '%';
-        floorEles.right.style.height = blockWidthPercent + '%';
-        //console.log(floorEles.up, blockWidthPercent);
-
-        floorEles.up.style.width = '100%';
-        floorEles.left.style.width = '100%';
-        floorEles.bottom.style.width = '100%';
-        floorEles.right.style.width = '100%';
-
-        floorEles.up.style.marginTop = -blockWidthPercent / 2 + '%';
-        floorEles.left.style.marginTop = -blockWidthPercent / 2 + '%';
-        floorEles.bottom.style.marginTop = -blockWidthPercent / 2 + '%';
-        floorEles.right.style.marginTop = -blockWidthPercent / 2 + '%';
-
-        //前后面以及前后面mask, 四边   translateZ
-        floorEles.frontMask.style.transform = floorEles.frontMask.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
-        floorEles.backMask.style.transform = floorEles.backMask.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
-        floorEles.front.style.transform = floorEles.front.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
-        floorEles.back.style.transform = floorEles.back.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
-
-        floorEles.up.style.transform = floorEles.up.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
-        floorEles.right.style.transform = floorEles.right.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
-        floorEles.bottom.style.transform = floorEles.bottom.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
-        floorEles.left.style.transform = floorEles.left.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
-
-
-        //前后面的blocks
-        frontFace.reset( cube_floor_num );
-        backFace.reset( cube_floor_num );
-
-        //todo:置空前后里面的block的箭头
-        var divEles = frontFace.faceEle.getElementsByTagName( 'div' ) ,
-
-            divEles2 = backFace.faceEle.getElementsByTagName( 'div' );
-        var i , parent;
-
-        for ( i = 0; i < divEles.length; i++ ) {
-            if ( divEles[ i ].className.indexOf( 'arrow' ) != -1 ) {
-                parent = divEles[ i ].parentNode;
-                parent.removeChild( divEles[ i ] );
+            //设置floor位置，和transition时间
+            var floorWrapTransform = '';
+            switch ( rotateType ) {
+                case 'z':
+                    floorWrapTransform = '';
+                    break;
+                case 'x':
+                    floorWrapTransform = 'rotateY(90deg)';
+                    break;
+                case 'y':
+                    floorWrapTransform = 'rotateX(-90deg)';
             }
-        }
+            floorWrapTransform += 'translateZ(' + ((floorNum - (cube_floor_num - 1) / 2) * blockSize) + 'px)';
+            floorEles.floorWrap.style.transform = floorWrapTransform;
 
-        for ( i = 0; i < divEles2.length; i++ ) {
-            if ( divEles2[ i ].className.indexOf( 'arrow' ) != -1 ) {
-                parent = divEles2[ i ].parentNode;
-                parent.removeChild( divEles2[ i ] );
+            //设置上下蒙板
+            floorEles.backMask.style.opacity = (floorNum == 0 ? '0' : '1');
+            floorEles.frontMask.style.opacity = (floorNum == cube_floor_num - 1 ? '0' : '1');
+
+            floorEles.floorWrap.style.opacity = 1;
+
+            floorEles.floorBox.style.transition = 'transform ' + durTime / 1000 + 's';
+            floorEles.floorBox.style.transform = 'rotateZ(' + (dir == 1 ? 90 : -90) + 'deg)';
+
+            setTimeout( function () {
+                callback();
+                floorEles.floorWrap.style.opacity = 0;
+                floorEles.floorWrap.style.transform = 'scale(0.1)';
+                floorEles.floorBox.style.transform = '';
+            } , durTime - 100 );
+        } ,
+        reset : function () {
+            var cubeSize = cube.getCurrentCubeSize() ,
+                blockSize = cubeSize / cube_floor_num ,
+                blockWidthPercent = 100 / cube_floor_num;
+            if ( !hasBeenInit ) {
+                init();
+                hasBeenInit = true;
             }
-        }
+            floorEles.up.style.height = blockWidthPercent + '%';
+            floorEles.left.style.height = blockWidthPercent + '%';
+            floorEles.bottom.style.height = blockWidthPercent + '%';
+            floorEles.right.style.height = blockWidthPercent + '%';
+            //console.log(floorEles.up, blockWidthPercent);
 
+            floorEles.up.style.width = '100%';
+            floorEles.left.style.width = '100%';
+            floorEles.bottom.style.width = '100%';
+            floorEles.right.style.width = '100%';
 
-        //四边block,blockType统一先设置成front
-        for ( var sizeType in sizeEdges ) {
-            var sizeArr = sizeEdges[ sizeType ];
-            for ( i = 0; i < cube_floor_num; i++ ) {
-                if ( sizeArr[ i ] ) {
-                    sizeArr[ i ].reset( 'front' , i , 0 , (100 / cube_floor_num) , 100 , (100 / cube_floor_num) * i , 0 );
-                } else {
-                    //blocks里面放的都是Block实例，具体属性在block.js
-                    sizeArr[ i ] = new Block( 'front' , i , 0 , (100 / cube_floor_num) , 100 , (100 / cube_floor_num) * i , 0 , true );//最后一个参数代表只是floor（用于旋转的block）
+            floorEles.up.style.marginTop = -blockWidthPercent / 2 + '%';
+            floorEles.left.style.marginTop = -blockWidthPercent / 2 + '%';
+            floorEles.bottom.style.marginTop = -blockWidthPercent / 2 + '%';
+            floorEles.right.style.marginTop = -blockWidthPercent / 2 + '%';
 
-                    //将blockEle添加到size;
-                    floorEles[ sizeType ].appendChild( sizeArr[ i ].blockEle );
+            //前后面以及前后面mask, 四边   translateZ
+            floorEles.frontMask.style.transform = floorEles.frontMask.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
+            floorEles.backMask.style.transform = floorEles.backMask.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
+            floorEles.front.style.transform = floorEles.front.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
+            floorEles.back.style.transform = floorEles.back.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + blockSize / 2 + 'px)' );
+
+            floorEles.up.style.transform = floorEles.up.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
+            floorEles.right.style.transform = floorEles.right.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
+            floorEles.bottom.style.transform = floorEles.bottom.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
+            floorEles.left.style.transform = floorEles.left.style.transform.replace( /translateZ\([\d\.]*px\)/ , 'translateZ(' + cubeSize / 2 + 'px)' );
+
+            //前后面的blocks
+            frontFace.reset( cube_floor_num );
+            backFace.reset( cube_floor_num );
+            //todo:置空前后里面的block的箭头
+            var divEles = frontFace.faceEle.getElementsByTagName( 'div' ) ,
+                divEles2 = backFace.faceEle.getElementsByTagName( 'div' );
+            var i , parent;
+            for ( i = 0; i < divEles.length; i++ ) {
+                if ( divEles[ i ].className.indexOf( 'arrow' ) != -1 ) {
+                    parent = divEles[ i ].parentNode;
+                    parent.removeChild( divEles[ i ] );
                 }
             }
-            //删除多余的block
-            var k = cube_floor_num;
-            while ( k < sizeArr.length ) {
-                if ( sizeArr[ k ] ) {
-                    //console.log(sizeArr[k]);
-                    sizeArr[ k ].blockEle.parentNode.removeChild( sizeArr[ k ].blockEle );
-                    sizeArr[ k ].distory();
-                    sizeArr[ k ] = null;
+            for ( i = 0; i < divEles2.length; i++ ) {
+                if ( divEles2[ i ].className.indexOf( 'arrow' ) != -1 ) {
+                    parent = divEles2[ i ].parentNode;
+                    parent.removeChild( divEles2[ i ] );
                 }
-                k++;
             }
-            sizeArr.length = cube_floor_num;
+            //四边block,blockType统一先设置成front
+            for ( var sizeType in sizeEdges ) {
+                var sizeArr = sizeEdges[ sizeType ];
+                for ( i = 0; i < cube_floor_num; i++ ) {
+                    if ( sizeArr[ i ] ) {
+                        sizeArr[ i ].reset( 'front' , i , 0 , (100 / cube_floor_num) , 100 , (100 / cube_floor_num) * i , 0 );
+                    } else {
+                        //blocks里面放的都是Block实例，具体属性在block.js
+                        sizeArr[ i ] = new Block( 'front' , i , 0 , (100 / cube_floor_num) , 100 , (100 / cube_floor_num) * i , 0 , true );//最后一个参数代表只是floor（用于旋转的block）
+                        //将blockEle添加到size;
+                        floorEles[ sizeType ].appendChild( sizeArr[ i ].blockEle );
+                    }
+                }
+                //删除多余的block
+                var k = cube_floor_num;
+                while ( k < sizeArr.length ) {
+                    if ( sizeArr[ k ] ) {
+                        //console.log(sizeArr[k]);
+                        sizeArr[ k ].blockEle.parentNode.removeChild( sizeArr[ k ].blockEle );
+                        sizeArr[ k ].distory();
+                        sizeArr[ k ] = null;
+                    }
+                    k++;
+                }
+                sizeArr.length = cube_floor_num;
+            }
         }
-
     };
-
-    return floor;
 })();
