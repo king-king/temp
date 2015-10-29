@@ -1,5 +1,4 @@
 var rotateFloorRotating = false ,
-    animateGapTime = 1000 ,
     rotateFloorData = {
         'sizeEdges' : [] ,
         'faceUp' : null ,
@@ -21,7 +20,6 @@ var rotateFloorRotating = false ,
             'up' : null ,
             'bottom' : null
         } ,
-        colors = [] ,
         cubeSize = 200 ,
         style = 'cool' ,//风格,
         cubeWrapEle = null;
@@ -50,18 +48,6 @@ var rotateFloorRotating = false ,
         }
     }
 
-    /*		rotateFloorData = {
-     'floorNum': 0,
-     'sizeEdges':[],
-     'faceUp': null,
-     'faceBottom': null
-     },//准备给旋转层的数据
-     newSetFloorData = {
-     'floorNum': 0,
-     'sizeEdges':[],//每一边数据形式{faceType:'', floorData:[]}
-     'faceUp': {'faceType':'', 'faceData':[]},//当次旋转不涉及顶面则null
-     'faceBottom': {'faceType':'', 'faceData':[]}////当次旋转不涉及底面则null
-     },//准备设置旋转之后的数据*/
     cube = {
         getCurrentCubeSize : function () {
             return cubeSize;
@@ -92,12 +78,15 @@ var rotateFloorRotating = false ,
                 'sizeEdges' : [] ,
                 'faceUp' : null ,
                 'faceBottom' : null
-            };//准备给旋转层的数据
+            };
+
+            //准备给旋转层的数据
             newSetFloorData = {
                 'sizeEdges' : [] ,//每一边数据形式{faceType:'',colOrRow: '', floorNum:'', floorData:[]}
                 'faceUp' : { 'faceType' : '' , 'faceData' : [] } ,//当次旋转不涉及顶面则null
                 'faceBottom' : { 'faceType' : '' , 'faceData' : [] }////当次旋转不涉及底面则null
-            };//准备设置旋转之后的数据
+            };
+            //准备设置旋转之后的数据
 
             rotateFloorData.floorNum = floorNum;
             //四边的数据
@@ -107,7 +96,6 @@ var rotateFloorRotating = false ,
                 //rotateFloorData.sizeEdges[i] = faces[rotateDirObj.sizeEdges[i].face].getFloorData(rotateType, floorNum);
                 rotateFloorData.sizeEdges[ i ].faceType = rotateDirObj.sizeEdges[ i ].face;
                 rotateFloorData.sizeEdges[ i ].floorData = faces[ rotateDirObj.sizeEdges[ i ].face ].getFloorData( rotateType , floorNum );
-
                 //旋转后的facetype也顺便在这里赋值
                 newSetFloorData.sizeEdges[ i ] = {};
                 newSetFloorData.sizeEdges[ i ].faceType = rotateFloorData.sizeEdges[ i ].faceType;
@@ -188,11 +176,9 @@ var rotateFloorRotating = false ,
     init();
 })();
 
-
 //cubeHandler
-var cubeHandler = (function () {
-    var handler = {} ,
-        lock = false ,//游戏已经开始，任何设置魔方的动作（行列风格），不允许
+(function () {
+    var lock = false ,//游戏已经开始，任何设置魔方的动作（行列风格），不允许
         motions = [] ,//已经旋转的每一次动作
         redoMotions = [] ,//已撤销的动作
         cubeWrapEle = document.getElementById( 'cubeWrap' ) ,
@@ -259,7 +245,6 @@ var cubeHandler = (function () {
                     break;
 
                 //风格
-
                 case 'optStyleCool':
                     cube.setStyle( 'cool' );
                     break;
@@ -277,9 +262,7 @@ var cubeHandler = (function () {
             if ( !lock ) {
                 return;
             }
-
             var target = e.target;
-
             switch ( target.id ) {
                 //大小
                 case 'undo':
@@ -290,7 +273,6 @@ var cubeHandler = (function () {
                     break;
             }
         }
-
     }
 
     function startRotateAnimate() {
@@ -373,5 +355,4 @@ var cubeHandler = (function () {
     }
 
     init();
-    return handler;
 })();
