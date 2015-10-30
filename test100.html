@@ -1,65 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="utf-8">
-    <meta name="mobileoptimized" content="0"/>
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="browsermode" content="application">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title></title>
-    <link href="test.css" rel="stylesheet">
     <style>
-        .page {
-            width: 320px;
-            height: 480px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            -webkit-transform: translate3d(-50%, -50%, 0);
-            background-color: black;
-            overflow: hidden;
+        * {
+            margin: 0;
+            padding: 0;
         }
 
-        .target {
-            width: 200px;
-            height: 200px;
-            background-color: #009D54;
+        .div1 {
+            width: 50px;
+            height: 50px;
+            background: green;
+            position: absolute
         }
 
-        /*.target:after {*/
-        /*width: 100%;*/
-        /*height: 100%;*/
-        /*content: "";*/
-        /*display: block;*/
-        /*}*/
+        input {
+            width: 100%;
+            height: 40px;
+        }
     </style>
+    <script src="jquery.js"></script>
 </head>
 <body>
-<input type="file" accept="	chemical/x-synopsys-accord">
-
-<div class="target">123</div>
+<!--<div class="div1"></div>-->
+<input id="volume" min="0" max="100" step="0.1" type="range"/>
 <script>
+    $( function () {
 
-    var bt1 = 0 , bt2 = 0 , bt3 = 0 , list1 = 0 , list2 = 0 , list3 = 0;
+//        document.addEventListener( "touchstart" , function ( e ) {
+//            e.preventDefault();
+//        } , false );
+////
+//        var prex , prey , div = $( '.div1' );
+//        div[ 0 ].x = div[ 0 ].y = 0;
+//        div.on( 'touchstart' , function ( e ) {
+//            e.preventDefault();
+//            var touch = e.originalEvent.targetTouches[ 0 ];
+//            prex = touch.pageX;
+//            prey = touch.pageY;
+//            $( document ).on( 'touchmove' , function ( e ) {
+//                var touch = e.originalEvent.changedTouches[ 0 ];
+//                div[ 0 ].x = touch.pageX - prex + div[ 0 ].x;
+//                div[ 0 ].y = touch.pageY - prey + div[ 0 ].y;
+//                div[ 0 ].style.webkitTransform = "translate3d(" + div[ 0 ].x + "px," + div[ 0 ].y + "px,0px)";
+//                prex = touch.pageX;
+//                prey = touch.pageY;
+//            } );
+//            $( document ).on( 'touchend' , function () {
+//                $( document ).off( 'touchstart' );
+//                $( document ).off( 'touchmove' )
+//            } )
+//        } )
 
-    var buttons = [ bt1 , bt2 , bt3 ] , lists = [ list1 , list2 , list3 ] , curIndex; // 初始状态全是关闭
-    buttons.forEach( function ( btn , i ) {  // 注意不要搞成for循环
-        btn.onclick = function () {
-            // 关闭当前关闭的，如果有的话
-            lists[ curIndex ] && ( lists[ curIndex ].style.display = "none");
-            // 开启当前点击的
-            lists[ i ].style.display = "block";
-            curIndex = i;
-        }
-    } );
 
-    var a = [ 1 , 2 , 3 , 4 ];
-
-    var b = a[ undefined ]
-
-
+    } )
 </script>
+
+
 </body>
 </html>
