@@ -155,7 +155,7 @@ Face.prototype.reset = function () {
                 this.blocks[ i ][ j ] = new Block( this.faceType , j , i , (100 / cube_floor_num) , (100 / cube_floor_num) , (100 / cube_floor_num) * j , (100 / cube_floor_num) * i );
                 //将blockEle添加到face;
                 this.faceEle.appendChild( this.blocks[ i ][ j ].blockEle );
-                var testDiv = document.createElement( 'div' );
+                //var testDiv = document.createElement( 'div' );
 
                 //for test
                 //testDiv.innerHTML = i * cube_floor_num + j + 1 + this.faceType;
