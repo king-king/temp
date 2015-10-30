@@ -291,21 +291,22 @@ var rotateFloorRotating = false ,
         var randomRotateNum = cube_floor_num * 30 ,//随机转多少下
             gapTime = 40 ,//两次随机转间隔时间
             rotateTypes = [ 'x' , 'y' , 'z' ];
-
-        (function () {
-            if ( randomRotateNum <= 0 ) {
-                lock = true;
-                stopRotateAnimate();
-            } else {
-                var rotateType = rotateTypes[ parseInt( Math.random() * 3 ) ] ,
-                    dir = (Math.random() > 0.5 ? 1 : -1) ,
-                    floorNum = parseInt( Math.random() * cube_floor_num );
-
-                cube.rotate( rotateType , dir , floorNum , 0 , false );//随机转魔方不需要动画
-                randomRotateNum--;
-                setTimeout( arguments.callee , gapTime );
-            }
-        })();
+        lock = true;
+        stopRotateAnimate();
+        //(function () {
+        //    if ( randomRotateNum <= 0 ) {
+        //        lock = true;
+        //        stopRotateAnimate();
+        //    } else {
+        //        var rotateType = rotateTypes[ parseInt( Math.random() * 3 ) ] ,
+        //            dir = (Math.random() > 0.5 ? 1 : -1) ,
+        //            floorNum = parseInt( Math.random() * cube_floor_num );
+        //
+        //        cube.rotate( rotateType , dir , floorNum , 0 , false );//随机转魔方不需要动画
+        //        randomRotateNum--;
+        //        setTimeout( arguments.callee , gapTime );
+        //    }
+        //})();
 
         cubeOptWrap.style.bottom = '-200px';
         cubePlayingOptWrap.style.top = 0;
