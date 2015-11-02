@@ -199,8 +199,8 @@ var rotateFloorRotating = false ,
             }
             var target = e.target;
 
+            // 这里写的很好，非常简单，不是给每个arrow都给一个事件，而是冒泡
             if ( target.className.indexOf( 'arrow' ) != -1 ) {
-
                 var rotateInfo = target.getAttribute( 'alt' ).split( ',' );
                 handRotateCube( rotateInfo[ 0 ] , rotateInfo[ 1 ] , rotateInfo[ 2 ] , 500 , true );
             }
