@@ -3,6 +3,7 @@
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{fontmin, mongodb, nodemailer}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="Node.js Core" />
     <includedPredefinedLibrary name="WebGL" />
   </component>
 </project>

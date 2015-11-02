@@ -2,6 +2,13 @@
  * Created by WQ on 2015/11/2.
  */
 
+// api
+var querySelector = document.querySelector.bind( document );
+
+// dom
+var cubeWrapper = querySelector( ".cube-wrapper" );
+
+// data
 var aixsX = [ 1 , 0 , 0 , 1 ];
 var aixsY = [ 0 , 1 , 0 , 1 ];
 var aixsZ = [ 0 , 0 , 1 , 1 ];
