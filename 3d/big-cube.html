@@ -199,9 +199,9 @@
         Drag( border , {
             onDrag : function ( dx , dy ) {
                 if ( dx || dy ) {
-//                    var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
-//                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-                    var t_matrix = _3d.rotate3dM( aixsY[ 0 ] , aixsY[ 1 ] , aixsY[ 2 ] , -dx / 2 );
+                    var s = ( Math.abs( dx ) + Math.abs( dy )) / 2;
+                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
+//                    var t_matrix = _3d.rotate3dM( aixsY[ 0 ] , aixsY[ 1 ] , aixsY[ 2 ] , -dx / 2 );
                     transformCube( t_matrix );
                 }
             }

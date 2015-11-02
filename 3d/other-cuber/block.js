@@ -55,16 +55,18 @@ Block.prototype.reset = function ( type , col , row , width , height , left , to
 
     var arrowEles = this.blockEle.getElementsByTagName( 'div' );
 
+    //  这里加了判断箭头的return方法，说明后面的都是对箭头的设置
     if ( arrowEles.length === 0 ) {
         return;
     }
 
     var block = this ,
-        rowRotateData = {} ,//箭头横向（left right）转的时候要用的旋转数据，在sizeEdges里
-        colRotateData = {};//箭头竖向（up down）转的时候要用的旋转数据，在sizeEdges里
+        rowRotateData = {} ,    //  箭头横向（left right）转的时候要用的旋转数据，在sizeEdges里
+        colRotateData = {}; //   箭头竖向（up down）转的时候要用的旋转数据，在sizeEdges里
 
     //确定横竖分别会触发的旋转方向，主要就是用faceType查common.js的rotateDir
     var dir , i;
+    // 看了下面的这段代码才发觉rotateDir的结构设计实在是精妙
     for ( dir in rotateDir ) {
         var edges = rotateDir[ dir ].sizeEdges;
         for ( i = 0; i < edges.length; i++ ) {
