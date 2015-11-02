@@ -2,3 +2,58 @@
     margin: 0;
     -webkit-user-select: none;
 }
+
+.cube-wrapper {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    cursor: pointer;
+    perspective: 1500px;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.block {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background: #000;
+}
+
+.block-inner {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    bottom: 2px;
+    right: 2px;
+    border-radius: 8px;
+}
+
+.front div {
+    background-color: #2a6496;
+}
+
+.left div {
+    background-color: darkred;
+}
+
+.right div {
+    background-color: yellow;
+}
+
+.back div {
+    background-color: #E87000;
+}
+
+.top div {
+    background-color: #5cb85c;
+}
+
+.bottom div {
+    background-color: #FF00FF;
+}

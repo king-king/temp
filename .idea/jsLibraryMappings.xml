@@ -3,9 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{fontmin, mongodb, nodemailer}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
-    <includedPredefinedLibrary name="Meteor project library" />
-    <includedPredefinedLibrary name="Nashorn" />
-    <includedPredefinedLibrary name="Node.js Globals" />
     <includedPredefinedLibrary name="WebGL" />
   </component>
 </project>

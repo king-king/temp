@@ -13,6 +13,12 @@ function loopArray( arr , func ) {
     }
 }
 
+function loopObj( obj , func ) {
+    for ( var key in obj ) {
+        func( key , obj[ key ] );
+    }
+}
+
 function replaceAll( str , oldStr , newStr ) {
     while ( str.indexOf( oldStr ) != -1 ) {
         str = str.replace( oldStr , newStr );
@@ -37,6 +43,12 @@ function element( tag , arg , parent ) {
     return el;
 }
 
+function css( el , styles ) {
+    loopObj( styles , function ( key , value ) {
+        el.style.setProperty( key , value )
+    } );
+}
+
 function addEventListener( el , type , listener , useCapture ) {
     el.addEventListener( type , listener , useCapture );
     return {
@@ -45,7 +57,6 @@ function addEventListener( el , type , listener , useCapture ) {
         }
     }
 }
-
 
 function Drag( el , listener ) {
     var preX , preY;
