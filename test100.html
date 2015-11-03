@@ -11,10 +11,11 @@
         }
 
         .div1 {
-            width: 450px;
-            height: 450px;
-            background: green;
             position: absolute;
+            width: 100%;
+            height: 750px;
+            background: green;
+            -webkit-transition: 2s;
         }
 
         .div1 div {
@@ -22,6 +23,9 @@
             height: 300px;
             margin: 25px;
             background: #000;
+            position: absolute;
+            top: 0;
+            left: 0;
         }
 
     </style>
@@ -37,11 +41,10 @@
         var a = document.querySelector( ".div1" );
         var b = document.querySelector( ".div1 div" );
 
-        a.onclick = function ( e ) {
-            if ( e.target == a ) {
-                alert( "ok" )
-            }
-        };
+        window.onload = function () {
+            b.style.left = "400px"
+        }
+
 
     } )
 </script>

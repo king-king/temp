@@ -141,6 +141,7 @@ var rotateFloorRotating = false ,
             //将新的魔方数据设置魔方的函数
             function setData() {
                 for ( var i = 0; i < 4; i++ ) {
+                    // 这是一个值得关注的关键点，是改变花色的
                     faces[ newSetFloorData.sizeEdges[ i ].faceType ].setFloorData( rotateType , floorNum , newSetFloorData.sizeEdges[ i ].floorData );
                 }
                 newSetFloorData.faceUp && faces[ newSetFloorData.faceUp.faceType ].setFaceData( newSetFloorData.faceUp.faceData );
