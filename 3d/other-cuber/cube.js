@@ -95,6 +95,7 @@ var rotateFloorRotating = false ,
                 rotateFloorData.sizeEdges[ i ] = {};
                 //rotateFloorData.sizeEdges[i] = faces[rotateDirObj.sizeEdges[i].face].getFloorData(rotateType, floorNum);
                 rotateFloorData.sizeEdges[ i ].faceType = rotateDirObj.sizeEdges[ i ].face;
+                // 注意下面这个getFloorData的写法，是关注的重点
                 rotateFloorData.sizeEdges[ i ].floorData = faces[ rotateDirObj.sizeEdges[ i ].face ].getFloorData( rotateType , floorNum );
                 //旋转后的facetype也顺便在这里赋值
                 newSetFloorData.sizeEdges[ i ] = {};
