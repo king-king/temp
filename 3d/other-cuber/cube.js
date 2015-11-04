@@ -80,11 +80,11 @@ var rotateFloorRotating = false ,
                 'faceBottom' : null
             };
 
-            //准备给旋转层的数据
+                //  旋转之后染色的数据，特别需要注意下面给这个变量赋值的过程，富有技巧
             newSetFloorData = {
-                'sizeEdges' : [] ,//每一边数据形式{faceType:'',colOrRow: '', floorNum:'', floorData:[]}
-                'faceUp' : { 'faceType' : '' , 'faceData' : [] } ,//当次旋转不涉及顶面则null
-                'faceBottom' : { 'faceType' : '' , 'faceData' : [] }////当次旋转不涉及底面则null
+                'sizeEdges' : [] ,//    每一边数据形式{faceType:'',colOrRow: '', floorNum:'', floorData:[]}
+                'faceUp' : { 'faceType' : '' , 'faceData' : [] } ,//  当次旋转不涉及顶面则null
+                'faceBottom' : { 'faceType' : '' , 'faceData' : [] }// 当次旋转不涉及底面则null
             };
             //准备设置旋转之后的数据
 
@@ -101,10 +101,10 @@ var rotateFloorRotating = false ,
                 newSetFloorData.sizeEdges[ i ].faceType = rotateFloorData.sizeEdges[ i ].faceType;
             }
 
-            //判断是否要上下面数据
+            //  判断是否要上下面数据
             rotateFloorData.faceUp = null;
             rotateFloorData.faceBottom = null;
-            if ( floorNum == cube_floor_num - 1 ) {//需要顶面数据
+            if ( floorNum == cube_floor_num - 1 ) {//   需要顶面数据
                 rotateFloorData.faceUp = {};
                 rotateFloorData.faceUp.faceType = rotateDirObj.faceUp.face;//上层面类型
                 rotateFloorData.faceUp.faceData = rotateSquareArr( faces[ rotateDirObj.faceUp.face ].getFaceData() , 1 , rotateDirObj.faceUp.rotateDegree );//上层面数据
