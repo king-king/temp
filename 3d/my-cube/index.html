@@ -4,29 +4,15 @@
     <meta charset="UTF-8">
     <title>魔方</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="ico.png">
 </head>
 <body>
+
+<div class="head">0</div>
+<canvas width="600" height="600"></canvas>
 <div class="cube-wrapper"></div>
-<script src="../3d-css.js"></script>
-<script src="data.js"></script>
-<script src="../tools.js"></script>
+<div class="start-btn">Start</div>
+
 <script src="cube.js"></script>
-<script>
-    (function () {
-
-        initCube();
-
-        Drag( cubeWrapper , {
-            onDrag : function ( dx , dy ) {
-                if ( dx || dy ) {
-                    var s = ( Math.abs( dx ) + Math.abs( dy )) / 4;
-                    var t_matrix = _3d.rotate3dM( dy , -dx , 0 , s );
-                    rotateCube( t_matrix );
-                }
-            }
-        } );
-
-    })();
-</script>
 </body>
 </html>
