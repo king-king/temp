@@ -825,14 +825,13 @@ function checkWin() {
     var animate = requestAnimate( function () {
         rotateCube( _3d.rotate3dM( 1 , -1 , 0 , 1 ) )
     } );
-
+    cubeWrapper.classList.add( "lock" );
     var startBtn = querySelector( ".start-btn" );
     startBtn.onclick = function () {
         animate.destroy();
         startBtn.parentNode.removeChild( startBtn );
-        document.body.classList.add( "lock" );
         serialTask( randomAction , function () {
-            document.body.classList.remove( "lock" );
+            cubeWrapper.classList.remove( "lock" );
         } );
     };
 
