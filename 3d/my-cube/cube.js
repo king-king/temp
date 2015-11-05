@@ -850,7 +850,8 @@ function checkWin() {
         if ( e.which == 2 ) {
             var action = Actions.pop();
             head.innerText = Actions.length;
-            action && rotateFloorAction( action.axis , action.floorNum , 0 , -action.rotateNum , function () {
+            action && rotateFloorAction( action.axis , action.floorNum , 0 , -action.rotateNum , function ( iswin ) {
+                iswin && document.body.classList.add( "lock" );
             } );
         }
     }
