@@ -10,38 +10,35 @@
             padding: 0;
         }
 
-        div {
-            width: 700px;
-            height: 500px;
-            background: radial-gradient(#444, #000); /* 标准的语法 */
-            -webkit-animation: 3s bgcolor infinite;
+        .border {
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
         }
 
-        @-webkit-keyframes bgcolor {
-            0% {
-                /*background: red;*/
-                background: radial-gradient(#444, #000); /* 标准的语法 */
-            }
-            /*50% {*/
-                /*background: green;*/
-            /*}*/
-            100% {
-                /*background: red;*/
-                background: radial-gradient(#f00, #000); /* 标准的语法 */
-            }
+        .border div {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+        }
+
+        .cube1 {
+            -webkit-transform: perspective(1500px) translate3d(0, 0, 0);
+            background-color: #245269;
+        }
+
+        .cube2 {
+            -webkit-transform: perspective(1500px) translate3d(0, 0, -600px);
+            background-color: #009D54;
         }
     </style>
-    <script src="jquery.js"></script>
 </head>
 <body>
-<div></div>
+<div class="border">
+    <div class="cube1"></div>
+    <div class="cube2"></div>
+</div>
 <script>
-    $( function () {
-
-
-    } )
 </script>
-
-
 </body>
 </html>
