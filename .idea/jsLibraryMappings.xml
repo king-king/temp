@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{fontmin, mongodb, nodemailer}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="Meteor project library" />
+    <includedPredefinedLibrary name="Node.js Globals" />
     <includedPredefinedLibrary name="WebGL" />
   </component>
 </project>
