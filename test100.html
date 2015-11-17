@@ -10,35 +10,26 @@
             padding: 0;
         }
 
-        .border {
-            width: 600px;
-            height: 600px;
-            border: 1px solid black;
-        }
-
-        .border div {
-            width: 200px;
-            height: 200px;
-            position: absolute;
-        }
-
-        .cube1 {
-            -webkit-transform: perspective(1500px) translate3d(0, 0, 0);
-            background-color: #245269;
-        }
-
-        .cube2 {
-            -webkit-transform: perspective(1500px) translate3d(0, 0, -600px);
-            background-color: #009D54;
+        canvas {
+            width: 500px;
+            height: 500px;
+            -webkit-filter: blur(10px)
         }
     </style>
 </head>
 <body>
-<div class="border">
-    <div class="cube1"></div>
-    <div class="cube2">gfdgfd</div>
-</div>
 <script>
+    (function () {
+        var img = new Image();
+        img.src = "img/1.jpg";
+        var canvas = document.createElement( "canvas" );
+        var gc = canvas.getContext( "2d" );
+        canvas.width = canvas.height = 500;
+        img.onload = function () {
+            gc.drawImage( img , 0 , 0 );
+            document.body.appendChild( canvas )
+        }
+    })()
 </script>
 </body>
 </html>
