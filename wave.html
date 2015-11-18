@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img {
+            width: 600px;
+            left: 10px;
+        }
+
+        img, canvas {
+            position: absolute;
+        }
+
+        @-webkit-keyframes fade-out {
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .ratio {
+            position: absolute;
+            left: 700px;
+        }
+    </style>
+</head>
+<body>
+<div class="ratio">
+    <input type="radio" class="middle" name="t" checked>中间散开
+    <input type="radio" class="left" name="t">左散开
+    <input type="radio" class="right" name="t">右散开
+</div>
+
+<script>
+    (function () {
+        var img = new Image();
+        img.src = "img/1.jpg";
+        var canvas = document.createElement( "canvas" );
+        canvas.width = canvas.height = 600;
+        var gc = canvas.getContext( "2d" );
+
+        var img2 = new Image();
+        img2.src = "img/2.jpg";
+        document.body.appendChild( img2 );
+
+        var num = 20;
+        var w = 600 / num , h = 600;
+
+        function fregment( x ) {
+            var ca = document.createElement( "canvas" );
+            var g = ca.getContext( "2d" );
+            ca.width = w;
+            ca.height = h;
+            ca.style.width = w + "px";
+            ca.style.height = "600px";
+            g.drawImage( canvas , x , 0 , w , h , 0 , 0 , w , h );
+            ca.style.left = 10 + x + "px";
+            document.body.appendChild( ca );
+            return ca;
+        }
+
+        var cs = [];
+        img.onload = function () {
+            gc.drawImage( img , 0 , 0 , 600 , 600 );
+            for ( var i = 0; i < num; i ++ ) {
+                cs.push( fregment( w * i ) );
+            }
+            var arr = cs.reverse();
+
+            var middle = arr.length / 2;
+            for ( var j = 0; j <= arr.length / 2; j ++ ) {
+                arr[ middle + j ] && (arr[ middle + j ].style.webkitAnimation = "fade-out 0.01s linear " + j / 10 + "s forwards");
+                arr[ middle - j ] && (arr[ middle - j ].style.webkitAnimation = "fade-out 0.01s linear " + j / 10 + "s forwards");
+            }
+
+            var mid = document.querySelector( ".middle" ) ,
+                    left = document.querySelector( ".left" ) ,
+                    right = document.querySelector( ".right" );
+
+            mid.onclick = function () {
+                for ( var i = 0; i < arr.length; i ++ ) {
+                    arr[ i ].style.webkitAnimation = "";
+                }
+                setTimeout( function () {
+                    for ( var j = 0; j <= arr.length / 2; j ++ ) {
+                        arr[ middle + j ] && (arr[ middle + j ].style.webkitAnimation = "fade-out 0.01s linear " + j / 10 + "s forwards");
+                        arr[ middle - j ] && (arr[ middle - j ].style.webkitAnimation = "fade-out 0.01s linear " + j / 10 + "s forwards");
+                    }
+                } , 0 );
+            };
+
+            left.onclick = function () {
+                for ( var i = 0; i < arr.length; i ++ ) {
+                    cs[ i ].style.webkitAnimation = "";
+                }
+                setTimeout( function () {
+                    for ( var j = 0; j < arr.length; j ++ ) {
+                        cs[ j ].style.webkitAnimation = "fade-out 0.01s linear " + j / 10 + "s forwards";
+                    }
+                } , 0 );
+            };
+
+            right.onclick = function () {
+                for ( var i = 0; i < arr.length; i ++ ) {
+                    cs[ i ].style.webkitAnimation = "";
+                }
+                setTimeout( function () {
+                    for ( var j = arr.length - 1; j >= 0; j -- ) {
+                        cs[ j ].style.webkitAnimation = "fade-out 0.01s linear " + (arr.length - 1 - j) / 10 + "s forwards";
+                    }
+                } , 0 );
+            };
+
+
+        };
+
+
+    })();
+</script>
+</body>
+</html>
