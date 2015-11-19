@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="mobileoptimized" content="0"/>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="browsermode" content="application">
+    <title></title>
+    <style>
+        html, body, .border {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .border {
+            background: url(img/snow-scene.png) center center;
+            background-size: cover;
+        }
+
+        .snow-bottom {
+            width: 100%;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+
+        }
+
+        @-webkit-keyframes down {
+            100% {
+                -webkit-transform: translate3d(0, 700px, 0);
+            }
+        }
+
+        .border img.snow {
+            position: absolute;
+            top: -30px;
+        }
+
+        .house {
+            width: 27%;
+            position: absolute;
+            left: 8%;
+            bottom: 0;
+        }
+
+        .snow-man {
+            position: absolute;
+            bottom: 0;
+            left: 70%;
+            width: 15.5%;
+            transform-origin: center bottom;
+            -webkit-animation: shake 6s infinite;
+        }
+
+        .light {
+            position: absolute;
+            left: 16%;
+            bottom: 0;
+            width: 10%;
+            background-color: #ffdf2c;
+            -webkit-animation: slip 5s cubic-bezier(.17, .67, .54, 1.32) infinite;
+        }
+
+        @-webkit-keyframes shake {
+            0% {
+                -webkit-transform: rotateZ(0deg);
+            }
+            25% {
+                -webkit-transform: rotateZ(-10deg);
+            }
+            75% {
+                -webkit-transform: rotateZ(10deg);
+            }
+            100% {
+                -webkit-transform: rotateZ(0deg);
+            }
+        }
+
+        @-webkit-keyframes slip {
+            0% {
+                background: #ffdf2c;
+            }
+            50% {
+                background: #ffa82c;
+            }
+            100% {
+                background: #ffdf2c;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="border">
+    <div class="light"></div>
+    <img src="img/house.png" class="house">
+    <img src="img/snow-man.png" class="snow-man">
+    <img src="img/earth.png" class="snow-bottom">
+</div>
+<script>
+    (function () {
+        function loop( numer , func ) {
+            for ( var i = 0; i < numer; i ++ ) {
+                func( i );
+            }
+        }
+
+        document.addEventListener( "touchstart" , function ( e ) {
+            e.preventDefault();
+        } );
+
+        var border = document.querySelector( ".border" );
+        document.body.onload = function () {
+            var light = document.querySelector( ".light" );
+            light.style.height = border.offsetWidth / 687 * 115 + "px";
+            (function () {
+                loop( 4 , function ( i ) {
+                    var snow = new Image();
+                    snow.src = "img/snow.png";
+                    var rate = i == 0 ? Math.random() * 3 : Math.random();
+                    snow.style.width = rate * 12 + 6 + "px";
+                    snow.style.left = Math.random() * border.offsetWidth + "px";
+                    snow.classList.add( "snow" );
+                    border.appendChild( snow );
+                    snow.style.webkitAnimation = "down " + (rate * 5 + 7) + "s " + rate * 1.5 + "s ease-in";
+                    snow.addEventListener( "webkitAnimationEnd" , function () {
+                        border.removeChild( snow );
+                    } );
+                } );
+                setTimeout( arguments.callee , 1000 )
+            })();
+        }
+
+    })();
+</script>
+</body>
+</html>
