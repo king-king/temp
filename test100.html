@@ -16,21 +16,30 @@
             transform: scale(1.2);
         }
 
-        @-webkit-keyframes move {
-            0% {
-                transform: translate3d(100px, 0, 0) scale(1.2);
-            }
-            100% {
-                transform: translate3d(300px, 300px, 0) scale(1.2);
-            }
-        }
     </style>
 </head>
 <body>
-<img src="img/texttrue.png">
+<div class="demo"></div>
 <script>
     (function () {
-
+        navigator.geolocation.getCurrentPosition( function ( position ) {
+            alert( position.coords.latitude + "  " + position.coords.longitude );
+        } , function ( error ) {
+            switch ( error.code ) {
+                case 1:
+                    alert( "地理位置获取失败 需要授权" );
+                    break;
+                case 2:
+                    alert( "地理位置获取失败 无法确定设备的位置" );
+                    break;
+                case 3:
+                    alert( "地理位置获取失败 请求超时" );
+                    break;
+            }
+        } , {
+            enableHighAccuracy : false ,
+            timeout : 2000
+        } )
     })()
 </script>
 </body>
