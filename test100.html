@@ -10,36 +10,19 @@
             padding: 0;
         }
 
-        img {
-            width: 100px;
-            -webkit-animation: move 4s 3s linear both;
-            transform: scale(1.2);
+        .demo {
+            width: 600px;
+            height: 600px;
+            background: url("img/bg-word.png") repeat;
         }
-
     </style>
 </head>
 <body>
 <div class="demo"></div>
 <script>
     (function () {
-        navigator.geolocation.getCurrentPosition( function ( position ) {
-            alert( position.coords.latitude + "  " + position.coords.longitude );
-        } , function ( error ) {
-            switch ( error.code ) {
-                case 1:
-                    alert( "地理位置获取失败 需要授权" );
-                    break;
-                case 2:
-                    alert( "地理位置获取失败 无法确定设备的位置" );
-                    break;
-                case 3:
-                    alert( "地理位置获取失败 请求超时" );
-                    break;
-            }
-        } , {
-            enableHighAccuracy : false ,
-            timeout : 2000
-        } )
+
+
     })()
 </script>
 </body>
