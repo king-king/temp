@@ -10,19 +10,17 @@
             padding: 0;
         }
 
-        .demo {
-            width: 600px;
-            height: 600px;
-            background: url("img/bg-word.png") repeat;
-        }
     </style>
 </head>
 <body>
-<div class="demo"></div>
+<canvas></canvas>
 <script>
     (function () {
-
-
+        var canvas = document.querySelector( "canvas" );
+        canvas.width = canvas.height = 500;
+        var gl = canvas.getContext( "experimental-webgl" ) || canvas.getContext( "webgl" );
+        gl.clearColor( 1 , 0 , 1 ,0 );
+        gl.clear( gl.COLOR_BUFFER_BIT );
     })()
 </script>
 </body>
