@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            width: 500px;
+            height: 500px;
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gl = canvas.getContext( "2d" );
+        canvas.width = canvas.height = 500;
+
+        var p0 = [ 250 , 140 ] , p1 = [ 480 , 10 ] , p2 = [ 480 , 340 ] , p3 = [ 250 , 400 ];
+
+        var p02 = [ 250 , 400 ] , p12 = [ 20 , 340 ] , p22 = [ 20 , 10 ] , p32 = [ 250 , 140 ];
+        var points = [ p02 , p12 , p22 , p32 ];
+//        var points = [ p0 , p1 , p2 , p3 ];
+
+        gl.fillStyle = "black";
+
+        for ( var i = 0; i < 4; i ++ ) {
+            gl.fillRect( points[ i ][ 0 ] , points[ i ][ 1 ] , 6 , 6 );
+        }
+        gl.fillStyle = "red";
+
+        var t = 0;
+        var num = 0;
+
+        var ps = [];
+
+        function draw() {
+            if ( t <= 1 ) {
+                var t1_2 = (1 - t) * (1 - t);
+                var t1_3 = t1_2 * (1 - t);
+                var t2 = t * t;
+                var t3 = t * t * t;
+                var x = points[ 0 ][ 0 ] * t1_3 + 3 * points[ 1 ][ 0 ] * t * t1_2 + 3 * points[ 2 ][ 0 ] * t2 * (1 - t) + points[ 3 ][ 0 ] * t3;
+                var y = points[ 0 ][ 1 ] * t1_3 + 3 * points[ 1 ][ 1 ] * t * t1_2 + 3 * points[ 2 ][ 1 ] * t2 * (1 - t) + points[ 3 ][ 1 ] * t3;
+                ps.push( [ x , y ] );
+                gl.fillRect( x , y , 4 , 4 );
+                t += 0.01;
+                setTimeout( arguments.callee , 20 );
+            } else {
+                console.log( JSON.stringify( ps ) );
+            }
+        }
+
+//        draw();
+    })();
+</script>
+</body>
+</html>
