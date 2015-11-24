@@ -44,7 +44,7 @@
         document.body.appendChild( canvas );
         var gl = canvas.getContext( "2d" );
         var snows = [];
-
+        var drawID , downID;
         snow.onload = function () {
             var w = document.body.offsetWidth;
             var h = document.body.offsetHeight;
@@ -70,22 +70,22 @@
                             if ( random > 0.7 ) {
                                 x = w;
                                 y = h * random / 3;
-                                vx = - random * 10;
+                                vx = - random * 7;
                             } else if ( random > 0.3 ) {
                                 x = 0;
                                 y = h * random / 3;
-                                vx = random * 10;
+                                vx = random * 7;
                             } else {
                                 x = random * w;
                                 y = - r;
-                                vx = (random - 0.5) * 10;
+                                vx = (random - 0.5) * 7;
                             }
                         } else {
                             r = Math.random() * 12;
                             vy = Math.random() * 5;
                             x = Math.random() * w;
                             y = - r;
-                            vx = (Math.random() - 0.5) * 10;
+                            vx = (Math.random() - 0.5) * 7;
                         }
                         snows[ i ] = {
                             x : x ,
@@ -95,12 +95,12 @@
                             vy : vy
                         };
                     } else {
-                        var size = (h * Math.cos( snows[ i ].y * TO_RADIANS / 50 ) + 1000) / 800;
+                        var size = (h * Math.cos( snows[ i ].y * TO_RADIANS / 50 ) + 1000) / 900;
                         size *= snows[ i ].r;
                         gl.drawImage( snow , snows[ i ].x , snows[ i ].y , size , size );
                     }
                 }
-                setTimeout( draw , 20 );
+                drawID = setTimeout( draw , 20 );
             }
 
             function down() {
@@ -116,15 +116,19 @@
                                 }
                         );
                     }
-                    setTimeout( down , 200 );
+                    downID = setTimeout( down , 200 );
                 }
             }
 
             down();
             draw();
         }
-    })
-    ();
+
+        window.stop = function () {
+            clearTimeout( drawID );
+            clearTimeout( downID );
+        }
+    })();
 </script>
 </body>
 </html>
