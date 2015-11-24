@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title></title>
+    <style>
+        html, body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+            top: 0;
+            height: 100%;
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<img src="img/snow-scene.jpg">
+<canvas></canvas>
+<script>
+    (function () {
+        var snow = new Image();
+        snow.src = "img/snow.png";
+        var canvas = document.querySelector( "canvas" );
+        document.body.appendChild( canvas );
+        var gl = canvas.getContext( "2d" );
+        var snows = [];
+
+        snow.onload = function () {
+            var w = document.body.offsetWidth;
+            var h = document.body.offsetHeight;
+            canvas.width = w;
+            canvas.height = h;
+            gl.drawImage( snow , - 20 , - 20 , 40 , 40 );
+            var isDown = false;
+            var TO_RADIANS = Math.PI / 180;
+
+            function draw() {
+                gl.clearRect( 0 , 0 , w , h );
+                for ( var i = 0; i < snows.length; i ++ ) {
+                    snows[ i ].vy += 0.05;
+                    snows[ i ].x += snows[ i ].vx;
+                    snows[ i ].y += snows[ i ].vy;
+                    if ( snows[ i ].x < 0 || snows[ i ].x > w || snows[ i ].y > h ) {
+                        isDown = ( snows.length > 50 );
+                        var r , vy , vx , x , y;
+                        if ( (Math.random() * 1009 << 0) % 200 == 0 ) {
+                            var random = Math.random();
+                            r = random * 4 + 44;
+                            vy = r / 2;
+                            if ( random > 0.7 ) {
+                                x = w;
+                                y = h * random / 3;
+                                vx = - random * 10;
+                            } else if ( random > 0.3 ) {
+                                x = 0;
+                                y = h * random / 3;
+                                vx = random * 10;
+                            } else {
+                                x = random * w;
+                                y = - r;
+                                vx = (random - 0.5) * 10;
+                            }
+                        } else {
+                            r = Math.random() * 12;
+                            vy = Math.random() * 5;
+                            x = Math.random() * w;
+                            y = - r;
+                            vx = (Math.random() - 0.5) * 10;
+                        }
+                        snows[ i ] = {
+                            x : x ,
+                            y : y ,
+                            r : r ,
+                            vx : vx ,
+                            vy : vy
+                        };
+                    } else {
+                        var size = (h * Math.cos( snows[ i ].y * TO_RADIANS / 50 ) + 1000) / 800;
+                        size *= snows[ i ].r;
+                        gl.drawImage( snow , snows[ i ].x , snows[ i ].y , size , size );
+                    }
+                }
+                setTimeout( draw , 20 );
+            }
+
+            function down() {
+                if ( ! isDown ) {
+                    for ( var i = 0; i < 8; i ++ ) {
+                        var r = Math.random() * 12;
+                        snows.push( {
+                                    x : Math.random() * w ,
+                                    y : - r ,
+                                    r : r ,
+                                    vx : (Math.random() - 0.5) * 10 ,
+                                    vy : Math.random() * 3
+                                }
+                        );
+                    }
+                    setTimeout( down , 200 );
+                }
+            }
+
+            down();
+            draw();
+        }
+    })
+    ();
+</script>
+</body>
+</html>
