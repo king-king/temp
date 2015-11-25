@@ -63,14 +63,9 @@
         var hearts = [];
 
         function makeHeart( x0 , y0 ) {
-//            var x = x0 + (Math.random() - 0.5) * 40 ,
-//                    y = y0 + (Math.random() - 0.5) * 40 ,
             var rotate = 90 * Math.random() ,
                     opacity = 1;
             setHeart( x0 , y0 , rotate , opacity );
-//            var dx = x - 250 , dy = y - 250;
-//            var sum = Math.abs( dx ) + Math.abs( dy );
-//            var vx = 2 * dx / sum , vy = 2 * dy / sum;
             var vx = (Math.random() - 0.5) * 6 , vy = (Math.random() - 0.5) * 6;
             hearts.push( {
                 x : x0 , y : y0 , rotate : rotate , opacity : opacity , vx : vx , vy : vy
