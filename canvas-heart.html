@@ -64,9 +64,19 @@
             var rotate = 90 * Math.random() ,
                     opacity = 1;
             setHeart( x0 , y0 , rotate , opacity );
-            var vx = (Math.random() - 0.5) * 6 , vy = (Math.random() - 0.5) * 6;
+            var sum = Math.abs( x0 - 250 ) + Math.abs( y0 - 250 );
+            var dx = - (x0 - 250) / sum , dy = - (y0 - 250) / sum;
+            var vx = ( Math.random() * 4 ) * dx ,
+                    vy = ( Math.random() * 4 ) * dy;
             hearts.push( {
-                x : x0 , y : y0 , rotate : rotate , opacity : opacity , vx : vx , vy : vy
+                x : x0 ,
+                y : y0 ,
+                rotate : rotate ,
+                opacity : opacity ,
+                vx : vx ,
+                vy : vy ,
+                gx : - vx / 20 ,
+                gy : - vy / 20
             } )
         }
 
@@ -91,8 +101,10 @@
                     var live = hearts.length;
                     gl.clearRect( 0 , 0 , 500 , 500 );
                     for ( var i = 0; i < hearts.length; i ++ ) {
-                        hearts[ i ].opacity -= 0.02;
+                        hearts[ i ].opacity -= 0.01;
                         if ( hearts[ i ].opacity >= 0 ) {
+                            hearts[ i ].vx += hearts[ i ].gx;
+                            hearts[ i ].vy += hearts[ i ].gy;
                             hearts[ i ].x += hearts[ i ].vx;
                             hearts[ i ].y += hearts[ i ].vy;
                             setHeart( hearts[ i ].x , hearts[ i ].y , hearts[ i ].rotate , hearts[ i ].opacity );
