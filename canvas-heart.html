@@ -8,13 +8,11 @@
         canvas {
             transform: translate3d(-50%, 0, 0) scale(0.5);
             position: absolute;
-            top: 20px;
+            /*top: 20px;*/
             left: 50%;
         }
 
         body {
-            /*background: url("img/flower.png");*/
-            /*background-size: cover;*/
             overflow: hidden;
             margin: 0;
             height: 100%;
@@ -65,21 +63,27 @@
         var hearts = [];
 
         function makeHeart( x0 , y0 ) {
-            var x = x0 + (Math.random() - 0.5) * 40 ,
-                    y = y0 + (Math.random() - 0.5) * 40 ,
-                    rotate = 90 * Math.random() ,
+//            var x = x0 + (Math.random() - 0.5) * 40 ,
+//                    y = y0 + (Math.random() - 0.5) * 40 ,
+            var rotate = 90 * Math.random() ,
                     opacity = 1;
-            setHeart( x , y , rotate , opacity );
+            setHeart( x0 , y0 , rotate , opacity );
 //            var dx = x - 250 , dy = y - 250;
 //            var sum = Math.abs( dx ) + Math.abs( dy );
 //            var vx = 2 * dx / sum , vy = 2 * dy / sum;
-            var vx = (Math.random() - 0.5) * 4 , vy = (Math.random() - 0.5) * 4;
+            var vx = (Math.random() - 0.5) * 6 , vy = (Math.random() - 0.5) * 6;
             hearts.push( {
-                x : x , y : y , rotate : rotate , opacity : opacity , vx : vx , vy : vy
+                x : x0 , y : y0 , rotate : rotate , opacity : opacity , vx : vx , vy : vy
             } )
         }
 
         img.onload = function () {
+            var scale = document.body.offsetWidth / 500;
+            var dh = document.body.offsetHeight / 3;
+            dh = dh + ( scale - 1) * 250;
+            dh = dh - document.body.offsetWidth * 0.5;
+            canvas.style.transform = "translate3d(-50%,0,0) scale(" + scale + ")";
+            canvas.style.top = dh + "px";
             if ( index < len ) {
                 makeHeart( left[ index ][ 0 ] , left[ index ][ 1 ] );
                 makeHeart( left[ index ][ 0 ] , left[ index ][ 1 ] );
@@ -90,7 +94,6 @@
             }
             else {
                 // 开始散开的设计
-                console.log( hearts.length );
                 (function () {
                     var live = hearts.length;
                     gl.clearRect( 0 , 0 , 500 , 500 );
