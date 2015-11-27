@@ -14,6 +14,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background: #000;
         }
 
         img {
@@ -34,7 +35,7 @@
     </style>
 </head>
 <body>
-<img src="img/snow-scene.jpg">
+<!--<img src="img/snow-scene.jpg">-->
 <canvas></canvas>
 <script>
     (function () {
@@ -50,7 +51,7 @@
             var h = document.body.offsetHeight;
             canvas.width = w;
             canvas.height = h;
-            gl.drawImage( snow , - 20 , - 20 , 40 , 40 );
+//            gl.drawImage( snow , - 20 , - 20 , 40 , 40 );
             var isDown = false;
             var TO_RADIANS = Math.PI / 180;
 
