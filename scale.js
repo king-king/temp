@@ -2,54 +2,57 @@
  * Created by WQ on 2015/5/22.
  */
 
-// Ğı×ª½Ç¶ÈÊÇ»¡¶È
-function process( clientHeight, clientWidth, x, y, rotate, w, h ) {
-    // ÖĞĞÄ×ø±ê
+var wangqun = 23;
+
+// ï¿½ï¿½×ªï¿½Ç¶ï¿½ï¿½Ç»ï¿½ï¿½ï¿½
+function process( clientHeight , clientWidth , x , y , rotate , w , h ) {
+    wangqun = 43;
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     var xx = x + w / 2;
     var yy = y + h / 2;
     var r = Math.sqrt( w * w / 4 + h * h / 4 );
 
     var point0 = {
-        x : xx,
+        x : xx ,
         y : yy
     };
 
-    // °Ñ×ø±ê°´ÕÕĞı×ª½Ç¶È½øĞĞ±ä»»£¬·µ»ØĞÂµÄ×ø±ê
-    function change( points, rotate ) {
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ê°´ï¿½ï¿½ï¿½ï¿½×ªï¿½Ç¶È½ï¿½ï¿½Ğ±ä»»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âµï¿½ï¿½ï¿½ï¿½ï¿½
+    function change( points , rotate ) {
         var d1 = Math.atan( h / w );
-        var x0 = points[0].x + w / 2 - r * Math.cos( d1 + rotate );
-        var y0 = points[0].y - (r * Math.sin( d1 + rotate ) - h / 2);
+        var x0 = points[ 0 ].x + w / 2 - r * Math.cos( d1 + rotate );
+        var y0 = points[ 0 ].y - (r * Math.sin( d1 + rotate ) - h / 2);
         var x1 = x0 + w * Math.cos( rotate );
         var y1 = y0 + w * Math.sin( rotate );
         return [
             {
-                x : x0,
+                x : x0 ,
                 y : y0
-            },
+            } ,
             {
-                x : x1,
+                x : x1 ,
                 y : y1
-            },
+            } ,
             {
-                x : x1 - h * Math.sin( rotate ),
+                x : x1 - h * Math.sin( rotate ) ,
                 y : y1 + h * Math.cos( rotate )
-            },
+            } ,
             {
-                x : x0 - h * Math.sin( rotate ),
+                x : x0 - h * Math.sin( rotate ) ,
                 y : y0 + h * Math.cos( rotate )
             }
         ]
     }
 
-    function isInRange( n, num1, num2 ) {
-        var max = Math.max( num1, num2 );
-        var min = Math.min( num1, num2 );
+    function isInRange( n , num1 , num2 ) {
+        var max = Math.max( num1 , num2 );
+        var min = Math.min( num1 , num2 );
         return n >= min && n <= max;
     }
 
-    // µÃµ½Á½ÌõÏß¶ÎµÄ½»µã£¬Èç¹ûÃ»ÓĞ·µ»Ønull
-    function getCrossover( p1, p2, p3, p4 ) {
-        var yc, xc, k1, k2, b1, b2;
+    // ï¿½Ãµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ÎµÄ½ï¿½ï¿½ã£¬ï¿½ï¿½ï¿½Ã»ï¿½Ğ·ï¿½ï¿½ï¿½null
+    function getCrossover( p1 , p2 , p3 , p4 ) {
+        var yc , xc , k1 , k2 , b1 , b2;
         if ( Math.abs( p1.x - p2.x ) < 0.00001 && Math.abs( p3.x - p4.x ) < 0.00001 ) {
             return null;
         }
@@ -66,7 +69,7 @@ function process( clientHeight, clientWidth, x, y, rotate, w, h ) {
             yc = xc * k1 + b1;
         }
         else {
-            // ÏÈÕÒ³öÁ½ÌõÖ±ÏßµÄ½»µã(xc,yc)
+            // ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ßµÄ½ï¿½ï¿½ï¿½(xc,yc)
             k1 = (p1.y - p2.y) / (p1.x - p2.x);
             k2 = (p3.y - p4.y) / (p3.x - p4.x);
             b1 = p1.y - k1 * p1.x;
@@ -74,10 +77,10 @@ function process( clientHeight, clientWidth, x, y, rotate, w, h ) {
             xc = (b2 - b1) / (k1 - k2);
             yc = k1 * xc + b1;
         }
-        // ÅĞ¶Ï½»µã(xc,yc)ÔÚ²»ÔÚÁ½ÌõÏß¶ÎÉÏ
-        if ( isInRange( xc, p1.x, p2.x ) && isInRange( xc, p3.x, p4.x ) && isInRange( yc, p1.y, p2.y ) && isInRange( yc, p3.y, p4.y ) ) {
+        // ï¿½Ğ¶Ï½ï¿½ï¿½ï¿½(xc,yc)ï¿½Ú²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß¶ï¿½ï¿½ï¿½
+        if ( isInRange( xc , p1.x , p2.x ) && isInRange( xc , p3.x , p4.x ) && isInRange( yc , p1.y , p2.y ) && isInRange( yc , p3.y , p4.y ) ) {
             return {
-                x : xc,
+                x : xc ,
                 y : yc
             }
         }
@@ -86,53 +89,53 @@ function process( clientHeight, clientWidth, x, y, rotate, w, h ) {
         }
     }
 
-    // µÃµ½±ä»»Ö®ºóµÄ4µã×ø±ê
+    // ï¿½Ãµï¿½ï¿½ä»»Ö®ï¿½ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     var points = change( [
         {
-            x : x,
+            x : x ,
             y : y
-        },
+        } ,
         {
-            x : x + w,
+            x : x + w ,
             y : y
-        },
+        } ,
         {
-            x : x + w,
+            x : x + w ,
             y : y + h
-        },
+        } ,
         {
-            x : x,
+            x : x ,
             y : y + h
         }
-    ], rotate );
+    ] , rotate );
 
-    // ÅĞ¶ÏËÄ¸öµãÓëÖĞĞÄµÄÀ´ÄãÏÈÊÇ·ñÓë±ß¿òµÄ4Ìõ±ßÏà½»£¬Ïà½»ÔòÇó³ö½»µã
+    // ï¿½Ğ¶ï¿½ï¿½Ä¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ß¿ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½à½»ï¿½ï¿½ï¿½à½»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     var cross = [
-        getCrossover( points[0], point0, {x : 0, y : 0}, {x : clientWidth, y : 0} ) ||
-        getCrossover( points[0], point0, {x : 0, y : 0}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[0], point0, {x : clientWidth, y : clientHeight}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[0], point0, {x : clientWidth, y : clientHeight}, {x : clientWidth, y : 0} )
+        getCrossover( points[ 0 ] , point0 , { x : 0 , y : 0 } , { x : clientWidth , y : 0 } ) ||
+        getCrossover( points[ 0 ] , point0 , { x : 0 , y : 0 } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 0 ] , point0 , { x : clientWidth , y : clientHeight } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 0 ] , point0 , { x : clientWidth , y : clientHeight } , { x : clientWidth , y : 0 } )
         ,
-        getCrossover( points[1], point0, {x : 0, y : 0}, {x : clientWidth, y : 0} ) ||
-        getCrossover( points[1], point0, {x : 0, y : 0}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[1], point0, {x : clientWidth, y : clientHeight}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[1], point0, {x : clientWidth, y : clientHeight}, {x : clientWidth, y : 0} )
+        getCrossover( points[ 1 ] , point0 , { x : 0 , y : 0 } , { x : clientWidth , y : 0 } ) ||
+        getCrossover( points[ 1 ] , point0 , { x : 0 , y : 0 } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 1 ] , point0 , { x : clientWidth , y : clientHeight } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 1 ] , point0 , { x : clientWidth , y : clientHeight } , { x : clientWidth , y : 0 } )
         ,
-        getCrossover( points[2], point0, {x : 0, y : 0}, {x : clientWidth, y : 0} ) ||
-        getCrossover( points[2], point0, {x : 0, y : 0}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[2], point0, {x : clientWidth, y : clientHeight}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[2], point0, {x : clientWidth, y : clientHeight}, {x : clientWidth, y : 0} )
+        getCrossover( points[ 2 ] , point0 , { x : 0 , y : 0 } , { x : clientWidth , y : 0 } ) ||
+        getCrossover( points[ 2 ] , point0 , { x : 0 , y : 0 } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 2 ] , point0 , { x : clientWidth , y : clientHeight } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 2 ] , point0 , { x : clientWidth , y : clientHeight } , { x : clientWidth , y : 0 } )
         ,
-        getCrossover( points[3], point0, {x : 0, y : 0}, {x : clientWidth, y : 0} ) ||
-        getCrossover( points[3], point0, {x : 0, y : 0}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[3], point0, {x : clientWidth, y : clientHeight}, {x : 0, y : clientHeight} ) ||
-        getCrossover( points[3], point0, {x : clientWidth, y : clientHeight}, {x : clientWidth, y : 0} )
+        getCrossover( points[ 3 ] , point0 , { x : 0 , y : 0 } , { x : clientWidth , y : 0 } ) ||
+        getCrossover( points[ 3 ] , point0 , { x : 0 , y : 0 } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 3 ] , point0 , { x : clientWidth , y : clientHeight } , { x : 0 , y : clientHeight } ) ||
+        getCrossover( points[ 3 ] , point0 , { x : clientWidth , y : clientHeight } , { x : clientWidth , y : 0 } )
     ];
 
     var scales = [];
-    for ( var i = 0; i < cross.length; i++ ) {
-        if ( cross[i] ) {
-            scales.push( Math.sqrt( (cross[i].x - xx) * (cross[i].x - xx) + (cross[i].y - yy) * (cross[i].y - yy) ) / r );
+    for ( var i = 0; i < cross.length; i ++ ) {
+        if ( cross[ i ] ) {
+            scales.push( Math.sqrt( (cross[ i ].x - xx) * (cross[ i ].x - xx) + (cross[ i ].y - yy) * (cross[ i ].y - yy) ) / r );
         }
     }
 
@@ -140,6 +143,6 @@ function process( clientHeight, clientWidth, x, y, rotate, w, h ) {
         return 1;
     }
     else {
-        return Math.min.apply( this, scales );
+        return Math.min.apply( this , scales );
     }
 }
