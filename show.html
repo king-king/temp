@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            -webkit-user-select: none;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        html, body, .content {
+            margin: 0;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            overflow: hidden;
+        }
+
+        .content {
+            top: 40px;
+            -webkit-overflow-scrolling: touch;
+            overflow-y: scroll;
+        }
+
+        .title {
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+            color: #999;
+            font-weight: bolder;
+            font-family: "Microsoft YaHei", sans-serif;
+            box-shadow: 1px -2px 7px #ddd inset;
+        }
+
+        .img {
+            width: 100%;
+            background: #eee;
+        }
+
+        .text {
+            padding: 20px 15px;
+            position: relative;
+            line-height: 27px;
+            font-size: 17px;
+        }
+
+        .name {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 14px;
+            height: 16px;
+            line-height: 16px;
+            vertical-align: top;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: inline-block;
+            width: 80%;
+        }
+
+        .author {
+            font-size: 14px;
+            color: #646464;
+            line-height: 14px;
+            height: 14px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .item.tap {
+            background: #eee;
+        }
+    </style>
+</head>
+<body>
+<div class="title">前端效果展示</div>
+<div class="content">
+</div>
+<script>
+    (function () {
+        var style = document.createElement( "style" );
+        document.head.appendChild( style );
+
+        var data = [
+            {
+                img : "img/show-fang.png" ,
+                name : "页面-输入密码" ,
+                src : "http://chuyebeta.cloud7.com.cn/Work/Access/14723217"
+            } ,
+            {
+                img : "img/show-ch.png" ,
+                name : "摇一摇-圣诞" ,
+                src : "http://192.168.0.229:9494/debug/effect.html?id=2"
+            } , {
+                img : "img/show-fire.png" ,
+                name : "摇一摇-烟花" ,
+                src : "http://192.168.0.229:9494/debug/effect.html?id=3"
+            } , {
+                img : "img/show-heart.png" ,
+                name : "摇一摇-桃心" ,
+                src : "http://192.168.0.229:9494/debug/effect.html?id=5"
+            } , {
+                img : "img/show-snow.png" ,
+                name : "摇一摇-下雪" ,
+                src : "http://192.168.0.229:9494/debug/effect.html?id=4"
+            } , {
+                img : "img/show-tra.png" ,
+                name : "mv-旅行日报" ,
+                src : "http://192.168.0.229:9494/debug/work.html?id=14583209&mode=mv-11"
+            }
+        ];
+
+        function loopArray( arr , func ) {
+            for ( var i = 0; i < arr.length; i ++ ) {
+                func( arr[ i ] , i );
+            }
+        }
+
+        document.body.onload = function () {
+            style.sheet.insertRule( ".img{height:" + (document.body.offsetWidth * 18 / 32 << 0) + "px}" , 0 );
+            var content = document.querySelector( ".content" );
+            loopArray( data , function ( d ) {
+                var item = document.createElement( "div" );
+                item.classList.add( "item" );
+                item.innerHTML = "<div class='img'></div><div class='text'><div class='name'>摇一摇</div><div class='author'></div></div>"
+                content.appendChild( item );
+                item.querySelector( ".name" ).textContent = d.name;
+                item.querySelector( ".img" ).style.background = "url(" + d.img + ") no-repeat center center ";
+                item.querySelector( ".img" ).style.backgroundSize = "cover";
+                onTap( item , function () {
+                    location.href = d.src;
+                } );
+            } );
+        };
+
+        function onTap( el , func ) {
+            el.addEventListener( "touchstart" , function ( se ) {
+                var prex = se.pageX , prey = se.pageY;
+                var s = 0;
+                var istap = true;
+                el.classList.add( "tap" );
+                function move( e ) {
+                    s += ((e.pageX - prex) * (e.pageX - prex) + (e.pageY - prey) * (e.pageY - prey));
+                    istap = s < 10;
+                    ! istap && el.classList.remove( "tap" );
+                }
+
+                document.addEventListener( "touchmove" , move );
+                document.addEventListener( "touchend" , function () {
+                    istap && func && func();
+                    document.removeEventListener( "touchmove" , move );
+                    document.removeEventListener( "touchend" , arguments.callee );
+                } );
+            } );
+        }
+
+    })();
+</script>
+</body>
+</html>
