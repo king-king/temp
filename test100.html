@@ -22,22 +22,9 @@
 <script src="filter-blur-stack.js"></script>
 <script>
     (function () {
-        function launchFullscreen( element ) {
-            if ( element.requestFullscreen ) {
-                element.requestFullscreen();
-            } else if ( element.mozRequestFullScreen ) {
-                element.mozRequestFullScreen();
-            } else if ( element.webkitRequestFullscreen ) {
-                element.webkitRequestFullscreen();
-            } else if ( element.msRequestFullscreen ) {
-                element.msRequestFullscreen();
-            }
+        document.onkeyup = function ( e ) {
+            console.log( e.keyCode );
         }
-
-        document.querySelector( ".border" ).onclick = function () {
-            launchFullscreen( document.documentElement ); // 整个网页
-        };
-
     })();
 </script>
 </body>

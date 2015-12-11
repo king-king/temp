@@ -10,3 +10,5 @@ compressor.compress( "test2.js" , {
     //data  The compressed string, you write it out where you want it
     //extra The stderr (warnings are printed here in case you want to echo them
 } );
+
+clearTimeout()
