@@ -9,16 +9,14 @@
     </style>
 </head>
 <body>
-<div class="border"></div>
+<canvas></canvas>
 <script src="filter-blur-stack.js"></script>
 <script>
     // 检查浏览器的兼容性
     (function () {
-
-        with ( document ) {
-            (getElementsByTagName( 'head' )[ 0 ] || body).appendChild( createElement( 'style' ) ).innerHTML = "body,html{ height:100%;margin:0; overflow : hidden; }";
-        }
-
+        var webgl = document.querySelector( "canvas" );
+        var gl = webgl.getContext( "webgl" );
+        console.log( gl )
     })();
 </script>
 </body>
