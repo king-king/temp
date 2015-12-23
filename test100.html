@@ -14,18 +14,7 @@
 <script>
     // 检查浏览器的兼容性
     (function () {
-        var img = new Image();
-        img.src = "img/window-light.jpg";
-        img.onload = function () {
-            var canvas = document.createElement( "canvas" );
-            canvas.width = 229;
-            canvas.height = 412;
-            canvas.style.width = "229px";
-            canvas.style.height = "412px";
-            var gl = canvas.getContext( "2d" );
-            gl.drawImage( img , 0 , 0 , 229 , 412 );
-            document.body.appendChild( canvas );
-        }
+        alert( navigator.appVersion )
     })();
 </script>
 </body>
