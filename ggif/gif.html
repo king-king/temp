@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            width: 240px;
+            height: 240px;
+        }
+    </style>
+</head>
+<body>
+<canvas width="240" height="240"></canvas>
+<img>
+<script src="../lib/gif.js"></script>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gl = canvas.getContext( "2d" );
+        var angle = Math.PI / 180;
+        var img1 = new Image();
+        img1.src = "huzi.png";
+        var gif = new GIF( {
+            repeat : 0 ,
+            workers : 5 ,
+            quality : 10 ,
+            workerScript : '../lib/gif.worker.js'
+        } );
+        img1.onload = function () {
+
+            var ang = 0;
+            var step = 2;
+
+            function draw() {
+                gl.clearRect( 0 , 0 , canvas.width , canvas.height );
+                gl.save();
+                gl.translate( 120 , 102 );
+                ang += step;
+                if ( ang >= 20 || ang <= -20 ) {
+                    step = -step;
+                }
+                gl.rotate( ang * angle );
+                gl.drawImage( img1 , -115 , -18 , 230 , 77 );
+                gl.restore();
+                var img = new Image();
+                document.body.appendChild( img );
+                img.src = canvas.toDataURL().replace( "image/png" , "image/octet-stream" );
+//                setTimeout( draw , 20 )
+//                gif.addFrame( canvas , { delay : 30 , copy : true } );
+            }
+
+            for ( var i = 0; i < 400; i++ ) {
+                draw();
+            }
+            gif.render();
+            gif.on( 'finished' , function ( blob ) {
+                var url = URL.createObjectURL( blob );
+                document.querySelector( 'img' ).src = url;
+                self.disabled = false;
+            } );
+
+
+        }
+
+    })();
+</script>
+</body>
+</html>
