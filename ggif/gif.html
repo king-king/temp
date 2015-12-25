@@ -44,10 +44,10 @@
                 gl.drawImage( img1 , -115 , -18 , 230 , 77 );
                 gl.restore();
                 var img = new Image();
-                document.body.appendChild( img );
+//                document.body.appendChild( img );
                 img.src = canvas.toDataURL().replace( "image/png" , "image/octet-stream" );
 //                setTimeout( draw , 20 )
-//                gif.addFrame( canvas , { delay : 30 , copy : true } );
+                gif.addFrame( img , { delay : 30 , copy : true } );
             }
 
             for ( var i = 0; i < 400; i++ ) {
