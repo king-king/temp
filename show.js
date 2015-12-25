@@ -16,9 +16,9 @@ document.body.onload = function () {
     loopArray( data , function ( d ) {
         var item = document.createElement( "div" );
         item.classList.add( "item" );
-        item.innerHTML = "<div class='img'></div><div class='text'><div class='name'>摇一摇</div><div class='author'></div></div>"
+        item.innerHTML = "<div class='img'></div><div class='text'></div>";
         content.appendChild( item );
-        item.querySelector( ".name" ).textContent = d.name;
+        item.querySelector( ".text" ).textContent = d.name;
         item.querySelector( ".img" ).style.background = "url(" + d.img + ") no-repeat center center ";
         item.querySelector( ".img" ).style.backgroundSize = "cover";
         onTap( item , function () {
