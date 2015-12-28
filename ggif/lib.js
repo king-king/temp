@@ -29,5 +29,7 @@ var gif = new GIF( {
     repeat : 0 ,
     workers : 10 ,
     quality : 10 ,
+    background : "#0f0" ,
+    transparent : "green" ,
     workerScript : '../lib/gif.worker.js'
 } );

@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <title>wow</title>
     <style>
+        body {
+            background: red;
+        }
+
         canvas {
             width: 240px;
             height: 240px;
-            background: #f00;
         }
     </style>
 </head>
@@ -29,7 +32,7 @@
                 stepx = [ 0.25 / (steps * 0.3) , -0.5 / (steps * 0.1) , 0.4 / (steps * 0.1) , -0.2 / (steps * 0.15) , 0.1 / (steps * 0.1) , -0.05 / (steps * 0.25) ] ,
                 stepy = [ -0.25 / (steps * 0.3) , 0.5 / (steps * 0.1) , -0.4 / (steps * 0.1) , 0.2 / (steps * 0.15) , -0.1 / (steps * 0.1) , 0.05 / (steps * 0.25) ];
 
-        gl.fillStyle = "red";
+        gl.fillStyle = "green";
         var img = new Image();
         img.src = "img/wow/wow.png";
         function draw( scalex , scaley ) {
@@ -68,6 +71,7 @@
                 // end
                 scaley = scalex = 1;
                 gl.fillRect( 0 , 0 , 240 , 240 );
+//                gl.clearRect( 0 , 0 , 240 , 240 );
                 draw( scalex , scaley );
                 gif.render();
                 gif.on( 'finished' , function ( blob ) {
