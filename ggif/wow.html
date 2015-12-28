@@ -5,7 +5,7 @@
     <title>wow</title>
     <style>
         body {
-            background: red;
+            background: green;
         }
 
         canvas {
@@ -62,23 +62,29 @@
                 } else {
                     scalex += stepx[ 0 ];
                     scaley += stepy[ 0 ];
-                    gl.fillRect( 0 , 0 , 240 , 240 );
+                    gl.clearRect( 0 , 0 , 240 , 240 );
                     draw( scalex , scaley );
                     gif.addFrame( canvas , { delay : dt , copy : true } );
                     setTimeout( arguments.callee , dt );
+                    var img2 = new Image();
+                    img2.src = canvas.toDataURL();
+                    document.body.appendChild( img2 );
                 }
             } else {
                 // end
                 scaley = scalex = 1;
-                gl.fillRect( 0 , 0 , 240 , 240 );
-//                gl.clearRect( 0 , 0 , 240 , 240 );
+//                gl.fillRect( 0 , 0 , 240 , 240 );
+                gl.clearRect( 0 , 0 , 240 , 240 );
                 draw( scalex , scaley );
-                gif.render();
-                gif.on( 'finished' , function ( blob ) {
-                    var url = URL.createObjectURL( blob );
-                    document.querySelector( 'img' ).src = url;
-                    self.disabled = false;
-                } );
+                var img = new Image();
+                img.src = canvas.toDataURL();
+                document.body.appendChild( img );
+//                gif.render();
+//                gif.on( 'finished' , function ( blob ) {
+//                    var url = URL.createObjectURL( blob );
+//                    document.querySelector( 'img' ).src = url;
+//                    self.disabled = false;
+//                } );
             }
         }
 
