@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wow</title>
+    <style>
+        canvas {
+            width: 240px;
+            height: 240px;
+            background: #f00;
+        }
+    </style>
+</head>
+<body>
+<canvas width="240" height="240"></canvas>
+<img>
+<script src="../lib/gif.js"></script>
+<script src="lib.js"></script>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gl = canvas.getContext( "2d" );
+        var duraiton = 1000;
+        var steps = 50;
+        var dt = duraiton / steps << 0;
+
+        var flagx = [ 1.25 , 0.75 , 1.15 , 0.95 , 1.05 , 1 ] ,
+                flagy = [ 0.75 , 1.25 , 0.85 , 1.05 , 0.95 , 1 ] ,
+                stepx = [ 0.25 / (steps * 0.3) , -0.5 / (steps * 0.1) , 0.4 / (steps * 0.1) , -0.2 / (steps * 0.15) , 0.1 / (steps * 0.1) , -0.05 / (steps * 0.25) ] ,
+                stepy = [ -0.25 / (steps * 0.3) , 0.5 / (steps * 0.1) , -0.4 / (steps * 0.1) , 0.2 / (steps * 0.15) , -0.1 / (steps * 0.1) , 0.05 / (steps * 0.25) ];
+
+        gl.fillStyle = "red";
+        var img = new Image();
+        img.src = "img/wow/wow.png";
+        function draw( scalex , scaley ) {
+            gl.save();
+            gl.translate( 118 , 128 );
+            gl.scale( scalex , scaley );
+            gl.drawImage( img , -114 , -50 , 227 , 99 );
+            gl.restore();
+        }
+
+        var scalex = 1 ,
+                scaley = 1;
+        img.onload = function () {
+            if ( flagx[ 0 ] ) {
+                if ( stepx[ 0 ] > 0 && scalex >= flagx[ 0 ] ) {
+                    stepx.shift();
+                    flagx.shift();
+                    stepy.shift();
+                    flagy.shift();
+                    arguments.callee();
+                } else if ( stepx[ 0 ] < 0 && scalex <= flagx[ 0 ] ) {
+                    stepx.shift();
+                    flagx.shift();
+                    stepy.shift();
+                    flagy.shift();
+                    arguments.callee();
+                } else {
+                    scalex += stepx[ 0 ];
+                    scaley += stepy[ 0 ];
+                    gl.fillRect( 0 , 0 , 240 , 240 );
+                    draw( scalex , scaley );
+                    gif.addFrame( canvas , { delay : dt , copy : true } );
+                    setTimeout( arguments.callee , dt );
+                }
+            } else {
+                // end
+                scaley = scalex = 1;
+                gl.fillRect( 0 , 0 , 240 , 240 );
+                draw( scalex , scaley );
+                gif.render();
+                gif.on( 'finished' , function ( blob ) {
+                    var url = URL.createObjectURL( blob );
+                    document.querySelector( 'img' ).src = url;
+                    self.disabled = false;
+                } );
+            }
+        }
+
+    })();
+</script>
+</body>
+</html>
