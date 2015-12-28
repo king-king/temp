@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            width: 240px;
+            height: 240px;
+        }
+    </style>
+</head>
+<body>
+<canvas width="240" height="240"></canvas>
+<img>
+<script src="../lib/gif.js"></script>
+<script src="lib.js"></script>
+<script>
+    (function () {
+
+        var canvas = document.querySelector( "canvas" );
+        var gl = canvas.getContext( "2d" );
+        var resouce = [
+            "img/star/star1.png" ,
+            "img/star/star2.png" ,
+            "img/star/star3.png" ,
+            "img/star/star4.png"
+        ];
+        var imgs = [
+            {
+                x : 117 ,
+                y : 36 ,
+                w : 67 ,
+                h : 69 ,
+                delay : 0
+            } ,
+            {
+                x : 28 ,
+                y : 70 ,
+                w : 50 ,
+                h : 55 ,
+                delay : -0.2
+            } ,
+            {
+                x : 68 ,
+                y : 128 ,
+                w : 54 ,
+                h : 63 ,
+                delay : -0.1
+            } ,
+            {
+                x : 169 ,
+                y : 148 ,
+                w : 40 ,
+                h : 41 ,
+                delay : -0.35
+            }
+        ];
+        var ratio = 0;
+        gl.fillStyle = "#fff";
+        concurrentTask( map( resouce , function ( item , i ) {
+            return function ( done ) {
+                var img = new Image();
+                imgs[ i ].img = img;
+                img.src = item;
+                img.onload = done;
+            }
+        } ) , function () {
+            var step = 0.01;
+            setTimeout( function () {
+                var endNum = 0;
+                gl.fillRect( 0 , 0 , 240 , 240 );
+                foreach( imgs , function ( img ) {
+                    img.delay += step;
+                    if ( img.delay > 1 ) {
+                        endNum++;
+                        gl.save();
+                        gl.globalAlpha = 1;
+                        gl.drawImage( img.img , img.x , img.y , img.w , img.h );
+                        gl.restore();
+                    }
+                    if ( img.delay > 0 ) {
+                        gl.save();
+                        gl.globalAlpha = img.delay;
+                        gl.drawImage( img.img , img.x , img.y , img.w , img.h );
+                        gl.restore();
+                    }
+                } );
+                gif.addFrame( canvas , { delay : 30 , copy : true } );
+
+                if ( endNum != 4 ) {
+                    setTimeout( arguments.callee , 0 );
+                } else {
+                    console.log( "end" );
+                    gif.render();
+                    gif.on( 'finished' , function ( blob ) {
+                        var url = URL.createObjectURL( blob );
+                        document.querySelector( 'img' ).src = url;
+                        self.disabled = false;
+                    } );
+                }
+            } , 30 );
+
+        } );
+
+
+    })();
+</script>
+</body>
+</html>
