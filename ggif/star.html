@@ -21,10 +21,23 @@
         var canvas = document.querySelector( "canvas" );
         var gl = canvas.getContext( "2d" );
         var resouce = [
-            "img/star/star1.png" ,
-            "img/star/star2.png" ,
-            "img/star/star3.png" ,
-            "img/star/star4.png"
+            {
+                src : "img/star/star1.png" ,
+                step : 0.04 ,
+                start : false
+            } , {
+                src : "img/star/star2.png" ,
+                step : 0.04 ,
+                start : false
+            } , {
+                src : "img/star/star3.png" ,
+                step : 0.04 ,
+                start : false
+            } , {
+                src : "img/star/star4.png" ,
+                step : 0.04 ,
+                start : false
+            }
         ];
         var imgs = [
             {
@@ -56,37 +69,41 @@
                 delay : -0.35
             }
         ];
-        var ratio = 0;
         gl.fillStyle = "#fff";
         concurrentTask( map( resouce , function ( item , i ) {
             return function ( done ) {
                 var img = new Image();
                 imgs[ i ].img = img;
-                img.src = item;
+                img.src = item.src;
+                img.step = item.step;
+                img.start = false;
                 img.onload = done;
             }
         } ) , function () {
-            var step = 0.01;
+            var step = 0.02;
             setTimeout( function () {
                 var endNum = 0;
                 gl.fillRect( 0 , 0 , 240 , 240 );
                 foreach( imgs , function ( img ) {
-                    img.delay += step;
+                    img.delay += img.img.step;
                     if ( img.delay > 1 ) {
-                        endNum++;
+                        img.img.step = -img.img.step;
                         gl.save();
                         gl.globalAlpha = 1;
                         gl.drawImage( img.img , img.x , img.y , img.w , img.h );
                         gl.restore();
                     }
                     if ( img.delay > 0 ) {
+                        img.img.start = true;
                         gl.save();
                         gl.globalAlpha = img.delay;
                         gl.drawImage( img.img , img.x , img.y , img.w , img.h );
                         gl.restore();
+                    } else if ( img.delay < 0 && img.img.start ) {
+                        endNum++;
                     }
                 } );
-                gif.addFrame( canvas , { delay : 30 , copy : true } );
+                gif.addFrame( canvas , { delay : 40 , copy : true } );
 
                 if ( endNum != 4 ) {
                     setTimeout( arguments.callee , 0 );

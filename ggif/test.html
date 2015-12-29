@@ -8,11 +8,17 @@
             color: #fff;
         }
 
+        canvas {
+            width: 240px;
+            height: 240px;
+        }
+
     </style>
     <script src="../lib/gif.js"></script>
 </head>
 <body>
 <img>
+<canvas width="240" height="240"></canvas>
 <script src="../lib/gif.js"></script>
 <script>
     function concurrentTask( tasks , callback ) {
@@ -36,8 +42,8 @@
         var img1 = new Image();
         var img2 = new Image();
 
-        img1.src = "img/3.png";
-        img2.src = "img/4.png";
+        img1.src = "img/3.gif";
+        img2.src = "img/4.gif";
         concurrentTask( [
             function ( done ) {
                 img1.onload = done;
@@ -46,9 +52,8 @@
                 img2.onload = done;
             }
         ] , function () {
-            gif.addFrame( img1 );
-            gif.addFrame( img2 );
-//            gif.render();
+            gif.addFrame( img1 , { copy : true } );
+            gif.addFrame( img2 , { copy : true } );
             gif.on( 'finished' , function ( blob ) {
                 var url = URL.createObjectURL( blob );
                 document.querySelector( 'img' ).src = url;
