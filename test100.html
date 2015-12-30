@@ -18,6 +18,13 @@
     </style>
 </head>
 <body>
-<img src="img/my.gif">
+<script>
+    console.log( document.body.clientWidth , document.body.clientHeight );
+    var div = document.createElement( "div" );
+    div.style.width = document.body.clientWidth + "px";
+    div.style.height = document.body.clientHeight + "px";
+    div.style.backgroundColor = "red";
+    document.body.appendChild( div )
+</script>
 </body>
 </html>
