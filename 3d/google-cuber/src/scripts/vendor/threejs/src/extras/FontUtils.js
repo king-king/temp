@@ -332,7 +332,7 @@ THREE.FontUtils.generateShapes = function( text, parameters ) {
 
 			}
 
-			/* three consecutive vertices in current polygon, <u,v,w> */
+			/* threejs consecutive vertices in current polygon, <u,v,w> */
 
 			u = v; 	 	if ( nv <= u ) u = 0;     /* previous */
 			v = u + 1;  if ( nv <= v ) v = 0;     /* new v    */

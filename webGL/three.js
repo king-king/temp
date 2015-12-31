@@ -10,7 +10,7 @@ var THREE = { REVISION: '73' };
 
 if ( typeof define === 'function' && define.amd ) {
 
-		define( 'three', THREE );
+		define( 'threejs', THREE );
 
 } else if ( 'undefined' !== typeof exports && 'undefined' !== typeof module ) {
 
@@ -20316,7 +20316,7 @@ THREE.UniformsLib = {
 // File:src/renderers/shaders/ShaderLib.js
 
 /**
- * Webgl Shader Library for three.js
+ * Webgl Shader Library for threejs.js
  *
  * @author alteredq / http://alteredqualia.com/
  * @author mrdoob / http://mrdoob.com/
@@ -24585,7 +24585,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	}
 
-	// Map three.js constants to WebGL constants
+	// Map threejs.js constants to WebGL constants
 
 	function paramThreeToGL ( p ) {
 
@@ -28671,7 +28671,7 @@ THREE.ShapeUtils = {
 
 				}
 
-				/* three consecutive vertices in current polygon, <u,v,w> */
+				/* threejs consecutive vertices in current polygon, <u,v,w> */
 
 				u = v; 	 	if ( nv <= u ) u = 0;     /* previous */
 				v = u + 1;  if ( nv <= v ) v = 0;     /* new v    */
@@ -31234,7 +31234,7 @@ THREE.CatmullRomCurve3 = ( function() {
 	 - http://ideone.com/NoEbVM
 
 	This CubicPoly class could be used for reusing some variables and calculations,
-	but for three.js curve use, it could be possible inlined and flatten into a single function call
+	but for threejs.js curve use, it could be possible inlined and flatten into a single function call
 	which can be placed in CurveUtils.
 	*/
 

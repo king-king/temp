@@ -152,7 +152,7 @@ ERNO.Projector = (function(){
 
 
 		/*
-		 *	Given a three.js camera instance and a 2D mouse coordinates local to the domElement,
+		 *	Given a threejs.js camera instance and a 2D mouse coordinates local to the domElement,
 		 * 	this method tests for any intersection against the cube
 		 *	and returns a cubelet if one is found, otherwise it returns null indicating no intersection.
 		 */

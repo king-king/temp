@@ -945,7 +945,7 @@ TWEEN.Interpolation = {
  * @license
  * The MIT License
  *
- * Copyright &copy; 2010-2014 three.js authors
+ * Copyright &copy; 2010-2014 threejs.js authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -8755,7 +8755,7 @@ ERNO.extend( ERNO.Group.prototype, {
 
 	//  Search functions.
 	//  What Cubelets in this ERNO.Group have a particular color?
-	//  How about all of these three colors?
+	//  How about all of these threejs colors?
 	//  And index? address? Solver uses these a lot.
 
 	hasProperty: function( property, value ){
@@ -9560,7 +9560,7 @@ ERNO.extend( ERNO.Slice.prototype, {
 
 	Folds are two adjacent Faces joined together, as if one
 	long 6 x 3 strip has been folding down the center and
-	three such shapes together wrap the six sides of the Cube.
+	threejs such shapes together wrap the six sides of the Cube.
 	Currently this is important for text wrapping. And in the
 	future? Who knows. Characters in a String are mapped thus:
 	
@@ -9816,7 +9816,7 @@ ERNO.Projector = (function(){
 
 
 		/*
-		 *	Given a three.js camera instance and a 2D mouse coordinates local to the domElement,
+		 *	Given a threejs.js camera instance and a 2D mouse coordinates local to the domElement,
 		 * 	this method tests for any intersection against the cube
 		 *	and returns a cubelet if one is found, otherwise it returns null indicating no intersection.
 		 */
@@ -10579,7 +10579,7 @@ ERNO.Controls = (function(){
 
 
 
-//	This is a basic css renderer that uses a modified version of the three.js CSS3DRenderer.
+//	This is a basic css renderer that uses a modified version of the threejs.js CSS3DRenderer.
 //	Having the renderer is a seperate file allows us to abstract all the visual components
 //	of the cube in a simple, straightforward way.
 

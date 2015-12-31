@@ -1,6 +1,6 @@
 
 
-//	This is a basic css renderer that uses a modified version of the three.js CSS3DRenderer.
+//	This is a basic css renderer that uses a modified version of the threejs.js CSS3DRenderer.
 //	Having the renderer is a seperate file allows us to abstract all the visual components
 //	of the cube in a simple, straightforward way.
 

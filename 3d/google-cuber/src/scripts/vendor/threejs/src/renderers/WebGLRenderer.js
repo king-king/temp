@@ -6291,7 +6291,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	};
 
-	// Map three.js constants to WebGL constants
+	// Map threejs.js constants to WebGL constants
 
 	function paramThreeToGL ( p ) {
 

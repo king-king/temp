@@ -112,7 +112,7 @@ ERNO.extend( ERNO.Group.prototype, {
 
 	//  Search functions.
 	//  What Cubelets in this ERNO.Group have a particular color?
-	//  How about all of these three colors?
+	//  How about all of these threejs colors?
 	//  And index? address? Solver uses these a lot.
 
 	hasProperty: function( property, value ){

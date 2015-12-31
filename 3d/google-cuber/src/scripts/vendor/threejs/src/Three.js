@@ -9,7 +9,7 @@
  * @license
  * The MIT License
  *
- * Copyright &copy; 2010-2014 three.js authors
+ * Copyright &copy; 2010-2014 threejs.js authors
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal

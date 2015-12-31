@@ -19014,7 +19014,7 @@ THREE.UniformsLib = {
 
 };
 /**
- * Webgl Shader Library for three.js
+ * Webgl Shader Library for threejs.js
  *
  * @author alteredq / http://alteredqualia.com/
  * @author mrdoob / http://mrdoob.com/
@@ -26551,7 +26551,7 @@ THREE.WebGLRenderer = function ( parameters ) {
 
 	};
 
-	// Map three.js constants to WebGL constants
+	// Map threejs.js constants to WebGL constants
 
 	function paramThreeToGL ( p ) {
 
@@ -28060,7 +28060,7 @@ THREE.SceneUtils = {
  * @author zz85 / http://www.lab4games.net/zz85/blog
  * @author alteredq / http://alteredqualia.com/
  *
- * For Text operations in three.js (See TextGeometry)
+ * For Text operations in threejs.js (See TextGeometry)
  *
  * It uses techniques used in:
  *
@@ -28390,7 +28390,7 @@ THREE.FontUtils.generateShapes = function( text, parameters ) {
 
 			}
 
-			/* three consecutive vertices in current polygon, <u,v,w> */
+			/* threejs consecutive vertices in current polygon, <u,v,w> */
 
 			u = v; 	 	if ( nv <= u ) u = 0;     /* previous */
 			v = u + 1;  if ( nv <= v ) v = 0;     /* new v    */
@@ -33649,7 +33649,7 @@ THREE.SphereGeometry.prototype = Object.create( THREE.Geometry.prototype );
  * @author zz85 / http://www.lab4games.net/zz85/blog
  * @author alteredq / http://alteredqualia.com/
  *
- * For creating 3D text geometry in three.js
+ * For creating 3D text geometry in threejs.js
  *
  * Text = 3D Text
  *

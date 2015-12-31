@@ -96,7 +96,7 @@
 
     // 2D simplex noise
     module.simplex2 = function ( xin, yin ) {
-        var n0, n1, n2; // Noise contributions from the three corners
+        var n0, n1, n2; // Noise contributions from the threejs corners
         // Skew the input space to determine which simplex cell we're in
         var s = (xin + yin) * F2; // Hairy factor for 2D
         var i = Math.floor( xin + s );
@@ -122,13 +122,13 @@
         var y1 = y0 - j1 + G2;
         var x2 = x0 - 1 + 2 * G2; // Offsets for last corner in (x,y) unskewed coords
         var y2 = y0 - 1 + 2 * G2;
-        // Work out the hashed gradient indices of the three simplex corners
+        // Work out the hashed gradient indices of the threejs simplex corners
         i &= 255;
         j &= 255;
         var gi0 = gradP[i + perm[j]];
         var gi1 = gradP[i + i1 + perm[j + j1]];
         var gi2 = gradP[i + 1 + perm[j + 1]];
-        // Calculate the contribution from the three corners
+        // Calculate the contribution from the threejs corners
         var t0 = 0.5 - x0 * x0 - y0 * y0;
         if ( t0 < 0 ) {
             n0 = 0;
