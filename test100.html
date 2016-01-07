@@ -12,19 +12,126 @@
             right: 0;
             bottom: 0;
             margin: 0;
-            background: #000;
         }
 
+        * {
+            -webkit-user-select: none;
+        }
+
+        img {
+            width: 500px;
+            -webkit-animation: 3s n-af3 linear both;
+        }
+
+        @-webkit-keyframes af0 {
+            23% {
+                -webkit-filter: contrast(1.4) saturate(1.2) blur(4px);
+            }
+            45% {
+                -webkit-filter: contrast(1.4) saturate(1.2) blur(4px);
+            }
+            88% {
+                -webkit-filter: contrast(1) saturate(1) blur(0px);
+            }
+        }
+
+        @-webkit-keyframes n-af0 {
+            20% {
+                -webkit-filter: contrast(1) saturate(1) blur(0px);
+            }
+            100% {
+                -webkit-filter: contrast(1.4) saturate(1.2) blur(4px);
+            }
+        }
+
+        @-webkit-keyframes af1 {
+            0% {
+                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+            }
+            20% {
+                -webkit-filter: grayscale(1) saturate(1.2) contrast(1.4);
+            }
+            53% {
+                -webkit-filter: grayscale(1) saturate(1.2) contrast(1.4);
+            }
+            90% {
+                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+            }
+            100% {
+                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+            }
+        }
+
+        @-webkit-keyframes n-af1 {
+            20% {
+                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+            }
+            100% {
+                -webkit-filter: grayscale(1) saturate(1.2) contrast(1.4);
+            }
+        }
+
+        @-webkit-keyframes af2 {
+            0% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1);
+            }
+            24% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1);
+            }
+            48% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.2);
+            }
+            90% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1);
+            }
+            100% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1);
+            }
+        }
+
+        @-webkit-keyframes n-af2 {
+            20% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1);
+            }
+            44% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1);
+            }
+            100% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.2);
+            }
+        }
+
+        @-webkit-keyframes af3 {
+            0% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
+            }
+            20% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1) blur(4px);
+            }
+            44% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1) blur(4px);
+            }
+            88% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
+            }
+            100% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
+            }
+        }
+
+        @-webkit-keyframes n-af3 {
+            20% {
+                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
+            }
+            100% {
+                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1) blur(4px);
+            }
+        }
     </style>
 </head>
 <body>
+<img src="img/3.jpg">
 <script>
-    console.log( document.body.clientWidth , document.body.clientHeight );
-    var div = document.createElement( "div" );
-    div.style.width = document.body.clientWidth + "px";
-    div.style.height = document.body.clientHeight + "px";
-    div.style.backgroundColor = "red";
-    document.body.appendChild( div )
 </script>
 </body>
 </html>

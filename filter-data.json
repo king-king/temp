@@ -1,0 +1,36 @@
+// 变模糊
+{
+  p: {
+    20: "contrast(1) saturate(1) blur(0px)",
+    100: " contrast(1.4) saturate(1.2) blur(4px)"
+  },
+  d: 2
+}
+
+//  变黑白
+{
+  p: {
+    20: " grayscale(0) saturate(1) contrast(1)",
+    100: "grayscale(1) saturate(1.2) contrast(1.4)"
+  },
+  d: 2
+}
+
+//  变古老
+{
+  p: {
+    20: "sepia(0) brightness(1) contrast(1)",
+    44: "sepia(1) brightness(0.9) contrast(1.1)",
+    100: "sepia(1) brightness(0.9) contrast(1.2)"
+  },
+  d: 2.5
+}
+
+//  变怀旧
+{
+  p: {
+    20: "  sepia(0) brightness(1) contrast(1) blur(0px)",
+    100: "sepia(1) brightness(0.9) contrast(1.1) blur(4px)"
+  },
+  d: 2
+}
