@@ -19,8 +19,23 @@
         }
 
         img {
-            width: 500px;
-            -webkit-animation: 3s n-af3 linear both;
+            width: 200px;
+        }
+
+        img.a {
+            -webkit-animation: 2s n-af0 linear both;
+        }
+
+        img.b {
+            -webkit-animation: 2s n-af1 linear both;
+        }
+
+        img.c {
+            -webkit-animation: 2.5s n-af2 linear both;
+        }
+
+        img.d {
+            -webkit-animation: 2.5s n-af3 linear both;
         }
 
         @-webkit-keyframes af0 {
@@ -130,7 +145,11 @@
     </style>
 </head>
 <body>
-<img src="img/3.jpg">
+<img src="img/3.jpg" class="a">变模糊<br>
+<img src="img/3.jpg" class="b">变黑白<br>
+<img src="img/3.jpg" class="c">变古老<br>
+<img src="img/3.jpg" class="d">变怀旧<br>
+
 <script>
 </script>
 </body>
