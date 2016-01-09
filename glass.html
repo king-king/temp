@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
+    <title>碎玻璃特效</title>
+    <style>
+        html, body {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .iframe {
+            width: 298px;
+            height: 480px;
+            background-color: #000;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            overflow: hidden;
+            background-size: cover;
+        }
+
+        .sample {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate3d(0, -50%, 0);
+        }
+
+        .mask {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            background: black;
+            opacity: 0;
+        }
+
+        .mask0 {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+        }
+
+        .mask.animate {
+            -webkit-animation: 2s shade-in both;
+        }
+
+        .glass {
+            transform-origin: left top 0px;
+            transform: scale(0.952381);
+            margin-top: 0;
+            background: url("img/glass.png") no-repeat;
+            display: inline-block;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .glass0 {
+            top: 80.8%;
+            left: 0;
+            height: 108px;
+            width: 320px;
+            background-position: 0 0;
+            background-color: #000;
+        }
+
+        .glass1 {
+            top: 0;
+            left: 6.84%;
+            width: 113px;
+            height: 90px;
+            background-position: -529px -206px;
+        }
+
+        .glass2 {
+            top: 8%;
+            left: 37.25%;
+            width: 61px;
+            height: 50px;
+            background-position: -584px -456px;
+        }
+
+        .glass3 {
+            top: 0;
+            left: 33.567%;
+            width: 213px;
+            height: 97px;
+            background-position: -305px -124px;
+        }
+
+        .glass4 {
+            top: 0;
+            left: 0;
+            width: 136px;
+            height: 162px;
+            background-position: -169px -88px;
+        }
+
+        .glass5 {
+            top: 17%;
+            left: 41.7%;
+            width: 158px;
+            height: 86px;
+            background-position: -278px -357px;
+        }
+
+        .glass6 {
+            top: 8.5429%;
+            left: 81.42%;
+            width: 60px;
+            height: 121px;
+            background-position: -469px -221px;
+        }
+
+        .glass7 {
+            top: 16.9007%;
+            left: 27.6%;
+            width: 148px;
+            height: 91px;
+            background-position: -436px -381px;
+        }
+
+        .glass8 {
+            top: 27.593%;
+            left: 55.24%;
+            width: 125px;
+            height: 56px;
+            background-position: -518px -150px;
+        }
+
+        .glass9 {
+            top: 22.085%;
+            left: 0;
+            width: 169px;
+            height: 182px;
+            background-position: 0 -88px;
+        }
+
+        .glass10 {
+            top: 22.085%;
+            left: 0;
+            width: 169px;
+            height: 182px;
+            background-position: 0 -88px;
+        }
+
+        .glass10 {
+            top: 32.2%;
+            left: 42.9%;
+            width: 76px;
+            height: 75px;
+            background-position: -584px -381px;
+        }
+
+        .glass11 {
+            top: 21.05%;
+            left: 71.865%;
+            width: 90px;
+            height: 221px;
+            background-position: -129px -270px;
+        }
+
+        .glass12 {
+            top: 37.73%;
+            left: 51.214%;
+            width: 129px;
+            height: 201px;
+            background-position: 0 -270px;
+        }
+
+        .glass13 {
+            top: 44.51%;
+            left: 9.1%;
+            width: 164px;
+            height: 136px;
+            background-position: -305px -221px;
+        }
+
+        .glass14 {
+            top: 50%;
+            left: 0;
+            width: 80px;
+            height: 150px;
+            background-position: -544px 0;
+        }
+
+        .glass15 {
+            top: 55.2%;
+            left: 34.7172%;
+            width: 92px;
+            height: 85px;
+            background-position: -529px -296px;
+        }
+
+        .glass16 {
+            top: 67.5%;
+            left: 9.364%;
+            width: 135px;
+            height: 52px;
+            background-position: -278px -443px;
+        }
+
+        .glass17 {
+            top: 68.84%;
+            left: 0;
+            width: 224px;
+            height: 124px;
+            background-position: -320px 0;
+        }
+
+        .glass18 {
+            top: 52.648%;
+            left: 81.45%;
+            width: 59px;
+            height: 229px;
+            background-position: -219px -250px;
+        }
+
+        .glass19 {
+            top: 75.53%;
+            left: 64.78%;
+            width: 70px;
+            height: 40px;
+            background-position: 0 -471px;
+        }
+
+        .hide {
+            display: none !important;
+        }
+
+        @-webkit-keyframes shade-in {
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .glasscrack {
+            background-size: 100%;
+            z-index: 6;
+            position: absolute;
+            display: block;
+            background-repeat: no-repeat;
+        }
+
+        .glasscrack0 {
+            top: 37%;
+            left: 0;
+            width: 95.78125%;
+            height: 62.301587%;
+            background-image: url("img/glass/0.png");
+        }
+
+        .glasscrack1 {
+            top: 48.8%;
+            left: 67%;
+            width: 24.53125%;
+            height: 15.3769841%;
+            background-image: url("img/glass/1.png");
+        }
+
+        .glasscrack2 {
+            top: 43%;
+            left: 34.4%;
+            width: 35.46875%;
+            height: 26.5873015%;
+            background-image: url("img/glass/2.png");
+        }
+
+        .glasscrack3 {
+            top: 43.8492063%;
+            left: 10.46875%;
+            width: 24.53125%;
+            height: 15.3769841%;
+            background-image: url("img/glass/3.png");
+        }
+
+        .glasscrack4 {
+            top: 23.8%;
+            left: .5%;
+            width: 27.5%;
+            height: 16.2698412%;
+            background-image: url("img/glass/4.png");
+        }
+
+        .glasscrack5 {
+            top: 5.9%;
+            left: 4.8%;
+            width: 26.71875%;
+            height: 13.7896825%;
+            background-image: url("img/glass/5.png");
+        }
+
+        .glasscrack6 {
+            bottom: 1%;
+            right: 0;
+            width: 100%;
+            height: 55.2579365%;
+            background-image: url("img/glass/6.png");
+        }
+
+        .glasscrack7 {
+            top: 22.7%;
+            left: 3.6%;
+            width: 73.90625%;
+            height: 40.079365%;
+            background-image: url("img/glass/7.png");
+        }
+
+        .glasscrack8 {
+            top: 0;
+            left: 0;
+            width: 91.40625%;
+            height: 48.5119047%;
+            background-image: url("img/glass/8.png");
+        }
+
+        .glasscrack9 {
+            top: 6%;
+            right: 0;
+            width: 70%;
+            height: 54.6626984%;
+            background-image: url("img/glass/9.png");
+        }
+
+        @-webkit-keyframes shade {
+            10% {
+                -webkit-transform: translate3d(-1px, 2px, 0) rotate3d(0, 0, 1, 1deg);
+            }
+            30% {
+                -webkit-transform: translate3d(1px, 2px, 0) rotate3d(0, 0, 1, -1deg);
+            }
+            50% {
+                -webkit-transform: translate3d(1px, -2px, 0) rotate3d(0, 0, 1, 2deg);
+            }
+            70% {
+                -webkit-transform: translate3d(-1px, -2px, 0) rotate3d(0, 0, 1, -1deg);
+            }
+            100% {
+                -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg);
+            }
+        }
+
+        @-webkit-keyframes fall0 {
+            100% {
+                -webkit-transform: translate3d(0, 480px, 0) rotate3d(0, 0, 1, 2deg);
+            }
+        }
+
+        @-webkit-keyframes fall1 {
+            100% {
+                -webkit-transform: translate3d(0, 480px, 0) rotate3d(0, 0, 1, -2deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="iframe">
+    <img src="img/sample.jpg" class="sample">
+    <div class="mask0"></div>
+    <div class="mask">
+        <div class="glasscrack glasscrack0 hide"></div>
+        <div class="glasscrack glasscrack1 hide"></div>
+        <div class="glasscrack glasscrack2 hide"></div>
+        <div class="glasscrack glasscrack3 hide"></div>
+        <div class="glasscrack glasscrack4 hide"></div>
+        <div class="glasscrack glasscrack5 hide"></div>
+        <div class="glasscrack glasscrack6 hide"></div>
+        <div class="glasscrack glasscrack7 hide"></div>
+        <div class="glasscrack glasscrack8 hide"></div>
+        <div class="glasscrack glasscrack9 hide"></div>
+
+        <div class="glass glass0 hide"></div>
+        <div class="glass glass1 hide"></div>
+        <div class="glass glass2 hide"></div>
+        <div class="glass glass3 hide"></div>
+        <div class="glass glass4 hide"></div>
+        <div class="glass glass5 hide"></div>
+        <div class="glass glass6 hide"></div>
+        <div class="glass glass7 hide"></div>
+        <div class="glass glass8 hide"></div>
+        <div class="glass glass9 hide"></div>
+        <div class="glass glass10 hide"></div>
+        <div class="glass glass11 hide"></div>
+        <div class="glass glass12 hide"></div>
+        <div class="glass glass13 hide"></div>
+        <div class="glass glass14 hide"></div>
+        <div class="glass glass15 hide"></div>
+        <div class="glass glass16 hide"></div>
+        <div class="glass glass17 hide"></div>
+        <div class="glass glass18 hide"></div>
+        <div class="glass glass19 hide"></div>
+    </div>
+</div>
+<script>
+    (function () {
+        var glasses = document.querySelectorAll( ".glass" );
+        var mask = document.querySelector( ".mask" );
+        var mask0 = document.querySelector( ".mask0" );
+        var glasscracks = document.querySelectorAll( ".glasscrack" );
+        var index = 0;
+        var iframe = document.querySelector( ".iframe" );
+
+        if ( navigator.userAgent.indexOf( "iPhone" ) != -1 ) {
+            // 是iphone，特殊处理
+            var s = screen.width / 298;
+            iframe.style.transform = "translate3d(-50%, -50%, 0) scale3d(" + s + "," + s + ",1)"
+        }
+        var ckickAnimat = [
+            {
+                index : 0 ,
+                delay : 500
+            } ,
+            {
+                index : 1 ,
+                delay : 500
+            } ,
+            {
+                index : 2 ,
+                delay : 200
+            } ,
+            {
+                index : 3 ,
+                delay : 300
+            } ,
+            {
+                index : 4 ,
+                delay : 250
+            } ,
+            {
+                index : 5 ,
+                delay : 250
+            } ,
+            {
+                index : 6 ,
+                delay : 500
+            } ,
+            {
+                index : 7 ,
+                delay : 600
+            } ,
+            {
+                index : 8 ,
+                delay : 300
+            } ,
+            {
+                index : 9 ,
+                delay : 500
+            }
+        ];
+
+
+        function loopArray( arr , func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[ i ] , i );
+            }
+        }
+
+        function shake( time , infinite ) {
+            mask.style.animation = null;
+            setTimeout( function () {
+                mask.style.animation = (time ? time : 0.1) + "s shade 0s both " + (infinite ? "infinite" : "");
+            } , 2 );
+        }
+
+        function broke() {
+            if ( index < 10 ) {
+                shake();
+                glasscracks[ ckickAnimat[ index ].index ].classList.remove( "hide" );
+                setTimeout( broke , ckickAnimat[ index ].delay );
+                index++;
+            } else {
+                setTimeout( fall , 500 );
+            }
+        }
+
+        function fall() {
+            loopArray( glasscracks , function ( glass ) {
+                glass.classList.add( "hide" );
+            } );
+            mask.style.backgroundColor = mask0.style.backgroundColor = "rgba(0,0,0,0)";
+            loopArray( glasses , function ( glass , i ) {
+                glass.classList.remove( "hide" );
+                glass.style.animation = "0.3s fall" + i % 2 + " " + i / 15 + "s both";
+            } );
+        }
+
+        setTimeout( function () {
+            mask.classList.add( "animate" );
+        } , 1000 );
+        setTimeout( function () {
+            mask.style.opacity = 1;
+            mask0.style.backgroundColor = "black";
+            broke();
+        } , 3000 );
+    })();
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fog</title>
+    <style>
+        body {
+            background: #000;
+        }
+
+        canvas {
+            width: 234px;
+            height: 209px;
+        }
+    </style>
+</head>
+<body>
+<canvas width="234" height="209"></canvas>
+<script>
+    (function () {
+        var canvas = document.querySelector( "canvas" );
+        var gl = canvas.getContext( "2d" );
+        var w = 234;
+        var h = 209;
+        var img = new Image();
+        img.src = "img/paint/5.png";
+        img.onload = function () {
+            gl.drawImage( img , 0 , 0 );
+            var imgdata = gl.getImageData( 0 , 0 , w , h );
+            var r = 250 , g = 250 , b = 250;
+            for ( var i = 0; i < imgdata.data.length; i += 4 ) {
+                if ( imgdata.data[ i ] > r && imgdata.data[ i + 1 ] > g && imgdata.data[ i + 2 ] > b ) {
+                    imgdata.data[ i + 3 ] = 0;
+                }
+            }
+            var offcanvas = document.createElement( "canvas" );
+            var offgl = offcanvas.getContext( "2d" );
+            offcanvas.width = w;
+            offcanvas.height = h;
+            offgl.putImageData( imgdata , 0 , 0 );
+            document.body.appendChild( offcanvas );
+
+
+        }
+
+    })();
+</script>
+</body>
+</html>
