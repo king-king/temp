@@ -18,139 +18,62 @@
             -webkit-user-select: none;
         }
 
-        img {
+        .target {
+            position: absolute;
+            top: 400px;
+            left: 100px;
             width: 200px;
         }
 
-        img.a {
-            -webkit-animation: 2s n-af0 linear both;
+        .target.doit {
+            -webkit-animation: 2s tiao both;
         }
 
-        img.b {
-            -webkit-animation: 2s n-af1 linear both;
-        }
-
-        img.c {
-            -webkit-animation: 2.5s n-af2 linear both;
-        }
-
-        img.d {
-            -webkit-animation: 2.5s n-af3 linear both;
-        }
-
-        @-webkit-keyframes af0 {
-            23% {
-                -webkit-filter: contrast(1.4) saturate(1.2) blur(4px);
-            }
-            45% {
-                -webkit-filter: contrast(1.4) saturate(1.2) blur(4px);
-            }
-            88% {
-                -webkit-filter: contrast(1) saturate(1) blur(0px);
-            }
-        }
-
-        @-webkit-keyframes n-af0 {
-            20% {
-                -webkit-filter: contrast(1) saturate(1) blur(0px);
-            }
-            100% {
-                -webkit-filter: contrast(1.4) saturate(1.2) blur(4px);
-            }
-        }
-
-        @-webkit-keyframes af1 {
+        @-webkit-keyframes tiao {
             0% {
-                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+                transform: translate3d(0, 0, 0);
+            }
+            10% {
+                transform: translate3d(10px, -50px, 0);
             }
             20% {
-                -webkit-filter: grayscale(1) saturate(1.2) contrast(1.4);
+                transform: translate3d(20px, 0px, 0);
             }
-            53% {
-                -webkit-filter: grayscale(1) saturate(1.2) contrast(1.4);
+            30% {
+                transform: translate3d(30px, -45px, 0);
+            }
+            40% {
+                transform: translate3d(40px, 0px, 0);
+            }
+            50% {
+                transform: translate3d(50px, -40px, 0);
+            }
+            60% {
+                transform: translate3d(60px, 0px, 0);
+            }
+            70% {
+                transform: translate3d(70px, -35px, 0);
+            }
+            80% {
+                transform: translate3d(80px, 0px, 0);
             }
             90% {
-                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+                transform: translate3d(90px, -30px, 0);
             }
             100% {
-                -webkit-filter: grayscale(0) saturate(1) contrast(1);
+                transform: translate3d(100px, 0px, 0);
             }
         }
 
-        @-webkit-keyframes n-af1 {
-            20% {
-                -webkit-filter: grayscale(0) saturate(1) contrast(1);
-            }
-            100% {
-                -webkit-filter: grayscale(1) saturate(1.2) contrast(1.4);
-            }
-        }
-
-        @-webkit-keyframes af2 {
-            0% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1);
-            }
-            24% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1);
-            }
-            48% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.2);
-            }
-            90% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1);
-            }
-            100% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1);
-            }
-        }
-
-        @-webkit-keyframes n-af2 {
-            20% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1);
-            }
-            44% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1);
-            }
-            100% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.2);
-            }
-        }
-
-        @-webkit-keyframes af3 {
-            0% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
-            }
-            20% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1) blur(4px);
-            }
-            44% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1) blur(4px);
-            }
-            88% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
-            }
-            100% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
-            }
-        }
-
-        @-webkit-keyframes n-af3 {
-            20% {
-                -webkit-filter: sepia(0) brightness(1) contrast(1) blur(0px);
-            }
-            100% {
-                -webkit-filter: sepia(1) brightness(0.9) contrast(1.1) blur(4px);
-            }
-        }
     </style>
 </head>
 <body>
-<img src="img/3.jpg" class="a">变模糊<br>
-<img src="img/3.jpg" class="b">变黑白<br>
-<img src="img/3.jpg" class="c">变古老<br>
-<img src="img/3.jpg" class="d">变怀旧<br>
-
+<img src="img/bag.png" class="target">
 <script>
+    var target = document.querySelector( ".target" );
+    document.onclick = function () {
+        target.classList.add( "doit" );
+    }
 </script>
 </body>
 </html>
