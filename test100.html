@@ -34,61 +34,46 @@
             top: 110px;
         }
 
-        @-webkit-keyframes animate {
-            0% {
-                transform: perspective(600px) translate3d(0px, 0px, 0px) rotate3d(0, 1, 0, 0deg);
-            }
-            25% {
-                transform: perspective(600px) translate3d(0px, 0px, 0px) rotate3d(0, 1, 0, -30deg);
-            }
-            50% {
-                transform: perspective(600px) translate3d(0px, 0px, 0px) rotate3d(0, 1, 0, 0deg);
-            }
-            75% {
-                transform: perspective(600px) translate3d(0px, 0px, 0px) rotate3d(0, 1, 0, 30deg);
-            }
+        @-webkit-keyframes down {
             100% {
-                transform: perspective(600px) translate3d(0px, 0px, 0px) rotate3d(0, 1, 0, 0deg);
+                transform: translate3d(0, 400px, 0)
             }
         }
 
         .border {
             width: 300px;
             height: 300px;
-            background: red;
-            perspective: 1000px;
-            -webkit-animation: animate 3s infinite;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            border: 2px solid black;
+            transform: translate3d(-50%, -50%, 0);
+            overflow: hidden;
+        }
+
+        img {
+            position: absolute;
+            height: 100px;
+            top: -100px;
         }
     </style>
 </head>
 <body>
-<div class="gan"></div>
-<div class="border"></div>
+<div class="border">
+    <img src="img/paper02.png">
+    <img src="img/paper01.png">
+</div>
 <script>
     (function () {
-        var monkeysrc = [];
-        for ( var i = 1; i < 16; i++ ) {
-            monkeysrc.push( "img/monkey/monkey-01_" + i + ".png" );
+        var border = document.querySelector( ".border" );
+        for ( var i = 0; i < 5; i++ ) {
+            var img = new Image();
+            img.src = "img/paper0" + (i % 2 + 1) + ".png";
+            border.appendChild( img );
+            img.style.height = Math.random() * 20 + 80 + "px";
+            img.style.left = Math.random() * 250 + "px";
+            img.style.animation = "down " + (3 + 2 * Math.random()) + "s ease-in-out " + i * 0.3 + "s infinite"
         }
-
-        var img = new Image();
-        img.classList.add( "animate" );
-        document.body.appendChild( img );
-        var curindex = 0;
-        img.src = monkeysrc[ curindex ];
-        var step = 1;
-        var last = monkeysrc.length - 1;
-
-        function play() {
-            if ( curindex == last || ( curindex == 6 && step == -1) ) {
-                step = -step;
-            }
-            curindex += step;
-            img.src = monkeysrc[ curindex ];
-            setTimeout( arguments.callee , 100 );
-        }
-
-        play();
     })();
 </script>
 </body>
