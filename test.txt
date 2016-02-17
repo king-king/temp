@@ -1,1 +1,103 @@
-"[object Object]0%{-webkit-transform:translate3d(0%,0%,0) scale(1) rotate(0deg)}98%{-webkit-transform:translate3d(0%,0%,0) scale(1) rotate(0deg)}"
+            {
+            "top":"16.9007%",
+            "left":"27.6%",
+            "width":"148px",
+            "height":"91px",
+            "background-position":"-436px -381px"
+        },
+
+           {
+           "top":"27.593%",
+            "left":"55.24%",
+            "width":"125px",
+            "height":"56px",
+            "background-position":"-518px -150px"
+        },
+
+           {
+            "top":"22.085%",
+           "left":"0",
+            "width":"169px",
+            "height":"182px",
+            "background-position":"0 -88px"
+        },
+
+           {
+            "top":"32.2%",
+            "left":"42.9%",
+            "width":"76px",
+            "height":"75px",
+            "background-position":"-584px -381px"
+        },
+
+           {
+            "top":"21.05%",
+           "left":"71.865%",
+            "width":"90px",
+            "height":"221px",
+            "background-position":"-129px -270px"
+        },
+
+           {
+            "top":"37.73%",
+            "left":"51.214%",
+            "width":"129px",
+            "height":"201px",
+            "background-position":"0 -270px"
+        },
+
+           {
+            "top":"44.51%",
+            "left":"9.1%",
+            "width":"164px",
+            "height":"136px",
+            "background-position":"-305px -221px"
+        },
+
+           {
+            "top":"50%",
+            "left":"0",
+            "width":"80px",
+            "height":"150px",
+            "background-position":"-544px 0"
+        },
+
+           {
+            "top":"55.2%",
+            "left":"34.7172%",
+            "width":"92px",
+            "height":"85px",
+            "background-position":"-529px -296px"
+        },
+
+           {
+            "top":"67.5%",
+            "left":"9.364%",
+            "width":"135px",
+            "height":"52px",
+            "background-position":"-278px -443px"
+        },
+
+           {
+            "top":"68.84%",
+            "left":"0",
+            "width":"224px",
+            "height":"124px",
+            "background-position":"-320px 0"
+        },
+
+           {
+            "top":"52.648%",
+            "left":"81.45%",
+            "width":"59px",
+            "height":"229px",
+            "background-position":"-219px -250px"
+        },
+
+           {
+            "top":"75.53%",
+            "left":"64.78%",
+            "width":"70px",
+            "height":"40px",
+            "background-position":"0 -471px"
+        }
