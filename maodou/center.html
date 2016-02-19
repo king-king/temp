@@ -31,6 +31,19 @@
     </div>
     <div class="more-priviledge-border"><img src="img/title-more-priviledge.png" class="title-more-priviledge"></div>
 </div>
+<div class="do-test-border">
+    <img class="title title-dotest" src="img/title-dotest.png">
+    <div class="test-title">1.成功邀请好友获得10个猫豆</div>
+    <div class="test-wrapper">
+        <img src="img/config/test-yaoqing.jpg">
+        <div class="button">邀请好友</div>
+    </div>
+    <div class="test-title">2.完善个人资料获得10个猫豆</div>
+    <div class="test-wrapper">
+        <img src="img/config/test-wanshan.jpg">
+        <div class="button">邀请好友</div>
+    </div>
+</div>
 <script>
     // 特权内容，直接配图，290*280
     var priviledge = [
@@ -67,6 +80,15 @@
             } ,
             ".priviledge-border .content img:nth-child(odd)" : {
                 "margin-right" : w - 30 - priviW * 2 + 4 + "px"
+            } ,
+            ".do-test-border .test-wrapper" : {
+                position : "relative" ,
+                margin : "5px 15px 11px 15px" ,
+                height : w * 158 / 640 + "px" ,
+                "background-color" : "white"
+            } ,
+            ".test-wrapper img" : {
+                height : w * 158 / 640 - 8 + "px"
             }
         } );
 
