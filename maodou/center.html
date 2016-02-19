@@ -19,7 +19,59 @@
     <img src="img/title-my-maodou.png" class="title my-maodou">
     <img src="img/title-details.png" class="title-details">
     <img src="img/dou-img.png" class="dou-img">
+    <div class="my-maodou-word">剩余 <span>100</span> 个猫豆</div>
 </div>
-<script></script>
+<div class="priviledge-border">
+    <img src="img/title-priviledge.png" class="title title-priviledge">
+    <div class="content">
+        <img src="img/config/priviledge-download.jpg">
+        <img src="img/config/priviledge-40pages.jpg">
+        <img src="img/config/priviledge-download.jpg">
+        <img src="img/config/priviledge-40pages.jpg">
+    </div>
+    <div class="more-priviledge-border"><img src="img/title-more-priviledge.png" class="title-more-priviledge"></div>
+</div>
+<script>
+    // 特权内容，直接配图，290*280
+    var priviledge = [
+        "img/config/priviledge-download.jpg" ,
+        "img/config/priviledge-40pages.jpg"
+    ];
+</script>
+<script>
+    (function () {
+        function element( tag , parent ) {
+            var el = document.createElement( tag );
+            parent && parent.appendChild( el );
+        }
+
+        var insertCSSRules = function () {
+            var style = document.createElement( "style" );
+            document.querySelector( "head" ).appendChild( style );
+            return function ( rules ) {
+                for ( var selector in rules ) {
+                    var rule = selector + "" + JSON.stringify( rules[ selector ] ).replace( /"/g , "" );
+                    rule = rule.replace( /,/g , ";" );
+                    style.sheet.insertRule( rule , style.sheet.rules.length );
+                }
+            }
+        }();
+
+        var w = document.body.offsetWidth;
+        var priviW = (w * 290 / 640) << 0;
+        insertCSSRules( {
+            ".priviledge-border .content img" : {
+                width : priviW - 2 + "px" ,
+                float : "left" ,
+                "margin-bottom" : w - 30 - priviW * 2 + 4 + "px"
+            } ,
+            ".priviledge-border .content img:nth-child(odd)" : {
+                "margin-right" : w - 30 - priviW * 2 + 4 + "px"
+            }
+        } );
+
+
+    })();
+</script>
 </body>
 </html>
