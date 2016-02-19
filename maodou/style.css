@@ -1,0 +1,53 @@
+body {
+    margin: 0;
+}
+
+.top {
+    width: 100%;
+    display: block;
+}
+
+.title {
+    height: 18px;
+}
+
+.my-maodou-border {
+    height: 149px;
+    position: relative;
+}
+
+.my-maodou {
+    position: absolute;
+    top: 13px;
+    left: 15px;
+    height: 13px;
+}
+
+.title-details {
+    position: absolute;
+    top: 3px;
+    right: 5px;
+    height: 11px;
+    margin: 10px;
+}
+
+.dou-img {
+    height: 95px;
+    position: absolute;
+    left: 50%;
+    margin-left: -47px;
+    top: 17px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
