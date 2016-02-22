@@ -14,48 +14,72 @@
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-<img src="img/config/top.jpg" class="top">
+<img class="top">
 <div class="my-maodou-border">
     <img src="img/title-my-maodou.png" class="title my-maodou">
     <img src="img/title-details.png" class="title-details">
     <img src="img/dou-img.png" class="dou-img">
-    <div class="my-maodou-word">剩余 <span>100</span> 个猫豆</div>
+    <div class="my-maodou-word">剩余 <span class="left-madou-num"></span> 个猫豆</div>
 </div>
 <div class="priviledge-border">
     <img src="img/title-priviledge.png" class="title title-priviledge">
     <div class="content">
-        <img src="img/config/priviledge-download.jpg">
-        <img src="img/config/priviledge-40pages.jpg">
-        <img src="img/config/priviledge-download.jpg">
-        <img src="img/config/priviledge-40pages.jpg">
     </div>
     <div class="more-priviledge-border"><img src="img/title-more-priviledge.png" class="title-more-priviledge"></div>
 </div>
 <div class="do-test-border">
     <img class="title title-dotest" src="img/title-dotest.png">
-    <div class="test-title">1.成功邀请好友获得10个猫豆</div>
-    <div class="test-wrapper">
-        <img src="img/config/test-yaoqing.jpg">
-        <div class="button">邀请好友</div>
-    </div>
-    <div class="test-title">2.完善个人资料获得10个猫豆</div>
-    <div class="test-wrapper">
-        <img src="img/config/test-wanshan.jpg">
-        <div class="button">邀请好友</div>
+    <div class="content">
+        <!--<div class="test-title">1.成功邀请好友获得10个猫豆</div>-->
+        <!--<div class="test-wrapper"><img src="img/config/test-yaoqing.jpg">-->
+        <!--<div class="button">邀请好友</div>-->
+        <!--</div>-->
+        <!--<div class="test-title">2.完善个人资料获得10个猫豆</div>-->
+        <!--<div class="test-wrapper">-->
+        <!--<img src="img/config/test-wanshan.jpg">-->
+        <!--<div class="button">邀请好友</div>-->
+        <!--</div>-->
     </div>
 </div>
 <script>
-    // 特权内容，直接配图，290*280
-    var priviledge = [
-        "img/config/priviledge-download.jpg" ,
-        "img/config/priviledge-40pages.jpg"
-    ];
+    var data = {
+        // 最顶端的图片可以配置
+        topImage : "img/config/top.jpg" ,
+        // 剩余多少猫豆
+        leftMaodou : 100 ,
+        // 猫豆特权，内容做成图片，做图时候尺寸是290*280
+        priviledge : [
+            "img/config/priviledge-download.jpg" ,
+            "img/config/priviledge-40pages.jpg" ] ,
+        // 做任务
+        test : [
+            {
+                content : "成功邀请好友" ,// 任务名称
+                value : 10 ,// 完成任务可以获得的猫豆点数
+                img : "img/config/test-yaoqing.jpg" ,
+                buttonWord : "邀请好友" , // 每个任务按钮上的文字不同
+                state : 0 , // 任务状态,0是未完成，1是已经完成
+                url : ""//任务跳转链接
+
+            } ,
+            {
+                content : "完善个人资料" ,
+                value : 10 ,
+                img : "img/config/test-wanshan.jpg" ,
+                buttonWord : "编辑资料" ,
+                state : 1 ,
+                url : ""//任务跳转链接
+            }
+        ]
+    };
+
 </script>
 <script>
     (function () {
-        function element( tag , parent ) {
-            var el = document.createElement( tag );
-            parent && parent.appendChild( el );
+        function loopArray( arr , func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[ i ] , i );
+            }
         }
 
         var insertCSSRules = function () {
@@ -72,6 +96,7 @@
 
         var w = document.body.offsetWidth;
         var priviW = (w * 290 / 640) << 0;
+        // 配置需要计算的css样式
         insertCSSRules( {
             ".priviledge-border .content img" : {
                 width : priviW - 2 + "px" ,
@@ -92,7 +117,23 @@
             }
         } );
 
-
+        // 配置顶部图片
+        document.querySelector( ".top" ).src = data.topImage;
+        // 配置剩余的猫豆
+        document.querySelector( ".left-madou-num" ).textContent = data.leftMaodou;
+        // 猫豆特权
+        var pContent = "";
+        loopArray( data.priviledge , function ( src ) {
+            pContent += "<img src=\"" + src + "\">"
+        } );
+        document.querySelector( ".priviledge-border .content" ).innerHTML = pContent;
+        // 做任务
+        var tContent = "";
+        loopArray( data.test , function ( test , i ) {
+            tContent += "<div class='test-title'>" + (i + 1) + "." + test.content + "获得<span style='color:#fe2454'>" + test.value + "</span>个猫豆</div>" +
+                    "<div class='test-wrapper'><img src=" + test.img + "><div class='button " + (test.state ? "over" : "") + "'>" + (test.state ? "已完成" : test.buttonWord) + "</div></div>";
+        } );
+        document.querySelector( ".do-test-border .content" ).innerHTML = tContent;
     })();
 </script>
 </body>

@@ -131,4 +131,7 @@ body {
     right: 15px;
 }
 
+.test-wrapper .button.over {
+    background: #dbdade;
+}
 
