@@ -56,10 +56,12 @@ body {
     vertical-align: bottom;
 }
 
-.my-maodou-word span {
+.my-maodou-word span.left-maodou-num {
     font-size: 20px;
     color: #fe2454;
     font-weight: bold;
+    position: relative;
+    bottom: -1px;
 }
 
 .priviledge-border {

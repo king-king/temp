@@ -19,7 +19,7 @@
     <img src="img/title-my-maodou.png" class="title my-maodou">
     <img src="img/title-details.png" class="title-details">
     <img src="img/dou-img.png" class="dou-img">
-    <div class="my-maodou-word">剩余 <span class="left-madou-num"></span> 个猫豆</div>
+    <div class="my-maodou-word">剩余 <span class="left-maodou-num"></span> 个猫豆</div>
 </div>
 <div class="priviledge-border">
     <img src="img/title-priviledge.png" class="title title-priviledge">
@@ -30,15 +30,6 @@
 <div class="do-test-border">
     <img class="title title-dotest" src="img/title-dotest.png">
     <div class="content">
-        <!--<div class="test-title">1.成功邀请好友获得10个猫豆</div>-->
-        <!--<div class="test-wrapper"><img src="img/config/test-yaoqing.jpg">-->
-        <!--<div class="button">邀请好友</div>-->
-        <!--</div>-->
-        <!--<div class="test-title">2.完善个人资料获得10个猫豆</div>-->
-        <!--<div class="test-wrapper">-->
-        <!--<img src="img/config/test-wanshan.jpg">-->
-        <!--<div class="button">邀请好友</div>-->
-        <!--</div>-->
     </div>
 </div>
 <script>
@@ -76,6 +67,36 @@
 </script>
 <script>
     (function () {
+
+        function bindEvent( el , type , func ) {
+            el.addEventListener( type , func , false );
+            return {
+                remove : function () {
+                    el.removeEventListener( type , func , false );
+                }
+            }
+        }
+
+        function onTap( el , func ) {
+            var sx , sy , ismove = false;
+            bindEvent( el , "touchstart" , function ( e ) {
+                el.classList.add( "tap" );
+                sx = e.touches[ 0 ].pageX;
+                sy = e.touches[ 0 ].pageY;
+                var moveH = bindEvent( el , "touchmove" , function ( e ) {
+                    if ( Math.pow( e.touches[ 0 ].pageX - sx , 2 ) + Math.pow( e.touches[ 0 ].pageY - sy , 2 ) > 20 ) {
+                        ismove = true;
+                        el.classList.remove( "tap" );
+                    }
+                } );
+                var endH = bindEvent( el , "touchend" , function () {
+                    !ismove && func();
+                    moveH.remove();
+                    endH.remove();
+                } );
+            } );
+        }
+
         function loopArray( arr , func ) {
             for ( var i = 0; i < arr.length; i++ ) {
                 func( arr[ i ] , i );
@@ -117,10 +138,16 @@
             }
         } );
 
+        // 猫豆记录的跳转
+        onTap( document.querySelector( ".title-details" ) , function () {
+            location.href = "http://www.baidu.com"
+        } );
+
+
         // 配置顶部图片
         document.querySelector( ".top" ).src = data.topImage;
         // 配置剩余的猫豆
-        document.querySelector( ".left-madou-num" ).textContent = data.leftMaodou;
+        document.querySelector( ".left-maodou-num" ).textContent = data.leftMaodou;
         // 猫豆特权
         var pContent = "";
         loopArray( data.priviledge , function ( src ) {
