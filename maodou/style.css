@@ -141,3 +141,12 @@ body {
     background: #dbdade;
 }
 
+.priviledge-border .content img {
+    width: 100%;
+    max-width: 145px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}

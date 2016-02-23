@@ -33,6 +33,8 @@
     </div>
 </div>
 <script>
+    // 猫豆记录的跳转链接
+    var recordsUrl = "";
     var data = {
         // 最顶端的图片可以配置
         topImage : "img/config/top.jpg" ,
@@ -40,8 +42,8 @@
         leftMaodou : 100 ,
         // 猫豆特权，内容做成图片，做图时候尺寸是290*280
         priviledge : [
-            "img/config/priviledge-download.jpg" ,
-            "img/config/priviledge-40pages.jpg" ] ,
+            "img/config/priviledge-download.png" ,
+            "img/config/priviledge-40pages.png" ] ,
         // 做任务
         test : [
             {
@@ -119,12 +121,16 @@
         var priviW = (w * 290 / 640) << 0;
         // 配置需要计算的css样式
         insertCSSRules( {
-            ".priviledge-border .content img" : {
+            ".priviledge-border .content div" : {
                 width : priviW - 2 + "px" ,
+                height : (priviW - 2) / 280 * 290 + "px" ,
                 float : "left" ,
+                position : "relative" ,
+                "background-color" : "white" ,
+                "overflow" : "hidden" ,
                 "margin-bottom" : w - 30 - priviW * 2 + 4 + "px"
             } ,
-            ".priviledge-border .content img:nth-child(odd)" : {
+            ".priviledge-border .content div:nth-child(odd)" : {
                 "margin-right" : w - 30 - priviW * 2 + 4 + "px"
             } ,
             ".do-test-border .test-wrapper" : {
@@ -140,9 +146,8 @@
 
         // 猫豆记录的跳转
         onTap( document.querySelector( ".title-details" ) , function () {
-            location.href = "http://www.baidu.com"
+            location.href = recordsUrl;
         } );
-
 
         // 配置顶部图片
         document.querySelector( ".top" ).src = data.topImage;
@@ -151,7 +156,7 @@
         // 猫豆特权
         var pContent = "";
         loopArray( data.priviledge , function ( src ) {
-            pContent += "<img src=\"" + src + "\">"
+            pContent += "<div><img src=\"" + src + "\"></div>"
         } );
         document.querySelector( ".priviledge-border .content" ).innerHTML = pContent;
         // 做任务
