@@ -36,11 +36,11 @@
     // 猫豆记录的跳转链接
     var recordsUrl = "";
     var data = {
-        // 最顶端的图片可以配置
+        // 最顶端的图片可以配置，尺寸是640*142
         topImage : "img/config/top.jpg" ,
         // 剩余多少猫豆
         leftMaodou : 100 ,
-        // 猫豆特权，内容做成图片，做图时候尺寸是290*280
+        // 猫豆特权，内容做成图片，做图时候尺寸是290*280，png透明图片
         priviledge : [
             "img/config/priviledge-download.png" ,
             "img/config/priviledge-40pages.png" ] ,
@@ -140,8 +140,9 @@
                 height : w * 158 / 640 + "px" ,
                 "background-color" : "white"
             } ,
-            ".test-wrapper img" : {
-                height : w * 158 / 640 - 8 + "px"
+            ".test-wrapper .img-wrapper" : {
+                height : w * 158 / 640 - 8 + "px" ,
+                width : (w * 158 / 640 - 8) / 146 * 270 + "px"
             }
         } );
 
@@ -164,7 +165,7 @@
         var tContent = "";
         loopArray( data.test , function ( test , i ) {
             tContent += "<div class='test-title'>" + (i + 1) + "." + test.content + "获得<span style='color:#fe2454'>" + test.value + "</span>个猫豆</div>" +
-                    "<div class='test-wrapper'><img src=" + test.img + "><div class='button " + (test.state ? "over" : "not-over") + "'data-url='" + test.url + "'>" + (test.state ? "已完成" : test.buttonWord) + "</div></div>";
+                    "<div class='test-wrapper'><div class='img-wrapper'><img src=" + test.img + "></div><div class='button " + (test.state ? "over" : "not-over") + "'data-url='" + test.url + "'>" + (test.state ? "已完成" : test.buttonWord) + "</div></div>";
         } );
         var testWrapper = document.querySelector( ".do-test-border .content" );
         testWrapper.innerHTML = tContent;
