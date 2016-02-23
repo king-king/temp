@@ -52,7 +52,7 @@
                 img : "img/config/test-yaoqing.jpg" ,
                 buttonWord : "邀请好友" , // 每个任务按钮上的文字不同
                 state : 0 , // 任务状态,0是未完成，1是已经完成
-                url : ""//任务跳转链接
+                url : "http://www.baidu.com"//任务跳转链接
 
             } ,
             {
@@ -91,8 +91,9 @@
                         el.classList.remove( "tap" );
                     }
                 } );
-                var endH = bindEvent( el , "touchend" , function () {
-                    !ismove && func();
+                var endH = bindEvent( el , "touchend" , function ( e ) {
+                    !ismove && func( e );
+                    !ismove && el.classList.remove( "tap" );
                     moveH.remove();
                     endH.remove();
                 } );
@@ -163,9 +164,16 @@
         var tContent = "";
         loopArray( data.test , function ( test , i ) {
             tContent += "<div class='test-title'>" + (i + 1) + "." + test.content + "获得<span style='color:#fe2454'>" + test.value + "</span>个猫豆</div>" +
-                    "<div class='test-wrapper'><img src=" + test.img + "><div class='button " + (test.state ? "over" : "") + "'>" + (test.state ? "已完成" : test.buttonWord) + "</div></div>";
+                    "<div class='test-wrapper'><img src=" + test.img + "><div class='button " + (test.state ? "over" : "not-over") + "'data-url='" + test.url + "'>" + (test.state ? "已完成" : test.buttonWord) + "</div></div>";
         } );
-        document.querySelector( ".do-test-border .content" ).innerHTML = tContent;
+        var testWrapper = document.querySelector( ".do-test-border .content" );
+        testWrapper.innerHTML = tContent;
+        onTap( testWrapper , function ( e ) {
+            if ( e.target.classList.contains( "not-over" ) ) {
+                location.href = e.target.dataset.url;
+            }
+        } );
+
     })();
 </script>
 </body>
