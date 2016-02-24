@@ -27,6 +27,10 @@ body {
     cursor: pointer;
 }
 
+.absolute {
+    position: absolute;
+}
+
 .content {
     position: absolute;
     top: 0;
@@ -40,6 +44,7 @@ body {
 .section {
     width: 100%;
     position: relative;
+    background-color: #fffcf5;
 }
 
 .section .wrapper {
@@ -131,3 +136,83 @@ body {
     right: 88px;
     background-position: 0 -80px;
 }
+
+.scroll-wrapper {
+    width: 100%;
+    position: absolute;
+    transform: translate3d(0, -683px, 0);
+}
+
+.page1-title {
+    top: 38.28125%;
+    right: 66.796875%;
+    height: 5.3385416%;
+}
+
+.page1-word {
+    top: 44.66145%;
+    right: 66.796875%;
+    height: 25.6510416%;
+}
+
+.yellow-phone {
+    top: 50%;
+    left: 42.96875%;
+    height: 82.291666%;
+    transform: translate3d(0, -50%, 0);
+}
+
+.page1-dash {
+    top: 11.58854%;
+    left: 75.911458%;
+    height: 76.692708%;
+}
+
+.page1-0 {
+    top: 21.354166%;
+    left: 85.9375%;
+    height: 3.2552083%;
+}
+
+/*.page1-1 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
+/*.page1-2 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
+/*.page1-3 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
+/*.page1-4 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
+/*.page1-5 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
+/*.page1-6 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
+/*.page1-7 {*/
+    /*top:%;*/
+    /*left:%;*/
+    /*height:%;*/
+/*}*/
+
