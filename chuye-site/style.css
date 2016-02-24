@@ -9,7 +9,53 @@ body {
     overflow-y: hidden;
 }
 
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
 .section {
     width: 100%;
     position: relative;
+}
+
+.section .wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+    -moz-transform: translate3d(-50%, -50%, 0);
+    -ms-transform: translate3d(-50%, -50%, 0);
+    -o-transform: translate3d(-50%, -50%, 0);
+    transform: translate3d(-50%, -50%, 0);
+}
+
+.page0-bg {
+    background: url("img/page0-bg.jpg") center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 94.79166666%;
+}
+
+.page0-phone {
+    position: absolute;
+    bottom: 0;
+    left: 51.8229166%;
+    height: 88.80208%;
+}
+
+.page0-img-border {
+    position: absolute;
+    top: 22.3958333%;
+    left: 59.89583333333%;
+    height: 64.322916666%;
+    width: 36.1979166%;
 }
