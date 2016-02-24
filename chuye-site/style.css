@@ -23,6 +23,10 @@ body {
     overflow-y: hidden;
 }
 
+.can-tap {
+    cursor: pointer;
+}
+
 .content {
     position: absolute;
     top: 0;
@@ -95,4 +99,35 @@ body {
     top: 79.296875%;
     left: 2.604166%;
     height: 5.72916666666%;
+}
+
+.icon {
+    background: url("img/icon.png");
+    background-size: 600px 600px;
+}
+
+.top-logo {
+    width: 46px;
+    height: 45px;
+    position: absolute;
+    top: 15px;
+    left: 88px;
+    background-position: 0 0;
+}
+
+.home-page, .communite {
+    width: 58px;
+    height: 24px;
+    position: absolute;
+    top: 24px;
+}
+
+.home-page {
+    right: 166px;
+    background-position: 0 -50px;
+}
+
+.communite {
+    right: 88px;
+    background-position: 0 -80px;
 }
