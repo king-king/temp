@@ -14,8 +14,14 @@
             -webkit-user-select: none;
         }
 
+        html {
+            height: 100%;
+        }
+
         body {
             margin: 0;
+            overflow-y: auto;
+            max-height: 100%;
         }
 
         .item {
@@ -44,18 +50,24 @@
 <div class="records">
 </div>
 <script>
+    // 加载分页数据的url，get方法，参数是lastid
+    var loadUrl = "";
     // 数据
     var data = [
         {
+            id : "" ,
             date : "刚刚" ,
             content : "完善个人资料获得了10个猫豆"
         } , {
+            id : "" ,
             date : "两小时前" ,
             content : "消耗了28个毛猫豆下载了《我的故事作品》"
         } , {
+            id : "" ,
             date : "2016/01/03" ,
             content : "消耗了98个猫豆增加了20页《我的故事作品》"
         } , {
+            id : "" ,
             date : "2016/01/03" ,
             content : "成功邀请1个好友获得了10个猫豆"
         }
@@ -63,17 +75,48 @@
 </script>
 <script>
     (function () {
+        var records = "";
+        var lastId;
+        var recordsWrapper = document.querySelector( ".records" );
+        var isloading = false;
+
         function loopArray( arr , func ) {
             for ( var i = 0; i < arr.length; i++ ) {
                 func( arr[ i ] , i );
             }
         }
 
-        var records = "";
-        loopArray( data , function ( item ) {
-            records += "<div class='item'><div class='date'>" + item.date + "</div><div class='content'>" + item.content + "</div></div>";
-        } );
-        document.querySelector( ".records" ).innerHTML = records;
+        function makeContent( data ) {
+            loopArray( data , function ( item ) {
+                records += "<div class='item'><div class='date'>" + item.date + "</div><div class='content'>" + item.content + "</div></div>";
+                lastId = item.id;
+            } );
+            recordsWrapper.innerHTML = records;
+        }
+
+        makeContent( data );
+
+        document.body.onscroll = function () {
+            if ( !isloading && document.body.scrollHeight - document.body.scrollTop - document.body.clientHeight < 50 ) {
+                isloading = true;
+                loadData( function ( data ) {
+                    isloading = false;
+                    makeContent( data );
+                } )
+            }
+        };
+
+        function loadData( callback ) {
+            var xhr = new XMLHttpRequest();
+            xhr.open( "get" , loadUrl + "?lastid=" + lastId );
+            xhr.send( null );
+            xhr.onreadystatechange = function () {
+                if ( xhr.readyState == 4 && xhr.status == 200 ) {
+                    callback( JSON.parse( xhr.responseText ).data );
+                }
+            };
+        }
+
     })();
 </script>
 </body>
