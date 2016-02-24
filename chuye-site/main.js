@@ -20,7 +20,8 @@
         var cubeHeight = bodyHeight > 768 ? 768 : bodyHeight;
         loopArray( sections , function ( setction , i ) {
             setction.style.height = bodyHeight + "px";
-            wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px"
+            wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px";
+            wrappers[ i ].style.marginLeft = wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px"
         } );
     }
 
