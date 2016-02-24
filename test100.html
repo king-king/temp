@@ -12,69 +12,59 @@
             right: 0;
             bottom: 0;
             margin: 0;
+            background: #000;
         }
 
-        * {
-            -webkit-user-select: none;
-        }
-
-        .gan {
-            position: absolute;
-            top: 100px;
-            left: 200px;
-            width: 500px;
-            height: 10px;
-            background-color: red;
-        }
-
-        .animate {
-            height: 150px;
-            position: absolute;
-            left: 450px;
-            top: 110px;
-        }
-
-        @-webkit-keyframes down {
-            100% {
-                transform: translate3d(0, 400px, 0)
-            }
-        }
-
-        .border {
-            width: 300px;
-            height: 300px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            border: 2px solid black;
-            transform: translate3d(-50%, -50%, 0);
-            overflow: hidden;
+        body {
+            background: url("chuye-site/img/page0-bg.jpg");
+            background-size: cover;
         }
 
         img {
+            /*position: absolute;*/
+        }
+
+        .border {
+            width: 768px;
+            height: 768px;
+        }
+
+        .page0-title {
             position: absolute;
-            height: 100px;
-            top: -100px;
+            top: 21.09375%;
+            left: 0;
+            height: 10.67708333%;
+        }
+
+        .page0-word {
+            position: absolute;
+            top: 30.078125%;
+            left: 0;
+            height: 21.223958%;
+        }
+
+        .page0-qr {
+            position: absolute;
+            top: 56.770833333333%;
+            left: 2.604166%;
+            height: 20.3125%;
+        }
+
+        .page0-btn {
+            position: absolute;
+            top: 79.296875%;
+            left: 2.604166%;
+            height: 5.72916666666%;
         }
     </style>
 </head>
 <body>
-<div class="border">
-    <img src="img/paper02.png">
-    <img src="img/paper01.png">
+<div class="border">\
+    <img src="chuye-site/img/page0-title.png" class="page0-title">
+    <img src="chuye-site/img/page0-word.png" class="page0-word">
+    <img src="chuye-site/img/page0-btn.png" class="page0-btn">
 </div>
 <script>
-    (function () {
-        var border = document.querySelector( ".border" );
-        for ( var i = 0; i < 5; i++ ) {
-            var img = new Image();
-            img.src = "img/paper0" + (i % 2 + 1) + ".png";
-            border.appendChild( img );
-            img.style.height = Math.random() * 20 + 80 + "px";
-            img.style.left = Math.random() * 250 + "px";
-            img.style.animation = "down " + (3 + 2 * Math.random()) + "s ease-in-out " + i * 0.3 + "s infinite"
-        }
-    })();
 </script>
 </body>
 </html>

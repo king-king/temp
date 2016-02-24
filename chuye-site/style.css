@@ -59,3 +59,31 @@ body {
     height: 64.322916666%;
     width: 36.1979166%;
 }
+
+.page0-title {
+    position: absolute;
+    top: 21.09375%;
+    left: 0;
+    height: 10.67708333%;
+}
+
+.page0-word {
+    position: absolute;
+    top: 30.078125%;
+    left: 0;
+    height: 21.223958%;
+}
+
+.page0-qr {
+    position: absolute;
+    top: 56.770833333333%;
+    left: 2.604166%;
+    height: 20.3125%;
+}
+
+.page0-btn {
+    position: absolute;
+    top: 79.296875%;
+    left: 2.604166%;
+    height: 5.72916666666%;
+}
