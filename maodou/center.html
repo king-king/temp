@@ -42,8 +42,16 @@
         leftMaodou : 100 ,
         // 猫豆特权，内容做成图片，做图时候尺寸是290*280，png透明图片
         priviledge : [
-            "img/config/priviledge-download.png" ,
-            "img/config/priviledge-40pages.png" ] ,
+            {
+                icon : "img/config/priviledge-download.png" ,//图标，尺寸74*70
+                title : "下载自己的创作作品，永久保留。" ,
+                cost : 28// 消耗多少个猫豆
+            } ,
+            {
+                icon : "img/config/priviledge-40pages.png" ,//图标，尺寸74*70
+                title : "可创作40页作品。" ,
+                cost : 28// 消耗多少个猫豆
+            } ] ,
         // 做任务
         test : [
             {
@@ -122,7 +130,7 @@
         var priviW = (w * 290 / 640) << 0;
         // 配置需要计算的css样式
         insertCSSRules( {
-            ".priviledge-border .content div" : {
+            ".priviledge-border .content > div" : {
                 width : priviW - 2 + "px" ,
                 height : (priviW - 2) / 280 * 290 + "px" ,
                 float : "left" ,
@@ -157,8 +165,8 @@
         document.querySelector( ".left-maodou-num" ).textContent = data.leftMaodou;
         // 猫豆特权
         var pContent = "";
-        loopArray( data.priviledge , function ( src ) {
-            pContent += "<div><img src=\"" + src + "\"></div>"
+        loopArray( data.priviledge , function ( priv ) {
+            pContent += "<div><div class='icon-border'><img src='" + priv.icon + "'></div><div class='title'>" + priv.title + "</div><div class='cost'>消耗" + priv.cost + "个猫豆</div></div>";
         } );
         document.querySelector( ".priviledge-border .content" ).innerHTML = pContent;
         // 做任务
