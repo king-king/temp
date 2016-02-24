@@ -14,12 +14,22 @@ body {
 }
 
 .title {
-    height: 18px;
+    font-size: 14px;
+    height: 14px;
+    line-height: 14px;
+    font-weight: bold;
+    color: #191a1b;
 }
 
 .my-maodou-border {
     height: 149px;
     position: relative;
+}
+
+.my-maodou-title {
+    position: absolute;
+    top: 13px;
+    left: 15px;
 }
 
 .my-maodou {
@@ -35,6 +45,8 @@ body {
     right: 5px;
     height: 11px;
     margin: 10px;
+    font-size: 12px;
+    color: #666666;
 }
 
 .dou-img {
@@ -69,7 +81,7 @@ body {
     padding-bottom: 20px;
 }
 
-.title-priviledge {
+.priviledge-title {
     position: absolute;
     left: 15px;
     top: 13px;
@@ -106,8 +118,8 @@ body {
     padding-bottom: 11px;
 }
 
-.title-dotest {
-    margin: 13px 0 0 15px;
+.do-test-title {
+    margin: 13px 0 8px 15px;
 }
 
 .do-test-border .test-title {
@@ -186,3 +198,4 @@ body {
     left: 16%;
     text-align: center;
 }
+
