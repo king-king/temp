@@ -1,6 +1,15 @@
+html {
+    height: 100%;
+}
+
 body {
     margin: 0;
-    overflow-y: hidden;
     height: 100%;
     font-family: "Microsoft Yahei", "微软雅黑", "华文细黑", sans-serif;
+    overflow-y: hidden;
+}
+
+.section {
+    width: 100%;
+    position: relative;
 }
