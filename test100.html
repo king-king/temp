@@ -45,7 +45,27 @@
     console.log();
 </div>
 <script>
-    document.querySelector( ".border" ).style.transform = "translate3d(100px,0,0)"
+    var data = [
+        {
+            name : ".page2-tag0" ,
+            x : 730 ,
+            h : 72 ,
+            y : 1060
+        } ,
+        {
+            name : ".page2-tag1" ,
+            x : 730 ,
+            h : 72 ,
+            y : 1174
+        }
+    ];
+
+    var result = "";
+    for ( var i = 0; i < data.length; i++ ) {
+        result += data[ i ].name + "{top:" + (data[ i ].y - 768) / 768 + "%;left:" + (data[ i ].x - 128) / 768 + "%;height:" + data[ i ].h / 768 + "%;}"
+    }
+    console.log( result )
+
 </script>
 </body>
 </html>

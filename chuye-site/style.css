@@ -23,6 +23,10 @@ body {
     overflow-y: hidden;
 }
 
+.hide {
+    display: none !important;
+}
+
 .can-tap {
     cursor: pointer;
 }
@@ -227,7 +231,19 @@ body {
     height: 54.947916%;
 }
 
+.content-border-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
 .content-img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 }
@@ -296,6 +312,41 @@ body {
     top: 45.96354%;
     left: 7.94271%;
     height: 16.40625%;
+}
+
+.page2-cat {
+    height: 42%;
+    left: 13%;
+    bottom: -5%;
+}
+
+.page2-arrow {
+    height: 20%;
+    left: 30%;
+    top: 60%;
+}
+
+.page2-tag0 {
+    top: 38.0208%;
+    left: 78.385%;
+    height: 9.375%;
+}
+
+.page2-tag1 {
+    top: 52.864%;
+    left: 78.3854%;
+    height: 9.375%;
+}
+
+.page2-girl {
+    top: -1%;
+    right: 10%;
+    height: 20%;
+    -webkit-transform: rotateZ(180deg);
+    -moz-transform: rotateZ(180deg);
+    -ms-transform: rotateZ(180deg);
+    -o-transform: rotateZ(180deg);
+    transform: rotateZ(180deg);
 }
 
 .page3-title {

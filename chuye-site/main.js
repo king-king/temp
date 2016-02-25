@@ -36,9 +36,6 @@
             wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px";
             wrappers[ i ].style.marginLeft = wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px"
         } );
-        //loopArray( querySelectorAll( ".yellow-phone" ) , function ( phone ) {
-        //    phone.style.marginTop = -cubeHeight * 0.82291666 / 2 + "px";
-        //} );
     }
 
     var curPageIndex = 0;
@@ -68,11 +65,11 @@
             isScrolling = false;
         } , 1000 );
         if ( curPageIndex == 6 ) {
-            transofrm( scrollWrapper , "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)" );
+            transform( scrollWrapper , "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)" );
         } else {
             indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.add( "select" );
             sections[ curPageIndex ] && sections[ curPageIndex ].classList.add( "show" );
-            transofrm( scrollWrapper , "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)" );
+            transform( scrollWrapper , "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)" );
         }
     }
 
@@ -101,6 +98,11 @@
                 clearTimeout( timeID );
             }
         }
+    }
+
+    function transform( el , style ) {
+        el.style.webkitTransform = style;
+        el.style.transform = style;
     }
 
     function initPage0() {
@@ -142,11 +144,21 @@
 
     }
 
-    function transofrm( el , style ) {
-        el.style.webkitTransform = style;
-        el.style.transform = style;
+    function initPage2() {
+        var page2Tags = querySelectorAll( ".page2-tag" );
+        var imgBorders = querySelectorAll( ".content-border-item" );
+        var images = querySelectorAll( ".page2-tag" );
+        var srcs = [ images[ 0 ].src , images[ 1 ].src ];
+        loopArray( page2Tags , function ( tag , i ) {
+            tag.onmouseover = function () {
+                // 选中当前
+                images[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
+                images[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
+                imgBorders[ i ].classList.remove( "hide" );
+                imgBorders[ 1 - i ].classList.add( "hide" );
+            }
+        } );
     }
-
 
     function init() {
         bindEvent( document , "mousewheel" , function ( e ) {
@@ -175,8 +187,10 @@
                 scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
             }
         } );
-        //page-0
+        // page-0
         initPage0();
+        // page-2
+        initPage2();
         resize();
     }
 
