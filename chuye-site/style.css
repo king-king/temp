@@ -322,3 +322,12 @@ body {
     border-right: 1px solid white;
     text-align: center;
 }
+
+.indicator {
+
+}
+
+.indicator .item {
+    height: 19px;
+    width: 100%;
+}
