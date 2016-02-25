@@ -9,6 +9,8 @@
     var sections = querySelectorAll( ".section" );
     var wrappers = querySelectorAll( ".wrapper" );
     var scrollWrapper = querySelector( ".scroll-wrapper" );
+    var indicatorItems = querySelectorAll( ".indicator .item" );
+
 
     function loopArray( arr , func ) {
         for ( var i = 0; i < arr.length; i++ ) {
@@ -47,8 +49,7 @@
             return;
         }
         isScrolling = true;
-        var items = querySelectorAll( ".indicator .item" );
-        items[ curPageIndex ] && items[ curPageIndex ].classList.remove( "select" );
+        indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
         // 负数-向下翻-下一页，正数-向上翻-上一页
         if ( direction < 0 ) {
             // 下一页
@@ -68,7 +69,7 @@
         if ( curPageIndex == 6 ) {
             scrollWrapper.style.transform = "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)";
         } else {
-            items[ curPageIndex ].classList.add( "select" );
+            indicatorItems[ curPageIndex ].classList.add( "select" );
             scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
         }
     }
@@ -81,8 +82,8 @@
     } );
 
     function init() {
-        //第一页的小图标，鼠标放上时候要变化
-        loopArray( querySelectorAll( ".page1-icon" ) , function ( icon , i ) {
+        // 第一页的小图标，鼠标放上时候要变化
+        loopArray( querySelectorAll( ".page1-icon" ) , function ( icon ) {
             var src = icon.src;
             var outScr = src.slice( 0 , src.length - 4 ) + "-1.png";
             icon.onmouseover = function () {
@@ -91,6 +92,15 @@
             icon.onmouseout = function () {
                 icon.src = src;
             };
+        } );
+        // 给左侧导航按钮添加点击事件
+        loopArray( indicatorItems , function ( item , i ) {
+            item.onclick = function () {
+                indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
+                curPageIndex = i;
+                indicatorItems[ curPageIndex ].classList.add( "select" );
+                scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+            }
         } );
         resize();
         console.log( navigator.userAgent );
