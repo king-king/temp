@@ -18,7 +18,7 @@
 
     function resize() {
         bodyHeight = document.body.offsetHeight;
-        scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight + "px,0)";
+        scrollWrapper.style.transform = "translate3d(0,-" + 0 + "px,0)";
         var cubeHeight = bodyHeight > 768 ? 768 : bodyHeight;
         loopArray( sections , function ( setction , i ) {
             setction.style.height = bodyHeight + "px";
@@ -30,7 +30,40 @@
         } );
     }
 
+    var curPageIndex = 0;
+    var isScrolling = false;
 
+    function wheelScroll( direction ) {
+        if ( isScrolling ) {
+            return;
+        }
+        isScrolling = true;
+        var items = querySelectorAll( ".indicator .item" );
+        items[ curPageIndex ].classList.remove( "select" );
+        // 负数-向下翻-下一页，正数-向上翻-上一页
+        if ( direction < 0 ) {
+            if ( curPageIndex != 5 ) {
+                curPageIndex += 1;
+            }
+        }
+        else {
+            if ( curPageIndex != 0 ) {
+                curPageIndex -= 1;
+            }
+        }
+        setTimeout( function () {
+            isScrolling = false;
+        } , 1000 );
+        items[ curPageIndex ].classList.add( "select" );
+        scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+    }
+
+    document.addEventListener( "mousewheel" , function ( e ) {
+        wheelScroll( e.wheelDelta );
+    } );
+    document.addEventListener( "DOMMouseScroll" , function ( e ) {
+        wheelScroll( -e.detail );
+    } );
 
     function init() {
         //第一页的小图标，鼠标放上时候要变化
@@ -47,7 +80,7 @@
         resize();
         console.log( navigator.userAgent );
         document.addEventListener( "mousewheel" , function ( e ) {
-            console.log( "data:" + e.detail );
+            console.log( "data:" + e.detail );//wheelDelta
         } );
     }
 
