@@ -67,10 +67,10 @@
             isScrolling = false;
         } , 1000 );
         if ( curPageIndex == 6 ) {
-            scrollWrapper.style.transform = "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)";
+            transofrm( scrollWrapper , "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)" );
         } else {
             indicatorItems[ curPageIndex ].classList.add( "select" );
-            scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+            transofrm( scrollWrapper , "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)" );
         }
     }
 
@@ -139,6 +139,12 @@
         };
 
     }
+
+    function transofrm( el , style ) {
+        el.style.webkitTransform = style;
+        el.style.transform = style;
+    }
+
 
     function init() {
         bindEvent( document , "mousewheel" , function ( e ) {

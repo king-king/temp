@@ -3,6 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <title>海报</title>
     <style>
         html, body {
@@ -27,42 +29,23 @@
         .border {
             width: 683px;
             height: 683px;
+            background: #000;
             position: absolute;
-            /*left: 50%;*/
-            /*top: 50%;*/
-            /*transform: translate3d(-50%, -50%, 0);*/
-            transform: translate3d(-10%, -10%, 0);
+            -webkit-transform: translate3d(100px, 0, 0);
+            -moz-transform: translate3d(100px, 0, 0);
+            -ms-transform: translate3d(100px, 0, 0);
+            -o-transform: translate3d(100px, 0, 0);
+            transform: translate3d(100px, 0, 0);
         }
 
-        .page0-title {
-            position: absolute;
-            top: 21.09375%;
-            left: 0;
-            height: 10.67708333%;
-        }
-
-        .page0-word {
-            position: absolute;
-            top: 30.078125%;
-            left: 0;
-            height: 21.223958%;
-        }
-
-        .page0-btn {
-            position: absolute;
-            top: 79.296875%;
-            left: 2.604166%;
-            height: 5.72916666666%;
-        }
     </style>
 </head>
 <body>
-<div class="border">\
-    <img src="chuye-site/img/page0-title.png" class="page0-title">
-    <img src="chuye-site/img/page0-word.png" class="page0-word">
-    <img src="chuye-site/img/page0-btn.png" class="page0-btn">
+<div class="border">
+    console.log();
 </div>
 <script>
+    document.querySelector( ".border" ).style.transform = "translate3d(100px,0,0)"
 </script>
 </body>
 </html>
