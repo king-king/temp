@@ -30,6 +30,8 @@
         } );
     }
 
+
+
     function init() {
         //第一页的小图标，鼠标放上时候要变化
         loopArray( querySelectorAll( ".page1-icon" ) , function ( icon , i ) {
@@ -43,6 +45,10 @@
             };
         } );
         resize();
+        console.log( navigator.userAgent );
+        document.addEventListener( "mousewheel" , function ( e ) {
+            console.log( "data:" + e.detail );
+        } );
     }
 
     init();
