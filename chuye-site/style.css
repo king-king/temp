@@ -557,12 +557,33 @@ body {
 
 .show .page1-dash {
     animation: 1s shade-in ease-in-out both;
+}
 
+.show .page2-tag0, .show .page5-tag0 {
+    animation: 1s right-to-left ease-in-out both;
+}
+
+.show .page2-tag1, .show .page5-tag1 {
+    animation: 1s right-to-left 0.2s ease-in-out both;
 }
 
 @keyframes left-to-right {
     0% {
         transform: translate3d(-50px, 0, 0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes right-to-left {
+    0% {
+        transform: translate3d(50px, 0, 0);
         opacity: 0;
     }
     50% {
