@@ -36,9 +36,9 @@
             wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px";
             wrappers[ i ].style.marginLeft = wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px"
         } );
-        loopArray( querySelectorAll( ".yellow-phone" ) , function ( phone ) {
-            phone.style.marginTop = -cubeHeight * 0.82291666 / 2 + "px";
-        } );
+        //loopArray( querySelectorAll( ".yellow-phone" ) , function ( phone ) {
+        //    phone.style.marginTop = -cubeHeight * 0.82291666 / 2 + "px";
+        //} );
     }
 
     var curPageIndex = 0;
