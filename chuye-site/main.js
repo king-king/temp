@@ -50,6 +50,7 @@
         }
         isScrolling = true;
         indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
+        sections[ curPageIndex ] && sections[ curPageIndex ].classList.remove( "show" );
         // 负数-向下翻-下一页，正数-向上翻-上一页
         if ( direction < 0 ) {
             // 下一页
@@ -69,7 +70,8 @@
         if ( curPageIndex == 6 ) {
             transofrm( scrollWrapper , "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)" );
         } else {
-            indicatorItems[ curPageIndex ].classList.add( "select" );
+            indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.add( "select" );
+            sections[ curPageIndex ] && sections[ curPageIndex ].classList.add( "show" );
             transofrm( scrollWrapper , "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)" );
         }
     }
