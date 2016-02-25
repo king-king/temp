@@ -146,14 +146,29 @@
 
     function initPage2() {
         var page2Tags = querySelectorAll( ".page2-tag" );
-        var imgBorders = querySelectorAll( ".content-border-item" );
-        var images = querySelectorAll( ".page2-tag" );
-        var srcs = [ images[ 0 ].src , images[ 1 ].src ];
+        var imgBorders = querySelectorAll( ".page-2.content-border-item" );
+        var srcs = [ page2Tags[ 0 ].src , page2Tags[ 1 ].src ];
         loopArray( page2Tags , function ( tag , i ) {
             tag.onmouseover = function () {
                 // 选中当前
-                images[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
-                images[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
+                page2Tags[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
+                page2Tags[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
+                imgBorders[ i ].classList.remove( "hide" );
+                imgBorders[ 1 - i ].classList.add( "hide" );
+            }
+        } );
+    }
+
+
+    function initPage5() {
+        var page5Tags = querySelectorAll( ".page5-tag" );
+        var imgBorders = querySelectorAll( ".page-5.content-border-item" );
+        var srcs = [ page5Tags[ 0 ].src , page5Tags[ 1 ].src ];
+        loopArray( page5Tags , function ( tag , i ) {
+            tag.onmouseover = function () {
+                // 选中当前
+                page5Tags[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
+                page5Tags[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
                 imgBorders[ i ].classList.remove( "hide" );
                 imgBorders[ 1 - i ].classList.add( "hide" );
             }
@@ -191,6 +206,8 @@
         initPage0();
         // page-2
         initPage2();
+        // page-5
+        initPage5();
         resize();
     }
 
