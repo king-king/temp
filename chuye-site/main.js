@@ -39,14 +39,16 @@
         }
         isScrolling = true;
         var items = querySelectorAll( ".indicator .item" );
-        items[ curPageIndex ].classList.remove( "select" );
+        items[ curPageIndex ] && items[ curPageIndex ].classList.remove( "select" );
         // 负数-向下翻-下一页，正数-向上翻-上一页
         if ( direction < 0 ) {
-            if ( curPageIndex != 5 ) {
+            // 下一页
+            if ( curPageIndex != 6 ) {
                 curPageIndex += 1;
             }
         }
         else {
+            // 上一页
             if ( curPageIndex != 0 ) {
                 curPageIndex -= 1;
             }
@@ -54,8 +56,12 @@
         setTimeout( function () {
             isScrolling = false;
         } , 1000 );
-        items[ curPageIndex ].classList.add( "select" );
-        scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+        if ( curPageIndex == 6 ) {
+            scrollWrapper.style.transform = "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)";
+        } else {
+            items[ curPageIndex ].classList.add( "select" );
+            scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+        }
     }
 
     document.addEventListener( "mousewheel" , function ( e ) {
