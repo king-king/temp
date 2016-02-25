@@ -76,6 +76,61 @@ body {
     left: 59.89583333333%;
     height: 64.322916666%;
     width: 36.1979166%;
+    overflow: hidden;
+}
+
+.page0-img-border .page0-img-border-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 500%;
+    height: 100%;
+}
+
+.page0-circles {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    bottom: 10px;
+    text-align: center;
+}
+
+.page0-circles .page0-circle {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin: 0 5px;
+    border-radius: 6px;
+    background-color: #3d3939;
+    position: relative;
+    top: -5px;
+}
+
+.page0-circles .page0-circle.select {
+    border: 1px solid #9a9898;
+    background-color: transparent;
+}
+
+.page0-img-border-wrapper .item {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 20%;
+}
+
+.page0-img-border-wrapper .item.a {
+    background: url("img/page0-0.jpg") center center;
+    background-size: cover;
+}
+
+.page0-img-border-wrapper .item.b {
+    background: url("img/page0-1.jpg") center center;
+    background-size: cover;
+}
+
+.page0-img-border-wrapper .item.c {
+    background: url("img/page0-2.jpg") center center;
+    background-size: cover;
 }
 
 .page0-title {

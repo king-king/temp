@@ -102,8 +102,11 @@
                 scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
             }
         } );
+        //page-0
+        loopArray( querySelectorAll( ".page0-img-border-wrapper .item" ) , function ( item , i ) {
+            item.style.left = 20 * (i - 1) + "%";
+        } );
         resize();
-        console.log( navigator.userAgent );
         document.addEventListener( "mousewheel" , function ( e ) {
             console.log( "data:" + e.detail );//wheelDelta
         } );
