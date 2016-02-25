@@ -159,7 +159,6 @@
         } );
     }
 
-
     function initPage5() {
         var page5Tags = querySelectorAll( ".page5-tag" );
         var imgBorders = querySelectorAll( ".page-5.content-border-item" );
@@ -197,8 +196,10 @@
         loopArray( indicatorItems , function ( item , i ) {
             item.onclick = function () {
                 indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
+                sections[ curPageIndex ] && sections[ curPageIndex ].classList.remove( "show" );
                 curPageIndex = i;
                 indicatorItems[ curPageIndex ].classList.add( "select" );
+                sections[ curPageIndex ] && sections[ curPageIndex ].classList.add( "show" );
                 scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
             }
         } );
