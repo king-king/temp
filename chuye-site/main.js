@@ -16,6 +16,15 @@
         }
     }
 
+    function bindEvent( el , type , func ) {
+        el.addEventListener( type , func );
+        return {
+            remove : function () {
+                el.removeEventListener( type , func );
+            }
+        }
+    }
+
     function resize() {
         bodyHeight = document.body.offsetHeight;
         scrollWrapper.style.transform = "translate3d(0,-" + 0 + "px,0)";
@@ -64,10 +73,10 @@
         }
     }
 
-    document.addEventListener( "mousewheel" , function ( e ) {
+    bindEvent( document , "mousewheel" , function ( e ) {
         wheelScroll( e.wheelDelta );
     } );
-    document.addEventListener( "DOMMouseScroll" , function ( e ) {
+    bindEvent( document , "DOMMouseScroll" , function ( e ) {
         wheelScroll( -e.detail );
     } );
 
