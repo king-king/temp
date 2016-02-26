@@ -10,6 +10,8 @@
     var wrappers = querySelectorAll( ".wrapper" );
     var scrollWrapper = querySelector( ".scroll-wrapper" );
     var indicatorItems = querySelectorAll( ".indicator .item" );
+    var curPageIndex = 0;
+    var isScrolling = false;
 
     function loopArray( arr , func ) {
         for ( var i = 0; i < arr.length; i++ ) {
@@ -34,7 +36,7 @@
 
     function resize() {
         bodyHeight = document.body.offsetHeight;
-        scrollWrapper.style.transform = "translate3d(0,-" + 0 + "px,0)";
+        scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
         var cubeHeight = bodyHeight > 768 ? 768 : bodyHeight;
         loopArray( sections , function ( setction , i ) {
             setction.style.height = bodyHeight + "px";
@@ -43,8 +45,6 @@
         } );
     }
 
-    var curPageIndex = 0;
-    var isScrolling = false;
 
     function wheelScroll( direction ) {
         if ( isScrolling ) {
@@ -381,6 +381,9 @@
             sections[ 0 ].classList.add( "show" );
             loadingHandler.remove();
             document.querySelector( ".content" ).classList.remove( "hide" );
+            window.onresize = function () {
+                resize();
+            };
         };
 
         bindEvent( document , "mousewheel" , function ( e ) {
