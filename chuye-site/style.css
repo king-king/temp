@@ -361,6 +361,16 @@ body {
     height: 11.71875%;
 }
 
+.page3-canvas {
+    width: 86px;
+    height: 86px;
+    position: absolute;
+    top: 50%;
+    margin-top: -43px;
+    right: 0;
+
+}
+
 .page4-title {
     top: 41.66667%;
     left: 13.15104%;

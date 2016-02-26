@@ -110,6 +110,15 @@
         el.style.transform = style;
     }
 
+    function concurrentTask( tasks , callback ) {
+        var len = tasks.length , count = 0;
+        tasks.forEach( function ( task ) {
+            task( function () {
+                ++count == len && callback();
+            } );
+        } );
+    }
+
     function initPage0() {
         var curIndex = 0;
         var slideWrapper = querySelector( ".page0-img-border-wrapper" );
@@ -161,6 +170,41 @@
                 imgBorders[ i ].classList.remove( "hide" );
                 imgBorders[ 1 - i ].classList.add( "hide" );
             }
+        } );
+    }
+
+    function initPage3() {
+        var contentImages = querySelectorAll( ".page-3 .content-img" );
+        var canvas = querySelector( ".page3-canvas" );
+        var clock = new Image() , clockPointer = new Image();
+
+        function frame( angle ) {
+            gc.clearRect( 0 , 0 , 86 , 86 );
+            gc.fillStyle = angle == 360 ? "white" : "#ffecc4";
+            gc.save();
+            gc.beginPath();
+            gc.moveTo( 43 , 43 );
+            gc.lineTo( 43 , 13 );
+            gc.arc( 43 , 43 , 29 , da0 , da0 + da * angle );
+            gc.lineTo( 43 , 43 );
+            gc.closePath();
+            gc.fill();
+            gc.drawImage( clock , 0 , 0 );
+            gc.translate( 43 , 43 );
+            gc.rotate( da * angle );
+            gc.drawImage( clockPointer , -2 , -26 );
+            gc.restore();
+        }
+
+        concurrentTask( [
+            function ( done ) {
+                clock.src = "img/clock.png";
+                clock.onload = done;
+            } , function ( done ) {
+                clockPointer.src = "img/clock-pointer.png";
+                clockPointer.onload = done;
+            } ] , function () {
+            frame( 0 );
         } );
     }
 
@@ -245,6 +289,8 @@
         initPage0();
         // page-2
         initPage2();
+        // page-3
+        initPage3();
         // page-4
         initPage4();
         // page-5

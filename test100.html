@@ -52,15 +52,15 @@
 
     var canvas = document.querySelector( "canvas" );
     var gc = canvas.getContext( "2d" );
-    var img = new Image();
-    var img2 = new Image();
+    var clock = new Image();
+    var clockPointer = new Image();
     var count = 0;
-    img2.src = "chuye-site/img/clock-pointer.png";// 4*52
-    img.src = "chuye-site/img/clock.png";// 86*86
-    img.onload = function () {
+    clockPointer.src = "chuye-site/img/clock-pointer.png";// 4*52
+    clock.src = "chuye-site/img/clock.png";// 86*86
+    clock.onload = function () {
         ++count == 2 && draw();
     };
-    img2.onload = function () {
+    clockPointer.onload = function () {
         ++count == 2 && draw();
     };
     var da = Math.PI / 180;
@@ -77,10 +77,10 @@
             gc.lineTo( 43 , 43 );
             gc.closePath();
             gc.fill();
-            gc.drawImage( img , 0 , 0 );
+            gc.drawImage( clock , 0 , 0 );
             gc.translate( 43 , 43 );
             gc.rotate( da * angle );
-            gc.drawImage( img2 , -2 , -26 );
+            gc.drawImage( clockPointer , -2 , -26 );
             gc.restore();
         }
 
