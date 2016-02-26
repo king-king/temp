@@ -6,94 +6,23 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <title>海报</title>
+    <link href="test.css" rel="stylesheet">
     <style>
-        html, body {
-            position: absolute;
-            left: 0;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0;
-        }
-
-        canvas {
-            /*background: black;*/
-            position: absolute;
-            left: 200px;
-            top: 100px;
-            width: 86px;
-            height: 86px;
-        }
     </style>
 </head>
-<body>
-<canvas width="86" height="86"></canvas>
-<script>
-    //    var data = [
-    //        {
-    //            name : ".page2-tag0" ,
-    //            x : 730 ,
-    //            h : 72 ,
-    //            y : 1060
-    //        } ,
-    //        {
-    //            name : ".page2-tag1" ,
-    //            x : 730 ,
-    //            h : 72 ,
-    //            y : 1174
-    //        }
-    //    ];
-    //
-    //    var result = "";
-    //    for ( var i = 0; i < data.length; i++ ) {
-    //        result += data[ i ].name + "{top:" + (data[ i ].y - 768) / 768 + "%;left:" + (data[ i ].x - 128) / 768 + "%;height:" + data[ i ].h / 768 + "%;}"
-    //    }
-    //    console.log( result )
+<body class="not-support">
+<div class="browser-update" id="update"><h1>请升级您的浏览器</h1>
+    <h2>尊敬的用户，您现在使用的浏览器版本过低，请升级后继续使用锤子科技的服务。</h2>
+    <h3>您可以选择：</h3>
+    <ul>
+        <li class="chrome"><a href="http://www.google.cn/intl/zh-CN/chrome/browser/" target="_blank"><h4>Google
+            Chrome</h4></a></li>
+        <li class="firefox"><a href="http://www.mozilla.org/zh-CN/firefox/new/" target="_blank"><h4>Mozilla Firefox</h4>
+        </a></li>
+        <li class="ie"><a href="http://www.microsoft.com/china/windows/IE/upgrade/index.aspx" target="_blank"><h4>
+            Internet Explorer 9+</h4></a></li>
+    </ul>
+</div>
 
-    var canvas = document.querySelector( "canvas" );
-    var gc = canvas.getContext( "2d" );
-    var clock = new Image();
-    var clockPointer = new Image();
-    var count = 0;
-    clockPointer.src = "chuye-site/img/clock-pointer.png";// 4*52
-    clock.src = "chuye-site/img/clock.png";// 86*86
-    clock.onload = function () {
-        ++count == 2 && draw();
-    };
-    clockPointer.onload = function () {
-        ++count == 2 && draw();
-    };
-    var da = Math.PI / 180;
-    var da0 = -Math.PI / 2;
-    function draw() {
-        function frame( angle ) {
-            gc.clearRect( 0 , 0 , 86 , 86 );
-            gc.fillStyle = angle == 360 ? "white" : "#ffecc4";
-            gc.save();
-            gc.beginPath();
-            gc.moveTo( 43 , 43 );
-            gc.lineTo( 43 , 13 );
-            gc.arc( 43 , 43 , 29 , da0 , da0 + da * angle );
-            gc.lineTo( 43 , 43 );
-            gc.closePath();
-            gc.fill();
-            gc.drawImage( clock , 0 , 0 );
-            gc.translate( 43 , 43 );
-            gc.rotate( da * angle );
-            gc.drawImage( clockPointer , -2 , -26 );
-            gc.restore();
-        }
-
-        var angle = 0;
-        setTimeout( function () {
-            angle += 2;
-            if ( angle <= 360 ) {
-                frame( angle );
-                setTimeout( arguments.callee , 20 );
-            }
-        } , 20 );
-    }
-
-</script>
 </body>
 </html>
