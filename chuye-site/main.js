@@ -160,17 +160,41 @@
 
     function initPage2() {
         var page2Tags = querySelectorAll( ".page2-tag" );
-        var imgBorders = querySelectorAll( ".page-2.content-border-item" );
+        var imgBorders = querySelectorAll( ".page-2 .content-border-item" );
         var srcs = [ page2Tags[ 0 ].src , page2Tags[ 1 ].src ];
+        var curIndex = 0;
+        // 定时轮播
+        function switchImg() {
+            // 关闭当前的
+            imgBorders[ curIndex ].classList.add( "hide" );
+            page2Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "1.png";
+            // 打开下一个
+            curIndex = (curIndex + 1) % 2;
+            imgBorders[ curIndex ].classList.remove( "hide" );
+            page2Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "0.png";
+        }
+
+        var switchHandler = Timer( 5000 , switchImg );
         loopArray( page2Tags , function ( tag , i ) {
             tag.onmouseover = function () {
                 // 选中当前
+                curIndex = i;
+                switchHandler.remove();
                 page2Tags[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
                 page2Tags[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
                 imgBorders[ i ].classList.remove( "hide" );
                 imgBorders[ 1 - i ].classList.add( "hide" );
-            }
+            };
+            tag.onmouseout = function () {
+                switchHandler = Timer( 5000 , switchImg );
+            };
         } );
+        sections[ 2 ].play = function () {
+            switchHandler = Timer( 5000 , switchImg );
+        };
+        sections[ 2 ].stop = function () {
+            switchHandler.remove();
+        };
     }
 
     function initPage3() {
@@ -292,15 +316,41 @@
         var page5Tags = querySelectorAll( ".page5-tag" );
         var imgBorders = querySelectorAll( ".page-5.content-border-item" );
         var srcs = [ page5Tags[ 0 ].src , page5Tags[ 1 ].src ];
+        var curIndex = 0;
+        // 定时轮播
+        function switchImg() {
+            // 关闭当前的
+            imgBorders[ curIndex ].classList.add( "hide" );
+            page5Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "1.png";
+            // 打开下一个
+            curIndex = (curIndex + 1) % 2;
+            imgBorders[ curIndex ].classList.remove( "hide" );
+            page5Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "0.png";
+        }
+
+        var switchHandler = Timer( 5000 , switchImg );
         loopArray( page5Tags , function ( tag , i ) {
             tag.onmouseover = function () {
                 // 选中当前
+                curIndex = i;
+                switchHandler.remove();
                 page5Tags[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
                 page5Tags[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
                 imgBorders[ i ].classList.remove( "hide" );
                 imgBorders[ 1 - i ].classList.add( "hide" );
+            };
+            tag.onmouseout = function () {
+                switchHandler = Timer( 5000 , switchImg );
             }
         } );
+
+        sections[ 5 ].play = function () {
+            switchHandler = Timer( 5000 , switchImg );
+        };
+        sections[ 5 ].stop = function () {
+            switchHandler.remove();
+        };
+
     }
 
     function init() {
