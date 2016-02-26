@@ -163,6 +163,7 @@
             circles[ curIndex + 1 == 3 ? 0 : curIndex + 1 ].classList.add( "select" );
             animate( 400 , function ( percent ) {
                 slideWrapper.style.transform = "translate3d(-" + (25 * curIndex + 25 * percent * percent) + "%,0,0)"
+                slideWrapper.style.webkitTransform = "translate3d(-" + (25 * curIndex + 25 * percent * percent) + "%,0,0)"
             } , function () {
                 curIndex += 1;
                 if ( curIndex == 3 ) {
