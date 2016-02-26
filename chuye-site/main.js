@@ -177,13 +177,14 @@
         //定时轮播
         var timerHandler = Timer( 4000 , slide );
 
-        slideBorder.onmouseover = sections[ 0 ].stop = function () {
+        sections[ 0 ].stop = function () {
             // 当页面移出时，要停止轮播图
             timerHandler.remove();
         };
 
-        slideBorder.onmouseout = sections[ 0 ].play = function () {
+        sections[ 0 ].play = function () {
             // 当页面重新移入时，要继续轮播图
+            timerHandler.remove();
             timerHandler = Timer( 4000 , slide );
         };
 
@@ -218,6 +219,7 @@
                 imgBorders[ 1 - i ].classList.add( "hide" );
             };
             tag.onmouseout = function () {
+                switchHandler.remove();
                 switchHandler = Timer( 5000 , switchImg );
             };
         } );
@@ -284,14 +286,9 @@
             } );
         }
 
-        //slideHandler = Timer( 5000 , slide );
-
-        yellowPhone.onmouseout = sections[ 3 ].play = function () {
-            slideHandler = Timer( 5000 , slide );
-        };
-        yellowPhone.onmouseover = sections[ 3 ].stop = function () {
-            slideHandler.remove();
-        };
+        canvas.onclick = function () {
+            slide();
+        }
 
     }
 

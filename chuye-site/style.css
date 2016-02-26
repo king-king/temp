@@ -384,6 +384,7 @@ body {
     top: 50%;
     margin-top: -43px;
     right: 0;
+    cursor: pointer;
 }
 
 .page-3 .content-img {
