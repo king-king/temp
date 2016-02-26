@@ -566,7 +566,7 @@ body {
     left: 20px;
 }
 
-.indicator .item.select .title {
+.indicator .item.tap .title {
     display: inline-block;
 }
 

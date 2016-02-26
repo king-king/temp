@@ -502,7 +502,14 @@
                         tempWrapper.classList.add( "hide" );
                     }
                 }
-            }
+            };
+            item.onmouseover = function () {
+                item.classList.add( "tap" );
+            };
+            item.onmouseout = function () {
+                item.classList.remove( "tap" );
+            };
+
         } );
         // page-0
         initPage0();
