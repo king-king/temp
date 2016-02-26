@@ -370,11 +370,17 @@
         // loading
         var loadingTips = querySelector( ".loading-tips" );
         var contents = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
-        var index = 0;
+        var index = -1;
         var loadingHandler = Timer( 500 , function () {
             index = (index + 1) % 4;
             loadingTips.textContent = contents[ index ];
         } );
+        var page0Phone = querySelector( ".page0-phone" );
+        page0Phone.src = page0Phone.getAttribute( "data-src" );
+        page0Phone.onload = function () {
+            loadingHandler.remove();
+            document.querySelector( ".content" ).classList.remove( "hide" );
+        };
 
         bindEvent( document , "mousewheel" , function ( e ) {
             wheelScroll( e.wheelDelta );
