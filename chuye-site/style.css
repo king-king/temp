@@ -576,12 +576,24 @@ body {
 }
 
 /*动画部分*/
+.show .page0-phone, .show .page0-img-border {
+    animation: 2s right-to-left ease-in-out both;
+}
+
 .show .page-title {
     animation: 2s left-to-right ease-in-out both;
 }
 
 .show .page-word {
     animation: 2s left-to-right 0.6s ease-in-out both;
+}
+
+.show .page0-qr {
+    animation: 2s left-to-right 1.2s ease-in-out both;
+}
+
+.show .page0-btn {
+    animation: 2s left-to-right 1.8s ease-in-out both;
 }
 
 .show .page1-0 {

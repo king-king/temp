@@ -378,6 +378,7 @@
         var page0Phone = querySelector( ".page0-phone" );
         page0Phone.src = page0Phone.getAttribute( "data-src" );
         page0Phone.onload = function () {
+            sections[ 0 ].classList.add( "show" );
             loadingHandler.remove();
             document.querySelector( ".content" ).classList.remove( "hide" );
         };
