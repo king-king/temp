@@ -176,7 +176,11 @@
     function initPage3() {
         var contentImages = querySelectorAll( ".page-3 .content-img" );
         var canvas = querySelector( ".page3-canvas" );
+        var yellowPhone = querySelector( ".page-3 .yellow-phone" );
+        var gc = canvas.getContext( "2d" );
         var clock = new Image() , clockPointer = new Image();
+        var da = Math.PI / 180;
+        var da0 = -Math.PI / 2;
 
         function frame( angle ) {
             gc.clearRect( 0 , 0 , 86 , 86 );
@@ -206,6 +210,32 @@
             } ] , function () {
             frame( 0 );
         } );
+        // 图片要能够轮播
+        var curIndex = 0;
+        var angle = 0;
+        var dangle = 120;
+
+        function slide() {
+            contentImages[ curIndex ].classList.remove( "select" );
+            curIndex = (curIndex + 1) % 3;
+            contentImages[ curIndex ].classList.add( "select" );
+            animate( 1000 , function ( percent ) {
+                frame( angle + dangle * percent * percent );
+            } , function () {
+                angle = curIndex == 0 ? 0 : angle + dangle;
+                frame( angle );
+            } );
+        }
+
+        var slideHandler = Timer( 5000 , slide );
+
+        yellowPhone.onmouseout = sections[ 3 ].play = function () {
+            slideHandler = Timer( 5000 , slide );
+        };
+        yellowPhone.onmouseover = sections[ 3 ].stop = function () {
+            slideHandler.remove();
+        };
+
     }
 
     function initPage4() {

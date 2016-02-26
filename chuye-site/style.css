@@ -368,7 +368,14 @@ body {
     top: 50%;
     margin-top: -43px;
     right: 0;
+}
 
+.page-3 .content-img {
+    opacity: 0;
+}
+
+.page-3 .content-img.select {
+    opacity: 1;
 }
 
 .page4-title {
