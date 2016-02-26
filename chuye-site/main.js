@@ -187,7 +187,6 @@
             timerHandler.remove();
             timerHandler = Timer( 4000 , slide );
         };
-
     }
 
     function initPage2() {
@@ -430,6 +429,7 @@
     }
 
     function init() {
+        resize();
         // loading
         var loadingTips = querySelector( ".loading-tips" );
         var contents = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
@@ -447,6 +447,8 @@
             window.onresize = function () {
                 resize();
             };
+            // page-0
+            initPage0();
         };
 
         bindEvent( document , "mousewheel" , function ( e ) {
@@ -511,8 +513,6 @@
             };
 
         } );
-        // page-0
-        initPage0();
         // page-2
         initPage2();
         // page-3
@@ -521,7 +521,6 @@
         initPage4();
         // page-5
         initPage5();
-        resize();
     }
 
     init();
