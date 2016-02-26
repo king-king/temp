@@ -12,6 +12,7 @@
     var indicatorItems = querySelectorAll( ".indicator .item" );
     var curPageIndex = 0;
     var isScrolling = false;
+    var yellowPhones = querySelectorAll( ".section .yellow-phone" );
 
     function loopArray( arr , func ) {
         for ( var i = 0; i < arr.length; i++ ) {
@@ -47,7 +48,6 @@
         tempWrapper.style.width = tempWrapper.style.height = cubeHeight + "px";
         tempWrapper.style.marginLeft = tempWrapper.style.marginTop = -cubeHeight / 2 + "px"
     }
-
 
     function wheelScroll( direction ) {
         if ( isScrolling ) {
