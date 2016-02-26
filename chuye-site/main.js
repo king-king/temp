@@ -57,13 +57,19 @@
         if ( direction < 0 ) {
             // 下一页
             if ( curPageIndex != 6 ) {
+                // 只要不是最后一页，都能继续往下翻
+                sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
                 curPageIndex += 1;
+                sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
             }
         }
         else {
             // 上一页
             if ( curPageIndex != 0 ) {
+                // 只要不是第一页，都能往上翻
+                sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
                 curPageIndex -= 1;
+                sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
             }
         }
         setTimeout( function () {
