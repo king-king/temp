@@ -43,6 +43,9 @@
             wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px";
             wrappers[ i ].style.marginLeft = wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px"
         } );
+        var tempWrapper = querySelector( ".temp-wrapper" );
+        tempWrapper.style.width = tempWrapper.style.height = cubeHeight + "px";
+        tempWrapper.style.marginLeft = tempWrapper.style.marginTop = -cubeHeight / 2 + "px"
     }
 
 

@@ -63,7 +63,7 @@ body {
     background-color: #fffcf5;
 }
 
-.section .wrapper {
+.section .wrapper, .temp-wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
