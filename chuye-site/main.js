@@ -241,6 +241,7 @@
     function initPage4() {
         var contentImage = querySelectorAll( ".page-4 .content-img" );
         var circles = querySelectorAll( ".page4-circle" );
+        var contentBorder = querySelector( ".page-4.content-border" );
         var curIndex = 0;
         loopArray( contentImage , function ( img , i ) {
             img.zindex = img.style.zIndex = i;
@@ -266,8 +267,20 @@
             circles[ curIndex ].classList.add( "select" );
         }
 
-        var flyHandler = Timer( 4000 , fly );
+        var flyHandler = Timer( 5000 , fly );
+        contentBorder.onmouseout = sections[ 4 ].play = function () {
+            if ( !contentBorder.classList.contains( "tap" ) ) {
+                flyHandler = Timer( 5000 , fly );
+            }
+        };
 
+        contentBorder.onclick = function () {
+            contentBorder.classList.toggle( "tap" );
+        };
+
+        contentBorder.onmouseover = sections[ 4 ].stop = function () {
+            flyHandler.remove();
+        };
 
     }
 
