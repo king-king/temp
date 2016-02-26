@@ -249,11 +249,12 @@ body {
 }
 
 .page4-qr-mask {
-    z-index: 10;
+    z-index: 0;
     opacity: 0;
 }
 
 .page-4.content-border.tap .page4-qr-mask {
+    z-index: 10;
     opacity: 1;
 }
 

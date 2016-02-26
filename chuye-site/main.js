@@ -219,7 +219,7 @@
             contentImages[ curIndex ].classList.remove( "select" );
             curIndex = (curIndex + 1) % 3;
             contentImages[ curIndex ].classList.add( "select" );
-            animate( 1000 , function ( percent ) {
+            animate( 400 , function ( percent ) {
                 frame( angle + dangle * percent * percent );
             } , function () {
                 angle = curIndex == 0 ? 0 : angle + dangle;
@@ -275,7 +275,11 @@
         };
 
         contentBorder.onclick = function () {
-            contentBorder.classList.toggle( "tap" );
+            if ( curIndex == 4 && !contentBorder.classList.contains( "tap" ) ) {
+                contentBorder.classList.add( "tap" );
+            } else if ( contentBorder.classList.contains( "tap" ) ) {
+                contentBorder.classList.remove( "tap" );
+            }
         };
 
         contentBorder.onmouseover = sections[ 4 ].stop = function () {
