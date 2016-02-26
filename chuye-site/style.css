@@ -619,6 +619,11 @@ body {
     animation: 0.5s fly ease-in-out both;
 }
 
+.show .page3-canvas {
+    animation: 1.5s right-to-left-b ease-in-out both;
+
+}
+
 @keyframes left-to-right {
     0% {
         transform: translate3d(-50px, 0, 0);
