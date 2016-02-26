@@ -52,24 +52,26 @@
         }
         isScrolling = true;
         indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
-        sections[ curPageIndex ] && sections[ curPageIndex ].classList.remove( "show" );
+        if ( !(direction < 0 && curPageIndex == 5) ) {
+            sections[ curPageIndex ] && sections[ curPageIndex ].classList.remove( "show" );
+        }
         // 负数-向下翻-下一页，正数-向上翻-上一页
         if ( direction < 0 ) {
             // 下一页
             if ( curPageIndex != 6 ) {
                 // 只要不是最后一页，都能继续往下翻
-                sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
+                sections[ curPageIndex ] && sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
                 curPageIndex += 1;
-                sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
+                sections[ curPageIndex ] && sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
             }
         }
         else {
             // 上一页
             if ( curPageIndex != 0 ) {
                 // 只要不是第一页，都能往上翻
-                sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
+                sections[ curPageIndex ] && sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
                 curPageIndex -= 1;
-                sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
+                sections[ curPageIndex ] && sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
             }
         }
         setTimeout( function () {
@@ -169,6 +171,7 @@
         var imgBorders = querySelectorAll( ".page-2 .content-border-item" );
         var srcs = [ page2Tags[ 0 ].src , page2Tags[ 1 ].src ];
         var curIndex = 0;
+        var switchHandler;
         // 定时轮播
         function switchImg() {
             // 关闭当前的
@@ -180,7 +183,7 @@
             page2Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "0.png";
         }
 
-        var switchHandler = Timer( 5000 , switchImg );
+        //var switchHandler = Timer( 5000 , switchImg );
         loopArray( page2Tags , function ( tag , i ) {
             tag.onmouseover = function () {
                 // 选中当前
@@ -211,6 +214,7 @@
         var clock = new Image() , clockPointer = new Image();
         var da = Math.PI / 180;
         var da0 = -Math.PI / 2;
+        var slideHandler;
 
         function frame( angle ) {
             gc.clearRect( 0 , 0 , 86 , 86 );
@@ -257,7 +261,7 @@
             } );
         }
 
-        var slideHandler = Timer( 5000 , slide );
+        //slideHandler = Timer( 5000 , slide );
 
         yellowPhone.onmouseout = sections[ 3 ].play = function () {
             slideHandler = Timer( 5000 , slide );
@@ -273,6 +277,7 @@
         var circles = querySelectorAll( ".page4-circle" );
         var contentBorder = querySelector( ".page-4.content-border" );
         var curIndex = 0;
+        var flyHandler;
         loopArray( contentImage , function ( img , i ) {
             img.zindex = img.style.zIndex = i;
             function onEnd() {
@@ -297,7 +302,7 @@
             circles[ curIndex ].classList.add( "select" );
         }
 
-        var flyHandler = Timer( 5000 , fly );
+        //flyHandler = Timer( 5000 , fly );
         contentBorder.onmouseout = sections[ 4 ].play = function () {
             if ( !contentBorder.classList.contains( "tap" ) ) {
                 flyHandler = Timer( 5000 , fly );
@@ -323,6 +328,8 @@
         var imgBorders = querySelectorAll( ".page-5.content-border-item" );
         var srcs = [ page5Tags[ 0 ].src , page5Tags[ 1 ].src ];
         var curIndex = 0;
+        var switchHandler;
+
         // 定时轮播
         function switchImg() {
             // 关闭当前的
@@ -334,7 +341,7 @@
             page5Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "0.png";
         }
 
-        var switchHandler = Timer( 5000 , switchImg );
+        //switchHandler = Timer( 5000 , switchImg );
         loopArray( page5Tags , function ( tag , i ) {
             tag.onmouseover = function () {
                 // 选中当前
@@ -360,6 +367,15 @@
     }
 
     function init() {
+        // loading
+        var loadingTips = querySelector( ".loading-tips" );
+        var contents = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
+        var index = 0;
+        var loadingHandler = Timer( 500 , function () {
+            index = (index + 1) % 4;
+            loadingTips.textContent = contents[ index ];
+        } );
+
         bindEvent( document , "mousewheel" , function ( e ) {
             wheelScroll( e.wheelDelta );
         } );

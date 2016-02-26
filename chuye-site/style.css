@@ -35,6 +35,18 @@ body {
     position: absolute;
 }
 
+.loading-tips {
+    line-height: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    top: 50%;
+    margin-top: -15px;
+    text-align: center;
+    color: #a1a1a1;
+}
+
 .content {
     position: absolute;
     top: 0;
