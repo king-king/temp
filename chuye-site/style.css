@@ -653,7 +653,18 @@ body {
 
 .show .page3-canvas {
     animation: 1.5s right-to-left-b ease-in-out both;
+}
 
+.show .page2-girl {
+    animation: 0.5s scale cubic-bezier(.17, .67, .72, 1.39) both;
+}
+
+.show .page2-arrow {
+    animation: 0.5s scale 0.2s cubic-bezier(.17, .67, .72, 1.39) both;
+}
+
+.show .page2-cat {
+    animation: 0.5s scale 0.4s cubic-bezier(.17, .67, .72, 1.39) both;
 }
 
 @keyframes left-to-right {
@@ -713,5 +724,20 @@ body {
     }
     100% {
         transform: translate3d(100%, 0, 0) scale3d(0.73, 0.73, 0.73);
+    }
+}
+
+@keyframes scale {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 0.5);
+    }
+    70% {
+        opacity: 1;
+        transform: scale3d(1.4, 1.4, 1.4);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
     }
 }

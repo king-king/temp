@@ -200,14 +200,15 @@
         function switchImg() {
             // 关闭当前的
             imgBorders[ curIndex ].classList.add( "hide" );
+            imgBorders[ curIndex ].classList.remove( "show" );
             page2Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "1.png";
             // 打开下一个
             curIndex = (curIndex + 1) % 2;
             imgBorders[ curIndex ].classList.remove( "hide" );
+            imgBorders[ curIndex ].classList.add( "show" );
             page2Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "0.png";
         }
 
-        //var switchHandler = Timer( 5000 , switchImg );
         loopArray( page2Tags , function ( tag , i ) {
             var isbad = true;
             tag.onmouseover = function () {
@@ -218,7 +219,9 @@
                 page2Tags[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
                 page2Tags[ 1 - i ].src = srcs[ 1 - i ].slice( 0 , srcs[ 1 - i ].length - 5 ) + "1.png";
                 imgBorders[ i ].classList.remove( "hide" );
+                imgBorders[ i ].classList.add( "show" );
                 imgBorders[ 1 - i ].classList.add( "hide" );
+                imgBorders[ 1 - i ].classList.remove( "show" );
             };
             tag.onmouseout = function () {
                 if ( isbad ) {
