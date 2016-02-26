@@ -533,8 +533,8 @@ body {
     margin-top: 0;
 }
 
-.indicator .item div {
-    display: inline-block;
+.indicator .item div.title {
+    display: none;
 }
 
 .indicator .item .circle {
@@ -566,7 +566,7 @@ body {
 }
 
 .indicator .item.select .title {
-    display: none;
+    display: inline-block;
 }
 
 /*动画部分*/
