@@ -209,8 +209,10 @@
 
         //var switchHandler = Timer( 5000 , switchImg );
         loopArray( page2Tags , function ( tag , i ) {
+            var isbad = true;
             tag.onmouseover = function () {
                 // 选中当前
+                isbad = false;
                 curIndex = i;
                 switchHandler.remove();
                 page2Tags[ i ].src = srcs[ i ].slice( 0 , srcs[ i ].length - 5 ) + "0.png";
@@ -219,6 +221,9 @@
                 imgBorders[ 1 - i ].classList.add( "hide" );
             };
             tag.onmouseout = function () {
+                if ( isbad ) {
+                    return;
+                }
                 switchHandler.remove();
                 switchHandler = Timer( 5000 , switchImg );
             };
@@ -322,8 +327,7 @@
             circles[ curIndex ].classList.add( "select" );
         }
 
-        //flyHandler = Timer( 5000 , fly );
-        contentBorder.onmouseout = sections[ 4 ].play = function () {
+        sections[ 4 ].play = function () {
             if ( !contentBorder.classList.contains( "tap" ) ) {
                 flyHandler = Timer( 5000 , fly );
             }
@@ -331,13 +335,16 @@
 
         contentBorder.onclick = function () {
             if ( curIndex == 4 && !contentBorder.classList.contains( "tap" ) ) {
+                flyHandler.remove();
                 contentBorder.classList.add( "tap" );
             } else if ( contentBorder.classList.contains( "tap" ) ) {
+                flyHandler.remove();
+                flyHandler = Timer( 5000 , fly );
                 contentBorder.classList.remove( "tap" );
             }
         };
 
-        contentBorder.onmouseover = sections[ 4 ].stop = function () {
+        sections[ 4 ].stop = function () {
             flyHandler.remove();
         };
 
@@ -363,7 +370,9 @@
 
         //switchHandler = Timer( 5000 , switchImg );
         loopArray( page5Tags , function ( tag , i ) {
+            var isbad = true;
             tag.onmouseover = function () {
+                isbad = false;
                 // 选中当前
                 curIndex = i;
                 switchHandler.remove();
@@ -373,6 +382,10 @@
                 imgBorders[ 1 - i ].classList.add( "hide" );
             };
             tag.onmouseout = function () {
+                if ( isbad ) {
+                    return;
+                }
+                switchHandler.remove();
                 switchHandler = Timer( 5000 , switchImg );
             }
         } );
