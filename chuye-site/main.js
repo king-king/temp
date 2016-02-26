@@ -13,6 +13,7 @@
     var curPageIndex = 0;
     var isScrolling = false;
     var yellowPhones = querySelectorAll( ".section .yellow-phone" );
+    var tempWrapper = querySelector( ".temp-wrapper" );
 
     function loopArray( arr , func ) {
         for ( var i = 0; i < arr.length; i++ ) {
@@ -44,10 +45,10 @@
             wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px";
             wrappers[ i ].style.marginLeft = wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px"
         } );
-        var tempWrapper = querySelector( ".temp-wrapper" );
         tempWrapper.style.width = tempWrapper.style.height = cubeHeight + "px";
         tempWrapper.style.marginLeft = tempWrapper.style.marginTop = -cubeHeight / 2 + "px"
     }
+
 
     function wheelScroll( direction ) {
         if ( isScrolling ) {
@@ -77,8 +78,26 @@
                 sections[ curPageIndex ] && sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
             }
         }
+        loopArray( yellowPhones , function ( phone ) {
+            phone.classList.add( "hide" );
+        } );
+        if ( (direction > 0 && curPageIndex == 0) || (direction < 0 && curPageIndex == 1) ) {
+            yellowPhones[ 0 ].classList.remove( "hide" );
+            tempWrapper.classList.add( "hide" );
+        } else if ( (direction < 0 && curPageIndex == 6) || (direction > 0 && curPageIndex == 5) ) {
+            yellowPhones[ 4 ].classList.remove( "hide" );
+            tempWrapper.classList.add( "hide" );
+        } else {
+            yellowPhones[ curPageIndex - 1 ].classList.add( "hide" );
+            tempWrapper.classList.remove( "hide" );
+        }
         setTimeout( function () {
             isScrolling = false;
+            if ( curPageIndex < 6 && curPageIndex > 0 ) {
+                // 1,2,3,4,5
+                yellowPhones[ curPageIndex - 1 ].classList.remove( "hide" );
+                tempWrapper.classList.add( "hide" );
+            }
         } , 1000 );
         if ( curPageIndex == 6 ) {
             transform( scrollWrapper , "translate3d(0,-" + (bodyHeight * 5 + 167) + "px,0)" );
@@ -409,12 +428,39 @@
         // 给左侧导航按钮添加点击事件
         loopArray( indicatorItems , function ( item , i ) {
             item.onclick = function () {
-                indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
-                sections[ curPageIndex ] && sections[ curPageIndex ].classList.remove( "show" );
-                curPageIndex = i;
-                indicatorItems[ curPageIndex ].classList.add( "select" );
-                sections[ curPageIndex ] && sections[ curPageIndex ].classList.add( "show" );
-                scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+                if ( !isScrolling ) {
+                    loopArray( yellowPhones , function ( phone ) {
+                        phone.classList.add( "hide" );
+                    } );
+                    var isNeedFixed = (curPageIndex < 6 && curPageIndex > 0 ) && (i < 6 && i > 0);
+                    if ( isNeedFixed ) {
+                        yellowPhones[ curPageIndex - 1 ].classList.add( "hide" );
+                        tempWrapper.classList.remove( "hide" );
+                    }
+                    isScrolling = true;
+                    indicatorItems[ curPageIndex ] && indicatorItems[ curPageIndex ].classList.remove( "select" );
+                    sections[ curPageIndex ] && sections[ curPageIndex ].classList.remove( "show" );
+
+                    sections[ curPageIndex ] && sections[ curPageIndex ].stop && sections[ curPageIndex ].stop();// 将当前页面的动画暂停
+                    curPageIndex = i;
+                    sections[ curPageIndex ] && sections[ curPageIndex ].play && sections[ curPageIndex ].play();// 开始新页面的动画
+
+                    indicatorItems[ curPageIndex ].classList.add( "select" );
+                    sections[ curPageIndex ] && sections[ curPageIndex ].classList.add( "show" );
+                    scrollWrapper.style.transform = "translate3d(0,-" + bodyHeight * curPageIndex + "px,0)";
+                    setTimeout( function () {
+                        isScrolling = false;
+                        if ( isNeedFixed ) {
+                            yellowPhones[ curPageIndex - 1 ].classList.remove( "hide" );
+                            tempWrapper.classList.add( "hide" );
+                        }
+                    } , 1000 );
+                    if ( !isNeedFixed && (curPageIndex < 6 && curPageIndex > 0) ) {
+                        // 1,2,3,4,5
+                        yellowPhones[ curPageIndex - 1 ].classList.remove( "hide" );
+                        tempWrapper.classList.add( "hide" );
+                    }
+                }
             }
         } );
         // page-0
