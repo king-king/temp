@@ -14,57 +14,85 @@
             right: 0;
             bottom: 0;
             margin: 0;
-            background: #000;
         }
 
-        body {
-            background: url("chuye-site/img/page0-bg.jpg");
-            background-size: cover;
-        }
-
-        img {
-            /*position: absolute;*/
-        }
-
-        .border {
-            width: 683px;
-            height: 683px;
-            background: #000;
+        canvas {
+            /*background: black;*/
             position: absolute;
-            -webkit-transform: translate3d(100px, 0, 0);
-            -moz-transform: translate3d(100px, 0, 0);
-            -ms-transform: translate3d(100px, 0, 0);
-            -o-transform: translate3d(100px, 0, 0);
-            transform: translate3d(100px, 0, 0);
+            left: 200px;
+            top: 100px;
+            width: 86px;
+            height: 86px;
         }
-
     </style>
 </head>
 <body>
-<div class="border">
-    console.log();
-</div>
+<canvas width="86" height="86"></canvas>
 <script>
-    var data = [
-        {
-            name : ".page2-tag0" ,
-            x : 730 ,
-            h : 72 ,
-            y : 1060
-        } ,
-        {
-            name : ".page2-tag1" ,
-            x : 730 ,
-            h : 72 ,
-            y : 1174
-        }
-    ];
+    //    var data = [
+    //        {
+    //            name : ".page2-tag0" ,
+    //            x : 730 ,
+    //            h : 72 ,
+    //            y : 1060
+    //        } ,
+    //        {
+    //            name : ".page2-tag1" ,
+    //            x : 730 ,
+    //            h : 72 ,
+    //            y : 1174
+    //        }
+    //    ];
+    //
+    //    var result = "";
+    //    for ( var i = 0; i < data.length; i++ ) {
+    //        result += data[ i ].name + "{top:" + (data[ i ].y - 768) / 768 + "%;left:" + (data[ i ].x - 128) / 768 + "%;height:" + data[ i ].h / 768 + "%;}"
+    //    }
+    //    console.log( result )
 
-    var result = "";
-    for ( var i = 0; i < data.length; i++ ) {
-        result += data[ i ].name + "{top:" + (data[ i ].y - 768) / 768 + "%;left:" + (data[ i ].x - 128) / 768 + "%;height:" + data[ i ].h / 768 + "%;}"
+    var canvas = document.querySelector( "canvas" );
+    var gc = canvas.getContext( "2d" );
+    var img = new Image();
+    var img2 = new Image();
+    var count = 0;
+    img2.src = "chuye-site/img/clock-pointer.png";// 4*52
+    img.src = "chuye-site/img/clock.png";// 86*86
+    img.onload = function () {
+        ++count == 2 && draw();
+    };
+    img2.onload = function () {
+        ++count == 2 && draw();
+    };
+    var da = Math.PI / 180;
+    var da0 = -Math.PI / 2;
+    function draw() {
+        function frame( angle ) {
+            gc.clearRect( 0 , 0 , 86 , 86 );
+            gc.fillStyle = angle == 360 ? "white" : "#ffecc4";
+            gc.save();
+            gc.beginPath();
+            gc.moveTo( 43 , 43 );
+            gc.lineTo( 43 , 13 );
+            gc.arc( 43 , 43 , 29 , da0 , da0 + da * angle );
+            gc.lineTo( 43 , 43 );
+            gc.closePath();
+            gc.fill();
+            gc.drawImage( img , 0 , 0 );
+            gc.translate( 43 , 43 );
+            gc.rotate( da * angle );
+            gc.drawImage( img2 , -2 , -26 );
+            gc.restore();
+        }
+
+        var angle = 0;
+        setTimeout( function () {
+            angle += 2;
+            if ( angle <= 360 ) {
+                frame( angle );
+                setTimeout( arguments.callee , 20 );
+            }
+        } , 20 );
     }
-    console.log( result )
 
 </script>
 </body>
