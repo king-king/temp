@@ -177,18 +177,12 @@ body {
     height: 5.72916666666%;
 }
 
-.icon {
-    background: url("img/icon.png");
-    background-size: 600px 600px;
-}
-
 .top-logo {
     width: 46px;
     height: 45px;
     position: absolute;
     top: 15px;
     left: 88px;
-    background-position: 0 0;
 }
 
 .home-page, .communite {
