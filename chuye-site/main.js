@@ -125,8 +125,8 @@
     function Timer( duration , func ) {
         var timeID;
         timeID = setTimeout( function () {
-            func();
             timeID = setTimeout( arguments.callee , duration );
+            func();
         } , duration );
         return {
             remove : function () {
@@ -294,9 +294,36 @@
             } );
         }
 
-        canvas.onclick = function () {
-            slide();
+        var curindex = 0;
+        var isOver;
+
+        function beginSlide() {
+            isOver = false;
+            curindex = 0;
+            slideHandler = Timer( 4000 , function () {
+                slide();
+                curindex++;
+                console.log( curindex );
+                if ( curindex == 3 ) {
+                    slideHandler.remove();
+                    isOver = true;
+                }
+            } );
         }
+
+        canvas.onclick = function () {
+            if ( isOver ) {
+                beginSlide();
+            }
+        };
+
+        sections[ 3 ].stop = function () {
+            slideHandler.remove();
+        };
+        sections[ 3 ].play = function () {
+            slideHandler && slideHandler.remove();
+            beginSlide();
+        };
 
     }
 

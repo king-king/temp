@@ -656,7 +656,7 @@ body {
 }
 
 .show .page2-girl {
-    animation: 0.5s scale cubic-bezier(.17, .67, .72, 1.39) both;
+    animation: 0.5s scale-r cubic-bezier(.17, .67, .72, 1.39) both;
 }
 
 .show .page2-arrow {
@@ -739,5 +739,20 @@ body {
     100% {
         opacity: 1;
         transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes scale-r {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 0.5) rotateZ(180deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scale3d(1.4, 1.4, 1.4) rotateZ(180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1) rotateZ(180deg);
     }
 }
