@@ -303,7 +303,7 @@
             } );
             contentImages[ 0 ].classList.add( "select" );
             frame( 0 );
-            rotateHandler = animate( 6000 , function ( percent ) {
+            rotateHandler = animate( 4000 , function ( percent ) {
                 frame( angle + dangle * percent );
                 if ( percent > 0.5 ) {
                     contentImages[ 0 ].classList.remove( "select" );
@@ -320,27 +320,10 @@
 
         canvas.onclick = function () {
             if ( isOver ) {
-                isOver = false;
-                playBtn.style.display = "none";
                 page3Iframe.src = "";
                 page3Iframe.classList.remove( "play" );
-                loopArray( contentImages , function ( img ) {
-                    img.classList.remove( "select" );
-                } );
-                contentImages[ 0 ].classList.add( "select" );
-                frame( 0 );
-                rotateHandler = animate( 6000 , function ( percent ) {
-                    frame( angle + dangle * percent );
-                    if ( percent > 0.5 ) {
-                        contentImages[ 0 ].classList.remove( "select" );
-                        contentImages[ 1 ].classList.add( "select" );
-                    }
-                } , function () {
-                    isOver = true;
-                    isAppleWebKit && (playBtn.style.display = "block");
-                    contentImages[ 1 ].classList.remove( "select" );
-                    contentImages[ 2 ].classList.add( "select" );
-                } );
+                playBtn.style.display = "none";
+                beginSlide();
             }
         };
 
