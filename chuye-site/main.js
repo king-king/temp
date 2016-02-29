@@ -434,7 +434,6 @@
             page5Tags[ curIndex ].src = srcs[ curIndex ].slice( 0 , srcs[ curIndex ].length - 5 ) + "0.png";
         }
 
-        //switchHandler = Timer( 5000 , switchImg );
         loopArray( page5Tags , function ( tag , i ) {
             var isbad = true;
             tag.onmouseover = function () {
