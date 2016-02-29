@@ -363,9 +363,24 @@ body {
 }
 
 .page2-word {
-    top: 45.96354%;
     left: 7.94271%;
-    height: 16.40625%;
+    height: 4.1015625%;
+}
+
+.page2-word.a {
+    top: 45.96354%;
+}
+
+.page2-word.b {
+    top: 50.0651025%;
+}
+
+.page2-word.c {
+    top: 54.166665%;
+}
+
+.page2-word.d {
+    top: 58.2682275%;
 }
 
 .page2-cat {
@@ -699,6 +714,22 @@ body {
 
 .show .page1-dash {
     animation: 1s shade-in ease-in-out both;
+}
+
+.show .page2-word.a {
+    animation: 2s down-shade 0.5s ease-in-out both;
+}
+
+.show .page2-word.b {
+    animation: 2s down-shade 1s ease-in-out both;
+}
+
+.show .page2-word.c {
+    animation: 2s down-shade 2s ease-in-out both;
+}
+
+.show .page2-word.d {
+    animation: 2s down-shade 2.5s ease-in-out both;
 }
 
 .show .page2-tag0, .show .page5-tag0 {
