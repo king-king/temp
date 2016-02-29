@@ -246,7 +246,7 @@
     function initPage3() {
         var contentImages = querySelectorAll( ".page-3 .content-img" );
         var canvas = querySelector( ".page3-canvas" );
-        var yellowPhone = querySelector( ".page-3 .yellow-phone" );
+        var playBtn = querySelector( ".page3-play-btn" );
         var gc = canvas.getContext( "2d" );
         var clock = new Image() , clockPointer = new Image();
         var da = Math.PI / 180;
@@ -302,6 +302,7 @@
                 }
             } , function () {
                 isOver = true;
+                playBtn.style.display = "block";
                 canvas.classList.add( "shake" );
                 contentImages[ 1 ].classList.remove( "select" );
                 contentImages[ 2 ].classList.add( "select" );
@@ -311,6 +312,7 @@
         canvas.onclick = function () {
             if ( isOver ) {
                 isOver = false;
+                playBtn.style.display = "none";
                 loopArray( contentImages , function ( img ) {
                     img.classList.remove( "select" );
                 } );
@@ -327,6 +329,7 @@
                     }
                 } , function () {
                     isOver = true;
+                    playBtn.style.display = "block";
                     contentImages[ 1 ].classList.remove( "select" );
                     contentImages[ 2 ].classList.add( "select" );
                 } );
@@ -338,6 +341,7 @@
         };
         sections[ 3 ].play = function () {
             rotateHandler && rotateHandler.remove();
+            playBtn.style.display = "none";
             beginSlide();
         };
 

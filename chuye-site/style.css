@@ -455,12 +455,19 @@ body {
     display: none;
 }
 
-.page-3 .content-border {
-    cursor: pointer;
-}
-
 .page-3 .content-img.select {
     display: block;
+}
+
+.page3-play-btn {
+    cursor: pointer;
+    height: 16.98113%;
+    position: absolute;
+    top: 36.79245%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+    display: none;
 }
 
 .page4-title {
@@ -821,6 +828,10 @@ body {
     animation: 0.3s shake ease-in-out both;
 }
 
+.show .page3-play-btn {
+    animation: 3s flip-over ease-in-out both infinite;
+}
+
 @keyframes left-to-right {
     0% {
         transform: translate3d(-50px, 0, 0);
@@ -948,5 +959,17 @@ body {
     }
     100% {
         transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes flip-over {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+    100% {
+        opacity: 1;
     }
 }
