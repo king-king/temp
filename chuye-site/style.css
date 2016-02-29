@@ -466,9 +466,16 @@ body {
 }
 
 .page4-word {
-    top: 50.52083%;
     left: 2.08333%;
-    height: 6.90104%;
+    height: 3.45052%;
+}
+
+.page4-word.a {
+    top: 50.52083%;
+}
+
+.page4-word.b {
+    top: 53.97135%;
 }
 
 .page4-circles {
@@ -781,6 +788,14 @@ body {
 
 .show .page3-word.c {
     animation: 2s down-shade 2s ease-in-out both;
+}
+
+.show .page4-word.a {
+    animation: 2s down-shade 0.5s ease-in-out both;
+}
+
+.show .page4-word.b {
+    animation: 2s down-shade 1s ease-in-out both;
 }
 
 @keyframes left-to-right {
