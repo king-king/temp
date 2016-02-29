@@ -234,9 +234,32 @@ body {
 }
 
 .page1-word {
-    top: 44.66145%;
     right: 66.796875%;
-    height: 25.6510416%;
+    height: 4.2751736%;
+}
+
+.page1-word.a {
+    top: 44.66145%;
+}
+
+.page1-word.b {
+    top: 48.9366236%;
+}
+
+.page1-word.c {
+    top: 53.2117972%;
+}
+
+.page1-word.d {
+    top: 57.4869708%;
+}
+
+.page1-word.e {
+    top: 61.7621444%;
+}
+
+.page1-word.f {
+    top: 66.037318%;
 }
 
 .yellow-phone {
@@ -616,6 +639,30 @@ body {
 
 .show .page0-btn {
     animation: 1.5s left-to-right 1.8s ease-in-out both;
+}
+
+.show .page1-word.a {
+    animation: 2s down-shade ease-in-out both;
+}
+
+.show .page1-word.b {
+    animation: 2s down-shade 0.5s ease-in-out both;
+}
+
+.show .page1-word.c {
+    animation: 2s down-shade 1s ease-in-out both;
+}
+
+.show .page1-word.d {
+    animation: 2s down-shade 1.5s ease-in-out both;
+}
+
+.show .page1-word.e {
+    animation: 2s down-shade 2s ease-in-out both;
+}
+
+.show .page1-word.f {
+    animation: 2s down-shade 2.5s ease-in-out both;
 }
 
 .show .page1-0 {
