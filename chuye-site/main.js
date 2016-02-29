@@ -364,7 +364,7 @@
         sections[ 3 ].play = function () {
             rotateHandler && rotateHandler.remove();
             playBtn.style.display = "none";
-            beginSlide();
+            rotateHandler = setTimeout( beginSlide , 1000 );
         };
 
     }
