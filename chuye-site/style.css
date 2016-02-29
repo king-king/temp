@@ -183,6 +183,13 @@ body {
     top: 56.770833333333%;
     left: 2.604166%;
     height: 20.3125%;
+    width: 17.96875%;
+    cursor: pointer;
+}
+
+.page0-qr .page0-qr-img {
+    width: 100%;
+    position: absolute;
 }
 
 .page0-btn {

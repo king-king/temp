@@ -160,6 +160,7 @@
         var slideWrapper = querySelector( ".page0-img-border-wrapper" );
         var circles = querySelectorAll( ".page0-circle" );
 
+
         loopArray( querySelectorAll( ".page0-img-border-wrapper .item" ) , function ( item , i ) {
             item.style.left = 25 * i + "%";
         } );
