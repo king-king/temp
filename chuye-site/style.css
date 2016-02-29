@@ -739,11 +739,11 @@ body {
 }
 
 .show .page0-qr {
-    animation: 1.5s down-shade 4.2s ease-in-out both;
+    animation: 1.5s down-shade 3.4s ease-in-out both;
 }
 
 .show .page0-btn {
-    animation: 1.5s down-shade 4.8s ease-in-out both;
+    animation: 1.5s down-shade 4.2s ease-in-out both;
 }
 
 .show .page1-word.a {
