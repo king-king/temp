@@ -266,10 +266,10 @@
             gc.lineTo( 43 , 43 );
             gc.closePath();
             gc.fill();
-            gc.drawImage( clock , 0 , 0 );
+            gc.drawImage( clock , 0 , 0 , 86 , 86 );
             gc.translate( 43 , 43 );
             gc.rotate( da * angle );
-            gc.drawImage( clockPointer , -2 , -26 );
+            gc.drawImage( clockPointer , -2 , -26 , 4 , 52 );
             gc.restore();
         }
 
