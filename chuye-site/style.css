@@ -455,6 +455,10 @@ body {
     display: none;
 }
 
+.page-3 .content-border {
+    cursor: pointer;
+}
+
 .page-3 .content-img.select {
     display: block;
 }
