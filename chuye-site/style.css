@@ -507,9 +507,16 @@ body {
 }
 
 .page5-word {
-    top: 51.43229%;
     right: 66.79688%;
-    height: 7.03125%;
+    height: 3.515625%;
+}
+
+.page5-word.a {
+    top: 51.43229%;
+}
+
+.page5-word.b {
+    top: 54.947915%;
 }
 
 .page5-tag0 {
@@ -795,6 +802,14 @@ body {
 }
 
 .show .page4-word.b {
+    animation: 2s down-shade 1s ease-in-out both;
+}
+
+.show .page5-word.a {
+    animation: 2s down-shade 0.5s ease-in-out both;
+}
+
+.show .page5-word.b {
     animation: 2s down-shade 1s ease-in-out both;
 }
 
