@@ -5,7 +5,8 @@
 (function () {
     function checkBrowser() {
         var canvas = document.createElement( "canvas" );
-        if ( !canvas.getContext( "2d" ) || !document.querySelector ) {
+        var div = document.createElement( "div" );
+        if ( !canvas || !canvas.getContext || !canvas.getContext( "2d" ) || !document.querySelector || !div.classList ) {
             makeDownloadPage();
             return true;
         }
