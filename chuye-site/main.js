@@ -14,6 +14,7 @@
     var isScrolling = false;
     var yellowPhones = querySelectorAll( ".section .yellow-phone" );
     var tempWrapper = querySelector( ".temp-wrapper" );
+    var isAppleWebKit = navigator.userAgent.indexOf( "AppleWebKit" ) != -1;
 
     function loopArray( arr , func ) {
         for ( var i = 0; i < arr.length; i++ ) {
@@ -304,7 +305,7 @@
                 }
             } , function () {
                 isOver = true;
-                playBtn.style.display = "block";
+                isAppleWebKit && (playBtn.style.display = "block");
                 canvas.classList.add( "shake" );
                 contentImages[ 1 ].classList.remove( "select" );
                 contentImages[ 2 ].classList.add( "select" );
@@ -313,8 +314,6 @@
 
         canvas.onclick = function () {
             if ( isOver ) {
-                page3Iframe.width = page3Border.offsetWidth;
-                page3Iframe.height = page3Border.offsetHeight;
                 isOver = false;
                 playBtn.style.display = "none";
                 page3Iframe.src = "";
@@ -335,7 +334,7 @@
                     }
                 } , function () {
                     isOver = true;
-                    playBtn.style.display = "block";
+                    isAppleWebKit && (playBtn.style.display = "block");
                     contentImages[ 1 ].classList.remove( "select" );
                     contentImages[ 2 ].classList.add( "select" );
                 } );
@@ -344,6 +343,8 @@
 
         playBtn.onclick = function () {
             if ( isOver ) {
+                page3Iframe.width = page3Border.offsetWidth;
+                page3Iframe.height = page3Border.offsetHeight;
                 page3Iframe.src = "http://192.168.0.229:9494/debug/work.html?id=18687900&mode=mv-19";
                 page3Iframe.classList.add( "play" );
             }

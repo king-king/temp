@@ -88,8 +88,8 @@ body {
 
 .page0-img-border {
     position: absolute;
-    top: 22.3958333%;
-    left: 59.89583333333%;
+    top: 22.2958333%;
+    left: 59.99583333333%;
     height: 64.322916666%;
     width: 36.1979166%;
     overflow: hidden;
@@ -478,6 +478,8 @@ body {
     bottom: 0;
     display: none;
     overflow: hidden;
+    background: #000;
+    border: 0;
 }
 
 .page3-iframe.play {
