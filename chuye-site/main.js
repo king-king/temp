@@ -158,7 +158,6 @@
     function initPage0() {
         var curIndex = 0;
         var slideWrapper = querySelector( ".page0-img-border-wrapper" );
-        var slideBorder = querySelector( ".page0-img-border" );
         var circles = querySelectorAll( ".page0-circle" );
 
         loopArray( querySelectorAll( ".page0-img-border-wrapper .item" ) , function ( item , i ) {
