@@ -252,6 +252,7 @@
         var da = Math.PI / 180;
         var da0 = -Math.PI / 2;
         var rotateHandler;
+        var page3Iframe = querySelector( ".page3-iframe" );
 
         function frame( angle ) {
             gc.clearRect( 0 , 0 , 86 , 86 );
@@ -333,6 +334,13 @@
                     contentImages[ 1 ].classList.remove( "select" );
                     contentImages[ 2 ].classList.add( "select" );
                 } );
+            }
+        };
+
+        playBtn.onclick = function () {
+            if ( isOver ) {
+                page3Iframe.src = "/18687900";
+                page3Iframe.classList.add( "play" );
             }
         };
 

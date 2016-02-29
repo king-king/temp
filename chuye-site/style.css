@@ -470,6 +470,20 @@ body {
     display: none;
 }
 
+.page3-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.page3-iframe.play {
+    z-index: 100;
+    display: block;
+}
+
 .page4-title {
     top: 41.66667%;
     left: 13.15104%;
