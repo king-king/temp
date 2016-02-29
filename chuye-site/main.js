@@ -451,7 +451,35 @@
 
     }
 
+    function checkBroswer() {
+        var canvas = document.querySelector( "canvas" );
+        if ( canvas.getContext( "2d" ) || document.querySelector ) {
+            makeDownloadPage();
+            return true;
+        }
+        function makeDownloadPage() {
+            document.body.className = "not-support";
+            document.body.innerHTML = "<div class='browser-update' ><h1>请升级您的浏览器</h1>" +
+                "<h2>尊敬的用户，您现在使用的浏览器版本过低，请升级后继续使用初页的服务。</h2>" +
+                "<h3>您可以选择：</h3>" +
+                "<ul>" +
+                "<li class='chrome'><a href='http://www.google.cn/intl/zh-CN/chrome/browser/' target='_blank'><h4>Google" +
+                "Chrome</h4></a></li>" +
+                "<li class='firefox'><a href='http://www.mozilla.org/zh-CN/firefox/new/' target='_blank'><h4>Mozilla Firefox</h4>" +
+                "</a></li>" +
+                "<li class='ie'><a href='http://www.microsoft.com/china/windows/IE/upgrade/index.aspx' target='_blank'><h4>" +
+                "Internet Explorer 9+</h4></a></li>" +
+                "</ul>" +
+                "</div>";
+        }
+
+        return false;
+    }
+
     function init() {
+        if ( checkBroswer() ) {
+            return;
+        }
         resize();
         // loading
         var loadingTips = querySelector( ".loading-tips" );

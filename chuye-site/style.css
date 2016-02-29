@@ -1027,3 +1027,119 @@ body {
         opacity: 1;
     }
 }
+
+/*如果浏览器太旧*/
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body.not-support {
+    background: url(img/browser_bg.jpg) repeat-x left top;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: "Microsoft YaHei", 微软雅黑, "STHei", 华文黑体, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.not-support div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+.not-support h1, h2, h3, h4, h5, h6, b {
+    font-size: 100%;
+    font-weight: 500;
+}
+
+.not-support ol, ul {
+    list-style: none;
+}
+
+.not-support a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.not-support .browser-update {
+    width: 718px;
+    height: 496px;
+    clear: both;
+    background: url(img/browser_bg_wrapper.png) no-repeat left top;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -359px;
+    margin-top: -248px;
+}
+
+.not-support .browser-update h1, .browser-update h2, .browser-update h3 {
+    text-align: center;
+}
+
+.not-support .browser-update h1 {
+    padding: 67px 0 0 0;
+    font-size: 30px;
+    line-height: 30px;
+    color: #333;
+    letter-spacing: 1px;
+}
+
+.not-support .browser-update h2 {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #999;
+    padding: 32px 55px 15px;
+    letter-spacing: 0.1px;
+}
+
+.not-support .browser-update h3 {
+    font-size: 16px;
+    line-height: 16px;
+    color: #666;
+    padding: 20px 0 40px 0;
+
+}
+
+.not-support .browser-update ul {
+    clear: both;
+}
+
+.not-support .browser-update li {
+    float: left;
+    background: url(img/browser_icon.png) no-repeat left top;
+    width: 140px;
+    height: 170px;
+    position: relative;
+    text-align: center;
+    *display: inline;
+    *zoom: 1;
+}
+
+.not-support .browser-update ul a {
+    display: block;
+    width: 100%;
+    padding: 135px 0 0 0;
+}
+
+.not-support .browser-update h4 {
+    color: #999;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.not-support .browser-update .chrome {
+    background-position: 9px 0;
+    margin: 0 0 0 89px;
+}
+
+.not-support .browser-update .firefox {
+    background-position: -140px 0;
+    margin: 0 60px;
+}
+
+.not-support .browser-update .ie {
+    background-position: -292px 0;
+}
+
