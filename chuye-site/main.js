@@ -49,7 +49,6 @@
         tempWrapper.style.marginLeft = tempWrapper.style.marginTop = -cubeHeight / 2 + "px"
     }
 
-
     function wheelScroll( direction ) {
         if ( isScrolling ) {
             return;
