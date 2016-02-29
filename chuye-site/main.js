@@ -327,14 +327,11 @@
                 loopArray( contentImages , function ( img ) {
                     img.classList.remove( "select" );
                 } );
-                contentImages[ 2 ].classList.add( "select" );
+                contentImages[ 0 ].classList.add( "select" );
                 frame( 0 );
-                rotateHandler = animate( 9000 , function ( percent ) {
+                rotateHandler = animate( 6000 , function ( percent ) {
                     frame( angle + dangle * percent );
-                    if ( percent > 0.33 && percent < 0.66 ) {
-                        contentImages[ 2 ].classList.remove( "select" );
-                        contentImages[ 0 ].classList.add( "select" );
-                    } else if ( percent > 0.66 ) {
+                    if ( percent > 0.5 ) {
                         contentImages[ 0 ].classList.remove( "select" );
                         contentImages[ 1 ].classList.add( "select" );
                     }
