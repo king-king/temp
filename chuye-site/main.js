@@ -247,6 +247,7 @@
         var contentImages = querySelectorAll( ".page-3 .content-img" );
         var canvas = querySelector( ".page3-canvas" );
         var playBtn = querySelector( ".page3-play-btn" );
+        var page3Border = querySelector( ".page-3 .content-border" );
         var gc = canvas.getContext( "2d" );
         var clock = new Image() , clockPointer = new Image();
         var da = Math.PI / 180;
@@ -312,6 +313,8 @@
 
         canvas.onclick = function () {
             if ( isOver ) {
+                page3Iframe.width = page3Border.offsetWidth;
+                page3Iframe.height = page3Border.offsetHeight;
                 isOver = false;
                 playBtn.style.display = "none";
                 page3Iframe.src = "";
