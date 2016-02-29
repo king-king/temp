@@ -358,6 +358,7 @@
 
         sections[ 4 ].play = function () {
             if ( !contentBorder.classList.contains( "tap" ) ) {
+                flyHandler.remove();
                 flyHandler = Timer( 5000 , fly );
             }
         };
