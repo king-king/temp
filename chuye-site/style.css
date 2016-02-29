@@ -813,6 +813,10 @@ body {
     animation: 2s down-shade 1s ease-in-out both;
 }
 
+.page3-canvas.shake {
+    animation: 0.3s shake ease-in-out both;
+}
+
 @keyframes left-to-right {
     0% {
         transform: translate3d(-50px, 0, 0);
@@ -913,5 +917,32 @@ body {
     100% {
         opacity: 1;
         transform: scale3d(1, 1, 1) rotateZ(180deg);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    20% {
+        transform: translate3d(4px, 2px, 0);
+    }
+    30% {
+        transform: translate3d(-4px, -2px, 0);
+    }
+    40% {
+        transform: translate3d(3px, -2px, 0);
+    }
+    60% {
+        transform: translate3d(0px, 2px, 0);
+    }
+    70% {
+        transform: translate3d(-5px, -4px, 0);
+    }
+    90% {
+        transform: translate3d(5px, 4px, 0);
+    }
+    100% {
+        transform: translate3d(0, 0, 0);
     }
 }

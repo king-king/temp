@@ -109,16 +109,22 @@
 
     function animate( duration , frame , onEnd ) {
         var s = (new Date()).getTime();
-        setTimeout( function () {
+        var timeID;
+        timeID = setTimeout( function () {
             var cur = (new Date()).getTime();
             if ( cur - s < duration ) {
                 frame( (cur - s ) / duration );
-                setTimeout( arguments.callee , 20 );
+                timeID = setTimeout( arguments.callee , 20 );
             } else {
                 frame( 1 );
                 onEnd();
             }
         } , 20 );
+        return {
+            remove : function () {
+                clearTimeout( timeID );
+            }
+        }
     }
 
     function Timer( duration , func ) {
@@ -245,7 +251,7 @@
         var clock = new Image() , clockPointer = new Image();
         var da = Math.PI / 180;
         var da0 = -Math.PI / 2;
-        var slideHandler;
+        var rotateHandler;
 
         function frame( angle ) {
             gc.clearRect( 0 , 0 , 86 , 86 );
@@ -276,50 +282,62 @@
             frame( 0 );
         } );
         // 图片要能够轮播
-        var curIndex = 0;
         var angle = 0;
-        var dangle = 120;
+        var dangle = 360;
 
-        function slide() {
-            contentImages[ curIndex ].classList.remove( "select" );
-            curIndex = (curIndex + 1) % 3;
-            contentImages[ curIndex ].classList.add( "select" );
-            animate( 400 , function ( percent ) {
-                frame( angle + dangle * percent * percent );
-            } , function () {
-                angle = curIndex == 0 ? 0 : angle + dangle;
-                frame( angle );
-            } );
-        }
-
-        var curindex = 0;
         var isOver;
 
         function beginSlide() {
             isOver = false;
-            curindex = 0;
-            slideHandler = Timer( 4000 , function () {
-                slide();
-                curindex++;
-                console.log( curindex );
-                if ( curindex == 3 ) {
-                    slideHandler.remove();
-                    isOver = true;
+            loopArray( contentImages , function ( img ) {
+                img.classList.remove( "select" );
+            } );
+            contentImages[ 0 ].classList.add( "select" );
+            frame( 0 );
+            rotateHandler = animate( 6000 , function ( percent ) {
+                frame( angle + dangle * percent );
+                if ( percent > 0.5 ) {
+                    contentImages[ 0 ].classList.remove( "select" );
+                    contentImages[ 1 ].classList.add( "select" );
                 }
+            } , function () {
+                isOver = true;
+                canvas.classList.add( "shake" );
+                contentImages[ 1 ].classList.remove( "select" );
+                contentImages[ 2 ].classList.add( "select" );
             } );
         }
 
         canvas.onclick = function () {
             if ( isOver ) {
-                beginSlide();
+                isOver = false;
+                loopArray( contentImages , function ( img ) {
+                    img.classList.remove( "select" );
+                } );
+                contentImages[ 2 ].classList.add( "select" );
+                frame( 0 );
+                rotateHandler = animate( 9000 , function ( percent ) {
+                    frame( angle + dangle * percent );
+                    if ( percent > 0.33 && percent < 0.66 ) {
+                        contentImages[ 2 ].classList.remove( "select" );
+                        contentImages[ 0 ].classList.add( "select" );
+                    } else if ( percent > 0.66 ) {
+                        contentImages[ 0 ].classList.remove( "select" );
+                        contentImages[ 1 ].classList.add( "select" );
+                    }
+                } , function () {
+                    isOver = true;
+                    contentImages[ 1 ].classList.remove( "select" );
+                    contentImages[ 2 ].classList.add( "select" );
+                } );
             }
         };
 
         sections[ 3 ].stop = function () {
-            slideHandler.remove();
+            rotateHandler.remove();
         };
         sections[ 3 ].play = function () {
-            slideHandler && slideHandler.remove();
+            rotateHandler && rotateHandler.remove();
             beginSlide();
         };
 
