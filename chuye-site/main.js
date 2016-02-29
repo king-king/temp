@@ -314,6 +314,8 @@
             if ( isOver ) {
                 isOver = false;
                 playBtn.style.display = "none";
+                page3Iframe.src = "";
+                page3Iframe.classList.remove( "play" );
                 loopArray( contentImages , function ( img ) {
                     img.classList.remove( "select" );
                 } );
@@ -339,12 +341,14 @@
 
         playBtn.onclick = function () {
             if ( isOver ) {
-                page3Iframe.src = "/18687900";
+                page3Iframe.src = "http://192.168.0.229:9494/debug/work.html?id=18687900&mode=mv-19";
                 page3Iframe.classList.add( "play" );
             }
         };
 
         sections[ 3 ].stop = function () {
+            page3Iframe.src = "";
+            page3Iframe.classList.remove( "play" );
             rotateHandler.remove();
         };
         sections[ 3 ].play = function () {
