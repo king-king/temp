@@ -58,18 +58,27 @@
                 content : "成功邀请好友" ,// 任务名称
                 value : 10 ,// 完成任务可以获得的猫豆点数
                 img : "img/config/test-yaoqing.jpg" ,
-                buttonWord : "邀请好友" , // 每个任务按钮上的文字不同
-                state : 0 , // 任务状态,0是未完成，1是已经完成
-                url : "http://www.baidu.com"//任务跳转链接
-
+                buttonWord : "详细" , // 每个任务按钮上的文字不同
+                state : 0 ,  // 任务状态,0是未完成，1是已经完成
+                // url : "http://www.baidu.com"任务跳转链接,目前只有一个说明，暂时不跳转
+                detail : {
+                    strategy : "每成功邀请1个微信好友，奖励10个猫豆。" ,
+                    url : "img/config/complete-invite.jpg" ,// 图片宽度最好是420px
+                    value : "+10"
+                }
             } ,
             {
                 content : "完善个人资料" ,
                 value : 10 ,
                 img : "img/config/test-wanshan.jpg" ,
-                buttonWord : "编辑资料" ,
+                buttonWord : "详细" ,
                 state : 1 ,
-                url : ""//任务跳转链接
+                detail : {
+                    strategy : "每编辑完成一项资料，获得3个猫豆。" ,
+                    url : "img/config/complete-data.jpg" ,
+                    value : "+18"
+                }
+                //url : ""任务跳转链接
             }
         ]
     };
@@ -78,7 +87,7 @@
 <script>
     (function () {
 
-        function bindEvent( el , type , func ) {
+        function bindEvent ( el , type , func ) {
             el.addEventListener( type , func , false );
             return {
                 remove : function () {
@@ -87,7 +96,7 @@
             }
         }
 
-        function onTap( el , func ) {
+        function onTap ( el , func ) {
             var sx , sy , ismove = false;
             bindEvent( el , "touchstart" , function ( e ) {
                 el.classList.add( "tap" );
@@ -108,10 +117,27 @@
             } );
         }
 
-        function loopArray( arr , func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
+        function loopArray ( arr , func ) {
+            for ( var i = 0 ; i < arr.length ; i++ ) {
                 func( arr[ i ] , i );
             }
+        }
+
+        function element ( tag , arg , parent ) {
+            var el = document.createElement( tag );
+            for ( var key in arg ) {
+                switch ( key ) {
+                    case "classList":
+                        loopArray( arg[ key ] , function ( className ) {
+                            el.classList.add( className );
+                        } );
+                        break;
+                    default:
+                        el[ key ] = arg[ key ];
+                }
+            }
+            parent && parent.appendChild( el );
+            return el;
         }
 
         var insertCSSRules = function () {
@@ -177,11 +203,34 @@
         } );
         var testWrapper = document.querySelector( ".do-test-border .content" );
         testWrapper.innerHTML = tContent;
-        onTap( testWrapper , function ( e ) {
-            if ( e.target.classList.contains( "not-over" ) ) {
-                location.href = e.target.dataset.url;
-            }
+        loopArray( document.querySelectorAll( ".do-test-border .button" ) , function ( btn , i ) {
+            onTap( btn , function ( e ) {
+                if ( e.target.classList.contains( "not-over" ) ) {
+                    var mask = element( "div" , { classList : [ "mask" ] } , document.body );
+                    var border = element( "div" , { classList : [ "test-detail-border" ] } , mask );
+                    element( "div" , {
+                        classList : [ "detail-header" ] ,
+                        innerHTML : "<div class='detail-logo'>&nbsp;</div><div class='detail-value'>" + data.test[ i ].detail.value + "</div>"
+                    } , border );
+                    element( "div" , {
+                        classList : [ "detail-title" ] ,
+                        innerHTML : data.test[ i ].detail.strategy
+                    } , border );
+                    element( "img" , {
+                        classList : [ "detail-content-img" ] ,
+                        src : data.test[ i ].detail.url
+                    } , border );
+                    var closeBtn = element( "div" , {
+                        classList : [ "detail-close-btn" ] ,
+                        innerHTML : "知道了"
+                    } , border );
+                    onTap( closeBtn , function () {
+                        document.body.removeChild( mask );
+                    } );
+                }
+            } );
         } );
+
 
     })();
 </script>
