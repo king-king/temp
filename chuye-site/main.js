@@ -159,7 +159,13 @@
         var curIndex = 0;
         var slideWrapper = querySelector( ".page0-img-border-wrapper" );
         var circles = querySelectorAll( ".page0-circle" );
-
+        var qrBorder = querySelector( ".page0-qr" );
+        qrBorder.onmouseover = function () {
+            qrBorder.classList.add( "onover" );
+        };
+        qrBorder.onmouseout = function () {
+            qrBorder.classList.remove( "onover" );
+        };
 
         loopArray( querySelectorAll( ".page0-img-border-wrapper .item" ) , function ( item , i ) {
             item.style.left = 25 * i + "%";

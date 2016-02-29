@@ -184,12 +184,42 @@ body {
     left: 2.604166%;
     height: 20.3125%;
     width: 17.96875%;
-    cursor: pointer;
 }
 
 .page0-qr .page0-qr-img {
-    width: 100%;
     position: absolute;
+    width: 100%;
+}
+
+.page0-qr-mask {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 87.85942%;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid white;
+    border-radius: 4px;
+    display: none;
+}
+
+.onover .page0-qr-mask {
+    display: block;
+}
+
+.page0-ios-icon, .page0-android-icon {
+    position: absolute;
+    left: 37.3188%;
+    height: 25.4545%;
+    cursor: pointer;
+}
+
+.page0-ios-icon {
+    top: 19.27%;
+}
+
+.page0-android-icon {
+    bottom: 16.9329%;
 }
 
 .page0-btn {
