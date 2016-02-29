@@ -452,11 +452,11 @@ body {
 }
 
 .page-3 .content-img {
-    opacity: 0;
+    display: none;
 }
 
 .page-3 .content-img.select {
-    opacity: 1;
+    display: block;
 }
 
 .page4-title {
