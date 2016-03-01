@@ -733,19 +733,19 @@ body {
 }
 
 .show .page0-word.a {
-    animation: 1.3s down-shade 1.6s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page0-word.b {
-    animation: 1.3s down-shade 1.9s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 2.1s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page0-word.c {
-    animation: 1.3s down-shade 2.2s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 2.4s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page0-word.d {
-    animation: 1.3s down-shade 2.5s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 /*.show .page0-word.img-0 {*/
@@ -833,27 +833,27 @@ body {
 }
 
 .show .page1-word.a {
-    animation: 1.3s down-shade 1.6s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.b {
-    animation: 1.3s down-shade 1.9s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 2.1s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.c {
-    animation: 1.3s down-shade 2.2s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 2.4s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.d {
-    animation: 1.3s down-shade 2.5s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.e {
-    animation: 1.3s down-shade 2.8s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 3s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.f {
-    animation: 1.3s down-shade 3.1s cubic-bezier(.33, .9, .64, 1.27) both;
+    animation: 1.3s down-shade 3.3s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-0 {
