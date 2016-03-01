@@ -24,7 +24,6 @@
             right: 0;
             bottom: 0;
             margin: 0;
-            background: #000;
         }
 
         img {
@@ -33,19 +32,36 @@
             left: 100px;
             width: 400px;
         }
+
+        .border {
+            width: 300px;
+            position: absolute;
+
+        }
+
+        .title {
+            height: 40px;
+            line-height: 40px;
+            font-size: 30px;
+            width: 100%;
+        }
+
+        .content {
+            line-height: 30px;
+            font-size: 28px;
+            width: 100%;
+            display: inline-block;
+            word-wrap: break-word;
+        }
     </style>
 <body>
-
+<div class="border">
+    <div class="title">fsgwegwaf</div>
+    <div class="content">fsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaf</div>
+</div>
 <script>
     (function () {
 
-
-
-        for ( var i = 0; i < 1; i++ ) {
-            var img = new Image();
-            img.src = "chuye-site/img/page0-word-" + i + ".png";
-            document.body.appendChild( img );
-        }
 
     })();
 </script>
