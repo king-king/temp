@@ -1,68 +1,255 @@
+@{
+Layout = null;
+}
+
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="utf-8">
-    <meta name="mobileoptimized" content="0"/>
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1 user-scalable=no"/>
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="screen-orientation" content="portrait">
-    <meta name="browsermode" content="application">
-    <title></title>
-    <style>
-
-        * {
-            -webkit-user-select: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        body {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0;
-        }
-
-        img {
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            width: 400px;
-        }
-
-        .border {
-            width: 300px;
-            position: absolute;
-
-        }
-
-        .title {
-            height: 40px;
-            line-height: 40px;
-            font-size: 30px;
-            width: 100%;
-        }
-
-        .content {
-            line-height: 30px;
-            font-size: 28px;
-            width: 100%;
-            display: inline-block;
-            word-wrap: break-word;
-        }
-    </style>
+<html lang="en" class="chuye">
+<head>
+    <meta content="初页,云起,初页App,初页下载,H5页面,webapp,微信,邀请函,喜帖,贺卡,表白,PPT,翻翻看,微杂志,音乐杂志,微场景,微页面,动态海报,应用,app" name="keywords" />
+    <meta content="云起初页官网。可免费下载安卓版和苹果版初页App，或通过电脑在线创建、编辑，轻松创作优雅、炫酷，利于微信传播的H5海报。" name="description" />
+    <meta content="Web7" name="generator" />
+    <title>初页 - 优质H5手机页、微信海报</title>
+    <link href="@Html.Href("favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="@Html.Href("/content/columns.css")">
+</head>
 <body>
-<div class="border">
-    <div class="title">fsgwegwaf</div>
-    <div class="content">fsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaffsgwegwaf</div>
+<div class="layout-header">
+    <div class="layout">
+        <div class="fl-l">
+            <img src="@Html.Href("/content/image/chuye-logo-intro.png")" alt="">
+        </div>
+        <div class="fl-r">
+            <a href="http://www.cloud7.com.cn/">首页</a>
+            <a class="btn simulated-physical red" href="~/account/login">创作</a>
+        </div><br class="clear" />
+    </div>
 </div>
-<script>
+
+<div class="layout-body chuye">
+    <div class="block-wrapper banner">
+        <div class="layout">
+            <div class="left-wrapper">
+                <div class="title">
+                    <i class="c-icon chuye-banner-logo dis-b"></i>
+                    <div>一页之间，你就不同！</div>
+                </div>
+                <div class="operation-wrapper">
+                    <div class="scan-Qrcode">
+                        <img src="@Html.Href("/content/image/erweima-chuye-app-store.png")" alt="">
+                        扫一扫，免费下载App<br />开始你的初页
+                    </div>
+                    <div class="download-custom-btns">
+                        <a class="btn simulated-physical has-icon red" id="dl-app" href="https://itunes.apple.com/cn/app/chu-ye/id910560238?mt=8" target="_blank">
+                            <i class="c-icon apple"></i>App Store应用商店<br /><span class="emphasis">免费下载</span>
+                        </a>
+                        <a class="btn simulated-physical has-icon pink" id="custom" href="/account/login">
+                            <i class="g-icon start-create"></i>
+                            <span class="l-s-3">打开web初页</span><br />
+                            <span class="emphasis">开始制作</span>
+                        </a>
+                    </div>
+                    <br class="clear" />
+                </div>
+            </div><br class="clear" />
+            <img src="@Html.Href("/content/image/chuye-block1-bg.png")" alt="" class="bg">
+        </div>
+    </div>
+    <div class="block-wrapper scenario">
+        <div class="layout t-c">
+            <div class="header">
+                <span class="emphasis">海量场景</span><br />新玩法·不停现
+            </div>
+            <ul class="cases-list">
+                <li>
+                    <div class="item">
+                        <div class="front">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/typical-case-new-product-release.png" alt="">
+                        </div>
+                        <div class="back">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/erweima-new-product-release.jpg" alt="" />
+                        </div>
+                    </div>
+                    <span class="title"><i class="jx-font-family-down-demotion">新</i>品发布</span>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="front">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/typical-case-geek-coffee.png" alt="">
+                        </div>
+                        <div class="back">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/erweima-geek-coffee.png" alt="" />
+                        </div>
+                    </div>
+                    <span class="title">活<i class="jx-font-family-down-demotion">动</i>预告</span>
+                </li>
+                <li class="line-last">
+                    <div class="item">
+                        <div class="front">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/typical-case-artist.png" alt="">
+                        </div>
+                        <div class="back">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/erweima-artist.png" alt="" />
+                        </div>
+                    </div>
+                    <span class="title">任务介绍</span>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="front">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/typical-case-gujianqitan.png" alt="">
+                            <span class="custom">定制</span>
+                        </div>
+                        <div class="back">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/erweima-gujianqitan.jpg" alt="" />
+                        </div>
+                    </div>
+                    <span class="title">百度视频《古剑奇谭》</span>
+                </li>
+                <li>
+                    <div class="item">
+                        <div class="front">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/typical-case-weixinfenghui.png" alt="">
+                            <span class="custom">定制</span>
+                        </div>
+                        <div class="back">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/erweima-weixinfenghui.png" alt="" />
+                        </div>
+                    </div>
+                    <span class="title"><i class="jx-font-family-down-demotion">微</i>信峰会</span>
+                </li>
+                <li class="line-last">
+                    <div class="item">
+                        <div class="front">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/typical-case-honggaoliang.png" alt="">
+                            <span class="custom">定制</span>
+                        </div>
+                        <div class="back">
+                            <img src="http://www.cloud7.com.cn/Themes/Cloud7Global/Styles/Images/erweima-honggaoliang.png" alt="" />
+                        </div>
+                    </div>
+                    <span class="title">浙江卫视《红高粱》</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="block-wrapper experience">
+        <div class="layout t-c">
+            <div class="header">
+                <span class="emphasis">极致体验</span><br />初页如海报般精美，却有海报所不能及的惊艳、生动、万种风情<br />指尖滑动，每页都将行云流水 优雅呈现
+            </div>
+            <img class="m-l55" src="@Html.Href("/content/image/chuye-block3-bg.png")" alt="">
+        </div>
+    </div>
+    <div class="block-wrapper cometrue">
+        <div class="layout t-c">
+            <div class="header">
+                <span class="emphasis">轻松实现</span><br />只需添七八张图，落三五行字，点选你爱的音乐<br />初页，将自然成型 一切如此轻松
+            </div>
+            <img src="@Html.Href("/content/image/chuye-block4-bg.png")" alt="">
+        </div>
+    </div>
+    <div class="block-wrapper spread">
+        <div class="layout t-c">
+            <div class="header">
+                <span class="emphasis">极易传播</span><br />去朋友圈炫耀，或让初页在微博、QQ、浏览器内完美呈现<br />盛赞 热议 裂变传播……它所到之处，自成焦点
+            </div>
+            <img src="@Html.Href("/content/image/chuye-block5-bg.png")" alt="">
+        </div>
+    </div>
+    <div class="sect">
+        <p class="t-c tip">私人定制初页：400-8044-007</p>
+    </div>
+</div>
+
+<div class="layout-footer" id="footer">
+    <div class="layout">
+        <div class="nav">
+            <a href="http://www.cloud7.com.cn/page/18966">关于云起</a>
+            <a href="http://www.cloud7.com.cn/page/8064">工作机会</a>
+            <a href="http://www.cloud7.com.cn/page/18963">联系云起</a>
+        </div>
+        <div class="third-party-links">
+            <a href="http://weibo.com/cloud7team" target="_blank" class="g-icon sina"></a>
+            <a href="" data-dialogimg="https://cloud7static.blob.core.chinacloudapi.cn/chuye/content/image/wechat_cloud7lapp.jpg" data-dialogtext="云起轻应用" class="g-icon weixin"></a>
+            <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2899533023&amp;site=qq&amp;menu=yes" target="_blank" class="g-icon qq"></a>
+            <a href="http://www.cloud7.com.cn/blog/18968" class="g-icon tencent-weibo"></a>
+        </div>
+    </div>
+    <div class="yunqi-lightapp-erweima">
+        <div class="maskLayer">
+        </div>
+        <div class="erweima">
+            <i class="c-icon close btn"></i>
+            <img src="" alt="" />
+            <p></p>
+        </div>
+    </div>
+</div>
+<script src="@Html.Href("/scripts/jquery-2.1.1.min.js")"></script>
+<script src="@Html.Href("/scripts/cloud7-base.js")"></script>
+<script type="text/javascript" src="//cloud7static.blob.core.chinacloudapi.cn/analytics/piwik.js"></script>
+<script type="text/javascript">
+    //control_mask
+    var $yunqiLightappErweima = $(".yunqi-lightapp-erweima");
+
+    $('.erweima .btn.close').click(function () {
+        $yunqiLightappErweima.hide();
+        $("body").removeClass('overflow');
+    });
+
+    $('[data-dialogimg][data-dialogtext]').click(function (e) {
+        e.preventDefault();
+        var imgpath = $(this).attr("data-dialogimg");
+        var text = $(this).attr("data-dialogtext");
+        $yunqiLightappErweima.find("img").attr("src", imgpath);
+        $yunqiLightappErweima.find("p").text(text);
+        e.stopPropagation();
+        $yunqiLightappErweima.show();
+        return false;
+    });
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-60136784-1']);
+    _gaq.push(['_trackPageview']);
+
     (function () {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
 
+    var cas = window.cas || {};
+    cas.trackEvent = function (args) {
+        _gaq.push(['_trackEvent'].concat(args));
+    };
 
+    cas.trackPageview = function() {
+        _gaq.push(['_trackPageview']);
+    };
+
+</script>
+<script type="text/javascript">
+    (function () {
+        var ua = Q.ua,
+                supportCss3 = Q.supportCss3;
+
+        var $rootNode = $("#layout-wrapper");
+        if (ua.mac) { //只在mac上使用特殊字体
+            $rootNode.addClass("mac");
+        }
+        if (ua.ipad) { //处理ipad下由特殊字体引起的不明问题，导致案例列表排列错乱
+            $rootNode.addClass("ipad");
+        }
+
+        var supportTransform = supportCss3("transform");
+        if (!supportTransform && !ua.firefox) {
+            $(".cases-list li").find(".back").css("display", "none");
+            $(".cases-list li").bind("mouseover", function () {
+                $(this).find(".front").hide().end().find(".back").show();
+            }).bind("mouseout", function () {
+                $(this).find(".front").show().end().find(".back").hide();
+            });
+        }
     })();
 </script>
 </body>
