@@ -237,22 +237,22 @@ body {
     left: 88px;
 }
 
-.home-page, .communite {
-    width: 58px;
-    height: 24px;
-    position: absolute;
-    top: 24px;
-}
+/*.home-page, .communite {*/
+    /*width: 58px;*/
+    /*height: 24px;*/
+    /*position: absolute;*/
+    /*top: 24px;*/
+/*}*/
 
-.home-page {
-    right: 166px;
-    background-position: 0 -50px;
-}
+/*.home-page {*/
+    /*right: 166px;*/
+    /*background-position: 0 -50px;*/
+/*}*/
 
-.communite {
-    right: 88px;
-    background-position: 0 -80px;
-}
+/*.communite {*/
+    /*right: 88px;*/
+    /*background-position: 0 -80px;*/
+/*}*/
 
 .scroll-wrapper {
     width: 100%;
