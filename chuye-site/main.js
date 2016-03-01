@@ -148,7 +148,7 @@
         timeID = setTimeout( function () {
             var cur = (new Date()).getTime();
             if ( cur - s < duration ) {
-                frame( (cur - s ) / duration );
+                frame( (cur - s) / duration );
                 timeID = setTimeout( arguments.callee , 20 );
             } else {
                 frame( 1 );
@@ -582,7 +582,7 @@
                     loopArray( yellowPhones , function ( phone ) {
                         phone.classList.add( "hide" );
                     } );
-                    var isNeedFixed = (curPageIndex < 6 && curPageIndex > 0 ) && (i < 6 && i > 0);
+                    var isNeedFixed = (curPageIndex < 6 && curPageIndex > 0) && (i < 6 && i > 0);
                     if ( isNeedFixed ) {
                         yellowPhones[ curPageIndex - 1 ].classList.add( "hide" );
                         tempWrapper.classList.remove( "hide" );
