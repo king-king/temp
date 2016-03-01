@@ -714,11 +714,11 @@ body {
 }
 
 .show .page-title {
-    animation: 0.5s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
+    animation: 0.4s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
 }
 
 .show .page0-word.img-0 {
-    animation: 0.9s shade-in 1s ease-in both;
+    animation: 0.9s shade-in 0.8s ease-in both;
 }
 
 .show .page0-word.img-1 {
@@ -802,27 +802,27 @@ body {
 }
 
 .show .page1-word.a {
-    animation: 1s down-shade 1.3s ease-in-out both;
+    animation: 1s down-shade 1.2s cubic-bezier(.17, .67, .66, 1.75) both;
 }
 
 .show .page1-word.b {
-    animation: 1s down-shade 1.6s ease-in-out both;
+    animation: 1s down-shade 1.5s cubic-bezier(.17, .67, .66, 1.75) both;
 }
 
 .show .page1-word.c {
-    animation: 1s down-shade 1.9s ease-in-out both;
+    animation: 1s down-shade 1.8s cubic-bezier(.17, .67, .66, 1.75) both;
 }
 
 .show .page1-word.d {
-    animation: 1s down-shade 2.2s ease-in-out both;
+    animation: 1s down-shade 2.1s cubic-bezier(.17, .67, .66, 1.75) both;
 }
 
 .show .page1-word.e {
-    animation: 1s down-shade 2.5s ease-in-out both;
+    animation: 1s down-shade 2.4s cubic-bezier(.17, .67, .66, 1.75) both;
 }
 
 .show .page1-word.f {
-    animation: 1s down-shade 2.8s ease-in-out both;
+    animation: 1s down-shade 2.7s cubic-bezier(.17, .67, .66, 1.75) both;
 }
 
 .show .page1-0 {
