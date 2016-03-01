@@ -406,6 +406,12 @@
             bindEvent( img , "animationend" , onEnd );
         } );
 
+        document.addEventListener( "visibilitychange" , function () {
+            // 在chrome里面浏览其他标签页会导致当前页面animationend停止响应
+            if ( sections[ 4 ].classList.contains( "show" ) ) {
+                reset();
+            }
+        } );
         function fly() {
             circles[ curIndex ].classList.remove( "select" );
             contentImage[ 4 - curIndex ].classList.add( "fly" );
@@ -413,9 +419,20 @@
             circles[ curIndex ].classList.add( "select" );
         }
 
+        function reset() {
+            curIndex = 0;
+            loopArray( contentImage , function ( img , i ) {
+                img.zindex = img.style.zIndex = i;
+                img.classList.remove( "fly" );
+                circles[ i ].classList.remove( "select" );
+            } );
+            circles[ 0 ].classList.add( "select" );
+            flyHandler && flyHandler.remove && flyHandler.remove();
+        }
+
         sections[ 4 ].play = function () {
             if ( !contentBorder.classList.contains( "tap" ) ) {
-                flyHandler && flyHandler.remove && flyHandler.remove();
+                reset();
                 flyHandler = Timer( 5000 , fly );
             }
         };
