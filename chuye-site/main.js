@@ -73,10 +73,12 @@
         loopArray( sections , function ( setction , i ) {
             setction.style.height = bodyHeight + "px";
             wrappers[ i ].style.width = wrappers[ i ].style.height = cubeHeight + "px";
-            wrappers[ i ].style.marginLeft = wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px"
+            wrappers[ i ].style.marginTop = -cubeHeight / 2 + "px";
+            wrappers[ i ].style.marginLeft = -(cubeHeight * 0.52 << 0) + "px";
         } );
         tempWrapper.style.width = tempWrapper.style.height = cubeHeight + "px";
-        tempWrapper.style.marginLeft = tempWrapper.style.marginTop = -cubeHeight / 2 + "px"
+        tempWrapper.style.marginTop = -cubeHeight / 2 + "px";
+        tempWrapper.style.marginLeft = -(cubeHeight * 0.52 << 0) + "px";
     }
 
     function wheelScroll( direction ) {
