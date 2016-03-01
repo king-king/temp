@@ -199,6 +199,15 @@
             qrBorder.classList.remove( "onover" );
         };
 
+        loopArray( querySelectorAll( ".page0-word" ) , function ( word ) {
+            function onEnd() {
+                word.style.animation = "none";
+            }
+
+            bindEvent( word , "webkitAnimationEnd" , onEnd );
+            bindEvent( word , "animationend" , onEnd );
+        } );
+
         loopArray( querySelectorAll( ".page0-img-border-wrapper .item" ) , function ( item , i ) {
             item.style.left = 25 * i + "%";
         } );

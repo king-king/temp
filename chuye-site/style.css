@@ -158,9 +158,24 @@ body {
 
 .page0-word {
     position: absolute;
-    top: 30.078125%;
     left: 0;
-    height: 21.223958%;
+    height: 5.3059895%;
+}
+
+.page0-word.a {
+    top: 30.078125%;
+}
+
+.page0-word.b {
+    top: 35.3841145%;
+}
+
+.page0-word.c {
+    top: 40.690104%;
+}
+
+.page0-word.d {
+    top: 45.9960935%;
 }
 
 .page0-qr {
@@ -717,81 +732,97 @@ body {
     animation: 1.5s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
 }
 
-.show .page0-word.img-0 {
-    animation: 0.9s shade-in 0.8s ease-in both;
+.show .page0-word.a {
+    animation: 1.3s down-shade 1.6s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
-.show .page0-word.img-1 {
-    animation: 0.9s shade-in 1.2s ease-in both;
+.show .page0-word.b {
+    animation: 1.3s down-shade 1.9s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
-.show .page0-word.img-2 {
-    animation: 0.9s shade-in 1.4s ease-in both;
+.show .page0-word.c {
+    animation: 1.3s down-shade 2.2s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
-.show .page0-word.img-3 {
-    animation: 0.9s shade-in 1.6s ease-in both;
+.show .page0-word.d {
+    animation: 1.3s down-shade 2.5s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
-.show .page0-word.img-4 {
-    animation: 0.9s shade-in 1.8s ease-in both;
-}
+/*.show .page0-word.img-0 {*/
+/*animation: 0.9s shade-in 0.8s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-5 {
-    animation: 0.9s shade-in 2s ease-in both;
-}
+/*.show .page0-word.img-1 {*/
+/*animation: 0.9s shade-in 1.2s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-6 {
-    animation: 0.9s shade-in 2.2s ease-in both;
-}
+/*.show .page0-word.img-2 {*/
+/*animation: 0.9s shade-in 1.4s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-7 {
-    animation: 0.9s shade-in 2.4s ease-in both;
-}
+/*.show .page0-word.img-3 {*/
+/*animation: 0.9s shade-in 1.6s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-8 {
-    animation: 0.9s shade-in 2.6s ease-in both;
-}
+/*.show .page0-word.img-4 {*/
+/*animation: 0.9s shade-in 1.8s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-9 {
-    animation: 0.9s shade-in 2.8s ease-in both;
-}
+/*.show .page0-word.img-5 {*/
+/*animation: 0.9s shade-in 2s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-10 {
-    animation: 0.9s shade-in 3s ease-in both;
-}
+/*.show .page0-word.img-6 {*/
+/*animation: 0.9s shade-in 2.2s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-11 {
-    animation: 0.9s shade-in 3.2s ease-in both;
-}
+/*.show .page0-word.img-7 {*/
+/*animation: 0.9s shade-in 2.4s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-12 {
-    animation: 0.9s shade-in 3.4s ease-in both;
-}
+/*.show .page0-word.img-8 {*/
+/*animation: 0.9s shade-in 2.6s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-13 {
-    animation: 0.9s shade-in 3.6s ease-in both;
-}
+/*.show .page0-word.img-9 {*/
+/*animation: 0.9s shade-in 2.8s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-14 {
-    animation: 0.9s shade-in 3.8s ease-in both;
-}
+/*.show .page0-word.img-10 {*/
+/*animation: 0.9s shade-in 3s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-15 {
-    animation: 0.9s shade-in 4s ease-in both;
-}
+/*.show .page0-word.img-11 {*/
+/*animation: 0.9s shade-in 3.2s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-16 {
-    animation: 0.9s shade-in 4.2s ease-in both;
-}
+/*.show .page0-word.img-12 {*/
+/*animation: 0.9s shade-in 3.4s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-17 {
-    animation: 0.9s shade-in 4.4s ease-in both;
-}
+/*.show .page0-word.img-13 {*/
+/*animation: 0.9s shade-in 3.6s ease-in both;*/
+/*}*/
 
-.show .page0-word.img-18 {
-    animation: 0.9s shade-in 4.6s ease-in both;
-}
+/*.show .page0-word.img-14 {*/
+/*animation: 0.9s shade-in 3.8s ease-in both;*/
+/*}*/
+
+/*.show .page0-word.img-15 {*/
+/*animation: 0.9s shade-in 4s ease-in both;*/
+/*}*/
+
+/*.show .page0-word.img-16 {*/
+/*animation: 0.9s shade-in 4.2s ease-in both;*/
+/*}*/
+
+/*.show .page0-word.img-17 {*/
+/*animation: 0.9s shade-in 4.4s ease-in both;*/
+/*}*/
+
+/*.show .page0-word.img-18 {*/
+/*animation: 0.9s shade-in 4.6s ease-in both;*/
+/*}*/
 
 .show .page0-qr {
     animation: 1s shade-in 3.4s ease-in-out both;
