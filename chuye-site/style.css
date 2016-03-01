@@ -714,7 +714,7 @@ body {
 }
 
 .show .page-title {
-    animation: 0.4s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
+    animation: 1s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
 }
 
 .show .page0-word.img-0 {
@@ -802,27 +802,27 @@ body {
 }
 
 .show .page1-word.a {
-    animation: 1s down-shade 1.2s cubic-bezier(.17, .67, .66, 1.75) both;
+    animation: 1s down-shade 1.4s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.b {
-    animation: 1s down-shade 1.5s cubic-bezier(.17, .67, .66, 1.75) both;
+    animation: 1s down-shade 1.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.c {
-    animation: 1s down-shade 1.8s cubic-bezier(.17, .67, .66, 1.75) both;
+    animation: 1s down-shade 2s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.d {
-    animation: 1s down-shade 2.1s cubic-bezier(.17, .67, .66, 1.75) both;
+    animation: 1s down-shade 2.3s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.e {
-    animation: 1s down-shade 2.4s cubic-bezier(.17, .67, .66, 1.75) both;
+    animation: 1s down-shade 2.6s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-word.f {
-    animation: 1s down-shade 2.7s cubic-bezier(.17, .67, .66, 1.75) both;
+    animation: 1s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page1-0 {
@@ -862,19 +862,19 @@ body {
 }
 
 .show .page2-word.a {
-    animation: 1s down-shade 0.3s ease-in-out both;
+    animation: 1s down-shade 1.5s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page2-word.b {
-    animation: 1s down-shade 0.6s ease-in-out both;
+    animation: 1s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page2-word.c {
-    animation: 1s down-shade 0.9s ease-in-out both;
+    animation: 1s down-shade 2.1s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page2-word.d {
-    animation: 1s down-shade 1.2s ease-in-out both;
+    animation: 1s down-shade 2.4s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page2-tag0, .show .page5-tag0 {
@@ -906,31 +906,31 @@ body {
 }
 
 .show .page3-word.a {
-    animation: 1s down-shade 0.3s ease-in-out both;
+    animation: 1s down-shade 1.5s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page3-word.b {
-    animation: 1s down-shade 0.6s ease-in-out both;
+    animation: 1s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page3-word.c {
-    animation: 1s down-shade 0.9s ease-in-out both;
+    animation: 1s down-shade 2.1s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page4-word.a {
-    animation: 1s down-shade 0.3s ease-in-out both;
+    animation: 1s down-shade 1.5s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page4-word.b {
-    animation: 1s down-shade 0.6s ease-in-out both;
+    animation: 1s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page5-word.a {
-    animation: 1s down-shade 0.3s ease-in-out both;
+    animation: 1s down-shade 1.5s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page5-word.b {
-    animation: 1s down-shade 0.6s ease-in-out both;
+    animation: 1s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .page3-canvas.shake {
@@ -947,6 +947,11 @@ body {
         opacity: 0;
     }
     50% {
+        transform: translate3d(10px, 0, 0);
+        opacity: 1;
+    }
+    75% {
+        transform: translate3d(-5px, 0, 0);
         opacity: 1;
     }
     100% {
@@ -998,10 +1003,15 @@ body {
 
 @keyframes down-shade {
     0% {
-        -webkit-transform: perspective(1500px) translate3d(0, -100%, 0);
+        -webkit-transform: perspective(1500px) translate3d(0, -80%, 0);
         transform: perspective(1500px) translate3d(0, -100%, 0);
         opacity: 0;
     }
+    50% {
+        -webkit-transform: perspective(1500px) translate3d(0, 10%, 0);
+        transform: perspective(1500px) translate3d(0, 10%, 0);
+    }
+
     100% {
         -webkit-transform: perspective(1500px) translate3d(0, 0, 0);
         transform: perspective(1500px) translate3d(0, 0, 0);
