@@ -333,10 +333,10 @@
 
         concurrentTask( [
             function ( done ) {
-                clock.src = "img/clock.png";
+                clock.src = querySelector( ".clock" ).getAttribute( "w-src" );
                 clock.onload = done;
             } , function ( done ) {
-                clockPointer.src = "img/clock-pointer.png";
+                clockPointer.src = querySelector( ".clock-pointer" ).getAttribute( "w-src" );
                 clockPointer.onload = done;
             } ] , function () {
             frame( 0 );
