@@ -480,6 +480,17 @@
 
     }
 
+    function initFooter() {
+        var contactBtn = querySelector( ".footer-contact-us" );
+        var chuyeInfo = querySelector( ".chuye-info" );
+        contactBtn.onmouseover = function () {
+            chuyeInfo.classList.remove( "hide" );
+        };
+        contactBtn.onmouseout = function () {
+            chuyeInfo.classList.add( "hide" );
+        };
+    }
+
     function init() {
         resize();
         // loading
@@ -573,6 +584,8 @@
         initPage4();
         // page-5
         initPage5();
+        // footer
+        initFooter();
     }
 
     init();

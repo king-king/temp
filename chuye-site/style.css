@@ -629,6 +629,14 @@ body {
     color: #fff;
 }
 
+.chuye-info {
+    width: 239px;
+    position: absolute;
+    left: 50%;
+    margin-left: -67px;
+    top: -101px;
+}
+
 .footer-link {
     font-size: 14px;
     line-height: 18px;
@@ -638,12 +646,14 @@ body {
     left: 0;
     width: 100%;
     top: 38px;
+    z-index: 10;
 }
 
 .footer-link div {
     display: inline-block;
     width: 100px;
     color: #fff;
+    cursor: pointer;
 }
 
 .footer-link div a {
@@ -724,51 +734,51 @@ body {
 }
 
 .show .page0-word.a {
-    animation: 2s down-shade 0.5s ease-in-out both;
+    animation: 1s down-shade 0.3s ease-in-out both;
 }
 
 .show .page0-word.b {
-    animation: 2s down-shade 1s ease-in-out both;
+    animation: 1s down-shade 0.6s ease-in-out both;
 }
 
 .show .page0-word.c {
-    animation: 2s down-shade 1.5s ease-in-out both;
+    animation: 1s down-shade 0.9s ease-in-out both;
 }
 
 .show .page0-word.d {
-    animation: 2s down-shade 2s ease-in-out both;
+    animation: 1s down-shade 1.2s ease-in-out both;
 }
 
 .show .page0-qr {
-    animation: 1.5s down-shade 3.4s ease-in-out both;
+    animation: 1s shade-in 2.4s ease-in-out both;
 }
 
 .show .page0-btn {
-    animation: 1.5s down-shade 4.2s ease-in-out both;
+    animation: 1s shade-in 2.7s ease-in-out both;
 }
 
 .show .page1-word.a {
-    animation: 2s down-shade ease-in-out both;
+    animation: 1s down-shade 0.3s ease-in-out both;
 }
 
 .show .page1-word.b {
-    animation: 2s down-shade 0.5s ease-in-out both;
+    animation: 1s down-shade 0.6s ease-in-out both;
 }
 
 .show .page1-word.c {
-    animation: 2s down-shade 1s ease-in-out both;
+    animation: 1s down-shade 0.9s ease-in-out both;
 }
 
 .show .page1-word.d {
-    animation: 2s down-shade 1.5s ease-in-out both;
+    animation: 1s down-shade 1.2s ease-in-out both;
 }
 
 .show .page1-word.e {
-    animation: 2s down-shade 2s ease-in-out both;
+    animation: 1s down-shade 1.5s ease-in-out both;
 }
 
 .show .page1-word.f {
-    animation: 2s down-shade 2.5s ease-in-out both;
+    animation: 1s down-shade 1.8s ease-in-out both;
 }
 
 .show .page1-0 {
@@ -808,19 +818,19 @@ body {
 }
 
 .show .page2-word.a {
-    animation: 2s down-shade 0.5s ease-in-out both;
+    animation: 1s down-shade 0.3s ease-in-out both;
 }
 
 .show .page2-word.b {
-    animation: 2s down-shade 1s ease-in-out both;
+    animation: 1s down-shade 0.6s ease-in-out both;
 }
 
 .show .page2-word.c {
-    animation: 2s down-shade 2s ease-in-out both;
+    animation: 1s down-shade 0.9s ease-in-out both;
 }
 
 .show .page2-word.d {
-    animation: 2s down-shade 2.5s ease-in-out both;
+    animation: 1s down-shade 1.2s ease-in-out both;
 }
 
 .show .page2-tag0, .show .page5-tag0 {
@@ -852,31 +862,31 @@ body {
 }
 
 .show .page3-word.a {
-    animation: 2s down-shade 0.5s ease-in-out both;
+    animation: 1s down-shade 0.3s ease-in-out both;
 }
 
 .show .page3-word.b {
-    animation: 2s down-shade 1.5s ease-in-out both;
+    animation: 1s down-shade 0.6s ease-in-out both;
 }
 
 .show .page3-word.c {
-    animation: 2s down-shade 2s ease-in-out both;
+    animation: 1s down-shade 0.9s ease-in-out both;
 }
 
 .show .page4-word.a {
-    animation: 2s down-shade 0.5s ease-in-out both;
+    animation: 1s down-shade 0.3s ease-in-out both;
 }
 
 .show .page4-word.b {
-    animation: 2s down-shade 1s ease-in-out both;
+    animation: 1s down-shade 0.6s ease-in-out both;
 }
 
 .show .page5-word.a {
-    animation: 2s down-shade 0.5s ease-in-out both;
+    animation: 1s down-shade 0.3s ease-in-out both;
 }
 
 .show .page5-word.b {
-    animation: 2s down-shade 1s ease-in-out both;
+    animation: 1s down-shade 0.6s ease-in-out both;
 }
 
 .page3-canvas.shake {
@@ -940,13 +950,13 @@ body {
 
 @keyframes down-shade {
     0% {
-        -webkit-transform: translate3d(0, -50%, 0);
-        transform: translate3d(0, -50%, 0);
+        -webkit-transform: perspective(1500px) translate3d(0, -50%, 0) rotate3d(1, 0, 0, -90deg);
+        transform: perspective(1500px) translate3d(0, -50%, 0) rotate3d(1, 0, 0, -90deg);
         opacity: 0;
     }
     100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
+        -webkit-transform: perspective(1500px) translate3d(0, 0, 0) rotate3d(1, 0, 0, 0deg);
+        transform: perspective(1500px) translate3d(0, 0, 0) rotate3d(1, 0, 0, 0deg);
         opacity: 1;
     }
 }
