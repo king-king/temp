@@ -87,7 +87,7 @@
 <script>
     (function () {
 
-        function bindEvent ( el , type , func ) {
+        function bindEvent( el , type , func ) {
             el.addEventListener( type , func , false );
             return {
                 remove : function () {
@@ -96,34 +96,35 @@
             }
         }
 
-        function onTap ( el , func ) {
+        function onTap( el , func ) {
             var sx , sy , ismove = false;
             bindEvent( el , "touchstart" , function ( e ) {
                 el.classList.add( "tap" );
                 sx = e.touches[ 0 ].pageX;
                 sy = e.touches[ 0 ].pageY;
-                var moveH = bindEvent( el , "touchmove" , function ( e ) {
+                var moveH = bindEvent( document , "touchmove" , function ( e ) {
                     if ( Math.pow( e.touches[ 0 ].pageX - sx , 2 ) + Math.pow( e.touches[ 0 ].pageY - sy , 2 ) > 20 ) {
                         ismove = true;
                         el.classList.remove( "tap" );
                     }
                 } );
-                var endH = bindEvent( el , "touchend" , function ( e ) {
+                var endH = bindEvent( document , "touchend" , function ( e ) {
                     !ismove && func( e );
                     !ismove && el.classList.remove( "tap" );
+                    ismove = false;
                     moveH.remove();
                     endH.remove();
                 } );
             } );
         }
 
-        function loopArray ( arr , func ) {
-            for ( var i = 0 ; i < arr.length ; i++ ) {
+        function loopArray( arr , func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
                 func( arr[ i ] , i );
             }
         }
 
-        function element ( tag , arg , parent ) {
+        function element( tag , arg , parent ) {
             var el = document.createElement( tag );
             for ( var key in arg ) {
                 switch ( key ) {
