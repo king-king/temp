@@ -116,6 +116,9 @@
         } else if ( (direction < 0 && curPageIndex == 6) || (direction > 0 && curPageIndex == 5) ) {
             yellowPhones[ 4 ].classList.remove( "hide" );
             tempWrapper.classList.add( "hide" );
+        } else if ( direction == 0 ) {
+            isScrolling = false;
+            return;
         } else {
             yellowPhones[ curPageIndex - 1 ].classList.add( "hide" );
             tempWrapper.classList.remove( "hide" );
@@ -221,7 +224,7 @@
 
         sections[ 0 ].stop = function () {
             // 当页面移出时，要停止轮播图
-            timerHandler.remove();
+            timerHandler && timerHandler.remove && timerHandler.remove();
         };
 
         sections[ 0 ].play = function () {
@@ -276,7 +279,7 @@
             switchHandler = Timer( 5000 , switchImg );
         };
         sections[ 2 ].stop = function () {
-            switchHandler.remove();
+            switchHandler && switchHandler.remove && switchHandler.remove();
         };
     }
 
@@ -369,7 +372,7 @@
         sections[ 3 ].stop = function () {
             page3Iframe.src = "";
             page3Iframe.classList.remove( "play" );
-            rotateHandler.remove();
+            rotateHandler && rotateHandler.remove && rotateHandler.remove();
         };
         sections[ 3 ].play = function () {
             rotateHandler && rotateHandler.remove();
@@ -428,7 +431,7 @@
         };
 
         sections[ 4 ].stop = function () {
-            flyHandler.remove();
+            flyHandler && flyHandler.remove && flyHandler.remove();
         };
 
     }
@@ -476,7 +479,7 @@
             switchHandler = Timer( 5000 , switchImg );
         };
         sections[ 5 ].stop = function () {
-            switchHandler.remove();
+            switchHandler && switchHandler.remove && switchHandler.remove();
         };
 
     }
