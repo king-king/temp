@@ -158,24 +158,9 @@ body {
 
 .page0-word {
     position: absolute;
-    left: 0;
-    height: 5.3059895%;
-}
-
-.page0-word.a {
     top: 30.078125%;
-}
-
-.page0-word.b {
-    top: 35.3841145%;
-}
-
-.page0-word.c {
-    top: 40.690104%;
-}
-
-.page0-word.d {
-    top: 45.9960935%;
+    left: 0;
+    height: 21.223958%;
 }
 
 .page0-qr {
@@ -731,22 +716,6 @@ body {
 
 .show .page-title {
     animation: 2s left-to-right ease-in-out both;
-}
-
-.show .page0-word.a {
-    animation: 1s down-shade 0.3s ease-in-out both;
-}
-
-.show .page0-word.b {
-    animation: 1s down-shade 0.6s ease-in-out both;
-}
-
-.show .page0-word.c {
-    animation: 1s down-shade 0.9s ease-in-out both;
-}
-
-.show .page0-word.d {
-    animation: 1s down-shade 1.2s ease-in-out both;
 }
 
 .show .page0-qr {
