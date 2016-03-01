@@ -199,6 +199,7 @@
         loopArray( querySelectorAll( ".page0-img-border-wrapper .item" ) , function ( item , i ) {
             item.style.left = 25 * i + "%";
         } );
+
         function slide() {
             circles[ curIndex ].classList.remove( "select" );
             circles[ curIndex + 1 == 3 ? 0 : curIndex + 1 ].classList.add( "select" );
