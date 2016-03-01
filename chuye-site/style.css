@@ -400,7 +400,7 @@ body {
 
 .page2-word {
     left: 7.94271%;
-    height: 4.1015625%;
+    height: 4.2317708333%;
 }
 
 .page2-word.a {
@@ -408,15 +408,19 @@ body {
 }
 
 .page2-word.b {
-    top: 50.0651025%;
+    top: 50.1953108333%;
 }
 
 .page2-word.c {
-    top: 54.166665%;
+    top: 54.4270816666%;
 }
 
 .page2-word.d {
-    top: 58.2682275%;
+    top: 58.6588524999%;
+}
+
+.page2-word.e {
+    top: 62.8906233332%;
 }
 
 .page2-cat {
@@ -462,7 +466,7 @@ body {
 
 .page3-word {
     left: 1.43229%;
-    height: 3.90625%;
+    height: 4.2317708333%;
 }
 
 .page3-word.a {
@@ -470,11 +474,19 @@ body {
 }
 
 .page3-word.b {
-    top: 54.6875%;
+    top: 55.0130208333%;
 }
 
 .page3-word.c {
-    top: 58.59375%;
+    top: 59.2447916666%;
+}
+
+.page3-word.d {
+    top: 63.4765624999%;
+}
+
+.page3-word.e {
+    top: 67.7083333332%;
 }
 
 .page3-canvas {
@@ -531,7 +543,7 @@ body {
 
 .page4-word {
     left: 2.08333%;
-    height: 3.45052%;
+    height: 4.1015625%;
 }
 
 .page4-word.a {
@@ -539,7 +551,15 @@ body {
 }
 
 .page4-word.b {
-    top: 53.97135%;
+    top: 54.6223925%;
+}
+
+.page4-word.c {
+    top: 58.723955%;
+}
+
+.page4-word.d {
+    top: 62.8255175%;
 }
 
 .page4-circles {
@@ -572,7 +592,7 @@ body {
 
 .page5-word {
     right: 66.79688%;
-    height: 3.515625%;
+    height: 4.03645833%;
 }
 
 .page5-word.a {
@@ -580,7 +600,15 @@ body {
 }
 
 .page5-word.b {
-    top: 54.947915%;
+    top: 55.46874833333334%;
+}
+
+.page5-word.c {
+    top: 59.505206666666666%;
+}
+
+.page5-word.d {
+    top: 63.541665%;
 }
 
 .page5-tag0 {
@@ -908,6 +936,10 @@ body {
     animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
+.show .page2-word.e {
+    animation: 1.3s down-shade 3s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
 .show .page2-tag0, .show .page5-tag0 {
     animation: 1s right-to-left ease-in-out both;
 }
@@ -948,6 +980,14 @@ body {
     animation: 1.3s down-shade 2.4s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
+.show .page3-word.d {
+    animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
+.show .page3-word.e {
+    animation: 1.3s down-shade 3s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
 .show .page4-word.a {
     animation: 1.3s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
@@ -956,12 +996,28 @@ body {
     animation: 1.3s down-shade 2.1s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
+.show .page4-word.c {
+    animation: 1.3s down-shade 2.4s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
+.show .page4-word.d {
+    animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
 .show .page5-word.a {
     animation: 1.3s down-shade 1.8s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .show .page5-word.b {
     animation: 1.3s down-shade 2.1s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
+.show .page5-word.c {
+    animation: 1.3s down-shade 2.4s cubic-bezier(.33, .9, .64, 1.27) both;
+}
+
+.show .page5-word.d {
+    animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
 .page3-canvas.shake {

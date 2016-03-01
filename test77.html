@@ -24,67 +24,17 @@
 </head>
 <body>
 
-<img src="http://king-king.github.io/document/7-low-poly-advance/img/h4.jpg">
 <script>
     (function () {
-
-        window.timedOut = true;
-
-        window.setTimeout = (function ( oldSetTimeout ) {
-            var registered = [];
-
-            // because some of our timeouts may time out afterwards
-            // we want to make sure they know the secret sauce to still use
-            // setTimeout after the time has expired, thats why we have a
-            // third param
-            var f = function ( a, b, push ) {
-                // check if the time has expired,
-                // after __animationDuration expires don't take anymore requests
-                if ( this.timedOut && typeof(push) == 'undefined' ) {
-                    return 0;
-                }
-                else {
-                    // If push is there, never clear that interval
-                    // so never add it to the registry
-                    if ( push ) {
-                        return oldSetTimeout( a, b );
-                    }
-                    else {
-                        return registered[registered.length] = oldSetTimeout( a, b );
-                    }
-                }
-            };
-
-            f.clearAll = function () {
-                var r;
-
-                while ( r = registered.pop() ) {
-                    clearTimeout( r );
-                }
-
-                this.timedOut = true;
-            };
-
-            f.timedOut = false;
-
-            return f;
-        })( window.setTimeout );
-
-        var i = 0;
-
-        function doit() {
-            console.log( i++ );
-            setTimeout( function () {
-                doit();
-            }, 1000 / 60, 0 );
+        var t = 51.43229;
+        var d = 62 / 768 / 2 * 100;
+        var re = "";
+        var arr = [ "a" , "b" , "c" , "d" , "e" ];
+        for ( var i = 0; i < 5; i++ ) {
+            re += ".page4-word." + arr[ i ] + "{top:" + (t + d * i) + "%;}\n"
         }
-
-        doit();
-
-        setTimeout( function () {
-            console.log( "stop" );
-            setTimeout.clearAll();
-        }, 3000, "push" );
+        console.log( "height:" + d + "%" );
+        console.log( re );
 
 
     })();
