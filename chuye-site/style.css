@@ -977,28 +977,24 @@ body {
         transform: translate3d(-50px, 0, 0);
         opacity: 0;
     }
-    25% {
+    30% {
         transform: translate3d(10px, 0, 0);
         opacity: 1;
     }
-    45% {
+    50% {
         transform: translate3d(-6px, 0, 0);
         opacity: 1;
     }
-    60% {
+    65% {
         transform: translate3d(4px, 0, 0);
         opacity: 1;
     }
-    75% {
+    80% {
         transform: translate3d(-2px, 0, 0);
         opacity: 1;
     }
-    85% {
+    90% {
         transform: translate3d(1px, 0, 0);
-        opacity: 1;
-    }
-    92% {
-        transform: translate3d(-1px, 0, 0);
         opacity: 1;
     }
     100% {
