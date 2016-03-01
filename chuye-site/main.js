@@ -201,6 +201,10 @@
             qrBorder.classList.remove( "onover" );
         };
 
+        querySelector( ".page0-btn" ).onclick = function () {
+            location.href = "/account/login";
+        };
+
         loopArray( querySelectorAll( ".page0-word" ) , function ( word ) {
             function onEnd() {
                 word.style.setProperty( "animation" , "none" );
