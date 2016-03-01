@@ -27,12 +27,28 @@
             background: #000;
         }
 
+        img {
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 400px;
+        }
     </style>
 <body>
-<canvas></canvas>
+
+<img w-src="123">
 <script>
     (function () {
 
+        var img = document.querySelector( "img" );
+        console.log( img.getAttribute( "w-src" ) );
+
+
+//        for ( var i = 0; i < 19; i++ ) {
+//            var img = new Image();
+//            img.src = "chuye-site/img/page0-word-" + i + ".png";
+//            document.body.appendChild( img );
+//        }
 
     })();
 </script>
