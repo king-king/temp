@@ -201,7 +201,7 @@
 
         loopArray( querySelectorAll( ".page0-word" ) , function ( word ) {
             function onEnd() {
-                word.style.animation = "none";
+                word.style.setProperty( "animation" , "none" );
             }
 
             bindEvent( word , "webkitAnimationEnd" , onEnd );
@@ -232,12 +232,18 @@
         var timerHandler = Timer( 4000 , slide );
 
         sections[ 0 ].stop = function () {
+            loopArray( querySelectorAll( ".page0-word" ) , function ( word ) {
+                word.style.removeProperty( "animation" );
+            } );
             // 当页面移出时，要停止轮播图
             timerHandler && timerHandler.remove && timerHandler.remove();
         };
 
         sections[ 0 ].play = function () {
             // 当页面重新移入时，要继续轮播图
+            loopArray( querySelectorAll( ".page0-word" ) , function ( word ) {
+                word.style.removeProperty( "animation" );
+            } );
             timerHandler && timerHandler.remove && timerHandler.remove();
             timerHandler = Timer( 4000 , slide );
         };
