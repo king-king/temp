@@ -237,23 +237,6 @@ body {
     left: 88px;
 }
 
-/*.home-page, .communite {*/
-/*width: 58px;*/
-/*height: 24px;*/
-/*position: absolute;*/
-/*top: 24px;*/
-/*}*/
-
-/*.home-page {*/
-/*right: 166px;*/
-/*background-position: 0 -50px;*/
-/*}*/
-
-/*.communite {*/
-/*right: 88px;*/
-/*background-position: 0 -80px;*/
-/*}*/
-
 .scroll-wrapper {
     width: 100%;
     position: absolute;
@@ -776,82 +759,6 @@ body {
     animation: 1.3s down-shade 2.7s cubic-bezier(.33, .9, .64, 1.27) both;
 }
 
-/*.show .page0-word.img-0 {*/
-/*animation: 0.9s shade-in 0.8s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-1 {*/
-/*animation: 0.9s shade-in 1.2s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-2 {*/
-/*animation: 0.9s shade-in 1.4s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-3 {*/
-/*animation: 0.9s shade-in 1.6s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-4 {*/
-/*animation: 0.9s shade-in 1.8s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-5 {*/
-/*animation: 0.9s shade-in 2s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-6 {*/
-/*animation: 0.9s shade-in 2.2s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-7 {*/
-/*animation: 0.9s shade-in 2.4s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-8 {*/
-/*animation: 0.9s shade-in 2.6s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-9 {*/
-/*animation: 0.9s shade-in 2.8s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-10 {*/
-/*animation: 0.9s shade-in 3s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-11 {*/
-/*animation: 0.9s shade-in 3.2s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-12 {*/
-/*animation: 0.9s shade-in 3.4s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-13 {*/
-/*animation: 0.9s shade-in 3.6s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-14 {*/
-/*animation: 0.9s shade-in 3.8s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-15 {*/
-/*animation: 0.9s shade-in 4s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-16 {*/
-/*animation: 0.9s shade-in 4.2s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-17 {*/
-/*animation: 0.9s shade-in 4.4s ease-in both;*/
-/*}*/
-
-/*.show .page0-word.img-18 {*/
-/*animation: 0.9s shade-in 4.6s ease-in both;*/
-/*}*/
-
 .show .page0-qr {
     animation: 1s shade-in 3.4s ease-in-out both;
 }
@@ -1310,4 +1217,3 @@ body.not-support {
 .not-support .browser-update .ie {
     background-position: -292px 0;
 }
-
