@@ -229,7 +229,7 @@
 
         sections[ 0 ].play = function () {
             // 当页面重新移入时，要继续轮播图
-            timerHandler.remove();
+            timerHandler && timerHandler.remove && timerHandler.remove();
             timerHandler = Timer( 4000 , slide );
         };
     }
@@ -276,6 +276,7 @@
             };
         } );
         sections[ 2 ].play = function () {
+            switchHandler && switchHandler.remove && switchHandler.remove();
             switchHandler = Timer( 5000 , switchImg );
         };
         sections[ 2 ].stop = function () {
@@ -375,7 +376,7 @@
             rotateHandler && rotateHandler.remove && rotateHandler.remove();
         };
         sections[ 3 ].play = function () {
-            rotateHandler && rotateHandler.remove();
+            rotateHandler && rotateHandler.remove && rotateHandler.remove();
             playBtn.style.display = "none";
             rotateHandler = setTimeout( beginSlide , 1000 );
         };
@@ -414,7 +415,7 @@
 
         sections[ 4 ].play = function () {
             if ( !contentBorder.classList.contains( "tap" ) ) {
-                flyHandler && flyHandler.remove();
+                flyHandler && flyHandler.remove && flyHandler.remove();
                 flyHandler = Timer( 5000 , fly );
             }
         };
@@ -476,6 +477,7 @@
         } );
 
         sections[ 5 ].play = function () {
+            switchHandler && switchHandler.remove && switchHandler.remove();
             switchHandler = Timer( 5000 , switchImg );
         };
         sections[ 5 ].stop = function () {
