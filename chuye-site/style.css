@@ -714,7 +714,7 @@ body {
 }
 
 .show .page-title {
-    animation: 1s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
+    animation: 1.5s left-to-right 1s cubic-bezier(.17, .67, .6, 1.62) both;
 }
 
 .show .page0-word.img-0 {
@@ -951,7 +951,7 @@ body {
         opacity: 1;
     }
     50% {
-        transform: translate3d(-7px, 0, 0);
+        transform: translate3d(-6px, 0, 0);
         opacity: 1;
     }
     65% {
