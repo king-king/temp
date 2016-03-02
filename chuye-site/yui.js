@@ -3,7 +3,7 @@
  */
 var compressor = require( 'yuicompressor' );
 var fs = require( "fs" );
-compressor.compress( "main.js" , {
+compressor.compress( "chuye-site.js" , {
     //Compressor Options:
     charset : 'utf8' ,
     type : 'js' ,
