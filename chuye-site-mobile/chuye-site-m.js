@@ -29,7 +29,9 @@
     loopArray( pages , function ( p ) {
         css( p , {
             height : Height + "px"
-        } )
+        } );
     } );
+
+
 
 })();
