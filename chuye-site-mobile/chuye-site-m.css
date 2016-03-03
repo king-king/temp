@@ -9,7 +9,7 @@ html, body, div, img, span, input, textarea {
     -webkit-user-select: none;
 }
 
-html, body, .content {
+html, body, .content, .bg {
     position: absolute;
     left: 0;
     right: 0;
@@ -25,5 +25,46 @@ html, body, .content {
 .page {
     position: absolute;
     width: 100%;
+}
 
+.absolute {
+    position: absolute;
+}
+
+.page0-bg {
+    background: url("image/page0-bg.jpg") center center;
+    background-size: cover;
+}
+
+.page0-logo {
+    height: 5.15625%;
+    top: 12px;
+    left: 12px;
+}
+
+.page0-btn {
+    height: 4.583%;
+    top: 14px;
+    right: 12px;
+}
+
+.page0-title {
+    left: 50%;
+    top: 18.59375%;
+    height: 4.37500%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page0-word {
+    left: 50%;
+    top: 25.93750%;
+    height: 5.93750%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page0-phone {
+    left: 50%;
+    top: 40.41667%;
+    height: 59.53125%;
+    transform: translate3d(-50%, 0, 0);
 }

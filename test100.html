@@ -24,5 +24,50 @@
     </ul>
 </div>
 
+
+<script>
+    (function () {
+        function loopArray( arr , func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[ i ] , i );
+            }
+        }
+
+        var data = [
+//            {
+//                name : ".page0-logo" ,
+//                height : 99 ,
+//                top : 23
+//            } ,
+//            {
+//                name : ".download-btn" ,
+//                height : 88 ,
+//                top : 28
+//            } ,
+            {
+                name : ".page0-title" ,
+                height : 84 ,
+                top : 357
+            } ,
+            {
+                name : ".page0-word" ,
+                height : 114 ,
+                top : 498
+            } ,
+            {
+                name : ".page0-phone" ,
+                height : 1143 ,
+                top : 776
+            }
+        ];
+
+        var res = "";
+        loopArray( data , function ( d , i ) {
+            res += d.name + "{left:50%;top:" + (d.top / 1920 * 100).toFixed( 5 ) + "%;height:" + (d.height / 1920 * 100).toFixed( 5 ) +
+                    "%;transform:translate3d(-50%,0,0);}\n";
+        } );
+        console.log( res );
+    })();
+</script>
 </body>
 </html>
