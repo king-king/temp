@@ -68,3 +68,24 @@ html, body, .content, .bg {
     height: 59.53125%;
     transform: translate3d(-50%, 0, 0);
 }
+
+.page1-5-title {
+    left: 50%;
+    top: 14.84375%;
+    height: 5.00000%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page1-5-word {
+    left: 50%;
+    top: 22.70833%;
+    height: 6.30208%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page1-phone {
+    left: 50%;
+    top: 35.26042%;
+    height: 65.00000%;
+    transform: translate3d(-50%, 0, 0);
+}
