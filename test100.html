@@ -21,25 +21,20 @@
 
         var data = [
             {
-                name : ".page1-5-title" ,
-                height : 96 ,
-                top : 285
+                name : ".page5-left-img" ,
+                height : 1277 ,
+                top : 643
             } ,
             {
-                name : ".page1-5-word" ,
-                height : 121 ,
-                top : 436
-            } ,
-            {
-                name : ".page1-phone" ,
-                height : 1248 ,
-                top : 677
+                name : ".page5-right-img" ,
+                height : 1187 ,
+                top : 1187
             }
         ];
 
         var res = "";
         loopArray( data , function ( d , i ) {
-            res += d.name + "{left:50%;top:" + (d.top / 1920 * 100).toFixed( 5 ) + "%;height:" + (d.height / 1920 * 100).toFixed( 5 ) +
+            res += d.name + "{left:50%;bottom:0;;height:" + (d.height / 1920 * 100).toFixed( 5 ) +
                     "%;transform:translate3d(-50%,0,0);}\n";
         } );
         console.log( res );

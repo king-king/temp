@@ -83,9 +83,23 @@ html, body, .content, .bg {
     transform: translate3d(-50%, 0, 0);
 }
 
-.page1-phone {
+.page1-6-phone {
     left: 50%;
     top: 35.26042%;
     height: 65.00000%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page5-left-img {
+    left: 50%;
+    bottom: 0;
+    height: 66.51042%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page5-right-img {
+    left: 50%;
+    bottom: 0;
+    height: 61.82292%;
     transform: translate3d(-50%, 0, 0);
 }
