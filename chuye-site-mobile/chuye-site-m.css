@@ -7,9 +7,10 @@ html, body, div, img, span, input, textarea {
     -webkit-text-size-adjust: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+    font-family: "Microsoft Yahei", "微软雅黑", "华文细黑", sans-serif;
 }
 
-html, body, .content, .bg {
+html, body, .content, .bg, .loading-page {
     position: absolute;
     left: 0;
     right: 0;
@@ -22,6 +23,24 @@ html, body, .content, .bg {
     display: none !important;
 }
 
+.loading-page {
+    z-index: 100;
+    background-color: white;
+}
+
+.loading-tips {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #a1a1a1;
+    font-size: 21px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -15px;
+}
+
 .page {
     position: absolute;
     width: 100%;
@@ -32,8 +51,9 @@ html, body, .content, .bg {
 }
 
 .page0-bg {
-    background: url("image/page0-bg.jpg") center center;
-    background-size: cover;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 .page0-logo {

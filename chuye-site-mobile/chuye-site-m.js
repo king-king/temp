@@ -6,7 +6,8 @@
     var Height = document.body.offsetHeight;
     var querySelectorAll = document.querySelectorAll.bind( document );
     var querySelector = document.querySelector.bind( document );
-    var pages = document.querySelectorAll( ".page" );
+    var content = querySelector( ".content" );
+    var pages = querySelectorAll( ".page" );
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func );
@@ -39,7 +40,21 @@
         css( p , {
             height : Height + "px"
         } );
+        content.removeChild( p );
     } );
+
+    function Timer( duration , func ) {
+        var timeID;
+        timeID = setTimeout( function () {
+            timeID = setTimeout( arguments.callee , duration );
+            func();
+        } , duration );
+        return {
+            remove : function () {
+                clearTimeout( timeID );
+            }
+        }
+    }
 
     var curPageIndex = 0;
 
@@ -59,7 +74,24 @@
         } );
     }
 
-    onSwipe( function ( dy ) {
-        console.log( dy );
-    } );
+    function init() {
+        var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
+        content.appendChild( pages[ curPageIndex ] );
+        var loadingPage = querySelector( ".loading-page" );
+        setTimeout( function () {
+            loadingPage.parentNode.removeChild( loadingPage )
+        } , 3000 );
+        onSwipe( function ( dy ) {
+            if ( dy < 0 ) {
+                // 向下翻
+                curPageIndex = (curPageIndex + 1) % pages.length;
+            } else {
+                // 向上翻
+                curPageIndex = (curPageIndex - 1 + pages.length) % pages.length;
+            }
+        } );
+    }
+
+    init();
+
 })();
