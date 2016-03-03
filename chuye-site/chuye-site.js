@@ -202,7 +202,7 @@
         };
 
         querySelector( ".page0-btn" ).onclick = function () {
-            location.href = "http://chuye.cloud7.com.cn/account/login";
+            location.href = this.getAttribute( "w-rel" ) ? this.getAttribute( "w-rel" ) : "/account/login";
         };
 
         loopArray( querySelectorAll( ".page0-word" ) , function ( word ) {
