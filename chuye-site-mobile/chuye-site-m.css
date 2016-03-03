@@ -9,11 +9,21 @@ html, body, div, img, span, input, textarea {
     -webkit-user-select: none;
 }
 
-html, body {
+html, body, .content {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
     overflow: hidden;
+}
+
+.hide {
+    display: none !important;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+
 }
