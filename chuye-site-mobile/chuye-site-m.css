@@ -103,3 +103,29 @@ html, body, .content, .bg {
     height: 61.82292%;
     transform: translate3d(-50%, 0, 0);
 }
+
+.page6-logo {
+    left: 50%;
+    top: 21.19792%;
+    height: 7.18750%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.download-btn {
+    left: 50%;
+    top: 40.88542%;
+    height: 8.54167%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page6-word {
+    left: 50%;
+    top: 94.16667%;
+    height: 1.97917%;
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page6-bg {
+    background: url("image/page6-bg.jpg") center center;
+    background-size: cover;
+}

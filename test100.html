@@ -21,20 +21,24 @@
 
         var data = [
             {
-                name : ".page5-left-img" ,
-                height : 1277 ,
-                top : 643
+                name : ".page6-logo" ,
+                height : 138 ,
+                top : 407
             } ,
             {
-                name : ".page5-right-img" ,
-                height : 1187 ,
-                top : 1187
+                name : ".download-btn" ,
+                height : 164 ,
+                top : 785
+            } , {
+                name : ".page6-word" ,
+                height : 38 ,
+                top : 1808
             }
         ];
 
         var res = "";
         loopArray( data , function ( d , i ) {
-            res += d.name + "{left:50%;bottom:0;;height:" + (d.height / 1920 * 100).toFixed( 5 ) +
+            res += d.name + "{left:50%;top:" + (d.top / 1920 * 100).toFixed( 5 ) + "%;height:" + (d.height / 1920 * 100).toFixed( 5 ) +
                     "%;transform:translate3d(-50%,0,0);}\n";
         } );
         console.log( res );
