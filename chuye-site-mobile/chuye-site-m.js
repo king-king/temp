@@ -8,6 +8,15 @@
     var querySelector = document.querySelector.bind( document );
     var pages = document.querySelectorAll( ".page" );
 
+    function bindEvent( el , type , func ) {
+        el.addEventListener( type , func );
+        return {
+            remove : function () {
+                el.removeEventListener( type , func );
+            }
+        }
+    }
+
     function loopArray( arr , func ) {
         for ( var i = 0; i < arr.length; i++ ) {
             func( arr[ i ] , i );
@@ -32,6 +41,25 @@
         } );
     } );
 
+    var curPageIndex = 0;
 
+    function onSwipe( func ) {
+        var mHandle = {};
+        bindEvent( document , "touchstart" , function ( e ) {
+            e.preventDefault();
+            mHandle.remove && mHandle.remove();
+            var sy = e.touches[ 0 ].pageY;
+            mHandle = bindEvent( document , "touchmove" , function ( e ) {
+                var dy = e.touches[ 0 ].pageY - sy;
+                if ( Math.abs( dy ) > 10 ) {
+                    func( dy );
+                    mHandle.remove();
+                }
+            } );
+        } );
+    }
 
+    onSwipe( function ( dy ) {
+        console.log( dy );
+    } );
 })();
