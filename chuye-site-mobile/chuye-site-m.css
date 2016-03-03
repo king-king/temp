@@ -149,3 +149,15 @@ html, body, .content, .bg, .loading-page {
     background: url("image/page6-bg.jpg") center center;
     background-size: cover;
 }
+
+@keyframes slide-up {
+    100% {
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+@keyframes slide-down {
+    100% {
+        transform: translate3d(0, 100%, 0);
+    }
+}
