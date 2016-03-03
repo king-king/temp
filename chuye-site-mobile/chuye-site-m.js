@@ -91,46 +91,53 @@
 
     function init() {
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
+        var sliding = false;
         content.appendChild( pages[ curPageIndex ] );
         var loadingPage = querySelector( ".loading-page" );
         setTimeout( function () {
             loadingPage.parentNode.removeChild( loadingPage )
         } , 3000 );
         onSwipe( function ( dy ) {
-            var prePageIndex = curPageIndex;
-            var animateName;
-            if ( dy < 0 ) {
-                //  下面的上來
-                if ( curPageIndex == pages.length - 1 ) {
-                    return;
-                } else {
-                    animateName = "slide-up";
-                    curPageIndex = (curPageIndex + 1) % pages.length;
+            if ( !sliding ) {
+                sliding = true;
+                var prePageIndex = curPageIndex;
+                var animateName;
+                if ( dy < 0 ) {
+                    //  下面的上來
+                    if ( curPageIndex == pages.length - 1 ) {
+                        sliding = false;
+                        return;
+                    } else {
+                        animateName = "slide-up";
+                        curPageIndex = (curPageIndex + 1) % pages.length;
+                    }
                 }
-            }
-            else {   // 向上翻
-                if ( curPageIndex != 0 ) {
-                    animateName = "slide-down";
-                    curPageIndex = (curPageIndex - 1 + pages.length) % pages.length;
-                } else {
-                    return;
+                else {   // 向上翻
+                    if ( curPageIndex != 0 ) {
+                        animateName = "slide-down";
+                        curPageIndex = (curPageIndex - 1 + pages.length) % pages.length;
+                    } else {
+                        sliding = false;
+                        return;
+                    }
                 }
-            }
-            css( pages[ prePageIndex ] , {
-                animation : animateName + " 0.8s ease-in-out both"
-            } );
-            content.appendChild( css( pages[ curPageIndex ] , {
-                top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
-                animation : animateName + " 0.8s ease-in-out both"
-            } ) );
-            animateEnd( pages[ curPageIndex ] , function () {
-                css( pages[ curPageIndex ] , {
-                    top : 0 ,
-                    animation : "none"
+                css( pages[ prePageIndex ] , {
+                    animation : animateName + " 0.8s ease-in-out both"
                 } );
-                css( pages[ prePageIndex ] , { animation : "none" } );
-                content.removeChild( pages[ prePageIndex ] );
-            } );
+                content.appendChild( css( pages[ curPageIndex ] , {
+                    top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
+                    animation : animateName + " 0.8s ease-in-out both"
+                } ) );
+                animateEnd( pages[ curPageIndex ] , function () {
+                    sliding = false;
+                    css( pages[ curPageIndex ] , {
+                        top : 0 ,
+                        animation : "none"
+                    } );
+                    css( pages[ prePageIndex ] , { animation : "none" } );
+                    content.removeChild( pages[ prePageIndex ] );
+                } );
+            }
 
         } );
     }
