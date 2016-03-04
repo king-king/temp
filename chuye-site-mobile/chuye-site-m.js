@@ -9,6 +9,7 @@
     var content = querySelector( ".content" );
     var pages = querySelectorAll( ".page" );
     var loadingTips = querySelector( ".loading-tips" );
+    var circles = querySelectorAll( ".indicator .circle" );
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func );
@@ -174,6 +175,8 @@
                         isLoadingLeft = true;
                         loadingLeft();
                     }
+                    circles[ prePageIndex ].classList.remove( "select" );
+                    circles[ curPageIndex ].classList.add( "select" );
                     css( pages[ prePageIndex ] , {
                         animation : animateName + " 0.8s ease-in-out both"
                     } );

@@ -207,12 +207,15 @@ html, body, .content, .bg, .loading-page {
     width: 12px;
     position: absolute;
     right: 12px;
+    z-index: 10;
+    top: 25%;
 }
 
 .indicator .circle {
-    width: 11px;
-    height: 11px;
-    border-radius: 11px;
+    margin-top: 14px;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
     border: 1px solid #cbcbcb;
     background-color: transparent;
 }
