@@ -125,8 +125,8 @@
         var loadingIndex = 0;
         var loadingPage = querySelector( ".loading-page" );
         var loadingHandle = Timer( 500 , function () {
-            loadingIndex = (loadingIndex + 1) % loadingWord.length;
             loadingTips.textContent = loadingWord[ loadingIndex ];
+            loadingIndex = (loadingIndex + 1) % loadingWord.length;
         } );
         var isLoadingLeft = false;// 加载4-7页
 
