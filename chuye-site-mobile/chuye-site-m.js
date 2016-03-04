@@ -107,13 +107,15 @@
             loadingTips.textContent = loadingWord[ loadingIndex ];
         } );
 
+
+
         var sliding = false;
         content.appendChild( pages[ curPageIndex ] );
         var loadingPage = querySelector( ".loading-page" );
         setTimeout( function () {
             loadingHandle.remove();
             loadingPage.parentNode.removeChild( loadingPage )
-        } , 3000 );
+        } , 4000 );
         onSwipe( function ( dy ) {
             if ( !sliding ) {
                 sliding = true;
