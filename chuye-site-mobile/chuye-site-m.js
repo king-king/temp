@@ -8,6 +8,7 @@
     var querySelector = document.querySelector.bind( document );
     var content = querySelector( ".content" );
     var pages = querySelectorAll( ".page" );
+    var loadingTips = querySelector( ".loading-tips" );
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func );
@@ -98,14 +99,19 @@
         } );
     }
 
-
     function init() {
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
+        var loadingIndex = 0;
+        var loadingHandle = Timer( 500 , function () {
+            loadingIndex = (loadingIndex + 1) % loadingWord.length;
+            loadingTips.textContent = loadingWord[ loadingIndex ];
+        } );
 
         var sliding = false;
         content.appendChild( pages[ curPageIndex ] );
         var loadingPage = querySelector( ".loading-page" );
         setTimeout( function () {
+            loadingHandle.remove();
             loadingPage.parentNode.removeChild( loadingPage )
         } , 3000 );
         onSwipe( function ( dy ) {
