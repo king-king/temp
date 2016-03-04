@@ -150,11 +150,19 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.show .page5-left-img {
+    animation: 1.2s from-bottom 0.8s ease-in-out both;
+}
+
 .page5-right-img {
     left: 50%;
     bottom: 0;
     height: 61.82292%;
     transform: translate3d(-50%, 0, 0);
+}
+
+.show .page5-right-img {
+    animation: 1.2s from-bottom 1.2s ease-in-out both;
 }
 
 .page6-logo {
@@ -164,6 +172,10 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.show .page6-logo {
+    animation: 1.2s from-up 0.8s ease-in-out both;
+}
+
 .download-btn {
     left: 50%;
     top: 40.88542%;
@@ -171,11 +183,19 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.show .download-btn {
+    animation: 1.2s from-up 1.4s ease-in-out both;
+}
+
 .page6-word {
     left: 50%;
     top: 94.16667%;
     height: 1.97917%;
     transform: translate3d(-50%, 0, 0);
+}
+
+.show .page6-word {
+    animation: 1.2s shade-in 2s ease-in-out both;
 }
 
 .page6-bg {
