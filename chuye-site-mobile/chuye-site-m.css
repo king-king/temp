@@ -203,6 +203,24 @@ html, body, .content, .bg, .loading-page {
     background-size: cover;
 }
 
+.indicator {
+    width: 12px;
+    position: absolute;
+    right: 12px;
+}
+
+.indicator .circle {
+    width: 11px;
+    height: 11px;
+    border-radius: 11px;
+    border: 1px solid #cbcbcb;
+    background-color: transparent;
+}
+
+.indicator .circle.select {
+    background-color: #cbcbcb;
+}
+
 @keyframes slide-up {
     100% {
         transform: translate3d(0, -100%, 0);
