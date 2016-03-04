@@ -90,6 +90,14 @@
         } );
     }
 
+    function map( arr , func ) {
+        var re = [];
+        loopArray( arr , function ( item ) {
+            re.push( func( item ) );
+        } );
+        return re;
+    }
+
     function concurrentTask( tasks , callback ) {
         var len = tasks.length , count = 0;
         loopArray( tasks , function ( task ) {
@@ -102,20 +110,28 @@
     function init() {
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
+        var loadingPage = querySelector( ".loading-page" );
         var loadingHandle = Timer( 500 , function () {
             loadingIndex = (loadingIndex + 1) % loadingWord.length;
             loadingTips.textContent = loadingWord[ loadingIndex ];
         } );
-
-
+        // 先将前三页加载出来
+        var p0 = Array.prototype.concat.apply( [] , pages[ 0 ].querySelectorAll( "img" ) );
+        var p1 = Array.prototype.concat.apply( [] , pages[ 1 ].querySelectorAll( "img" ) );
+        var p2 = Array.prototype.concat.apply( [] , pages[ 2 ].querySelectorAll( "img" ) );
+        p0.concat();
+        concurrentTask( map( p0.concat( p1 ).concat( p2 ) , function ( img ) {
+            return function ( done ) {
+                img.src = img.getAttribute( "w-src" );
+                img.onload = img.onerror = done;
+            }
+        } ) , function () {
+            content.appendChild( pages[ curPageIndex ] );
+            loadingHandle.remove();
+            loadingPage.parentNode.removeChild( loadingPage );
+        } );
 
         var sliding = false;
-        content.appendChild( pages[ curPageIndex ] );
-        var loadingPage = querySelector( ".loading-page" );
-        setTimeout( function () {
-            loadingHandle.remove();
-            loadingPage.parentNode.removeChild( loadingPage )
-        } , 4000 );
         onSwipe( function ( dy ) {
             if ( !sliding ) {
                 sliding = true;
