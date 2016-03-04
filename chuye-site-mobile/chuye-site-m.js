@@ -107,6 +107,19 @@
         } );
     }
 
+    function loadingLeft() {
+        function load( imgs ) {
+            loopArray( imgs , function ( img ) {
+                img.src = img.getAttribute( "w-src" );
+            } );
+        }
+
+        load( pages[ 3 ].querySelectorAll( "img" ) );
+        load( pages[ 4 ].querySelectorAll( "img" ) );
+        load( pages[ 5 ].querySelectorAll( "img" ) );
+        load( pages[ 6 ].querySelectorAll( "img" ) );
+    }
+
     function init() {
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
@@ -115,6 +128,8 @@
             loadingIndex = (loadingIndex + 1) % loadingWord.length;
             loadingTips.textContent = loadingWord[ loadingIndex ];
         } );
+        var isLoadingLeft = false;// 加载4-7页
+
         // 先将前三页加载出来
         var p0 = Array.prototype.concat.apply( [] , pages[ 0 ].querySelectorAll( "img" ) );
         var p1 = Array.prototype.concat.apply( [] , pages[ 1 ].querySelectorAll( "img" ) );
@@ -156,6 +171,10 @@
                         return;
                     }
                 }
+                if ( curPageIndex == 1 && !isLoadingLeft ) {
+                    isLoadingLeft = true;
+                    loadingLeft();
+                }
                 css( pages[ prePageIndex ] , {
                     animation : animateName + " 0.8s ease-in-out both"
                 } );
@@ -173,7 +192,6 @@
                     content.removeChild( pages[ prePageIndex ] );
                 } );
             }
-
         } );
     }
 

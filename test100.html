@@ -6,21 +6,42 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
     <style>
+        html, body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            background: #000;
+        }
+
+        .word {
+            height: 30px;
+            line-height: 30px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+        }
+
+        @media screen and (min-height: 550px) {
+            body {
+                background-color: green;
+            }
+        }
     </style>
 </head>
 <body class="not-support">
-
+<div class="img"></div>
+<div class="img"></div>
+<div class="img"></div>
+<div class="img"></div>
 
 <script>
     (function () {
-        var img = new Image();
-        img.src = "img/111.jpg";
-        img.onload = function () {
-            console.log( "onload" );
-        };
-        img.onerror = function () {
-            console.log( "onerror" );
-        };
+        var img = document.querySelectorAll( ".img" );
+        var aa = Array.prototype.concat.apply( [] , img );
+        console.log( aa )
     })();
 </script>
 </body>

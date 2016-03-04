@@ -1,3 +1,52 @@
+@media screen and (min-height: 600px) {
+    body .priviledge-border .content .icon-border {
+        height: 43px;
+    }
+
+    body .priviledge-border .content .title {
+        line-height: 18px;
+        font-size: 13px;
+        left: 10%;
+        width: 80%;
+    }
+
+    body .priviledge-border .content .cost {
+        font-size: 12px;
+        line-height: 18px;
+    }
+
+    body .test-wrapper .button {
+        height: 35px;
+        line-height: 35px;
+        font-size: 15px;
+        width: 120px;
+        margin-top: -17px;
+        border-radius: 17px;
+    }
+
+    body .title {
+        font-size: 16px;
+        height: 15px;
+        line-height: 15px;
+    }
+
+    body .do-test-border .test-title {
+        font-size: 11px;
+    }
+
+    body .more-priviledge-border {
+        height: 11px;
+        line-height: 11px;
+        font-size: 11px;
+    }
+
+    body .title-details {
+        height: 13px;
+        line-height: 13px;
+        font-size: 13px;
+    }
+}
+
 * {
     -webkit-user-select: none;
 }
@@ -43,9 +92,10 @@ body {
     position: absolute;
     top: 3px;
     right: 5px;
-    height: 11px;
-    margin: 10px;
+    height: 12px;
+    line-height: 12px;
     font-size: 12px;
+    margin: 10px;
     color: #666666;
 }
 
@@ -78,7 +128,7 @@ body {
 
 .priviledge-border {
     position: relative;
-    padding-bottom: 20px;
+    margin-bottom: 23px;
 }
 
 .priviledge-title {
@@ -89,6 +139,7 @@ body {
 
 .priviledge-border .content {
     padding: 38px 15px 7px 15px;
+    border-top: 1px solid #dcdcdc;
 }
 
 .priviledge-border .content:after {
@@ -110,6 +161,7 @@ body {
 .do-test-border {
     position: relative;
     padding-bottom: 11px;
+    border-top: 1px solid #dcdcdc;
 }
 
 .do-test-title {
