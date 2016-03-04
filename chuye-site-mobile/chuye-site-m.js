@@ -121,6 +121,7 @@
     }
 
     function init() {
+        var sliding = false;
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
         var loadingPage = querySelector( ".loading-page" );
@@ -142,57 +143,59 @@
             }
         } ) , function () {
             content.appendChild( pages[ curPageIndex ] );
+            pages[ curPageIndex ].classList.add( "show" );
             loadingHandle.remove();
             loadingPage.parentNode.removeChild( loadingPage );
+            onSwipe( function ( dy ) {
+                if ( !sliding ) {
+                    sliding = true;
+                    var prePageIndex = curPageIndex;
+                    var animateName;
+                    if ( dy < 0 ) {
+                        //  下面的上來
+                        if ( curPageIndex == pages.length - 1 ) {
+                            sliding = false;
+                            return;
+                        } else {
+                            animateName = "slide-up";
+                            curPageIndex = (curPageIndex + 1) % pages.length;
+                        }
+                    }
+                    else {   // 向上翻
+                        if ( curPageIndex != 0 ) {
+                            animateName = "slide-down";
+                            curPageIndex = (curPageIndex - 1 + pages.length) % pages.length;
+                        } else {
+                            sliding = false;
+                            return;
+                        }
+                    }
+                    if ( curPageIndex == 1 && !isLoadingLeft ) {
+                        isLoadingLeft = true;
+                        loadingLeft();
+                    }
+                    css( pages[ prePageIndex ] , {
+                        animation : animateName + " 0.8s ease-in-out both"
+                    } );
+                    content.appendChild( css( pages[ curPageIndex ] , {
+                        top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
+                        animation : animateName + " 0.8s ease-in-out both"
+                    } ) );
+                    animateEnd( pages[ curPageIndex ] , function () {
+                        sliding = false;
+                        css( pages[ curPageIndex ] , {
+                            top : 0 ,
+                            animation : "none"
+                        } );
+                        css( pages[ prePageIndex ] , { animation : "none" } );
+                        pages[ prePageIndex ].classList.remove( "show" );
+                        pages[ curPageIndex ].classList.add( "show" );
+                        content.removeChild( pages[ prePageIndex ] );
+                    } );
+                }
+            } );
         } );
 
-        var sliding = false;
-        onSwipe( function ( dy ) {
-            if ( !sliding ) {
-                sliding = true;
-                var prePageIndex = curPageIndex;
-                var animateName;
-                if ( dy < 0 ) {
-                    //  下面的上來
-                    if ( curPageIndex == pages.length - 1 ) {
-                        sliding = false;
-                        return;
-                    } else {
-                        animateName = "slide-up";
-                        curPageIndex = (curPageIndex + 1) % pages.length;
-                    }
-                }
-                else {   // 向上翻
-                    if ( curPageIndex != 0 ) {
-                        animateName = "slide-down";
-                        curPageIndex = (curPageIndex - 1 + pages.length) % pages.length;
-                    } else {
-                        sliding = false;
-                        return;
-                    }
-                }
-                if ( curPageIndex == 1 && !isLoadingLeft ) {
-                    isLoadingLeft = true;
-                    loadingLeft();
-                }
-                css( pages[ prePageIndex ] , {
-                    animation : animateName + " 0.8s ease-in-out both"
-                } );
-                content.appendChild( css( pages[ curPageIndex ] , {
-                    top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
-                    animation : animateName + " 0.8s ease-in-out both"
-                } ) );
-                animateEnd( pages[ curPageIndex ] , function () {
-                    sliding = false;
-                    css( pages[ curPageIndex ] , {
-                        top : 0 ,
-                        animation : "none"
-                    } );
-                    css( pages[ prePageIndex ] , { animation : "none" } );
-                    content.removeChild( pages[ prePageIndex ] );
-                } );
-            }
-        } );
     }
 
     init();
