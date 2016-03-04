@@ -149,6 +149,7 @@
             pages[ curPageIndex ].classList.add( "show" );
             loadingHandle.remove();
             loadingPage.parentNode.removeChild( loadingPage );
+            var getLast = false;
             onSwipe( function ( dy ) {
                 if ( !sliding ) {
                     sliding = true;
@@ -157,15 +158,13 @@
                     if ( dy < 0 ) {
                         //  下面的上來
                         if ( curPageIndex == pages.length - 1 ) {
-                            sliding = false;
-                            return;
-                        } else {
-                            animateName = "slide-up";
-                            curPageIndex = (curPageIndex + 1) % pages.length;
+                            getLast = true;
                         }
+                        animateName = "slide-up";
+                        curPageIndex = (curPageIndex + 1) % pages.length;
                     }
                     else {   // 向上翻
-                        if ( curPageIndex != 0 ) {
+                        if ( curPageIndex != 0 || (curPageIndex == 0 && getLast) ) {
                             animateName = "slide-down";
                             curPageIndex = (curPageIndex - 1 + pages.length) % pages.length;
                         } else {
