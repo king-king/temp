@@ -63,11 +63,23 @@ html, body, .content, .bg, .loading-page {
     left: 12px;
 }
 
+.page-temp-logo {
+    height: 5.15625%;
+    top: 12px;
+    left: 12px;
+}
+
 .show .page0-logo {
     animation: 0.5s shade-in 1.8s ease-in-out both;
 }
 
 .page0-btn {
+    height: 4.583%;
+    top: 14px;
+    right: 12px;
+}
+
+.page-temp-btn {
     height: 4.583%;
     top: 14px;
     right: 12px;
