@@ -62,10 +62,18 @@ html, body, .content, .bg, .loading-page {
     left: 12px;
 }
 
+.show .page0-logo {
+    animation: 0.5s shade-in 1.8s ease-in-out both;
+}
+
 .page0-btn {
     height: 4.583%;
     top: 14px;
     right: 12px;
+}
+
+.show .page0-btn {
+    animation: 0.5s shade-in 1.8s ease-in-out both;
 }
 
 .page0-title {
@@ -75,11 +83,19 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.show .page0-title {
+    animation: 0.6s from-up 1.2s ease-in-out both;
+}
+
 .page0-word {
     left: 50%;
     top: 25.93750%;
     height: 5.93750%;
     transform: translate3d(-50%, 0, 0);
+}
+
+.show .page0-word {
+    animation: 0.6s from-up 0.8s ease-in-out both;
 }
 
 .page0-phone {
@@ -89,11 +105,19 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.page0-phone {
+    animation: 1.2s from-bottom 0.8s ease-in-out both;
+}
+
 .page1-5-title {
     left: 50%;
     top: 14.84375%;
     height: 5.00000%;
     transform: translate3d(-50%, 0, 0);
+}
+
+.show .page1-5-title {
+    animation: 0.6s from-up 1.2s ease-in-out both;
 }
 
 .page1-5-word {
@@ -103,11 +127,19 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
-.page1-6-phone {
+.show .page1-5-word {
+    animation: 0.6s from-up 0.8s ease-in-out both;
+}
+
+.page1-4-phone {
     left: 50%;
     top: 35.26042%;
     height: 65.00000%;
     transform: translate3d(-50%, 0, 0);
+}
+
+.show .page1-4-phone {
+    animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
 
 .page5-left-img {
@@ -167,9 +199,6 @@ html, body, .content, .bg, .loading-page {
         transform: translate3d(-50%, -100%, 0);
         opacity: 0;
     }
-    50% {
-        opacity: 1;
-    }
     100% {
         transform: translate3d(-50%, 0%, 0);
         opacity: 1;
@@ -181,11 +210,17 @@ html, body, .content, .bg, .loading-page {
         transform: translate3d(-50%, 100%, 0);
         opacity: 0;
     }
-    50% {
-        opacity: 1;
-    }
     100% {
         transform: translate3d(-50%, 0%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes shade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
         opacity: 1;
     }
 }

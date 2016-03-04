@@ -181,6 +181,7 @@
                         top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
                         animation : animateName + " 0.8s ease-in-out both"
                     } ) );
+                    pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
                         sliding = false;
                         css( pages[ curPageIndex ] , {
@@ -189,7 +190,6 @@
                         } );
                         css( pages[ prePageIndex ] , { animation : "none" } );
                         pages[ prePageIndex ].classList.remove( "show" );
-                        pages[ curPageIndex ].classList.add( "show" );
                         content.removeChild( pages[ prePageIndex ] );
                     } );
                 }
