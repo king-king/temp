@@ -44,6 +44,7 @@ html, body, .content, .bg, .loading-page {
 .page {
     position: absolute;
     width: 100%;
+    overflow: hidden;
 }
 
 .absolute {
