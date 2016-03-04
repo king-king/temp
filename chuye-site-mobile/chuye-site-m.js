@@ -89,8 +89,19 @@
         } );
     }
 
+    function concurrentTask( tasks , callback ) {
+        var len = tasks.length , count = 0;
+        loopArray( tasks , function ( task ) {
+            task( function () {
+                ++count == len && callback();
+            } );
+        } );
+    }
+
+
     function init() {
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
+
         var sliding = false;
         content.appendChild( pages[ curPageIndex ] );
         var loadingPage = querySelector( ".loading-page" );

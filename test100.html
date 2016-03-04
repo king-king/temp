@@ -13,35 +13,14 @@
 
 <script>
     (function () {
-        function loopArray( arr , func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[ i ] , i );
-            }
-        }
-
-        var data = [
-            {
-                name : ".page6-logo" ,
-                height : 138 ,
-                top : 407
-            } ,
-            {
-                name : ".download-btn" ,
-                height : 164 ,
-                top : 785
-            } , {
-                name : ".page6-word" ,
-                height : 38 ,
-                top : 1808
-            }
-        ];
-
-        var res = "";
-        loopArray( data , function ( d , i ) {
-            res += d.name + "{left:50%;top:" + (d.top / 1920 * 100).toFixed( 5 ) + "%;height:" + (d.height / 1920 * 100).toFixed( 5 ) +
-                    "%;transform:translate3d(-50%,0,0);}\n";
-        } );
-        console.log( res );
+        var img = new Image();
+        img.src = "img/111.jpg";
+        img.onload = function () {
+            console.log( "onload" );
+        };
+        img.onerror = function () {
+            console.log( "onerror" );
+        };
     })();
 </script>
 </body>
