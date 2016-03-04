@@ -10,6 +10,8 @@
     var pages = querySelectorAll( ".page" );
     var loadingTips = querySelector( ".loading-tips" );
     var circles = querySelectorAll( ".indicator .circle" );
+    var tempLogos = querySelectorAll( ".page-temp-logo" );
+    var tempBtns = querySelectorAll( ".page-temp-btn" );
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func );
@@ -195,6 +197,30 @@
                         pages[ prePageIndex ].classList.remove( "show" );
                         content.removeChild( pages[ prePageIndex ] );
                     } );
+
+                    function hide( els ) {
+                        loopArray( els , function ( el ) {
+                            el.classList.add( "hide" );
+                        } );
+                    }
+
+                    function display( els ) {
+                        loopArray( els , function ( el ) {
+                            el.classList.remove( "hide" );
+                        } );
+                    }
+
+                    if ( (dy > 0 && curPageIndex == 0) || (dy < 0 && curPageIndex == 1) ) {
+                        display( [ tempLogos[ 0 ] , tempBtns[ 0 ] ] );
+                        hide( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
+                    } else if ( (dy < 0 && curPageIndex == 6) || (dy > 0 && curPageIndex == 5) ) {
+                        display( [ tempLogos[ 1 ] , tempBtns[ 1 ] ] );
+                        hide( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
+                    } else {
+                        hide( [ tempLogos[ 0 ] , tempBtns[ 0 ] , tempLogos[ 1 ] , tempBtns[ 1 ] ] );
+                        display( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
+                    }
+
                 }
             } );
         } );
