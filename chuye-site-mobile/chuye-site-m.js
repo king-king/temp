@@ -123,7 +123,28 @@
         load( pages[ 6 ].querySelectorAll( "img" ) );
     }
 
+    function initPage1() {
+        var handle = {} , curIndex = 0;
+        var page1Words = pages[ 1 ].querySelectorAll( ".page1-word" );
+
+        pages[ 1 ].stop = function () {
+            handle.remove && handle.remove();
+            // 离开的时候要恢复
+            loopArray( page1Words , function ( w , i ) {
+                !i ? w.classList.remove( "hide" ) : w.classList.add( "hide" );
+            } );
+        };
+        pages[ 1 ].play = function () {
+            handle = Timer( 4000 , function () {
+                page1Words[ curIndex ].classList.add( "hide" );
+                curIndex = (curIndex + 1) % 3;
+                page1Words[ curIndex ].classList.remove( "hide" );
+            } );
+        };
+    }
+
     function init() {
+        initPage1();
         var sliding = false;
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
@@ -178,6 +199,7 @@
                     }
                     circles[ prePageIndex ].classList.remove( "select" );
                     circles[ curPageIndex ].classList.add( "select" );
+                    pages[ prePageIndex ].stop && pages[ prePageIndex ].stop();
                     css( pages[ prePageIndex ] , {
                         animation : animateName + " 0.8s ease-in-out both"
                     } );
