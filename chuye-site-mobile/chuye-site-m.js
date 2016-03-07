@@ -178,9 +178,29 @@
         };
     }
 
+    function initPage2() {
+        var contentBorders = pages[ 2 ].querySelectorAll( ".page2-content-border" );
+        var handle = {} , curIndex = 0;
+        pages[ 2 ].stop = function () {
+            handle.remove && handle.remove();
+            // 离开的时候要恢复
+            loopArray( contentBorders , function ( w , i ) {
+                !i ? w.classList.remove( "none" ) : w.classList.add( "none" );
+            } );
+        };
+        pages[ 2 ].play = function () {
+            handle = Timer( 5000 , function () {
+                contentBorders[ curIndex ].classList.add( "none" );
+                curIndex = (curIndex + 1) % 2;
+                contentBorders[ curIndex ].classList.remove( "none" );
+            } );
+        };
+    }
+
     function init() {
         initPage0();
         initPage1();
+        initPage2();
         var sliding = false;
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
