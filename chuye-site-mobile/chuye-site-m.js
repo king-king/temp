@@ -171,6 +171,7 @@
             loopArray( page0Words , function ( w , i ) {
                 !i ? w.classList.remove( "none" ) : w.classList.add( "none" );
             } );
+            curIndex = 0;
         };
         pages[ 0 ].play = function () {
             handle = Timer( 5000 , function () {
@@ -190,6 +191,7 @@
             loopArray( page1Words , function ( w , i ) {
                 !i ? w.classList.remove( "none" ) : w.classList.add( "none" );
             } );
+            curIndex = 0;
         };
         pages[ 1 ].play = function () {
             handle = Timer( 5000 , function () {
@@ -209,6 +211,7 @@
             loopArray( contentBorders , function ( w , i ) {
                 !i ? w.classList.remove( "none" ) : w.classList.add( "none" );
             } );
+            curIndex = 0;
         };
         pages[ 2 ].play = function () {
             handle = Timer( 5000 , function () {
