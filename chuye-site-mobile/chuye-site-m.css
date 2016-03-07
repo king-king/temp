@@ -286,6 +286,7 @@ html, body, .content, .bg, .loading-page {
     top: 0;
     left: 0;
     overflow: hidden;
+    transition: 0.3s ease-in-out;
 }
 
 .page4-item img {
