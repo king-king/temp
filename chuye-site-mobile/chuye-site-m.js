@@ -12,6 +12,15 @@
     var circles = querySelectorAll( ".indicator .circle" );
     var tempLogos = querySelectorAll( ".page-temp-logo" );
     var tempBtns = querySelectorAll( ".page-temp-btn" );
+    var ua = navigator.userAgent ,
+        appVersion = navigator.appVersion;
+    var uaa = {
+        ios : (/iphone|ipad/gi).test( appVersion ) ,
+        android : (/android/gi).test( appVersion ) ,
+        MicroMessenger : ua.toLowerCase().match( /MicroMessenger/i ) == "micromessenger"
+    };
+
+    //alert( JSON.stringify( uaa ) );
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func );
@@ -40,13 +49,6 @@
         } );
         return el;
     }
-
-    loopArray( pages , function ( p ) {
-        css( p , {
-            height : Height + "px"
-        } );
-        content.removeChild( p );
-    } );
 
     function Timer( duration , func ) {
         var timeID;
@@ -268,6 +270,28 @@
         };
 
     }
+
+    function jump() {
+        if ( uaa.android ) {
+            location.href = "http://a.app.qq.com/o/simple.jsp?pkgname=com.cloud7.firstpage";
+        }
+        else {
+            location.href = uaa.MicroMessenger ? "http://a.app.qq.com/o/simple.jsp?pkgname=com.cloud7.firstpage"
+                : "https://itunes.apple.com/cn/app/chu-ye/id910560238?mt=8";
+        }
+    }
+
+    loopArray( querySelectorAll( ".page-temp-btn" ) , function ( btn ) {
+        onTap( btn , jump );
+    } );
+    onTap( querySelector( ".page0-btn" ) , jump );
+    onTap( querySelector( ".download-btn" ) , jump );
+    loopArray( pages , function ( p ) {
+        css( p , {
+            height : Height + "px"
+        } );
+        content.removeChild( p );
+    } );
 
     function init() {
         initPage0();
