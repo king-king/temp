@@ -240,11 +240,19 @@
         pages[ 3 ].stop = close;
     }
 
+    function initPage4() {
+        var border = pages[ 4 ].querySelector( ".page-4-content-border" );
+        css( border , {
+            width : document.body.offsetHeight / 1920 * 666 + "px"
+        } )
+    }
+
     function init() {
         initPage0();
         initPage1();
         initPage2();
         initPage3();
+        initPage4();
         var sliding = false;
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
