@@ -19,6 +19,8 @@
         android : (/android/gi).test( appVersion ) ,
         MicroMessenger : ua.toLowerCase().match( /MicroMessenger/i ) == "micromessenger"
     };
+    var curPageIndex = 0;
+
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func , false );
@@ -60,8 +62,6 @@
             }
         }
     }
-
-    var curPageIndex = 0;
 
     function onSwipe( func ) {
         var mHandle = {};
@@ -286,16 +286,15 @@
     } );
     onTap( querySelector( ".page0-btn" ) , jump );
     var downloadBtn = querySelector( ".download-btn" );
-    downloadBtn.onload = function () {
-        onTap( downloadBtn , jump );
-    };
+    //downloadBtn.onload = function () {
+    onTap( downloadBtn , jump );
+    //};
     loopArray( pages , function ( p ) {
         css( p , {
             height : Height + "px"
         } );
         content.removeChild( p );
     } );
-
     function init() {
         initPage0();
         initPage1();
@@ -359,19 +358,23 @@
                     circles[ curPageIndex ].classList.add( "select" );
                     pages[ prePageIndex ].stop && pages[ prePageIndex ].stop();
                     css( pages[ prePageIndex ] , {
-                        animation : animateName + " 0.8s ease-in-out both"
+                        animation : animateName + " 0.8s ease-in-out both" ,
+                        "-webkit-animation" : animateName + " 0.8s ease-in-out both"
                     } );
                     content.appendChild( css( pages[ curPageIndex ] , {
                         top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
-                        animation : animateName + " 0.8s ease-in-out both"
+                        animation : animateName + " 0.8s ease-in-out both" ,
+                        "-webkit-animation" : animateName + " 0.8s ease-in-out both"
                     } ) );
                     pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
+                        alert( "ok" );
                         pages[ curPageIndex ].play && pages[ curPageIndex ].play();
                         sliding = false;
                         css( pages[ curPageIndex ] , {
                             top : 0 ,
-                            animation : "none"
+                            animation : "none" ,
+                            "-webkit-animation" : "none"
                         } );
                         css( pages[ prePageIndex ] , { animation : "none" } );
                         pages[ prePageIndex ].classList.remove( "show" );

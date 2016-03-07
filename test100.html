@@ -29,19 +29,52 @@
                 background-color: green;
             }
         }
+
+        img {
+            width: 200px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            color: #000;
+            text-align: center;
+            border: 1px solid black;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
     </style>
 </head>
 <body class="not-support">
-<div class="img"></div>
-<div class="img"></div>
-<div class="img"></div>
-<div class="img"></div>
-
+<div class="btn">点击</div>
 <script>
     (function () {
-        var img = document.querySelectorAll( ".img" );
-        var aa = Array.prototype.concat.apply( [] , img );
-        console.log( aa )
+        var img = new Image();
+        var border = document.createElement( "div" );
+        border.appendChild( img );
+        setTimeout( function () {
+            img.src = "img/1.png";
+        } , 1000 );
+        document.body.appendChild( border );
+        img.addEventListener( "touchstart" , function () {
+            console.log( "ok" );
+        } );
+
+        var btn = document.querySelector( ".btn" );
+        btn.onclick = function () {
+            if ( border.parentNode ) {
+                border.parentNode.removeChild( border );
+            } else {
+                document.body.appendChild( border );
+            }
+        };
+
+        function doit() {
+        }
+
+
     })();
 </script>
 </body>
