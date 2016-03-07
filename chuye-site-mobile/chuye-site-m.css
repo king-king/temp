@@ -116,6 +116,7 @@ html, body, .content, .bg, .loading-page {
     height: 100%;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page0-word-border {
@@ -127,6 +128,7 @@ html, body, .content, .bg, .loading-page {
     top: 40.41667%;
     height: 59.53125%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .page0-phone {
@@ -138,6 +140,7 @@ html, body, .content, .bg, .loading-page {
     top: 14.84375%;
     height: 5.00000%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page1-5-title {
@@ -156,6 +159,7 @@ html, body, .content, .bg, .loading-page {
     top: 0;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
     height: 100%;
     transition: 0.3s ease-in;
 }
@@ -187,6 +191,7 @@ html, body, .content, .bg, .loading-page {
     height: 7.87348%;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .page-2 .page-phone {
@@ -195,12 +200,14 @@ html, body, .content, .bg, .loading-page {
     left: 50%;
     top: auto;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page2-arrow {
     height: 20%;
     bottom: 1%;
     transform: rotate3d(0, 0, 1, -90deg);
+    -webkit-transform: rotate3d(0, 0, 1, -90deg);
     right: 50%;
     animation: 0.4s scale-r-2 2s ease-in-out both;
 }
@@ -214,6 +221,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page2-girl {
     transform: rotate3d(0, 0, 1, 180deg);
+    -webkit-transform: rotate3d(0, 0, 1, 180deg);
     height: 17%;
     top: 26.5%;
     left: 50%;
@@ -225,6 +233,7 @@ html, body, .content, .bg, .loading-page {
     left: 50%;
     top: 67.5%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
     opacity: 0;
 }
 
@@ -270,6 +279,7 @@ html, body, .content, .bg, .loading-page {
     top: 22.70833%;
     height: 6.30208%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page1-5-word-border {
@@ -285,6 +295,7 @@ html, body, .content, .bg, .loading-page {
     top: 35.26042%;
     height: 65.00000%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page1-4-phone {
@@ -296,6 +307,7 @@ html, body, .content, .bg, .loading-page {
     top: 44.24375%;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
     overflow: hidden;
 }
 
@@ -349,6 +361,7 @@ html, body, .content, .bg, .loading-page {
     bottom: 0;
     height: 66.51042%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page5-left-img {
@@ -360,6 +373,7 @@ html, body, .content, .bg, .loading-page {
     bottom: 0;
     height: 61.82292%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page5-right-img {
@@ -371,6 +385,7 @@ html, body, .content, .bg, .loading-page {
     top: 21.19792%;
     height: 7.18750%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page6-logo {
@@ -382,6 +397,7 @@ html, body, .content, .bg, .loading-page {
     top: 40.88542%;
     height: 8.54167%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .download-btn {
@@ -393,6 +409,7 @@ html, body, .content, .bg, .loading-page {
     top: 94.16667%;
     height: 1.97917%;
     transform: translate3d(-50%, 0, 0);
+    -webkit-transform: translate3d(-50%, 0, 0);
 }
 
 .show .page6-word {
