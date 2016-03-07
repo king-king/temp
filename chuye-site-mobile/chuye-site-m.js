@@ -249,6 +249,7 @@
         } );
         var handle = {} , handle2 , curindex = 0;
         pages[ 4 ].stop = function () {
+            curindex = 0;
             handle.remove && handle.remove();
             clearTimeout( handle2 );
             css( wrapper , {
@@ -258,23 +259,24 @@
         };
         pages[ 4 ].play = function () {
             handle = Timer( 5000 , function () {
-                curindex = (curindex + 1) % 5;
-                css( wrapper , {
-                    transform : "translate3d(-" + (20 * curindex) + "%,0,0)"
-                } );
                 if ( curindex == 4 ) {
-                    handle2 = setTimeout( function () {
-                        curindex = 0;
+                    curindex = 0;
+                    css( wrapper , {
+                        transition : "none" ,
+                        transform : "translate3d(0,0,0)"
+                    } );
+                    setTimeout( function () {
+                        curindex = (curindex + 1) % 5;
                         css( wrapper , {
-                            transition : "none" ,
-                            transform : "translate3d(0,0,0)"
+                            transition : "0.3s ease-in-out" ,
+                            transform : "translate3d(-" + (20 * curindex) + "%,0,0)"
                         } );
-                        setTimeout( function () {
-                            css( wrapper , {
-                                transition : "0.3s ease-in-out"
-                            } );
-                        } , 0 );
-                    } , 330 );
+                    } , 0 );
+                } else {
+                    curindex = (curindex + 1) % 5;
+                    css( wrapper , {
+                        transform : "translate3d(-" + (20 * curindex) + "%,0,0)"
+                    } );
                 }
             } );
         };
