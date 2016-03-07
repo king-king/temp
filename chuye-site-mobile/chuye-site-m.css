@@ -197,6 +197,26 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.page2-arrow {
+    height: 20%;
+    bottom: 1%;
+    transform: rotate3d(0, 0, 1, -90deg);
+    right: 50%;
+}
+
+.page2-cat {
+    height: 30%;
+    bottom: -2%;
+    left: 45%;
+}
+
+.page2-girl {
+    transform: rotate3d(0, 0, 1, 180deg);
+    height: 17%;
+    top: 26.5%;
+    left: 50%;
+}
+
 .page3-play-btn {
     height: 10.46875%;
     left: 50%;
