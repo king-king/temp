@@ -202,12 +202,22 @@ html, body, .content, .bg, .loading-page {
     bottom: 1%;
     transform: rotate3d(0, 0, 1, -90deg);
     right: 50%;
+    animation: 0.4s scale-r-2 2s ease-in-out both;
+}
+
+.none .page2-arrow {
+    animation: none;
 }
 
 .page2-cat {
     height: 30%;
     bottom: -2%;
     left: 45%;
+    animation: 0.4s scale 2s ease-in-out both;
+}
+
+.none .page2-cat {
+    animation: none;
 }
 
 .page2-girl {
@@ -215,6 +225,11 @@ html, body, .content, .bg, .loading-page {
     height: 17%;
     top: 26.5%;
     left: 50%;
+    animation: 0.4s scale-r 2.2s ease-in-out both;
+}
+
+.none .page2-girl {
+    animation: none;
 }
 
 .page3-play-btn {
@@ -503,5 +518,50 @@ html, body, .content, .bg, .loading-page {
     }
     100% {
         opacity: 0;
+    }
+}
+
+@keyframes scale {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 0.5);
+    }
+    70% {
+        opacity: 1;
+        transform: scale3d(1.4, 1.4, 1.4);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes scale-r-2 {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, -90deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scale3d(1.4, 1.4, 1.4) rotate3d(0, 0, 1, -90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -90deg);
+    }
+}
+
+@keyframes scale-r {
+    0% {
+        opacity: 0;
+        transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, 180deg);
+    }
+    70% {
+        opacity: 1;
+        transform: scale3d(1.4, 1.4, 1.4) rotate3d(0, 0, 1, 180deg);
+    }
+    100% {
+        opacity: 1;
+        transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 180deg);
     }
 }
