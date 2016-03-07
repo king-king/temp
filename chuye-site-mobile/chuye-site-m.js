@@ -20,13 +20,11 @@
         MicroMessenger : ua.toLowerCase().match( /MicroMessenger/i ) == "micromessenger"
     };
 
-    //alert( JSON.stringify( uaa ) );
-
     function bindEvent( el , type , func ) {
-        el.addEventListener( type , func );
+        el.addEventListener( type , func , false );
         return {
             remove : function () {
-                el.removeEventListener( type , func );
+                el.removeEventListener( type , func , false );
             }
         }
     }
@@ -128,6 +126,7 @@
     function onTap( el , func ) {
         var sx , sy , ismove = false;
         bindEvent( el , "touchstart" , function ( e ) {
+            e.stopPropagation();
             el.classList.add( "tap" );
             sx = e.touches[ 0 ].pageX;
             sy = e.touches[ 0 ].pageY;
@@ -138,6 +137,7 @@
                 }
             } );
             var endH = bindEvent( document , "touchend" , function ( e ) {
+                alert( ismove );
                 !ismove && func( e );
                 !ismove && el.classList.remove( "tap" );
                 ismove = false;
@@ -285,7 +285,10 @@
         onTap( btn , jump );
     } );
     onTap( querySelector( ".page0-btn" ) , jump );
-    onTap( querySelector( ".download-btn" ) , jump );
+    var downloadBtn = querySelector( ".download-btn" );
+    downloadBtn.onload = function () {
+        onTap( downloadBtn , jump );
+    };
     loopArray( pages , function ( p ) {
         css( p , {
             height : Height + "px"
