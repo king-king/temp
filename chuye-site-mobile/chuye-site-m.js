@@ -137,7 +137,6 @@
                 }
             } );
             var endH = bindEvent( document , "touchend" , function ( e ) {
-                alert( ismove );
                 !ismove && func( e );
                 !ismove && el.classList.remove( "tap" );
                 ismove = false;
@@ -368,7 +367,6 @@
                     } ) );
                     pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
-                        alert( "ok" );
                         pages[ curPageIndex ].play && pages[ curPageIndex ].play();
                         sliding = false;
                         css( pages[ curPageIndex ] , {

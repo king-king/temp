@@ -71,6 +71,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page0-logo {
     animation: 0.5s shade-in 1.8s ease-in-out both;
+    -webkit-animation: 0.5s shade-in 1.8s ease-in-out both;
 }
 
 .page0-btn {
@@ -87,6 +88,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page0-btn {
     animation: 0.5s shade-in 1.8s ease-in-out both;
+    -webkit-animation: 0.5s shade-in 1.8s ease-in-out both;
 }
 
 .page0-title {
@@ -98,6 +100,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page0-title {
     animation: 0.6s from-up 1.2s ease-in-out both;
+    -webkit-animation: 0.6s from-up 1.2s ease-in-out both;
 }
 
 .page0-word-border {
@@ -121,6 +124,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page0-word-border {
     animation: 0.6s from-up-nc 0.8s ease-in-out both;
+    -webkit-animation: 0.6s from-up-nc 0.8s ease-in-out both;
 }
 
 .page0-phone {
@@ -133,6 +137,7 @@ html, body, .content, .bg, .loading-page {
 
 .page0-phone {
     animation: 1.2s from-bottom 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
 
 .page1-5-title {
@@ -145,6 +150,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page1-5-title {
     animation: 0.6s from-up 1.2s ease-in-out both;
+    -webkit-animation: 0.6s from-up 1.2s ease-in-out both;
 }
 
 .page1-5-word-border {
@@ -210,6 +216,7 @@ html, body, .content, .bg, .loading-page {
     -webkit-transform: rotate3d(0, 0, 1, -90deg);
     right: 50%;
     animation: 0.4s scale-r-2 2s ease-in-out both;
+    -webkit-animation: 0.4s scale-r-2 2s ease-in-out both;
 }
 
 .show .page2-cat {
@@ -217,6 +224,7 @@ html, body, .content, .bg, .loading-page {
     bottom: -2%;
     left: 45%;
     animation: 0.4s scale 2s ease-in-out both;
+    -webkit-animation: 0.4s scale 2s ease-in-out both;
 }
 
 .show .page2-girl {
@@ -226,6 +234,7 @@ html, body, .content, .bg, .loading-page {
     top: 26.5%;
     left: 50%;
     animation: 0.4s scale-r 2.2s ease-in-out both;
+    -webkit-animation: 0.4s scale-r 2.2s ease-in-out both;
 }
 
 .page3-play-btn {
@@ -239,6 +248,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page3-play-btn {
     animation: 2s flip 2.2s ease-in-out both infinite;
+    -webkit-animation: 2s flip 2.2s ease-in-out both infinite;
 }
 
 .page-3-border {
@@ -284,10 +294,12 @@ html, body, .content, .bg, .loading-page {
 
 .show .page1-5-word-border {
     animation: 0.6s from-up-nc 0.8s ease-in-out both;
+    -webkit-animation: 0.6s from-up-nc 0.8s ease-in-out both;
 }
 
 .show .page1-5-word {
     animation: 0.6s from-up 0.8s ease-in-out both;
+    -webkit-animation: 0.6s from-up 0.8s ease-in-out both;
 }
 
 .page1-4-phone {
@@ -300,6 +312,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page1-4-phone {
     animation: 1.2s from-bottom 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
 
 .page-4-content-border {
@@ -313,6 +326,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page-4-content-border {
     animation: 1.2s from-bottom 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
 
 .page4-content-wrapper {
@@ -366,6 +380,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page5-left-img {
     animation: 1.2s from-bottom 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
 
 .page5-right-img {
@@ -378,6 +393,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page5-right-img {
     animation: 1.2s from-bottom 1.2s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom 1.2s ease-in-out both;
 }
 
 .page6-logo {
@@ -390,6 +406,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page6-logo {
     animation: 1.2s from-up 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-up 0.8s ease-in-out both;
 }
 
 .download-btn {
@@ -402,6 +419,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .download-btn {
     animation: 1.2s from-up 1.4s ease-in-out both;
+    -webkit-animation: 1.2s from-up 1.4s ease-in-out both;
 }
 
 .page6-word {
@@ -414,6 +432,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page6-word {
     animation: 1.2s shade-in 2s ease-in-out both;
+    -webkit-animation: 1.2s shade-in 2s ease-in-out both;
 }
 
 .page6-bg {
@@ -442,15 +461,38 @@ html, body, .content, .bg, .loading-page {
     background-color: #cbcbcb;
 }
 
+@-webkit-keyframes slide-up {
+    100% {
+        -webkit-transform: translate3d(0, -100%, 0);
+    }
+}
+
 @keyframes slide-up {
     100% {
         transform: translate3d(0, -100%, 0);
     }
 }
 
+@-webkit-keyframes slide-down {
+    100% {
+        -webkit-transform: translate3d(0, 100%, 0);
+    }
+}
+
 @keyframes slide-down {
     100% {
         transform: translate3d(0, 100%, 0);
+    }
+}
+
+@-webkit-keyframes from-up-nc {
+    0% {
+        -webkit-transform: translate3d(0, -100%, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0%, 0);
+        opacity: 1;
     }
 }
 
@@ -461,6 +503,17 @@ html, body, .content, .bg, .loading-page {
     }
     100% {
         transform: translate3d(0, 0%, 0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes from-up {
+    0% {
+        -webkit-transform: translate3d(-50%, -100%, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(-50%, 0%, 0);
         opacity: 1;
     }
 }
@@ -476,10 +529,28 @@ html, body, .content, .bg, .loading-page {
     }
 }
 
+@-webkit-keyframes down-shade-out {
+    100% {
+        -webkit-transform: translate3d(-50%, 100%, 0);
+        opacity: 0;
+    }
+}
+
 @keyframes down-shade-out {
     100% {
         transform: translate3d(-50%, 100%, 0);
         opacity: 0;
+    }
+}
+
+@-webkit-keyframes from-bottom {
+    0% {
+        -webkit-transform: translate3d(-50%, 100%, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(-50%, 0%, 0);
+        opacity: 1;
     }
 }
 
@@ -494,12 +565,32 @@ html, body, .content, .bg, .loading-page {
     }
 }
 
+@-webkit-keyframes shade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 @keyframes shade-in {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+
+@-webkit-keyframes blur-out {
+    0% {
+        -webkit-filter: blur(0);
+        opacity: 1;
+    }
+    100% {
+        -webkit-filter: blur(10px);
+        opacity: 0;
     }
 }
 
@@ -514,6 +605,18 @@ html, body, .content, .bg, .loading-page {
     }
 }
 
+@-webkit-keyframes flip {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
 @keyframes flip {
     0% {
         opacity: 0;
@@ -523,6 +626,21 @@ html, body, .content, .bg, .loading-page {
     }
     100% {
         opacity: 0;
+    }
+}
+
+@-webkit-keyframes scale {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.5, 0.5, 0.5);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.4, 1.4, 1.4);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1);
     }
 }
 
@@ -541,6 +659,21 @@ html, body, .content, .bg, .loading-page {
     }
 }
 
+@-webkit-keyframes scale-r-2 {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, -90deg);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.4, 1.4, 1.4) rotate3d(0, 0, 1, -90deg);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -90deg);
+    }
+}
+
 @keyframes scale-r-2 {
     0% {
         opacity: 0;
@@ -553,6 +686,21 @@ html, body, .content, .bg, .loading-page {
     100% {
         opacity: 1;
         transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, -90deg);
+    }
+}
+
+@-webkit-keyframes scale-r {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale3d(0.5, 0.5, 0.5) rotate3d(0, 0, 1, 180deg);
+    }
+    70% {
+        opacity: 1;
+        -webkit-transform: scale3d(1.4, 1.4, 1.4) rotate3d(0, 0, 1, 180deg);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 180deg);
     }
 }
 
