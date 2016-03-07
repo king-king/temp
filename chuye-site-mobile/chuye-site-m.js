@@ -123,27 +123,63 @@
         load( pages[ 6 ].querySelectorAll( "img" ) );
     }
 
+    function setAnimation( el , animation , onEnd ) {
+        css( el , {
+            animation : animation
+        } );
+        var handle01 , handle02;
+        handle01 = bindEvent( el , "animationEnd" , function () {
+            handle01.remove && handle01.remove();
+            handle02.remove && handle02.remove();
+            onEnd();
+        } );
+        handle02 = bindEvent( el , "webkitAnimationEnd" , function () {
+            handle01.remove && handle01.remove();
+            handle02.remove && handle02.remove();
+            onEnd();
+        } );
+    }
+
+    function initPage0() {
+        var handle = {} , curIndex = 0;
+        var page0Words = pages[ 0 ].querySelectorAll( ".page0-word" );
+        pages[ 0 ].stop = function () {
+            handle.remove && handle.remove();
+            // 离开的时候要恢复
+            loopArray( page0Words , function ( w , i ) {
+                !i ? w.classList.remove( "none" ) : w.classList.add( "none" );
+            } );
+        };
+        pages[ 0 ].play = function () {
+            handle = Timer( 5000 , function () {
+                page0Words[ curIndex ].classList.add( "none" );
+                curIndex = (curIndex + 1) % 2;
+                page0Words[ curIndex ].classList.remove( "none" );
+            } );
+        };
+    }
+
     function initPage1() {
         var handle = {} , curIndex = 0;
         var page1Words = pages[ 1 ].querySelectorAll( ".page1-word" );
-
         pages[ 1 ].stop = function () {
             handle.remove && handle.remove();
             // 离开的时候要恢复
             loopArray( page1Words , function ( w , i ) {
-                !i ? w.classList.remove( "hide" ) : w.classList.add( "hide" );
+                !i ? w.classList.remove( "none" ) : w.classList.add( "none" );
             } );
         };
         pages[ 1 ].play = function () {
-            handle = Timer( 4000 , function () {
-                page1Words[ curIndex ].classList.add( "hide" );
+            handle = Timer( 5000 , function () {
+                page1Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 3;
-                page1Words[ curIndex ].classList.remove( "hide" );
+                page1Words[ curIndex ].classList.remove( "none" );
             } );
         };
     }
 
     function init() {
+        initPage0();
         initPage1();
         var sliding = false;
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
@@ -168,6 +204,7 @@
         } ) , function () {
             content.appendChild( pages[ curPageIndex ] );
             pages[ curPageIndex ].classList.add( "show" );
+            pages[ curPageIndex ].play();
             loadingHandle.remove();
             loadingPage.parentNode.removeChild( loadingPage );
             var getLast = false;
@@ -209,6 +246,7 @@
                     } ) );
                     pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
+                        pages[ curPageIndex ].play && pages[ curPageIndex ].play();
                         sliding = false;
                         css( pages[ curPageIndex ] , {
                             top : 0 ,
