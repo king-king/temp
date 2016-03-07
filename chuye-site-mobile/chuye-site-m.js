@@ -140,6 +140,28 @@
         } );
     }
 
+    function onTap( el , func ) {
+        var sx , sy , ismove = false;
+        bindEvent( el , "touchstart" , function ( e ) {
+            el.classList.add( "tap" );
+            sx = e.touches[ 0 ].pageX;
+            sy = e.touches[ 0 ].pageY;
+            var moveH = bindEvent( document , "touchmove" , function ( e ) {
+                if ( Math.pow( e.touches[ 0 ].pageX - sx , 2 ) + Math.pow( e.touches[ 0 ].pageY - sy , 2 ) > 20 ) {
+                    ismove = true;
+                    el.classList.remove( "tap" );
+                }
+            } );
+            var endH = bindEvent( document , "touchend" , function ( e ) {
+                !ismove && func( e );
+                !ismove && el.classList.remove( "tap" );
+                ismove = false;
+                moveH.remove();
+                endH.remove();
+            } );
+        } );
+    }
+
     function initPage0() {
         var handle = {} , curIndex = 0;
         var page0Words = pages[ 0 ].querySelectorAll( ".page0-word" );
@@ -198,13 +220,31 @@
     }
 
     function initPage3() {
+        var playBtn = pages[ 3 ].querySelector( ".page3-play-btn" );
+        var iframe = pages[ 3 ].querySelector( ".page-3 iframe" );
+        var iframeBorder = pages[ 3 ].querySelector( ".page-3-border" );
+        var closeIframe = pages[ 3 ].querySelector( ".page3-close-iframe" );
 
+        iframe.width = document.body.offsetWidth;
+        iframe.height = document.body.offsetHeight - 35;
+        onTap( playBtn , function () {
+            iframeBorder.classList.remove( "hide" );
+            iframe.src = "../test100.html";
+        } );
+        function close() {
+            iframeBorder.classList.add( "hide" );
+            iframe.src = "";
+        }
+
+        onTap( closeIframe , close );
+        pages[ 3 ].stop = close;
     }
 
     function init() {
         initPage0();
         initPage1();
         initPage2();
+        initPage3();
         var sliding = false;
         var loadingWord = [ "正在加载" , "正在加载 ." , "正在加载 . ." , "正在加载 . . ." ];
         var loadingIndex = 0;
