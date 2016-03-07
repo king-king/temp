@@ -197,7 +197,7 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
-.page2-arrow {
+.show .page2-arrow {
     height: 20%;
     bottom: 1%;
     transform: rotate3d(0, 0, 1, -90deg);
@@ -205,31 +205,19 @@ html, body, .content, .bg, .loading-page {
     animation: 0.4s scale-r-2 2s ease-in-out both;
 }
 
-.none .page2-arrow {
-    animation: none;
-}
-
-.page2-cat {
+.show .page2-cat {
     height: 30%;
     bottom: -2%;
     left: 45%;
     animation: 0.4s scale 2s ease-in-out both;
 }
 
-.none .page2-cat {
-    animation: none;
-}
-
-.page2-girl {
+.show .page2-girl {
     transform: rotate3d(0, 0, 1, 180deg);
     height: 17%;
     top: 26.5%;
     left: 50%;
     animation: 0.4s scale-r 2.2s ease-in-out both;
-}
-
-.none .page2-girl {
-    animation: none;
 }
 
 .page3-play-btn {
