@@ -197,6 +197,18 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
 }
 
+.page3-play-btn {
+    height: 10.46875%;
+    left: 50%;
+    top: 67.5%;
+    transform: translate3d(-50%, 0, 0);
+    opacity: 0;
+}
+
+.show .page3-play-btn {
+    animation: 2s flip 2.2s ease-in-out both infinite;
+}
+
 .page1-5-word {
     left: 50%;
     top: 22.70833%;
@@ -372,6 +384,18 @@ html, body, .content, .bg, .loading-page {
     }
     100% {
         filter: blur(10px);
+        opacity: 0;
+    }
+}
+
+@keyframes flip {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
         opacity: 0;
     }
 }

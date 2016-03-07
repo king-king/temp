@@ -197,6 +197,10 @@
         };
     }
 
+    function initPage3() {
+
+    }
+
     function init() {
         initPage0();
         initPage1();
