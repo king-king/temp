@@ -123,23 +123,6 @@
         load( pages[ 6 ].querySelectorAll( "img" ) );
     }
 
-    function setAnimation( el , animation , onEnd ) {
-        css( el , {
-            animation : animation
-        } );
-        var handle01 , handle02;
-        handle01 = bindEvent( el , "animationEnd" , function () {
-            handle01.remove && handle01.remove();
-            handle02.remove && handle02.remove();
-            onEnd();
-        } );
-        handle02 = bindEvent( el , "webkitAnimationEnd" , function () {
-            handle01.remove && handle01.remove();
-            handle02.remove && handle02.remove();
-            onEnd();
-        } );
-    }
-
     function onTap( el , func ) {
         var sx , sy , ismove = false;
         bindEvent( el , "touchstart" , function ( e ) {
