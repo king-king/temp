@@ -99,8 +99,8 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page0-title {
-    animation: 0.6s from-up 1.2s ease-in-out both;
-    -webkit-animation: 0.6s from-up 1.2s ease-in-out both;
+    animation: 0.6s from-bottom 0.8s cubic-bezier(.44, 0, .87, .8) both;
+    -webkit-animation: 0.6s from-bottom 0.8s cubic-bezier(.44, 0, .87, .8) both;
 }
 
 .page0-word-border {
@@ -123,8 +123,8 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page0-word-border {
-    animation: 0.6s from-up-nc 0.8s ease-in-out both;
-    -webkit-animation: 0.6s from-up-nc 0.8s ease-in-out both;
+    animation: 0.6s shade-in 1.5s ease-in-out both;
+    -webkit-animation: 0.6s shade-in 1.5s ease-in-out both;
 }
 
 .page0-phone {
@@ -136,8 +136,8 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page0-phone {
-    animation: 1.2s from-bottom 0.8s ease-in-out both;
-    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
+    animation: 1.2s from-bottom 0.8s cubic-bezier(.44, 0, .87, .8) both;
+    -webkit-animation: 1.2s from-bottom 0.8s cubic-bezier(.44, 0, .87, .8) both;
 }
 
 .page1-5-title {
@@ -149,8 +149,8 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page1-5-title {
-    animation: 0.6s from-up 1.2s ease-in-out both;
-    -webkit-animation: 0.6s from-up 1.2s ease-in-out both;
+    animation: 0.6s from-bottom 0.8s ease-in-out both;
+    -webkit-animation: 0.6s from-bottom 0.8s ease-in-out both;
 }
 
 .page1-5-word-border {
@@ -295,13 +295,13 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page1-5-word-border {
-    animation: 0.6s from-up-nc 0.8s ease-in-out both;
-    -webkit-animation: 0.6s from-up-nc 0.8s ease-in-out both;
+    animation: 0.6s shade-in 1.5s cubic-bezier(.44, 0, .87, .8) both;
+    -webkit-animation: 0.6s shade-in 1.5s cubic-bezier(.44, 0, .87, .8) both;
 }
 
 .show .page1-5-word {
-    animation: 0.6s from-up 0.8s ease-in-out both;
-    -webkit-animation: 0.6s from-up 0.8s ease-in-out both;
+    animation: 0.6s shade-in 1.5s cubic-bezier(.44, 0, .87, .8) both;
+    -webkit-animation: 0.6s shade-in 1.5s cubic-bezier(.44, 0, .87, .8) both;
 }
 
 .page1-4-phone {
@@ -506,6 +506,28 @@ html, body, .content, .bg, .loading-page {
 @keyframes from-up-nc {
     0% {
         transform: translate3d(0, -100%, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0, 0%, 0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes from-down-nc {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes from-down-nc {
+    0% {
+        transform: translate3d(0, 100%, 0);
         opacity: 0;
     }
     100% {
