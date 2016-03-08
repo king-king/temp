@@ -794,6 +794,10 @@ html, body, .content, .bg, .loading-page {
     pointer-events: none;
 }
 
+.page img.page0-btn {
+    pointer-events: auto;
+}
+
 .white-phone {
     height: 100%;
     position: absolute;
