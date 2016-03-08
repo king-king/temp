@@ -292,9 +292,10 @@
     onTap( querySelector( ".page0-btn" ) , jump );
     loopArray( pages , function ( p ) {
         css( p , {
-            height : Height + "px"
+            height : Height + "px" ,
+            top : Height * 2 + "px"
         } );
-        content.removeChild( p );
+        //content.removeChild( p );
     } );
     function init() {
         var curPageIndex = 0;
@@ -312,7 +313,6 @@
             loadingTips.textContent = loadingWord[ loadingIndex ];
             loadingIndex = (loadingIndex + 1) % loadingWord.length;
         } );
-
         // 先将前三页加载出来
         var p0 = Array.prototype.concat.apply( [] , pages[ 0 ].querySelectorAll( "img" ) );
         var p1 = Array.prototype.concat.apply( [] , pages[ 1 ].querySelectorAll( "img" ) );
@@ -326,6 +326,10 @@
         } ) , function () {
             loadingLeft();
             content.appendChild( pages[ curPageIndex ] );
+            css( pages[ curPageIndex ] , {
+                top : 0
+            } );
+
             pages[ curPageIndex ].classList.add( "show" );
             pages[ curPageIndex ].play();
             loadingHandle.remove();
@@ -366,11 +370,12 @@
                         animation : animateName + " 0.8s ease-in-out both" ,
                         "-webkit-animation" : animateName + " 0.8s ease-in-out both"
                     } );
-                    content.appendChild( css( pages[ curPageIndex ] , {
+                    css( pages[ curPageIndex ] , {
                         top : (animateName == "slide-up" ? "" : "-") + Height + "px" ,
                         animation : animateName + " 0.8s ease-in-out both" ,
                         "-webkit-animation" : animateName + " 0.8s ease-in-out both"
-                    } ) );
+                    } );
+                    //content.appendChild( pages[ curPageIndex ] );
                     pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
                         sliding = false;
@@ -379,9 +384,9 @@
                             animation : "none" ,
                             "-webkit-animation" : "none"
                         } );
-                        css( pages[ prePageIndex ] , { animation : "none" } );
+                        css( pages[ prePageIndex ] , { animation : "none" , top : Height * 2 + "px" } );
                         pages[ prePageIndex ].classList.remove( "show" );
-                        content.removeChild( pages[ prePageIndex ] );
+                        //content.removeChild( pages[ prePageIndex ] );
                         if ( curPageIndex < 6 && curPageIndex > 0 ) {
                             hide( [ tempLogos[ 0 ] , tempBtns[ 0 ] , tempLogos[ 1 ] , tempBtns[ 1 ] ] );
                             display( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
