@@ -209,7 +209,7 @@
         iframe.height = document.body.offsetHeight - 35;
         onTap( playBtn , function () {
             iframeBorder.classList.remove( "hide" );
-            iframe.src = "../test100.html";
+            iframe.src = "http://192.168.0.229:9494/debug/work.html?id=18572299&mode=mv-6";
         } );
         function close() {
             iframeBorder.classList.add( "hide" );
