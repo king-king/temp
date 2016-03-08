@@ -173,9 +173,9 @@
         pages[ 1 ].play = function () {
             //log( "page1" );
             handle = Timer( 4000 , function () {
-                page1Words[ curIndex ].classList.add( "hide" );
+                page1Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 3;
-                page1Words[ curIndex ].classList.remove( "hide" );
+                page1Words[ curIndex ].classList.remove( "none" );
             } );
         };
     }

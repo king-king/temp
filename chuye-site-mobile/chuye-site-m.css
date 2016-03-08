@@ -111,11 +111,15 @@ html, body, .content, .bg, .loading-page {
 
 .page0-word.none {
     -webkit-filter: blur(5px);
+    filter: blur(5px);
     opacity: 0;
     transition: 0.3s ease-in;
+    -webkit-transition: 0.3s ease-in;
 }
 
 .page0-word {
+    transition: 0.3s opacity 0.3s ease-in;
+    -webkit-transition: 0.3s opacity 0.2s ease-in;
     height: 100%;
     left: 50%;
     transform: translate3d(-50%, 0, 0);
@@ -146,7 +150,7 @@ html, body, .content, .bg, .loading-page {
 
 .show .page0-phone {
     animation: 1.2s from-bottom-nc 0.8s cubic-bezier(.19, .45, .46, 1.01) both;
-    -webkit-animation: 1.2s from-bottom-nc 0.8s cubic-bezier(.19,.45,.46,1.01) both;
+    -webkit-animation: 1.2s from-bottom-nc 0.8s cubic-bezier(.19, .45, .46, 1.01) both;
 }
 
 .page1-5-title {
@@ -176,13 +180,15 @@ html, body, .content, .bg, .loading-page {
     transform: translate3d(-50%, 0, 0);
     -webkit-transform: translate3d(-50%, 0, 0);
     height: 100%;
-    transition: 0.3s ease-in;
+    transition: 0.3s opacity 0.3s ease-in;
+    -webkit-transition: 0.3s opacity 0.2s ease-in;
 }
 
 .page1-5-word-border img.none {
     -webkit-filter: blur(5px);
     opacity: 0;
     transition: 0.3s ease-in;
+    -webkit-transition: 0.3s ease-in;
 }
 
 .page2-content-border {
@@ -191,14 +197,16 @@ html, body, .content, .bg, .loading-page {
     right: 0;
     bottom: 0;
     opacity: 1;
-    -webkit-filter: blur(0px);
-    transition: -webkit-filter, opacity 0.3s ease-in;
+    transition: 0.3s opacity 0.3s ease-in;
+    -webkit-transition: 0.3s opacity 0.3s ease-in;
 }
 
 .page2-content-border.none {
     -webkit-filter: blur(5px);
+    filter: blur(5px);
     opacity: 0;
     transition: 0.3s ease-in;
+    -webkit-transition: 0.3s ease-in;
 }
 
 .page-2 .page2-word {
