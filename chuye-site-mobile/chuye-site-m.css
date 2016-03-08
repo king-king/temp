@@ -131,6 +131,8 @@ html, body, .content, .bg, .loading-page {
     width: 100%;
     top: 40.41667%;
     height: 59.53125%;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 .page0-phone img {
