@@ -19,11 +19,10 @@
         android : (/android/gi).test( appVersion ) ,
         MicroMessenger : ua.toLowerCase().match( /MicroMessenger/i ) == "micromessenger"
     };
-    var curPageIndex = 0;
-    //window.onerror = function ( errorMessage , scriptURI , lineNumber , columnNumber , errorObj ) {
-    //    // TODO
-    //    alert( JSON.stringify( errorMessage ) + " " + lineNumber );
-    //};
+    window.onerror = function ( errorMessage , scriptURI , lineNumber , columnNumber , errorObj ) {
+        // TODO
+        alert( JSON.stringify( errorMessage ) + " " + lineNumber + " curpageindex:" + curPageIndex );
+    };
 
     function bindEvent( el , type , func ) {
         el.addEventListener( type , func , false );
@@ -154,13 +153,9 @@
         var page0Words = pages[ 0 ].querySelectorAll( ".page0-word" );
         pages[ 0 ].stop = function () {
             handle.remove && handle.remove();
-            // 离开的时候要恢复
-            //loopArray( page0Words , function ( w , i ) {
-            //	!i ? w.classList.remove( "none" ) : w.classList.add( "none" );
-            //} );
-            //curIndex = 0;
         };
         pages[ 0 ].play = function () {
+            log( "page0" );
             handle = Timer( 4000 , function () {
                 page0Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 2;
@@ -174,17 +169,10 @@
         var page1Words = pages[ 1 ].querySelectorAll( ".page1-word" );
         pages[ 1 ].stop = function () {
             handle.remove && handle.remove();
-            // 离开的时候要恢复
-            //loopArray( page1Words , function ( w , i ) {
-            //	!i ? w.classList.remove( "none" ) : w.classList.add( "none" );
-            //} );
-            //curIndex = 0;
         };
         pages[ 1 ].play = function () {
-            //log( "page1" );
-            //var i = 0;
+            log( "page1" );
             handle = Timer( 4000 , function () {
-                //log( "page2 a " + (i++) );
                 page1Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 3;
                 page1Words[ curIndex ].classList.remove( "none" );
@@ -201,14 +189,9 @@
         var handle = {} , curIndex = 0;
         pages[ 2 ].stop = function () {
             handle.remove && handle.remove();
-            // 离开的时候要恢复
-            //loopArray( contentBorders , function ( w , i ) {
-            //	!i ? w.classList.remove( "none" ) : w.classList.add( "none" );
-            //} );
-            //curIndex = 0;
         };
         pages[ 2 ].play = function () {
-            //log( "page2" );
+            log( "page2" );
             //var i = 0;
             handle = Timer( 4000 , function () {
                 //log( "page2 a " + (i++) );
@@ -247,17 +230,13 @@
         css( border , {
             width : w + "px"
         } );
-        var handle = {} , handle2 , curindex = 0;
+        var handle = {} , curindex = 0;
         pages[ 4 ].stop = function () {
             curindex = 0;
             handle.remove && handle.remove();
-            clearTimeout( handle2 );
-            css( wrapper , {
-                transition : "0.3s ease-in-out" ,
-                transform : "translate3d(0,0,0)"
-            } );
         };
         pages[ 4 ].play = function () {
+            log( "page4" );
             handle = Timer( 4000 , function () {
                 if ( curindex == 4 ) {
                     curindex = 0;
@@ -289,6 +268,7 @@
             downBtn.parentNode && downBtn.parentNode.removeChild( downBtn );
         };
         pages[ 6 ].play = function () {
+            log( "page6" )
             downBtn = document.createElement( "div" );
             downBtn.className = "download-btn absolute";
             pages[ 6 ].appendChild( downBtn );
@@ -310,10 +290,6 @@
         onTap( btn , jump );
     } );
     onTap( querySelector( ".page0-btn" ) , jump );
-    //var downloadBtn = querySelector( ".download-btn" );
-    //downloadBtn.onload = function () {
-    //onTap( downloadBtn , jump );
-    //};
     loopArray( pages , function ( p ) {
         css( p , {
             height : Height + "px"
@@ -321,6 +297,7 @@
         content.removeChild( p );
     } );
     function init() {
+        var curPageIndex = 0;
         initPage0();
         initPage1();
         initPage2();
@@ -335,7 +312,6 @@
             loadingTips.textContent = loadingWord[ loadingIndex ];
             loadingIndex = (loadingIndex + 1) % loadingWord.length;
         } );
-        var isLoadingLeft = false;// 加载4-7页
 
         // 先将前三页加载出来
         var p0 = Array.prototype.concat.apply( [] , pages[ 0 ].querySelectorAll( "img" ) );
@@ -348,6 +324,7 @@
                 img.onload = img.onerror = done;
             }
         } ) , function () {
+            loadingLeft();
             content.appendChild( pages[ curPageIndex ] );
             pages[ curPageIndex ].classList.add( "show" );
             pages[ curPageIndex ].play();
@@ -376,13 +353,15 @@
                             return;
                         }
                     }
-                    if ( curPageIndex == 1 && !isLoadingLeft ) {
-                        isLoadingLeft = true;
-                        loadingLeft();
-                    }
+                    //log( "arrive" );
                     circles[ prePageIndex ].classList.remove( "select" );
                     circles[ curPageIndex ].classList.add( "select" );
                     pages[ prePageIndex ].stop && pages[ prePageIndex ].stop();
+                    if ( pages[ curPageIndex ].play ) {
+                        pages[ curPageIndex ].play();
+                    } else {
+                        log( "err" + curPageIndex + "  " + pages[ curPageIndex ].play );
+                    }
                     css( pages[ prePageIndex ] , {
                         animation : animateName + " 0.8s ease-in-out both" ,
                         "-webkit-animation" : animateName + " 0.8s ease-in-out both"
@@ -394,7 +373,6 @@
                     } ) );
                     pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
-                        pages[ curPageIndex ].play && pages[ curPageIndex ].play();
                         sliding = false;
                         css( pages[ curPageIndex ] , {
                             top : 0 ,
@@ -435,6 +413,6 @@
 
     }
 
-    init();
+    document.body.onload = init;
 
 })();

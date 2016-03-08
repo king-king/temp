@@ -238,9 +238,12 @@ html, body, .content, .bg, .loading-page {
 }
 
 .page3-play-btn {
-    height: 10.46875%;
+    height: 50px;
+    width: 50px;
     left: 50%;
     top: 67.5%;
+    background: url("image/page3-play-btn.png") center center;
+    background-size: 50px 50px;
     transform: translate3d(-50%, 0, 0);
     -webkit-transform: translate3d(-50%, 0, 0);
     opacity: 0;
@@ -725,7 +728,7 @@ html, body, .content, .bg, .loading-page {
 }
 
 .log {
-    height: 30px;
+    /*height: 30px;*/
     line-height: 30px;
     color: #fff;
     background-color: black;
@@ -734,4 +737,8 @@ html, body, .content, .bg, .loading-page {
     left: 0;
     right: 0;
     z-index: 100;
+}
+
+.page img {
+    pointer-events: none;
 }
