@@ -726,6 +726,10 @@ html, body, .content, .bg, .loading-page {
     }
 }
 
+.w-logo, .w.btn {
+    z-index: 5;
+}
+
 .log {
     /*height: 30px;*/
     line-height: 30px;

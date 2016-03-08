@@ -382,6 +382,10 @@
                         css( pages[ prePageIndex ] , { animation : "none" } );
                         pages[ prePageIndex ].classList.remove( "show" );
                         content.removeChild( pages[ prePageIndex ] );
+                        if ( curPageIndex < 6 && curPageIndex > 0 ) {
+                            hide( [ tempLogos[ 0 ] , tempBtns[ 0 ] , tempLogos[ 1 ] , tempBtns[ 1 ] ] );
+                            display( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
+                        }
                     } );
 
                     function hide( els ) {
@@ -397,12 +401,18 @@
                     }
 
                     if ( (dy > 0 && curPageIndex == 0) || (dy < 0 && curPageIndex == 1) ) {
+                        // 0-1或1-0
                         display( [ tempLogos[ 0 ] , tempBtns[ 0 ] ] );
                         hide( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
                     } else if ( (dy < 0 && curPageIndex == 6) || (dy > 0 && curPageIndex == 5) ) {
+                        // 5-6或6-5
                         display( [ tempLogos[ 1 ] , tempBtns[ 1 ] ] );
                         hide( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
-                    } else {
+                    } else if ( (curPageIndex == 0 && dy < 0) || (curPageIndex == 6 && dy > 0) ) {
+                        // 6-0
+                        hide( [ tempLogos[ 0 ] , tempBtns[ 0 ] , tempLogos[ 1 ] , tempBtns[ 1 ] , tempLogos[ 2 ] , tempBtns[ 2 ] ] );
+                    }
+                    else {
                         hide( [ tempLogos[ 0 ] , tempBtns[ 0 ] , tempLogos[ 1 ] , tempBtns[ 1 ] ] );
                         display( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
                     }
