@@ -129,7 +129,7 @@ html, body, .content, .bg, .loading-page {
 
 .page0-phone {
     width: 100%;
-    top: 40.41667%;
+    bottom: 0;
     height: 59.53125%;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -145,7 +145,7 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page0-phone {
-    animation: 1.2s from-bottom-nc 0.8s cubic-bezier(.19,.45,.46,1.01) both;
+    animation: 1.2s from-bottom-nc 0.8s cubic-bezier(.19, .45, .46, 1.01) both;
     -webkit-animation: 1.2s from-bottom-nc 0.8s cubic-bezier(.19,.45,.46,1.01) both;
 }
 
