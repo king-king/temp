@@ -246,7 +246,6 @@ html, body, .content, .bg, .loading-page {
     background-size: 50px 50px;
     transform: translate3d(-50%, 0, 0);
     -webkit-transform: translate3d(-50%, 0, 0);
-    opacity: 0;
 }
 
 .show .page3-play-btn {
