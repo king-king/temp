@@ -149,34 +149,34 @@
     }
 
     function initPage0() {
-        var handle = {} , curIndex = 0;
+        var handle , curIndex = 0;
         var page0Words = pages[ 0 ].querySelectorAll( ".page0-word" );
         pages[ 0 ].stop = function () {
-            handle.remove && handle.remove();
+            clearTimeout( handle );
         };
         pages[ 0 ].play = function () {
-            //log( "page0" );
-            handle = Timer( 4000 , function () {
+            handle = setTimeout( function () {
                 page0Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 2;
                 page0Words[ curIndex ].classList.remove( "none" );
-            } );
+                handle = setTimeout( arguments.callee , 7400 );
+            } , 5000 );
         };
     }
 
     function initPage1() {
-        var handle = {} , curIndex = 0;
+        var handle , curIndex = 0;
         var page1Words = pages[ 1 ].querySelectorAll( ".page1-word" );
         pages[ 1 ].stop = function () {
-            handle.remove && handle.remove();
+            clearTimeout( handle );
         };
         pages[ 1 ].play = function () {
-            //log( "page1" );
-            handle = Timer( 4000 , function () {
+            handle = setTimeout( function () {
                 page1Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 3;
                 page1Words[ curIndex ].classList.remove( "none" );
-            } );
+                handle = setTimeout( arguments.callee , 7400 );
+            } , 5000 );
         };
     }
 
