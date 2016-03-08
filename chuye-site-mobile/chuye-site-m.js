@@ -191,10 +191,7 @@
             handle.remove && handle.remove();
         };
         pages[ 2 ].play = function () {
-            //log( "page2" );
-            //var i = 0;
-            handle = Timer( 4000 , function () {
-                //log( "page2 a " + (i++) );
+            handle = Timer( 5000 , function () {
                 contentBorders[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 2;
                 contentBorders[ curIndex ].classList.remove( "none" );
