@@ -1,103 +1,114 @@
-            {
-            "top":"16.9007%",
-            "left":"27.6%",
-            "width":"148px",
-            "height":"91px",
-            "background-position":"-436px -381px"
-        },
+<div class="content">
+    <div class="loading-page">
+        <div class="loading-tips"></div>
+    </div>
+    <!--0-->
+    <div class="page page-0">
+        <img w-src="@Html.Href("image/page0-bg.jpg")" class="page0-bg">
+        <img w-src="@Html.Href("image/page0-logo.png")" class="page0-logo absolute">
+        <img w-src="@Html.Href("image/page0-btn.png")" class="page0-btn absolute">
+        <img w-src="@Html.Href("image/page0-title.png")" class="page0-title absolute">
+        <div class="page0-word-border absolute">
+            <img w-src="@Html.Href("image/page0-word-0.png")" class="page0-word absolute">
+            <img w-src="@Html.Href("image/page0-word-1.png")" class="page0-word none absolute">
+        </div>
+        <div class="page0-phone absolute">
+            <img w-src="@Html.Href("image/page0-phone.png")">
+        </div>
+    </div>
+    <!--1-->
+    <div class="page page-1">
+        <img w-src="@Html.Href("image/page0-logo.png")" class="page-temp-logo  absolute hide">
+        <img w-src="@Html.Href("image/download-app-btn.png")" class="page-temp-btn download-app-btn absolute hide">
+        <img w-src="@Html.Href("image/page1-title.png")" class="page1-title page1-5-title absolute">
+        <div class="page1-5-word-border">
+            <img w-src="@Html.Href("image/page1-word-0.png")" class="page1-word  absolute">
+            <img w-src="@Html.Href("image/page1-word-1.png")" class="page1-word  absolute none">
+            <img w-src="@Html.Href("image/page1-word-2.png")" class="page1-word  absolute none">
+        </div>
+        <div class="page1-4-phone absolute">
+            <img w-src="@Html.Href("image/page1-5-phone.png")" class="white-phone">
+            <img w-src="@Html.Href("image/page1-content.jpg")" class="page-1-4-content">
+        </div>
+    </div>
+    <!--2-->
+    <div class="page page-2">
+        <img w-src="@Html.Href("image/page2-title.png")" class="page2-title page1-5-title absolute">
+        <div class="page2-content-border absolute">
+            <img w-src="@Html.Href("image/page2-word-0.png")" class="page2-word page1-5-word absolute">
+            <div class="page2-img-wrapper page-phone page1-4-phone   absolute">
+                <img w-src="@Html.Href("image/page1-5-phone.png")" class="white-phone  absolute">
+                <img w-src="@Html.Href("image/page2-content-0.jpg")" class="page-1-4-content">
+                <img w-src="@Html.Href("image/page2-girl.gif" class="page2-girl absolute">
+            </div>
+            <img w-src="@Html.Href("image/page2-cat.gif" class="page2-cat absolute">
+            <img w-src="@Html.Href("image/page2-arrow.gif" class="page2-arrow absolute">
+        </div>
+        <div class="page2-content-border absolute none">
+            <img w-src="@Html.Href("image/page2-word-1.png")" class="page2-word page1-5-word absolute">
+            <div class="page2-img-wrapper page-phone page1-4-phone  absolute">
+                <img w-src="@Html.Href("image/page1-5-phone.png")" class="white-phone  absolute">
+                <img w-src="@Html.Href("image/page2-content-1.jpg")" class="page-1-4-content">
+            </div>
+        </div>
+    </div>
+    <!--3-->
+    <div class="page page-3">
+        <div class="page-3-border  hide">
+            <iframe></iframe>
+            <div class="page3-close-iframe">X 关闭</div>
+        </div>
+        <img w-src="@Html.Href("image/page3-title.png")" class="page3-title page1-5-title absolute">
+        <img w-src="@Html.Href("image/page3-word.png")" class="page3-word page1-5-word absolute">
+        <div class="page1-4-phone absolute">
+            <img w-src="@Html.Href("image/page1-5-phone.png")" class="white-phone">
+            <img w-src="@Html.Href("image/page3-content.jpg")" class="page-1-4-content">
+        </div>
+        <div class="page3-play-btn absolute"></div>
+    </div>
+    <!--4-->
+    <div class="page page-4">
+        <img w-src="@Html.Href("image/page4-title.png")" class="page4-title page1-5-title absolute">
+        <img w-src="@Html.Href("image/page4-word.png")" class="page4-word page1-5-word absolute">
+        <div class="page1-4-phone absolute">
+            <img w-src="@Html.Href("image/page1-5-phone.png")" class="white-phone">
+        </div>
+        <div class="page-4-content-border absolute">
+            <div class="page4-content-wrapper absolute">
+                <div class="page4-item item-1 absolute"><img w-src="@Html.Href("image/page4-img-0.jpg")"></div>
+                <div class="page4-item item-2 absolute"><img w-src="@Html.Href("image/page4-img-1.jpg")"></div>
+                <div class="page4-item item-3 absolute"><img w-src="@Html.Href("image/page4-img-2.jpg")"></div>
+                <div class="page4-item item-4 absolute"><img w-src="@Html.Href("image/page4-img-3.jpg")"></div>
+                <div class="page4-item item-5 absolute"><img w-src="@Html.Href("image/page4-img-0.jpg")"></div>
+            </div>
+        </div>
+    </div>
+    <!--5-->
+    <div class="page page-5">
+        <img w-src="@Html.Href("image/page0-logo.png")" class="page-temp-logo  absolute hide">
+        <img w-src="@Html.Href("image/download-app-btn.png")" class="page-temp-btn download-app-btn absolute hide">
+        <img w-src="@Html.Href("image/page5-title.png")" class="page5-title page1-5-title absolute">
+        <img w-src="@Html.Href("image/page5-word.png")" class="page5-word page1-5-word absolute">
+        <img w-src="@Html.Href("image/page5-right-img.png")" class="page5-right-img absolute">
+        <img w-src="@Html.Href("image/page5-left-img.png")" class="page5-left-img absolute">
+    </div>
+    <!--6-->
+    <div class="page page-6">
+        <div class="bg page6-bg"></div>
+        <img w-src="@Html.Href("image/page6-logo.png")" class="page6-logo absolute">
+        <img w-src="@Html.Href("image/page6-word.png")" class="page6-word absolute">
+    </div>
 
-           {
-           "top":"27.593%",
-            "left":"55.24%",
-            "width":"125px",
-            "height":"56px",
-            "background-position":"-518px -150px"
-        },
-
-           {
-            "top":"22.085%",
-           "left":"0",
-            "width":"169px",
-            "height":"182px",
-            "background-position":"0 -88px"
-        },
-
-           {
-            "top":"32.2%",
-            "left":"42.9%",
-            "width":"76px",
-            "height":"75px",
-            "background-position":"-584px -381px"
-        },
-
-           {
-            "top":"21.05%",
-           "left":"71.865%",
-            "width":"90px",
-            "height":"221px",
-            "background-position":"-129px -270px"
-        },
-
-           {
-            "top":"37.73%",
-            "left":"51.214%",
-            "width":"129px",
-            "height":"201px",
-            "background-position":"0 -270px"
-        },
-
-           {
-            "top":"44.51%",
-            "left":"9.1%",
-            "width":"164px",
-            "height":"136px",
-            "background-position":"-305px -221px"
-        },
-
-           {
-            "top":"50%",
-            "left":"0",
-            "width":"80px",
-            "height":"150px",
-            "background-position":"-544px 0"
-        },
-
-           {
-            "top":"55.2%",
-            "left":"34.7172%",
-            "width":"92px",
-            "height":"85px",
-            "background-position":"-529px -296px"
-        },
-
-           {
-            "top":"67.5%",
-            "left":"9.364%",
-            "width":"135px",
-            "height":"52px",
-            "background-position":"-278px -443px"
-        },
-
-           {
-            "top":"68.84%",
-            "left":"0",
-            "width":"224px",
-            "height":"124px",
-            "background-position":"-320px 0"
-        },
-
-           {
-            "top":"52.648%",
-            "left":"81.45%",
-            "width":"59px",
-            "height":"229px",
-            "background-position":"-219px -250px"
-        },
-
-           {
-            "top":"75.53%",
-            "left":"64.78%",
-            "width":"70px",
-            "height":"40px",
-            "background-position":"0 -471px"
-        }
+    <img src="image/page0-logo.png")" class="page-temp-logo w-logo  absolute hide">
+    <img src="image/download-app-btn.png")" class="page-temp-btn w-btn download-app-btn absolute hide">
+    <!--指示器-->
+    <div class="indicator">
+        <div class="circle select"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+</div>
