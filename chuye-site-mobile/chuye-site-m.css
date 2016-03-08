@@ -136,8 +136,8 @@ html, body, .content, .bg, .loading-page {
 }
 
 .show .page0-phone {
-    animation: 1.2s from-bottom 0.8s cubic-bezier(.44, 0, .87, .8) both;
-    -webkit-animation: 1.2s from-bottom 0.8s cubic-bezier(.44, 0, .87, .8) both;
+    animation: 1.2s from-bottom 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
 
 .page1-5-title {
