@@ -191,7 +191,7 @@
             handle.remove && handle.remove();
         };
         pages[ 2 ].play = function () {
-            handle = Timer( 5000 , function () {
+            handle = Timer( 5500 , function () {
                 contentBorders[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 2;
                 contentBorders[ curIndex ].classList.remove( "none" );
@@ -375,7 +375,6 @@
                         animation : animateName + " 0.8s ease-in-out both" ,
                         "-webkit-animation" : animateName + " 0.8s ease-in-out both"
                     } );
-                    //content.appendChild( pages[ curPageIndex ] );
                     pages[ curPageIndex ].classList.add( "show" );
                     animateEnd( pages[ curPageIndex ] , function () {
                         sliding = false;
@@ -386,7 +385,6 @@
                         } );
                         css( pages[ prePageIndex ] , { animation : "none" , top : Height * 2 + "px" } );
                         pages[ prePageIndex ].classList.remove( "show" );
-                        //content.removeChild( pages[ prePageIndex ] );
                         if ( curPageIndex < 6 && curPageIndex > 0 ) {
                             hide( [ tempLogos[ 0 ] , tempBtns[ 0 ] , tempLogos[ 1 ] , tempBtns[ 1 ] ] );
                             display( [ tempLogos[ 2 ] , tempBtns[ 2 ] ] );
