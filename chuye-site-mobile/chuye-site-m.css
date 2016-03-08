@@ -232,7 +232,7 @@ html, body, .content, .bg, .loading-page {
     transform: rotate3d(0, 0, 1, 180deg);
     -webkit-transform: rotate3d(0, 0, 1, 180deg);
     height: 17%;
-    top: 14.802%;
+    top: 13.5%;
     left: 50%;
     animation: 0.4s scale-r 2.2s ease-in-out both;
     -webkit-animation: 0.4s scale-r 2.2s ease-in-out both;
