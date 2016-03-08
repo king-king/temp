@@ -201,6 +201,7 @@ html, body, .content, .bg, .loading-page {
 }
 
 .page-2 .page-phone {
+    width: auto;
     height: 83.78196%;
     bottom: 0;
     left: 50%;
@@ -305,14 +306,17 @@ html, body, .content, .bg, .loading-page {
 }
 
 .page1-4-phone {
-    left: 50%;
     top: 35.26042%;
     height: 65.00000%;
-    transform: translate3d(-50%, 0, 0);
-    -webkit-transform: translate3d(-50%, 0, 0);
+    width: 100%;
 }
 
 .show .page1-4-phone {
+    animation: 1.2s from-bottom-nc 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom-nc 0.8s ease-in-out both;
+}
+
+.show.page-2 .page1-4-phone {
     animation: 1.2s from-bottom 0.8s ease-in-out both;
     -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }
@@ -594,6 +598,28 @@ html, body, .content, .bg, .loading-page {
     }
 }
 
+@-webkit-keyframes from-bottom-nc {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: translate3d(0, 0%, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes from-bottom-nc {
+    0% {
+        transform: translate3d(0, 100%, 0);
+        opacity: 0;
+    }
+    100% {
+        transform: translate3d(0, 0%, 0);
+        opacity: 1;
+    }
+}
+
 @-webkit-keyframes shade-in {
     0% {
         opacity: 0;
@@ -766,4 +792,22 @@ html, body, .content, .bg, .loading-page {
 
 .page img {
     pointer-events: none;
+}
+
+.white-phone {
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
+}
+
+.page-1-4-content {
+    position: absolute;
+    bottom: 0;
+    height: 85.197%;
+    left: 50%;
+    -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
 }
