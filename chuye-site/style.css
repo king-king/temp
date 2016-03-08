@@ -151,7 +151,7 @@ body {
 
 .page0-title {
     position: absolute;
-    top: 21.09375%;
+    top: 23.09375%;
     left: 0;
     height: 10.67708333%;
 }
@@ -163,24 +163,24 @@ body {
 }
 
 .page0-word.a {
-    top: 30.078125%;
+    top: 32.078125%;
 }
 
 .page0-word.b {
-    top: 35.3841145%;
+    top: 37.3841145%;
 }
 
 .page0-word.c {
-    top: 40.690104%;
+    top: 42.690104%;
 }
 
 .page0-word.d {
-    top: 45.9960935%;
+    top: 47.9960935%;
 }
 
 .page0-qr {
     position: absolute;
-    top: 56.770833333333%;
+    top: 58.770833333333%;
     left: 2.604166%;
     height: 20.3125%;
     width: 17.96875%;
@@ -224,8 +224,8 @@ body {
 
 .page0-btn {
     position: absolute;
-    top: 79.296875%;
-    left: 2.604166%;
+    top: 15px;
+    right: 88px;
     height: 5.72916666666%;
 }
 
@@ -761,10 +761,6 @@ body {
 
 .show .page0-qr {
     animation: 1s shade-in 3.4s ease-in-out both;
-}
-
-.show .page0-btn {
-    animation: 1s shade-in 3.7s ease-in-out both;
 }
 
 .show .page1-word.a {
