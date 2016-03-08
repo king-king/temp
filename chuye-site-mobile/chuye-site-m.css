@@ -128,16 +128,23 @@ html, body, .content, .bg, .loading-page {
 }
 
 .page0-phone {
-    left: 50%;
+    width: 100%;
     top: 40.41667%;
     height: 59.53125%;
-    transform: translate3d(-50%, 0, 0);
+}
+
+.page0-phone img {
+    position: absolute;
+    height: 100%;
+    bottom: 0;
+    left: 50%;
     -webkit-transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-50%, 0, 0);
 }
 
 .show .page0-phone {
-    animation: 1.2s from-bottom 0.8s ease-in-out both;
-    -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
+    animation: 1.2s from-bottom-nc 0.8s ease-in-out both;
+    -webkit-animation: 1.2s from-bottom-nc 0.8s ease-in-out both;
 }
 
 .page1-5-title {
