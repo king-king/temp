@@ -430,14 +430,12 @@ html, body, .content, .bg, .loading-page {
 }
 
 .download-btn {
-    /*background-color: green;*/
     left: 50%;
     top: 40.88542%;
     height: 41px;
     width: 113px;
     background: url("image/download-btn.png") center center;
     background-size: 113px 41px;
-    /*height: 8.54167%;*/
     transform: translate3d(-50%, 0, 0);
     -webkit-transform: translate3d(-50%, 0, 0);
 }
