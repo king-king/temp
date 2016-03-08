@@ -3,14 +3,14 @@
  */
 var compressor = require( 'yuicompressor' );
 var fs = require( "fs" );
-compressor.compress( "chuye-site.js" , {
+compressor.compress( "chuye-site-mobile.js" , {
     //Compressor Options:
     charset : 'utf8' ,
     type : 'js' ,
     'line-break' : 80
 } , function ( err , data , extra ) {
     if ( !err ) {
-        fs.writeFile( "chuye-site.min.js" , data , function () {
+        fs.writeFile( "chuye-site-mobile.min.js" , data , function () {
             console.log( "over" )
         } )
     }
