@@ -135,7 +135,7 @@ html, body, .content, .bg, .loading-page {
     -webkit-transform: translate3d(-50%, 0, 0);
 }
 
-.page0-phone {
+.show .page0-phone {
     animation: 1.2s from-bottom 0.8s ease-in-out both;
     -webkit-animation: 1.2s from-bottom 0.8s ease-in-out both;
 }

@@ -155,7 +155,7 @@
             handle.remove && handle.remove();
         };
         pages[ 0 ].play = function () {
-            log( "page0" );
+            //log( "page0" );
             handle = Timer( 4000 , function () {
                 page0Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 2;
@@ -171,7 +171,7 @@
             handle.remove && handle.remove();
         };
         pages[ 1 ].play = function () {
-            log( "page1" );
+            //log( "page1" );
             handle = Timer( 4000 , function () {
                 page1Words[ curIndex ].classList.add( "none" );
                 curIndex = (curIndex + 1) % 3;
@@ -191,7 +191,7 @@
             handle.remove && handle.remove();
         };
         pages[ 2 ].play = function () {
-            log( "page2" );
+            //log( "page2" );
             //var i = 0;
             handle = Timer( 4000 , function () {
                 //log( "page2 a " + (i++) );
@@ -236,25 +236,30 @@
             handle.remove && handle.remove();
         };
         pages[ 4 ].play = function () {
-            log( "page4" );
+            //log( "page4" );
             handle = Timer( 4000 , function () {
                 if ( curindex == 4 ) {
                     curindex = 0;
                     css( wrapper , {
                         transition : "none" ,
-                        transform : "translate3d(0,0,0)"
+                        "-webkit-transition" : "none" ,
+                        transform : "translate3d(0,0,0)" ,
+                        "-webkit-transform" : "translate3d(0,0,0)"
                     } );
                     setTimeout( function () {
                         curindex = (curindex + 1) % 5;
                         css( wrapper , {
                             transition : "0.3s ease-in-out" ,
-                            transform : "translate3d(-" + (20 * curindex) + "%,0,0)"
+                            "-webkit-transition" : "0.3s ease-in-out" ,
+                            transform : "translate3d(-" + (20 * curindex) + "%,0,0)" ,
+                            "-webkit-transform" : "translate3d(-" + (20 * curindex) + "%,0,0)"
                         } );
                     } , 0 );
                 } else {
                     curindex = (curindex + 1) % 5;
                     css( wrapper , {
-                        transform : "translate3d(-" + (20 * curindex) + "%,0,0)"
+                        transform : "translate3d(-" + (20 * curindex) + "%,0,0)" ,
+                        "-webkit-transform" : "translate3d(-" + (20 * curindex) + "%,0,0)"
                     } );
                 }
             } );
@@ -268,7 +273,7 @@
             downBtn.parentNode && downBtn.parentNode.removeChild( downBtn );
         };
         pages[ 6 ].play = function () {
-            log( "page6" )
+            //log( "page6" )
             downBtn = document.createElement( "div" );
             downBtn.className = "download-btn absolute";
             pages[ 6 ].appendChild( downBtn );
@@ -364,7 +369,7 @@
                     if ( pages[ curPageIndex ].play ) {
                         pages[ curPageIndex ].play();
                     } else {
-                        log( "err" + curPageIndex + "  " + pages[ curPageIndex ].play );
+                        //log( "err" + curPageIndex + "  " + pages[ curPageIndex ].play );
                     }
                     css( pages[ prePageIndex ] , {
                         animation : animateName + " 0.8s ease-in-out both" ,
