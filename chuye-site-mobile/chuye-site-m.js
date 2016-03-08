@@ -368,8 +368,6 @@
                     pages[ prePageIndex ].stop && pages[ prePageIndex ].stop();
                     if ( pages[ curPageIndex ].play ) {
                         pages[ curPageIndex ].play();
-                    } else {
-                        //log( "err" + curPageIndex + "  " + pages[ curPageIndex ].play );
                     }
                     css( pages[ prePageIndex ] , {
                         animation : animateName + " 0.8s ease-in-out both" ,
