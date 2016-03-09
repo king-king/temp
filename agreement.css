@@ -130,13 +130,13 @@ table {
     -moz-osx-font-smoothing: grayscaleFont type
 }
 
-/*.site-nav {*/
-    /*z-index: 10000;*/
-    /*width: 100%;*/
-    /*background: #f5f5f5;*/
-    /*border-bottom: 1px solid #eee;*/
-    /**zoom: 1*/
-/*}*/
+.site-nav {
+    z-index: 10000;
+    width: 100%;
+    background: #f5f5f5;
+    border-bottom: 1px solid #eee;
+    *zoom: 1
+}
 
 .site-nav:after {
     content: "";
