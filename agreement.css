@@ -47,6 +47,24 @@ legend {
     color: #000
 }
 
+#page {
+    width: 990px;
+    margin: 0 auto;
+}
+
+.agreement {
+    color: #404040;
+    padding-bottom: 50px;
+    line-height: 1.8;
+}
+
+@media (max-width: 989px) {
+    #page {
+        width: auto;
+        padding: 10px;
+    }
+}
+
 fieldset, img {
     border: 0
 }
