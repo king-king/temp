@@ -393,5 +393,5 @@
         } )
     }
 
-    document.body.onload = x
+    x()
 })();

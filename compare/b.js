@@ -180,6 +180,7 @@
         };
     }
 
+
     function log( str ) {
         querySelector( ".log" ).textContent = str;
     }
@@ -209,7 +210,7 @@
         iframe.height = document.body.offsetHeight - 35;
         onTap( playBtn , function () {
             iframeBorder.classList.remove( "hide" );
-            iframe.src = "http://192.168.0.229:9494/debug/work.html?id=18572299&mode=mv-6";
+            iframe.src = "/18572299";
         } );
         function close() {
             iframeBorder.classList.add( "hide" );
