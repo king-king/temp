@@ -180,7 +180,6 @@
         };
     }
 
-
     function log( str ) {
         querySelector( ".log" ).textContent = str;
     }
