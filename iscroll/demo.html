@@ -77,7 +77,7 @@
                     } else if ( this.y < (this.maxScrollY - 5) && !pullUpEl.className.match( 'flip' ) ) {
                         pullUpEl.className = 'flip';
                         pullUpEl.querySelector( '.pullUpLabel' ).innerHTML = 'Release to refresh...';
-                        this.maxScrollY = this.maxScrollY;
+//                        this.maxScrollY = this.maxScrollY;
                     } else if ( this.y > (this.maxScrollY + 5) && pullUpEl.className.match( 'flip' ) ) {
                         pullUpEl.className = '';
                         pullUpEl.querySelector( '.pullUpLabel' ).innerHTML = 'Pull up to load more...';
