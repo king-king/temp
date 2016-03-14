@@ -15,19 +15,22 @@
             margin: 0;
         }
 
-
+        .border {
+            height: 500px;
+            border: 1px solid #e1e1e1;
+        }
     </style>
 </head>
 <body class="not-support">
-<img src="img/1.jpg">
-
+<div class="border"></div>
+<input>
 <script>
     (function () {
-        window.onerror = function ( errorMessage , scriptURI , lineNumber , columnNumber , errorObj ) {
-            // TODO
-            alert( JSON.stringify( errorMessage ) + " " + lineNumber + " curpageindex:" + curPageIndex );
-        };
-
+        var border = document.querySelector( ".border" );
+        var i = 0;
+        window.onresize = function () {
+            border.textContent = "resize" + (++i);
+        }
 
     })();
 </script>
