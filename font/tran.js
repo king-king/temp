@@ -4,4 +4,4 @@
 var Fontmin = require( 'fontmin' );
 
 var fontmin = new Fontmin().src( "fz.ttf" )
-    .use( Fontmin.ttf2eot( "wq.eot" ) );
+    .use( Fontmin.ttf2eot() ).dest( "wq.eot" );
