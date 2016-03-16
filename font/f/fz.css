@@ -2,10 +2,10 @@
     font-family: "fz";
     src: url("fz.eot"); /* IE9 */
     src: url("fz.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    
-    url("fz.woff") format("woff"), /* chrome、firefox */
     url("fz.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
-    
+
+    url("fz.woff") format("woff"), /* chrome、firefox */
+
     url("fz.svg#fz") format("svg"); /* iOS 4.1- */
     font-style: normal;
     font-weight: normal;
