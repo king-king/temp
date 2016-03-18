@@ -259,18 +259,11 @@
         var border = document.querySelector( ".border" );
         var tips = document.querySelector( ".tips" );
 
-//        window.onscroll = function () {
-//            tips.textContent = "scrolling" + (i++);
-//        };
         document.addEventListener( "scroll" , function () {
 //            tips.textContent = "scrolling" + (i++);
         } );
-        document.addEventListener( "scrollstart" , function () {
-            alert( "ok" );
-            tips.textContent = "scrollstart";
-        } );
-        $( ".border" ).on( "scrollstop" , function () {
-            tips.textContent = "scrollstop";
+        document.addEventListener( "touchstart" , function () {
+            tips.textContent = "scrollstart" + (i++);
         } );
     })();
 </script>
