@@ -2,46 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>fog</title>
     <style>
-        body {
-            background: #000;
+
+        html, body {
+            height: 100%;
+            margin: 0;
         }
 
-        canvas {
-            width: 234px;
-            height: 209px;
+        .border {
+            width: 100%;
+            height: 100%;
+            background: url("img/1.jpg") no-repeat center center;
+            background-size: cover;
+            perspective: 1500px;
+        }
+
+        img {
+            position: absolute;
+            width: 100%;
+        }
+
+        img.a {
+            left: -20%;
+            top: -10%;
+            /*animation: 10s move infinite;*/
+        }
+
+        img.b {
+            left: 30%;
+            top: 20%;
+            /*animation: 12s move-2 2s infinite both;*/
+        }
+
+        img.c {
+            left: -10%;
+            top: 40%;
+            /*animation: 8s move 4s infinite both;*/
+        }
+
+        img.d {
+            left: 30%;
+            top: 62%;
+            /*animation: 8s move 4s infinite both;*/
+        }
+
+        img.e {
+            left: -26%;
+            top: 75%;
+            /*animation: 8s move 4s infinite both;*/
+        }
+
+        img.f {
+            left: 46%;
+            top: -22%;
+            /*animation: 8s move 4s infinite both;*/
+        }
+
+        @keyframes move {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 1510px);
+            }
+        }
+
+        @keyframes move-2 {
+            0% {
+                transform: translate3d(0, 0, 500px);
+            }
+            100% {
+                transform: translate3d(0, 0, 1510px);
+            }
         }
     </style>
 </head>
 <body>
-<canvas width="234" height="209"></canvas>
+<div class="border">
+    <div class="tip"></div>
+    <img src="img/cloud.png" class="a">
+    <img src="img/cloud.png" class="b">
+    <img src="img/cloud.png" class="c">
+    <img src="img/cloud.png" class="d">
+    <img src="img/cloud.png" class="e">
+    <img src="img/cloud.png" class="f">
+</div>
 <script>
     (function () {
-        var canvas = document.querySelector( "canvas" );
-        var gl = canvas.getContext( "2d" );
-        var w = 234;
-        var h = 209;
-        var img = new Image();
-        img.src = "img/paint/5.png";
-        img.onload = function () {
-            gl.drawImage( img , 0 , 0 );
-            var imgdata = gl.getImageData( 0 , 0 , w , h );
-            var r = 250 , g = 250 , b = 250;
-            for ( var i = 0; i < imgdata.data.length; i += 4 ) {
-                if ( imgdata.data[ i ] > r && imgdata.data[ i + 1 ] > g && imgdata.data[ i + 2 ] > b ) {
-                    imgdata.data[ i + 3 ] = 0;
-                }
-            }
-            var offcanvas = document.createElement( "canvas" );
-            var offgl = offcanvas.getContext( "2d" );
-            offcanvas.width = w;
-            offcanvas.height = h;
-            offgl.putImageData( imgdata , 0 , 0 );
-            document.body.appendChild( offcanvas );
 
-
-        }
 
     })();
 </script>
