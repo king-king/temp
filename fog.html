@@ -161,68 +161,70 @@
                 el : a ,
                 init : -100 ,
                 curY : -100 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : b ,
                 init : 0 ,
                 curY : 0 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : c ,
                 init : 50 ,
                 curY : 50 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : d ,
                 init : -20 ,
                 curY : -20 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : e ,
                 init : 0 ,
                 curY : 0 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : f ,
                 init : 20 ,
                 curY : 20 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : g ,
                 init : 40 ,
                 curY : 40 ,
-                opacity : 0.3
+                opacity : 0.2
             } ,
             {
                 el : h ,
                 init : 60 ,
                 curY : 60 ,
-                opacity : 0.3
+                opacity : 0.2
             }
         ];
         var clouds2 = [];
         loopArray( clouds , function ( c ) {
             var c2 = {
                 el : c.el.cloneNode( true ) ,
-                init : c.init - 400 ,
-                curY : c.curY - 400 ,
-                opacity : 0.3
+                init : c.init - 600 ,
+                curY : c.curY - 600 ,
+                opacity : 0.2
             };
-            c.init = c.init - 100;
-            c.curY = c.curY - 100;
+//            c.init = c.init - 100;
+//            c.curY = c.curY - 100;
             clouds2.push( c2 );
             border.appendChild( c2.el );
             css( c2.el , {
-                transform : "translate3d(0,0," + c2.init + "px)"
+                transform : "translate3d(0,0," + c2.init + "px)" ,
+                opacity : 0.2
             } );
             css( c.el , {
-                transform : "translate3d(0,0," + c.init + "px)"
+                transform : "translate3d(0,0," + c.init + "px)" ,
+                opacity : 0.2
             } );
         } );
         clouds = clouds.concat( clouds2 );
