@@ -209,13 +209,25 @@
         var clouds2 = [];
         loopArray( clouds , function ( c ) {
             var c2 = {
-                el : c.el.cloneNode( true ) ,
-                init : c.init - 600 ,
-                curY : c.curY - 600 ,
-                opacity : 0.2
-            };
+                        el : c.el.cloneNode( true ) ,
+                        init : c.init - 600 ,
+                        curY : c.curY - 600 ,
+                        opacity : 0.2
+                    } ,
+                    c3 = {
+                        el : c.el.cloneNode( true ) ,
+                        init : c.init - 1200 ,
+                        curY : c.curY - 1200 ,
+                        opacity : 0.2
+                    };
             clouds2.push( c2 );
+            clouds2.push( c3 );
             border.appendChild( c2.el );
+            border.appendChild( c3.el );
+            css( c3.el , {
+                transform : "translate3d(0,0," + c3.init + "px)" ,
+                opacity : 0.2
+            } );
             css( c2.el , {
                 transform : "translate3d(0,0," + c2.init + "px)" ,
                 opacity : 0.2
@@ -229,8 +241,8 @@
         animate( function () {
             loopArray( clouds , function ( c ) {
                 c.curY += 6;
-                if ( c.curY > 1500 ) {
-                    c.curY = c.init;
+                if ( c.curY > 1550 ) {
+                    c.curY = 0;
                     c.opacity = 0;
                 }
                 if ( c.opacity < 0.2 ) {
