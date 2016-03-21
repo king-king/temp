@@ -30,42 +30,42 @@
             left: -20%;
             top: -10%;
             /*animation: 10s move infinite;*/
-            animation: 20s l-r infinite;
+            /*animation: 20s l-r infinite;*/
         }
 
         img.b {
             left: 30%;
             top: 20%;
             /*animation: 12s move-2 2s infinite both;*/
-            animation: 20s l-r 3s infinite;
+            /*animation: 20s l-r 3s infinite;*/
         }
 
         img.c {
             left: -23%;
             top: 34%;
             /*animation: 8s move 4s infinite both;*/
-            animation: 20s l-r 2s infinite;
+            /*animation: 20s l-r 2s infinite;*/
         }
 
         img.d {
             left: 23%;
             top: 57%;
             /*animation: 8s move 4s infinite both;*/
-            animation: 20s l-r 1s infinite;
+            /*animation: 20s l-r 1s infinite;*/
         }
 
         img.e {
             left: -26%;
             top: 75%;
             /*animation: 8s move 4s infinite both;*/
-            animation: 20s l-r infinite;
+            /*animation: 20s l-r infinite;*/
         }
 
         img.f {
             left: 46%;
             top: -22%;
             /*animation: 8s move 4s infinite both;*/
-            animation: 20s l-r 2.5s infinite;
+            /*animation: 20s l-r 2.5s infinite;*/
         }
 
         @keyframes move {
@@ -109,6 +109,60 @@
 </div>
 <script>
     (function () {
+
+        function animate( func ) {
+            function frame() {
+                // do something
+                func();
+                setTimeout( frame , 20 );
+            }
+
+            frame();
+        }
+
+        var querySelector = document.querySelector.bind( document );
+        var a = querySelector( ".a" ) ,
+                b = querySelector( ".b" ) ,
+                c = querySelector( ".c" ) ,
+                d = querySelector( ".d" ) ,
+                e = querySelector( ".e" ) ,
+                f = querySelector( ".f" );
+        var clouds = [
+            {
+                el : a ,
+                init : 0 ,
+                curY : 0
+            } ,
+            {
+                el : b ,
+                init : 0 ,
+                curY : 0
+            } ,
+            {
+                el : c ,
+                init : 0 ,
+                curY : 0
+            } ,
+            {
+                el : d ,
+                init : 0 ,
+                curY : 0
+            } ,
+            {
+                el : e ,
+                init : 0 ,
+                curY : 0
+            } ,
+            {
+                el : f ,
+                init : 0 ,
+                curY : 0
+            }
+        ];
+
+        animate( function () {
+
+        } );
 
 
     })();
