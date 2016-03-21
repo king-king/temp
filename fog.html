@@ -17,47 +17,55 @@
             background: url("img/1.jpg") no-repeat center center;
             background-size: cover;
             perspective: 1500px;
+            overflow: hidden;
         }
 
         img {
             position: absolute;
             width: 100%;
+            opacity: 0.5;
         }
 
         img.a {
             left: -20%;
             top: -10%;
             /*animation: 10s move infinite;*/
+            animation: 20s l-r infinite;
         }
 
         img.b {
             left: 30%;
             top: 20%;
             /*animation: 12s move-2 2s infinite both;*/
+            animation: 20s l-r 3s infinite;
         }
 
         img.c {
-            left: -10%;
-            top: 40%;
+            left: -23%;
+            top: 34%;
             /*animation: 8s move 4s infinite both;*/
+            animation: 20s l-r 2s infinite;
         }
 
         img.d {
-            left: 30%;
-            top: 62%;
+            left: 23%;
+            top: 57%;
             /*animation: 8s move 4s infinite both;*/
+            animation: 20s l-r 1s infinite;
         }
 
         img.e {
             left: -26%;
             top: 75%;
             /*animation: 8s move 4s infinite both;*/
+            animation: 20s l-r infinite;
         }
 
         img.f {
             left: 46%;
             top: -22%;
             /*animation: 8s move 4s infinite both;*/
+            animation: 20s l-r 2.5s infinite;
         }
 
         @keyframes move {
@@ -77,6 +85,16 @@
                 transform: translate3d(0, 0, 1510px);
             }
         }
+
+        @keyframes l-r {
+            0% {
+                transform: translate3d(0, 0, 500px);
+            }
+            100% {
+                transform: translate3d(0, 0, 1500px);
+            }
+        }
+
     </style>
 </head>
 <body>
