@@ -13,13 +13,26 @@
             right: 0;
             bottom: 0;
             margin: 0;
+            overflow: hidden;
             -webkit-overflow-scrolling: touch;
+            -webkit-user-select: none;
         }
 
         .border {
-            height: 3000px;
-            /*background: #000;*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
+
+        /*.border {*/
+        /*height: 3000px;*/
+        /*!*background: #000;*!*/
+        /*}*/
 
         .tips {
             position: fixed;
@@ -259,12 +272,28 @@
         var border = document.querySelector( ".border" );
         var tips = document.querySelector( ".tips" );
 
-        document.addEventListener( "scroll" , function () {
-            tips.textContent = "scrolling" + (i++);
+//        border.addEventListener( "scroll" , function () {
+//            tips.textContent = "scroll  " + (i++);
+//        } );
+//        border.onscroll = function () {
+//            tips.textContent = "scroll  " + (i++);
+//        };
+
+        $( ".border" ).on( "scrollstart" , function () {
+            tips.textContent = "scrollstart";
         } );
-        document.addEventListener( "touchstart" , function () {
-//            tips.textContent = "scrollstart" + (i++);
+
+        $( ".border" ).on( "scrollstop" , function () {
+            tips.textContent = "scrollstop";
         } );
+
+//
+//        document.addEventListener( "scroll" , function () {
+//            tips.textContent = "scrolling" + (i++);
+//        } );
+//        document.addEventListener( "touchstart" , function () {
+////            tips.textContent = "scrollstart" + (i++);
+//        } );
     })();
 </script>
 </body>
