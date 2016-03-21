@@ -14,10 +14,19 @@
         .border {
             width: 100%;
             height: 100%;
-            background: url("img/1.jpg") no-repeat center center;
-            background-size: cover;
+            /*background: url("img/1.jpg") no-repeat center center;*/
+            /*background-size: cover;*/
             perspective: 1500px;
             overflow: hidden;
+        }
+
+        img.bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            opacity: 1;
+            -webkit-filter: brightness(0.7);
         }
 
         img {
@@ -49,14 +58,14 @@
 
         img.d {
             left: 23%;
-            top: 57%;
+            top: 50%;
             /*animation: 8s move 4s infinite both;*/
             /*animation: 20s l-r 1s infinite;*/
         }
 
         img.e {
             left: -26%;
-            top: 75%;
+            top: 68%;
             /*animation: 8s move 4s infinite both;*/
             /*animation: 20s l-r infinite;*/
         }
@@ -64,6 +73,13 @@
         img.f {
             left: 46%;
             top: -22%;
+            /*animation: 8s move 4s infinite both;*/
+            /*animation: 20s l-r 2.5s infinite;*/
+        }
+
+        img.g {
+            left: 3%;
+            top: -5%;
             /*animation: 8s move 4s infinite both;*/
             /*animation: 20s l-r 2.5s infinite;*/
         }
@@ -99,13 +115,14 @@
 </head>
 <body>
 <div class="border">
-    <div class="tip"></div>
+    <img src="img/1.jpg" class="bg">
     <img src="img/cloud.png" class="a">
     <img src="img/cloud.png" class="b">
     <img src="img/cloud.png" class="c">
     <img src="img/cloud.png" class="d">
     <img src="img/cloud.png" class="e">
     <img src="img/cloud.png" class="f">
+    <img src="img/cloud.png" class="g">
 </div>
 <script>
     (function () {
@@ -120,17 +137,36 @@
             frame();
         }
 
+        function loopObj( obj , func ) {
+            for ( var key in obj ) {
+                func( key , obj[ key ] );
+            }
+        }
+
+        function loopArray( arr , func ) {
+            for ( var i = 0; i < arr.length; i++ ) {
+                func( arr[ i ] , i );
+            }
+        }
+
+        function css( el , style ) {
+            loopObj( style , function ( key , value ) {
+                el.style.setProperty( key , value );
+            } );
+        }
+
         var querySelector = document.querySelector.bind( document );
         var a = querySelector( ".a" ) ,
                 b = querySelector( ".b" ) ,
                 c = querySelector( ".c" ) ,
                 d = querySelector( ".d" ) ,
                 e = querySelector( ".e" ) ,
-                f = querySelector( ".f" );
+                f = querySelector( ".f" ) ,
+                g = querySelector( ".g" );
         var clouds = [
             {
                 el : a ,
-                init : 0 ,
+                init : -100 ,
                 curY : 0
             } ,
             {
@@ -140,12 +176,12 @@
             } ,
             {
                 el : c ,
-                init : 0 ,
+                init : 50 ,
                 curY : 0
             } ,
             {
                 el : d ,
-                init : 0 ,
+                init : -20 ,
                 curY : 0
             } ,
             {
@@ -155,10 +191,21 @@
             } ,
             {
                 el : f ,
-                init : 0 ,
+                init : 20 ,
+                curY : 0
+            } ,
+            {
+                el : g ,
+                init : 50 ,
                 curY : 0
             }
         ];
+
+        loopArray( clouds , function ( c ) {
+            css( c.el , {
+                transform : "translate3d(0,0," + c.init + "px)"
+            } );
+        } );
 
         animate( function () {
 
