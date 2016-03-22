@@ -42,12 +42,12 @@
         function initImage( img ) {
             img.wvx = w / 250 * (Math.random() - 0.5);
             img.wvy = h / 250 * (Math.random() * 0.5 + 0.5);
-            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 3;
-            img.size = w / 20 * (Math.random() * 0.5 + 0.5);
-            img.wz = 500 * Math.random() + 500;
+            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2;
+            img.size = w / 15 * (Math.random() * 0.5 + 0.5);
+            img.wz = 200 * Math.random() + 200;
             var w0 = (1500 - img.wz) / 1500 * w;
             var h0 = (1500 - img.wz) / 1500 * h;
-            img.wx = Math.random() * w0 + w - w0;
+            img.wx = Math.random() * w0 + (w - w0) / 2;
             img.wy = (h - h0) / 2;
         }
 
