@@ -44,10 +44,11 @@
             img.wvy = h / 250 * (Math.random() * 0.5 + 0.5);
             img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2;
             img.size = w / 20 * (Math.random() * 0.5 + 0.5);
-            img.wx = Math.random() * w;
             img.wz = 500 * Math.random() + 500;
-            img.wr = 90 * Math.random() << 0;
-            img.wy = 0;
+            var w0 = (1500 - img.wz) / 1500 * w;
+            var h0 = (1500 - img.wz) / 1500 * h;
+            img.wx = Math.random() * w0 + w - w0;
+            img.wy = (h - h0) / 2;
         }
 
         // 生成
@@ -61,8 +62,7 @@
                 initImage( img );
                 css( img , {
                     width : img.size + "px" ,
-                    transform : "translate3d(" + img.wx + "px," + img.wy + "px," + img.wz + "px) rotate3d(1," + img.wvx / img.wvy + ",0," + (++img.wr) +
-                    "deg)"
+                    transform : "translate3d(" + img.wx + "px," + img.wy + "px," + img.wz + "px)"
                 } );
                 flowers.push( img );
             } );
@@ -79,24 +79,25 @@
                 f.wx += f.wvx;
                 f.wy += f.wvy;
                 f.wz += f.wvz;
-                if ( f.wy > h ) {
-                    initImage( f );
-                    goOn = false;
-                }
-                if ( f.wx < 0 || f.wx > w || f.wz > 1500 ) {
+
+                var rate = (1500 - f.wz) / 1500;
+                var w0 = rate * w , h0 = rate * h;
+                var ww = (w - w0) / 2;
+                var yy = (h - h0) / 2;
+                if ( f.wx < ww || f.wx > ww + w0 || f.wy > h0 + yy ) {
                     initImage( f );
                 }
                 css( f , {
                     width : f.size + "px" ,
                     transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px)"
-
-//                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(1," + f.wvx / f.wvy + ",0," + (++f.wr) +
-//                    "deg)"
                 } );
             } );
             setTimeout( arguments.callee , 20 );
         } , 20 );
 
+        setTimeout( function () {
+            goOn = false;
+        } , 3000 );
 
     })();
 </script>
