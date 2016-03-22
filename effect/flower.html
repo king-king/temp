@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>flower</title>
+    <style>
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            margin: 0;
+            perspective: 1500px;
+        }
+
+        .bg {
+            height: 100%;
+            position: absolute;
+        }
+
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<img src="../img/1.jpg" class="bg">
+<script src="tool.js"></script>
+<script>
+    (function () {
+        var body = document.body ,
+                h = body.offsetHeight ,
+                w = body.offsetWidth ,
+                flowerT = [] ,
+                flowers = [];
+
+        loop( 6 , function ( i ) {
+            var img = new Image();
+            img.src = "img/flower/" + i + ".png";
+            flowerT.push( img );
+        } );
+
+        function initImage( img ) {
+            img.wvx = w / 100 * (Math.random() * 0.5 + 0.5);
+            img.wvy = h / 100 * (Math.random() * 0.5 + 0.5);
+            img.wvz = (img.wvx + img.wvy) / 2;
+            img.size = img.wvx + img.wvy + img.wvz;
+            img.wx = (Math.random() - 0.5) * w;
+            img.wz = 500 * Math.random() + 500;
+            if ( img.wx < 0 ) {
+                img.wx = -img.size;
+                img.wy = (Math.random() * 0.5 + 0.5) * h;
+            } else {
+                img.wy = -img.size;
+            }
+        }
+
+        // 生成
+        var goOn = true;
+        var gindex = 0;
+        setTimeout( function () {
+            loop( 4 , function ( i ) {
+                var img = flowerT[ gindex ].cloneNode();
+                body.appendChild( img );
+                initImage( img );
+                css( img , {
+                    width : img.size + "px" ,
+                    transform : "translate3d(" + img.wx + "px," + img.wy + "px," + img.wz + "px)"
+                } );
+                flowers.push( img );
+            } );
+            if ( goOn ) {
+                setTimeout( arguments.callee , 1000 );
+            }
+        } , 1000 );
+
+        // draw
+        setTimeout( function () {
+            loopArray( flowers , function ( f ) {
+                f.wx += f.wvx;
+                f.wy += f.wvy;
+                f.wz += f.wvz;
+                if ( f.wx > w + f.size || f.wy > f.h + f.size ) {
+                    initImage( f );
+                }
+                css( f , {
+                    width : f.size + "px" ,
+                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px)"
+                } );
+            } );
+            setTimeout( arguments.callee , 20 );
+        } , 20 );
+
+
+    })();
+</script>
+</body>
+</html>
