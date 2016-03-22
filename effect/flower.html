@@ -38,6 +38,12 @@
             img.src = "img/flower/" + i + ".png";
             flowerT.push( img );
         } );
+//
+//        var basicVY = w * 7 / 340 ,
+//                basicVX = w * 5 / 340 ,
+//                bigRBasic = w * 4 / 340 ,
+//                bigROffset = w * 44 / 340 ,
+//                bigVX = w * 7 / 340;
 
         function initImage( img ) {
             img.wvx = w / 250 * (Math.random() - 0.5);
@@ -79,7 +85,7 @@
                 f.wx += f.wvx;
                 f.wy += f.wvy;
                 f.wz += f.wvz;
-                if ( f.wy > h + f.size ) {
+                if ( f.wy > h ) {
                     initImage( f );
                     goOn = false;
                 }
