@@ -40,38 +40,38 @@
         } );
 
         function initImage( img ) {
-            img.wvx = w / 100 * (Math.random() * 0.5 + 0.5);
-            img.wvy = h / 100 * (Math.random() * 0.5 + 0.5);
-            img.wvz = (img.wvx + img.wvy) / 2;
-            img.size = img.wvx + img.wvy + img.wvz;
-            img.wx = (Math.random() - 0.5) * w;
+            img.wvx = w / 250 * (Math.random() - 0.5);
+            img.wvy = h / 250 * (Math.random() * 0.5 + 0.5);
+            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2;
+            img.size = w / 20 * (Math.random() * 0.5 + 0.5);
+            img.wx = Math.random() * w;
             img.wz = 500 * Math.random() + 500;
-            if ( img.wx < 0 ) {
-                img.wx = -img.size;
-                img.wy = (Math.random() * 0.5 + 0.5) * h;
-            } else {
-                img.wy = -img.size;
-            }
+            img.wr = 90 * Math.random() << 0;
+            img.wy = 0;
         }
 
         // 生成
         var goOn = true;
         var gindex = 0;
         setTimeout( function () {
-            loop( 4 , function ( i ) {
+            loop( 8 , function () {
                 var img = flowerT[ gindex ].cloneNode();
+                gindex = (gindex + 1) % 6;
                 body.appendChild( img );
                 initImage( img );
                 css( img , {
                     width : img.size + "px" ,
-                    transform : "translate3d(" + img.wx + "px," + img.wy + "px," + img.wz + "px)"
+                    transform : "translate3d(" + img.wx + "px," + img.wy + "px," + img.wz + "px) rotate3d(1," + img.wvx / img.wvy + ",0," + (++img.wr) +
+                    "deg)"
                 } );
                 flowers.push( img );
             } );
             if ( goOn ) {
                 setTimeout( arguments.callee , 1000 );
+            } else {
+                console.log( flowers.length )
             }
-        } , 1000 );
+        } , 400 );
 
         // draw
         setTimeout( function () {
@@ -79,12 +79,19 @@
                 f.wx += f.wvx;
                 f.wy += f.wvy;
                 f.wz += f.wvz;
-                if ( f.wx > w + f.size || f.wy > f.h + f.size ) {
+                if ( f.wy > h + f.size ) {
+                    initImage( f );
+                    goOn = false;
+                }
+                if ( f.wx < 0 || f.wx > w || w.wz > 1500 ) {
                     initImage( f );
                 }
                 css( f , {
                     width : f.size + "px" ,
                     transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px)"
+
+//                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(1," + f.wvx / f.wvy + ",0," + (++f.wr) +
+//                    "deg)"
                 } );
             } );
             setTimeout( arguments.callee , 20 );
