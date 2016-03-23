@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>flower</title>
+    <style>
+        html, body {
+            overflow: hidden;
+            height: 100%;
+            margin: 0;
+            perspective: 1500px;
+            -webkit-perspective: 1500px;
+        }
+
+        .bg {
+            height: 100%;
+            position: absolute;
+        }
+
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<img src="../img/1.jpg" class="bg">
+<script src="tool.js"></script>
+<script>
+    (function () {
+        var body = document.body ,
+                h = body.offsetHeight ,
+                w = body.offsetWidth ,
+                flowers = [];
+        var flowerT = new Image();
+        flowerT.src = "img/catkin/catkin.png";
+
+        function initImage( img ) {
+            img.wvx = w / 200 * (Math.random() - 0.5);
+            img.wvy = h / 200 * (Math.random() * 0.5 + 0.5);
+            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2.5;
+            img.size = w / 15 * (Math.random() * 0.5 + 0.5);
+            img.wz = 600 * Math.random() + 200;
+            var w0 = (1500 - img.wz) / 1500 * w;
+            var h0 = (1500 - img.wz) / 1500 * h;
+            img.wx = Math.random() * w0 + (w - w0) / 2;
+            img.wy = (h - h0) / 2;
+            img.wr = 360 * Math.random() << 0;
+        }
+
+        // 生成
+        var goOn = true;
+        setTimeout( function () {
+            loop( 8 , function () {
+                var img = flowerT.cloneNode( false );
+                body.appendChild( img );
+                initImage( img );
+                css( img , {
+                    width : img.size + "px" ,
+                    transform : "translate3d(" + img.wx + "px," + img.wy + "px," + img.wz + "px)"
+                } );
+                flowers.push( img );
+            } );
+            if ( goOn ) {
+                setTimeout( arguments.callee , 1000 );
+            } else {
+                console.log( flowers.length )
+            }
+        } , 400 );
+
+        // draw
+        setTimeout( function () {
+            loopArray( flowers , function ( f ) {
+                f.wx += f.wvx;
+                f.wy += f.wvy;
+                f.wz += f.wvz;
+
+                var rate = (1500 - f.wz) / 1500;
+                var w0 = rate * w , h0 = rate * h;
+                var ww = (w - w0) / 2;
+                var yy = (h - h0) / 2;
+                if ( f.wx < ww - f.size || f.wx > ww + w0 || f.wy > h0 + yy ) {
+                    initImage( f );
+                }
+                css( f , {
+                    width : f.size + "px" ,
+                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(0,0,1," + f.wr + "deg)" ,
+                    "-webkit-transform" : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(0,0,1," + f.wr + "deg)"
+                } );
+            } );
+            setTimeout( arguments.callee , 20 );
+        } , 20 );
+
+        setTimeout( function () {
+            goOn = false;
+        } , 3000 );
+
+    })();
+</script>
+</body>
+</html>
