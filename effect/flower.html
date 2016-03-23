@@ -43,7 +43,7 @@
         function initImage( img ) {
             img.wvx = w / 200 * (Math.random() - 0.5);
             img.wvy = h / 200 * (Math.random() * 0.5 + 0.5);
-            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2;
+            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2.5;
             img.size = w / 15 * (Math.random() * 0.5 + 0.5);
             img.wz = 600 * Math.random() + 200;
             var w0 = (1500 - img.wz) / 1500 * w;
@@ -86,7 +86,7 @@
                 var w0 = rate * w , h0 = rate * h;
                 var ww = (w - w0) / 2;
                 var yy = (h - h0) / 2;
-                if ( f.wx < ww || f.wx > ww + w0 || f.wy > h0 + yy ) {
+                if ( f.wx < ww - f.size || f.wx > ww + w0 || f.wy > h0 + yy ) {
                     initImage( f );
                 }
                 css( f , {
