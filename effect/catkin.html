@@ -59,7 +59,7 @@
             var w0 = (1500 - img.wz) / 1500 * w;
             var h0 = (1500 - img.wz) / 1500 * h;
             img.wx = Math.random() * w0 * region + w / 2 - w0 / 2 * region;
-            img.wy = (h - h0) / 2 - img.size;
+            img.wy = (h - h0) / 2 - img.size * 3;
             img.wr = 360 * Math.random() << 0;
         }
 
