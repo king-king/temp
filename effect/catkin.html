@@ -21,14 +21,26 @@
         img {
             position: absolute;
         }
+
+        .body {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            transform: rotate3d(0, 0, 1, 180deg);
+            -webkit-perspective: 1500px;
+            perspective: 1500px;
+        }
     </style>
 </head>
 <body>
 <img src="../img/1.jpg" class="bg">
+<div class="body"></div>
 <script src="tool.js"></script>
 <script>
     (function () {
-        var body = document.body ,
+        var body = document.querySelector( ".body" ) ,
                 h = body.offsetHeight ,
                 w = body.offsetWidth ,
                 flowers = [];
@@ -36,15 +48,17 @@
         flowerT.src = "img/catkin/catkin.png";
         var direction = 1;
 
+        var region = 0.7;
+
         function initImage( img ) {
             img.wvx = w / 200 * (Math.random() - 0.5);
             img.wvy = h / 200 * (Math.random() * 0.5 + 0.5);
-            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2.5;
+            img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 3;
             img.size = w / 15 * (Math.random() * 0.5 + 0.5);
             img.wz = 600 * Math.random() + 200;
             var w0 = (1500 - img.wz) / 1500 * w;
             var h0 = (1500 - img.wz) / 1500 * h;
-            img.wx = Math.random() * w0 + (w - w0) / 2;
+            img.wx = Math.random() * w0 * region + w / 2 - w0 / 2 * region;
             img.wy = (h - h0) / 2 - img.size;
             img.wr = 360 * Math.random() << 0;
         }
@@ -76,7 +90,6 @@
                 f.wx += f.wvx;
                 f.wy += f.wvy;
                 f.wz += f.wvz;
-
                 var rate = (1500 - f.wz) / 1500;
                 var w0 = rate * w , h0 = rate * h;
                 var ww = (w - w0) / 2;
@@ -92,11 +105,6 @@
             } );
             setTimeout( arguments.callee , 20 );
         } , 20 );
-
-        setTimeout( function () {
-            direction *= -1;
-            setTimeout( arguments.callee , (Math.random() * 1000 + 1000) << 0 );
-        } , 2000 );
 
         setTimeout( function () {
             goOn = false;
