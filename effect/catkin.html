@@ -34,6 +34,7 @@
                 flowers = [];
         var flowerT = new Image();
         flowerT.src = "img/catkin/catkin.png";
+        var direction = 1;
 
         function initImage( img ) {
             img.wvx = w / 200 * (Math.random() - 0.5);
@@ -71,6 +72,7 @@
         // draw
         setTimeout( function () {
             loopArray( flowers , function ( f ) {
+                f.wvx *= direction;
                 f.wx += f.wvx;
                 f.wy += f.wvy;
                 f.wz += f.wvz;
@@ -90,6 +92,11 @@
             } );
             setTimeout( arguments.callee , 20 );
         } , 20 );
+
+        setTimeout( function () {
+            direction *= -1;
+            setTimeout( arguments.callee , (Math.random() * 1000 + 1000) << 0 );
+        } , 2000 );
 
         setTimeout( function () {
             goOn = false;
