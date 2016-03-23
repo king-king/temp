@@ -44,11 +44,12 @@
             img.wvy = h / 250 * (Math.random() * 0.5 + 0.5);
             img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 2;
             img.size = w / 15 * (Math.random() * 0.5 + 0.5);
-            img.wz = 200 * Math.random() + 200;
+            img.wz = 600 * Math.random() + 200;
             var w0 = (1500 - img.wz) / 1500 * w;
             var h0 = (1500 - img.wz) / 1500 * h;
             img.wx = Math.random() * w0 + (w - w0) / 2;
             img.wy = (h - h0) / 2;
+            img.wr = 360 * Math.random() << 0;
         }
 
         // 生成
@@ -89,7 +90,8 @@
                 }
                 css( f , {
                     width : f.size + "px" ,
-                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px)"
+//                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(1," + (f.wvx / f.wvy) + "," + (f.wvx / f.wvy) + "," + f.wr + "deg)"
+                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(0,0,1," + f.wr + "deg)"
                 } );
             } );
             setTimeout( arguments.callee , 20 );
