@@ -10,6 +10,7 @@
             height: 100%;
             margin: 0;
             perspective: 1500px;
+            -webkit-perspective: 1500px;
         }
 
         .bg {
@@ -90,8 +91,8 @@
                 }
                 css( f , {
                     width : f.size + "px" ,
-//                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(1," + (f.wvx / f.wvy) + "," + (f.wvx / f.wvy) + "," + f.wr + "deg)"
-                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(0,0,1," + f.wr + "deg)"
+                    transform : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(0,0,1," + f.wr + "deg)" ,
+                    "-webkit-transform" : "translate3d(" + f.wx + "px," + f.wy + "px," + f.wz + "px) rotate3d(0,0,1," + f.wr + "deg)"
                 } );
             } );
             setTimeout( arguments.callee , 20 );
