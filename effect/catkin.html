@@ -51,7 +51,7 @@
         var region = 0.7;
 
         function initImage( img ) {
-            img.wvx = w / 200 * (Math.random() - 0.5);
+            img.wvx = w / 200 * (Math.random() - 0.5) * 0.4;
             img.wvy = h / 200 * (Math.random() * 0.5 + 0.8);
             img.wvz = (img.wvx + img.wvy) * (Math.random() + 0.5) * 5;
             img.size = w / 15 * (Math.random() * 0.5 + 0.5);
@@ -59,7 +59,7 @@
             var w0 = (1500 - img.wz) / 1500 * w;
             var h0 = (1500 - img.wz) / 1500 * h;
             img.wx = Math.random() * w0 * region + w / 2 - w0 / 2 * region;
-            img.wy = (h - h0) / 2 - img.size * 3;
+            img.wy = (h - h0) / 2 - img.size * 2;
             img.wr = 360 * Math.random() << 0;
         }
 
