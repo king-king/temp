@@ -66,12 +66,6 @@
             top: 28%;
         }
 
-        .dust {
-            background-color: black;
-            position: absolute;
-            width: 5px;
-            height: 4px;
-        }
 
     </style>
 </head>
@@ -151,10 +145,57 @@
             } );
         } );
 
+        var maxNum = 20;
+        var w = border.offsetWidth ,
+                h = border.offsetHeight;
 
         function makeDust() {
+            var wrapper = $( "div" , {
+                css : {
+                    width : "20px" ,
+                    height : "20px" ,
+                    position : "absolute" ,
+                    left : "50%" ,
+                    top : "100%"
+                }
+            } , border );
 
+            var dust = $( "div" , {
+                css : {
+                    width : 3 + 5 * Math.random() + "px" ,
+                    height : 3 + 5 * Math.random() + "px" ,
+                    background : "red"
+                }
+            } , wrapper );
+            var n = Math.random();
+            var time = 4 + 4 * n + "s";
+            cssAnimation( [ wrapper , {
+                20 : {
+                    transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
+                } ,
+                30 : {
+                    transform : "translate3d(" + n * w * 0.15 + "px,0,0)"
+                } ,
+                45 : {
+                    transform : "translate3d(" + n * w * 0.4 + "px,0,0)"
+                } ,
+                60 : {
+                    opacity : 1 ,
+                    transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
+                } ,
+                100 : {
+                    opacity : 0 ,
+                    transform : "translate3d(" + (n + 0.5) * w + "px,0,0)"
+                }
+            } , time , "linear" , "infinite" ] );
+            cssAnimation( [ dust , {
+                100 : {
+                    transform : "translate3d(0,-" + h * (n + 0.3) + "px,0) rotate3d(0,0,1," + 360 + "deg)"
+                }
+            } , time , "linear" , "infinite" ] );
         }
+
+        makeDust();
     })();
 </script>
 </body>

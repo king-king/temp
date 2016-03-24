@@ -43,8 +43,31 @@ function insertCssAnimation() {
         while ( s.indexOf( "\"" ) != -1 ) {
             s = s.replace( "\"" , "" );
         }
+        while ( s.indexOf( ",transform" ) != -1 ) {
+            s = s.replace( ",transform" , ";transform" );
+        }
         style.sheet.insertRule( s , style.sheet.rules.length );
     }
 }
 
-var cssAnimation = insertCssAnimation;
+var cssAnimation = insertCssAnimation();
+
+function $( tag , arg , parent ) {
+    var el = document.createElement( tag );
+    loopObj( arg , function ( key , value ) {
+        switch ( key ) {
+            case "css":
+                css( el , value );
+                break;
+            case "classList":
+                loopArray( value , function ( v ) {
+                    el.classList.add( v );
+                } );
+                break;
+            default:
+                el[ key ] = value;
+        }
+    } );
+    parent && parent.appendChild( el );
+    return el;
+}
