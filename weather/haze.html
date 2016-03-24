@@ -92,43 +92,51 @@
                 f = querySelector( ".f" );
         var clouds = [
             {
-                el : a
+                el : a ,
+                init : -100
             } ,
             {
-                el : b
+                el : b ,
+                init : 0
             } ,
             {
-                el : c
+                el : c ,
+                init : 50
             } ,
             {
-                el : d
+                el : d ,
+                init : -20
             } ,
             {
-                el : e
+                el : e ,
+                init : 0
             } ,
             {
-                el : f
+                el : f ,
+                init : 20
             }
         ];
         var clouds2 = [];
         loopArray( clouds , function ( c ) {
             var random = Math.random();
             var c2 = {
-                        el : c.el.cloneNode( true )
+                        el : c.el.cloneNode( true ) ,
+                        init : c.init - 600
                     } ,
                     c3 = {
-                        el : c.el.cloneNode( true )
+                        el : c.el.cloneNode( true ) ,
+                        init : c.init - 1200
                     };
             clouds2.push( c2 );
             clouds2.push( c3 );
             border.appendChild( c2.el );
             border.appendChild( c3.el );
             css( c3.el , {
-                transform : "translate3d(" + (random - 0.5) * 10 + "px," + (random - 0.5) * 10 + "px," + c3.init + "px)" ,
+                transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init + "px)" ,
                 opacity : 0.15
             } );
             css( c2.el , {
-                transform : "translate3d(" + (random - 0.5) * 20 + "px," + (random - 0.5) * 20 + "px," + c2.init + "px)" ,
+                transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c2.init + "px)" ,
                 opacity : 0.15
             } );
             css( c.el , {
