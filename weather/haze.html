@@ -17,7 +17,7 @@
             perspective: 1500px;
             -webkit-perspective: 1500px;
             overflow: hidden;
-            /*-webkit-filter: brightness(0.5);*/
+            -webkit-filter: brightness(0.5);
         }
 
         img.bg {
@@ -34,44 +34,39 @@
         }
 
         img.a {
-            left: -20%;
-            top: -10%;
+            left: -26%;
+            top: -19%;
+            opacity: 0.4 !important;
         }
 
         img.b {
-            left: 30%;
-            top: 20%;
+            left: 37%;
+            top: -13%;
+            opacity: 0.4 !important;
         }
 
         img.c {
-            left: -23%;
-            top: 34%;
+            left: -3%;
+            top: -22%;
+            opacity: 0.4 !important;
         }
 
         img.d {
             left: 23%;
-            top: 50%;
+            top: 35%;
         }
 
         img.e {
-            left: -26%;
+            left: 4%;
             top: 68%;
         }
 
         img.f {
-            left: 46%;
-            top: -22%;
+            left: -41%;
+            top: 28%;
         }
 
-        img.g {
-            left: 3%;
-            top: -5%;
-        }
 
-        img.h {
-            left: 41%;
-            top: 52%;
-        }
     </style>
 </head>
 <body>
@@ -83,8 +78,6 @@
     <img src="../img/cloud.png" class="d">
     <img src="../img/cloud.png" class="e">
     <img src="../img/cloud.png" class="f">
-    <img src="../img/cloud.png" class="g">
-    <img src="../img/cloud.png" class="h">
 </div>
 <script src="tool.js"></script>
 <script>
@@ -96,108 +89,53 @@
                 c = querySelector( ".c" ) ,
                 d = querySelector( ".d" ) ,
                 e = querySelector( ".e" ) ,
-                f = querySelector( ".f" ) ,
-                g = querySelector( ".g" ) ,
-                h = querySelector( ".h" );
+                f = querySelector( ".f" );
         var clouds = [
             {
-                el : a ,
-                init : -100 ,
-                curY : -100 ,
-                opacity : 0.2
+                el : a
             } ,
             {
-                el : b ,
-                init : 0 ,
-                curY : 0 ,
-                opacity : 0.2
+                el : b
             } ,
             {
-                el : c ,
-                init : 50 ,
-                curY : 50 ,
-                opacity : 0.2
+                el : c
             } ,
             {
-                el : d ,
-                init : -20 ,
-                curY : -20 ,
-                opacity : 0.2
+                el : d
             } ,
             {
-                el : e ,
-                init : 0 ,
-                curY : 0 ,
-                opacity : 0.2
+                el : e
             } ,
             {
-                el : f ,
-                init : 20 ,
-                curY : 20 ,
-                opacity : 0.2
-            } ,
-            {
-                el : g ,
-                init : 40 ,
-                curY : 40 ,
-                opacity : 0.2
-            } ,
-            {
-                el : h ,
-                init : 60 ,
-                curY : 60 ,
-                opacity : 0.2
+                el : f
             }
         ];
         var clouds2 = [];
         loopArray( clouds , function ( c ) {
+            var random = Math.random();
             var c2 = {
-                        el : c.el.cloneNode( true ) ,
-                        init : c.init - 600 ,
-                        curY : c.curY - 600 ,
-                        opacity : 0.2
+                        el : c.el.cloneNode( true )
                     } ,
                     c3 = {
-                        el : c.el.cloneNode( true ) ,
-                        init : c.init - 1200 ,
-                        curY : c.curY - 1200 ,
-                        opacity : 0.2
+                        el : c.el.cloneNode( true )
                     };
             clouds2.push( c2 );
             clouds2.push( c3 );
-//            border.appendChild( c2.el );
-//            border.appendChild( c3.el );
+            border.appendChild( c2.el );
+            border.appendChild( c3.el );
             css( c3.el , {
-                transform : "translate3d(0,0," + c3.init + "px)" ,
-                opacity : 0.2
+                transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init + "px)" ,
+                opacity : 0.15
             } );
             css( c2.el , {
-                transform : "translate3d(0,0," + c2.init + "px)" ,
-                opacity : 0.2
+                transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c2.init + "px)" ,
+                opacity : 0.15
             } );
             css( c.el , {
-                transform : "translate3d(0,0," + c.init + "px)"
-//                opacity : 0.2
+                transform : "translate3d(0,0," + c.init + "px)" ,
+                opacity : 0.15
             } );
         } );
-        clouds = clouds.concat( clouds2 );
-//        animate( function () {
-//            loopArray( clouds , function ( c ) {
-//                c.curY += 6;
-//                if ( c.curY > 1550 ) {
-//                    c.curY = 0;
-//                    c.opacity = 0;
-//                }
-//                if ( c.opacity < 0.2 ) {
-//                    c.opacity += 0.01;
-//                }
-//                css( c.el , {
-//                    transform : "translate3d(0,0," + c.curY + "px)" ,
-//                    "-webkit-transform" : "translate3d(0,0," + c.curY + "px)" ,
-//                    opacity : c.opacity
-//                } );
-//            } );
-//        } );
 
     })();
 </script>
