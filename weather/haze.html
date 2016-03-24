@@ -145,30 +145,31 @@
             } );
         } );
 
-        var maxNum = 20;
-        var w = border.offsetWidth ,
+        var maxNum = 12 ,
+                count = 0 ,
+                w = border.offsetWidth ,
                 h = border.offsetHeight;
 
         function makeDust() {
+            count++;
+            var n = Math.random();
+            var time = 4 + 8 * n + "s";
             var wrapper = $( "div" , {
                 css : {
                     width : "20px" ,
                     height : "20px" ,
                     position : "absolute" ,
-                    left : "50%" ,
+                    left : n * 80 + 10 + "%" ,
                     top : "100%"
                 }
             } , border );
-
             var dust = $( "div" , {
                 css : {
-                    width : 3 + 5 * Math.random() + "px" ,
-                    height : 3 + 5 * Math.random() + "px" ,
-                    background : "red"
+                    width : 2 + 4 * Math.random() + "px" ,
+                    height : 2 + 4 * Math.random() + "px" ,
+                    background : "#333"
                 }
             } , wrapper );
-            var n = Math.random();
-            var time = 4 + 4 * n + "s";
             cssAnimation( [ wrapper , {
                 20 : {
                     transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
@@ -185,7 +186,7 @@
                 } ,
                 100 : {
                     opacity : 0 ,
-                    transform : "translate3d(" + (n + 0.5) * w + "px,0,0)"
+                    transform : "translate3d(" + n * w * 0.23 + "px,0,0)"
                 }
             } , time , "linear" , "infinite" ] );
             cssAnimation( [ dust , {
@@ -193,6 +194,13 @@
                     transform : "translate3d(0,-" + h * (n + 0.3) + "px,0) rotate3d(0,0,1," + 360 + "deg)"
                 }
             } , time , "linear" , "infinite" ] );
+
+            setTimeout( function () {
+                if ( count < maxNum ) {
+                    makeDust();
+                }
+            } , 500 );
+
         }
 
         makeDust();

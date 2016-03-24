@@ -39,7 +39,10 @@ function insertCssAnimation() {
             s += (percent + "%" + JSON.stringify( value ) );
         } );
         s += "}";
-        arg[ 0 ].style.setProperty( "animation" , name + " 2s linear infinite both" );
+        for ( var i = 2; i < arg.length; i++ ) {
+            name += " " + arg[ i ] + " ";
+        }
+        arg[ 0 ].style.setProperty( "animation" , name );
         while ( s.indexOf( "\"" ) != -1 ) {
             s = s.replace( "\"" , "" );
         }
