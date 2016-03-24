@@ -17,7 +17,7 @@
             perspective: 1500px;
             -webkit-perspective: 1500px;
             overflow: hidden;
-            -webkit-filter: brightness(0.5);
+            /*-webkit-filter: brightness(0.5);*/
         }
 
         img.bg {
@@ -85,39 +85,10 @@
     <img src="../img/cloud.png" class="f">
     <img src="../img/cloud.png" class="g">
     <img src="../img/cloud.png" class="h">
-
 </div>
+<script src="tool.js"></script>
 <script>
     (function () {
-
-        function animate( func ) {
-            function frame() {
-                // do something
-                func();
-                setTimeout( frame , 20 );
-            }
-
-            frame();
-        }
-
-        function loopObj( obj , func ) {
-            for ( var key in obj ) {
-                func( key , obj[ key ] );
-            }
-        }
-
-        function loopArray( arr , func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[ i ] , i );
-            }
-        }
-
-        function css( el , style ) {
-            loopObj( style , function ( key , value ) {
-                el.style.setProperty( key , value );
-            } );
-        }
-
         var querySelector = document.querySelector.bind( document );
         var border = querySelector( ".border" );
         var a = querySelector( ".a" ) ,
@@ -194,8 +165,8 @@
                     };
             clouds2.push( c2 );
             clouds2.push( c3 );
-            border.appendChild( c2.el );
-            border.appendChild( c3.el );
+//            border.appendChild( c2.el );
+//            border.appendChild( c3.el );
             css( c3.el , {
                 transform : "translate3d(0,0," + c3.init + "px)" ,
                 opacity : 0.2
@@ -205,28 +176,28 @@
                 opacity : 0.2
             } );
             css( c.el , {
-                transform : "translate3d(0,0," + c.init + "px)" ,
-                opacity : 0.2
+                transform : "translate3d(0,0," + c.init + "px)"
+//                opacity : 0.2
             } );
         } );
         clouds = clouds.concat( clouds2 );
-        animate( function () {
-            loopArray( clouds , function ( c ) {
-                c.curY += 6;
-                if ( c.curY > 1550 ) {
-                    c.curY = 0;
-                    c.opacity = 0;
-                }
-                if ( c.opacity < 0.2 ) {
-                    c.opacity += 0.01;
-                }
-                css( c.el , {
-                    transform : "translate3d(0,0," + c.curY + "px)" ,
-                    "-webkit-transform" : "translate3d(0,0," + c.curY + "px)" ,
-                    opacity : c.opacity
-                } );
-            } );
-        } );
+//        animate( function () {
+//            loopArray( clouds , function ( c ) {
+//                c.curY += 6;
+//                if ( c.curY > 1550 ) {
+//                    c.curY = 0;
+//                    c.opacity = 0;
+//                }
+//                if ( c.opacity < 0.2 ) {
+//                    c.opacity += 0.01;
+//                }
+//                css( c.el , {
+//                    transform : "translate3d(0,0," + c.curY + "px)" ,
+//                    "-webkit-transform" : "translate3d(0,0," + c.curY + "px)" ,
+//                    opacity : c.opacity
+//                } );
+//            } );
+//        } );
 
     })();
 </script>
