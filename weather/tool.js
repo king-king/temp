@@ -28,3 +28,23 @@ function css( el , style ) {
         el.style.setProperty( key , value );
     } );
 }
+
+function insertCssAnimation() {
+    var style = document.createElement( "style" );
+    document.head.appendChild( style );
+    return function ( arg ) {
+        var name = "keyframe" + style.sheet.rules.length;
+        var s = "@keyframes " + name + "{";
+        loopObj( arg[ 1 ] , function ( percent , value ) {
+            s += (percent + "%" + JSON.stringify( value ) );
+        } );
+        s += "}";
+        arg[ 0 ].style.setProperty( "animation" , name + " 2s linear infinite both" );
+        while ( s.indexOf( "\"" ) != -1 ) {
+            s = s.replace( "\"" , "" );
+        }
+        style.sheet.insertRule( s , style.sheet.rules.length );
+    }
+}
+
+var cssAnimation = insertCssAnimation;

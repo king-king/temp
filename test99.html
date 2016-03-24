@@ -7,19 +7,11 @@
             width: 100px;
             height: 100px;
             background-color: #00aaff;
-            animation: 3s down-shade-out;
-            -webkit-animation: 3s down-shade-out;
         }
 
-        @keyframes down-shade-out {
-            100% {
-                transform: translate3d(0, 300px, 0);
-            }
-        }
-
-        @-webkit-keyframes down-shade-out {
-            100% {
-                -webkit-transform: translate3d(0, 300px, 0);
+        @keyframes keyframe {
+            0% {
+                transform: translate3d(0, 0, 0);
             }
         }
     </style>
@@ -27,13 +19,44 @@
 <body>
 <div class="nice"></div>
 <script>
-    var nice = document.querySelector( ".nice" );
-    nice.addEventListener( "animationend" , function () {
-        alert( "animationend" );
-    } );
-    nice.addEventListener( "webkitAnimationEnd" , function () {
-        alert( "webkitAnimationEnd" );
-    } );
+    (function () {
+
+        function loopObj( obj , func ) {
+            for ( var key in obj ) {
+                func( key , obj[ key ] );
+            }
+        }
+
+        function insertCssAnimation() {
+            var style = document.createElement( "style" );
+            document.head.appendChild( style );
+            return function ( arg ) {
+                var name = "keyframe" + style.sheet.rules.length;
+                var s = "@keyframes " + name + "{";
+                loopObj( arg[ 1 ] , function ( percent , value ) {
+                    s += (percent + "%" + JSON.stringify( value ) );
+                } );
+                s += "}";
+                arg[ 0 ].style.setProperty( "animation" , name + " 2s linear infinite both" );
+                while ( s.indexOf( "\"" ) != -1 ) {
+                    s = s.replace( "\"" , "" );
+                }
+                style.sheet.insertRule( s , style.sheet.rules.length );
+            }
+        }
+
+        var nice = document.querySelector( ".nice" );
+        var cssAnimation = insertCssAnimation();
+
+        cssAnimation( [ nice , {
+            100 : {
+                transform : "translate3d(0,200px,0)"
+            }
+        } , "2s" , "infinite" , "both" ] );
+
+    })();
+
+
 </script>
 </body>
 </html>
