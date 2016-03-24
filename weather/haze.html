@@ -17,7 +17,7 @@
             perspective: 1500px;
             -webkit-perspective: 1500px;
             overflow: hidden;
-            -webkit-filter: brightness(0.5);
+            -webkit-filter: brightness(0.6);
         }
 
         img.bg {
@@ -40,8 +40,8 @@
         }
 
         img.b {
-            left: 37%;
-            top: -13%;
+            left: 43%;
+            top: -26%;
             opacity: 0.4 !important;
         }
 
@@ -132,11 +132,11 @@
             border.appendChild( c2.el );
             border.appendChild( c3.el );
             css( c3.el , {
-                transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init + "px)" ,
+                transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init * random + "px)" ,
                 opacity : 0.15
             } );
             css( c2.el , {
-                transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c2.init + "px)" ,
+                transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c3.init * random * 2 + "px)" ,
                 opacity : 0.15
             } );
             css( c.el , {
