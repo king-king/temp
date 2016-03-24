@@ -17,14 +17,14 @@
             perspective: 1500px;
             -webkit-perspective: 1500px;
             overflow: hidden;
-            -webkit-filter: brightness(0.6);
+            -webkit-filter: brightness(0.5) saturate(0.5);
         }
 
         img.bg {
             position: absolute;
             top: 0;
             left: 0;
-            height: 100%;
+            width: 100%;
             opacity: 1;
         }
 
@@ -57,7 +57,7 @@
         }
 
         img.e {
-            left: 4%;
+            left: 23%;
             top: 68%;
         }
 
@@ -66,18 +66,29 @@
             top: 28%;
         }
 
+        img.g {
+            left: -41%;
+            top: 61%;
+        }
+
+        @keyframes move {
+            100% {
+                transform: translate3d(100%, 0, 0);
+            }
+        }
 
     </style>
 </head>
 <body>
 <div class="border">
-    <img src="../img/1.jpg" class="bg">
+    <img src="city.jpeg" class="bg">
     <img src="../img/cloud.png" class="a">
     <img src="../img/cloud.png" class="b">
     <img src="../img/cloud.png" class="c">
     <img src="../img/cloud.png" class="d">
     <img src="../img/cloud.png" class="e">
     <img src="../img/cloud.png" class="f">
+    <img src="../img/cloud.png" class="g">
 </div>
 <script src="tool.js"></script>
 <script>
@@ -89,7 +100,8 @@
                 c = querySelector( ".c" ) ,
                 d = querySelector( ".d" ) ,
                 e = querySelector( ".e" ) ,
-                f = querySelector( ".f" );
+                f = querySelector( ".f" ) ,
+                g = querySelector( ".g" );
         var clouds = [
             {
                 el : a ,
@@ -114,6 +126,10 @@
             {
                 el : f ,
                 init : 20
+            } ,
+            {
+                el : g ,
+                init : 220
             }
         ];
         var clouds2 = [];
@@ -133,15 +149,15 @@
             border.appendChild( c3.el );
             css( c3.el , {
                 transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init * random + "px)" ,
-                opacity : 0.15
+                opacity : 0.12
             } );
             css( c2.el , {
                 transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c3.init * random * 2 + "px)" ,
-                opacity : 0.15
+                opacity : 0.12
             } );
             css( c.el , {
                 transform : "translate3d(0,0," + c.init + "px)" ,
-                opacity : 0.15
+                opacity : 0.12
             } );
         } );
 
@@ -163,15 +179,21 @@
                     top : "100%"
                 }
             } , border );
+            var colors = [ "#333" , "#222" , "#444" , "#555" ];
             var dust = $( "div" , {
                 css : {
-                    width : 2 + 4 * Math.random() + "px" ,
-                    height : 2 + 4 * Math.random() + "px" ,
-                    background : "#333"
+                    width : (n > 0.5 ? 2 : 3) + "px" ,
+                    height : (n > 0.5 ? 2 : 3) + "px" ,
+                    "border-radius" : "4px" ,
+                    background : colors[ n * 4 << 0 ]
                 }
             } , wrapper );
             cssAnimation( [ wrapper , {
+                0 : {
+                    opacity : 0
+                } ,
                 20 : {
+                    opacity : 1 ,
                     transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
                 } ,
                 30 : {
@@ -190,6 +212,9 @@
                 }
             } , time , "linear" , "infinite" ] );
             cssAnimation( [ dust , {
+                0 : {
+                    transform : "translate3d(0,-" + h * n * 0.5 + "px,0) rotate3d(0,0,1," + 360 + "deg)"
+                } ,
                 100 : {
                     transform : "translate3d(0,-" + h * (n + 0.3) + "px,0) rotate3d(0,0,1," + 360 + "deg)"
                 }
