@@ -164,7 +164,7 @@
             } );
         } );
 
-        var maxNum = 30 ,
+        var maxNum = 20 ,
                 count = 0 ,
                 w = border.offsetWidth ,
                 h = border.offsetHeight;
@@ -186,13 +186,14 @@
             var colors = [ "#333" , "#222" , "#111" , "#444" , "#000" ];
             var dust = $( "div" , {
                 css : {
-                    width : (n > 0.5 ? 2 : 2.5) + "px" ,
-                    height : (n > 0.5 ? 2 : 2.5) + "px" ,
-                    "border-radius" : (n > 0.5 ? 2 : 2.5) + "px" ,
-                    background : "black"
+                    border : 0 ,
+                    width : (n > 0.5 ? 2 : 3) + "px" ,
+                    height : (n > 0.5 ? 2 : 3) + "px" ,
+                    "border-radius" : (n > 0.5 ? 2 : 3) + "px" ,
+                    background : colors[ Math.floor( n * 100 ) % 5 ]
                 }
             } , wrapper );
-            cssAnimation( [ wrapper , {
+            cssAnimation( [ wrapper , n > 0.5 ? {
                 0 : {
                     opacity : 0
                 } ,
@@ -207,6 +208,28 @@
                     transform : "translate3d(" + n * w * 0.4 + "px,0,0)"
                 } ,
                 60 : {
+                    opacity : 1 ,
+                    transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
+                } ,
+                100 : {
+                    opacity : 0 ,
+                    transform : "translate3d(" + n * w * 0.23 + "px,0,0)"
+                }
+            } : {
+                0 : {
+                    opacity : 0
+                } ,
+                20 : {
+                    opacity : 1 ,
+                    transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
+                } ,
+                40 : {
+                    transform : "translate3d(" + n * w * 0.15 + "px,0,0)"
+                } ,
+                65 : {
+                    transform : "translate3d(" + n * w * 0.4 + "px,0,0)"
+                } ,
+                80 : {
                     opacity : 1 ,
                     transform : "translate3d(" + n * w * 0.2 + "px,0,0)"
                 } ,
