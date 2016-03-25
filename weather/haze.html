@@ -81,7 +81,9 @@
 </head>
 <body>
 <div class="border">
-    <img src="city.jpeg" class="bg">
+    <!--<img src="../img/1.png" class="bg">-->
+
+    <!--<img src="city.jpeg" class="bg">-->
     <img src="../img/cloud.png" class="a">
     <img src="../img/cloud.png" class="b">
     <img src="../img/cloud.png" class="c">
@@ -175,17 +177,17 @@
                     width : "20px" ,
                     height : "20px" ,
                     position : "absolute" ,
-                    left : n * 80 + 10 + "%" ,
+                    left : n * w * 0.8 + 10 + "%" ,
                     top : "100%"
                 }
             } , border );
-            var colors = [ "#333" , "#222" , "#444" , "#555" ];
+            var colors = [ "#333" , "#222" , "#786F67" , "#777" , "#807660" ];
             var dust = $( "div" , {
                 css : {
-                    width : (n > 0.5 ? 2 : 3) + "px" ,
-                    height : (n > 0.5 ? 2 : 3) + "px" ,
-                    "border-radius" : "4px" ,
-                    background : colors[ n * 4 << 0 ]
+                    width : (n > 0.5 ? 2 : 2.5) + "px" ,
+                    height : (n > 0.5 ? 2 : 2.5) + "px" ,
+                    "border-radius" : (n > 0.5 ? 2 : 2.5) + "px" ,
+                    background : colors[ (n * 50 << 0) % 5 ]
                 }
             } , wrapper );
             cssAnimation( [ wrapper , {
@@ -213,10 +215,10 @@
             } , time , "linear" , "infinite" ] );
             cssAnimation( [ dust , {
                 0 : {
-                    transform : "translate3d(0,-" + h * n * 0.5 + "px,0) rotate3d(0,0,1," + 360 + "deg)"
+                    transform : "translate3d(0,-" + h * (n * 0.5 + 0.2) + "px,0) rotate3d(0,0,1," + 360 + "deg)"
                 } ,
                 100 : {
-                    transform : "translate3d(0,-" + h * (n + 0.3) + "px,0) rotate3d(0,0,1," + 360 + "deg)"
+                    transform : "translate3d(0,-" + h * (n + 0.5) + "px,0) rotate3d(0,0,1," + 360 + "deg)"
                 }
             } , time , "linear" , "infinite" ] );
 
