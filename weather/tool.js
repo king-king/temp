@@ -33,13 +33,13 @@ function insertCssAnimation() {
     var style = document.createElement( "style" );
     document.head.appendChild( style );
     return function ( arg ) {
-        var name = "keyframe" + style.sheet.rules.length;
-        var s = "@keyframes " + name + "{";
+        var name = arg[ 2 ] + " keyframe" + style.sheet.rules.length;
+        var s = "@keyframes keyframe" + style.sheet.rules.length + "{";
         loopObj( arg[ 1 ] , function ( percent , value ) {
             s += (percent + "%" + JSON.stringify( value ) );
         } );
         s += "}";
-        for ( var i = 2; i < arg.length; i++ ) {
+        for ( var i = 3; i < arg.length; i++ ) {
             name += " " + arg[ i ] + " ";
         }
         arg[ 0 ].style.setProperty( "animation" , name );
