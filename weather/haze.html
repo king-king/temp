@@ -78,6 +78,15 @@
             }
         }
 
+        .mask {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #9ca09f;
+            opacity: 0.3;
+        }
     </style>
 </head>
 <body>
@@ -93,6 +102,7 @@
     <img src="../img/cloud.png" class="f">
     <img src="../img/cloud.png" class="g">
 </div>
+<div class="mask"></div>
 <script src="tool.js"></script>
 <script>
     (function () {
@@ -183,14 +193,13 @@
                     top : "100%"
                 }
             } , border );
-            var colors = [ "#333" , "#222" , "#111" , "#444" , "#000" ];
             var dust = $( "div" , {
                 css : {
                     border : 0 ,
                     width : (n > 0.5 ? 2 : 3) + "px" ,
                     height : (n > 0.5 ? 2 : 3) + "px" ,
                     "border-radius" : (n > 0.5 ? 2 : 3) + "px" ,
-                    background : colors[ Math.floor( n * 100 ) % 5 ]
+                    background : "#56504e"
                 }
             } , wrapper );
             cssAnimation( [ wrapper , n > 0.5 ? {
@@ -248,7 +257,6 @@
             } , time , "linear" , "infinite" ] );
             setTimeout( function () {
                 if ( count < maxNum ) {
-                    console.log( new Date() );
                     makeDust();
                 }
             } , 500 );
