@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>霾</title>
+    <style>
+
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .border-2 {
+            width: 100%;
+            height: 100%;
+            background: url("../img/doubi-0.jpg") center center;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .border {
+            width: 100%;
+            height: 100%;
+            background: url("img/catkin/green.jpg") center center;
+            /*background: url("../weather/city.jpeg") center center;*/
+
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        img.bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 1;
+        }
+
+        img {
+            position: absolute;
+            width: 100%;
+        }
+
+        img.a {
+            left: -41%;
+            top: -23%;
+        }
+
+        img.b {
+            left: 43%;
+            top: -26%;
+        }
+
+        img.c {
+            left: -3%;
+            top: -22%;
+        }
+
+        img.d {
+            left: 23%;
+            top: 35%;
+        }
+
+        img.e {
+            left: 23%;
+            top: 68%;
+        }
+
+        img.f {
+            left: -41%;
+            top: 28%;
+        }
+
+        img.g {
+            left: -41%;
+            top: 61%;
+        }
+
+        @keyframes move {
+            100% {
+                transform: translate3d(100%, 0, 0);
+            }
+        }
+
+        .mask {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background-color: #E6FFF9;
+            opacity: 0.3;
+            z-index: 10;
+        }
+
+        .hide {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+<div class="border ">
+    <img src="../weather/cloud-haze.png" class="a">
+    <img src="../weather/cloud-haze.png" class="b">
+    <img src="../weather/cloud-haze.png" class="c">
+    <img src="../weather/cloud-haze.png" class="d">
+    <img src="../weather/cloud-haze.png" class="e">
+    <img src="../weather/cloud-haze.png" class="f">
+    <img src="../weather/cloud-haze.png" class="g">
+    <div class="mask"></div>
+</div>
+<!--<div class="border"></div>-->
+<script src="tool.js"></script>
+<script>
+    (function () {
+        var querySelector = document.querySelector.bind( document );
+        var border = querySelector( ".border" );
+        var a = querySelector( ".a" ) ,
+                b = querySelector( ".b" ) ,
+                c = querySelector( ".c" ) ,
+                d = querySelector( ".d" ) ,
+                e = querySelector( ".e" ) ,
+                f = querySelector( ".f" ) ,
+                g = querySelector( ".g" );
+        var clouds = [
+            {
+                el : a ,
+                init : -100
+            } ,
+            {
+                el : b ,
+                init : 0
+            } ,
+            {
+                el : c ,
+                init : 50
+            } ,
+            {
+                el : d ,
+                init : -20
+            } ,
+            {
+                el : e ,
+                init : 0
+            } ,
+            {
+                el : f ,
+                init : 20
+            } ,
+            {
+                el : g ,
+                init : 220
+            }
+        ];
+        var clouds2 = [];
+        loopArray( clouds , function ( c , i ) {
+            var random = Math.random();
+            var c2 = {
+                        el : c.el.cloneNode( true ) ,
+                        init : c.init - 600
+                    } ,
+                    c3 = {
+                        el : c.el.cloneNode( true ) ,
+                        init : c.init - 1200
+                    };
+            clouds2.push( c2 );
+            clouds2.push( c3 );
+            border.appendChild( c2.el );
+            border.appendChild( c3.el );
+            css( c3.el , {
+                transform : "translate3d(" + (random - 0.5) * 40 + "px," + (random - 0.5) * 20 + "px," + c3.init + "px)" ,
+                opacity : 0.14
+            } );
+            css( c2.el , {
+                transform : "translate3d(" + (random - 0.5) * 60 + "px," + (random - 0.5) * 6 + "px," + c2.init + "px)" ,
+                opacity : 0.14
+            } );
+            css( c.el , {
+                transform : "translate3d(0,0," + c.init + "px)" ,
+                opacity : 0.14
+            } );
+        } );
+
+        var catkin = new Image();
+        catkin.src = "img/catkin/catkin.png";
+
+        var maxNum = 30 ,
+                count = 0 ,
+                w = border.offsetWidth ,
+                h = border.offsetHeight;
+
+        function makeDust() {
+            count++;
+            var n = Math.random();
+            var n2 = Math.random();
+            var time = 4 + 10 * n + "s";
+            var wrapper = $( "div" , {
+                css : {
+                    width : "20px" ,
+                    height : "20px" ,
+                    position : "absolute" ,
+                    left : "-20px" ,
+                    top : (1.2 * n + 0.1) * h + "px" ,
+                    "z-index" : 10
+                }
+            } , border );
+            var dust = catkin.cloneNode( false );
+            css( dust , {
+                width : (10 + 20 * n) + "px"
+            } );
+            wrapper.appendChild( dust );
+
+            cssAnimation( [ wrapper , {
+                100 : {
+                    transform : "translate3d(" + (w + 20) + "px," + (n - 0.7) * 3 * 40 + "px,0)"
+                }
+            } , time , "linear" , "infinite" ] );
+            var style;
+            if ( n > 0.7 ) {
+                style = {
+                    0 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 40 + "px,0) rotate3d(0,0,1,-80deg) "
+                    } ,
+                    20 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 15 + "px,0)  rotate3d(0,0,1,80deg)"
+                    } ,
+                    40 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 75 + "px,0)  rotate3d(0,0,1,-80deg)"
+                    } ,
+                    65 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 50 + "px,0)  rotate3d(0,0,1,-80deg)"
+                    } ,
+                    100 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 115 + "px,0) rotate3d(0,0,1,180deg)"
+                    }
+                };
+            }
+            else if ( n > 0.4 ) {
+                style = {
+                    0 : {
+                        transform : "translate3d(0," + (n + 0.5) * 40 + "px,0)   rotate3d(0,0,1,-80deg)"
+                    } ,
+                    40 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 15 + "px,0)  rotate3d(0,0,1,20deg) "
+                    } ,
+                    60 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 55 + "px,0)  rotate3d(0,0,1,-100deg) "
+                    } ,
+                    85 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 30 + "px,0)  rotate3d(0,0,1,80deg) "
+                    } ,
+                    100 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 95 + "px,0)  rotate3d(0,0,1,180deg)"
+                    }
+                }
+            }
+            else {
+                style = {
+                    0 : {
+                        transform : "translate3d(0," + (n + 0.5) * 40 + "px,0)   rotate3d(0,0,1,80deg)"
+                    } ,
+                    35 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 25 + "px,0)   rotate3d(0,0,1,50deg)"
+                    } ,
+                    60 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 75 + "px,0)   rotate3d(0,0,1,120deg)"
+                    } ,
+                    75 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 50 + "px,0)   rotate3d(0,0,1,100deg)"
+                    } ,
+                    100 : {
+                        transform : "translate3d(0,-" + (n + 0.5) * 105 + "px,0)  rotate3d(0,0,1,180deg)"
+                    }
+                }
+            }
+            cssAnimation( [ dust , style , time , "linear" , "infinite" ] );
+            setTimeout( function () {
+                if ( count < maxNum ) {
+                    makeDust();
+                }
+            } , 300 );
+
+        }
+
+        makeDust();
+    })();
+</script>
+</body>
+</html>
