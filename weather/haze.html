@@ -83,7 +83,7 @@
 <div class="border">
     <!--<img src="../img/1.png" class="bg">-->
 
-    <!--<img src="city.jpeg" class="bg">-->
+    <img src="city.jpeg" class="bg">
     <img src="../img/cloud.png" class="a">
     <img src="../img/cloud.png" class="b">
     <img src="../img/cloud.png" class="c">
@@ -135,7 +135,7 @@
             }
         ];
         var clouds2 = [];
-        loopArray( clouds , function ( c ) {
+        loopArray( clouds , function ( c , i ) {
             var random = Math.random();
             var c2 = {
                         el : c.el.cloneNode( true ) ,
@@ -150,17 +150,49 @@
             border.appendChild( c2.el );
             border.appendChild( c3.el );
             css( c3.el , {
-                transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init * random + "px)" ,
                 opacity : 0.12
             } );
             css( c2.el , {
-                transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c3.init * random * 2 + "px)" ,
                 opacity : 0.12
             } );
             css( c.el , {
                 transform : "translate3d(0,0," + c.init + "px)" ,
                 opacity : 0.12
             } );
+            if ( i < 3 ) {
+                cssAnimation( [ c3.el , {
+                    0 : {
+                        opacity : 0 ,
+                        transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px," + c3.init * random + "px)"
+                    } ,
+                    20 : {
+                        opacity : 1
+                    } ,
+                    80 : {
+                        opacity : 1
+                    } ,
+                    100 : {
+                        transform : "translate3d(" + (random - 0.5) * 4 + "px," + (random - 0.5) * 4 + "px,1500px)" ,
+                        opacity : 0
+                    }
+                } , "10s" , "linear" , "infinite" ] );
+                cssAnimation( [ c3.el , {
+                    0 : {
+                        opacity : 0 ,
+                        transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px," + c2.init * random * 2 + "px)"
+                    } ,
+                    20 : {
+                        opacity : 1
+                    } ,
+                    80 : {
+                        opacity : 1
+                    } ,
+                    100 : {
+                        opacity : 0 ,
+                        transform : "translate3d(" + (random - 0.5) * 6 + "px," + (random - 0.5) * 6 + "px,1500px)"
+                    }
+                } , "10s" , "linear" , "infinite" ] );
+            }
         } );
 
         var maxNum = 22 ,
