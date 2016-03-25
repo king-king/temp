@@ -94,6 +94,7 @@
             bottom: 0;
             background-color: #9ca09f;
             opacity: 0.3;
+            z-index: 10;
         }
 
         .hide {
@@ -114,8 +115,8 @@
     <img src="cloud-haze.png" class="e">
     <img src="cloud-haze.png" class="f">
     <img src="cloud-haze.png" class="g">
+    <div class="mask"></div>
 </div>
-<div class="mask"></div>
 <script src="tool.js"></script>
 <script>
     (function () {
@@ -203,15 +204,16 @@
                     height : "20px" ,
                     position : "absolute" ,
                     left : n * w * 0.8 + 10 + "px" ,
-                    top : "100%"
+                    top : "100%" ,
+                    "z-index" : 11
                 }
             } , border );
             var dust = $( "div" , {
                 css : {
                     border : 0 ,
-                    width : (n > 0.5 ? 2 : 3) + "px" ,
-                    height : (n > 0.5 ? 2 : 3) + "px" ,
-                    "border-radius" : (n > 0.5 ? 2 : 3) + "px" ,
+                    width : (n > 0.5 ? 2 : 2) + "px" ,
+                    height : (n > 0.5 ? 2 : 2) + "px" ,
+                    "border-radius" : (n > 0.5 ? 2 : 2) + "px" ,
                     background : "#56504e"
                 }
             } , wrapper );
