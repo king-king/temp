@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .border {
+            height: 100%;
+            width: 100%;
+            background: url("../weather/city.jpeg") center center;
+            background-size: cover;
+            position: absolute;
+        }
+
+        .glass {
+            position: absolute;
+        }
+    </style>
+    <title>hail</title>
+</head>
+<body>
+<div class="border"></div>
+<script src="tool.js"></script>
+<script>
+    (function () {
+        var glassStyle = [
+            {
+                top : "37%" ,
+                left : "0%" ,
+                height : "62.301587%"
+            } ,
+            {
+                top : "48.8%" ,
+                left : "67%" ,
+                height : "15.3769841%"
+            } ,
+            {
+                top : "43%" ,
+                left : "34.4%" ,
+                height : "26.5873015%"
+            } ,
+            {
+                top : "43.8492063%" ,
+                left : "10.46875%" ,
+                height : "15.3769841%"
+            } ,
+            {// 5
+                top : "23.8%" ,
+                left : "0.5%" ,
+                height : "16.2698412%"
+            } ,
+            {
+                top : "5.9%" ,
+                left : "4.8%" ,
+                height : "13.7896825%"
+            } ,
+            {
+                bottom : "1%" ,
+                right : "0%" ,
+                height : "55.2579365%"
+            } ,
+            {//8
+                top : "22.7%" ,
+                left : "3.6%" ,
+                height : "40.079365%"
+            } ,
+            {
+                top : "0%" ,
+                left : "0%" ,
+                height : "48.5119047%"
+            } ,
+            {
+                top : "6%" ,
+                right : " 0%" ,
+                height : "54.6626984%"
+            }
+        ];
+        var border = document.querySelector( ".border" );
+
+        loopArray( glassStyle , function ( style , i ) {
+            var img = $( "img" , {
+                css : {
+                    top : style.top ,
+                    left : style.left ,
+                    height : style.height
+                } ,
+                classList : [ "glass" ] ,
+                src : "img/hail/" + i + ".png"
+            } , border );
+        } );
+
+    })();
+</script>
+</body>
+</html>
