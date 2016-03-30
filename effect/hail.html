@@ -25,75 +25,46 @@
     <title>hail</title>
 </head>
 <body>
-<div class="border"></div>
+<div class="border">
+    <img src="img/hail/0.png" class="glass">
+    <img src="img/hail/1.png" class="glass">
+    <img src="img/hail/2.png" class="glass">
+    <img src="img/hail/3.png" class="glass">
+    <img src="img/hail/4.png" class="glass">
+    <img src="img/hail/5.png" class="glass">
+</div>
 <script src="tool.js"></script>
 <script>
     (function () {
-        var glassStyle = [
+        var border = document.querySelector( ".border" );
+        var sizes = [
             {
-                top : "37%" ,
-                left : "0%" ,
-                height : "62.301587%"
-            } ,
-            {
-                top : "48.8%" ,
-                left : "67%" ,
-                height : "15.3769841%"
+                w : 157 ,
+                h : 155
             } ,
             {
-                top : "43%" ,
-                left : "34.4%" ,
-                height : "26.5873015%"
+                w : 227 ,
+                h : 268
             } ,
             {
-                top : "43.8492063%" ,
-                left : "10.46875%" ,
-                height : "15.3769841%"
-            } ,
-            {// 5
-                top : "23.8%" ,
-                left : "0.5%" ,
-                height : "16.2698412%"
+                w : 585 ,
+                h : 489
             } ,
             {
-                top : "5.9%" ,
-                left : "4.8%" ,
-                height : "13.7896825%"
+                w : 166 ,
+                h : 145
             } ,
             {
-                bottom : "1%" ,
-                right : "0%" ,
-                height : "55.2579365%"
-            } ,
-            {//8
-                top : "22.7%" ,
-                left : "3.6%" ,
-                height : "40.079365%"
+                w : 176 ,
+                h : 164
             } ,
             {
-                top : "0%" ,
-                left : "0%" ,
-                height : "48.5119047%"
-            } ,
-            {
-                top : "6%" ,
-                right : " 0%" ,
-                height : "54.6626984%"
+                w : 171 ,
+                h : 139
             }
         ];
-        var border = document.querySelector( ".border" );
 
-        loopArray( glassStyle , function ( style , i ) {
-            var img = $( "img" , {
-                css : {
-                    top : style.top ,
-                    left : style.left ,
-                    height : style.height
-                } ,
-                classList : [ "glass" ] ,
-                src : "img/hail/" + i + ".png"
-            } , border );
-        } );
+
 
     })();
 </script>
