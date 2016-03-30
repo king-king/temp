@@ -27,7 +27,13 @@
 <div class="border"></div>
 <script>
     (function () {
-       alert(navigator.userAgent);
+        var a = {
+            x : 2
+        };
+        var b = { y : 3 };
+        b.prototype = a;
+        console.log( b.x )
+
     })();
 </script>
 </body>
