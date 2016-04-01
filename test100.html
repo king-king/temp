@@ -16,20 +16,41 @@
             -webkit-user-select: none;
         }
 
-        img {
+        canvas {
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
             background: #000;
         }
 
     </style>
 </head>
 <body>
-<img src="effect/img/hail/0.png">
-<img src="effect/img/hail/1.png">
-<img src="effect/img/hail/2.png">
-<img src="effect/img/hail/3.png">
-<img src="effect/img/hail/4.png">
+<img src="img/frost.png">
+<canvas width="600" height="600"></canvas>
 <script>
     (function () {
+        var img = new Image();
+        img.src = "img/frost.png";
+        img.onload = function () {
+            var canvas = document.querySelector( "canvas" );
+            var gc = canvas.getContext( "2d" );
+            gc.drawImage( img , 0 , 0 );
+
+            canvas.onclick = function ( e ) {
+                gc.beginPath();
+                var x = e.offsetX , y = e.offsetY;
+                gc.fillStyle = "#D0F7F4";
+                gc.globalAlpha = 0.1;
+                gc.arc( x , y , 10 + 10 * Math.random() , 0 , Math.PI * 2 );
+                gc.closePath();
+                gc.fill();
+            }
+        };
+
 
     })();
 </script>
