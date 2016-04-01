@@ -16,60 +16,20 @@
             -webkit-user-select: none;
         }
 
-        .block {
-            width: 50px;
-            height: 50px;
-            background-color: red;
-            position: absolute;
-            /*opacity: 0.5;*/
-            /*animation: 1s down both;*/
+        img {
+            background: #000;
         }
 
-        @keyframes down {
-            0% {
-                transform: translate3d(100px, 0, 0);
-            }
-            100% {
-                transform: translate3d(100px, 150px, 0) scale3d(2, 2, 2);
-            }
-        }
-
-        .fragment-wrapper {
-            width: 50px;
-            height: 50px;
-            transform: translate3d(100px, 150px, 0) scale3d(2, 2, 2);
-            background-color: green;
-            /*opacity: 0.5;*/
-            opacity: 0;
-        }
-
-        .fragment-wrapper {
-            position: absolute;
-            width: 50%;
-            height: 50%;
-        }
-
-        .fragment-0 {
-            top:0;
-            left:0;
-        }
     </style>
 </head>
 <body>
-<div class="block"></div>
-<div class="fragment-wrapper">
-    <div class="fragment-0"></div>
-    <div class="fragment-1"></div>
-    <div class="fragment-2"></div>
-    <div class="fragment-3"></div>
-</div>
+<img src="effect/img/hail/0.png">
+<img src="effect/img/hail/1.png">
+<img src="effect/img/hail/2.png">
+<img src="effect/img/hail/3.png">
+<img src="effect/img/hail/4.png">
 <script>
     (function () {
-        var block = document.querySelector( ".block" );
-        block.style.animation = "0.5s down both";
-        block.addEventListener( "animationend" , function () {
-            console.log( 'end' );
-        } );
 
     })();
 </script>
