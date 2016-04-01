@@ -21,17 +21,41 @@
         .glass {
             position: absolute;
         }
+
+        @keyframes down0 {
+            100% {
+                transform: translate3d(40px, 600px, 0);
+            }
+        }
+
+        @keyframes down1 {
+            100% {
+                transform: translate3d(-20px, 600px, 0);
+            }
+        }
+
+        @keyframes down2 {
+            100% {
+                transform: translate3d(-10px, 600px, 0);
+            }
+        }
+
+        @keyframes down3 {
+            100% {
+                transform: translate3d(10px, 600px, 0);
+            }
+        }
     </style>
-    <title>hail</title>
+    <title>冰雹</title>
 </head>
 <body>
 <div class="border">
-    <img src="img/hail/0.png" class="glass">
-    <img src="img/hail/1.png" class="glass">
-    <img src="img/hail/2.png" class="glass">
-    <img src="img/hail/3.png" class="glass">
-    <img src="img/hail/4.png" class="glass">
-    <img src="img/hail/5.png" class="glass">
+    <!--<img src="img/hail/0.png" class="glass">-->
+    <!--<img src="img/hail/1.png" class="glass">-->
+    <!--<img src="img/hail/2.png" class="glass">-->
+    <!--<img src="img/hail/3.png" class="glass">-->
+    <!--<img src="img/hail/4.png" class="glass">-->
+    <!--<img src="img/hail/5.png" class="glass">-->
 </div>
 <script src="tool.js"></script>
 <script>
@@ -63,8 +87,30 @@
                 h : 139
             }
         ];
+        var w = document.body.offsetWidth ,
+                h = document.body.offsetHeight;
+        var maxCount = 30;
+        var ices = [ $( "img" , { src : "img/hail/ice.png" } ) , $( "img" , { src : "img/hail/ice2.png" } ) ];
+        var count = 0;
 
+        function makeIce() {
+            var ice = ices[ count % 2 ].cloneNode( false );
+            border.appendChild( ice );
+            var size = Math.random() * 10 + 5;
+            css( ice , {
+                position : "absolute" ,
+                width : size + "px" ,
+                left : w * Math.random() + "px" ,
+                top : -(size + 10) + "px" ,
+                animation : "1.5s down" + (count % 4) + " linear both infinite"
+            } );
+            count += 1;
+            if ( count < maxCount ) {
+                setTimeout( makeIce , 400 );
+            }
+        }
 
+        makeIce();
 
     })();
 </script>
