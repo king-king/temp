@@ -3,38 +3,6 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-
-
-        @keyframes down {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-            100% {
-                transform: translate3d(0, 500px, 0);
-            }
-        }
-
-        @keyframes flip {
-            0% {
-                transform: translate3d(0, 0, 0);
-            }
-            20% {
-                transform: translate3d(-150px, 0, 0) rotate3d(0, 0, 1, 45deg);
-            }
-            40% {
-                transform: translate3d(120px, 0, 0) rotate3d(0, 0, 1, -35deg);
-            }
-            60% {
-                transform: translate3d(-120px, 0, 0) rotate3d(0, 0, 1, 35deg);
-            }
-            80% {
-                transform: translate3d(110px, 0, 0) rotate3d(0, 0, 1, -25deg);
-            }
-            100% {
-                transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg);
-            }
-        }
-
         html, body {
             height: 100%;
             margin: 0;
@@ -46,146 +14,14 @@
             height: 100px;
             position: absolute;
             left: 50%;
-            animation: 10s down linear both infinite;
         }
 
-        .inner {
-            width: 50px;
-            height: 50px;
-            background: url(img/flower2.png) center center;
-            background-size: 50px 50px;
-            animation: 10s flip cubic-bezier(.4, .12, .63, .95) both infinite;
-
-        }
     </style>
 </head>
 <body>
-<!--<div class="border">-->
-<!--<div class="inner"></div>-->
-<!--</div>-->
-<script src="jquery.js"></script>
-<script>
+<div class="border">
+    <div class="inner"></div>
+</div>
 
-    //    (function () {
-    //        document.body.onclick = function () {
-    //            alert( "ok" );
-    //        }
-    //
-    //    })();
-
-    function hasScrolled() {
-        var a = $( this ).scrollTop();
-        Math.abs( a - lastScrollTop ) <= delat || (a > navHight + 120 && a > lastScrollTop ? $( ".header" ).removeClass( "header-show" ).addClass( "header-hide" ) : a + $( window ).height() < $( document ).height() && $( ".header" ).removeClass( "header-hide" ).addClass( "header-show" ), lastScrollTop = a)
-    }
-    function refreshNav() {
-        var a = $.cookie( "uid" );
-        url = ahost + "/index.php?m=user&a=getHeadImgByAjaxP&uid=" + a, $.getJSON( url + "&callback=?" , function ( a ) {
-            var b , c;
-            0 == a.code ? (urlm = "userface/80x80/" + a.rs.replace( /_/g , "/" ), $( "#login_head_img" ).css( "background-image" , "url(" + domainIMG + urlm + ")" ), $( "#_nike_name" ).html( a.nike_name )) : ($( "#login_head_img" ).css( "background-image" , "url(" + a.rs + ")" ), $( "#_nike_name" ).html( a.nike_name )), b = new Array, b = document.domain.split( "." ), c = b[ 1 ] + "." + b[ 2 ], $.cookie( "nike" , a.nike_name , {
-                domain : "." + c ,
-                path : "/"
-            } ), $( "#_login" ).show(), $( "#_no_login" ).hide()
-        } )
-    }
-    function stopPropagation( a ) {
-        a.stopPropagation ? a.stopPropagation() : a.cancelBubble = !0
-    }
-    function AsyncLoadList( a ) {
-        var b = parseInt( $( a ).attr( "page" ) ) ,
-                c = $( a ).html() ,
-                d = $( a ).attr( "appendid" ) ? $( a ).attr( "appendid" ) : "load-list";
-        $( a ).html( "加载中..." ).addClass( "loading" ), $.get( $( a ).attr( "url" ) , {
-            page : b
-        } , function ( e ) {
-            var f , g;
-            $( "#" + d ).append( e.rst ), f = $( a ).attr( "channel-url" ), g = $( a ).attr( "channel-name" ), "undefined" != typeof f && "undefined" != typeof g ? $( a ).removeClass( "loading" ).addClass( "load" ).removeAttr( "onclick" ).html( '<a href="' + f + '">' + g + "</a>" ) : ($( a ).html( c ).attr( "page" , b + 1 ).removeClass( "loading" ), 1 == e.hideLoadBtn && $( a ).remove()), $( "#" + d ).parent().find( ".list-btn.active" ).length > 0 && $( "#" + d ).parent().find( ".list-view" ).removeClass( "card" ).children( ".news-view" ).removeClass( "card" )
-        } , "jsonp" )
-    }
-    var disScroll , lastScrollTop , delat , navHight , ahost = "http://a.jiemian.com/mobile" ,
-            isWeixin = "micromessenger" == navigator.userAgent.toLowerCase().match( /MicroMessenger/i ) ,
-            slider = function () {
-                var a = $( window ).height() ,
-                        b = 1;
-                $( ".burger" ).click( function () {
-                    1 == b ? ($( ".nav" ).addClass( "open" ), $( this ).addClass( "transform" ), $( ".sections" ).addClass( "downward" ).css( {
-                        minHeight : a
-                    } ), $( "body" ).css( {
-                        overflow : "hidden" ,
-                        height : a
-                    } ), b = 0) : ($( ".nav" ).removeClass( "open" ), $( this ).removeClass( "transform" ), $( ".sections" ).removeClass( "downward" ).attr( {
-                        style : ""
-                    } ), $( "body" ).attr( {
-                        style : ""
-                    } ), b = 1)
-                } )
-            };
-    slider(), lastScrollTop = 0, delat = 5, navHight = $( ".header" ).outerHeight(), $( window ).scroll( function () {
-        disScroll = !0
-    } ), setInterval( function () {
-        disScroll && (hasScrolled(), disScroll = !1)
-    } , 250 ), $( function () {
-        var a , b , c , d;
-        try {
-            a = $.cookie( "_jm_ppt_id" ), b = $.cookie( "im" ), "string" == $.type( a ) && "" != a ? "string" == $.type( b ) && "" != b ? (c = null != typeof b ? domainIMG + "userface/80x80/" + b.replace( /_/g , "/" ) : "http://" + domainIMG + "static/jmm/image/author.jpg", $( "#login_head_img" ).css( "background-image" , "url(" + c + ")" ), d = $.cookie( "nike" ), $( "#_nike_name" ).html( d ), $( "#_login" ).show(), $( "#_no_login" ).hide()) : refreshNav() : ($.cookie( "yz" , "" , {
-                domain : "." + rootDomain ,
-                expire : -1
-            } ), $.cookie( "im" , "" , {
-                domain : "." + rootDomain ,
-                expire : -1
-            } ), $.cookie( "nike" , "" , {
-                domain : "." + rootDomain ,
-                expire : -1
-            } ), $( "#_login" ).hide(), $( "#_no_login" ).show())
-        } catch ( e ) {
-        }
-    } ), isWeixin && $( ".wx-login" ).show(), $( function () {
-        function a() {
-            b( d , -f * e[ 0 ].offsetWidth )
-        }
-
-        function b( a , b ) {
-            clearInterval( a.timer ), a.timer = setInterval( function () {
-                var c = (b - i) / 8;
-                c = c > 0 ? Math.ceil( c ) : Math.floor( c ), i == b ? clearInterval( a.timer ) : (i += c, a.style.left = 0 > i ? i % g + "px" : (i % g - g) % g + "px")
-            } , 30 )
-        }
-
-        var c , d , e , f , g , h , i;
-        if ( $( ".authors-change" )[ 0 ] ) {
-            for ( c = $( ".authors-change" )[ 0 ], d = $( ".recommend-authors-list" )[ 0 ], e = d.children, d.innerHTML += d.innerHTML, d.style.width = e[ 0 ].offsetWidth * (e.length + 3) + "px", f = 0, g = d.offsetWidth / 2, h = 0; h < e.length; h++ )!
-                    function ( b ) {
-                        e[ h ].onclick = function () {
-                            f % e.length != e.length - 1 && -1 != f % e.length || 0 != b || f++, 0 == f % e.length && b == e.length - 1 && f--, f = Math.floor( f / e.length ) * e.length + b, a()
-                        }
-                    }( h );
-            c.onclick = function () {
-                f++, a()
-            }, i = 0, $( ".authors-change" ).on( "click" , function () {
-                clearTimeout( a ), $( ".authors-change i" ).addClass( "rotate" );
-                var a = function () {
-                    $( ".authors-change i" ).removeClass( "rotate" )
-                };
-                setTimeout( a , 300 )
-            } )
-        }
-    } ), $( ".nav" ).bind( "touchmove" , function ( a ) {
-        stopPropagation( a ), a.preventDefault()
-    } ), $( function () {
-        $( "a[data-app]" ).on( "click" , function () {
-            var b , a = {
-                platform : function () {
-                    var a = navigator.userAgent;
-                    return {
-                        android : a.indexOf( "Android" ) > -1 || a.indexOf( "Linux" ) > -1 ,
-                        iPhone : a.indexOf( "iPhone" ) > -1 ,
-                        weChat : a.indexOf( "MicroMessenger" ) > -1
-                    }
-                }()
-            };
-            b = a.platform.weChat ? "http://a.app.qq.com/o/simple.jsp?pkgname=com.jiemian.news" : a.platform.android ? "http://m.jiemian.com/app/android_download.html" : a.platform.iPhone ? "https://itunes.apple.com/cn/app/jie-mian-xin-wen/id930342070?mt=8" : "http://www.jiemian.com/app/index.html", location.href = b
-        } )
-    } );
-
-</script>
 </body>
 </html>
