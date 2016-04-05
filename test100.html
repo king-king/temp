@@ -29,7 +29,6 @@
     </style>
 </head>
 <body>
-<img src="img/frost.png">
 <canvas width="600" height="600"></canvas>
 <script>
     (function () {
@@ -45,7 +44,7 @@
                 var x = e.offsetX , y = e.offsetY;
                 gc.fillStyle = "#D0F7F4";
                 gc.globalAlpha = 0.1;
-                gc.arc( x , y , 10 + 10 * Math.random() , 0 , Math.PI * 2 );
+                gc.arc( x , y , 10 + 20 * Math.random() , 0 , Math.PI * 2 );
                 gc.closePath();
                 gc.fill();
             }
