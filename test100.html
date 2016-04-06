@@ -29,27 +29,31 @@
     </style>
 </head>
 <body>
-<canvas width="600" height="600"></canvas>
+<iframe height=510 width=320 src="http://player.youku.com/embed/XNTMyNzE0Mjky" frameborder=0 allowfullscreen></iframe>
+<!--<canvas width="600" height="600"></canvas>-->
 <script>
     (function () {
-        var img = new Image();
-        img.src = "img/frost.png";
-        img.onload = function () {
-            var canvas = document.querySelector( "canvas" );
-            var gc = canvas.getContext( "2d" );
-            gc.drawImage( img , 0 , 0 );
-
-            canvas.onclick = function ( e ) {
-                gc.beginPath();
-                var x = e.offsetX , y = e.offsetY;
-                gc.fillStyle = "#D0F7F4";
-                gc.globalAlpha = 0.1;
-                gc.arc( x , y , 10 + 20 * Math.random() , 0 , Math.PI * 2 );
-                gc.closePath();
-                gc.fill();
-            }
-        };
-
+//        var img = new Image();
+//        img.src = "img/frost.png";
+//        img.onload = function () {
+//            var canvas = document.querySelector( "canvas" );
+//            var gc = canvas.getContext( "2d" );
+//            gc.drawImage( img , 0 , 0 );
+//
+//            canvas.onclick = function ( e ) {
+//                gc.beginPath();
+//                var x = e.offsetX , y = e.offsetY;
+//                gc.fillStyle = "#D0F7F4";
+//                gc.globalAlpha = 0.1;
+//                gc.arc( x , y , 10 + 20 * Math.random() , 0 , Math.PI * 2 );
+//                gc.closePath();
+//                gc.fill();
+//            }
+//        };
+//
+//        requestAnimationFrame( function () {
+//            console.log( new Date() )
+//        } );
 
     })();
 </script>
