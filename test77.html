@@ -52,9 +52,9 @@
 <body>
 
 <!--<div class="border">-->
-    <!--<div class="inner">-->
-        <!--<div class="p"></div>-->
-    <!--</div>-->
+<!--<div class="inner">-->
+<!--<div class="p"></div>-->
+<!--</div>-->
 <!--</div>-->
 
 
@@ -65,6 +65,22 @@
 <script>
     (function () {
 
+        function Person( name ) {
+            this.name = name;
+            this.extend.len++;
+        }
+
+        Person.prototype.extend = {
+            len : 0
+        };
+
+        var p0 = new Person( "wangqun" );
+        var p1 = new Person( "jack" );
+        var p2 = new Person( "tom" );
+
+        console.log( p0.extend.len );
+        console.log( p1.extend.len );
+        console.log( p2.extend.len );
 
     })();
 </script>
