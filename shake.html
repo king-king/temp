@@ -2568,7 +2568,7 @@
                         top : "100%" ,
                         "z-index" : 11
                     }
-                } , A ) , u = r( "div" , {
+                } ) , u = r( "div" , {
                     css : {
                         border : 0 ,
                         width : "2px" ,
@@ -2601,22 +2601,22 @@
 
             var s , a = 20 , c = 0 , l = A.offsetWidth , g = A.offsetHeight;
             t( document.body , { filter : "brightness(0.5) saturate(0.5)" } );
-            var w = [ { left : "-41%" , top : "-23%" , opacity : .4 , init : -100 } , {
+            var w = [ { left : "-41%" , top : "-23%" , opacity : .4 , init : 2000 } , {
                 left : "43%" ,
                 top : "-26%" ,
                 opacity : .4 ,
                 init : 0
-            } , { left : "-3%" , top : "-22%" , opacity : .4 , init : 50 } , {
+            } , { left : "-3%" , top : "-22%" , opacity : .4 , init : 2000 } , {
                 left : "23%" ,
                 top : "35%" ,
                 opacity : .15 ,
                 init : -20
-            } , { left : "23%" , top : "68%" , opacity : .15 , init : 0 } , {
+            } , { left : "23%" , top : "68%" , opacity : .15 , init : 2000 } , {
                 left : "-41%" ,
                 top : "28%" ,
                 opacity : .15 ,
                 init : 20
-            } , { left : "-41%" , top : "61%" , opacity : .15 , init : 220 } ];
+            } , { left : "-41%" , top : "61%" , opacity : .15 , init : 2200 } ];
             return n.foreach( w , function ( r , i ) {
                 var s = Math.random() , a = o( A.imgSrc( "cloud-haze.png" ) ) , c = a.cloneNode( !1 ) , l = a.cloneNode( !1 );
                 n.foreach( [ a , c , l ] , function ( n , i ) {
@@ -2712,7 +2712,9 @@
                             left : e.px( V * (n[ 2 ] / 640) ) ,
                             bottom : "-300px" ,
                             "z-index" : o
-                        } ), 2 == o && (w = s), A.appendChild( s ), i.runAnimation( [ s , { 100 : { transform : "translate3d(0,-300px,0)" } } , 1 , .2 * o , "linear" , "both" ] , function () {
+                        } ), 2 == o && (w = s),
+                                A.appendChild( s ),
+                                i.runAnimation( [ s , { 100 : { transform : "translate3d(0,-300px,0)" } } , 1 , .2 * o , "linear" , "both" ] , function () {
                             e( s , { transform : "translate3d(0,-300px,0)" } ), 2 == o && (w = s), 4 == o && function () {
                                 r && r()
                             }()
