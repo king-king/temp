@@ -22,21 +22,25 @@
             text-decoration: none;
         }
 
-        div {
-            /*-webkit-writing-mode: vertical-rl;*/
-            /*writing-mode: vertical-rl;*/
-            /*white-space: nowrap;*/
-            height: 200px;
-            width: 300px;
-            border: 1px black solid;
-            line-height: 20px;
+        .border {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .inner {
+            width: 100px;
+            background-color: green;
+            white-space: normal;
+            word-break: break-all;
         }
     </style>
 </head>
 <body>
 
-
-<div>设置对象书写fds方向设置89对象书写方向设置对象书写方向设置对象书写方向</div>
+<div class="border">
+    <div class="inner">222222222222222222222222222222222222222222</div>
+</div>
 
 
 <script>
