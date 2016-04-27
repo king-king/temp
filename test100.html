@@ -17,16 +17,35 @@
             background: #000;
         }
 
+        iframe {
+            border: none;
+        }
 
+        .btn {
+            width: 100px;
+            height: 50px;
+            background: red;
+            position: absolute;
+            top: 300px;
+            right: 100px;
+            z-index: 100;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-
+<iframe src="test88.html" width="1300" height="700"></iframe>
+<div class="btn"></div>
 <script>
     (function () {
-        var weather = "雹";
-        console.log( weather.slice( weather.length - 2 , weather.length ) );
+
+        console.log( "ok" );
+        var btn = document.querySelector( ".btn" );
+        btn.onclick = function () {
+            location.hash = "user/id=" + (new Date()).getTime();
+        }
+
     })();
 </script>
 </body>
