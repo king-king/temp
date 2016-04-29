@@ -14,39 +14,67 @@
             overflow: hidden;
             -webkit-overflow-scrolling: touch;
             -webkit-user-select: none;
-            background: #000;
+            background: #fff;
         }
 
-        iframe {
-            border: none;
-        }
-
-        .btn {
-            width: 100px;
-            height: 50px;
-            background: red;
-            position: absolute;
-            top: 300px;
-            right: 100px;
-            z-index: 100;
-            cursor: pointer;
-        }
     </style>
 </head>
 <body>
+<svg version="1.1" id="图层_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 150 110" style="enable-background:new 0 0 150 110;" xml:space="preserve">
 
-<iframe src="test88.html" width="1300" height="700"></iframe>
-<div class="btn"></div>
-<script>
-    (function () {
+	<defs>
+    <style>
+      path, g {
+          fill: red;
+      }
+    </style>
+  </defs>
+	<g id="XMLID_103_">
+	<g id="XMLID_66_">
+		<path id="XMLID_117_" d="M25,96c-1.7,0-3-1.3-3-3V28c0-1.7-1.3-3-3-3H3c-1.7,0-3-1.3-3-3s1.3-3,3-3h16c5,0,9,4,9,9v65
+			C28,94.7,26.7,96,25,96z"/>
+	</g>
+	<g id="XMLID_81_">
+		<path id="XMLID_116_" d="M129,85c-1.7,0-3-1.3-3-3V28c0-5,4-9,9-9h12c1.7,0,3,1.3,3,3s-1.3,3-3,3h-12c-1.7,0-3,1.3-3,3v54
+			C132,83.7,130.7,85,129,85z"/>
+	</g>
+	<g id="XMLID_80_">
+		<path id="XMLID_115_" d="M57,26c-0.9,0-1.8-0.4-2.4-1.2L40.4,6.5c-0.7-0.9-1.8-1.1-2.7-0.5L8.6,24.5c-1.4,0.9-3.3,0.5-4.1-0.9
+			c-0.9-1.4-0.5-3.3,0.9-4.1L34.5,1c3.5-2.2,8.2-1.4,10.7,1.9l14.2,18.3c1,1.3,0.8,3.2-0.5,4.2C58.3,25.8,57.6,26,57,26z"/>
+	</g>
+	<g id="XMLID_86_">
+		<path id="XMLID_114_" d="M87,33c-0.8,0-1.6-0.3-2.2-1L69.5,15.2c-0.5-0.7-1.3-1.1-2.1-1.1c-0.9-0.1-1.7,0.2-2.3,0.8L64.8,15
+			l-9.1,6.6c-1.3,1-3.2,0.7-4.2-0.7c-1-1.3-0.7-3.2,0.7-4.2l9-6.5C63.1,8.6,65.5,7.8,68,8c2.5,0.2,4.7,1.5,6.3,3.4l15,16.6
+			c1.1,1.2,1,3.1-0.2,4.2C88.4,32.7,87.7,33,87,33z"/>
+	</g>
+	<g id="XMLID_2_">
+		<path id="XMLID_113_" d="M51,68c-1.7,0-3-1.3-3-3V44c0-1.7,1.3-3,3-3s3,1.3,3,3v21C54,66.7,52.7,68,51,68z"/>
+	</g>
+	<g id="XMLID_5_">
+		<path id="XMLID_112_" d="M78,96c-1.7,0-3-1.3-3-3V61c0-1.7,1.3-3,3-3s3,1.3,3,3v32C81,94.7,79.7,96,78,96z"/>
+	</g>
+	<g id="XMLID_6_">
+		<path id="XMLID_111_" d="M104,70c-1.7,0-3-1.3-3-3V43c0-1.7,1.3-3,3-3s3,1.3,3,3v24C107,68.7,105.7,70,104,70z"/>
+	</g>
+	<g id="XMLID_7_">
+		<path id="XMLID_110_" d="M104,92c-1.7,0-3-1.3-3-3V78c0-1.7,1.3-3,3-3s3,1.3,3,3v11C107,90.7,105.7,92,104,92z"/>
+	</g>
+	<g id="XMLID_3_">
+		<path id="XMLID_109_" d="M51,110c-1.7,0-3-1.3-3-3V92c0-1.7,1.3-3,3-3s3,1.3,3,3v15C54,108.7,52.7,110,51,110z"/>
+	</g>
+	<g id="XMLID_1_">
+		<circle id="XMLID_156_" cx="51" cy="79" r="3"/>
+	</g>
+	<g id="XMLID_4_">
+		<circle id="XMLID_154_" cx="78" cy="46" r="3"/>
+	</g>
+	<g id="XMLID_14_">
+		<path id="XMLID_108_" d="M25,96c-1.7,0-3-1.3-3-3V38c0-6.1,4.9-11,11-11h88c6.1,0,11,4.9,11,11v45c0,1.7-1.3,3-3,3s-3-1.3-3-3V38
+			c0-2.8-2.2-5-5-5H33c-2.8,0-5,2.2-5,5v55C28,94.7,26.7,96,25,96z"/>
+	</g>
+</g>
+</svg>
 
-        console.log( "ok" );
-        var btn = document.querySelector( ".btn" );
-        btn.onclick = function () {
-            location.hash = "user/id=" + (new Date()).getTime();
-        }
-
-    })();
-</script>
 </body>
 </html>
