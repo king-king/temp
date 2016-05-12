@@ -63,7 +63,8 @@
 <div class="footer">
     <select>
         <option value="Soft-Light" selected>柔光</option>
-        <option value="">滤色</option>
+        <option value="">平均混合</option>
+        <option value="average">滤色</option>
         <option value="exclude">排除</option>
         <option value="D-value">差值</option>
         <option value="Hard-Mix">实色混合</option>
@@ -80,15 +81,15 @@
 <script>
     (function () {
 
-        function loopArray( arr, func ) {
+        function loopArray( arr , func ) {
             for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[i], i );
+                func( arr[ i ] , i );
             }
         }
 
         // 并发
-        function concurrentTask( tasks, callback ) {
-            var len = tasks.length,
+        function concurrentTask( tasks , callback ) {
+            var len = tasks.length ,
                     count = 0;
             tasks.forEach( function ( task ) {
                 task( function () {
@@ -100,42 +101,42 @@
             } );
         }
 
-        var querySelector = document.querySelector.bind( document ),
-                img1 = new Image(),
-                img2 = new Image(),
-                images = [img1, img2],
-                input1 = querySelector( ".left-input-file" ),
-                input2 = querySelector( ".right-input-file" ),
-                inputs = [input1, input2],
-                canvas1 = querySelector( ".canvas1" ),
-                canvas2 = querySelector( ".canvas2" ),
-                canvas = querySelector( ".canvas" ),
-                cs = [canvas1, canvas2],
-                gc1 = canvas1.getContext( "2d" ),
-                gc2 = canvas2.getContext( "2d" ),
-                gcs = [gc1, gc2],
-                gc = canvas.getContext( "2d" ),
+        var querySelector = document.querySelector.bind( document ) ,
+                img1 = new Image() ,
+                img2 = new Image() ,
+                images = [ img1 , img2 ] ,
+                input1 = querySelector( ".left-input-file" ) ,
+                input2 = querySelector( ".right-input-file" ) ,
+                inputs = [ input1 , input2 ] ,
+                canvas1 = querySelector( ".canvas1" ) ,
+                canvas2 = querySelector( ".canvas2" ) ,
+                canvas = querySelector( ".canvas" ) ,
+                cs = [ canvas1 , canvas2 ] ,
+                gc1 = canvas1.getContext( "2d" ) ,
+                gc2 = canvas2.getContext( "2d" ) ,
+                gcs = [ gc1 , gc2 ] ,
+                gc = canvas.getContext( "2d" ) ,
                 select = querySelector( "select" );
 
         var model = "Soft-Light";
 
         function doBlend() {
-            var data = blend( gc1.getImageData( 0, 0, 320, 480 ), gc2.getImageData( 0, 0, 320, 480 ), model );
-            gc.putImageData( data, 0, 0 );
+            var data = blend( gc1.getImageData( 0 , 0 , 320 , 480 ) , gc2.getImageData( 0 , 0 , 320 , 480 ) , model );
+            gc.putImageData( data , 0 , 0 );
         }
 
         concurrentTask( [
             function ( done ) {
                 img1.src = "img/h.jpg";
                 img1.onload = done;
-            },
+            } ,
             function ( done ) {
                 img2.src = "img/h5.jpg";
                 img2.onload = done;
             }
-        ], function () {
-            gc1.drawImage( img1, 0, 0 );
-            gc2.drawImage( img2, 0, 0 );
+        ] , function () {
+            gc1.drawImage( img1 , 0 , 0 );
+            gc2.drawImage( img2 , 0 , 0 );
             doBlend();
             canvas1.onclick = function () {
                 input1.click();
@@ -143,28 +144,28 @@
             canvas2.onclick = function () {
                 input2.click();
             };
-            loopArray( [input1, input2], function ( input, i ) {
+            loopArray( [ input1 , input2 ] , function ( input , i ) {
                 input.onchange = function () {
                     var fr = new FileReader();
-                    fr.readAsDataURL( inputs[i].files[0] );
-                    cs[i].classList.add( "lock" );
+                    fr.readAsDataURL( inputs[ i ].files[ 0 ] );
+                    cs[ i ].classList.add( "lock" );
                     fr.onloadend = function ( e ) {
-                        gcs[i].clearRect( 0, 0, 320, 480 );
-                        images[i] = null;
-                        images[i] = new Image();
-                        images[i].src = e.target.result;
-                        images[i].onload = function () {
-                            var w, h;
-                            if ( images[i].naturalHeight / images[i].naturalWidth > 480 / 320 ) {
-                                w = images[i].naturalWidth;
-                                h = 480 * images[i].naturalWidth / 320;
+                        gcs[ i ].clearRect( 0 , 0 , 320 , 480 );
+                        images[ i ] = null;
+                        images[ i ] = new Image();
+                        images[ i ].src = e.target.result;
+                        images[ i ].onload = function () {
+                            var w , h;
+                            if ( images[ i ].naturalHeight / images[ i ].naturalWidth > 480 / 320 ) {
+                                w = images[ i ].naturalWidth;
+                                h = 480 * images[ i ].naturalWidth / 320;
                             }
                             else {
-                                w = 320 * images[i].naturalHeight / 480;
-                                h = images[i].naturalHeight;
+                                w = 320 * images[ i ].naturalHeight / 480;
+                                h = images[ i ].naturalHeight;
                             }
-                            gcs[i].drawImage( images[i], 0, 0, w, h, 0, 0, 320, 480 );
-                            cs[i].classList.remove( "lock" );
+                            gcs[ i ].drawImage( images[ i ] , 0 , 0 , w , h , 0 , 0 , 320 , 480 );
+                            cs[ i ].classList.remove( "lock" );
                             doBlend();
                         };
                     }
