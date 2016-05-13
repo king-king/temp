@@ -111,7 +111,7 @@
                     imgData.data[ i ] = 255 - (((255 - imgData1.data[ i ]) * (255 - imgData2.data[ i ])) >> 8);
                     imgData.data[ i + 1 ] = 255 - (((255 - imgData1.data[ i + 1 ]) * (255 - imgData2.data[ i + 1 ])) >> 8);
                     imgData.data[ i + 2 ] = 255 - (((255 - imgData1.data[ i + 2 ]) * (255 - imgData2.data[ i + 2 ])) >> 8);
-                    imgData.data[ i + 3 ] = 255;
+                    imgData.data[ i + 3 ] =  imgData2.data[ i + 3 ] ;
                 } );
         }
         return imgData;
