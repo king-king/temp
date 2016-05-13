@@ -19,11 +19,11 @@
             position: absolute;
             top: 0;
             left: 50%;
-            transform: translate3d(-50%, 0, 0);
+            transform: translate3d(-50%, 0, 0); mix-blend-mode: screen;
         }
 
         .filter {
-            opacity: 0.8;
+            /*opacity: 0.8;*/
         }
 
         .border {
@@ -33,11 +33,15 @@
             left: 50%;
             transform: translate3d(-50%, 0, 0);
         }
+
+        .tree {
+            mix-blend-mode: screen;
+        }
     </style>
 </head>
 <body>
 <div class="border">
-    <img src="img/patch/tree.jpg"class="bg">
+    <img src="img/patch/tree.jpg" class="bg tree">
     <img src="img/bg1.jpg" class="filter bg">
 </div>
 <!--<img src="img/patch/tree.jpg"class="bg">-->
