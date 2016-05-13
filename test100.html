@@ -179,15 +179,16 @@
 
         loopArray( infos , function ( info , i ) {
             var img = new Image();
-            img.src = "img/patch/" + i + ".png";
+            img.src = "img/blend/" + i + ".png";
             border.appendChild( img );
             css( img , {
                 position : "absolute" ,
                 top : info.y / 1136 * 100 + "%" ,
                 left : info.x / 1140 * 100 + "%" ,
                 height : info.h / 1136 * 100 + "%" ,
-                opacity : 0.5 ,
-                "mix-blend-mode" : "screen"
+                opacity : 0.5
+//                ,
+//                "mix-blend-mode" : "screen"
             } );
         } );
 
