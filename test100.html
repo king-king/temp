@@ -23,14 +23,25 @@
         }
 
         .filter {
-            /*opacity: 0.8;*/
+            opacity: 0.8;
+        }
+
+        .border {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
         }
     </style>
 </head>
 <body>
+<div class="border">
+    <img src="img/patch/tree.jpg"class="bg">
+    <img src="img/bg1.jpg" class="filter bg">
+</div>
 <!--<img src="img/patch/tree.jpg"class="bg">-->
 <!--<img src="img/boat.jpg" class="bg">-->
-<img src="img/bg1.jpg" class="filter bg">
 <script>
     function loopObj( obj , func ) {
         for ( var key in obj ) {
@@ -156,17 +167,22 @@
                 h : 181
             }
         ];
+        var border = document.querySelector( ".border" );
+        css( border , {
+            width : document.body.offsetHeight + "px"
+        } );
 
         loopArray( infos , function ( info , i ) {
             var img = new Image();
             img.src = "img/patch/" + i + ".png";
-            document.body.appendChild( img );
+            border.appendChild( img );
             css( img , {
                 position : "absolute" ,
                 top : info.y / 1136 * 100 + "%" ,
                 left : info.x / 1140 * 100 + "%" ,
                 height : info.h / 1136 * 100 + "%" ,
-                opacity : 0.5
+                opacity : 0.5 ,
+                "mix-blend-mode" : "screen"
             } );
         } );
 
