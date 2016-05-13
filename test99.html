@@ -14,18 +14,30 @@
             overflow: hidden;
         }
 
-        .boat {
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate3d(-50%, 0, 0);
+        .bg {
+            background: url("img/patch/tree.jpg") center center;
+            background-size: cover;
+            width: 508px;
+            height: 508px;
+            mix-blend-mode: screen;
+            position: relative;
         }
 
+        .five {
+            background: url("img/patch/5.png") center center;
+            background-size: cover;
+            position: absolute;
+            top: 49.2077%;
+            left: 8.24561%;
+            height: 29.8415%;
+            width: 29.73684%;
+            mix-blend-mode: screen;
+        }
     </style>
 </head>
 <body>
-<img src="img/boat.jpg" class="boat">
+<div class="bg"></div>
+<div class="five"></div>
 <script>
 </script>
 

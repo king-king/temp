@@ -14,7 +14,7 @@
             overflow: hidden;
         }
 
-        img {
+        .bg {
             height: 100%;
             position: absolute;
             top: 0;
@@ -23,16 +23,155 @@
         }
 
         .filter {
-            opacity: 0.5;
+            /*opacity: 0.8;*/
         }
     </style>
 </head>
 <body>
-<img src="img/boat.jpg">
-<img src="img/bg.jpg" class="filter">
-
+<!--<img src="img/patch/tree.jpg"class="bg">-->
+<!--<img src="img/boat.jpg" class="bg">-->
+<img src="img/bg1.jpg" class="filter bg">
 <script>
-</script>
+    function loopObj( obj , func ) {
+        for ( var key in obj ) {
+            func( obj[ key ] , key );
+        }
+    }
+    function loopArray( arr , func ) {
+        for ( var i = 0; i < arr.length; i++ ) {
+            func( arr[ i ] , i );
+        }
+    }
 
+    function css( el , styles ) {
+        loopObj( styles , function ( value , key ) {
+            el.style.setProperty( key , value );
+        } );
+    }
+</script>
+<script>
+    (function () {
+
+        var infos = [
+            // 0
+            {
+                x : 489 ,
+                y : 649 ,
+                h : 138
+            } ,
+            // 1
+            {
+                x : 464 ,
+                y : 654 ,
+                h : 169
+            } ,
+            // 2
+            {
+                x : 348 ,
+                y : 587 ,
+                h : 136
+            } ,
+            // 3
+            {
+                x : 277 ,
+                y : 577 ,
+                h : 186
+            } ,
+            // 4
+            {
+                x : 211 ,
+                y : 595 ,
+                h : 203
+            } ,
+            // 5
+            {
+                x : 94 ,
+                y : 559 ,
+                h : 339
+            } ,
+            // 6
+            {
+                x : 53 ,
+                y : 603 ,
+                h : 422
+            } ,
+            // 7
+            {
+                x : 988 ,
+                y : 976 ,
+                h : 188
+            } ,
+            // 8
+            {
+                x : 892 ,
+                y : 692 ,
+                h : 274
+            } ,
+            // 9
+            {
+                x : 878 ,
+                y : 127 ,
+                h : 144
+            } ,
+            // 10
+            {
+                x : 851 ,
+                y : 131 ,
+                h : 135
+            } ,
+            // 11
+            {
+                x : 306 ,
+                y : 119 ,
+                h : 160
+            } ,
+            // 12
+            {
+                x : 204 ,
+                y : 77 ,
+                h : 214
+            } ,
+            // 13
+            {
+                x : 435 ,
+                y : 182 ,
+                h : 175
+            } ,
+            // 14
+            {
+                x : 733 ,
+                y : 52 ,
+                h : 138
+            } ,
+            // 15
+            {
+                x : 864 ,
+                y : 272 ,
+                h : 139
+            } ,
+            // 16
+            {
+                x : 817 ,
+                y : 240 ,
+                h : 181
+            }
+        ];
+
+        loopArray( infos , function ( info , i ) {
+            var img = new Image();
+            img.src = "img/patch/" + i + ".png";
+            document.body.appendChild( img );
+            css( img , {
+                position : "absolute" ,
+                top : info.y / 1136 * 100 + "%" ,
+                left : info.x / 1140 * 100 + "%" ,
+                height : info.h / 1136 * 100 + "%" ,
+                opacity : 0.5
+            } );
+        } );
+
+
+    })()
+</script>
 </body>
 </html>
