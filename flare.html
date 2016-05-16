@@ -56,6 +56,18 @@
             }
         }
 
+        @-webkit-keyframes down {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+            50% {
+                -webkit-transform: translate3d(0, 10%, 0);
+            }
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+        }
+
         .tree, .border img {
             mix-blend-mode: screen;
         }
@@ -82,6 +94,7 @@
         loopObj( styles , function ( value , key ) {
             el.style.setProperty( key , value );
         } );
+        return el;
     }
 </script>
 <script>
@@ -92,102 +105,119 @@
             {
                 x : 489 ,
                 y : 649 ,
+                w : 139 ,
                 h : 138
             } ,
             // 1
             {
                 x : 464 ,
                 y : 654 ,
+                w : 169 ,
                 h : 169
             } ,
             // 2
             {
                 x : 348 ,
                 y : 587 ,
+                w : 136 ,
                 h : 136
             } ,
             // 3
             {
                 x : 277 ,
                 y : 577 ,
+                w : 186 ,
                 h : 186
             } ,
             // 4
             {
                 x : 211 ,
                 y : 595 ,
+                w : 203 ,
                 h : 203
             } ,
             // 5
             {
                 x : 94 ,
                 y : 559 ,
+                w : 339 ,
                 h : 339
             } ,
             // 6
             {
                 x : 53 ,
                 y : 603 ,
+                w : 422 ,
                 h : 422
             } ,
             // 7
             {
                 x : 988 ,
                 y : 976 ,
+                w : 188 ,
                 h : 188
             } ,
             // 8
             {
                 x : 892 ,
                 y : 692 ,
+                w : 274 ,
                 h : 274
             } ,
             // 9
             {
                 x : 878 ,
                 y : 127 ,
+                w : 144 ,
                 h : 144
             } ,
             // 10
             {
                 x : 851 ,
                 y : 131 ,
+                w : 135 ,
                 h : 135
             } ,
             // 11
             {
                 x : 306 ,
                 y : 119 ,
+                w : 160 ,
                 h : 160
             } ,
             // 12
             {
                 x : 204 ,
                 y : 77 ,
+                w : 214 ,
                 h : 214
             } ,
             // 13
             {
                 x : 435 ,
                 y : 182 ,
+                w : 175 ,
                 h : 175
             } ,
             // 14
             {
                 x : 733 ,
                 y : 52 ,
+                w : 138 ,
                 h : 138
             } ,
             // 15
             {
                 x : 864 ,
                 y : 272 ,
+                w : 140 ,
                 h : 139
             } ,
             // 16
             {
                 x : 817 ,
                 y : 240 ,
+                w : 181 ,
                 h : 181
             }
         ];
@@ -199,14 +229,22 @@
         loopArray( infos , function ( info , i ) {
             var img = new Image();
             img.src = "img/patch/" + i + ".png";
-            border.appendChild( img );
-            css( img , {
+            var wrapper = document.createElement( "div" );
+            wrapper.appendChild( img );
+            var random01 = Math.random() , random02 = Math.random();
+            css( wrapper , {
                 position : "absolute" ,
                 top : info.y / 1136 * 100 + "%" ,
                 left : info.x / 1140 * 100 + "%" ,
                 height : info.h / 1136 * 100 + "%" ,
+                width : info.w / 1136 * 100 + "%" ,
+                "-webkit-animation" : "down " + (random01 * 5 + 4) + "s " + (random02 * 3) + "s linear infinite"
+            } );
+            document.body.appendChild( wrapper );
+            css( img , {
+                height : "100%" ,
                 opacity : 0.5 ,
-                "-webkit-animation" : "move " + (Math.random() * 5 + 4) + "s " + (Math.random() * 3) + "s linear infinite"
+                "-webkit-animation" : "move " + (random01 * 5 + 4) + "s " + (random02 * 3) + "s linear infinite"
             } );
         } );
 
