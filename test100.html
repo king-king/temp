@@ -14,209 +14,30 @@
             overflow: hidden;
         }
 
-        .bg {
-            height: 100%;
+        .parent {
+            width: 300px;
+            height: 300px;
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate3d(-50%, 0, 0);
-            /*mix-blend-mode: screen;*/
+            top: 100px;
+            left: 100px;
+            border: 1px solid black;
         }
 
-        .filter {
-            opacity: 0.8;
-            /*mix-blend-mode: screen;*/
-        }
-
-        .border {
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate3d(-50%, 0, 0);
-        }
-
-        @-webkit-keyframes move {
-            0% {
-                -webkit-transform: translate3d(0, 0, 0);
-                opacity: 0.5;
-            }
-            25% {
-                -webkit-transform: translate3d(15%, 0, 0);
-                opacity: 0.5;
-            }
-            50% {
-                -webkit-transform: translate3d(0, 0, 0);
-            }
-            75% {
-                -webkit-transform: translate3d(-15%, 0, 0);
-                opacity: 0;
-            }
-            100% {
-                -webkit-transform: translate3d(0, 0, 0);
-                opacity: 0.5;
-            }
-        }
-
-        .tree, .border img {
-            mix-blend-mode: screen;
+        .child {
+            width: 200px;
+            height: 200px;
+            background: red;
         }
     </style>
 </head>
 <body>
-<img src="img/patch/tree.jpg" class="bg tree">
-<div class="border">
-    <img src="img/bg1.jpg" class="filter bg">
+<div class="parent">
+    <div class="child" style="z-index: 200;"></div>
 </div>
-<!--<img src="img/patch/tree.jpg"class="bg">-->
-<!--<img src="img/boat.jpg" class="bg">-->
-<script>
-    function loopObj( obj , func ) {
-        for ( var key in obj ) {
-            func( obj[ key ] , key );
-        }
-    }
-    function loopArray( arr , func ) {
-        for ( var i = 0; i < arr.length; i++ ) {
-            func( arr[ i ] , i );
-        }
-    }
-
-    function css( el , styles ) {
-        loopObj( styles , function ( value , key ) {
-            el.style.setProperty( key , value );
-        } );
-    }
-</script>
-<script>
-    (function () {
-
-        var infos = [
-            // 0
-            {
-                x : 489 ,
-                y : 649 ,
-                h : 138
-            } ,
-            // 1
-            {
-                x : 464 ,
-                y : 654 ,
-                h : 169
-            } ,
-            // 2
-            {
-                x : 348 ,
-                y : 587 ,
-                h : 136
-            } ,
-            // 3
-            {
-                x : 277 ,
-                y : 577 ,
-                h : 186
-            } ,
-            // 4
-            {
-                x : 211 ,
-                y : 595 ,
-                h : 203
-            } ,
-            // 5
-            {
-                x : 94 ,
-                y : 559 ,
-                h : 339
-            } ,
-            // 6
-            {
-                x : 53 ,
-                y : 603 ,
-                h : 422
-            } ,
-            // 7
-            {
-                x : 988 ,
-                y : 976 ,
-                h : 188
-            } ,
-            // 8
-            {
-                x : 892 ,
-                y : 692 ,
-                h : 274
-            } ,
-            // 9
-            {
-                x : 878 ,
-                y : 127 ,
-                h : 144
-            } ,
-            // 10
-            {
-                x : 851 ,
-                y : 131 ,
-                h : 135
-            } ,
-            // 11
-            {
-                x : 306 ,
-                y : 119 ,
-                h : 160
-            } ,
-            // 12
-            {
-                x : 204 ,
-                y : 77 ,
-                h : 214
-            } ,
-            // 13
-            {
-                x : 435 ,
-                y : 182 ,
-                h : 175
-            } ,
-            // 14
-            {
-                x : 733 ,
-                y : 52 ,
-                h : 138
-            } ,
-            // 15
-            {
-                x : 864 ,
-                y : 272 ,
-                h : 139
-            } ,
-            // 16
-            {
-                x : 817 ,
-                y : 240 ,
-                h : 181
-            }
-        ];
-        var border = document.querySelector( ".border" );
-        css( border , {
-            width : document.body.offsetHeight + "px"
-        } );
-
-        loopArray( infos , function ( info , i ) {
-            var img = new Image();
-            img.src = "img/patch/" + i + ".png";
-            border.appendChild( img );
-            css( img , {
-                position : "absolute" ,
-                top : info.y / 1136 * 100 + "%" ,
-                left : info.x / 1140 * 100 + "%" ,
-                height : info.h / 1136 * 100 + "%" ,
-                opacity : 0.5 ,
-                // "mix-blend-mode" : "screen" ,
-                "-webkit-animation" : "move " + (Math.random() * 5 + 4) + "s " + (Math.random() * 3) + "s linear infinite"
-            } );
-        } );
+<div class="parent" style="left: 200px;">
+    <div class="child" style="background: #000;z-index: 120;"></div>
+</div>
 
 
-    })()
-</script>
 </body>
 </html>
