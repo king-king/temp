@@ -25,6 +25,7 @@
 
         .filter {
             /*opacity: 0.8;*/
+            /*mix-blend-mode: screen;*/
         }
 
         .border {
@@ -35,14 +36,36 @@
             transform: translate3d(-50%, 0, 0);
         }
 
-        .tree {
-            /*mix-blend-mode: screen;*/
+        @-webkit-keyframes move {
+            0% {
+                -webkit-transform: translate3d(0, 0, 0);
+                opacity: 0.5;
+            }
+            25% {
+                -webkit-transform: translate3d(15%, 0, 0);
+                opacity: 0.5;
+            }
+            50% {
+                -webkit-transform: translate3d(0, 0, 0);
+            }
+            75% {
+                -webkit-transform: translate3d(-15%, 0, 0);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate3d(0, 0, 0);
+                opacity: 0.5;
+            }
+        }
+
+        .tree, .border img {
+            mix-blend-mode: screen;
         }
     </style>
 </head>
 <body>
+<img src="img/patch/tree.jpg" class="bg tree">
 <div class="border">
-    <img src="img/patch/tree.jpg" class="bg tree">
     <img src="img/bg1.jpg" class="filter bg">
 </div>
 <!--<img src="img/patch/tree.jpg"class="bg">-->
@@ -186,9 +209,9 @@
                 top : info.y / 1136 * 100 + "%" ,
                 left : info.x / 1140 * 100 + "%" ,
                 height : info.h / 1136 * 100 + "%" ,
-                opacity : 0.5
-//                ,
-//                "mix-blend-mode" : "screen"
+                opacity : 0.5 ,
+                // "mix-blend-mode" : "screen" ,
+                "-webkit-animation" : "move " + (Math.random() * 5 + 4) + "s " + (Math.random() * 3) + "s linear infinite"
             } );
         } );
 
