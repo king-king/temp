@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>气泡</title>
     <style>
         body {
@@ -12,51 +13,61 @@
             right: 0;
             background-color: black;
             margin: 0;
+            overflow: hidden;
         }
 
         .bubble {
             position: absolute;
+            opacity: 0.6;
             background: #ff0000;
         }
 
         @keyframes bubble-up0 {
             0% {
                 opacity: 0;
-                transform: scale3d(0, 0, 0) translate3d();
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 0.5;
+                transform: scale3d(0.8, 0.8, 0.8) translate3d(0, -150%, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(0, -200%, 0);
+            }
+            37.5% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(0, -400%, 0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(0, -1000%, 0);
             }
         }
 
-        @keyframes bubble-up1 {
-
-        }
-
-        @keyframes bubble-up2 {
-
-        }
-
-        @keyframes bubble-up3 {
-
-        }
     </style>
 </head>
 <body>
 <script>
     (function () {
         var body = document.body;
-        var bubbles = [];
 
         function bubble() {
             var b = document.createElement("div");
+//            var b = document.createElement("img");
+            b.src = "img/bubble-star.png";
             b.classList.add("bubble");
             var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight;
             b.style.height = b.style.width = width + "px";
             b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
-            b.style.left = Math.random() * (body.offsetWidth + width) - width / 2 + "px";
+            b.style.left = Math.random() * (body.offsetWidth + width / 2) - width / 2 + "px";
             body.appendChild(b);
+            return b;
         }
 
-        for (var i = 0; i < 20; i++) {
-            bubble();
+        for (var n = 0; n < 20; n++) {
+            var b = bubble();
+            b.style.animation = "bubble-up0 6s " + n / 5 + "s linear both infinite";
         }
 
     })()
