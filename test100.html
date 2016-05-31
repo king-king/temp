@@ -14,32 +14,46 @@
             overflow: hidden;
         }
 
-        body {
-            padding: 50px 100px;
+        .a1, .a2 {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
         }
 
-        body div {
-            background: yellow;
+        .a1 {
+            top: 40px;
+            background-color: red;
+            animation: animation1 3s linear both;
         }
 
-        .target {
-            width: 200px;
-            height: 200px;
-            border: 1px solid red;
+        .a2 {
+            top: 240px;
+            background-color: black;
+            animation: animation2 3s linear both;
         }
 
-        .inner {
-            width: 50px;
-            height: 50px;
-            border: 30px solid green;
-            background: blue;
+        @keyframes animation1 {
+            0% {
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            100% {
+                transform: scale3d(1, 1, 1) translate3d(400px, 0, 0);
+            }
+        }
+
+        @keyframes animation2 {
+            0% {
+                transform: translate3d(0, 0, 0) scale3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(400px, 0, 0) scale3d(1, 1, 1);
+            }
         }
     </style>
 </head>
 <body>
-
-<div class="target">
-    <div class="inner"></div>
-</div>
+<div class="a1"></div>
+<div class="a2"></div>
 </body>
 </html>

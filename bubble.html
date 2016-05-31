@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>气泡</title>
+    <style>
+        body {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: black;
+            margin: 0;
+        }
+
+        .bubble {
+            position: absolute;
+            background: #ff0000;
+        }
+
+        @keyframes bubble-up0 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d();
+            }
+        }
+
+        @keyframes bubble-up1 {
+
+        }
+
+        @keyframes bubble-up2 {
+
+        }
+
+        @keyframes bubble-up3 {
+
+        }
+    </style>
+</head>
+<body>
+<script>
+    (function () {
+        var body = document.body;
+        var bubbles = [];
+
+        function bubble() {
+            var b = document.createElement("div");
+            b.classList.add("bubble");
+            var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight;
+            b.style.height = b.style.width = width + "px";
+            b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
+            b.style.left = Math.random() * (body.offsetWidth + width) - width / 2 + "px";
+            body.appendChild(b);
+        }
+
+        for (var i = 0; i < 20; i++) {
+            bubble();
+        }
+
+    })()
+</script>
+</body>
+</html>
