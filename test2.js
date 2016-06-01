@@ -1,10 +1,4 @@
-(function () {
-    function add( num1 , num2 ) {
-        return num1 + num2;
-    }
-
-
-    eval( "" );
-
-
-})();
+var fs = require("fs");
+fs.stat(".git/HEAD", function (err, stats) {
+    console.log(stats.isDirectory());
+});
