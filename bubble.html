@@ -56,6 +56,7 @@
             b.src = "img/bubble" + (index % 2) + ".png";
             b.classList.add("bubble");
             var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight << 0;
+            width /= 4;
             b.style.height = width + "px";
             b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
             b.style.left = Math.random() * (body.offsetWidth + width / 2) - width / 2 + "px";
