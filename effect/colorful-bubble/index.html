@@ -34,6 +34,23 @@
         this.init(x, y, radius);
     }
 
+    var TWO_PI = 2 * Math.PI;
+
+    function sin(a) {
+        return Math.sin(a);
+    }
+    function cos(a) {
+        return Math.cos(a);
+    }
+
+    function random(b, t) {
+        if (t) {
+            return Math.random() * (t - b) + b;
+        } else {
+            return Math.random() * b;
+        }
+    }
+
     Particle.prototype = {
 
         init: function (x, y, radius) {
@@ -93,17 +110,6 @@
         container: document.getElementById('test')
     });
 
-    demo.setup = function () {
-
-        // Set off some initial particles.
-        var i, x, y;
-
-        //  for ( i = 0; i < 20; i++ ) {
-        x = (demo.width * 0.5) + random(-100, 100);
-        y = (demo.height * 0.5) + random(-100, 100);
-        demo.spawn(0, 999);
-        // }
-    };
 
     demo.spawn = function (x, y) {
 
@@ -114,11 +120,11 @@
         particle.init(x, y, random(5, 40));
 
         particle.wander = random(0.5, 2.0);
-        particle.color = random(COLOURS);
+        particle.color = '#69D2E7';
         particle.drag = random(0.9, 0.99);
 
-        theta = random(TWO_PI);
-        force = random(2, 8);
+        var theta = random(TWO_PI);
+        var force = random(2, 8);
 
         particle.vx = sin(theta) * force;
         particle.vy = cos(theta) * force;
@@ -131,7 +137,6 @@
         var i, particle;
 
         for (i = particles.length - 1; i >= 0; i--) {
-
             particle = particles[i];
 
             if (particle.alive)
