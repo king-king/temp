@@ -20,7 +20,8 @@
         .bubble {
             position: absolute;
             opacity: 0.6;
-            background: #ff0000;
+            /*mix-blend-mode: screen;*/
+            /*background: #ff0000;*/
         }
 
         @keyframes bubble-up0 {
@@ -45,17 +46,17 @@
     </style>
 </head>
 <body>
+<img src="img/1.jpg">
 <script>
     (function () {
         var body = document.body;
 
-        function bubble() {
-            var b = document.createElement("div");
-//            var b = document.createElement("img");
-            b.src = "img/bubble-star.png";
+        function bubble(index) {
+            var b = document.createElement("img");
+            b.src = "img/bubble" + (index % 2) + ".png";
             b.classList.add("bubble");
-            var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight;
-            b.style.height = b.style.width = width + "px";
+            var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight << 0;
+            b.style.height = width + "px";
             b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
             b.style.left = Math.random() * (body.offsetWidth + width / 2) - width / 2 + "px";
             body.appendChild(b);
@@ -63,7 +64,7 @@
         }
 
         for (var n = 0; n < 20; n++) {
-            var b = bubble();
+            var b = bubble(n);
             b.style.animation = "bubble-up0 6s " + n / 5 + "s linear both infinite";
         }
 
