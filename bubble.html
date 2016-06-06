@@ -62,32 +62,53 @@
             }
         }
 
+        @keyframes shade-out {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+
     </style>
 </head>
 <body>
-<img src="img/1.jpg">
+<!--<img src="img/1.jpg">-->
 <script>
     (function () {
         var body = document.body;
+        var img0 = new Image();
+        var img1 = new Image();
+        img0.src = "img/bubble0-boom.png";
+        img1.src = "img/bubble1-boom.png";
 
         function bubble(index) {
             var b = document.createElement("img");
             b.index = 0;
-            b.src = "img/bubble" + (index % 2) + ".png";
+            var imgIndex = index % 2;
+            b.src = "img/bubble" + imgIndex + ".png";
             b.classList.add("bubble");
-            var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight << 0;
-            width /= 4;
+            var width = (Math.random() * 5 + 10) / 350 * body.offsetHeight << 0;
             b.style.height = width + "px";
             b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
             b.style.left = Math.random() * (body.offsetWidth - width ) + "px";
             body.appendChild(b);
             b.style.webkitAnimation = "bubble-up0 6s " + index / 5 + "s linear both";
             b.addEventListener("animationend", function () {
-                if (b.index == 1) {
-                    console.log("ok")
+                if (b.style.webkitAnimation.indexOf("shade-out") != -1) {
+                    // 炸裂完毕再做下面的动画
+                    b.index = 1 - b.index;
+                    b.src = "img/bubble" + imgIndex + ".png";
+                    b.style.webkitAnimation = "bubble-up" + b.index + " 6s " + index / 5 + "s linear both";
+                } else {
+                    // 运行到顶端然后做炸裂动画
+                    b.src = "img/bubble" + imgIndex + "-boom.png";
+                    setTimeout(function () {
+                        b.style.webkitAnimation = "shade-out 0.5s linear both";
+                    }, 300);
                 }
-                b.index = 1 - b.index;
-                b.style.webkitAnimation = "bubble-up" + b.index + " 6s " + index / 5 + "s linear both";
             });
             return b;
         }
