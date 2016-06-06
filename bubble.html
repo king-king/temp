@@ -31,15 +31,34 @@
             }
             12.5% {
                 opacity: 0.5;
-                transform: scale3d(0.5, 0.5, 0.5) translate3d(0, -150%, 0);
+                transform: scale3d(0.5, 0.5, 0.5) translate3d(0, -100%, 0);
             }
             25% {
                 opacity: 1;
-                transform: scale3d(1, 1, 1) translate3d(0, -150%, 0);
+                transform: scale3d(1, 1, 1) translate3d(0, -100%, 0);
             }
             100% {
                 opacity: 1;
                 transform: scale3d(1, 1, 1) translate3d(0, -1000%, 0);
+            }
+        }
+
+        @keyframes bubble-up1 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d(0, -150%, 0);
+            }
+            12.5% {
+                opacity: 0.5;
+                transform: scale3d(0.5, 0.5, 0.5) translate3d(0, -50%, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(0, -50%, 0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(0, -900%, 0);
             }
         }
 
@@ -53,20 +72,28 @@
 
         function bubble(index) {
             var b = document.createElement("img");
+            b.index = 0;
             b.src = "img/bubble" + (index % 2) + ".png";
             b.classList.add("bubble");
             var width = (Math.random() * 5 + 10) / 100 * body.offsetHeight << 0;
             width /= 4;
             b.style.height = width + "px";
             b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
-            b.style.left = Math.random() * (body.offsetWidth + width / 2) - width / 2 + "px";
+            b.style.left = Math.random() * (body.offsetWidth - width ) + "px";
             body.appendChild(b);
+            b.style.webkitAnimation = "bubble-up0 6s " + index / 5 + "s linear both";
+            b.addEventListener("animationend", function () {
+                if (b.index == 1) {
+                    console.log("ok")
+                }
+                b.index = 1 - b.index;
+                b.style.webkitAnimation = "bubble-up" + b.index + " 6s " + index / 5 + "s linear both";
+            });
             return b;
         }
 
         for (var n = 0; n < 20; n++) {
-            var b = bubble(n);
-            b.style.animation = "bubble-up0 6s " + n / 5 + "s linear both infinite";
+            bubble(n);
         }
 
     })()
