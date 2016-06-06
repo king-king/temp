@@ -58,16 +58,18 @@
             }
             100% {
                 opacity: 1;
-                transform: scale3d(1, 1, 1) translate3d(0, -900%, 0);
+                transform: scale3d(1, 1, 1) translate3d(0, -1000%, 0);
             }
         }
 
         @keyframes shade-out {
             0% {
                 opacity: 1;
+                transform: translate3d(0, -1000%, 0);
             }
             100% {
                 opacity: 0;
+                transform: translate3d(0, -1000%, 0);
             }
         }
 
@@ -90,7 +92,8 @@
             var imgIndex = index % 2;
             b.src = "img/bubble" + imgIndex + ".png";
             b.classList.add("bubble");
-            var width = (Math.random() * 5 + 10) / 350 * body.offsetHeight << 0;
+            var ratio = body.offsetHeight > 568 ? 300 : 350;
+            var width = (Math.random() * 5 + 10) / ratio * body.offsetHeight << 0;
             b.style.height = width + "px";
             b.style.top = (Math.random() * 0.7 + 0.3) * 100 + "%";
             b.style.left = Math.random() * (body.offsetWidth - width ) + "px";
@@ -113,7 +116,7 @@
             return b;
         }
 
-        for (var n = 0; n < 20; n++) {
+        for (var n = 0; n < 30; n++) {
             bubble(n);
         }
 
