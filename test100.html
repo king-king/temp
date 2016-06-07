@@ -4,59 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-        html, body {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0;
-            overflow: hidden;
-        }
-
-        .a1, .a2 {
-            width: 100px;
-            height: 100px;
-            position: absolute;
-            left: 0;
-        }
-
-        .a1 {
-            top: 40px;
-            background-color: red;
-            animation: animation1 3s linear both;
-        }
-
-        .a2 {
-            top: 240px;
-            background-color: black;
-            animation: animation2 3s linear both;
-        }
-
-        @keyframes animation1 {
-            0% {
-                transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 0deg);
-            }
-            100% {
-                transform: translate3d(800px, 0, 0) rotate3d(0, 0, 1, 720deg);
-            }
-        }
-
-        @keyframes animation2 {
-            0% {
-                transform: translate3d(0, 0, 0) scale3d(0, 0, 0);
-            }
-            50% {
-                transform: translate3d(800px, 0, 0) scale3d(0.8, 0.8, 0.8);
-            }
-            100% {
-                transform: translate3d(800px, 0, 0) scale3d(1, 1, 1);
-            }
+        div {
+            font-family: FZNBSJW--GB1-0;
+            font-size: 40px;
         }
     </style>
 </head>
 <body>
-<div class="a1"></div>
+<div class="a1">晴天</div>
 <div class="a2"></div>
 </body>
 </html>
