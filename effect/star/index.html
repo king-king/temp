@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title>✨</title>
     <style>
         html, body, .body {
@@ -12,9 +13,82 @@
             bottom: 0;
             margin: 0;
         }
+
+        .bg {
+            position: absolute;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            top: 0;
+        }
+
+        @keyframes down0 {
+            0% {
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                transform: translate3d(50px, 580px, 0) rotate3d(0, 0, 1, 160deg);
+            }
+        }
+
+        @keyframes down1 {
+            0% {
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                transform: translate3d(40px, 580px, 0) rotate3d(0, 0, 1, -160deg);
+            }
+        }
+
+        @keyframes down2 {
+            0% {
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                transform: translate3d(-42px, 580px, 0) rotate3d(0, 0, 1, 160deg);
+            }
+        }
+
+        @keyframes down3 {
+            0% {
+                transform: translate3d(0, -100%, 0);
+            }
+            100% {
+                transform: translate3d(-12px, 580px, 0) rotate3d(0, 0, 1, -170deg);
+            }
+        }
     </style>
 </head>
 <body>
-<div class="body"></div>
+<div class="body">
+    <img src="../../img/1.jpg" class="bg">
+</div>
+<script>
+    (function () {
+        var body = document.querySelector(".body");
+        var num = 0;
+
+        setTimeout(function () {
+            for (var i = 0; i < 4; i++) {
+                var img = new Image();
+                img.src = "star" + i % 3 + ".png";
+                var width = Math.random() * 15 + 10;
+                img.style.width = width + "px";
+                body.appendChild(img);
+                img.classList.add("star");
+                img.style.left = Math.random() * (body.offsetWidth - width) + "px";
+                img.style.animation = "down" + i + " 5s linear " + i / 4 + "s both infinite"
+            }
+            num += 4;
+            if (num < 24) {
+                setTimeout(arguments.callee, 1000);
+            }
+        }, 1000);
+
+
+    })();
+</script>
 </body>
 </html>
