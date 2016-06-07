@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>杯子</title>
+    <style>
+        html, body, .body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .bg {
+            height: 100%;
+        }
+
+        .cup1 {
+            position: absolute;
+            top: 71.9190%;
+            right: 50%;
+            height: 14.4366%;
+            animation: cup1-animation 1s cubic-bezier(.17, .67, .73, 1.26) both;
+        }
+
+        .cup0 {
+            position: absolute;
+            top: 68.926056%;
+            left: 50%;
+            height: 14.17253521%;
+            animation: cup0-animation 1s cubic-bezier(.17, .67, .73, 1.26) both;
+        }
+
+        .heart0 {
+            position: absolute;
+            top: 64.788732%;
+            left: 50%;
+            height: 3.08098591%;
+            margin-left: 25px;
+            /*animation: bubble-up3 3s linear infinite;*/
+        }
+
+        .heart1 {
+            position: absolute;
+            top: 67.78169014%;
+            right: 50%;
+            height: 4.313380281%;
+            margin-right: 25px;
+            /*animation: bubble-up3 3s linear infinite;*/
+        }
+
+        @keyframes cup0-animation {
+            0% {
+                transform: translate3d(100%, 50%, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes cup1-animation {
+            0% {
+                transform: translate3d(-100%, 50%, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes bubble-up0 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 1;
+                transform: scale3d(0.8, 0.8, 0.8) translate3d(4px, -20px, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(4px, -20px, 0);
+            }
+            37.5% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-10px, -30px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-13px, -66px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5) translate3d(-35px, -180px, 0);
+            }
+        }
+
+        @keyframes bubble-up1 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 1;
+                transform: scale3d(0.8, 0.8, 0.8) translate3d(-2px, -20px, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-2px, -20px, 0);
+            }
+            37.5% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-8px, -35px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-25px, -65px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5) translate3d(-38px, -195px, 0);
+            }
+        }
+
+        @keyframes bubble-up2 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 1;
+                transform: scale3d(0.8, 0.8, 0.8) translate3d(4px, -20px, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(4px, -20px, 0);
+            }
+            37.5% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(0px, -40px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(10px, -70px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5) translate3d(30px, -180px, 0);
+            }
+        }
+
+        @keyframes bubble-up3 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 1;
+                transform: scale3d(0.8, 0.8, 0.8) translate3d(-6px, -20px, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-6px, -20px, 0);
+            }
+            37.5% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(1px, -45px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(6px, -77px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5) translate3d(21px, -175px, 0);
+            }
+        }
+
+        @keyframes bubble-up4 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 1;
+                transform: scale3d(0.8, 0.8, 0.8) translate3d(-4px, -20px, 0);
+            }
+            25% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-4px, -20px, 0);
+            }
+            37.5% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-8px, -45px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) translate3d(-15px, -77px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5) translate3d(-24px, -195px, 0);
+            }
+        }
+
+        @keyframes down-up {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            25% {
+                transform: translate3d(0, 10%, 0);
+            }
+            75% {
+                transform: translate3d(-5%, -10%, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes up-down {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            25% {
+                transform: translate3d(5%, -10%, 0);
+            }
+            75% {
+                transform: translate3d(0, 10%, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <img src="../../img/1.jpg" class="bg">
+    <img src="cup0.png" class="cup0">
+    <img src="cup1.png" class="cup1">
+</div>
+<script>
+    (function () {
+        var body = document.querySelector(".body");
+        setTimeout(function () {
+            document.querySelector(".cup0").style.animation = "down-up 4s linear both infinite";
+            document.querySelector(".cup1").style.animation = "up-down 4s linear both infinite";
+            for (var i = 0; i < 6; i++) {
+                var leftImage = new Image();
+                var rightImage = new Image();
+                leftImage.src = "heart1.png";
+                leftImage.classList.add("heart1");
+                rightImage.src = "heart0.png";
+                rightImage.classList.add("heart0");
+                leftImage.style.animation = "bubble-up" + (Math.random() * 5 << 0) + " 3s linear " + i / 2 + "s both infinite";
+                rightImage.style.animation = "bubble-up" + (Math.random() * 5 << 0) + " 3s linear " + i / 2 + "s both infinite";
+                body.appendChild(leftImage);
+                body.appendChild(rightImage);
+            }
+        }, 1000);
+    })();
+</script>
+</body>
+</html>
