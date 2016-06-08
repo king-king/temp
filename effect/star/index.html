@@ -68,25 +68,69 @@
 <script>
     (function () {
         var body = document.querySelector(".body");
-        var num = 0;
+        var stars = [];
 
-        setTimeout(function () {
-            for (var i = 0; i < 4; i++) {
-                var img = new Image();
-                img.src = "star" + i % 3 + ".png";
-                var width = Math.random() * 15 + 10;
-                img.style.width = width + "px";
-                body.appendChild(img);
-                img.classList.add("star");
-                img.style.left = Math.random() * (body.offsetWidth - width) + "px";
-                img.style.animation = "down" + i + " " + (3.5 + Math.random()) + "s linear " + i / 2 + "s both infinite"
-            }
-            num += 4;
-            if (num < 30) {
-                setTimeout(arguments.callee, 1000);
-            }
-        }, 1000);
+//        setTimeout(function () {
+//            for (var i = 0; i < 4; i++) {
+//                var img = new Image();
+//                img.src = "star" + i % 3 + ".png";
+//                img.classList.add("star");
+//                img.style.left = Math.random() * (body.offsetWidth - width) + "px";
+//                img.style.animation = "down" + i + " " + (3.5 + Math.random()) + "s linear " + i / 2 + "s both infinite"
+//            }
+//            num += 4;
+//            if (num < 30) {
+//                setTimeout(arguments.callee, 1000);
+//            }
+//        }, 1000);
 
+        var starIndex = 0;
+        var vxs = [0.15, -0.15, 0.12, -0.13];
+        var drs = [0.4, -0.4, -0.3, 0.5];
+
+        function init(img) {
+            var width = Math.random() * 15 + 10;
+            img.wqy = -width * 1.8;
+            img.style.top = "0px";
+            img.style.width = width + "px";
+            img.wqw = width;
+            img.wqr = 0;
+            img.wqx = Math.random() * (body.offsetWidth - width);
+            img.style.transform = "translate3d(" + img.wqx + "px," + img.wqy + "px,0)";
+            img.wqvx = vxs[starIndex % 4];
+        }
+
+        var id1, id2;
+        // 每隔0.5s生成一个星星
+        id1 = setTimeout(function () {
+            clearTimeout(id1);
+            var img = new Image();
+            img.wqdr = drs[starIndex % 4];
+            img.src = "star" + starIndex % 3 + ".png";
+            body.appendChild(img);
+            img.classList.add("star");
+            stars.push(img);
+            init(img);
+            starIndex++;
+            if (starIndex < 20) {
+                id1 = setTimeout(arguments.callee, 500);
+            }
+        }, 200);
+
+        // 绘制
+        id2 = setTimeout(function () {
+            clearTimeout(id2);
+            for (var i = 0; i < stars.length; i++) {
+                stars[i].wqy += 1.8;
+                stars[i].wqx += stars[i].wqvx;
+                stars[i].wqr += stars[i].wqdr;
+                stars[i].style.transform = "translate3d(" + stars[i].wqx + "px," + stars[i].wqy + "px,0) rotate3d(0,0,1," + (stars[i].wqr) + "deg)";
+                if (stars[i].wqy > body.offsetHeight + stars[i].wqw * 2) {
+                    init(stars[i]);
+                }
+            }
+            id2 = setTimeout(arguments.callee, 16);
+        }, 20);
 
     })();
 </script>
