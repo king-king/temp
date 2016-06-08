@@ -63,7 +63,7 @@
 </head>
 <body>
 <div class="body">
-    <img src="../../img/1.jpg" class="bg">
+    <img src="1.jpg" class="bg">
 </div>
 <script>
     (function () {
@@ -79,10 +79,10 @@
                 body.appendChild(img);
                 img.classList.add("star");
                 img.style.left = Math.random() * (body.offsetWidth - width) + "px";
-                img.style.animation = "down" + i + " 5s linear " + i / 4 + "s both infinite"
+                img.style.animation = "down" + i + " " + (3.5 + Math.random()) + "s linear " + i / 2 + "s both infinite"
             }
             num += 4;
-            if (num < 24) {
+            if (num < 30) {
                 setTimeout(arguments.callee, 1000);
             }
         }, 1000);
