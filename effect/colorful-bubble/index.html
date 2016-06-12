@@ -25,135 +25,82 @@
 </div>
 
 <script>
-    var MAX_PARTICLES = 280;
-    var COLOURS = ['#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423'];
-
-    var particles = [];
-    var pool = [];
-
-    var canvas = document.querySelector("canvas");
+    var MAX_PARTICLES = 280,
+            COLOURS = ['#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423'],
+            TWO_PI = 2 * Math.PI,
+            particles = [],
+            pool = [],
+            canvas = document.querySelector("canvas"),
+            ctx = canvas.getContext("2d");
     canvas.width = document.body.offsetWidth;
     canvas.height = document.body.offsetHeight;
-    var ctx = canvas.getContext("2d");
-
-    function Particle(x, y, radius) {
-        this.init(x, y, radius);
-    }
-
-    var TWO_PI = 2 * Math.PI;
-
-    function sin(a) {
-        return Math.sin(a);
-    }
-
-    function cos(a) {
-        return Math.cos(a);
-    }
 
     function random(b, t) {
-        if (t) {
-            return Math.random() * (t - b) + b;
-        } else {
-            return Math.random() * b;
+        return t ? Math.random() * (t - b) + b : Math.random() * b;
+    }
+
+    function Particle() {
+        var alive, radius0, wander, theta, drag, color, force, x0, y0, vx, vy;
+        return {
+            init: function (x, y, radius) {
+                alive = true;
+                radius0 = radius || 10;
+                wander = random(0.5, 2.0);
+                theta = random(TWO_PI);
+                drag = random(0.9, 0.99);
+                color = '#69D2E7';
+                force = random(2, 8);
+                x0 = x || 0.0;
+                y0 = y || 0.0;
+                vx = Math.sin(theta) * force;
+                vy = Math.cos(theta) * force;
+            },
+            alive: function () {
+                return alive;
+            },
+            move: function () {
+                x0 += vx;
+                y0 += vy;
+                vx *= drag;
+                vy *= drag;
+                theta += random(-0.5, 0.5) * wander;
+                vx += Math.sin(theta) * 0.1;
+                vy += Math.cos(theta) * 0.1;
+                radius0 *= 0.96;
+                alive = radius0 > 0.5;
+            },
+            draw: function () {
+                ctx.beginPath();
+                ctx.arc(x0, y0, radius0, 0, TWO_PI);
+                ctx.fillStyle = color;
+                ctx.fill();
+            }
         }
     }
 
-    Particle.prototype = {
-
-        init: function (x, y, radius) {
-
-            this.alive = true;
-
-            this.radius = radius || 10;
-            this.wander = 0.15;
-            this.theta = random(TWO_PI);
-            this.drag = 0.92;
-            this.color = '#fff';
-
-            this.x = x || 0.0;
-            this.y = y || 0.0;
-
-            this.vx = 0.0;
-            this.vy = 0.0;
-        },
-
-        move: function () {
-
-            this.x += this.vx;
-            this.y += this.vy;
-
-            this.vx *= this.drag;
-            this.vy *= this.drag;
-
-            this.theta += random(-0.5, 0.5) * this.wander;
-            this.vx += sin(this.theta) * 0.1;
-            this.vy += cos(this.theta) * 0.1;
-
-            this.radius *= 0.96;
-            this.alive = this.radius > 0.5;
-        },
-
-        draw: function () {
-
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.radius, 0, TWO_PI);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        }
-    };
-
-
-    function spawn(x, y) {
-        if (particles.length >= MAX_PARTICLES)
-            pool.push(particles.shift());
-
-        var particle = pool.length ? pool.pop() : new Particle();
-        particle.init(x, y, random(5, 40));
-
-        particle.wander = random(0.5, 2.0);
-        particle.color = '#69D2E7';
-        particle.drag = random(0.9, 0.99);
-
-        var theta = random(TWO_PI);
-        var force = random(2, 8);
-
-        particle.vx = sin(theta) * force;
-        particle.vy = cos(theta) * force;
-
-        particles.push(particle);
-    }
-
-    function update() {
-
+    !function () {
+        // update
         var i, particle;
-
         for (i = particles.length - 1; i >= 0; i--) {
             particle = particles[i];
-
-            if (particle.alive)
-                particle.move();
-            else
-                pool.push(particles.splice(i, 1)[0]);
+            particle.alive() ? particle.move() : pool.push(particles.splice(i, 1)[0]);
         }
-    }
 
-    function draw() {
+        // draw
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-
         ctx.globalCompositeOperation = 'lighter';
-
-        for (var i = particles.length - 1; i >= 0; i--) {
+        for (i = particles.length - 1; i >= 0; i--) {
             particles[i].draw();
         }
-    }
+        setTimeout(arguments.callee, 16);
+    }();
 
-
-    function d() {
-        update();
-        draw();
-        setTimeout(d, 1000 / 60);
+    function spawn(x, y) {
+        particles.length >= MAX_PARTICLES && pool.push(particles.shift());
+        var particle = pool.length ? pool.pop() : Particle();
+        particle.init(x, y, random(5, 40));
+        particles.push(particle);
     }
-    d();
 
     document.addEventListener("mousemove", function (e) {
         spawn(e.pageX, e.pageY);
