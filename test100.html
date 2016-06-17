@@ -4,14 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-        div {
-            font-family: FZNBSJW--GB1-0;
-            font-size: 40px;
+        canvas {
+            width: 320px;
+            height: 480px;
         }
     </style>
 </head>
 <body>
-<div class="a1">晴天</div>
-<div class="a2"></div>
+<canvas width="320" height="480" class="canvas1"></canvas>
+<canvas width="320" height="480" class="canvas2"></canvas>
+<script>
+    (function () {
+        var canvas1 = document.querySelector(".canvas1");
+        var canvas2 = document.querySelector(".canvas2");
+        var gc1 = canvas1.getContext("2d");
+        var gc2 = canvas2.getContext("2d");
+        var img1 = new Image();
+        var img2 = new Image();
+        img1.src = "img/h3.jpg";
+        img2.src = "img/gray.png";
+        var i = 0;
+        img2.onload = img1.onload = function () {
+            i += 1;
+            i == 2 && pro();
+        };
+
+        function pro() {
+            gc1.drawImage(img1, 0, 0);
+            gc2.drawImage(img2, 0, 0);
+            var basedate = gc1.getImageData(0, 0, 320, 480);
+            var blenddata = gc2.getImageData(0, 0, 320, 480);
+            for (var i = 0; i < basedate.data.length; i++) {
+                basedate.data[i] = basedate.data[i] * blenddata.data[i] / 255 << 0;
+            }
+            gc1.putImageData(basedate, 0, 0)
+
+        }
+    })();
+</script>
 </body>
 </html>
