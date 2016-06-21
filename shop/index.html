@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            outline: none;
+            border: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-text-size-adjust: none;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        }
+
+        html, body {
+            margin: 0;
+            background-color: #D0D0CF;
+            overflow: hidden;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        header {
+            height: 40px;
+            background: #fff;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            left: 0;
+            right: 0;
+            line-height: 40px;
+            text-align: center;
+            box-shadow: 1px -2px 7px #000;
+            padding: 6px 0;
+            box-sizing: border-box;
+        }
+
+        .list-content {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .left-list, .right-list {
+            float: left;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .left-list {
+            padding: 10px 5px 10px 10px;
+        }
+
+        .right-list {
+            padding: 10px 10px 10px 5px;
+        }
+
+        .list-item {
+            margin-bottom: 10px;
+        }
+
+        .list-item img {
+            width: 100%;
+            display: block;
+        }
+
+        .list-item .text {
+            color: rgba(0, 0, 0, .6);
+            line-height: 18px;
+            background: #F5F5F5;
+            margin: 0;
+            padding: 14px 10px;
+            font-size: 14px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+<header></header>
+<div class="list-content">
+    <div class="left-list"></div>
+    <div class="right-list"></div>
+</div>
+<script src="data.js"></script>
+<script src="tool.js"></script>
+<script>
+    (function () {
+
+        var leftList = document.querySelector(".left-list");
+        var rightList = document.querySelector(".right-list");
+
+        loopArray(data, function (d, i) {
+            var listItem = document.createElement("div");
+            listItem.id = d.id;
+            listItem.classList.add("list-item");
+            var img = new Image();
+            img.src = d.cover;
+            listItem.appendChild(img);
+            var text = document.createElement("div");
+            text.classList.add("text");
+            var t = d.text;
+            if (d.text.length > 30) {
+                t = d.text.slice(0, 30) + "...";
+            }
+            text.textContent = t;
+            listItem.appendChild(text);
+
+            if (leftList.offsetHeight <= rightList.offsetHeight) {
+                leftList.appendChild(listItem);
+            } else {
+                rightList.appendChild(listItem);
+            }
+        });
+
+
+    })();
+</script>
+</body>
+</html>
