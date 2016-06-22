@@ -5,24 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
         canvas {
-            width: 320px;
-            height: 480px;
+            width: 614px;
+            height: 1090px;
         }
     </style>
 </head>
 <body>
-<canvas width="320" height="480" class="canvas1"></canvas>
-<canvas width="320" height="480" class="canvas2"></canvas>
+<canvas width="614" height="1090" class="canvas"></canvas>
 <script>
     (function () {
-        var canvas1 = document.querySelector(".canvas1");
-        var canvas2 = document.querySelector(".canvas2");
-        var gc1 = canvas1.getContext("2d");
-        var gc2 = canvas2.getContext("2d");
+        var canvas = document.querySelector(".canvas");
+        var gc1 = canvas.getContext("2d");
         var img1 = new Image();
         var img2 = new Image();
-        img1.src = "img/h3.jpg";
-        img2.src = "img/gray.png";
+        img1.src = "img/640.png";
+        img2.src = "img/643.png";
         var i = 0;
         img2.onload = img1.onload = function () {
             i += 1;
@@ -31,11 +28,11 @@
 
         function pro() {
             gc1.drawImage(img1, 0, 0);
-            gc2.drawImage(img2, 0, 0);
-            var basedate = gc1.getImageData(0, 0, 320, 480);
-            var blenddata = gc2.getImageData(0, 0, 320, 480);
+            var basedate = gc1.getImageData(0, 0, 614, 1090);
             for (var i = 0; i < basedate.data.length; i++) {
-                basedate.data[i] = basedate.data[i] * blenddata.data[i] / 255 << 0;
+                if (basedate.data[i] == 255 && basedate.data[i + 1] == 250 && basedate.data[i + 2] == 244) {
+                    basedate.data[i + 3] = 0;
+                }
             }
             gc1.putImageData(basedate, 0, 0)
 
