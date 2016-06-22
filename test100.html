@@ -4,39 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-        canvas {
-            width: 614px;
-            height: 1090px;
+        .target {
+            width: 100px;
+            height: 100px;
+            background-color: #1F2B39;
         }
     </style>
 </head>
 <body>
-<canvas width="614" height="1090" class="canvas"></canvas>
+<div class="target"></div>
 <script>
     (function () {
-        var canvas = document.querySelector(".canvas");
-        var gc1 = canvas.getContext("2d");
-        var img1 = new Image();
-        var img2 = new Image();
-        img1.src = "img/640.png";
-        img2.src = "img/643.png";
-        var i = 0;
-        img2.onload = img1.onload = function () {
-            i += 1;
-            i == 2 && pro();
-        };
 
-        function pro() {
-            gc1.drawImage(img1, 0, 0);
-            var basedate = gc1.getImageData(0, 0, 614, 1090);
-            for (var i = 0; i < basedate.data.length; i++) {
-                if (basedate.data[i] == 255 && basedate.data[i + 1] == 250 && basedate.data[i + 2] == 244) {
-                    basedate.data[i + 3] = 0;
+        function addEventListener(el, type, listener, useCapture) {
+            el.addEventListener(type, listener, useCapture);
+            return {
+                remove: function () {
+                    el.removeEventListener(type, listener, useCapture);
                 }
             }
-            gc1.putImageData(basedate, 0, 0)
-
         }
+
+        function onTap(el, func) {
+            addEventListener(el, "touchstart", function (e) {
+                var x0 = e.touch[0].pageX;
+                var y0 = e.touch[0].pageY;
+                el.classList.add("tap");
+                var mh = addEventListener(document, "touchmove", function () {
+
+                });
+                var gh = addEventListener(document, "touchend", function () {
+                    el.classList.remove("tap");
+                    gh.remove();
+                    jh.remove();
+                });
+                var jh = addEventListener(el, "touchend", function () {
+                    func();
+                });
+            });
+        }
+
+        addEventListener(document.querySelector(".target"), "touchmove", function (e) {
+            debugger;
+        });
+
     })();
 </script>
 </body>
