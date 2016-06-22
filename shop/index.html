@@ -81,10 +81,57 @@
             font-size: 14px;
             word-break: break-all;
         }
+
+        .loading-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            background: white;
+        }
+
+        .loading-wrapper {
+            overflow: hidden;
+            width: 150px;
+            height: 150px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate3d(-50%, -50%, 0);
+        }
+
+        .loading-image, .loading-bg {
+            width: 150px;
+            height: 150px;
+            position: absolute;
+        }
+
+        .loading-bg {
+            background-color: rgba(199, 85, 113, 255);
+            animation: 7s up linear both;
+        }
+
+        @keyframes up {
+            0% {
+                transform: translate3d(0, 100%, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
     </style>
 </head>
 <body>
 <header></header>
+<div class="loading-page">
+    <div class="loading-wrapper">
+        <div class="loading-bg"></div>
+        <img src="loading.png" class="loading-image">
+    </div>
+</div>
 <div class="list-content">
     <div class="left-list"></div>
     <div class="right-list"></div>
@@ -96,6 +143,11 @@
 
         var leftList = document.querySelector(".left-list");
         var rightList = document.querySelector(".right-list");
+        var loadingPage = document.querySelector(".loading-page");
+
+        setTimeout(function () {
+            document.body.removeChild(loadingPage);
+        }, 7500);
 
         loopArray(data, function (d, i) {
             var listItem = document.createElement("div");
