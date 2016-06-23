@@ -20,6 +20,7 @@
             padding: 0;
             background: #f0eff7;
             font-family: "微软雅黑", sans-serif;
+            overflow: hidden;
         }
 
         .content {
@@ -33,6 +34,7 @@
             box-shadow: 0 0 4px #ccc;
             overflow-x: hidden;
             overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
         }
 
         .top-3 {
@@ -180,8 +182,6 @@
             position: absolute;
             top: 12px;
             left: 33px;
-            background: url("http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132") center center;
-            background-size: cover;
         }
 
         .user-name {
@@ -201,7 +201,7 @@
             color: #1c3041;
             font-size: 10px;
             position: absolute;
-            left: 60px;
+            left: 65px;
             top: 24px;
             right: 77px;
         }
@@ -264,15 +264,57 @@
 
     </div>
 
-    <div class="item">
-        <div class="number">1</div>
-        <div class="head-photo"></div>
-        <div class="user-name">牛八童鞋</div>
-        <div class="user-introduction">［留住心中的爱与美景］</div>
-        <img src="fire.png" class="fire">
-        <div class="user-heat">92.2<span>万</span></div>
-    </div>
+    <!--<div class="item">-->
+    <!--<div class="number">1</div>-->
+    <!--<div class="head-photo"></div>-->
+    <!--<div class="user-name">牛八童鞋</div>-->
+    <!--<div class="user-introduction">［留住心中的爱与美景］</div>-->
+    <!--<img src="fire.png" class="fire">-->
+    <!--<div class="user-heat">92.2<span>万</span></div>-->
+    <!--</div>-->
 </div>
+<script>
+    function css(el, style) {
+        for (var key in style) {
+            el.style.setProperty(key, style[key], null);
+        }
+        return el;
+    }
+    function loopArray(arr, func) {
+        for (var i = 0; i < arr.length; i++) {
+            func(arr[i], i);
+        }
+    }
+    function $(tagName, arg, parent) {
+        var el = document.createElement(tagName);
+        for (var key in arg) {
+            switch (key) {
+                case "classList":
+                    if (Object.prototype.toString.call(arg[key]) == "[object String]") {
+                        el.classList.add(arg[key]);
+                    }
+                    else if (Object.prototype.toString.call(arg[key]) == "[object Array]") {
+                        loopArray(arg[key], function (klass) {
+                            el.classList.add(klass);
+                        });
+                    }
+                    break;
+                case "css":
+                    css(el, arg[key]);
+                    break;
+                case "children":
+                    loopArray(arg[key], function (child) {
+                        el.appendChild(child);
+                    });
+                    break;
+                default :
+                    el[key] = arg[key];
+            }
+        }
+        parent && parent.appendChild(el);
+        return el;
+    }
+</script>
 <script>
     var data = [
         {
@@ -281,6 +323,66 @@
                 "id": 232342,
                 "nickname": "得分佛",
                 "introduction": "芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323"
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323"
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323"
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "李大海",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323"
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323"
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
                 "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
                 "sex": 1
             },
@@ -384,6 +486,7 @@
             "Url": "http://www.ichue.cn/12321323"
         }
     ];
+    var content = document.querySelector(".content");
     var no1 = document.querySelector(".no-1"),
             no2 = document.querySelector(".no-2"),
             no3 = document.querySelector(".no-3");
@@ -447,16 +550,36 @@
 
     }
 
-    function loopArray(arr, func) {
-        for (var i = 0; i < arr.length; i++) {
-            func(arr[i], i);
-        }
-    }
-
     if (data.length > 3) {
-        loopArray(data.slice(3, data.length), function () {
+        loopArray(data.slice(3, data.length), function (d, i) {
+            var item = $("div", {
+                classList: "item"
+            }, content);
+            $("div", {
+                classList: "number",
+                textContent: i + 4
+            }, item);
+            $("div", {
+                classList: "head-photo",
+                css: {
+                    background: "url(" + d.User.headPhoto + ") center center",
+                    "background-size": "cover"
+                }
+            }, item);
+            $("div", {
+                classList: "user-name",
+                textContent: d.User.nickname
+            }, item);
+            $("div", {
+                classList: "user-introduction",
+                textContent: "[" + d.User.introduction + "]"
+            }, item);
+            $("div", {
+                classList: "user-heat",
+                innerHTML: d.HeatDegree + "<span>万</span>"
+            }, item);
 
-        })
+        });
     }
 
 </script>
