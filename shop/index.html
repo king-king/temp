@@ -170,8 +170,13 @@
             }
         }
 
-        .product-page {
-            animation: 0.3s slide-in ease-in-out both;
+        @keyframes slide-out {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(100%, 0, 0);
+            }
         }
 
         .mask {
@@ -237,9 +242,29 @@
                 location.hash = "id=" + d.id;
                 var w = (document.body.offsetWidth / 3 - 10);
                 var productPage = $("div", {
-                    classList: "product-page"
+                    classList: "product-page",
+                    css: {
+                        animation: "0.3s slide-in ease-in-out both"
+                    }
                 }, document.body);
                 var header = $("header", {}, productPage);
+                var back = $("div", {
+                    css: {
+                        width: "20px",
+                        height: "20px",
+                        "margin": "4px 10px",
+                        background: "url(back.png) center center",
+                        "background-size": "cover"
+                    }
+                }, header);
+                onTap(back, function () {
+                    css(productPage, {
+                        animation: "0.3s slide-out ease-in-out both"
+                    });
+                    setTimeout(function () {
+                        productPage.parentNode.removeChild(productPage);
+                    }, 300);
+                });
                 var imgWall = $("div", {classList: "img-wall"}, productPage);
                 var fullText = $("div", {classList: "full-text", textContent: d.text}, productPage);
                 loopArray(d.imgs, function (src) {
