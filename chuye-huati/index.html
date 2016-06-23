@@ -578,8 +578,11 @@
                 classList: "user-heat",
                 innerHTML: d.HeatDegree + "<span>万</span>"
             }, item);
-
         });
+    }
+
+    content.onscroll = function () {
+        console.log(content.scrollHeight, content.scrollTop);
     }
 
 </script>
