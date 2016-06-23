@@ -19,6 +19,11 @@
 
         html, body {
             margin: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-color: #D0D0CF;
             overflow: hidden;
             font-family: "Microsoft YaHei", sans-serif;
@@ -109,7 +114,7 @@
         }
 
         .loading-bg {
-            background-color: rgba(199, 85, 113, 255);
+            background-color: rgba(176, 224, 230, 255);
             animation: 7s up linear both;
         }
 
@@ -120,6 +125,63 @@
             100% {
                 transform: translate3d(0, 0, 0);
             }
+        }
+
+        .product-page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #F5F5F5;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 100;
+        }
+
+        .img-item {
+            display: inline-block;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin: 10px 0 0 10px;
+        }
+
+        .img-wall {
+            font-size: 0;
+            background: #fff;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+
+        .full-text {
+            color: rgba(0, 0, 0, .6);
+            padding: 10px;
+            font-size: 14px;
+            word-break: break-all;
+            line-height: 20px;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translate3d(100%, 0, 0);
+            }
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        .product-page {
+            animation: 0.3s slide-in ease-in-out both;
+        }
+
+        .mask {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 200;
         }
 
     </style>
@@ -144,7 +206,6 @@
         var leftList = document.querySelector(".left-list");
         var rightList = document.querySelector(".right-list");
         var loadingPage = document.querySelector(".loading-page");
-
         setTimeout(function () {
             document.body.removeChild(loadingPage);
         }, 7500);
@@ -174,9 +235,48 @@
             // 添加事件
             onTap(listItem, function () {
                 location.hash = "id=" + d.id;
-
+                var w = (document.body.offsetWidth / 3 - 10);
+                var productPage = $("div", {
+                    classList: "product-page"
+                }, document.body);
+                var header = $("header", {}, productPage);
+                var imgWall = $("div", {classList: "img-wall"}, productPage);
+                var fullText = $("div", {classList: "full-text", textContent: d.text}, productPage);
+                loopArray(d.imgs, function (src) {
+                    var image = $("div", {
+                        classList: "img-item",
+                        css: {
+                            "background-image": "url(" + src + ")",
+                            "background-position": "center center",
+                            "background-size": "cover",
+                            height: w + "px",
+                            width: w + "px"
+                        }
+                    }, imgWall);
+                    onTap(image, function () {
+                        var mask = $("div", {
+                            classList: "mask",
+                            children: [
+                                $("div", {
+                                    css: {
+                                        position: "absolute",
+                                        left: 0,
+                                        top: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        "background": "url(" + src + ") center center",
+                                        "background-size": "contain",
+                                        "background-repeat": "no-repeat"
+                                    }
+                                })
+                            ]
+                        }, document.body);
+                        onTap(mask, function () {
+                            mask.parentNode.removeChild(mask);
+                        })
+                    });
+                });
             });
-
 
 
         });

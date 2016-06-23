@@ -56,3 +56,44 @@ function onTap(el, func) {
         });
     });
 }
+
+var insertCSSRules = function () {
+    var style = document.createElement("style");
+    document.querySelector("head").appendChild(style);
+    return function (rules) {
+        for (var selector in rules) {
+            style.sheet.insertRule(selector + "" + JSON.stringify(rules[selector]).replace(/"/g, "").replace(/,/g, ";"), style.sheet.rules.length);
+            console.log(selector + "" + JSON.stringify(rules[selector]).replace(/"/g, "").replace(/,/g, ";"))
+        }
+    }
+}();
+
+function $(tagName, arg, parent) {
+    var el = document.createElement(tagName);
+    for (var key in arg) {
+        switch (key) {
+            case "classList":
+                if (Object.prototype.toString.call(arg[key]) == "[object String]") {
+                    el.classList.add(arg[key]);
+                }
+                else if (Object.prototype.toString.call(arg[key]) == "[object Array]") {
+                    loopArray(arg[key], function (klass) {
+                        el.classList.add(klass);
+                    });
+                }
+                break;
+            case "css":
+                css(el, arg[key]);
+                break;
+            case "children":
+                loopArray(arg[key], function (child) {
+                    el.appendChild(child);
+                });
+                break;
+            default :
+                el[key] = arg[key];
+        }
+    }
+    parent && parent.appendChild(el);
+    return el;
+}
