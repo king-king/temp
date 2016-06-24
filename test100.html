@@ -3,85 +3,46 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
     <style>
-        .product-page {
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: #F5F5F5;
-            overflow-y: auto;
-            overflow-x: hidden;
-        }
-
-        .img-item {
-            display: inline-block;
-            box-sizing: border-box;
-            overflow: hidden;
-            background: url("img/1.jpg") center center;
-            background-size: cover;
-            margin: 10px 0 0 10px;
-        }
-
-        .img-wall {
-            font-size: 0;
-            background: #fff;
-            padding-bottom: 10px;
-        }
-
-        .full-text {
-            color: rgba(0, 0, 0, .6);
-            padding: 10px;
-            font-size: 14px;
-            word-break: break-all;
-        }
-
-        @keyframes slide-in {
-            0% {
-                transform: translate3d(100%, 0, 0);
-            }
-            100% {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
-        .product-page {
-            animation: 0.8s slide-in ease-in-out both;
+        a {
+            font-size: 20px;
+            display: block;
+            margin: 20px;
         }
     </style>
 </head>
 <body>
-<div class="product-page">
-    <div class="img-wall">
-        <div class="img-item"></div>
-        <div class="img-item"></div>
-        <div class="img-item"></div>
-        <div class="img-item"></div>
-    </div>
-    <div class="full-text">不得不承认今年最火的时尚单品是ta,丑!拖!鞋!明星都在穿,...</div>
-</div>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
+<a href="http://www.baidu.com"> baidu</a>
 <script>
-    (function () {
-        var insertCSSRules = function () {
-            var style = document.createElement("style");
-            document.querySelector("head").appendChild(style);
-            return function (rules) {
-                for (var selector in rules) {
-                    style.sheet.insertRule(selector + "" + JSON.stringify(rules[selector]).replace(/"/g, "").replace(/,/g, ";"), style.sheet.rules.length);
-                    console.log(selector + "" + JSON.stringify(rules[selector]).replace(/"/g, "").replace(/,/g, ";"))
-                }
-            }
-        }();
-
-        var w = (document.body.offsetWidth / 3 - 10);
-        insertCSSRules({
-            ".img-item": {
-                height: w + "px",
-                width: w + "px"
-            }
-        });
-    })();
 </script>
 </body>
 </html>
