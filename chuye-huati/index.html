@@ -59,7 +59,7 @@
             },
             "WorkId": 12321323,
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -73,7 +73,7 @@
             },
             "WorkId": 12321323,
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -87,7 +87,7 @@
             },
             "WorkId": 12321323,
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 123,
@@ -101,7 +101,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -115,7 +115,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -129,7 +129,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -143,7 +143,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -157,7 +157,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -171,7 +171,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -185,7 +185,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -199,7 +199,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -213,7 +213,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -227,7 +227,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         },
         {
             "HeatDegree": 12132,
@@ -241,7 +241,7 @@
             "WorkId": 12321323,
             "Title": "献给消防部队战友的节日礼物 #旅图日记#",
             "Url": "http://www.baidu.com",
-            "skip": 12
+            "Skip": 12
         }
     ];
     var star1_src = "no-1-star.png";
@@ -255,7 +255,7 @@
     function css(el,style){for(var key in style){el.style.setProperty(key,style[key],null)}return el}function loopArray(arr,func){for(var i=0;i<arr.length;i++){func(arr[i],i)}}function $(tagName,arg,parent){var el=document.createElement(tagName);for(var key in arg){switch(key){case"classList":if(Object.prototype.toString.call(arg[key])=="[object String]"){el.classList.add(arg[key])}else{if(Object.prototype.toString.call(arg[key])=="[object Array]"){loopArray(arg[key],function(klass){el.classList.add(klass)})}}break;case"css":css(el,arg[key]);break;case"children":loopArray(arg[key],function(child){el.appendChild(child)});break;default:el[key]=arg[key]}}parent&&parent.appendChild(el);return el}
 </script>
 <script>
-    var Skip;var max_length=20;var content=document.querySelector(".content");var no1=document.querySelector(".no-1"),no2=document.querySelector(".no-2"),no3=document.querySelector(".no-3");var w=document.querySelector(".top-3").offsetWidth;no1.style.width=w/612*224+"px";no1.style.left=no3.style.width=w/612*(612-224)/2+"px";no2.style.width=no3.style.width=w/612*(612-224)/2+"px";no3.style.left=w/612*224+w/612*(612-224)/2+"px";function processIntroduction(el,text,Url){if(el.offsetHeight==14){el.style.textAlign="center"}else{el.style.textAlign="left";if(el.offsetHeight>28){for(var i=1;i<text.length;i++){el.innerHTML=text.slice(0,i)+"…";if(el.offsetHeight>28){break}}el.innerHTML="<a href='"+Url+"'>"+text.slice(0,i-1)+"...</a>"}}}function processTop3(wrapper,data,star_src){Skip=data.skip;wrapper.classList.remove("hide");var head=wrapper.querySelector(".top3-head-photo");head.querySelector("img").src=star_src;head.style.background="url("+data.User.headPhoto+") center center";head.style.backgroundSize="cover";head.style.backgroundSize="cover";wrapper.querySelector(".name").textContent=data.User.nickname;wrapper.querySelector(".heat-degree").textContent=data.HeatDegree<10000?data.HeatDegree:((data.HeatDegree/10000).toFixed(1)+"万");wrapper.querySelector(".introduction").innerHTML="<a href='"+data.Url+"'>"+data.Title+"</a>";processIntroduction(wrapper.querySelector(".introduction"),data.Title,data.Url)}data[0]&&processTop3(no1,data[0],star1_src);data[1]&&processTop3(no2,data[1],star2_src);data[2]&&processTop3(no3,data[2],star3_src);var curNumber=4;function processItem(d){Skip=d.skip;var item=$("div",{classList:"item"},content);$("img",{classList:"fire",src:fire_src},item);$("div",{classList:"number",textContent:curNumber},item);$("div",{classList:"head-photo",css:{background:"url("+d.User.headPhoto+") center center","background-size":"cover"}},item);$("div",{classList:"user-name",textContent:d.User.nickname},item);var intro=$("div",{classList:"user-introduction",innerHTML:"<a href='"+d.Url+"'>["+d.Title+"]</a>"},item);if(intro.offsetHeight>14){for(var n=1;n<d.Title.length;n++){intro.innerHTML="["+d.Title.slice(0,n)+"... ]";if(intro.offsetHeight>14){break}}intro.innerHTML="<a href='"+d.Url+"'>["+d.Title.slice(0,n-1)+"...]</a>"}$("div",{classList:"user-heat",innerHTML:d.HeatDegree<10000?d.HeatDegree:((d.HeatDegree/10000).toFixed(1)+"<span>万</span>")},item);curNumber++}if(data.length>3){loopArray(data.slice(3,data.length),function(d,i){processItem(d)})}var isLoading=false;function ajax(onLoad){var ax=new XMLHttpRequest();ax.open("GET",getDataAPI+Skip,true);ax.send();ax.onreadystatechange=function(){if(ax.readyState==4){var data=JSON.parse(ax.responseText);if(data.code==200){loopArray(data.data,function(d){processItem(d)})}onLoad()}}}if(data.length==max_length){content.onscroll=function(){if(!isLoading&&content.scrollHeight-content.scrollTop-content.clientHeight<70){isLoading=true;ajax(function(){isLoading=false})}}}
+    var Skip;var max_length=20;var content=document.querySelector(".content");var no1=document.querySelector(".no-1"),no2=document.querySelector(".no-2"),no3=document.querySelector(".no-3");var w=document.querySelector(".top-3").offsetWidth;no1.style.width=w/612*224+"px";no1.style.left=no3.style.width=w/612*(612-224)/2+"px";no2.style.width=no3.style.width=w/612*(612-224)/2+"px";no3.style.left=w/612*224+w/612*(612-224)/2+"px";function processIntroduction(el,text,Url){if(el.offsetHeight==14){el.style.textAlign="center"}else{el.style.textAlign="left";if(el.offsetHeight>28){for(var i=1;i<text.length;i++){el.innerHTML=text.slice(0,i)+"…";if(el.offsetHeight>28){break}}el.innerHTML="<a href='"+Url+"'>"+text.slice(0,i-1)+"...</a>"}}}function processTop3(wrapper,data,star_src){Skip=data.Skip;wrapper.classList.remove("hide");var head=wrapper.querySelector(".top3-head-photo");head.querySelector("img").src=star_src;head.style.background="url("+data.User.headPhoto+") center center";head.style.backgroundSize="cover";head.style.backgroundSize="cover";wrapper.querySelector(".name").textContent=data.User.nickname;wrapper.querySelector(".heat-degree").textContent=data.HeatDegree<10000?data.HeatDegree:((data.HeatDegree/10000).toFixed(1)+"万");wrapper.querySelector(".introduction").innerHTML="<a href='"+data.Url+"'>"+data.Title+"</a>";processIntroduction(wrapper.querySelector(".introduction"),data.Title,data.Url)}data[0]&&processTop3(no1,data[0],star1_src);data[1]&&processTop3(no2,data[1],star2_src);data[2]&&processTop3(no3,data[2],star3_src);var curNumber=4;function processItem(d){Skip=d.skip;var item=$("div",{classList:"item"},content);$("img",{classList:"fire",src:fire_src},item);$("div",{classList:"number",textContent:curNumber},item);$("div",{classList:"head-photo",css:{background:"url("+d.User.headPhoto+") center center","background-size":"cover"}},item);$("div",{classList:"user-name",textContent:d.User.nickname},item);var intro=$("div",{classList:"user-introduction",innerHTML:"<a href='"+d.Url+"'>["+d.Title+"]</a>"},item);if(intro.offsetHeight>14){for(var n=1;n<d.Title.length;n++){intro.innerHTML="["+d.Title.slice(0,n)+"... ]";if(intro.offsetHeight>14){break}}intro.innerHTML="<a href='"+d.Url+"'>["+d.Title.slice(0,n-1)+"...]</a>"}$("div",{classList:"user-heat",innerHTML:d.HeatDegree<10000?d.HeatDegree:((d.HeatDegree/10000).toFixed(1)+"<span>万</span>")},item);curNumber++}if(data.length>3){loopArray(data.slice(3,data.length),function(d,i){processItem(d)})}var isLoading=false;function ajax(onLoad){var ax=new XMLHttpRequest();ax.open("GET",getDataAPI+Skip,true);ax.send();ax.onreadystatechange=function(){if(ax.readyState==4){var data=JSON.parse(ax.responseText);if(data.code==200){loopArray(data.data,function(d){processItem(d)})}onLoad()}}}if(data.length==max_length){content.onscroll=function(){if(!isLoading&&content.scrollHeight-content.scrollTop-content.clientHeight<70){isLoading=true;ajax(function(){isLoading=false})}}}
 </script>
 </body>
 </html>
