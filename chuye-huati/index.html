@@ -171,7 +171,7 @@
             font-size: 12px;
             width: 24px;
             position: absolute;
-            top: 16px;
+            top: 19px;
             left: 0;
         }
 
@@ -237,7 +237,7 @@
     <div class="top-3">
         <div class="no-2 hide ">
             <div class="img-wrapper">
-                <div class="head-photo-2"><img src="no-2-star.png" class="star-2"></div>
+                <div class="head-photo-2 top3-head-photo"><img class="star-2"></div>
             </div>
             <div class="name"></div>
             <div class="introduction"></div>
@@ -245,7 +245,7 @@
         </div>
         <div class="no-1 hide ">
             <div class="img-wrapper">
-                <div class="head-photo-1"><img src="no-1-star.png" class="star-1"></div>
+                <div class="head-photo-1 top3-head-photo"><img class="star-1"></div>
             </div>
             <div class="name"></div>
             <div class="introduction"></div>
@@ -254,7 +254,7 @@
         </div>
         <div class="no-3  hide">
             <div class="img-wrapper">
-                <div class="head-photo-3"><img src="no-3-star.png" class="star-3"></div>
+                <div class="head-photo-3 top3-head-photo"><img class="star-3"></div>
             </div>
             <div class="name"></div>
             <div class="introduction"></div>
@@ -263,16 +263,198 @@
         </div>
 
     </div>
-
-    <!--<div class="item">-->
-    <!--<div class="number">1</div>-->
-    <!--<div class="head-photo"></div>-->
-    <!--<div class="user-name">牛八童鞋</div>-->
-    <!--<div class="user-introduction">［留住心中的爱与美景］</div>-->
-    <!--<img src="fire.png" class="fire">-->
-    <!--<div class="user-heat">92.2<span>万</span></div>-->
-    <!--</div>-->
 </div>
+<script>
+    // todo 将数据换成真实际的即可
+    var data = [
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "李大海",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        },
+        {
+            "HeatDegree": 12132,
+            "User": {
+                "id": 232342,
+                "nickname": "得分佛",
+                "introduction": "ddfsdfsdf",
+                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
+                "sex": 1
+            },
+            "WorkId": 12321323,
+            "Url": "http://www.ichue.cn/12321323",
+            "skip": 12
+        }
+    ];
+    var star1_src = "no-1-star.png";
+    var star2_src = "no-2-star.png";
+    var star3_src = "no-3-star.png";
+    var fire_src = "fire.png";
+</script>
 <script>
     function css(el, style) {
         for (var key in style) {
@@ -316,176 +498,7 @@
     }
 </script>
 <script>
-    var data = [
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "李大海",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        },
-        {
-            "HeatDegree": 12132,
-            "User": {
-                "id": 232342,
-                "nickname": "得分佛",
-                "introduction": "ddfsdfsdf",
-                "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
-                "sex": 1
-            },
-            "WorkId": 12321323,
-            "Url": "http://www.ichue.cn/12321323"
-        }
-    ];
+    var Skip;
     var content = document.querySelector(".content");
     var no1 = document.querySelector(".no-1"),
             no2 = document.querySelector(".no-2"),
@@ -513,75 +526,76 @@
         }
     }
 
-    if (data[0]) {
-        no1.classList.remove("hide");
-        var head1 = no1.querySelector(".head-photo-1");
-        head1.style.background = "url(" + data[0].User.headPhoto + ") center center";
-        head1.style.backgroundSize = "cover";
-        head1.style.backgroundSize = "cover";
-        no1.querySelector(".name").textContent = data[0].User.nickname;
-        no1.querySelector(".introduction").textContent = data[0].User.introduction;
-        no1.querySelector(".heat-degree").textContent = (data[0].HeatDegree / 10000).toFixed(3) + "万";
-
-        processIntroduction(no1.querySelector(".introduction"), data[0].User.introduction);
+    function processTop3(wrapper, data, star_src) {
+        Skip = data.skip;
+        wrapper.classList.remove("hide");
+        var head = wrapper.querySelector(".top3-head-photo");
+        head.querySelector("img").src = star_src;
+        head.style.background = "url(" + data.User.headPhoto + ") center center";
+        head.style.backgroundSize = "cover";
+        head.style.backgroundSize = "cover";
+        wrapper.querySelector(".name").textContent = data.User.nickname;
+        wrapper.querySelector(".introduction").textContent = data.User.introduction;
+        wrapper.querySelector(".heat-degree").textContent = (data.HeatDegree / 10000).toFixed(3) + "万";
+        processIntroduction(wrapper.querySelector(".introduction"), data.User.introduction);
     }
-    if (data[1]) {
-        no2.classList.remove("hide");
-        var head2 = no2.querySelector(".head-photo-2");
-        head2.style.background = "url(" + data[1].User.headPhoto + ") center center";
-        head2.style.backgroundSize = "cover";
-        no2.querySelector(".name").textContent = data[1].User.nickname;
-        no2.querySelector(".introduction").textContent = data[1].User.introduction;
-        no2.querySelector(".heat-degree").textContent = (data[1].HeatDegree / 10000).toFixed(3) + "万";
 
-        processIntroduction(no2.querySelector(".introduction"), data[1].User.introduction);
+    data[0] && processTop3(no1, data[0], star1_src);
+    data[1] && processTop3(no2, data[1], star2_src);
+    data[2] && processTop3(no3, data[2], star3_src);
 
-    }
-    if (data[2]) {
-        no3.classList.remove("hide");
-        var head3 = no3.querySelector(".head-photo-3");
-        head3.style.background = "url(" + data[2].User.headPhoto + ") center center";
-        head3.style.backgroundSize = "cover";
-        no3.querySelector(".name").textContent = data[2].User.nickname;
-        no3.querySelector(".introduction").textContent = data[2].User.introduction;
-        no3.querySelector(".heat-degree").textContent = (data[2].HeatDegree / 10000).toFixed(3) + "万";
-
-        processIntroduction(no3.querySelector(".introduction"), data[2].User.introduction);
-
+    var curNumber = 4;
+    function processItem(d) {
+        Skip = d.skip;
+        var item = $("div", {
+            classList: "item"
+        }, content);
+        $("img", {
+            classList: "fire",
+            src: fire_src
+        }, item);
+        $("div", {
+            classList: "number",
+            textContent: curNumber
+        }, item);
+        $("div", {
+            classList: "head-photo",
+            css: {
+                background: "url(" + d.User.headPhoto + ") center center",
+                "background-size": "cover"
+            }
+        }, item);
+        $("div", {
+            classList: "user-name",
+            textContent: d.User.nickname
+        }, item);
+        $("div", {
+            classList: "user-introduction",
+            textContent: "[" + d.User.introduction + "]"
+        }, item);
+        $("div", {
+            classList: "user-heat",
+            innerHTML: d.HeatDegree + "<span>万</span>"
+        }, item);
+        curNumber++;
     }
 
     if (data.length > 3) {
         loopArray(data.slice(3, data.length), function (d, i) {
-            var item = $("div", {
-                classList: "item"
-            }, content);
-            $("div", {
-                classList: "number",
-                textContent: i + 4
-            }, item);
-            $("div", {
-                classList: "head-photo",
-                css: {
-                    background: "url(" + d.User.headPhoto + ") center center",
-                    "background-size": "cover"
-                }
-            }, item);
-            $("div", {
-                classList: "user-name",
-                textContent: d.User.nickname
-            }, item);
-            $("div", {
-                classList: "user-introduction",
-                textContent: "[" + d.User.introduction + "]"
-            }, item);
-            $("div", {
-                classList: "user-heat",
-                innerHTML: d.HeatDegree + "<span>万</span>"
-            }, item);
+            processItem(d);
         });
     }
 
+    var isLoading = false;
+    function ajax(onload) {
+        var ax = new XMLHttpRequest();
+
+    }
+
     content.onscroll = function () {
+        if (!isLoading && content.scrollHeight - content.scrollTop - content.clientHeight < 39) {
+
+        }
         console.log(content.scrollHeight, content.scrollTop);
     }
 
