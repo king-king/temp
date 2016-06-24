@@ -10,225 +10,7 @@
     <meta name="browsermode" content="application">
     <title></title>
     <style>
-        html, body {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            margin: 0;
-            padding: 0;
-            background: #f0eff7;
-            font-family: "微软雅黑", sans-serif;
-            overflow: hidden;
-        }
-
-        .content {
-            position: absolute;
-            top: 7px;
-            left: 7px;
-            right: 7px;
-            bottom: 0;
-            background-color: white;
-            border-radius: 3px;
-            box-shadow: 0 0 4px #ccc;
-            overflow-x: hidden;
-            overflow-y: scroll;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .top-3 {
-            height: 193px;
-            border-bottom: 1px solid #dcdcdc;
-            box-sizing: border-box;
-            margin: 0 1px;
-            font-size: 0;
-            position: relative;
-        }
-
-        .no-2, .no-1, .no-3 {
-            display: inline-block;
-            height: 100%;
-            box-sizing: border-box;
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .hide {
-            visibility: hidden !important;
-        }
-
-        .img-wrapper {
-            height: 100px;
-            position: relative;
-        }
-
-        .star-1, .star-2, .star-3 {
-            position: absolute;
-            bottom: 0;
-            right: 0;
-        }
-
-        .star-1 {
-            height: 20px;
-        }
-
-        .star-2 {
-            height: 19px;
-        }
-
-        .star-3 {
-            height: 18px;
-        }
-
-        .head-photo-1 {
-            width: 84px;
-            height: 84px;
-            border-radius: 84px;
-            border: 2px solid #FF5300;
-            box-sizing: border-box;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin-left: -42px;
-        }
-
-        .head-photo-2 {
-            width: 68px;
-            height: 68px;
-            border-radius: 68px;
-            border: 2px solid #FF8F00;
-            box-sizing: border-box;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin-left: -34px;
-        }
-
-        .head-photo-3 {
-            width: 60px;
-            height: 60px;
-            border-radius: 60px;
-            border: 2px solid #FFBF00;
-            box-sizing: border-box;
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            margin-left: -30px;
-        }
-
-        .top-3 .name {
-            color: #FF4B77;
-            font-size: 9px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            line-height: 13px;
-            height: 13px;
-            margin-top: 5px;
-            padding: 0 11px;
-            text-align: center;
-            overflow: hidden;
-        }
-
-        .top-3 .introduction {
-            word-break: break-all;
-            display: inline-block;
-            color: #1c3041;
-            font-size: 10px;
-            line-height: 14px;
-            padding: 0 11px;
-            margin-top: 9px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .top-3 .heat-degree {
-            font-size: 17px;
-            text-align: center;
-            height: 22px;
-            line-height: 22px;
-            color: #FD2353;
-            position: absolute;
-            bottom: 11px;
-            left: 11px;
-            right: 11px;
-        }
-
-        .item {
-            height: 50px;
-            box-sizing: border-box;
-            border-bottom: 1px solid #dcdcdc;
-            margin: 0 1px;
-            position: relative;
-        }
-
-        .number {
-            height: 15px;
-            line-height: 15px;
-            text-align: right;
-            color: #ADADAD;
-            font-size: 12px;
-            width: 24px;
-            position: absolute;
-            top: 19px;
-            left: 0;
-        }
-
-        .head-photo {
-            width: 26px;
-            height: 26px;
-            border-radius: 26px;
-            position: absolute;
-            top: 12px;
-            left: 33px;
-        }
-
-        .user-name {
-            height: 11px;
-            line-height: 11px;
-            font-size: 10px;
-            color: #FF4B77;
-            position: absolute;
-            left: 65px;
-            top: 12px;
-            right: 77px;
-        }
-
-        .user-introduction {
-            line-height: 14px;
-            color: #1c3041;
-            font-size: 10px;
-            position: absolute;
-            left: 65px;
-            top: 24px;
-            right: 77px;
-        }
-
-        .fire {
-            height: 15px;
-            position: absolute;
-            top: 15px;
-            right: 50px;
-        }
-
-        .user-heat {
-            position: absolute;
-            width: 47px;
-            top: 16px;
-            right: 0;
-            height: 15px;
-            line-height: 15px;
-            font-size: 12px;
-            color: #989898;
-        }
-
-        .user-heat span {
-            font-size: 8px;
-            position: relative;
-            top: -1px;
-            left: 1px;
-        }
+        body,html{position:absolute;top:0;left:0;right:0;bottom:0;margin:0;padding:0;background:#f0eff7;font-family:"微软雅黑",sans-serif;overflow:hidden}.content{position:absolute;top:7px;left:7px;right:7px;bottom:0;background-color:#fff;border-radius:3px;box-shadow:0 0 4px #ccc;overflow-x:hidden;overflow-y:scroll;-webkit-overflow-scrolling:touch}.top-3{height:193px;border-bottom:1px solid #dcdcdc;box-sizing:border-box;margin:0 1px;font-size:0;position:relative}.no-1,.no-2,.no-3{display:inline-block;height:100%;box-sizing:border-box;position:absolute;top:0;left:0}.hide{visibility:hidden!important}.img-wrapper{height:100px;position:relative}.star-1,.star-2,.star-3{position:absolute;bottom:0;right:0}.star-1{height:20px}.star-2{height:19px}.star-3{height:18px}.head-photo-1{width:84px;height:84px;border-radius:84px;border:2px solid #FF5300;box-sizing:border-box;position:absolute;bottom:0;left:50%;margin-left:-42px}.head-photo-2{width:68px;height:68px;border-radius:68px;border:2px solid #FF8F00;box-sizing:border-box;position:absolute;bottom:0;left:50%;margin-left:-34px}.head-photo-3{width:60px;height:60px;border-radius:60px;border:2px solid #FFBF00;box-sizing:border-box;position:absolute;bottom:0;left:50%;margin-left:-30px}.top-3 .name{color:#FF4B77;font-size:9px;white-space:nowrap;text-overflow:ellipsis;line-height:13px;height:13px;margin-top:5px;padding:0 11px;text-align:center;overflow:hidden}.top-3 .introduction{word-break:break-all;display:inline-block;color:#1c3041;font-size:10px;line-height:14px;padding:0 11px;margin-top:9px;width:100%;box-sizing:border-box}.top-3 .heat-degree{font-size:17px;text-align:center;height:22px;line-height:22px;color:#FD2353;position:absolute;bottom:11px;left:11px;right:11px}.item{height:50px;box-sizing:border-box;border-bottom:1px solid #dcdcdc;margin:0 1px;position:relative}.number{height:15px;line-height:15px;text-align:right;color:#ADADAD;font-size:12px;width:24px;position:absolute;top:19px;left:0}.head-photo{width:26px;height:26px;border-radius:26px;position:absolute;top:12px;left:33px}.user-name{height:11px;line-height:11px;font-size:10px;color:#FF4B77;position:absolute;left:65px;top:12px;right:77px}.user-introduction{line-height:14px;color:#1c3041;font-size:10px;position:absolute;left:65px;top:24px;right:77px}.fire{height:15px;position:absolute;top:15px;right:50px}.user-heat{position:absolute;width:47px;top:16px;right:0;height:15px;line-height:15px;font-size:12px;color:#989898}.user-heat span{font-size:8px;position:relative;top:-1px;left:1px}
     </style>
 </head>
 <body>
@@ -271,7 +53,7 @@
             "User": {
                 "id": 232342,
                 "nickname": "嗒也",
-                "introduction": "芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节",
+                "introduction": "芒种-孩子们梦开始的季节芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节",
                 "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
                 "sex": 1
             },
@@ -323,7 +105,7 @@
             "User": {
                 "id": 232342,
                 "nickname": "六嗨",
-                "introduction": "ddfsdfsdf",
+                "introduction": "芒种-孩子们梦开始的季节芒种-孩子们梦开始的季节。芒种-孩子们梦开始的季节",
                 "headPhoto": "http://wx.qlogo.cn/mmopen/FV9nic9Akne8x3HhSpVwOptLVunxUqwz3MzlWCGz0zk081hZmYqSXVicrOF6Dcw6atMCbJV8UKicraMjTZzicp6YVcvxLtqwM5md/132",
                 "sex": 1
             },
@@ -457,46 +239,7 @@
 
 </script>
 <script>
-    function css(el, style) {
-        for (var key in style) {
-            el.style.setProperty(key, style[key], null);
-        }
-        return el;
-    }
-    function loopArray(arr, func) {
-        for (var i = 0; i < arr.length; i++) {
-            func(arr[i], i);
-        }
-    }
-    function $(tagName, arg, parent) {
-        var el = document.createElement(tagName);
-        for (var key in arg) {
-            switch (key) {
-                case "classList":
-                    if (Object.prototype.toString.call(arg[key]) == "[object String]") {
-                        el.classList.add(arg[key]);
-                    }
-                    else if (Object.prototype.toString.call(arg[key]) == "[object Array]") {
-                        loopArray(arg[key], function (klass) {
-                            el.classList.add(klass);
-                        });
-                    }
-                    break;
-                case "css":
-                    css(el, arg[key]);
-                    break;
-                case "children":
-                    loopArray(arg[key], function (child) {
-                        el.appendChild(child);
-                    });
-                    break;
-                default :
-                    el[key] = arg[key];
-            }
-        }
-        parent && parent.appendChild(el);
-        return el;
-    }
+    function css(el,style){for(var key in style){el.style.setProperty(key,style[key],null)}return el}function loopArray(arr,func){for(var i=0;i<arr.length;i++){func(arr[i],i)}}function $(tagName,arg,parent){var el=document.createElement(tagName);for(var key in arg){switch(key){case"classList":if(Object.prototype.toString.call(arg[key])=="[object String]"){el.classList.add(arg[key])}else{if(Object.prototype.toString.call(arg[key])=="[object Array]"){loopArray(arg[key],function(klass){el.classList.add(klass)})}}break;case"css":css(el,arg[key]);break;case"children":loopArray(arg[key],function(child){el.appendChild(child)});break;default:el[key]=arg[key]}}parent&&parent.appendChild(el);return el};
 </script>
 <script>
     var Skip;
