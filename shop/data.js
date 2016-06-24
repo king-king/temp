@@ -4,7 +4,7 @@
 var data = [
     {
         id: 1,
-        cover: "image/s1/IMG_3078.JPG",
+        cover: "image/s1/IMG_3086.JPG",
         text: "有朋友问到了,于是发一波吧,KENZO平底鞋,身边很多妹子在穿,七折!!这么给力的折扣不常有,想要的抓紧按图来问尺码。",
         imgs: [
             "image/s1/IMG_3078.JPG",
@@ -20,7 +20,7 @@ var data = [
     },
     {
         id: 2,
-        cover: "image/s2/IMG_3087.JPG",
+        cover: "image/s2/IMG_3088.JPG",
         text: "adidas nmd纯白,原价1899,现价只要1599美国直邮。所有号码都有哦!数量有限!这个价格还犹豫什么?",
         imgs: [
             "image/s2/IMG_3087.JPG",
@@ -43,7 +43,7 @@ var data = [
     },
     {
         id: 4,
-        cover: "image/s4/IMG_3096.JPG",
+        cover: "image/s4/IMG_3098.JPG",
         text: "号外!!Longchamp龙骧包,又称\"饺子包\"。由高级帆布或尼龙制成,重量轻容量大,并且耐磨防水,上班族人手一个。多买更有叠加优惠,请私信米果询价。",
         imgs: [
             "image/s4/IMG_3096.JPG",
@@ -59,7 +59,7 @@ var data = [
     },
     {
         id: 5,
-        cover: "image/s5/IMG_3105.JPG",
+        cover: "image/s5/IMG_3109.JPG",
         text: "不得不承认今年最火的时尚单品是ta,丑!拖!鞋!明星都在穿,不用问为什么,来一双就对了。",
         imgs: [
             "image/s5/IMG_3105.JPG",
@@ -74,7 +74,7 @@ var data = [
     },
     {
         id: 6,
-        cover: "image/s6/IMG_3113.JPG",
+        cover: "image/s6/IMG_3114.JPG",
         text: "乔12黑红病倒,42号今天发出,乔丹在97年总决赛在第五场穿着乔12黑红拿下38分,并带领公牛战胜爵士。当时MJ称身体不适像是得了感冒,此鞋遂命名为flu-game。今年复刻" +
         "后热度持续上升。感兴趣的朋友们随时提供您需要的鞋码,我们会在第一时间为您寄出。",
         imgs: [
@@ -88,7 +88,7 @@ var data = [
     },
     {
         id: 7,
-        cover: "image/s7/IMG_3119.JPG",
+        cover: "image/s7/IMG_3120.JPG",
         text: "乔6 胭脂红,有意者请私信询价",
         imgs: [
             "image/s7/IMG_3119.JPG",
@@ -100,7 +100,7 @@ var data = [
     },
     {
         id: 8,
-        cover: "image/s8/IMG_3124.JPG",
+        cover: "image/s8/IMG_3128.JPG",
         text: "NB574 夏季新款上市",
         imgs: [
             "image/s8/IMG_3124.JPG",
@@ -123,7 +123,7 @@ var data = [
     },
     {
         id: 10,
-        cover: "image/s10/IMG_3133.JPG",
+        cover: "image/s10/IMG_3140.JPG",
         text: "Adidas Superstar[阿迪达斯金标]三色如图,有意购买的小伙伴请转发本条至朋友圈,凭截图可立减20哦",
         imgs: [
             "image/s10/IMG_3133.JPG",
@@ -138,7 +138,7 @@ var data = [
     },
     {
         id: 11,
-        cover: "image/s11/IMG_3143.JPG",
+        cover: "image/s11/IMG_3144.JPG",
         text: "Adidas Stan Smith 街拍必备,明星都在穿[阿迪达斯 绿尾]739 尺码不限",
         imgs: [
             "image/s11/IMG_3143.JPG",
@@ -149,7 +149,7 @@ var data = [
     },
     {
         id: 12,
-        cover: "image/s12/IMG_3147.JPG",
+        cover: "image/s12/IMG_3149.JPG",
         text: "Adidas NMD R1 蓝 六月最新款!!46 现货 1399,其他颜色及号码欢迎询价",
         imgs: [
             "image/s12/IMG_3147.JPG",
@@ -160,7 +160,7 @@ var data = [
     },
     {
         id: 13,
-        cover: "image/s13/IMG_3151.JPG",
+        cover: "image/s13/IMG_3152.JPG",
         text: "Air Jordan 11 Low 蓝色Navy[乔11 低帮 海蓝]六月发售 男款41号 现货 1899",
         imgs: [
             "image/s13/IMG_3151.JPG",
