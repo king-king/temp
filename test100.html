@@ -52,16 +52,17 @@
 </head>
 <body>
 <div class="bdsharebuttonbox" data-tag="share_1">
-    <a class=" " data-cmd="mshare"></a>
-    <a class=" " data-cmd="qzone" href="#"></a>
-    <a class=" " data-cmd="tsina"></a>
-    <a class=" " data-cmd="baidu"></a>
-    <a class=" " data-cmd="renren"></a>
-    <a class=" " data-cmd="tqq"></a>
-    <a class=" " data-cmd="more">更多</a>
-    <a class=" " data-cmd="count"></a>
 </div>
 <script>
+
+    var a = document.createElement("a");
+    a.setAttribute("data-cmd", "mshare");
+    document.querySelector(".bdsharebuttonbox").appendChild(a);
+
+    var a1 = document.createElement("a");
+    a1.setAttribute("data-cmd", "qzone");
+    document.querySelector(".bdsharebuttonbox").appendChild(a1);
+
     window._bd_share_config = {
         common: {
             bdText: '自定义分享内容',
@@ -88,7 +89,10 @@
             "bdselectMiniList": ['qzone', 'tqq', 'kaixin001', 'bdxc', 'tqf']
         }]
     };
+
     with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
+
+
 </script>
 
 </body>
