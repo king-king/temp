@@ -12,19 +12,48 @@
             margin: 20px;
         }
 
-        img {
+        .plane {
+            width: 67px;
+            height: 40px;
             position: absolute;
-            top: 50%;
+            top: 500px;
             left: 50%;
-            transform: skewX(10deg);
+            animation: fly 3s linear both;
         }
+
+        img {
+            height: 100%;
+            animation: rotate 1.5s linear 0.5s both;
+        }
+
+        @keyframes fly {
+            0% {
+                transform-origin: 50% -600px;
+                transform: rotate3d(0, 0, 1, -30deg);
+            }
+            100% {
+                transform-origin: 50% -600px;
+                transform: rotate3d(0, 0, 1, 30deg);
+            }
+        }
+
+        @keyframes rotate {
+            0% {
+                transform-origin: 50% -30px;
+                transform: rotate3d(0, 0, 1, 0deg);
+            }
+            100% {
+                transform-origin: 50% -30px;
+                transform: rotate3d(0, 0, 1, 360deg);
+            }
+        }
+
     </style>
 </head>
-
 <body>
-
-<img src="img/football.png">
-
+<div class="plane">
+    <img src="img/fly.png">
+</div>
 <script>
 </script>
 
