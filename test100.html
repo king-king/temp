@@ -6,13 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <style>
-        #copy {
+        .copy {
             position: absolute;
             top: 50%;
             left: 50%;
-        }
-
-        #copy, .over {
             width: 100px;
             height: 40px;
             background-color: black;
@@ -30,26 +27,16 @@
     </style>
 </head>
 <body>
-<div id="copy">
-    <div class="over"></div>
-</div>
-<div id="copy-button"></div>
-<script src="ZeroClipboard.min.js"></script>
+<div class="copy"></div>
 <script>
-
-    // main.js
-    var client = new ZeroClipboard(document.getElementById("copy-button"));
-
-    client.on("ready", function (readyEvent) {
-        // alert( "ZeroClipboard SWF is ready!" );
-
-        client.on("aftercopy", function (event) {
-            // `this` === `client`
-            // `event.target` === the element that was clicked
-            event.target.style.display = "none";
-            alert("Copied text to clipboard: " + event.data["text/plain"]);
-        });
-    });
+    var t = document.createElement("textarea");
+    t.value = "123";
+    document.body.appendChild(t);
+    t.style.opacity = 0;
+    document.querySelector(".copy").onclick = function () {
+        t.select();
+        document.execCommand("Copy");
+    }
 
 </script>
 
