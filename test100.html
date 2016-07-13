@@ -6,82 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
 
     <style>
-        a {
-            font-size: 20px;
-            display: block;
-            margin: 20px;
-        }
-
-        .plane {
-            width: 67px;
-            height: 40px;
+        #copy {
             position: absolute;
-            top: 500px;
+            top: 50%;
             left: 50%;
-            animation: fly 3s linear both;
         }
 
-        img {
-            height: 100%;
-            animation: rotate 1.5s linear 0.5s both;
+        #copy, .over {
+            width: 100px;
+            height: 40px;
+            background-color: black;
         }
 
-        @keyframes fly {
-            0% {
-                transform-origin: 50% -600px;
-                transform: rotate3d(0, 0, 1, -30deg);
-            }
-            100% {
-                transform-origin: 50% -600px;
-                transform: rotate3d(0, 0, 1, 30deg);
-            }
+        .over {
+            float: left;
         }
 
-        @keyframes rotate {
-            0% {
-                transform-origin: 50% -30px;
-                transform: rotate3d(0, 0, 1, 0deg);
-            }
-            100% {
-                transform-origin: 50% -30px;
-                transform: rotate3d(0, 0, 1, 360deg);
-            }
+        .btn {
+            width: 200px;
+            height: 40px;
+            background: red;
+            position: absolute;
+            top: 60%;
+            left: 50%;
         }
-
     </style>
 </head>
 <body>
-<div class="bdsharebuttonbox" data-tag="share_1">
+<div id="copy">
+    <div class="over"></div>
 </div>
+<div class="btn"></div>
+<script src="ZeroClipboard.min.js"></script>
 <script>
 
-    var a = document.createElement("a");
-    a.setAttribute("data-cmd", "mshare");
-    document.querySelector(".bdsharebuttonbox").appendChild(a);
+    var clip = new ZeroClipboard(document.querySelector("#copy"));
+    ZeroClipboard.on("copy", function (e) {
+        clip.setText("你好");
+        console.log("copy")
+    });
 
-    var a1 = document.createElement("a");
-    a1.setAttribute("data-cmd", "qzone");
-    document.querySelector(".bdsharebuttonbox").appendChild(a1);
-
-    var a2 = document.createElement("a");
-    a2.setAttribute("data-cmd", "more");
-    document.querySelector(".bdsharebuttonbox").appendChild(a2);
-
-    window._bd_share_config = {
-        common: {
-            bdText: '自定义分享内容',
-            bdDesc: '自定义分享摘要',
-            bdUrl: '自定义分享url地址',
-            bdPic: '自定义分享图片'
-        },
-        share: [],
-        slide: [],
-        image: [],
-        selectShare: []
-    };
-
-    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion=' + ~(-new Date() / 36e5)];
-
+    document.querySelector(".btn").addEventListener("mousedown", function () {
+        console.log("oooo")
+    }, true);
 
 </script>
 
