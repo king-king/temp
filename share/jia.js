@@ -318,7 +318,7 @@ var JIATHIS_CONFIGS = {
                 if (typeof($CKE.containers) == "object") {
                     if (!_CF) {
                         _CF = creElm({
-                            href: JIATHIS_CONFIGS.codehost + "/css/jiathis_counter.css",
+                            href: JIATHIS_CONFIGS.codehost + "/share/jiathis_counter.css",
                             rel: "stylesheet",
                             type: "text/css"
                         }, "link")
@@ -623,7 +623,7 @@ var JIATHIS_CONFIGS = {
                 }, 50)
             };
             if (!clickpopjs) {
-                clickpopjs = creElm({src: JIATHIS_CONFIGS.codehost + "/ckepop.js", charset: "utf-8"}, "script", head);
+                clickpopjs = creElm({src: JIATHIS_CONFIGS.codehost + "share/ckepop.js", charset: "utf-8"}, "script", head);
                 clickpopjs.onloaded = 0;
                 clickpopjs.onload = function () {
                     clickpopjs.onloaded = 1;
