@@ -785,7 +785,6 @@ function jiathis_copyUrl() {
     } catch (e) {
         var d = {}
     }
-    ;
     var a = d.url || this.location.href;
     var b = d.title || document.title;
     var c = b + " " + a;
