@@ -624,7 +624,7 @@ var JIATHIS_CONFIGS = {
             };
             if (!clickpopjs) {
                 clickpopjs = creElm({
-                    src: JIATHIS_CONFIGS.codehost + "share/ckepop.js",
+                    src: JIATHIS_CONFIGS.codehost + "ckepop.js",
                     charset: "utf-8"
                 }, "script", head);
                 clickpopjs.onloaded = 0;

@@ -4,6 +4,7 @@ setTimeout(function () {
     } catch (e) {
         var f = {}
     }
+    console.log("okok");
     var g = 0, _fn = typeof(f.boldNum) == "number" ? f.boldNum : 0, _ln = typeof(f.siteNum) == "number" ? f.siteNum : 15, _p = {}, _ck = JIATHIS_CONFIGS.jtck || "", _cp = JIATHIS_CONFIGS.ckprefix, _ls = JIATHIS_CONFIGS.servicelist, _sm = f.sm || "", _hm = f.hideMore || false, _hsf = f.hsf || false, _lk = f.leftLink || {}, _rk = f.rightLink || {}, _wn = f.siteName || "分享到...", _sc = typeof(f.showClose) == "boolean" ? f.showClose : JIATHIS_CONFIGS.sc, _wc = _sc ? '<img src="' + JIATHIS_CONFIGS.codehost + '/images/img_exit.gif" border="0" style="opacity:0.5;filter:alpha(opacity=50);margin:0 10px;cursor:pointer;" onclick=\'$CKE.shareClose();\' />' : '', _sd = "weixin,tsina,copy,email,cqq,qzone,renren,kaixin001,evernote,linkedin,feixin,douban,twitter,fb,ishare", _gp = function (s) {
         var a = '<div class="jiadiv_01">';
         a += '<div style="width:100%;background:#F2F2F2;border-bottom:1px solid #E5E5E5;line-height:200%;padding-left:5px;font-size:12px"><table width=100%><tr class="jt_sharetitle"><td align=left style="text-align:left;line-height:25px;font-size:14px;font-weight:bold;color:#000000;">' + _wn + '</td><td align=right style="text-align:right;">' + _wc + '</td></tr></table></div>';
