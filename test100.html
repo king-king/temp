@@ -29,7 +29,13 @@
 <body>
 <div class="copy"></div>
 <script>
-    console.log(window.parent)
+
+    var index = 0;
+    for (var i = 0; i < 10; i++) {
+        index = (index + 1) % 2;
+        console.log(index)
+
+    }
 
 </script>
 
