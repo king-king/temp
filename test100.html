@@ -29,14 +29,7 @@
 <body>
 <div class="copy"></div>
 <script>
-    var t = document.createElement("textarea");
-    t.value = "123";
-    document.body.appendChild(t);
-    t.style.opacity = 0;
-    document.querySelector(".copy").onclick = function () {
-        t.select();
-        document.execCommand("Copy");
-    }
+    console.log(window.parent)
 
 </script>
 
