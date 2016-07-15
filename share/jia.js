@@ -770,7 +770,6 @@ function jiathis_addBookmark() {
     } catch (e) {
         var d = {}
     }
-    ;
     var a = d.title || document.title;
     var b = d.url || parent.location.href;
     var c = window.sidebar;
