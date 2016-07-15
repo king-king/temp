@@ -1,7 +1,4 @@
 var JIATHIS_CONFIGS = {
-    webhost: "http://www.jiathis.com",
-    lhost: "http://l.jiathis.com",
-    shost: "http://s.jiathis.com",
     _s: null,
     codehost: "",
     sc: false,
@@ -87,7 +84,7 @@ var JIATHIS_CONFIGS = {
         'jt_dig24': '递客网,dkw,www.dig24.cn',
         'jt_yijee': '易集网,yjw,www.yijee.com',
         'jt_pdfonline': 'Pdf在线转换,pdfzxzh',
-        'jt_printfriendly': '友好打印,yhdy',
+        // 'jt_printfriendly': '友好打印,yhdy',
         'jt_w3c': 'W3c验证,w3cyz',
         'jt_bitly': 'Bit.ly,bitly,bit.ly',
         'jt_digg': 'Digg,digg,digg.com',
@@ -111,7 +108,8 @@ var JIATHIS_CONFIGS = {
 };
 (function () {
     var d = document, dd = d.documentElement, db = d.body, m = Math.max, ie = !!d.all, ua = navigator.userAgent.toLowerCase(), head = d.getElementsByTagName("head")[0] || dd,
-        conf = (typeof(jiathis_config) == 'undefined') ? {} : jiathis_config, _ckpre = JIATHIS_CONFIGS.ckprefix, _lists = JIATHIS_CONFIGS.servicelist, _ref = d.referrer, _reced = false,
+        conf = (typeof(jiathis_config) == 'undefined') ? {} : jiathis_config,
+        _ckpre = JIATHIS_CONFIGS.ckprefix, _lists = JIATHIS_CONFIGS.servicelist,
         getS = function () {
             return {t: m(dd.scrollTop, db.scrollTop), l: m(dd.scrollLeft, db.scrollLeft)}
         },
@@ -368,59 +366,6 @@ var JIATHIS_CONFIGS = {
                 $CKE.counter()
             }
         },
-        _rec = function (e) {
-            if (!_reced) {
-                _renderToolbox();
-                _req();
-                _reced = true
-            }
-        },
-        _req = function () {
-            var a, s, E = encodeURIComponent, o = _grf(_ref), T = document.title || "", Y = window.location.href || "", an = Y ? Y.indexOf(JIATHIS_CONFIGS.jtcbk) : -1, d1 = _gd(o.host), d2 = _gd(Y), q = null, f = (d1 && d2 && d1 == d2) ? false : true;
-            if (an > -1) {
-                a = Y.substr(an);
-                q = a.split("#").pop().split("-").pop().split("=").pop();
-                q = _lists[_ckpre + q] ? q : ''
-            }
-            q = (!q && o.webid) ? o.webid : q;
-            if (q && f) {
-                s = 'rsc=' + q + '&rnm=' + parseInt(JIATHIS_CONFIGS.uid) + '&rfh=' + E(o.host) + '&rfp=' + E(o.path) + '&pre=' + E(Y) + '&tit=' + escape(T);
-                (new Image).src = JIATHIS_CONFIGS.lhost + "/l.gif?" + s
-            }
-        },
-        _gd = function (o) {
-            var d = null;
-            if (o) {
-                d = o.split(".").slice(-2).join(".");
-                d = (d == "com.cn") ? o.split(".").slice(-3).join(".") : d;
-                d = d.split("/").shift()
-            }
-            return d
-        },
-        _grf = function (r) {
-            var h = "", p = "", q = "", m;
-            if (r.match(/(?:[a-z]\:\/\/)([^\/\?]+)(.*)/gi)) {
-                h = RegExp.$1;
-                p = RegExp.$2;
-                h = h ? h : "";
-                p = p ? p : "";
-                if (h) {
-                    for (var k in _lists) {
-                        m = _lists[k].split(',');
-                        if (m[2] && m[2] == h) {
-                            q = k.slice(3);
-                            break
-                        }
-                    }
-                }
-            }
-            return {host: h, path: p, webid: q}
-        },
-        jiathis_utility_ifr = !!window.postMessage ? creElm({
-            style: "display:none;",
-            frameBorder: 0,
-            src: JIATHIS_CONFIGS.codehost + "/share/jiathis_utility.html" //todo 修改路径
-        }, "iframe") : null,
         div = creElm({
             className: "jiathis_style",
             style: "position:absolute;z-index:1000000000;display:none;overflow:auto;"
@@ -521,15 +466,7 @@ var JIATHIS_CONFIGS = {
             }
         }
     };
-    if (!!window.addEventListener) {
-        !!window.addEventListener && window.addEventListener("message", _rec, false)
-    } else {
-        if (!!window.postMessage) {
-            (!!window.attachEvent && window.attachEvent("onmessage", _rec))
-        } else {
-            _renderToolbox()
-        }
-    }
+    _renderToolbox();
     div.onmouseover = function () {
         clearTimeout(timer)
     };
@@ -675,9 +612,8 @@ function ckecenterpop() {
             b += '<div style="clear:both"></div></div>';
             if (!_hmf) {
                 b += '<div class="centerBottom">';
-                b += '<div style="float:left;font-size:10px;"><a href="' + (_lk.url ? _lk.url : JIATHIS_CONFIGS.webhost + '/help/html/what-is-jiathis') + '" class="link_01" style="color:#333333;display:none;" target="_blank">' + (_lk.name ? _lk.name : '这是什么工具?') + '</a></div>';
                 b += '<div style="float:right;font-size:11px;margin:0 10px 0 0; height: 22px;line-height: 22px">';
-                b += '<a href="' + (_rk.url ? _rk.url : JIATHIS_CONFIGS.webhost) + '/index2" style="color:#333333;" class="link_01" target="_blank">' + (_rk.name ? _rk.name : '初页') + '</a>';
+                b += '<span style="color:#333333;" class="link_01" target="_blank">初页</span>';
                 b += '</div><div style="clear:both"></div></div>'
             }
             b += '</div>';
