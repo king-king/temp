@@ -632,7 +632,6 @@ function loopObj(obj, func) {
         }
     }
 }
-
 function ckecenterpop() {
     var g = jiathis_config || {};
     var h = JIATHIS_CONFIGS.servicelist, _hmf = g.hmf || false, _lk = g.leftLink || {}, _rk = g.rightLink || {},
