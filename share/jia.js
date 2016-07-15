@@ -454,7 +454,8 @@ var JIATHIS_CONFIGS = {
             if (!ckcpjs) {
                 ckcpjs = creElm({src: JIATHIS_CONFIGS.codehost + "ckecenterpop.js", charset: "utf-8"}, "script", head);
                 db.style.position = "static"
-            } else {
+            }
+            else {
                 var a = getS();
                 div1.style.display = "block";
                 div1.style.margin = (-div1.offsetHeight / 2 + a.t) + "px " + (-div1.offsetWidth / 2 + a.l) + "px";

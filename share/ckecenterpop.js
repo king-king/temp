@@ -1,17 +1,13 @@
 (function () {
-    try {
-        var g = jiathis_config || {}
-    } catch (e) {
-        var g = {}
-    }
+    var g = jiathis_config || {};
     var h = JIATHIS_CONFIGS.servicelist, _hmf = g.hmf || false, _lk = g.leftLink || {}, _rk = g.rightLink || {}, _gcp = function (s) {
         var a = jiathis_config || {};
-        var b = '<div style="border:10px solid #7F7F7F; width:300px;">';
+        var b = '<div style="border:0px solid #7F7F7F; width:100%; ">';
         b += '<div class="jiadiv_01" style="width:300px;">';
         b += '<div style="background:#F2F2F2;line-height:100%;height:30px;overflow:hidden;width:300px;">';
-        b += '<table width="100%" style="margin:5px 0 0 0;"><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="' + JIATHIS_CONFIGS.codehost + '/images/img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;" onclick="$CKE.centerClose();"/></td></tr></table>';
+        b += '<table width="100%" style="margin:5px 0 0 0;"><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="' + JIATHIS_CONFIGS.codehost + 'img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;" onclick="$CKE.centerClose();"/></td></tr></table>';
         b += '</div><div class="searchTxtCont">';
-        b += '<div style="background:url(' + JIATHIS_CONFIGS.codehost + '/images/img_so.gif) no-repeat center;height:30px; width:281px">';
+        b += '<div style="background:url(' + JIATHIS_CONFIGS.codehost + 'img_so.gif) no-repeat center;height:30px; width:281px">';
         b += '<form onsubmit="return false;">';
         b += '<input class="searchTxt" name="" type="text" onclick="this.value=\'\';this.style.color=\'#000\';" value="输入网站名或拼音缩写" onkeyup="$CKE.choose(this);" />';
         b += '</form>';
