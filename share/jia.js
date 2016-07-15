@@ -649,7 +649,7 @@ var JIATHIS_CONFIGS = {
         }, center: function () {
             div.style.display = iframe.style.display = "none";
             if (!ckcpjs) {
-                ckcpjs = creElm({src: JIATHIS_CONFIGS.codehost + "/ckecenterpop.js", charset: "utf-8"}, "script", head);
+                ckcpjs = creElm({src: JIATHIS_CONFIGS.codehost + "ckecenterpop.js", charset: "utf-8"}, "script", head);
                 db.style.position = "static"
             } else {
                 var a = getS();
