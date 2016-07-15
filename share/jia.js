@@ -314,35 +314,6 @@ var JIATHIS_CONFIGS = {
                 }
                 continue
             }
-            if (ci.className && (tmp = ci.className.match(/^jiathis_counter_(\w+)(?:\_|$)(.*)$/)) && tmp[1]) {
-                if (typeof($CKE.containers) == "object") {
-                    if (!_CF) {
-                        _CF = creElm({
-                            href: JIATHIS_CONFIGS.codehost + "/share/jiathis_counter.css",
-                            rel: "stylesheet",
-                            type: "text/css"
-                        }, "link")
-                    }
-                    if (ci.firstChild && ci.firstChild.nodeType == 3) {
-                        ci.removeChild(ci.firstChild)
-                    }
-                    if (!ci.firstChild) {
-                        var B = tmp[1] == 'style' ? 'bubble' : tmp[1], C = tmp[2] ? tmp[2] : '', K = "jiathis_counter_" + i, E = d.createElement("span");
-                        E.className = 'jiathis_button_expanded jiathis_counter jiathis_' + B + '_style';
-                        !hidemore && (E.onclick = function () {
-                            $CKE.center()
-                        });
-                        E.id = K;
-                        E.appendChild(d.createTextNode("0"));
-                        if (C) {
-                            E.style.cssText = C
-                        }
-                        ci.appendChild(E)
-                    }
-                    $CKE.containers.push(K)
-                }
-                continue
-            }
             webid = '', likeid = '', tl = false, fl = false, bt = false, preferred = false;
             if (ci.className && (tmp = ci.className.match(/^jiathis_button_([\w\.]+)(?:\s|$)/)) && tmp[1]) {
                 if (tmp[1].indexOf("tools") > -1 || tmp[1].indexOf("icons") > -1) {
