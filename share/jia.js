@@ -327,10 +327,6 @@ var JIATHIS_CONFIGS = {
                 }
                 bt = true
             }
-            if (ci.className && (tmp = ci.className.match(/^jiathis_follow_(\w+)$/)) && tmp[1]) {
-                webid = tmp[1];
-                fl = true
-            }
             if (webid && _lists[_ckpre + webid]) {
                 bt && (parentServices[webid] = 1);
                 var j = function (a, b) {
@@ -361,59 +357,10 @@ var JIATHIS_CONFIGS = {
             } else if (bt || fl) {
                 ci.innerHTML = ""
             }
-            if (ci.className && (tmp = ci.className.match(/^jiathis_like_(\w+)$/)) && tmp[1]) {
-                likeid = tmp[1];
-                var o = _gp(ci, 'data'), ifsrc = '', likeurl = _url, mt = '';
-                if (likeid == 'qzone') {
-                    var l = _gv(o.qq, false);
-                    if (l) {
-                        likeurl = "http://user.qzone.qq.com/" + l;
-                        ifsrc = 'http://open.qzone.qq.com/like?url=' + encodeURIComponent(likeurl) + '&type=' + _gv(o.type, 'button_num')
-                    } else {
-                        ifsrc = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_likeurl?url=' + encodeURIComponent(likeurl) + '&showcount=' + _gv(o.showcount, 1) + '&style=' + _gv(o.style, 2)
-                    }
-                } else if (likeid == 'renren') {
-                    var n = _gv(o.pageid, false);
-                    likeurl = n ? ("http://page.renren.com/" + n) : likeurl;
-                    ifsrc = 'http://www.connect.renren.com/like?url=' + encodeURIComponent(likeurl) + '&showfaces=' + _gv(o.showfaces, 'false')
-                } else if (likeid == 'kaixin001') {
-                    ifsrc = 'http://www.kaixin001.com/like/like.php?url=' + encodeURIComponent(likeurl) + '&show_faces=' + _gv(o.show_faces, 'false')
-                } else if (likeid == 'tsina' || likeid == 'tsinat') {
-                    var p = jiathis_get_des(), pic = '', title = conf.title || document.title, p = conf.summary == undefined ? p : conf.summary, pic = conf.pic == undefined ? jiathis_get_pic() : conf.pic, url = conf.url == undefined ? document.location : conf.url
-                }
-                if (ifsrc) {
-                    ci.innerHTML = '<span class="jiathis_txt jiathis_separator jialike"><iframe src="' + ifsrc + '" allowTransparency="true" scrolling="no" border="0" frameborder="0" style="width:' + _gv(o.width, 200) + 'px;height:' + _gv(o.height, 38) + 'px;' + mt + '"></iframe></span>'
-                } else {
-                    if (likeid == 'tsinat' || likeid == 'tsina') {
-                        if (likeid == 'tsinat') {
-                            ci.innerHTML = '<span class="jiathis_txt jiathis_separator jialike"><wb:like type="text"></wb:like></span>'
-                        } else {
-                            ci.innerHTML = '<span class="jiathis_txt jiathis_separator jialike"><wb:like type="number"></wb:like></span>'
-                        }
-                        var q = ['og:type=webpage', 'og:url=' + encodeURIComponent(url) + '', 'og:title=' + encodeURIComponent(title) + '', 'og:image=' + encodeURIComponent(pic) + '', 'og:description=' + encodeURIComponent(p) + ''];
-                        for (m = 0; m < q.length; m++) {
-                            met = document.createElement('meta');
-                            var r = q[m].split('=');
-                            var t = r[0];
-                            var u = r[1];
-                            met.setAttribute('property', t);
-                            met.content = decodeURIComponent(u);
-                            head.appendChild(met)
-                        }
-                        creElm({
-                            src: "http://tjs.sjs.sinajs.cn/open/api/js/wb.js",
-                            charset: "utf-8",
-                            type: "text/javascript"
-                        }, "script")
-                    } else {
-                        ci.innerHTML = ''
-                    }
-                }
-            }
         }
         if (_WR) {
-            for (var k in _WR) {
-                var o = _WR[k], ci = o.ci, bt = o.bt, fl = o.fl, tl = o.tl, webid = o.webid;
+            loopObj(_WR, function (k) {
+                var o = _WR[k], ci = o.ci, fl = o.fl, tl = o.tl, webid = o.webid;
                 if (typeof(ci) == "object" && ci.innerHTML.indexOf('jtico jtico_') == -1) {
                     var v = _lists[_ckpre + webid].split(',');
                     var w = ci.innerHTML.replace(/^\s+|\s+$/g, "");
@@ -453,7 +400,7 @@ var JIATHIS_CONFIGS = {
                         }
                     }
                 }
-            }
+            });
         }
         if (_CF) {
             $CKE.counter()
@@ -466,7 +413,7 @@ var JIATHIS_CONFIGS = {
     }, _gp = function (a, b) {
         var p = [], c = a.attributes[b];
         if (c) {
-            o = c.nodeValue.split('&') || '';
+            var o = c.nodeValue.split('&') || '';
             for (var i = o.length; i--;) {
                 var j = o[i].split('=');
                 p[j[0]] = j[1]
@@ -839,4 +786,9 @@ function jiathis_cancel() {
     _oDlgEl = document.getElementById('jiathis_weixin_share');
     document.body.removeChild(_oDlgEl);
     _oDlgEl = _oDivEl = _oMaskEl = _oErweimaMaskEl = null
+}
+function loopObj(obj, func) {
+    for (var k in obj) {
+        func(k, obj[k]);
+    }
 }
