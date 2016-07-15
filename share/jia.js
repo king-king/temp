@@ -728,9 +728,6 @@ var JIATHIS_CONFIGS = {
         $CKE.out()
     };
     ie ? d.attachEvent("onclick", $CKE.disappear) : d.addEventListener("click", $CKE.disappear, false);
-    if (!conf.do_not_track && wlh && typeof(_gnayTrack) != 'object') {
-        d.write('<script type="text/javascript" src="' + JIATHIS_CONFIGS.codehost + '/share/plugin.client.js" charset="utf-8"></script>')
-    }
 })();
 function jiathis_sendto(a) {
     var b = jiathis_get_des(), pic = jiathis_get_pic();
