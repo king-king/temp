@@ -295,7 +295,7 @@ var JIATHIS_CONFIGS = {
                         for (var c in b) {
                             var o = b[c];
                             if (o.preferred && o.webid == a) {
-                                return c
+                                return c;
                             }
                         }
                         return false
@@ -337,11 +337,7 @@ var JIATHIS_CONFIGS = {
                         if (fl) {
                             ci.onclick = function (a) {
                                 return function () {
-                                    if (a.className.match(/weixin$/)) {
-                                        jiathis_popup(a.rel)
-                                    } else {
-                                        window.open(a.rel, '')
-                                    }
+                                    window.open(a.rel, '')
                                 }
                             }(ci);
                             ci.title = ci.title ? ci.title : "在" + v[0] + "关注我们"
