@@ -303,16 +303,12 @@ var JIATHIS_CONFIGS = {
         var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google", _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {}, h = d.getElementsByTagName("a"), _url = String(conf.url || d.location), _CF = null, webid, likeid, tl, fl, bt, preferred;
         for (var i = 0, ci, tmp; ci = h[i++];) {
             if (/\bjiathis\b/.test(ci.className)) {
-                if (jiathis_is_mobile()) {
-                    ci.href = jiathis_more_href()
-                } else {
-                    ci.onmouseout = $CKE.out;
-                    ci.onmousemove = $CKE.move;
-                    !hidemore && (ci.onclick = $CKE.center);
-                    ci.onmouseover = $CKE.over;
-                    ci.hideFocus = true
-                }
-                continue
+                ci.onmouseout = $CKE.out;
+                ci.onmousemove = $CKE.move;
+                !hidemore && (ci.onclick = $CKE.center);
+                ci.onmouseover = $CKE.over;
+                ci.hideFocus = true;
+                continue;
             }
             webid = '', likeid = '', tl = false, fl = false, bt = false, preferred = false;
             if (ci.className && (tmp = ci.className.match(/^jiathis_button_([\w\.]+)(?:\s|$)/)) && tmp[1]) {
@@ -526,20 +522,6 @@ var JIATHIS_CONFIGS = {
             }
         }
         return {host: h, path: p, webid: q}
-    }, jiathis_is_mobile = function () {
-        var a = navigator.userAgent.toLowerCase().match(/ucweb|ios|mobile|ipad|ipod|blackberry|motorola|YahooSeeker|symbian|nokia|android|iphone os|windows ce|rv:1.2.3.4|midp/i);
-        var b = parseInt(window.screen.width);
-        var c = parseInt(window.screen.height);
-        var d = false;
-        if (a) {
-            if (b < c) {
-                d = true
-            }
-        }
-        return d
-    }, jiathis_more_href = function () {
-        var a = jiathis_get_des(), pic = jiathis_get_pic(), G = '?url=' + encodeURIComponent(String(conf.url || document.location)), T = '&title=' + encodeURIComponent(String(conf.title || document.title)), S = conf.summary ? '&summary=' + encodeURIComponent(conf.summary) : (a ? '&summary=' + encodeURIComponent(a) : ''), F = JIATHIS_CONFIGS.uid ? '&uid=' + parseInt(JIATHIS_CONFIGS.uid) : '&uid=1626433', P = conf.pic ? '&pic=' + encodeURIComponent(conf.pic) : (pic ? '&pic=' + encodeURIComponent(pic) : '');
-        return 'http://www.jiathis.com/share' + G + T + S + F + P
     }, jiathis_utility_ifr = !!window.postMessage ? creElm({
         style: "display:none;",
         frameBorder: 0,
@@ -569,46 +551,6 @@ var JIATHIS_CONFIGS = {
                 iframe.style.display = div1.style.display = 'none'
             }
         }, over: function () {
-            var s, T = this, timerCont, fn = function () {
-                timerCont = setInterval(function () {
-                    if (div.innerHTML) {
-                        var p = getP(T), wh = getWH(), tl = getS();
-                        with (div.style) {
-                            display = "block";
-                            var a = T.style.display;
-                            T.style.display = "block";
-                            top = (p.t + T.offsetHeight + div.offsetHeight > wh.h + tl.t ? p.t - div.offsetHeight : p.t + T.offsetHeight) + "px";
-                            left = p.l + "px";
-                            T.style.display = a
-                        }
-                        with (iframe.style) {
-                            top = div.offsetTop + "px";
-                            left = div.offsetLeft + "px";
-                            width = div.offsetWidth + "px";
-                            height = div.offsetHeight + "px";
-                            margin = "";
-                            display = "block"
-                        }
-                        clearInterval(timerCont)
-                    }
-                }, 50)
-            };
-            if (!clickpopjs) {
-                clickpopjs = creElm({
-                    src: JIATHIS_CONFIGS.codehost + "ckepop.js",
-                    charset: "utf-8"
-                }, "script", head);
-                clickpopjs.onloaded = 0;
-                clickpopjs.onload = function () {
-                    clickpopjs.onloaded = 1;
-                    !ie && fn()
-                };
-                clickpopjs.onreadystatechange = function () {
-                    /complete|loaded/.test(clickpopjs.readyState) && !clickpopjs.onloaded && fn()
-                }
-            } else {
-                fn()
-            }
             return false
         }, out: function () {
             timer = setTimeout(function () {
@@ -702,11 +644,7 @@ var JIATHIS_CONFIGS = {
 })();
 function jiathis_sendto(a) {
     var b = jiathis_get_des(), pic = jiathis_get_pic();
-    try {
-        var c = jiathis_config || {}
-    } catch (e) {
-        var c = {}
-    }
+    var c = jiathis_config || {};
     var d = encodeURIComponent, cu = JIATHIS_CONFIGS.custom[a] || {}, U = String(c.url || document.location), W = "?webid=" + a, G = "&url=" + d(U), T = "&title=" + d(c.title || document.title), S = c.summary ? "&summary=" + d(c.summary) : (b ? "&summary=" + d(b) : ""), F = JIATHIS_CONFIGS.uid ? "&uid=" + parseInt(JIATHIS_CONFIGS.uid) : "", E = c.data_track_clickback ? "&jtss=1" : "", K = (c.appkey && c.appkey[a]) ? "&appkey=" + c.appkey[a] : "", P = c.pic ? "&pic=" + d(c.pic) : (pic ? "&pic=" + d(pic) : ''), C = $CKE.jid ? "&jid=" + $CKE.jid : "", R = (c.ralateuid && c.ralateuid[a]) ? "&ralateuid=" + c.ralateuid[a] : "", Q = (c.evt && c.evt['share']) ? c.evt['share'] : null, A = 'http://s.jiathis.com/', X = (cu.name && cu.url) ? "&acn=" + d(cu.name) + "&acu=" + d(cu.url) : "", SU = c.shortUrl == false ? '' : '&su=1';
     B = A + W + G + T + F + E + K + P + R + S + X + C + SU;
     if (a == 'copy' || a == 'fav' || a == 'print' || a == 'weixin') {
