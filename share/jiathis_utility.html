@@ -6,19 +6,20 @@
 <body style="background-color:transparent">
 <script type="text/javascript">
     (function () {
-        var w = window, g = !!window.postMessage, jcookie = function (a) {
-            var b = document.cookie;
-            var c = b.indexOf(a + "=");
-            if (c != -1) {
-                c += a.length + 1;
-                var d = b.indexOf(";", c);
-                if (d == -1) {
-                    d = b.length
-                }
-                return unescape(b.substring(c, d))
-            }
-            return ""
-        };
+        var w = window, g = !!window.postMessage,
+                jcookie = function (a) {
+                    var b = document.cookie;
+                    var c = b.indexOf(a + "=");
+                    if (c != -1) {
+                        c += a.length + 1;
+                        var d = b.indexOf(";", c);
+                        if (d == -1) {
+                            d = b.length
+                        }
+                        return unescape(b.substring(c, d))
+                    }
+                    return ""
+                };
         var c = jcookie('jiathis_sers'), v = "", s = "";
         if (c) {
             var a = c.split(",");

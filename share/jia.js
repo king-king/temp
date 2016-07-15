@@ -110,18 +110,9 @@ var JIATHIS_CONFIGS = {
     }
 };
 (function () {
-    var z = document.getElementsByTagName('script');
-    for (var i = 0, ci; ci = z[i++];) {
-        if (/jiathis.com/.test(ci.src)) {
-            JIATHIS_CONFIGS.codehost = ci.src.substring(0, ci.src.lastIndexOf("/"));
-            ci.src.replace(/(uid)=([^&]+)/g, function (a, p, v) {
-                JIATHIS_CONFIGS[p] = v
-            })
-        }
-    }
-    var d = document, isStrict = d.compatMode == "CSS1Compat", dd = d.documentElement, db = d.body, m = Math.max, ie = !!d.all, ua = navigator.userAgent.toLowerCase(), head = d.getElementsByTagName("head")[0] || dd, wlh = window.location.host, conf = (typeof(jiathis_config) == 'undefined') ? {} : jiathis_config, _ckpre = JIATHIS_CONFIGS.ckprefix, _lists = JIATHIS_CONFIGS.servicelist, _ref = d.referrer, _reced = false, getWH = function () {
-            return {h: (isStrict ? dd : db).clientHeight, w: (isStrict ? dd : db).clientWidth}
-        }, getS = function () {
+    var d = document, dd = d.documentElement, db = d.body, m = Math.max, ie = !!d.all, ua = navigator.userAgent.toLowerCase(), head = d.getElementsByTagName("head")[0] || dd,
+        conf = (typeof(jiathis_config) == 'undefined') ? {} : jiathis_config, _ckpre = JIATHIS_CONFIGS.ckprefix, _lists = JIATHIS_CONFIGS.servicelist, _ref = d.referrer, _reced = false,
+        getS = function () {
             return {t: m(dd.scrollTop, db.scrollTop), l: m(dd.scrollLeft, db.scrollLeft)}
         },
         creElm = function (o, t, a) {
@@ -130,7 +121,8 @@ var JIATHIS_CONFIGS = {
                 p == "style" ? (b[p].cssText = o[p]) : (b[p] = o[p]);
             });
             return (a || db).insertBefore(b, (a || db).firstChild)
-        }, _uniqueConcat = function (a, b) {
+        },
+        _uniqueConcat = function (a, b) {
             var c = {}, i;
             for (i = 0; i < a.length; i++) {
                 c[a[i]] = 1
@@ -142,11 +134,13 @@ var JIATHIS_CONFIGS = {
                 }
             }
             return a
-        }, _sc = function (a, b, c) {
+        },
+        _sc = function (a, b, c) {
             var d = new Date();
             d.setTime(d.getTime() + c * 1000);
             document.cookie = a + "=" + escape(b) + (c ? ";expires=" + d.toGMTString() : "") + ";path=/"
-        }, _gc = function (a) {
+        },
+        _gc = function (a) {
             var b = document.cookie;
             var c = b.indexOf(a + "=");
             if (c != -1) {
@@ -158,14 +152,16 @@ var JIATHIS_CONFIGS = {
                 return unescape(b.substring(c, d))
             }
             return ""
-        }, _MR = function (w, d, a) {
+        },
+        _MR = function (w, d, a) {
             w /= d;
             w = Math.round(w * 10) / 10;
             if ((w + "").length >= 4) {
                 w = Math.round(w)
             }
             return w + a
-        }, _FN = function (a) {
+        },
+        _FN = function (a) {
             var d = ("" + a).split(".").shift().length;
             if (isNaN(a)) {
                 return '0'
@@ -184,7 +180,8 @@ var JIATHIS_CONFIGS = {
                     }
                 }
             }
-        }, _rck = function (X) {
+        },
+        _rck = function (X) {
             var A = {}, D = (new Date()).getTime(), E, F, G, H, V = String(X);
             if (V !== undefined && V.indexOf("|") > -1) {
                 E = V.split('|');
@@ -197,13 +194,15 @@ var JIATHIS_CONFIGS = {
                 return A
             }
             return false
-        }, _gck = function () {
+        },
+        _gck = function () {
             var A = _gc("jiathis_rdc"), B = {};
             if (A) {
                 B = eval("(" + A + ")")
             }
             return B
-        }, _sck = function (U, S, T) {
+        },
+        _sck = function (U, S, T) {
             var A = _gck();
             if (A[U]) {
                 delete A[U]
@@ -211,14 +210,16 @@ var JIATHIS_CONFIGS = {
             $CKE.shares = parseInt(S);
             A[U] = '"' + parseInt(S) + '|' + T + '"';
             _sc("jiathis_rdc", _otc(A), 0)
-        }, _otc = function (o) {
+        },
+        _otc = function (o) {
             var A = '', B = '';
             loopObj(o, function (k) {
                 A += B + '"' + k + '":' + o[k];
                 B = !B ? ',' : B
             });
             return "{" + A + "}"
-        }, _renderCounter = function (a, b) {
+        },
+        _renderCounter = function (a, b) {
             loopObj(a, function (k) {
                 var c = d.getElementById(a[k]);
                 if (c) {
@@ -226,7 +227,8 @@ var JIATHIS_CONFIGS = {
                     c.innerHTML = _FN(b)
                 }
             });
-        }, _custom = function () {
+        },
+        _custom = function () {
             var u = conf.services_custom;
             if (u) {
                 if (!(u instanceof Array)) {
@@ -242,7 +244,8 @@ var JIATHIS_CONFIGS = {
                     }
                 }
             }
-        }, _gw = function (a, b, c) {
+        },
+        _gw = function (a, b, c) {
             var d = "";
             do {
                 d = a[b++]
@@ -258,7 +261,8 @@ var JIATHIS_CONFIGS = {
                 });
             }
             return d
-        }, _renderToolbox = function () {
+        },
+        _renderToolbox = function () {
             _custom();
             var hidemore = conf.hideMore || false;
             var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google", _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {}, h = d.getElementsByTagName("a"), _url = String(conf.url || d.location), _CF = null, webid, likeid, tl, fl, bt, preferred;
@@ -370,7 +374,8 @@ var JIATHIS_CONFIGS = {
                 _req();
                 _reced = true
             }
-        }, _req = function () {
+        },
+        _req = function () {
             var a, s, E = encodeURIComponent, o = _grf(_ref), T = document.title || "", Y = window.location.href || "", an = Y ? Y.indexOf(JIATHIS_CONFIGS.jtcbk) : -1, d1 = _gd(o.host), d2 = _gd(Y), q = null, f = (d1 && d2 && d1 == d2) ? false : true;
             if (an > -1) {
                 a = Y.substr(an);
@@ -382,7 +387,8 @@ var JIATHIS_CONFIGS = {
                 s = 'rsc=' + q + '&rnm=' + parseInt(JIATHIS_CONFIGS.uid) + '&rfh=' + E(o.host) + '&rfp=' + E(o.path) + '&pre=' + E(Y) + '&tit=' + escape(T);
                 (new Image).src = JIATHIS_CONFIGS.lhost + "/l.gif?" + s
             }
-        }, _gd = function (o) {
+        },
+        _gd = function (o) {
             var d = null;
             if (o) {
                 d = o.split(".").slice(-2).join(".");
@@ -390,7 +396,8 @@ var JIATHIS_CONFIGS = {
                 d = d.split("/").shift()
             }
             return d
-        }, _grf = function (r) {
+        },
+        _grf = function (r) {
             var h = "", p = "", q = "", m;
             if (r.match(/(?:[a-z]\:\/\/)([^\/\?]+)(.*)/gi)) {
                 h = RegExp.$1;
@@ -440,16 +447,20 @@ var JIATHIS_CONFIGS = {
             if (!c && !c1 && c2) {
                 iframe.style.display = div1.style.display = 'none'
             }
-        }, over: function () {
+        },
+        over: function () {
             return false
-        }, out: function () {
+        },
+        out: function () {
             timer = setTimeout(function () {
                 div.style.display = "none";
                 div1.style.display != "block" && (iframe.style.display = "none")
             }, 100)
-        }, move: function () {
+        },
+        move: function () {
             clearTimeout(timer)
-        }, center: function () {
+        },
+        center: function () {
             div.style.display = iframe.style.display = "none";
             if (!ckcpjs) {
                 ckcpjs = true;
@@ -472,7 +483,8 @@ var JIATHIS_CONFIGS = {
                 }
             }
             return false
-        }, choose: function (o) {
+        },
+        choose: function (o) {
             clearTimeout(inputTimer);
             inputTimer = setTimeout(function () {
                 var s = o.value.replace(/^\s+|\s+$/, ""), frag = d.createDocumentFragment();
@@ -483,9 +495,11 @@ var JIATHIS_CONFIGS = {
                 list.innerHTML = "";
                 list.appendChild(frag)
             }, 100)
-        }, centerClose: function () {
+        },
+        centerClose: function () {
             iframe.style.display = div1.style.display = "none"
-        }, rdc: function (o) {
+        },
+        rdc: function (o) {
             if (o.shares !== undefined) {
                 var A = $CKE.containers, B = parseInt(o.shares), C = String(conf.url || d.location), D = _gck(), J = _rck(D[C]), T = (new Date()).getTime(), S = B;
                 if (J && J.shares > B) {
@@ -494,10 +508,13 @@ var JIATHIS_CONFIGS = {
                 _sck(C, S, T);
                 _renderCounter(A, S)
             }
-        }, counter: function () {
-        }, open: function (A) {
+        },
+        counter: function () {
+        },
+        open: function (A) {
             creElm({src: A, charset: "utf-8"}, "script", head)
-        }, fireEvent: function (F, O) {
+        },
+        fireEvent: function (F, O) {
             if (F) {
                 F = typeof(F) == "function" ? F : eval(F);
                 F(O)
