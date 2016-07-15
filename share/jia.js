@@ -11,12 +11,12 @@ var JIATHIS_CONFIGS = {
     jtck: "",
     custom: [],
     servicelist: {
-        'jt_weixin': '微信,wx,weixin,weixin.qq.com',
+        // 'jt_weixin': '微信,wx,weixin,weixin.qq.com',
         'jt_tsina': '微博,xlwb,weibo.com',
         'jt_cqq': 'QQ好友,cqq,qqhl,connect.qq.com',
         'jt_qzone': 'QQ空间,qqkj,sns.qzone.qq.com',
         'jt_copy': '复制网址,fzwz',
-        'jt_fav': '收藏夹,scj',
+        // 'jt_fav': '收藏夹,scj',
         'jt_print': '打印,dy',
         'jt_email': '邮件,yj',
         'jt_renren': '人人网,rrw,www.renren.com',
@@ -120,369 +120,316 @@ var JIATHIS_CONFIGS = {
         }
     }
     var d = document, isStrict = d.compatMode == "CSS1Compat", dd = d.documentElement, db = d.body, m = Math.max, ie = !!d.all, ua = navigator.userAgent.toLowerCase(), head = d.getElementsByTagName("head")[0] || dd, wlh = window.location.host, conf = (typeof(jiathis_config) == 'undefined') ? {} : jiathis_config, _ckpre = JIATHIS_CONFIGS.ckprefix, _lists = JIATHIS_CONFIGS.servicelist, _ref = d.referrer, _reced = false, getWH = function () {
-        return {h: (isStrict ? dd : db).clientHeight, w: (isStrict ? dd : db).clientWidth}
-    }, getS = function () {
-        return {t: m(dd.scrollTop, db.scrollTop), l: m(dd.scrollLeft, db.scrollLeft)}
-    }, getP = function (a) {
-        var r = {t: 0, l: 0}, isGecko = /gecko/.test(ua), add = function (t, l) {
-            r.l += l, r.t += t
-        }, p = a, sTL = getS();
-        if (a && a != db) {
-            if (a.getBoundingClientRect) {
-                var b = a.getBoundingClientRect();
-                if (b.top == b.bottom) {
-                    var g = a.style.display;
-                    a.style.display = "block";
-                    b.top = b.top - a.offsetHeight;
-                    a.style.display = g
+            return {h: (isStrict ? dd : db).clientHeight, w: (isStrict ? dd : db).clientWidth}
+        }, getS = function () {
+            return {t: m(dd.scrollTop, db.scrollTop), l: m(dd.scrollLeft, db.scrollLeft)}
+        },
+        creElm = function (o, t, a) {
+            var b = d.createElement(t || "div");
+            loopObj(o, function (p) {
+                p == "style" ? (b[p].cssText = o[p]) : (b[p] = o[p]);
+            });
+            return (a || db).insertBefore(b, (a || db).firstChild)
+        }, _uniqueConcat = function (a, b) {
+            var c = {}, i;
+            for (i = 0; i < a.length; i++) {
+                c[a[i]] = 1
+            }
+            for (i = 0; i < b.length; i++) {
+                if (!c[b[i]]) {
+                    a.push(b[i]);
+                    c[b[i]] = 1
                 }
-                add(b.top + sTL.t - dd.clientTop, b.left + sTL.l - dd.clientLeft)
+            }
+            return a
+        }, _sc = function (a, b, c) {
+            var d = new Date();
+            d.setTime(d.getTime() + c * 1000);
+            document.cookie = a + "=" + escape(b) + (c ? ";expires=" + d.toGMTString() : "") + ";path=/"
+        }, _gc = function (a) {
+            var b = document.cookie;
+            var c = b.indexOf(a + "=");
+            if (c != -1) {
+                c += a.length + 1;
+                var d = b.indexOf(";", c);
+                if (d == -1) {
+                    d = b.length
+                }
+                return unescape(b.substring(c, d))
+            }
+            return ""
+        }, _MR = function (w, d, a) {
+            w /= d;
+            w = Math.round(w * 10) / 10;
+            if ((w + "").length >= 4) {
+                w = Math.round(w)
+            }
+            return w + a
+        }, _FN = function (a) {
+            var d = ("" + a).split(".").shift().length;
+            if (isNaN(a)) {
+                return '0'
             } else {
-                var c = d.defaultView;
-                while (p) {
-                    add(p.offsetTop, p.offsetLeft);
-                    var e = c.getComputedStyle(p, null);
-                    if (isGecko) {
-                        var f = parseInt(e.getPropertyValue("border-left-width"), 10) || 0, bt = parseInt(e.getPropertyValue("border-top-width"), 10) || 0;
-                        add(bt, f);
-                        if (p != a && e.getPropertyValue("overflow") != "visible") {
-                            add(bt, f)
-                        }
-                    }
-                    p = p.offsetParent
-                }
-                p = a.parentNode;
-                while (p && p != db) {
-                    add(-p.scrollTop, -p.scrollLeft);
-                    p = p.parentNode
-                }
-            }
-        }
-        return r
-    }, creElm = function (o, t, a) {
-        var b = d.createElement(t || "div");
-        for (var p in o) {
-            p == "style" ? (b[p].cssText = o[p]) : (b[p] = o[p])
-        }
-        return (a || db).insertBefore(b, (a || db).firstChild)
-    }, _uniqueConcat = function (a, b) {
-        var c = {};
-        for (var i = 0; i < a.length; i++) {
-            c[a[i]] = 1
-        }
-        for (var i = 0; i < b.length; i++) {
-            if (!c[b[i]]) {
-                a.push(b[i]);
-                c[b[i]] = 1
-            }
-        }
-        return a
-    }, _sc = function (a, b, c) {
-        var d = new Date();
-        d.setTime(d.getTime() + c * 1000);
-        document.cookie = a + "=" + escape(b) + (c ? ";expires=" + d.toGMTString() : "") + ";path=/"
-    }, _gc = function (a) {
-        var b = document.cookie;
-        var c = b.indexOf(a + "=");
-        if (c != -1) {
-            c += a.length + 1;
-            var d = b.indexOf(";", c);
-            if (d == -1) {
-                d = b.length
-            }
-            return unescape(b.substring(c, d))
-        }
-        return ""
-    }, _MR = function (w, d, a) {
-        w /= d;
-        w = Math.round(w * 10) / 10;
-        if ((w + "").length >= 4) {
-            w = Math.round(w)
-        }
-        return w + a
-    }, _FN = function (a) {
-        var d = ("" + a).split(".").shift().length;
-        if (isNaN(a)) {
-            return '0'
-        } else {
-            if (d < 4) {
-                return Math.round(a)
-            } else {
-                if (d < 7) {
-                    return _MR(a, 1000, "K")
+                if (d < 4) {
+                    return Math.round(a)
                 } else {
-                    if (d < 10) {
-                        return _MR(a, 1000000, "M")
+                    if (d < 7) {
+                        return _MR(a, 1000, "K")
                     } else {
-                        return _MR(a, 1000000000, "B")
-                    }
-                }
-            }
-        }
-    }, _rck = function (X) {
-        var A = {}, D = (new Date()).getTime(), E, F, G, H, V = String(X);
-        if (V !== undefined && V.indexOf("|") > -1) {
-            E = V.split('|');
-            F = E[0];
-            G = E[1];
-            H = Math.floor((D - G) / 1000);
-            A.shares = parseInt(F);
-            A.lifetime = G;
-            A.timedeff = H;
-            return A
-        }
-        return false
-    }, _gck = function () {
-        var A = _gc("jiathis_rdc"), B = {};
-        if (A) {
-            B = eval("(" + A + ")")
-        }
-        return B
-    }, _sck = function (U, S, T) {
-        var A = _gck();
-        if (A[U]) {
-            delete A[U]
-        }
-        $CKE.shares = parseInt(S);
-        A[U] = '"' + parseInt(S) + '|' + T + '"';
-        _sc("jiathis_rdc", _otc(A), 0)
-    }, _otc = function (o) {
-        var A = '', B = '';
-        for (var k in o) {
-            A += B + '"' + k + '":' + o[k];
-            B = !B ? ',' : B
-        }
-        return "{" + A + "}"
-    }, _renderCounter = function (a, b) {
-        for (var k in a) {
-            var c = d.getElementById(a[k]);
-            if (c) {
-                c.title = '累计分享' + b + '次';
-                c.innerHTML = _FN(b)
-            }
-        }
-    }, _custom = function () {
-        var u = conf.services_custom;
-        if (u) {
-            if (!(u instanceof Array)) {
-                u = [u]
-            }
-            for (var a = 0; a < u.length; a++) {
-                var c = u[a];
-                if (c.name && c.icon && c.url) {
-                    c.code = c.url = c.url.replace(/ /g, "");
-                    c.code = c.code.split("//").pop().split("?").shift().split("/").shift().toLowerCase();
-                    JIATHIS_CONFIGS.custom[c.code] = c;
-                    JIATHIS_CONFIGS.servicelist[_ckpre + c.code] = c.name + ',' + c.code + ',' + c.code
-                }
-            }
-        }
-    }, _gw = function (a, b, c) {
-        var d = "";
-        do {
-            d = a[b++]
-        } while (b < a.length && (!_lists[_ckpre + d] || c[d]));
-        if (c[d] || !_lists[_ckpre + d]) {
-            d = '';
-            for (var k in _lists) {
-                k = k.slice(3);
-                if (!c[k] && _lists[_ckpre + k]) {
-                    d = k;
-                    break
-                }
-            }
-        }
-        return d
-    }, _renderToolbox = function () {
-        _custom();
-        var e = conf.shareImg || {}, hidemore = conf.hideMore || false;
-        e.showType && creElm({
-            src: JIATHIS_CONFIGS.codehost + "/share/plugin.shareimg.js",
-            charset: "utf-8"
-        }, "script", head);
-        var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google", _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {}, h = d.getElementsByTagName("a"), _url = String(conf.url || d.location), _CF = null, webid, likeid, tl, fl, bt, preferred;
-        for (var i = 0, ci, tmp; ci = h[i++];) {
-            if (/\bjiathis\b/.test(ci.className)) {
-                ci.onmouseout = $CKE.out;
-                ci.onmousemove = $CKE.move;
-                !hidemore && (ci.onclick = $CKE.center);
-                ci.onmouseover = $CKE.over;
-                ci.hideFocus = true;
-                continue;
-            }
-            webid = '', likeid = '', tl = false, fl = false, bt = false, preferred = false;
-            if (ci.className && (tmp = ci.className.match(/^jiathis_button_([\w\.]+)(?:\s|$)/)) && tmp[1]) {
-                if (tmp[1].indexOf("tools") > -1 || tmp[1].indexOf("icons") > -1) {
-                    if (tmp[1].indexOf("tools") > -1) {
-                        tl = true;
-                        var s = ci.className.match(/jiathis_button_tools_([0-9]+)(?:\s|$)/)
-                    } else {
-                        var s = ci.className.match(/jiathis_button_icons_([0-9]+)(?:\s|$)/)
-                    }
-                    var g = ((s && s.length) ? Math.min(16, Math.max(1, parseInt(s[1]))) : 1) - 1;
-                    webid = _gw(jck, g, parentServices);
-                    preferred = true
-                } else {
-                    webid = tmp[1]
-                }
-                bt = true
-            }
-            if (webid && _lists[_ckpre + webid]) {
-                bt && (parentServices[webid] = 1);
-                var j = function (a, b) {
-                    for (var c in b) {
-                        var o = b[c];
-                        if (o.preferred && o.webid == a) {
-                            return c
-                        }
-                    }
-                    return false
-                }, t = j(webid, _WR);
-                if (t !== false) {
-                    var T = _WR[t] || {};
-                    if (T.webid && T.ci) {
-                        TWID = _gw(jck, 0, parentServices);
-                        T.bt && (parentServices[TWID] = 1);
-                        _WR[t] = {
-                            "ci": T.ci,
-                            "webid": TWID,
-                            "bt": T.bt,
-                            "fl": T.fl,
-                            "tl": T.tl,
-                            "preferred": T.preferred
+                        if (d < 10) {
+                            return _MR(a, 1000000, "M")
+                        } else {
+                            return _MR(a, 1000000000, "B")
                         }
                     }
                 }
-                _WR[i] = {"ci": ci, "webid": webid, "bt": bt, "fl": fl, "tl": tl, "preferred": preferred}
-            } else if (bt || fl) {
-                ci.innerHTML = ""
             }
-        }
-        if (_WR) {
-            loopObj(_WR, function (k) {
-                var o = _WR[k], ci = o.ci, fl = o.fl, tl = o.tl, webid = o.webid;
-                if (typeof(ci) == "object" && ci.innerHTML.indexOf('jtico jtico_') == -1) {
-                    var v = _lists[_ckpre + webid].split(',');
-                    var w = ci.innerHTML.replace(/^\s+|\s+$/g, "");
-                    var x = JIATHIS_CONFIGS.custom[webid] || {};
-                    var y = (x.icon) ? ' style="background:url(' + x.icon + ') no-repeat left;"' : '';
-                    if (tl || w) {
-                        w = w ? w : v[0];
-                        ci.innerHTML = '<span class="jiathis_txt jiathis_separator jtico jtico_' + webid + '"' + y + '>' + w + '</span>'
-                    } else {
-                        ci.innerHTML = '<span class="jiathis_txt jtico jtico_' + webid + '"' + y + '></span>'
-                    }
-                    if (fl) {
-                        ci.onclick = function (a) {
-                            return function () {
-                                if (a.className.match(/weixin$/)) {
-                                    jiathis_popup(a.rel)
-                                } else {
-                                    window.open(a.rel, '')
-                                }
-                            }
-                        }(ci);
-                        ci.title = ci.title ? ci.title : "在" + v[0] + "关注我们"
-                    } else {
-                        ci.onclick = function (a) {
-                            return function () {
-                                jiathis_sendto(a)
-                            }
-                        }(webid);
-                        if (!ci.title) {
-                            if (webid == 'copy' || webid == 'print') {
-                                ci.title = v[0]
-                            } else if (webid == 'fav') {
-                                ci.title = "加入" + v[0]
-                            } else {
-                                ci.title = "分享到" + v[0]
-                            }
-                        }
-                    }
+        }, _rck = function (X) {
+            var A = {}, D = (new Date()).getTime(), E, F, G, H, V = String(X);
+            if (V !== undefined && V.indexOf("|") > -1) {
+                E = V.split('|');
+                F = E[0];
+                G = E[1];
+                H = Math.floor((D - G) / 1000);
+                A.shares = parseInt(F);
+                A.lifetime = G;
+                A.timedeff = H;
+                return A
+            }
+            return false
+        }, _gck = function () {
+            var A = _gc("jiathis_rdc"), B = {};
+            if (A) {
+                B = eval("(" + A + ")")
+            }
+            return B
+        }, _sck = function (U, S, T) {
+            var A = _gck();
+            if (A[U]) {
+                delete A[U]
+            }
+            $CKE.shares = parseInt(S);
+            A[U] = '"' + parseInt(S) + '|' + T + '"';
+            _sc("jiathis_rdc", _otc(A), 0)
+        }, _otc = function (o) {
+            var A = '', B = '';
+            loopObj(o, function (k) {
+                A += B + '"' + k + '":' + o[k];
+                B = !B ? ',' : B
+            });
+            return "{" + A + "}"
+        }, _renderCounter = function (a, b) {
+            loopObj(a, function (k) {
+                var c = d.getElementById(a[k]);
+                if (c) {
+                    c.title = '累计分享' + b + '次';
+                    c.innerHTML = _FN(b)
                 }
             });
-        }
-        if (_CF) {
-            $CKE.counter()
-        }
-    }, _gv = function (v, a) {
-        if (v === undefined) {
-            return a
-        }
-        return v
-    }, _gp = function (a, b) {
-        var p = [], c = a.attributes[b];
-        if (c) {
-            var o = c.nodeValue.split('&') || '';
-            for (var i = o.length; i--;) {
-                var j = o[i].split('=');
-                p[j[0]] = j[1]
-            }
-        }
-        return p
-    }, _rec = function (e) {
-        if (!_reced) {
-            if (!!e.origin && e.origin.slice(-12) == ".jiathis.com") {
-                if (e.data && e.data != "FALSE") {
-                    JIATHIS_CONFIGS.jtck = e.data
+        }, _custom = function () {
+            var u = conf.services_custom;
+            if (u) {
+                if (!(u instanceof Array)) {
+                    u = [u]
                 }
-            }
-            _renderToolbox();
-            _req();
-            _reced = true
-        }
-    }, _req = function () {
-        var a, s, E = encodeURIComponent, o = _grf(_ref), T = document.title || "", Y = window.location.href || "", an = Y ? Y.indexOf(JIATHIS_CONFIGS.jtcbk) : -1, d1 = _gd(o.host), d2 = _gd(Y), q = null, f = (d1 && d2 && d1 == d2) ? false : true;
-        if (an > -1) {
-            a = Y.substr(an);
-            q = a.split("#").pop().split("-").pop().split("=").pop();
-            q = _lists[_ckpre + q] ? q : ''
-        }
-        q = (!q && o.webid) ? o.webid : q;
-        if (q && f) {
-            s = 'rsc=' + q + '&rnm=' + parseInt(JIATHIS_CONFIGS.uid) + '&rfh=' + E(o.host) + '&rfp=' + E(o.path) + '&pre=' + E(Y) + '&tit=' + escape(T);
-            (new Image).src = JIATHIS_CONFIGS.lhost + "/l.gif?" + s
-        }
-    }, _gd = function (o) {
-        var d = null;
-        if (o) {
-            d = o.split(".").slice(-2).join(".");
-            d = (d == "com.cn") ? o.split(".").slice(-3).join(".") : d;
-            d = d.split("/").shift()
-        }
-        return d
-    }, _grf = function (r) {
-        var h = "", p = "", q = "", m;
-        if (r.match(/(?:[a-z]\:\/\/)([^\/\?]+)(.*)/gi)) {
-            h = RegExp.$1;
-            p = RegExp.$2;
-            h = h ? h : "";
-            p = p ? p : "";
-            if (h) {
-                for (var k in _lists) {
-                    m = _lists[k].split(',');
-                    if (m[2] && m[2] == h) {
-                        q = k.slice(3);
-                        break
+                for (var a = 0; a < u.length; a++) {
+                    var c = u[a];
+                    if (c.name && c.icon && c.url) {
+                        c.code = c.url = c.url.replace(/ /g, "");
+                        c.code = c.code.split("//").pop().split("?").shift().split("/").shift().toLowerCase();
+                        JIATHIS_CONFIGS.custom[c.code] = c;
+                        JIATHIS_CONFIGS.servicelist[_ckpre + c.code] = c.name + ',' + c.code + ',' + c.code
                     }
                 }
             }
-        }
-        return {host: h, path: p, webid: q}
-    }, jiathis_utility_ifr = !!window.postMessage ? creElm({
-        style: "display:none;",
-        frameBorder: 0,
-        src: JIATHIS_CONFIGS.codehost + "/share/jiathis_utility.html"
-    }, "iframe") : null, div = creElm({
-        className: "jiathis_style",
-        style: "position:absolute;z-index:1000000000;display:none;overflow:auto;"
-    }), div1 = creElm({
-        className: "jiathis_style",
-        style: "position:absolute;z-index:1000000000;display:none;top:50%;left:50%;overflow:auto;"
-    }), iframe = creElm({
-        style: "position:" + (/firefox/.test(ua) ? "fixed" : "absolute") + ";display:none;filter:alpha(opacity=0);opacity:0",
-        frameBorder: 0
-    }, "iframe"), timer, inputTimer, list, clist, h, texts = {}, clickpopjs, ckcpjs;
+        }, _gw = function (a, b, c) {
+            var d = "";
+            do {
+                d = a[b++]
+            } while (b < a.length && (!_lists[_ckpre + d] || c[d]));
+            if (c[d] || !_lists[_ckpre + d]) {
+                d = '';
+                loopObj(_lists, function (k) {
+                    k = k.slice(3);
+                    if (!c[k] && _lists[_ckpre + k]) {
+                        d = k;
+                        return true;
+                    }
+                });
+            }
+            return d
+        }, _renderToolbox = function () {
+            _custom();
+            var hidemore = conf.hideMore || false;
+            var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google", _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {}, h = d.getElementsByTagName("a"), _url = String(conf.url || d.location), _CF = null, webid, likeid, tl, fl, bt, preferred;
+            for (var i = 0, ci, tmp; ci = h[i++];) {
+                if (/\bjiathis\b/.test(ci.className)) {
+                    ci.onmouseout = $CKE.out;
+                    ci.onmousemove = $CKE.move;
+                    !hidemore && (ci.onclick = $CKE.center);
+                    ci.onmouseover = $CKE.over;
+                    ci.hideFocus = true;
+                    continue;
+                }
+                webid = '', likeid = '', tl = false, fl = false, bt = false, preferred = false;
+                if (ci.className && (tmp = ci.className.match(/^jiathis_button_([\w\.]+)(?:\s|$)/)) && tmp[1]) {
+                    if (tmp[1].indexOf("tools") > -1 || tmp[1].indexOf("icons") > -1) {
+                        var s;
+                        if (tmp[1].indexOf("tools") > -1) {
+                            tl = true;
+                            s = ci.className.match(/jiathis_button_tools_([0-9]+)(?:\s|$)/)
+                        } else {
+                            s = ci.className.match(/jiathis_button_icons_([0-9]+)(?:\s|$)/)
+                        }
+                        var g = ((s && s.length) ? Math.min(16, Math.max(1, parseInt(s[1]))) : 1) - 1;
+                        webid = _gw(jck, g, parentServices);
+                        preferred = true
+                    } else {
+                        webid = tmp[1]
+                    }
+                    bt = true
+                }
+                if (webid && _lists[_ckpre + webid]) {
+                    bt && (parentServices[webid] = 1);
+                    var j = function (a, b) {
+                        for (var c in b) {
+                            var o = b[c];
+                            if (o.preferred && o.webid == a) {
+                                return c
+                            }
+                        }
+                        return false
+                    }, t = j(webid, _WR);
+                    if (t !== false) {
+                        var T = _WR[t] || {};
+                        if (T.webid && T.ci) {
+                            var TWID = _gw(jck, 0, parentServices);
+                            T.bt && (parentServices[TWID] = 1);
+                            _WR[t] = {
+                                "ci": T.ci,
+                                "webid": TWID,
+                                "bt": T.bt,
+                                "fl": T.fl,
+                                "tl": T.tl,
+                                "preferred": T.preferred
+                            }
+                        }
+                    }
+                    _WR[i] = {"ci": ci, "webid": webid, "bt": bt, "fl": fl, "tl": tl, "preferred": preferred}
+                } else if (bt || fl) {
+                    ci.innerHTML = ""
+                }
+            }
+            if (_WR) {
+                loopObj(_WR, function (k) {
+                    var o = _WR[k], ci = o.ci, fl = o.fl, tl = o.tl, webid = o.webid;
+                    if (typeof(ci) == "object" && ci.innerHTML.indexOf('jtico jtico_') == -1) {
+                        var v = _lists[_ckpre + webid].split(',');
+                        var w = ci.innerHTML.replace(/^\s+|\s+$/g, "");
+                        var x = JIATHIS_CONFIGS.custom[webid] || {};
+                        var y = (x.icon) ? ' style="background:url(' + x.icon + ') no-repeat left;"' : '';
+                        if (tl || w) {
+                            w = w ? w : v[0];
+                            ci.innerHTML = '<span class="jiathis_txt jiathis_separator jtico jtico_' + webid + '"' + y + '>' + w + '</span>'
+                        } else {
+                            ci.innerHTML = '<span class="jiathis_txt jtico jtico_' + webid + '"' + y + '></span>'
+                        }
+                        if (fl) {
+                            ci.onclick = function (a) {
+                                return function () {
+                                    if (a.className.match(/weixin$/)) {
+                                        jiathis_popup(a.rel)
+                                    } else {
+                                        window.open(a.rel, '')
+                                    }
+                                }
+                            }(ci);
+                            ci.title = ci.title ? ci.title : "在" + v[0] + "关注我们"
+                        } else {
+                            ci.onclick = function (a) {
+                                return function () {
+                                    jiathis_sendto(a)
+                                }
+                            }(webid);
+                            if (!ci.title) {
+                                if (webid == 'copy' || webid == 'print') {
+                                    ci.title = v[0]
+                                } else if (webid == 'fav') {
+                                    ci.title = "加入" + v[0]
+                                } else {
+                                    ci.title = "分享到" + v[0]
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            if (_CF) {
+                $CKE.counter()
+            }
+        },
+        _rec = function (e) {
+            if (!_reced) {
+                _renderToolbox();
+                _req();
+                _reced = true
+            }
+        }, _req = function () {
+            var a, s, E = encodeURIComponent, o = _grf(_ref), T = document.title || "", Y = window.location.href || "", an = Y ? Y.indexOf(JIATHIS_CONFIGS.jtcbk) : -1, d1 = _gd(o.host), d2 = _gd(Y), q = null, f = (d1 && d2 && d1 == d2) ? false : true;
+            if (an > -1) {
+                a = Y.substr(an);
+                q = a.split("#").pop().split("-").pop().split("=").pop();
+                q = _lists[_ckpre + q] ? q : ''
+            }
+            q = (!q && o.webid) ? o.webid : q;
+            if (q && f) {
+                s = 'rsc=' + q + '&rnm=' + parseInt(JIATHIS_CONFIGS.uid) + '&rfh=' + E(o.host) + '&rfp=' + E(o.path) + '&pre=' + E(Y) + '&tit=' + escape(T);
+                (new Image).src = JIATHIS_CONFIGS.lhost + "/l.gif?" + s
+            }
+        }, _gd = function (o) {
+            var d = null;
+            if (o) {
+                d = o.split(".").slice(-2).join(".");
+                d = (d == "com.cn") ? o.split(".").slice(-3).join(".") : d;
+                d = d.split("/").shift()
+            }
+            return d
+        }, _grf = function (r) {
+            var h = "", p = "", q = "", m;
+            if (r.match(/(?:[a-z]\:\/\/)([^\/\?]+)(.*)/gi)) {
+                h = RegExp.$1;
+                p = RegExp.$2;
+                h = h ? h : "";
+                p = p ? p : "";
+                if (h) {
+                    for (var k in _lists) {
+                        m = _lists[k].split(',');
+                        if (m[2] && m[2] == h) {
+                            q = k.slice(3);
+                            break
+                        }
+                    }
+                }
+            }
+            return {host: h, path: p, webid: q}
+        },
+        jiathis_utility_ifr = !!window.postMessage ? creElm({
+            style: "display:none;",
+            frameBorder: 0,
+            src: JIATHIS_CONFIGS.codehost + "/share/jiathis_utility.html" //todo 修改路径
+        }, "iframe") : null,
+        div = creElm({
+            className: "jiathis_style",
+            style: "position:absolute;z-index:1000000000;display:none;overflow:auto;"
+        }),
+        div1 = creElm({
+            className: "jiathis_style",
+            style: "position:absolute;z-index:1000000000;display:none;top:50%;left:50%;overflow:auto;"
+        }),
+        iframe = creElm({
+            style: "position:" + (/firefox/.test(ua) ? "fixed" : "absolute") + ";display:none;filter:alpha(opacity=0);opacity:0",
+            frameBorder: 0
+        }, "iframe"), timer, inputTimer, list, clist, h, texts = {}, ckcpjs;
     creElm({href: JIATHIS_CONFIGS.codehost + "/share/jiathis_share.css", rel: "stylesheet", type: "text/css"}, "link");
     $CKE = {
         jid: "", pop: div, centerpop: div1, shares: 0, containers: [], disappear: function (a) {
@@ -551,18 +498,6 @@ var JIATHIS_CONFIGS = {
                 _renderCounter(A, S)
             }
         }, counter: function () {
-            var A = $CKE.containers, B = _gck(), C = String(conf.url || d.location), J = _rck(B[C]), R = true;
-            if (J && J.timedeff <= 60) {
-                $CKE.shares = J.shares;
-                _renderCounter(A, J.shares);
-                R = false
-            }
-            if (R) {
-                creElm({
-                    src: "//i.jiathis.com/url/shares.php?url=" + encodeURIComponent(C),
-                    charset: "utf-8"
-                }, "script", head)
-            }
         }, open: function (A) {
             creElm({src: A, charset: "utf-8"}, "script", head)
         }, fireEvent: function (F, O) {
@@ -600,13 +535,6 @@ function jiathis_sendto(a) {
             jiathis_copyUrl()
         } else if (a == 'fav') {
             jiathis_addBookmark()
-        } else if (a == 'weixin') {
-            WT = c.title || document.title;
-            WS = c.summary ? c.summary : (b ? b : "");
-            WU = G.replace('&url=', '');
-            AT = WT + WS;
-            AS = jiathis_SetString(AT, 110);
-            jiathis_sharewx(d(AS + '...'), WU)
         } else {
             window.print()
         }
@@ -618,11 +546,7 @@ function jiathis_sendto(a) {
     return false
 }
 function jiathis_addBookmark() {
-    try {
-        var d = jiathis_config || {}
-    } catch (e) {
-        var d = {}
-    }
+    var d = jiathis_config || {};
     var a = d.title || document.title;
     var b = d.url || parent.location.href;
     var c = window.sidebar;
@@ -635,11 +559,7 @@ function jiathis_addBookmark() {
     }
 }
 function jiathis_copyUrl() {
-    try {
-        var d = jiathis_config || {}
-    } catch (e) {
-        var d = {}
-    }
+    var d = jiathis_config || {};
     var a = d.url || this.location.href;
     var b = d.title || document.title;
     var c = b + " " + a;
@@ -656,8 +576,8 @@ function jiathis_copyUrl() {
     }
 }
 function jiathis_get_pic() {
-    var a = document.getElementsByTagName('img'), pic = '', con = '', picArr = new Array();
-    for (i = 0; i < a.length; i++) {
+    var a = document.getElementsByTagName('img'), pic = '', con = '', picArr = [];
+    for (var i = 0; i < a.length; i++) {
         var b = parseInt(a.item(i).offsetWidth), imgH = parseInt(a.item(i).offsetHeight), minW = 300, minH = 150, width = (300 / imgH) * 150, height = (150 / b) * 300;
         if (b >= minW && imgH >= minH) {
             if ((width - height) <= 150) {
@@ -675,13 +595,13 @@ function jiathis_get_des() {
     var b = document.getElementsByTagName("meta");
     var c = b.length;
     if (/msie/i.test(navigator.userAgent)) {
-        for (i = 0; i < c; i++) {
+        for (var i = 0; i < c; i++) {
             if (b[i].name == 'description') {
                 a = b[i].content
             }
         }
         if (a == '') {
-            for (k in b) {
+            for (var k in b) {
                 if (k == 'description') {
                     a = b[k].content
                 }
@@ -724,71 +644,10 @@ function jiathis_SetString(a, b) {
     }
     return s
 }
-function jiathis_sharewx(a, b) {
-    jiathis_popup('', b, a);
-    return false
-}
-function jiathis_popup(c, d, e) {
-    var f, wt, ft, innerhtml, mt, width, height, bh, mt, isIe6 = /msie|MSIE 6/.test(navigator.userAgent);
-    if (g = document.getElementById('jiathis_weixin_share')) {
-        g = document.getElementById('jiathis_weixin_share')
-    } else {
-        var g = document.createElement("div");
-        if (isIe6) {
-            g.style.position = "absolute";
-            g.style.zIndex = "1000000";
-            g.style.left = '650px';
-            var h = document.body.scrollTop || document.documentElement.scrollTop;
-            g.style.top = parseInt(h) + 300 + 'px'
-        } else {
-            g.style.position = "fixed";
-            g.style.zIndex = "10000000001"
-        }
-        g.id = 'jiathis_weixin_share'
-    }
-    if (c) {
-        f = c;
-        wt = '在微信上关注我们';
-        ft = '打开微信，点击底部的“发现”，使用 “扫一扫” 即可关注我们。';
-        innerhtml = '<img src="' + f + '" style="margin-top:25px;" width="129" alt="二维码加载失败" height="129" id="jiathis_follow_img">';
-        width = 'width:300px;';
-        height = 'height:300px;';
-        bh = 'height:181px;';
-        mt = 'margin: -100px 0 0 -200px;'
-    } else {
-        f = JIATHIS_CONFIGS.shost + '?webid=weixin&url=' + d + '&title=' + e + '&isexit=false';
-        wt = '分享到微信朋友圈';
-        ft = '打开微信，点击底部的“发现”，使用 “扫一扫” 即可将网页分享到我的朋友圈。 <a href="' + f + '" target="_blank">如何使用？</a>';
-        innerhtml = innerhtmlw = '二维码加载中....';
-        width = 'width:360px;';
-        height = 'height:360px;';
-        bh = 'height:251px;';
-        mt = 'margin: -200px 0 0 -200px;'
-    }
-    g.innerHTML = '<div id="jiathis_weixin_modal" style="background-clip: padding-box;background-color: #FFFFFF;border: 1px solid rgba(0, 0, 0, 0.3);  border-radius: 6px 6px 6px 6px;  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3); left: 50%; ' + mt + 'overflow: hidden; position: fixed; top: 50%; ' + width + height + ' overflow:hidden;" class="jiathis_weixin_modal"><div class="jiathis_modal_header" id="jiathis_modal_header" style="border-bottom: 1px solid #EEEEEE; padding: 9px 15px;"><a style="text-decoration:none;  margin-top: 2px; color: #000000; float: right;  font-size: 20px;  font-weight: bold; cursor:pointer;line-height: 20px; opacity: 0.2; text-shadow: 0 1px 0 #FFFFFF;"class="jiathis_weixin_close" id="jiathis_weixin_close" onclick="jiathis_cancel()"target="_self">×</a><h3 id="jiathis_weixin_h3"style=" line-height: 30px; margin: 0; font-weight:normal; font-family:"微软雅黑";">' + wt + '</h3></div><div class="jiathis_modal_body"id="jiathis_modal_body"style="text-align:center;' + bh + '"><p id="jiathis_webchat">' + innerhtml + '</p></div><div class="jiathis_modal_footer" id="jiathis_modal_footer"style="border-radius: 0 0 6px 6px; border-top: 1px solid #DDDDDD; box-shadow: 0 1px 0 #FFFFFF inset; height:100%;padding:0 10px;padding-top:11px;text-align: right; font-size:12px;"><div id="jiathis_weixin_tip"style="text-align:left;margin:0; padding:0;font-size:12px;">' + ft + '</div>  </div></div>';
-    document.body.appendChild(g);
-    if (!c) {
-        setTimeout(function () {
-            var a = document.createElement('img');
-            var b = document.getElementById('jiathis_webchat');
-            a.src = JIATHIS_CONFIGS.shost + '/qrcode.php?url=' + d;
-            a.width = '220';
-            a.height = '220';
-            a.style.marginTop = '15px';
-            b.innerHTML = '';
-            a.alt = '二维码加载失败...';
-            b.appendChild(a)
-        }, 1000)
-    }
-    _oMaskEl = document.getElementById("jiathis_weixin_share")
-}
-function jiathis_cancel() {
-    _oDlgEl = document.getElementById('jiathis_weixin_share');
-    document.body.removeChild(_oDlgEl);
-    _oDlgEl = _oDivEl = _oMaskEl = _oErweimaMaskEl = null
-}
 function loopObj(obj, func) {
     for (var k in obj) {
-        func(k, obj[k]);
+        if (func(k, obj[k])) {
+            break;
+        }
     }
 }
