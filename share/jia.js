@@ -628,22 +628,6 @@ function jiathis_get_des() {
     a = a.replace(/\s/g, '');
     return a
 }
-function jiathis_SetString(a, b) {
-    var c = 0;
-    var s = "";
-    for (var i = 0; i < a.length; i++) {
-        if (a.charCodeAt(i) > 128) {
-            c += 2
-        } else {
-            c++
-        }
-        s += a.charAt(i);
-        if (c >= b) {
-            return s
-        }
-    }
-    return s
-}
 function loopObj(obj, func) {
     for (var k in obj) {
         if (func(k, obj[k])) {
