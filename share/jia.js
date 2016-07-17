@@ -390,7 +390,7 @@
             if (tn == "IMG") {
                 c2 = t.parentNode.className.indexOf("jiathis") == "-1"
             } else if (tn == "A") {
-                c2 = t.className.indexOf("jiathis") == "-1"
+                c2 = t.className.indexOf("fpshare") == "-1"
             } else if (tn == "SPAN") {
                 c2 = t.className.indexOf("jiathis_counter") == "-1"
             }
