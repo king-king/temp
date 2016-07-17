@@ -266,7 +266,7 @@
             var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google", _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {},
                 h = parent.getElementsByTagName("a"), _CF = null, webid, likeid, tl, fl, bt, preferred;
             for (var i = 0, ci, tmp; ci = h[i++];) {
-                if (/\bjiathis\b/.test(ci.className)) {
+                if (/\bfpshare\b/.test(ci.className)) {
                     ci.onmouseout = $CKE.out;
                     ci.onmousemove = $CKE.move;
                     !hidemore && (ci.onclick = $CKE.center);
@@ -275,14 +275,14 @@
                     continue;
                 }
                 webid = '', likeid = '', tl = false, fl = false, bt = false, preferred = false;
-                if (ci.className && (tmp = ci.className.match(/^jiathis_button_([\w\.]+)(?:\s|$)/)) && tmp[1]) {
+                if (ci.className && (tmp = ci.className.match(/^fpshare_button_([\w\.]+)(?:\s|$)/)) && tmp[1]) {
                     if (tmp[1].indexOf("tools") > -1 || tmp[1].indexOf("icons") > -1) {
                         var s;
                         if (tmp[1].indexOf("tools") > -1) {
                             tl = true;
-                            s = ci.className.match(/jiathis_button_tools_([0-9]+)(?:\s|$)/)
+                            s = ci.className.match(/fpshare_button_tools_([0-9]+)(?:\s|$)/)
                         } else {
-                            s = ci.className.match(/jiathis_button_icons_([0-9]+)(?:\s|$)/)
+                            s = ci.className.match(/fpshare_button_icons_([0-9]+)(?:\s|$)/)
                         }
                         var g = ((s && s.length) ? Math.min(16, Math.max(1, parseInt(s[1]))) : 1) - 1;
                         webid = _gw(jck, g, parentServices);
@@ -380,7 +380,7 @@
             frameBorder: 0
         }, "iframe"), timer, inputTimer, list, clist, h, texts = {}, ckcpjs;
     creElm({href: JIATHIS_CONFIGS.codehost + "/share/jiathis_share.css", rel: "stylesheet", type: "text/css"}, "link");
-    var $CKE = {
+    window.$CKE = {
         jid: "", pop: div, centerpop: div1, shares: 0, containers: [],
         disappear: function (a) {
             var b = window.event || a, t = b.srcElement || b.target, tn = t.tagName ? t.tagName.toUpperCase() : "", c = div.contains ? div.contains(t) : !!(div.compareDocumentPosition(t) & 16), c1 = div1.contains ? div1.contains(t) : !!(div1.compareDocumentPosition(t) & 16), c2 = true;
@@ -600,7 +600,7 @@
                 var b = '<div style="border:0px solid #7F7F7F; width:100%; ">';
                 b += '<div class="jiadiv_01" style="width:300px;">';
                 b += '<div style="background:#F2F2F2;line-height:100%;height:30px;overflow:hidden;width:300px;">';
-                b += '<table width="100%" style="margin:5px 0 0 0;"><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="' + JIATHIS_CONFIGS.codehost + 'img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;" onclick="$CKE.centerClose();"/></td></tr></table>';
+                b += '<table width="100%" style="margin:5px 0 0 0;"><tr class="jt_sharetitle" style="line-height:20px!important;"><td align="left" style="text-align:left;font-size:12px;">分享到各大网站</td><td align="right"><img src="' + JIATHIS_CONFIGS.codehost + 'img_exit.gif" border="0" style="margin:0 4px;cursor:pointer;"clas onclick="$CKE.centerClose();"/></td></tr></table>';
                 b += '</div><div class="searchTxtCont">';
                 b += '<div style="background:url(' + JIATHIS_CONFIGS.codehost + 'img_so.gif) no-repeat center;height:30px; width:281px">';
                 b += '<form onsubmit="return false;">';
