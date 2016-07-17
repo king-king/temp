@@ -107,8 +107,9 @@
             'jt_myshare': 'Myshare,myshare'
         }
     };
-    var d = document, dd = d.documentElement, db = d.body, m = Math.max, ie = !!d.all, ua = navigator.userAgent.toLowerCase(), head = d.getElementsByTagName("head")[0] || dd,
-        conf = (typeof(jiathis_config) == 'undefined') ? {} : jiathis_config,
+    var fp_share_config;
+    var d = document, dd = d.documentElement, db = d.body, m = Math.max, ua = navigator.userAgent.toLowerCase(), head = d.getElementsByTagName("head")[0] || dd,
+        conf = (typeof(fp_share_config) == 'undefined') ? {} : fp_share_config,
         _ckpre = JIATHIS_CONFIGS.ckprefix, _lists = JIATHIS_CONFIGS.servicelist,
         getS = function () {
             return {t: m(dd.scrollTop, db.scrollTop), l: m(dd.scrollLeft, db.scrollLeft)}
@@ -260,10 +261,12 @@
             }
             return d
         },
-        _renderToolbox = function (parent) {
+        _renderToolbox = function (parent, data) {
+            fp_share_config = data;
             _custom();
             var hidemore = conf.hideMore || false;
-            var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google", _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {},
+            var f = "qzone,tsina,tqq,weixin,renren,kaixin001,evernote,linkedin,douban,ydnote,xiaoyou,msn,fb,twitter,tieba,baidu,google",
+                _jck = JIATHIS_CONFIGS.jtck || f, jck = _uniqueConcat(_jck.split(","), f.split(",")), parentServices = {}, _WR = {},
                 h = parent.getElementsByTagName("a"), _CF = null, webid, likeid, tl, fl, bt, preferred;
             for (var i = 0, ci, tmp; ci = h[i++];) {
                 if (/\bfpshare\b/.test(ci.className)) {
@@ -477,7 +480,7 @@
     d.addEventListener("click", $CKE.disappear, false);
     function jiathis_sendto(a) {
         var b = jiathis_get_des(), pic = jiathis_get_pic();
-        var c = jiathis_config || {};
+        var c = fp_share_config || {};
         var d = encodeURIComponent, cu = JIATHIS_CONFIGS.custom[a] || {}, U = String(c.url || document.location), W = "?webid=" + a, G = "&url=" + d(U), T = "&title=" + d(c.title || document.title), S = c.summary ? "&summary=" + d(c.summary) : (b ? "&summary=" + d(b) : ""), F = JIATHIS_CONFIGS.uid ? "&uid=" + parseInt(JIATHIS_CONFIGS.uid) : "", E = c.data_track_clickback ? "&jtss=1" : "", K = (c.appkey && c.appkey[a]) ? "&appkey=" + c.appkey[a] : "", P = c.pic ? "&pic=" + d(c.pic) : (pic ? "&pic=" + d(pic) : ''), C = $CKE.jid ? "&jid=" + $CKE.jid : "", R = (c.ralateuid && c.ralateuid[a]) ? "&ralateuid=" + c.ralateuid[a] : "", Q = (c.evt && c.evt['share']) ? c.evt['share'] : null, A = 'http://s.jiathis.com/', X = (cu.name && cu.url) ? "&acn=" + d(cu.name) + "&acu=" + d(cu.url) : "", SU = c.shortUrl == false ? '' : '&su=1';
         B = A + W + G + T + F + E + K + P + R + S + X + C + SU;
         if (a == 'copy' || a == 'fav' || a == 'print' || a == 'weixin') {
@@ -498,7 +501,7 @@
     }
 
     function jiathis_addBookmark() {
-        var d = jiathis_config || {};
+        var d = fp_share_config || {};
         var a = d.title || document.title;
         var b = d.url || parent.location.href;
         var c = window.sidebar;
@@ -512,7 +515,7 @@
     }
 
     function jiathis_copyUrl() {
-        var d = jiathis_config || {};
+        var d = fp_share_config || {};
         var a = d.url || this.location.href;
         var b = d.title || document.title;
         var c = b + " " + a;
@@ -593,10 +596,10 @@
     }
 
     function ckecenterpop() {
-        var g = jiathis_config || {};
+        var g = fp_share_config || {};
         var h = JIATHIS_CONFIGS.servicelist, _hmf = g.hmf || false, _lk = g.leftLink || {}, _rk = g.rightLink || {},
             _gcp = function (s) {
-                var a = jiathis_config || {};
+                var a = fp_share_config || {};
                 var b = '<div style="border:0px solid #7F7F7F; width:100%; ">';
                 b += '<div class="jiadiv_01" style="width:300px;">';
                 b += '<div style="background:#F2F2F2;line-height:100%;height:30px;overflow:hidden;width:300px;">';

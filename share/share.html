@@ -4,6 +4,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+
+    </style>
 </head>
 <body>
 <div class="jiathis_style_32x32">
@@ -14,17 +17,14 @@
     <a class="fpshare_button_renren"></a>
     <a class="fpshare jiathis_txt jtico jtico_jiathis"></a>
 </div>
-<script>
-    var jiathis_config = {
-        title: "自定义#TITLE# ",
-        summary: "分享的文本摘要",
-        pic: "自定义分享的图片连接地址"
-    }
-</script>
 <!--<script src="http://v3.jiathis.com/code/jia.js"></script>-->
 <script src="jia.js"></script>
 <script>
-    _renderToolbox(document.querySelector(".jiathis_style_32x32"));
+    _renderToolbox(document.querySelector(".jiathis_style_32x32"),{
+        title: "哈哈#TITLE# ",
+        summary: "分享的文本摘要",
+        pic: "自定义分享的图片连接地址"
+    });
 </script>
 </body>
 
