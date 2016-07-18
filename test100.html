@@ -24,6 +24,11 @@
             height: 40px;
             background: red;
         }
+
+        .btn {
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
@@ -37,9 +42,16 @@
     <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
     <a class="jiathis_counter_style"></a>
 </div>
+<textarea class="btn"></textarea>
 <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 <!-- JiaThis Button END -->
 
+
+<script>
+    document.querySelector(".btn").onkeyup = function () {
+        console.log("ok");
+    }
+</script>
 </body>
 
 </html>
