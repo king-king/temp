@@ -5,10 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
+        .log {
+            font-size: 30px;
+        }
     </style>
 </head>
 <body>
-<video width="400" src="http://static01.cloud7.com.cn/now-you-see-me.mp4" autoplay="true" controls="controls">您的浏览器不支持 video 标签。</video>
+<video width="400" src="http://static01.cloud7.com.cn/now-you-see-me.mp4" controls="true" autoplay="true">您的浏览器不支持 video
+    标签。
+</video>
+<div class="log"></div>
 </body>
+<script>
+    var video = document.querySelector("video");
+    video.addEventListener("pause", function () {
+        var log = document.createElement("div");
+        document.body.appendChild(log);
+        log.textContent = "ended";
+    });
+</script>
 
 </html>
