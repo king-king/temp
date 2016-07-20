@@ -5,18 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-        .log {
-            font-size: 30px;
+        canvas {
+            width: 72px;
+            height: 784px;
+            display: none;
+        }
+
+        div {
+            width: 72px;
+            height: 98px;
+            /*background: url("img/big-fire.jpg") 0 0;*/
+            /*background: url("img/open-fire.jpg") 0 0;*/
+            background: url("img/little-fire.png") 0 0;
+            background-size: 72px auto;
+            animation: animate 2s steps(7, end) infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 -686px;
+            }
         }
     </style>
 </head>
 <body>
-<video width="400" src="http://static01.cloud7.com.cn/yhcc/fhcc.mp4" controls="true" >您的浏览器不支持 video
-    标签。
-</video>
-<div class="log"></div>
+<div></div>
+<canvas width="72" height="784"></canvas>
 </body>
 <script>
+    var canvas = document.querySelector("canvas");
+    var gc = canvas.getContext("2d");
+    var index = 0;
+    var image = [];
+    for (var i = 0; i < 8; i++) {
+        var img = new Image();
+        img.src = "image-splite/sf_" + i + ".png";
+        image.push(img);
+        img.onload = function () {
+            index += 1;
+            if (index == 8) {
+                process();
+            }
+        }
+    }
+
+    function process() {
+        for (var i = 0; i < image.length; i++) {
+            gc.drawImage(image[i], 0, 98 * i);
+        }
+        console.log("end");
+    }
+
+
 </script>
 
 </html>
