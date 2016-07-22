@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
         canvas {
-            width: 72px;
-            height: 784px;
-            display: none;
+            width: 1000px;
+            height: 10080px;
+            /*display: none;*/
         }
 
         div {
@@ -32,17 +32,17 @@
     </style>
 </head>
 <body>
-<div></div>
-<canvas width="72" height="784"></canvas>
+<!--<div></div>-->
+<canvas width="1000" height="10080"></canvas>
 </body>
 <script>
     var canvas = document.querySelector("canvas");
     var gc = canvas.getContext("2d");
     var index = 0;
     var image = [];
-    for (var i = 0; i < 8; i++) {
+    for (var i = 0; i < 12; i++) {
         var img = new Image();
-        img.src = "image-splite/sf_" + i + ".png";
+        img.src = "image-splite/lf_" + i + ".jpg";
         image.push(img);
         img.onload = function () {
             index += 1;
@@ -54,7 +54,7 @@
 
     function process() {
         for (var i = 0; i < image.length; i++) {
-            gc.drawImage(image[i], 0, 98 * i);
+            gc.drawImage(image[i], 0, 840 * i);
         }
         console.log("end");
     }
