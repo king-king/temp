@@ -1,3 +1,9 @@
-var os = require("os");
+var spawn = require('child_process').spawn;
 
-console.log(os .hostname())
+var child = spawn("node", ["test3.js"]);
+child.on("error", function (e) {
+    console.log(e);
+});
+child.on("exit", function (e) {
+    console.log("exit");
+});
