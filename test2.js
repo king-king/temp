@@ -1,9 +1,19 @@
-var spawn = require('child_process').spawn;
+var exec = require('child_process').exec;
 
-var child = spawn("node", ["test3.js"]);
+var child = exec("node test3.js", function (error, stdout, stderr) {
+    if (error) {
+        console.log(error)
+    } else {
+        console.log(stdout);
+    }
+});
 child.on("error", function (e) {
-    console.log(e);
+    console.log("error");
 });
 child.on("exit", function (e) {
     console.log("exit");
+});
+
+process.on("exit", function (e) {
+    console.log("over");
 });
