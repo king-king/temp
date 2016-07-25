@@ -35,10 +35,35 @@
 <div class="wrapper"></div>
 
 <script>
-    setTimeout(function () {
-        console.log(word);
-    }, 0);
-    var word = 432;
+    function duration(d) {
+        function ms(d) {
+            return d % 1000;
+        }
+
+        function s() {
+            return d / 1000 % 60 << 0;
+        }
+
+        if (d < 1000) {
+            return d + "毫秒";
+        } else if (d < 60 * 1000) {
+            return (d / 1000 << 0) + "秒 " + ms(d) + "毫秒";
+        } else if (d < 60 * 60 * 1000) {
+            return (d / 1000 / 60 << 0) + "分 " + s(d) + "秒 " + ms(d) + "毫秒";
+        } else {
+            return (d / 1000 / 60 / 60 << 0) + "小时 " + (d / 1000 / 60 % 60 << 0) + "分 " + s(d) + "秒 " + ms(d) + "毫秒";
+        }
+    }
+
+
+    // 987ms
+    console.log(duration(987));
+    // 32s 289ms
+    console.log(duration(32 * 1000 + 289));
+    // 3min 59s 999ms
+    console.log(duration(3 * 60 * 1000 + 59 * 1000 + 999));
+    // 4h 59min 59s 932ms
+    console.log(duration(4 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000 + 932));
 </script>
 
 </body>
