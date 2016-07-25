@@ -57,13 +57,23 @@
 
 
     // 987ms
-    console.log(duration(987));
-    // 32s 289ms
-    console.log(duration(32 * 1000 + 289));
-    // 3min 59s 999ms
-    console.log(duration(3 * 60 * 1000 + 59 * 1000 + 999));
-    // 4h 59min 59s 932ms
-    console.log(duration(4 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000 + 932));
+    //    console.log(duration(987));
+    //    // 32s 289ms
+    //    console.log(duration(32 * 1000 + 289));
+    //    // 3min 59s 999ms
+    //    console.log(duration(3 * 60 * 1000 + 59 * 1000 + 999));
+    //    // 4h 59min 59s 932ms
+    //    console.log(duration(4 * 60 * 60 * 1000 + 59 * 60 * 1000 + 59 * 1000 + 932));
+
+    // 4h 49min 59s 932ms
+    var time = (new Date());
+    //    time.setTime(4 * 60 * 60 * 1000 + 49 * 60 * 1000 + 59 * 1000 + 932);
+    time.setTime(0);
+    console.log(time.getHours());
+    console.log(time.getSeconds());
+    console.log(time.getMinutes());
+    console.log(time.getMilliseconds());
+    console.log(time.toLocaleString());
 </script>
 
 </body>
