@@ -2,6 +2,7 @@ var exec = require('child_process').exec;
 
 
 var child = exec("node test3.js", function (error, stdout, stderr) {
+    console.log("子进程结束");
     if (error) {
         console.log(error)
     } else {
