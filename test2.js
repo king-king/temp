@@ -1,5 +1,6 @@
 var exec = require('child_process').exec;
 
+
 var child = exec("node test3.js", function (error, stdout, stderr) {
     if (error) {
         console.log(error)
@@ -7,6 +8,7 @@ var child = exec("node test3.js", function (error, stdout, stderr) {
         console.log(stdout);
     }
 });
+console.log("running");
 child.on("error", function (e) {
     console.log("error");
 });
