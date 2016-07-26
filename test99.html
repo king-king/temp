@@ -14,40 +14,70 @@
             overflow: hidden;
         }
 
-        div {
-            width: 320px;
-            height: 300px;
-            transform: rotate3d(0, 0, 1, 90deg);
+        .border {
+            position: absolute;
+            width: 375px;
+            height: 667px;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) scale3d(0.85, 0.85, 0.85);
+            border: 3px solid gray;
         }
 
+        .gift-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .rabbit {
+            height: 26%;
+            position: absolute;
+            top: 57%;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+        }
+
+        @keyframes jelly {
+            0% {
+                transform: translate3d(-50%, 0, 0) scale3d(0, 0, 0);
+            }
+            70% {
+                transform: translate3d(-50%, 0, 0) scale3d(1.2, 1.2, 1.2);
+            }
+            80% {
+                transform: translate3d(-50%, 0, 0) scale3d(0.8, 0.8, 0.8);
+            }
+            90% {
+                transform: translate3d(-50%, 0, 0) scale3d(1.1, 1.1, 1.1);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1);
+            }
+        }
+
+        @keyframes rotate {
+
+        }
     </style>
 </head>
 <body>
-
-<div>
-    <video src="http://static01.cloud7.com.cn/yhcc/fhcc.mp4" width="300" autoplay="true"></video>
+<div class="border">
+    <img src="img/gift-bg.jpg" class="gift-bg">
 </div>
 <script>
-    function duration(d) {
-        function ms(d) {
-            return d % 1000;
-        }
 
-        function s() {
-            return d / 1000 % 60 << 0;
-        }
+    (function () {
+        var img = new Image();
+        img.src = "img/rabbit.png";
+        img.onload = function () {
+            img.classList.add("rabbit");
+            document.querySelector(".border").appendChild(img);
+            img.style.animation = "jelly 0.7s linear both";
 
-        if (d < 1000) {
-            return d + "毫秒";
-        } else if (d < 60 * 1000) {
-            return (d / 1000 << 0) + "秒 " + ms(d) + "毫秒";
-        } else if (d < 60 * 60 * 1000) {
-            return (d / 1000 / 60 << 0) + "分 " + s(d) + "秒 " + ms(d) + "毫秒";
-        } else {
-            return (d / 1000 / 60 / 60 << 0) + "小时 " + (d / 1000 / 60 % 60 << 0) + "分 " + s(d) + "秒 " + ms(d) + "毫秒";
         }
-    }
-
+    })();
 
 </script>
 
