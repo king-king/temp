@@ -5,59 +5,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
-        canvas {
-            width: 1000px;
-            height: 10080px;
-            /*display: none;*/
+        body {
+            background: #000;
         }
 
-        div {
-            width: 72px;
-            height: 98px;
-            /*background: url("img/big-fire.jpg") 0 0;*/
-            /*background: url("img/open-fire.jpg") 0 0;*/
-            background: url("img/little-fire.png") 0 0;
-            background-size: 72px auto;
-            animation: animate 1s steps(7, end) infinite;
+        .border {
+            width: 52px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
         }
 
-        @keyframes animate {
+        .border img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .wave {
+            width: 43px;
+            animation: shan 2s linear both infinite;
+        }
+
+        .hand {
+            height: 50px;
+        }
+
+        @keyframes shan {
             0% {
-                background-position: 0 0;
+                opacity: 0;
+                transform: scale3d(0, 0, 0);
+            }
+            30% {
+                opacity: 1;
+                transform: scale3d(0.7, 0.7, 0.7);
+            }
+            60% {
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5);
             }
             100% {
-                background-position: 0 -686px;
+                opacity: 0;
+                transform: scale3d(1.5, 1.5, 1.5);
             }
         }
+
     </style>
 </head>
 <body>
-<!--<div></div>-->
-<canvas width="1000" height="10080"></canvas>
+<div class="border">
+    <img src="img/wave.png" class="wave">
+    <img src="img/hand.png" class="hand">
+</div>
 </body>
 <script>
-    var canvas = document.querySelector("canvas");
-    var gc = canvas.getContext("2d");
-    var index = 0;
-    var image = [];
-    for (var i = 0; i < 12; i++) {
-        var img = new Image();
-        img.src = "image-splite/lf_" + i + ".jpg";
-        image.push(img);
-        img.onload = function () {
-            index += 1;
-            if (index == 8) {
-                process();
-            }
-        }
-    }
-
-    function process() {
-        for (var i = 0; i < image.length; i++) {
-            gc.drawImage(image[i], 0, 840 * i);
-        }
-        console.log("end");
-    }
 
 
 </script>
