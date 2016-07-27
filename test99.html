@@ -57,8 +57,52 @@
             }
         }
 
-        @keyframes rotate {
+        @keyframes up0 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, -100px, 0);
+            }
+        }
 
+        @keyframes up1 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, -70px, 0);
+            }
+        }
+
+        @keyframes up2 {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 0;
+            }
+            40% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, -80px, 0);
+            }
         }
     </style>
 </head>
@@ -69,13 +113,36 @@
 <script>
 
     (function () {
+        var border = document.querySelector(".border");
         var img = new Image();
         img.src = "img/rabbit.png";
         img.onload = function () {
             img.classList.add("rabbit");
-            document.querySelector(".border").appendChild(img);
+            border.appendChild(img);
             img.style.animation = "jelly 0.7s linear both";
+            function bubble(x, y, delay) {
+                var i = 0;
+                var b = new Image();
+                b.src = "img/bubble0.png";
+                border.appendChild(b);
+                b.style.position = "absolute";
+                b.style.width = "25px";
+                b.style.left = x;
+                b.style.top = y;
+                b.style.animation = "up0 2s linear " + delay + "s both";
+                b.addEventListener("animationend", function () {
+                    b.src = "img/bubble0-boom.png";
+                    i = (i + 1) % 3;
+                    setTimeout(function () {
+                        b.src = "img/bubble0.png";
+                        b.style.animation = "up" + i + " 1.5s linear both";
+                    }, 100);
+                });
+            }
 
+            bubble("50%", "50%", 0);
+            bubble("40%", "55%", 1);
+            bubble("60%", "56%", 1.5);
         }
     })();
 
