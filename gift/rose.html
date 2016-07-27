@@ -40,6 +40,17 @@
             transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -90deg);
         }
 
+        @keyframes rrotate {
+            0% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, 0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -90deg);
+            }
+        }
+
         @keyframes rotate {
             0% {
                 opacity: 0;
@@ -218,6 +229,10 @@
             makeStar(15, 25, 15, "star2 2s cubic-bezier(.17,.67,.65,1.24) 1.6s both", function (s, i) {
                 s.style.animation = "slip 1s ease-in-out " + i / 10 + "s both infinite";
             });
+
+            setTimeout(function () {
+                img.style.animation = "rrotate 2s ease-in-out both";
+            }, 3000);
         }
     })();
 
