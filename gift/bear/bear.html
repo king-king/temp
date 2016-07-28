@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html, body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .border {
+            position: absolute;
+            width: 375px;
+            height: 667px;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) scale3d(0.85, 0.85, 0.85);
+            border: 3px solid gray;
+            background: #000;
+        }
+
+        .gift-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .bear {
+            position: absolute;
+            top: 40%;
+            height: 20%;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0);
+        }
+
+        @keyframes in {
+            0% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(0, 0, 0) rotate3d(0, 0, 1, 0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1.2, 1.2, 1.2) rotate3d(0, 0, 1, 0deg);
+            }
+            55% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(0.8, 0.8, 0.8) rotate3d(0, 0, 1, 0deg);
+            }
+            60% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 0deg);
+            }
+            65% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, 0deg);
+            }
+            70% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, 0deg);
+            }
+            75% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, -20deg);
+            }
+            80% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, 20deg);
+            }
+            85% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, -10deg);
+            }
+            90% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, 10deg);
+            }
+            95% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, -5deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, 0deg);
+            }
+
+        }
+
+        @keyframes up0 {
+            0% {
+                opacity: 0;
+                transform: scale(0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 0.1;
+                transform: scale(0.8) translate3d(0, -8px, 0);
+            }
+            25% {
+                opacity: 0.2;
+                transform: scale(1) translate3d(0, -8px, 0);
+            }
+            37.5% {
+                opacity: 0.4;
+                transform: scale(1) translate3d(0, -12px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) translate3d(0, -24px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate3d(0, -60px, 0);
+            }
+        }
+
+        @keyframes up1 {
+            0% {
+                opacity: 0;
+                transform: scale(0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 0.1;
+                transform: scale(0.8) translate3d(2px, -10px, 0);
+            }
+            25% {
+                opacity: 0.2;
+                transform: scale(1) translate3d(2px, -10px, 0);
+            }
+            37.5% {
+                opacity: 0.4;
+                transform: scale(1) translate3d(4px, -16px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) translate3d(4px, -30px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate3d(7px, -74px, 0);
+            }
+        }
+
+        @keyframes up2 {
+            0% {
+                opacity: 0;
+                transform: scale(0) translate3d(0, 0, 0);
+            }
+            12.5% {
+                opacity: 0.1;
+                transform: scale(0.8) translate3d(-2px, -10px, 0);
+            }
+            25% {
+                opacity: 0.2;
+                transform: scale(1) translate3d(-2px, -10px, 0);
+            }
+            37.5% {
+                opacity: 0.4;
+                transform: scale(1) translate3d(-4px, -22px, 0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) translate3d(-4px, -38px, 0);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(1) translate3d(-7px, -66px, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="border">
+    <!--<img src="../img/gift-bg.jpg" class="gift-bg">-->
+</div>
+<script>
+    function loopObj(obj, func) {
+        for (var key in obj) {
+            func(key, obj[key]);
+        }
+    }
+    function css(el, styles) {
+        loopObj(styles, function (key, value) {
+            el.style.setProperty(key, value);
+        });
+    }
+</script>
+<script>
+    var bubbles = [
+        {
+            0: {
+                opacity: 0,
+                transform: "scale(0) translate3d(0, 0, 0)"
+            },
+            12.5: {
+                opacity: 0.1,
+                transform: "scale(0.8) translate3d(0, -4px, 0)"
+            },
+            25: {
+                opacity: 0.2,
+                transform: "scale(1) translate3d(0, -4px, 0)"
+            },
+            37.5: {
+                opacity: 0.4,
+                transform: "scale(1) translate3d(0, -6px, 0)"
+            },
+            50: {
+                opacity: 1,
+                transform: "scale(1) translate3d(0, -12px, 0)"
+            },
+            100: {
+                opacity: 0,
+                transform: "scale(1) translate3d(0, -30px, 0)"
+            }
+        },
+        {
+            0: {
+                opacity: 0,
+                transform: "scale(0) translate3d(0, 0, 0)"
+            },
+            12.5: {
+                opacity: 0.1,
+                transform: "scale(0.8) translate3d(2px, -5px, 0)"
+            },
+            25: {
+                opacity: 0.2,
+                transform: "scale(1) translate3d(2px, -5px, 0)"
+            },
+            37.5: {
+                opacity: 0.4,
+                transform: "scale(1) translate3d(4px, -8px, 0)"
+            },
+            50: {
+                opacity: 1,
+                transform: "scale(1) translate3d(4px, -15px, 0)"
+            },
+            100: {
+                opacity: 0,
+                transform: "scale(1) translate3d(7px, -37px, 0)"
+            }
+        },
+        {
+            0: {
+                opacity: 0,
+                transform: "scale(0) translate3d(0, 0, 0)"
+            },
+            12.5: {
+                opacity: 0.1,
+                transform: "scale(0.8) translate3d(-2px, -5px, 0)"
+            },
+            25: {
+                opacity: 0.2,
+                transform: "scale(1) translate3d(-2px, -5px, 0)"
+            },
+            37.5: {
+                opacity: 0.4,
+                transform: "scale(1) translate3d(-4px, -11px, 0)"
+            },
+            50: {
+                opacity: 1,
+                transform: "scale(1) translate3d(-4px, -19px, 0)"
+            },
+            100: {
+                opacity: 0,
+                transform: "scale(1) translate3d(-7px, -33px, 0)"
+            }
+        }
+    ];
+    (function () {
+        var border = document.querySelector(".border");
+        var img = new Image();
+        img.src = "bear.png";
+
+        var i = 0;
+
+        function makeHeart(x, y, w, callback) {
+            var img = new Image();
+            img.src = "heart" + i + ".png";
+            border.appendChild(img);
+            i = (i + 1) % 6;
+            css(img, {
+                position: "absolute",
+                top: y,
+                left: x,
+                width: w
+            });
+            img.onload = function () {
+                callback(img);
+            };
+        }
+
+        img.onload = function () {
+            border.appendChild(img);
+            img.classList.add("bear");
+
+            img.style.animation = "in 1.6s linear both";
+
+            makeHeart("50%", "35%", "20px", function (el) {
+                el.style.animation = "up0 2s linear 1s both infinite";
+            });
+            makeHeart("40%", "33%", "20px", function (el) {
+                el.style.animation = "up1 2s linear 1.6s both infinite";
+            });
+            makeHeart("60%", "35%", "20px", function (el) {
+                el.style.animation = "up2 2s linear 1.9s both infinite";
+            });
+            makeHeart("47%", "30%", "20px", function (el) {
+                el.style.animation = "up0 2s linear 2.2s both infinite";
+            });
+            makeHeart("45%", "35%", "20px", function (el) {
+                el.style.animation = "up1 2s linear 2.5s both infinite";
+            });
+            makeHeart("55%", "25%", "20px", function (el) {
+                el.style.animation = "up2 2s linear 2.8s both infinite";
+            });
+
+            setTimeout(function () {
+                // remove
+            }, 3000);
+        }
+    })();
+
+</script>
+
+</body>
+</html>
