@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html, body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .border {
+            position: absolute;
+            width: 375px;
+            height: 667px;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) scale3d(0.85, 0.85, 0.85);
+            border: 3px solid gray;
+            background: #000;
+        }
+
+        .gift-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .rose {
+            position: absolute;
+            top: 40%;
+            height: 20%;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -90deg);
+        }
+
+    </style>
+</head>
+<body>
+<div class="border">
+    <!--<img src="../img/gift-bg.jpg" class="gift-bg">-->
+</div>
+<script>
+    function loopObj(obj, func) {
+        for (var key in obj) {
+            func(key, obj[key]);
+        }
+    }
+
+    function loopArray(arr, func) {
+        for (var i = 0; i < arr.length; i++) {
+            func(arr[i], i);
+        }
+    }
+
+    function loop(n, func) {
+        for (var i = 0; i < n; i++) {
+            func(i);
+        }
+    }
+
+    function css(el, styles) {
+        loopObj(styles, function (key, value) {
+            el.style.setProperty(key, value);
+        });
+    }
+
+    function concurrentTask(tasks, callback) {
+        var len = tasks.length, count = 0;
+        loopArray(tasks, function (task) {
+            task(function () {
+                ++count == len && callback();
+            });
+        });
+    }
+</script>
+<script>
+
+    (function () {
+        var border = document.querySelector(".border");
+        var s = 320;
+        var wrapper = document.createElement("div");
+        border.appendChild(wrapper);
+        css(wrapper, {
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate3d(-50%,-50%,0)",
+            width: s + "px",
+            height: s + "px"
+        });
+        var loadTask = [];
+        var lips = [];
+        loop(10, function (i) {
+            var img = new Image();
+            img.src = "lip" + i + ".png";
+            lips.push(img);
+            loadTask.push(function (done) {
+                img.onload = done;
+            });
+        });
+
+        var lip = new Image();
+        lip.src = "lip.png";
+        loadTask.push(function (done) {
+            lip.onload = done;
+        });
+
+
+        var lipsInfo = [
+            {
+                x: 177,
+                y: 448,
+                h: 168
+            },
+            {
+                x: 406,
+                y: 412,
+                h: 156
+            },
+            {
+                x: 16,
+                y: 164,
+                h: 111
+            },
+            {
+                x: 391,
+                y: 100,
+                h: 128
+            },
+            {
+                x: 435,
+                y: 30,
+                h: 108
+            },
+            {
+                x: 70,
+                y: 363,
+                h: 127
+            },
+            {
+                x: 476,
+                y: 143,
+                h: 132
+            },
+            {
+                x: 70,
+                y: 43,
+                h: 166
+            },
+            {
+                x: 366,
+                y: 274,
+                h: 122
+            },
+            {
+                x: 176,
+                y: 144,
+                h: 136
+            }
+        ];
+        var starInfo = [
+            {
+                x: 213 - 170,
+                y: 259 - 170,
+                h: 42
+            },
+            {
+                x: 240 - 170,
+                y: 259 - 170,
+                h: 32
+            },
+            {
+                x: 400 - 170,
+                y: 279 - 170,
+                h: 32
+            },
+            {
+                x: 409 - 170,
+                y: 374 - 170,
+                h: 34
+            },
+            {
+                x: 399 - 170,
+                y: 399 - 170,
+                h: 27
+            },
+            {
+                x: 209 - 170,
+                y: 379 - 170,
+                h: 27
+            },
+            {
+                x: 199 - 170,
+                y: 293 - 170,
+                h: 34
+            }
+        ];
+
+        concurrentTask(loadTask, function () {
+            wrapper.appendChild(lip);
+            css(lip, {
+                position: "absolute",
+                top: 293 / 640 * 100 + "%",
+                left: "50%",
+                transform: "translate3d(-50%,0,0)",
+                height: 113 / 640 * 100 + "%"
+            });
+            loopArray(lipsInfo, function (info, i) {
+                wrapper.appendChild(lips[i]);
+                css(lips[i], {
+                    position: "absolute",
+                    top: info.y / 640 * 100 + "%",
+                    left: info.x / 640 * 100 + "%",
+                    height: info.h / 640 * 100 + "%"
+                });
+            });
+            var starWrapper = document.createElement("div");
+            wrapper.appendChild(starWrapper);
+            css(starWrapper, {
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate3d(-50%,-50%,0)",
+                height: s * 300 / 640 + "px",
+                width: s * 300 / 640 + "px"
+            });
+            loopArray(starInfo, function (info, i) {
+                var img = new Image();
+                img.src = "star.png";
+                starWrapper.appendChild(img);
+                css(img, {
+                    position: "absolute",
+                    top: info.y / 300 * 100 + "%",
+                    left: info.x / 300 * 100 + "%",
+                    height: info.h / 300 * 100 + "%"
+                });
+            });
+        });
+
+    })();
+
+</script>
+
+</body>
+</html>
