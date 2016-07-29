@@ -227,35 +227,38 @@
         }
 
         @keyframes shade-in {
-            0% {
-                opacity: 0;
-                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 0deg);
-            }
-            50% {
-                opacity: 1;
-                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 0deg);
-            }
             60% {
                 opacity: 1;
-                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 20deg);
-            }
-            70% {
-                opacity: 1;
-                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, -20deg);
-            }
-            80% {
-                opacity: 1;
-                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 10deg);
-            }
-            90% {
-                opacity: 1;
-                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, -10deg);
             }
             100% {
                 opacity: 1;
+            }
+        }
+
+        @keyframes yb {
+            0% {
+                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 0deg);
+            }
+            10% {
+                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 20deg);
+            }
+            20% {
+                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, -20deg);
+            }
+            30% {
+                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 10deg);
+            }
+            40% {
+                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, -10deg);
+            }
+            50% {
+                transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 0deg);
+            }
+            100% {
                 transform: translate3d(-50%, -50%, 0px) rotate3d(0, 0, 1, 0deg);
             }
         }
+
     </style>
 </head>
 <body>
@@ -518,7 +521,10 @@
                     transform: "translate3d(-50%,0,0) rotate3d(0,0,1,24deg)",
                     height: 113 / 640 * 100 + "%"
                 });
-                wrapper2.style.animation = "shade-in 1.5s linear both";
+                wrapper2.style.animation = "shade-in 0.5s linear both";
+                setTimeout(function () {
+                    wrapper2.style.animation = "yb 2.5s linear both infinite";
+                }, 1000);
             }, 4000);
         });
 
