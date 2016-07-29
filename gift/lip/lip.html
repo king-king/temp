@@ -23,6 +23,7 @@
             transform: translate3d(-50%, -50%, 0) scale3d(0.85, 0.85, 0.85);
             border: 3px solid gray;
             background: #000;
+            overflow: hidden;
         }
 
         .gift-bg {
@@ -218,6 +219,12 @@
                 opacity: 0;
             }
         }
+
+        @keyframes bigger {
+            100% {
+                transform: scale3d(3, 3, 3);
+            }
+        }
     </style>
 </head>
 <body>
@@ -393,6 +400,15 @@
 
         concurrentTask(loadTask, function () {
             wrapper.appendChild(lip);
+            var lipWrapper = document.createElement("div");
+            wrapper.appendChild(lipWrapper);
+            css(lipWrapper, {
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0
+            });
             lip.style.animation = "tan 1s linear both";
             css(lip, {
                 position: "absolute",
@@ -402,7 +418,7 @@
                 height: 113 / 640 * 100 + "%"
             });
             loopArray(lipsInfo, function (info, i) {
-                wrapper.appendChild(lips[i]);
+                lipWrapper.appendChild(lips[i]);
                 css(lips[i], {
                     position: "absolute",
                     top: info.y / 640 * 100 + "%",
@@ -449,7 +465,8 @@
             });
 
             setTimeout(function () {
-                wrapper.style.animation = "out 2s linear both";
+                wrapper.style.animation = "out 1s linear both";
+                lipWrapper.style.animation = "bigger 1s linear both"
             }, 4000);
         });
 
