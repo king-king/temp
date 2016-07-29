@@ -232,10 +232,10 @@
                 width: s * 300 / 640 + "px"
             });
             loopArray(starInfo, function (info, i) {
-                var img = new Image();
-                img.src = "star.png";
-                starWrapper.appendChild(img);
-                css(img, {
+                var star = new Image();
+                star.src = "star.png";
+                starWrapper.appendChild(star);
+                css(star, {
                     position: "absolute",
                     top: info.y / 300 * 100 + "%",
                     left: info.x / 300 * 100 + "%",
