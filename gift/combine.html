@@ -35,10 +35,10 @@
 
         .rose {
             position: absolute;
-            top: 20%;
+            top: 40%;
             height: 20%;
             left: 50%;
-            transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -90deg);
+            transform: translate3d(-50%, 0, 0);
         }
 
         @keyframes rrotate {
@@ -501,6 +501,31 @@
             }
         }
     </style>
+    <style>
+        @keyframes rose-back {
+            100% {
+                top: -28px;
+                left: 10px;
+                transform: translate3d(260px, 0, 0) scale(0.25);
+            }
+        }
+
+        @keyframes rose-back2 {
+            100% {
+                top: -17px;
+                left: 14px;
+                transform: translate3d(200px, 0, 0) scale(0.3);
+            }
+        }
+
+        @keyframes rose-back3 {
+            100% {
+                top: -20px;
+                left: 10px;
+                transform: translate3d(50px, -108px, 0) scale(0.3);
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="border">
@@ -549,8 +574,8 @@
         border.appendChild(wrapper);
         css(wrapper, {
             position: "absolute",
-            top: "60%",
-            left: "70%",
+            top: "50%",
+            left: "50%",
             transform: "translate3d(-50%,-50%,0)",
             width: s + "px",
             height: s + "px"
@@ -658,22 +683,23 @@
             });
 
             setTimeout(function () {
-                lip.style.animation = "tan2 3s linear both infinite";
+                wrapper.style.animation = "rose-back3 1s ease-in-out both  ";
             }, 2000);
         });
     }
 
     function bear() {
-        var h = document.body.offsetHeight;
+        var h = document.querySelector(".border").offsetHeight;
         var s = h * 0.16;
         var border = document.createElement("div");
         document.querySelector(".border").appendChild(border);
         css(border, {
             position: "absolute",
-            top: "45%",
-            left: "13%",
+            top: "50%",
+            left: "50%",
             height: s + "px",
-            width: s + "px"
+            width: s + "px",
+            transform: "translate3d(-50%, -50%, 0)"
         });
 
         var img = new Image();
@@ -721,7 +747,7 @@
             img.style.animation = "in 1.6s linear both";
 
             setTimeout(function () {
-                img.style.animation = "brotate 4s linear both infinite";
+                border.style.animation = "rose-back2 1s ease-in-out both";
             }, 3000);
         };
     }
@@ -737,7 +763,7 @@
             border.appendChild(border0);
             css(border0, {
                 position: "absolute",
-                top: "20%",
+                top: "40%",
                 left: "50%",
                 transform: "translate3d(-50%,0,0)",
                 width: s + "px",
@@ -807,7 +833,7 @@
             });
 
             setTimeout(function () {
-                img.style.animation = "rrotate 3s linear both infinite";
+                img.style.animation = "rose-back 1s ease-in-out both";
             }, 3000);
         }
     }
@@ -815,8 +841,8 @@
 
     (function () {
         rose();
-        bear();
-        lip();
+        setTimeout(bear, 4500);
+        setTimeout(lip, 9000);
     })();
 
 </script>
