@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <style>
+        html, body {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .border {
+            position: absolute;
+            width: 375px;
+            height: 667px;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0) scale3d(0.85, 0.85, 0.85);
+            border: 3px solid gray;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .gift-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .rose {
+            position: absolute;
+            top: 40%;
+            height: 20%;
+            left: 50%;
+            transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -90deg);
+        }
+
+    </style>
+</head>
+<body>
+<div class="border">
+    <img src="../../img/gift-bg.jpg" class="gift-bg">
+</div>
+<script>
+    function loopObj(obj, func) {
+        for (var key in obj) {
+            func(key, obj[key]);
+        }
+    }
+
+    function loopArray(arr, func) {
+        for (var i = 0; i < arr.length; i++) {
+            func(arr[i], i);
+        }
+    }
+
+    function loop(n, func) {
+        for (var i = 0; i < n; i++) {
+            func(i);
+        }
+    }
+
+    function css(el, styles) {
+        loopObj(styles, function (key, value) {
+            el.style.setProperty(key, value);
+        });
+    }
+
+    function concurrentTask(tasks, callback) {
+        var len = tasks.length, count = 0;
+        loopArray(tasks, function (task) {
+            task(function () {
+                ++count == len && callback();
+            });
+        });
+    }
+</script>
+<script>
+
+    (function () {
+        // 222 * 183
+        var border = document.querySelector(".border");
+        var s = 320;
+        var wrapper = document.createElement("div");
+        border.appendChild(wrapper);
+        css(wrapper, {
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate3d(-50%,-50%,0)",
+            width: "222px",
+            height: "183px"
+        });
+        var loadTask = [];
+        var leafs = [], flowers = [];
+        var leafInfo = [
+            {
+                x: 14,
+                y: 27,
+                h: 121
+            },
+            {
+                x: 299,
+                y: 265,
+                h: 101
+            },
+            {
+                x: 311,
+                y: 37,
+                h: 89
+            },
+            {
+                x: 30,
+                y: 256,
+                h: 81
+            },
+            {
+                x: 332,
+                y: 93,
+                h: 59
+            },
+            {
+                x: 225,
+                y: 246,
+                h: 109
+            },
+            {
+                x: 350,
+                y: 182,
+                h: 86
+            },
+            {
+                x: 8,
+                y: 147,
+                h: 75
+            },
+            {
+                x: 319,
+                y: 239,
+                h: 62
+            },
+            {
+                x: 101,
+                y: 301,
+                h: 66
+            }
+
+        ];
+        var flowerInfo = [
+            {
+                x: 115,
+                y: 0,
+                h: 112
+            }, {
+                x: 153,
+                y: 36,
+                h: 141
+            }, {
+                x: 232,
+                y: 17,
+                h: 96
+            }, {
+                x: 64,
+                y: 62,
+                h: 136
+            }, {
+                x: 42,
+                y: 147,
+                h: 113
+            }, {
+                x: 243,
+                y: 95,
+                h: 110
+            }, {
+                x: 152,
+                y: 136,
+                h: 137
+            }, {
+                x: 318,
+                y: 137,
+                h: 118
+            }, {
+                x: 103,
+                y: 185,
+                h: 155
+            }, {
+                x: 262,
+                y: 195,
+                h: 102
+            }
+        ];
+        loop(10, function (i) {
+            var leaf = new Image();
+            leaf.src = "leaf" + i + ".png";
+            leafs.push(leaf);
+            var flower = new Image();
+            flower.src = "rose" + i + ".png";
+            flowers.push(flower);
+            loadTask.push(function (done) {
+                flower.onload = done;
+            });
+            loadTask.push(function (done) {
+                leaf.onload = done;
+            });
+        });
+
+        concurrentTask(loadTask, function () {
+            loopArray(leafs, function (leaf, i) {
+                wrapper.appendChild(leaf);
+                css(leaf, {
+                    position: "absolute",
+                    top: leafInfo[i].y / 367 * 100 + "%",
+                    left: leafInfo[i].x / 445 * 100 + "%",
+                    height: leafInfo[i].h / 367 * 100 + "%"
+                });
+
+                wrapper.appendChild(flowers[i]);
+                css(flowers[i], {
+                    position: "absolute",
+                    top: flowerInfo[i].y / 367 * 100 + "%",
+                    left: flowerInfo[i].x / 445 * 100 + "%",
+                    height: flowerInfo[i].h / 367 * 100 + "%"
+                });
+            });
+
+            setTimeout(function () {
+            }, 2000);
+        });
+
+    })();
+
+</script>
+
+</body>
+</html>
