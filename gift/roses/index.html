@@ -42,6 +42,29 @@
         }
 
     </style>
+    <style>
+        @keyframes in {
+            0% {
+                opacity: 0;
+                transform: translate3d(0, 50%, 0);
+            }
+            100% {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        @keyframes in2 {
+            0% {
+                opacity: 0;
+                transform: scale3d(0, 0, 0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1);
+            }
+        }
+    </style>
 </head>
 <body>
 <div class="border">
@@ -86,16 +109,16 @@
     (function () {
         // 222 * 183
         var border = document.querySelector(".border");
-        var s = 320;
         var wrapper = document.createElement("div");
+        var rotia = 0.7;
         border.appendChild(wrapper);
         css(wrapper, {
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate3d(-50%,-50%,0)",
-            width: "222px",
-            height: "183px"
+            width: 222 * rotia + "px",
+            height: 183 * rotia + "px"
         });
         var loadTask = [];
         var leafs = [], flowers = [];
@@ -219,7 +242,6 @@
                     left: leafInfo[i].x / 445 * 100 + "%",
                     height: leafInfo[i].h / 367 * 100 + "%"
                 });
-
                 wrapper.appendChild(flowers[i]);
                 css(flowers[i], {
                     position: "absolute",
@@ -227,6 +249,8 @@
                     left: flowerInfo[i].x / 445 * 100 + "%",
                     height: flowerInfo[i].h / 367 * 100 + "%"
                 });
+                flowers[i].style.animation = i < 7 ? "in 0.2s linear " + (9 - i) / 10 + "s both" : "in2 0.2s linear " + (9 - i) / 10 + "s both";
+                leaf.style.animation = "in2 0.2s linear " + (i / 10 + 1) + "s both";
             });
 
             setTimeout(function () {
