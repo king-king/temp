@@ -225,6 +225,30 @@
                 transform: scale3d(3, 3, 3);
             }
         }
+
+        @keyframes tan2 {
+            0% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 1, 1);
+            }
+            75% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 1, 1);
+            }
+            80% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 0.6, 1);
+            }
+            85% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 1.4, 1);
+            }
+            90% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 0.8, 1);
+            }
+            95% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 1.2, 1);
+            }
+            100% {
+                transform: translate3d(-50%, 0px, 0px) scale3d(1, 1, 1);
+            }
+        }
     </style>
 </head>
 <body>
@@ -400,15 +424,15 @@
 
         concurrentTask(loadTask, function () {
             wrapper.appendChild(lip);
-            var lipWrapper = document.createElement("div");
-            wrapper.appendChild(lipWrapper);
-            css(lipWrapper, {
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0
-            });
+//            var lipWrapper = document.createElement("div");
+//            wrapper.appendChild(lipWrapper);
+//            css(lipWrapper, {
+//                position: "absolute",
+//                top: 0,
+//                left: 0,
+//                right: 0,
+//                bottom: 0
+//            });
             lip.style.animation = "tan 1s linear both";
             css(lip, {
                 position: "absolute",
@@ -465,9 +489,10 @@
             });
 
             setTimeout(function () {
+                lip.style.animation = "tan2 3s linear both infinite";
 //                wrapper.style.animation = "out 0.6s linear both";
-                lipWrapper.style.animation = "bigger 0.6s ease-in both"
-            }, 4000);
+//                lipWrapper.style.animation = "bigger 0.6s ease-in both"
+            }, 2000);
         });
 
     })();
