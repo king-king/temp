@@ -145,6 +145,21 @@
             transform: translate3d(-50%, 0, 0);
         }
 
+        @keyframes brotate {
+            0% {
+                transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, 0deg);
+            }
+            25% {
+                transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, 20deg);
+            }
+            75% {
+                transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -20deg);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0) rotate3d(0, 0, 1, 0deg);
+            }
+        }
+
         @keyframes in {
             0% {
                 opacity: 0;
@@ -650,7 +665,7 @@
 
     function bear() {
         var h = document.body.offsetHeight;
-        var s = h * 0.17;
+        var s = h * 0.16;
         var border = document.createElement("div");
         document.querySelector(".border").appendChild(border);
         css(border, {
@@ -706,7 +721,7 @@
             img.style.animation = "in 1.6s linear both";
 
             setTimeout(function () {
-                // remove
+                img.style.animation = "brotate 4s linear both infinite";
             }, 3000);
         };
     }
@@ -799,9 +814,9 @@
 
 
     (function () {
-        rose();
+//        rose();
         bear();
-        lip();
+//        lip();
     })();
 
 </script>
