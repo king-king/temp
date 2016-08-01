@@ -23,6 +23,7 @@
             transform: translate3d(-50%, -50%, 0) scale3d(0.85, 0.85, 0.85);
             border: 3px solid gray;
             background: #000;
+            overflow: hidden;
         }
 
         .gift-bg {
@@ -649,13 +650,13 @@
 
     function bear() {
         var h = document.body.offsetHeight;
-        var s = h * 0.2;
+        var s = h * 0.17;
         var border = document.createElement("div");
-        document.body.appendChild(border);
+        document.querySelector(".border").appendChild(border);
         css(border, {
             position: "absolute",
             top: "45%",
-            left: "23%",
+            left: "13%",
             height: s + "px",
             width: s + "px"
         });
