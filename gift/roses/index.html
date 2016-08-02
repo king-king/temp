@@ -64,6 +64,63 @@
                 transform: scale3d(1, 1, 1);
             }
         }
+
+        @keyframes star0 {
+            0% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1) rotate3d(0, 0, 1, 0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(0.6, 0.6, 0.6) rotate3d(0, 0, 1, 30deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, 0deg);
+            }
+        }
+
+        @keyframes star1 {
+            0% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(0.7, 0.7, 0.7);
+            }
+            50% {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0) scale3d(1, 1, 1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(1.3, 1.3, 1.3);
+            }
+        }
+
+        @keyframes star2 {
+            0% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(0.2, 0.2, 0.2);
+            }
+            50% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(0.75, 0.75, 0.75);
+            }
+            100% {
+                opacity: 0;
+                transform: translate3d(-50%, 0, 0) scale3d(1.3, 1.3, 1.3);
+            }
+        }
+
+        @keyframes slip {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -233,6 +290,68 @@
             });
         });
 
+        function makeStar(dx, dy, ss, animate, callback) {
+            var h = border.offsetHeight;
+            var s = h * 0.2;
+            var border0 = document.createElement("div");
+            border.appendChild(border0);
+            css(border0, {
+                position: "absolute",
+                top: "40%",
+                left: "50%",
+                transform: "translate3d(-50%,0,0)",
+                width: s + "px",
+                height: s + "px",
+                animation: animate
+            });
+            var position = [
+                {
+                    x: dx,
+                    y: dy
+                },
+                {
+                    x: dy,
+                    y: dx
+                },
+                {
+                    x: s - ss - dy,
+                    y: dx
+                },
+                {
+                    x: s - ss - dx,
+                    y: dy
+                },
+                {
+                    x: s - ss - dx,
+                    y: s - ss - dy
+                },
+                {
+                    x: s - ss - dy,
+                    y: s - ss - dx
+                },
+                {
+                    x: dx,
+                    y: s - ss - dy
+                },
+                {
+                    x: dy,
+                    y: s - ss - dx
+                }
+            ];
+            for (var i = 0; i < position.length; i++) {
+                var star = new Image();
+                star.src = "star.png";
+                css(star, {
+                    position: "absolute",
+                    top: position[i].y + "px",
+                    left: position[i].x + "px",
+                    height: ss + "px"
+                });
+                border0.appendChild(star);
+                callback && callback(star, i);
+            }
+        }
+
         concurrentTask(loadTask, function () {
             loopArray(leafs, function (leaf, i) {
                 wrapper.appendChild(leaf);
@@ -251,6 +370,15 @@
                 });
                 flowers[i].style.animation = i < 7 ? "in 0.2s linear " + (9 - i) / 10 + "s both" : "in2 0.2s linear " + (9 - i) / 10 + "s both";
                 leaf.style.animation = "in2 0.2s linear " + (i / 10 + 1) + "s both";
+                makeStar(10, 30, 10, "star0 2s cubic-bezier(.17,.67,.65,1.24) 0.7s both", function (s, i) {
+                    s.style.animation = "slip 1s ease-in-out " + i / 10 + "s both infinite";
+                });
+                makeStar(15, 35, 15, "star1 2s cubic-bezier(.17,.67,.65,1.24) 0.7s both", function (s, i) {
+                    s.style.animation = "slip 1s ease-in-out " + i / 10 + "s both infinite";
+                });
+                makeStar(15, 25, 15, "star2 2s cubic-bezier(.17,.67,.65,1.24) 1.6s both", function (s, i) {
+                    s.style.animation = "slip 1s ease-in-out " + i / 10 + "s both infinite";
+                });
             });
 
             setTimeout(function () {
