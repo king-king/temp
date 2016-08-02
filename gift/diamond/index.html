@@ -46,7 +46,14 @@
         @keyframes in {
             0% {
                 opacity: 0;
-                transform: translate3d(0, 50%, 0);
+                transform: translate3d(0, 100%, 0);
+            }
+            50% {
+                transform: translate3d(0, 110%, 0);
+            }
+            90% {
+                opacity: 1;
+                transform: translate3d(0, -10%, 0);
             }
             100% {
                 opacity: 1;
@@ -54,14 +61,48 @@
             }
         }
 
-        @keyframes in2 {
+        @keyframes rotate {
             0% {
                 opacity: 0;
-                transform: scale3d(0, 0, 0);
+                transform: scale3d(0.3, 0.3, 0.3) rotate3d(0, 0, 1, 0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale3d(1, 1, 1) rotate3d(0, 0, 1, 100deg);
             }
             100% {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3) rotate3d(0, 0, 1, 0deg);
+            }
+        }
+
+        @keyframes scale {
+            0% {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+            50% {
                 opacity: 1;
                 transform: scale3d(1, 1, 1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+        }
+
+        @keyframes big {
+            0% {
+                opacity: 0;
+                transform: scale3d(0.3, 0.3, 0.3);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale3d(1, 1, 1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale3d(2.7, 2.7, 2.7);
             }
         }
 
@@ -168,6 +209,12 @@
                     height: infos[i].h / 309 * 100 + "%"
                 })
             });
+
+            images[0].style.animation = "in 1s ease-in-out  both";
+            images[1].style.animation = "scale 2s ease-in-out 2s both";
+            images[2].style.animation = "rotate 2s linear 1s both";
+            images[3].style.animation = "big 0.8s linear 1.5s both";
+
             setTimeout(function () {
 
             }, 2000);
