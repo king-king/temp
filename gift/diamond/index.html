@@ -108,19 +108,54 @@
 <script>
 
     (function () {
+        // 283*309
         var border = document.querySelector(".border");
         var wrapper = document.createElement("div");
-        var rotia = 0.7;
+        var rotia = 1;
         border.appendChild(wrapper);
         css(wrapper, {
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate3d(-50%,-50%,0)",
-            width: 222 * rotia + "px",
-            height: 183 * rotia + "px"
+            width: 283 * rotia + "px",
+            height: 309 * rotia + "px"
         });
         var loadTask = [];
+        var images = [];
+        var res = [
+            "diamond.png",
+            "light0.png",
+            "light1.png",
+            "light2.png"
+        ];
+        var infos = [
+            {
+                x: 0,
+                y: 0,
+                h: 309
+            }, {
+                x: 23,
+                y: 0,
+                h: 119
+            }, {
+                x: 0,
+                y: 119,
+                h: 166
+            }, {
+                x: 28,
+                y: 137,
+                h: 105
+            }
+        ];
+        loopArray(res, function (src) {
+            var img = new Image();
+            img.src = src;
+            loadTask.push(function (done) {
+                img.onload = done;
+            });
+            images.push(img);
+        });
 
 
         concurrentTask(loadTask, function () {
