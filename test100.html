@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
         body {
-            background: #000;
         }
 
         .border {
@@ -60,12 +59,331 @@
 </div>
 </body>
 <script>
-    localStorage.setItem("index", "1;2;3;4");
-    var index = localStorage.getItem("index");
+    /*****************************************************************************
+     日期資料
+     *****************************************************************************/
 
-    console.log(index.split(";"));
+    var lunarInfo = [
+        0x04bd8, 0x04ae0, 0x0a570, 0x054d5, 0x0d260,
+        0x0d950, 0x16554, 0x056a0, 0x09ad0, 0x055d2,
+        0x04ae0, 0x0a5b6, 0x0a4d0, 0x0d250, 0x1d255,
+        0x0b540, 0x0d6a0, 0x0ada2, 0x095b0, 0x14977,
+        0x04970, 0x0a4b0, 0x0b4b5, 0x06a50, 0x06d40,
+        0x1ab54, 0x02b60, 0x09570, 0x052f2, 0x04970,
+        0x06566, 0x0d4a0, 0x0ea50, 0x06e95, 0x05ad0,
+        0x02b60, 0x186e3, 0x092e0, 0x1c8d7, 0x0c950,
+        0x0d4a0, 0x1d8a6, 0x0b550, 0x056a0, 0x1a5b4,
+        0x025d0, 0x092d0, 0x0d2b2, 0x0a950, 0x0b557,
+        0x06ca0, 0x0b550, 0x15355, 0x04da0, 0x0a5d0,
+        0x14573, 0x052d0, 0x0a9a8, 0x0e950, 0x06aa0,
+        0x0aea6, 0x0ab50, 0x04b60, 0x0aae4, 0x0a570,
+        0x05260, 0x0f263, 0x0d950, 0x05b57, 0x056a0,
+        0x096d0, 0x04dd5, 0x04ad0, 0x0a4d0, 0x0d4d4,
+        0x0d250, 0x0d558, 0x0b540, 0x0b5a0, 0x195a6,
+        0x095b0, 0x049b0, 0x0a974, 0x0a4b0, 0x0b27a,
+        0x06a50, 0x06d40, 0x0af46, 0x0ab60, 0x09570,
+        0x04af5, 0x04970, 0x064b0, 0x074a3, 0x0ea50,
+        0x06b58, 0x055c0, 0x0ab60, 0x096d5, 0x092e0,
+        0x0c960, 0x0d954, 0x0d4a0, 0x0da50, 0x07552,
+        0x056a0, 0x0abb7, 0x025d0, 0x092d0, 0x0cab5,
+        0x0a950, 0x0b4a0, 0x0baa4, 0x0ad50, 0x055d9,
+        0x04ba0, 0x0a5b0, 0x15176, 0x052b0, 0x0a930,
+        0x07954, 0x06aa0, 0x0ad50, 0x05b52, 0x04b60,
+        0x0a6e6, 0x0a4e0, 0x0d260, 0x0ea65, 0x0d530,
+        0x05aa0, 0x076a3, 0x096d0, 0x04bd7, 0x04ad0,
+        0x0a4d0, 0x1d0b6, 0x0d250, 0x0d520, 0x0dd45,
+        0x0b5a0, 0x056d0, 0x055b2, 0x049b0, 0x0a577,
+        0x0a4b0, 0x0aa50, 0x1b255, 0x06d20, 0x0ada0];
 
-    //    localStorage.setItem("name","");
+    var solarMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var solarTerm = ["小寒", "大寒", "立春", "雨水", "驚蟄", "春分", "清明",
+        "谷雨", "立夏", "小滿", "芒種", "夏至", "小暑", "大暑", "立秋", "處暑", "白露", "秋分",
+        "寒露", "霜降", "立冬", "小雪", "大雪", "冬至"];
+    var sTermInfo = [0, 21208, 42467, 63836, 85337, 107014, 128867, 150921, 173149,
+        195551, 218072, 240693, 263343, 285989, 308563, 331033, 353350, 375494, 397447, 419210,
+        440795, 462224, 483532, 504758];
+
+    //國歷節日 *表示放假日
+    var sFtv = [
+        "0101*元旦",
+        "0214 情人節",
+        "0308 婦女節",
+        "0312 植樹節",
+        "0401 愚人節",
+        "0501 勞動節",
+        "0808 父親節",
+        "0928 孔子誕辰",
+        "1010*國慶日",
+        "1112 孫中山誕辰紀念",
+        "1225 聖誕節"];
+
+    //農曆節日 *表示放假日
+    var lFtv = [
+        "0101*春節",
+        "0115 元宵節",
+        "0505 端午節",
+        "0707 七夕情人節",
+        "0715 中元節",
+        "0815 中秋節",
+        "0909 重陽節",
+        "0100*除夕"
+    ];
+
+    //某月的第幾個星期幾
+    var wFtv = new Array(
+            "0520 母親節"
+    );
+
+
+    /*****************************************************************************
+     日期計算
+     *****************************************************************************/
+
+//====================================== 傳回農曆 y年的總天數
+    function lYearDays(y) {
+        var i, sum = 348;
+        for (i = 0x8000; i > 0x8; i >>= 1) sum += (lunarInfo[y - 1900] & i) ? 1 : 0
+        return (sum + leapDays(y))
+    }
+
+    //====================================== 傳回農曆 y年閏月的天數
+    function leapDays(y) {
+        if (leapMonth(y)) return ((lunarInfo[y - 1900] & 0x10000) ? 30 : 29)
+        else return (0)
+    }
+
+    //====================================== 傳回農曆 y年閏哪個月 1-12 , 沒閏傳回 0
+    function leapMonth(y) {
+        return (lunarInfo[y - 1900] & 0xf)
+    }
+
+    //====================================== 傳回農曆 y年m月的總天數
+    function monthDays(y, m) {
+        return ( (lunarInfo[y - 1900] & (0x10000 >> m)) ? 30 : 29 )
+    }
+
+    //====================================== 算出農曆, 傳入日期物件, 傳回農曆日期物件
+    // 該物件屬性有 .year .month .day .isLeap .yearCyl .dayCyl .monCyl
+    function Lunar(objDate) {
+
+        var i, leap = 0, temp = 0;
+        var baseDate = new Date(1900, 0, 31);
+        var offset = (objDate - baseDate) / 86400000;
+
+        this.dayCyl = offset + 40;
+        this.monCyl = 14;
+
+        for (i = 1900; i < 2050 && offset > 0; i++) {
+            temp = lYearDays(i);
+            offset -= temp;
+            this.monCyl += 12
+        }
+
+        if (offset < 0) {
+            offset += temp;
+            i--;
+            this.monCyl -= 12
+        }
+
+        this.year = i;
+        this.yearCyl = i - 1864;
+
+        leap = leapMonth(i); //閏哪個月
+        this.isLeap = false;
+
+        for (i = 1; i < 13 && offset > 0; i++) {
+            //閏月
+            if (leap > 0 && i == (leap + 1) && this.isLeap == false) {
+                --i;
+                this.isLeap = true;
+                temp = leapDays(this.year);
+            }
+            else {
+                temp = monthDays(this.year, i);
+            }
+
+            //解除閏月
+            if (this.isLeap == true && i == (leap + 1)) this.isLeap = false
+
+            offset -= temp;
+            if (this.isLeap == false) this.monCyl++
+        }
+
+        if (offset == 0 && leap > 0 && i == leap + 1)
+            if (this.isLeap) {
+                this.isLeap = false;
+            }
+            else {
+                this.isLeap = true;
+                --i;
+                --this.monCyl;
+            }
+
+        if (offset < 0) {
+            offset += temp;
+            --i;
+            --this.monCyl;
+        }
+
+        this.month = i;
+        this.day = offset + 1
+    }
+
+    //==============================傳回國歷 y年某m+1月的天數
+    function solarDays(y, m) {
+        if (m == 1)
+            return (((y % 4 == 0) && (y % 100 != 0) || (y % 400 == 0)) ? 29 : 28)
+        else
+            return (solarMonth[m])
+    }
+    //===== 某年的第n個節氣為幾日(從0小寒起算)
+    function sTerm(y, n) {
+        var offDate = new Date(( 31556925974.7 * (y - 1900) + sTermInfo[n] * 60000 ) + Date.UTC(1900, 0, 6, 2, 5))
+        return (offDate.getUTCDate())
+    }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+    var Today = new Date();
+    var tY = Today.getFullYear();
+    var tM = Today.getMonth();
+    var tD = Today.getDate();
+    var tW = Today.getDay();
+
+    var festival = '';
+    var aY;
+    var aM;
+    var aD;
+    var aW;
+    var aMaD;
+
+    aY = tY;
+    aM = tM;
+    aD = tD;
+    if (tW == 0) {
+        aW = '日';
+    }
+    if (tW == 1) {
+        aW = '一';
+    }
+    if (tW == 2) {
+        aW = '二';
+    }
+    if (tW == 3) {
+        aW = '三';
+    }
+    if (tW == 4) {
+        aW = '四';
+    }
+    if (tW == 5) {
+        aW = '五';
+    }
+    if (tW == 6) {
+        aW = '六';
+    }
+    aM = aM + 1;
+
+    if (aM <= 9) {
+        aM = '0' + aM;
+    }
+    if (aD <= 9) {
+        aD = '0' + aD;
+    }
+    aMaD = aM + aD;
+    //國歷節日
+    for (i in sFtv) {
+        if (sFtv[i].match(/^(\d{4})([\s\*])(.+)$/)) {
+            if (Number(RegExp.$1) == (aMaD)) {
+                festival = RegExp.$3;
+            }
+        }
+    }
+
+    //月周節日
+    for (i in wFtv) {
+        if (wFtv[i].match(/^(\d{2})(\d)(\d)([\s\*])(.+)$/)) {
+            if (Number(RegExp.$1) == (aM)) {
+                if (Number(RegExp.$3) == tW) {
+                    var count = 0;
+                    var xD = tD;
+                    while (xD > 0) {
+                        count++;
+                        xD = xD - 7;
+                    }
+                    if (count == Number(RegExp.$2)) {
+                        if (festival == '') {
+                            festival = RegExp.$5;
+                        } else {
+                            festival = festival + ' ' + RegExp.$5;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+
+    sDObj = new Date(tY, tM, tD);
+    lDObj = new Lunar(sDObj);
+
+    var lY;
+    var lM;
+    var lD;
+    var lMlD;
+
+    lY = lDObj.year;
+    lM = lDObj.month;
+    lD = lDObj.day;
+    if (lM <= 9) {
+        lM = '0' + lM;
+    }
+    if (lD <= 9) {
+        lD = '0' + lD;
+    }
+    lMlD = lM + lD;
+
+    //農曆節日
+    for (i in lFtv) {
+        if (lFtv[i].match(/^(\d{4})([\s\*])(.+)$/)) {
+            if (Number(RegExp.$1) == (lMlD)) {
+                if (festival == '') {
+                    festival = RegExp.$3;
+                } else {
+                    festival = festival + ' ' + RegExp.$3;
+                }
+            }
+        }
+    }
+
+    //節氣
+    var st = '';
+    var sTermResult1 = sTerm(tY, tM * 2);
+    var sTermResult2 = sTerm(tY, tM * 2 + 1);
+    if (tD == sTermResult1) {
+        st = solarTerm[tM * 2]
+    }
+    if (tD == sTermResult2) {
+        st = solarTerm[tM * 2 + 1]
+    }
+
+    var cal;
+
+    cal =
+            '<table id="cal" summary="calendar">' +
+            '<tr><td id="ymd"> ' + aY + ' 年 ' + aM + ' 月 ' + aD + ' 日</td></tr>' +
+            '<tr><td id="week"> 星 期 ' + aW + '</td></tr>';
+    if (st == '') {
+        cal = cal +
+                '<tr><td id="lunar"> 農曆 ' + lM + ' 月 ' + lD + ' 日 </td></tr>';
+    } else {
+        cal = cal +
+                '<tr><td id="lunar"> 農曆 ' + lM + ' 月 ' + lD + ' 日(' + '<span style="color:red;">' + st + '</span>' + ')</td></tr>';
+    }
+    cal = cal +
+            '<tr><td id="fest">' + festival + '</td></tr>' +
+            '</table>';
+    document.writeln(cal);
 
 
 </script>
