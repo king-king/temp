@@ -13,73 +13,27 @@
             right: 0;
         }
 
-        .border {
-            width: 52px;
-            height: 50px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-        }
-
-        .border img {
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .wave {
-            width: 43px;
-            animation: shan 2s linear both infinite;
-        }
-
-        .hand {
-            height: 50px;
-        }
-
-        video {
-            display: inline-block;
-            margin: auto;
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            z-index: -100;
-        }
-
-        .target {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100px;
-            height: 100px;
-            background: red;
-            z-index: 9;
-            color: white;
-        }
-
-        video::-webkit-media-controls {
-            display: none !important;
-        }
-
-        .wrapper {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
     </style>
 </head>
 <body>
-<video controls="controls" autoplay webkit-playsinline="true" x-webkit-airplay="true" width="300" preload="auto">
-    <source src="http://static01.cloud7.com.cn/yhcc/fhcc.mp4" type="video/mp4">
-</video>
-<div class="target">aaaaa</div>
 <script>
-    var video = document.querySelector("video");
-    video.onplay = function () {
-        console.log("oo")
-//        video.controls = false;
+    function loop(n, func) {
+        for (var i = 0; i < n; i++) {
+            func(i);
+        }
     }
+
+    loop(3, function (i) {
+        var img = new Image();
+        img.src = "img/a" + (i + 1) + ".JPG";
+        img.onload = function () {
+//            document.body.appendChild(img);
+            var div = document.createElement("div");
+            img.style.width = "200px";
+            div.innerHTML = "宽:" + img.offsetWidth + " 高:" + img.offsetHeight;
+            document.body.appendChild(div);
+        }
+    });
 </script>
 </body>
 
