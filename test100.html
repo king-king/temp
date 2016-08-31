@@ -16,24 +16,16 @@
     </style>
 </head>
 <body>
+<img src="http://img01.cloud7.com.cn/a93d7c2d3da4ab73eeb9d962a58e69d1.jpg!/both/640x1136/quality/75">
+<script src="exif.js"></script>
 <script>
-    function loop(n, func) {
-        for (var i = 0; i < n; i++) {
-            func(i);
-        }
-    }
-
-    loop(3, function (i) {
-        var img = new Image();
-        img.src = "img/a" + (i + 1) + ".JPG";
-        img.onload = function () {
-//            document.body.appendChild(img);
-            var div = document.createElement("div");
-            img.style.width = "200px";
-            div.innerHTML = "宽:" + img.offsetWidth + " 高:" + img.offsetHeight;
-            document.body.appendChild(div);
-        }
-    });
+    var img = new Image();
+    img.src = "http://img01.cloud7.com.cn/a93d7c2d3da4ab73eeb9d962a58e69d1.jpg!/both/640x1136/quality/75";
+    img.onload = function () {
+        EXIF.getData(img, function () {
+            alert(EXIF.pretty(this));
+        });
+    };
 </script>
 </body>
 
