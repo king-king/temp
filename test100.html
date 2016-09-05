@@ -12,49 +12,189 @@
             bottom: 0;
             right: 0;
             font-size: 30px;
+            -webkit-overflow-scrolling: touch;
         }
 
         img {
             width: 200px;
         }
+
+        .hear {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
+<div class="hear"></div>
+<div>
+    1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7<br>
+    8<br>
+    9<br>
+    a<br>
+    b<br>
+    c<br>
+    d<br>
+    e<br>
+    f<br>
+</div>
 <script>
-    var data = [
-        {
-            "url": "http://img01.cloud7.com.cn/9d1141eb60dd583f85adbd530817a1a8.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/9d1141eb60dd583f85adbd530817a1a8.jpg"
-        }, {
-            "url": "http://img01.cloud7.com.cn/451e513419b39fd80df3917895e00bd8.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/451e513419b39fd80df3917895e00bd8.jpg"
-        }, {
-            "url": "http://img01.cloud7.com.cn/92bd117b7797ae0618474bd6067d2d97.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/92bd117b7797ae0618474bd6067d2d97.jpg"
-        }, {
-            "url": "http://img01.cloud7.com.cn/2b1458a676d6e2f077da91465a546513.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/2b1458a676d6e2f077da91465a546513.jpg"
-        }, {
-            "url": "http://img01.cloud7.com.cn/7697ec0c2700855d908d50003eaf8270.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/7697ec0c2700855d908d50003eaf8270.jpg"
-        }, {
-            "url": "http://img01.cloud7.com.cn/9083337d7a01b371b8afee4d5303bc12.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/9083337d7a01b371b8afee4d5303bc12.jpg"
-        }, {
-            "url": "http://img01.cloud7.com.cn/709bfe7a5b8efd32283df7ab6501221f.jpg",
-            "rawUrl": "http://img01.cloud7.com.cn/709bfe7a5b8efd32283df7ab6501221f.jpg"
-        }
-    ];
-
-    for (var i = 0; i < data.length; i++) {
-        var img = new Image();
-        img.src = data[i].url;
-        document.body.appendChild(img);
-
-        var img2 = new Image();
-        img2.src = data[i].rawUrl;
-        document.body.appendChild(img2);
-    }
+    var i = 0;
+    document.addEventListener("touchend", function () {
+        document.querySelector(".hear").innerHTML = i++;
+    });
 
 </script>
 </body>
