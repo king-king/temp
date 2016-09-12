@@ -12,29 +12,107 @@
             bottom: 0;
             right: 0;
             font-size: 30px;
-            -webkit-overflow-scrolling: touch;
+            margin: 0;
         }
 
-        img {
-            width: 200px;
-        }
-
-        .hear {
-            position: fixed;
+        .border {
+            position: absolute;
             top: 0;
+            left: 50%;
+            width: 700px;
+            height: 100%;
+            border-left: 2px solid black;
+            border-right: 2px solid black;
+            transform: translate3d(-50%, 0, 0);
+        }
+
+        .block {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            top: 50%;
             left: 0;
-            width: 100%;
-            height: 2ex;
-            line-height: 2ex;
-            text-align: center;
-            vertical-align: bottom;
-            background: rgba(0, 0, 0, 0.2);
-            font-size: calc(18px + 4 * (100vw - 600px) / 400);
+            margin-top: -50px;
         }
     </style>
 </head>
 <body>
-<div class="hear">x</div>
+<div class="border">
+    <div class="block"></div>
+</div>
 </body>
+<script>
+    function bindEvent(el, type, func) {
+        el.addEventListener(type, func);
+        return {
+            remove: function () {
+                el.removeEventListener(type, func);
+            }
+        }
+    }
 
+    function animate(func) {
+        var pret = new Date();
+        var curt;
+        var re;
+        var id;
+        var go = true;
+
+        function d() {
+            clearTimeout(id);
+            curt = new Date();
+            re = func(curt - pret);
+            pret = curt;
+            if (!re && go) {
+                id = setTimeout(d, 20);
+            }
+        }
+
+        d();
+        return {
+            stop: function () {
+                go = false;
+            }
+        }
+    }
+</script>
+<script>
+    (function () {
+        var block = document.querySelector(".block");
+        var max = 600;
+        block.x = 0;
+        bindEvent(block, "mousedown", function (de) {
+            var prex = de.pageX;
+            var pret = new Date();
+            var curt;
+            var vx = 0;
+            var move = bindEvent(document, "mousemove", function (me) {
+                curt = new Date();
+                vx = (me.pageX - prex) / (curt - pret);
+                pret = curt;
+                block.x += me.pageX - prex;
+                prex = me.pageX;
+                block.style.transform = "translate3d(" + block.x + "px,0,0)";
+            });
+            var up = bindEvent(document, "mouseup", function () {
+                move.remove();
+                up.remove();
+                var ani = animate(function (dt) {
+                    console.log(dt, vx);
+                    vx -= 0.05;
+                    if (vx <= 0) {
+                        return true;
+                    }
+                    block.x += dt * vx;
+                    block.style.transform = "translate3d(" + block.x + "px,0,0)";
+                });
+//                setTimeout(function () {
+//                    ani.stop();
+//                }, 500);
+            });
+            console.log(de)
+        });
+    })()
+</script>
 </html>
