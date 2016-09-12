@@ -98,10 +98,27 @@
             var up = bindEvent(document, "mouseup", function () {
                 move.remove();
                 up.remove();
-                var ani = animate(function (dt) {
-                    console.log(dt, vx);
-                    vx -= 0.05;
-                    if (vx <= 0) {
+                var isover = false;
+                var dx = 0.05;
+                console.log(vx);
+                animate(function (dt) {
+                    vx -= dx;
+                    if (!isover && block.x > max && vx > 0) {
+                        if (vx > 10) {
+                            vx = 1;
+                        } else {
+                            vx /= 10;
+                        }
+                        isover = true;
+                        dx = 0.08;
+                        console.log(vx);
+                    }
+                    if (!isover && vx <= 0) {
+                        return true;
+                    }
+                    if (isover && vx < 0 && block.x <= max) {
+                        block.x = max;
+                        block.style.transform = "translate3d(" + block.x + "px,0,0)";
                         return true;
                     }
                     block.x += dt * vx;
@@ -111,7 +128,6 @@
 //                    ani.stop();
 //                }, 500);
             });
-            console.log(de)
         });
     })()
 </script>
