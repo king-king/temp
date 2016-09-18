@@ -29,7 +29,6 @@
         }
 
         .container {
-            height: 100%;
             width: 940px;
             margin: 0 auto;
             padding-top: 68px;
@@ -133,8 +132,9 @@
 </head>
 <body>
 <div class="container">
-    <div class="top"><img src="logo.png">
-        <a>返回主页</a>
+    <div class="top">
+        <img src="logo.png">
+        <a href="http://ichuye.cn/">返回主页</a>
     </div>
     <div class="title">精彩作品</div>
     <div class="content">
@@ -156,7 +156,6 @@
                 "WorkUrl": "http://chuye.cloud7.com.cn/43275251/",
                 "Title": "遇见真实的自己，最珍贵的 礼物你的笑脸",
 //                "ThumbnailUrl": "test.jpg",
-
                 "ThumbnailUrl": "http://img01.cloud7.com.cn/50b9b42236861676e042bad3c8bd399b.jpg!thumbnail",
                 "PublishDate": "2016-08-29T12:38:54",
                 "Author": {
@@ -462,10 +461,13 @@
                 position: "relative"
             }
         }, item);
+        var ah = $("a", {}, imgBorder);
+        ah.href = d.WorkUrl;
+        ah.target = "_blank";
         var thumbnail = $("img", {
             classList: ["thumbnailUrl"],
             src: d.ThumbnailUrl
-        }, imgBorder);
+        }, ah);
         thumbnail.onload = function () {
             if (thumbnail.naturalWidth > thumbnail.naturalHeight) {
                 css(thumbnail, {

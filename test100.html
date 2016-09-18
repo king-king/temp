@@ -13,7 +13,6 @@
             right: 0;
             font-size: 30px;
             -webkit-overflow-scrolling: touch;
-            background: darkblue;
         }
 
         img {
@@ -23,9 +22,15 @@
     </style>
 </head>
 <body>
-<img src="img/word5.png">
 </body>
 <script>
-
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "http://api.ichuye.cn/protal/v1/realtime?device=iOS&version=3.3&nettp=WIFI&lastId=21", true);
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+    }
 </script>
 </html>
