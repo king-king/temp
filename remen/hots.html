@@ -81,6 +81,12 @@
             display: inline-block;
         }
 
+        .content:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
         .bottom {
             border-top: 1px solid #e4dfd2;
             height: 300px;
@@ -161,7 +167,7 @@
                 }, {
                     "WorkId": 42909967,
                     "WorkUrl": "http://chuye.cloud7.com.cn/42909967/",
-                    "Title": "到森林里去，去寻找一棵松茸，吃掉它！",
+                    "Title": "到森林里去，去寻找一棵松茸，吃掉它！&nbsp;&nbsp;&nbsp",
                     "ThumbnailUrl": "http://img01.cloud7.com.cn/bce8b2a82287f7d5089282af7d838132.jpg!/both/180x180/quality/75",
                     "PublishDate": "2016-08-15T13:32:48",
                     "Author": {
@@ -173,7 +179,7 @@
                 }, {
                     "WorkId": 43426553,
                     "WorkUrl": "http://chuye.cloud7.com.cn/43426553/",
-                    "Title": "萌萌哒的小熊包饭～让宝宝爱上吃饭",
+                    "Title": "萌萌哒的小熊包饭～让宝宝爱上吃饭&nbsp;&nbsp;&nbsp",
                     "ThumbnailUrl": "http://img01.cloud7.com.cn/e5ea962b360cda390831b1aeff47141c.jpg",
                     "PublishDate": "2016-09-05T06:19:31",
                     "Author": {
@@ -452,21 +458,51 @@
         }
     }
     var content = document.querySelector(".content");
+
+    function T(text) {
+        var test = $("div", {
+            css: {
+                display: "inline-block",
+                position: "absolute",
+                "line-height": "20px",
+                "font-size": "16px",
+                width: "291px"
+            }
+        }, document.body);
+        test.innerHTML = text;
+        var t;
+        if (test.offsetHeight > 40) {
+            for (var i = 2; i < text.length; i++) {
+                test.innerHTML = text.slice(0, i) + "...";
+                if (test.offsetHeight > 40) {
+                    t = text.slice(0, i - 1) + "...";
+                    break;
+                }
+            }
+            document.body.removeChild(test);
+            return t;
+        } else {
+            document.body.removeChild(test);
+            return text;
+        }
+    }
+
     function func(data) {
         loopArray(data.data.Recommends, function (d, i) {
             var item = $("div", {
                 classList: ["item"],
                 css: {
+                    position: "relative",
                     width: "300px",
                     height: "430px",
-                    "margin-right": "15px"
+                    "margin-right": "15px",
+                    float: "left"
                 }
             }, content);
             var imgBorder = $("div", {
                 css: {
                     height: "300px",
-                    overflow: "hidden",
-                    position: "relative"
+                    overflow: "hidden"
                 }
             }, item);
             var ah = $("a", {}, imgBorder);
@@ -532,27 +568,28 @@
                     "box-sizing": "border-box",
                     overflow: "hidden"
                 },
-                textContent: d.Title
+                innerHTML: T(d.Title)
             }, item);
         });
     }
     var lastID;
-    var loading = true; func(data);
-//    ajax(lastID, function (data) {
-//        lastID = data.data.LastId;
-//        func(data);
-//        loading = false;
-//    });
-//    document.querySelector(".load-more").onclick = function () {
-//        if (!loading) {
-//            loading = true;
-//            ajax(lastID, function (data) {
-//                loading = false;
-//                lastID = data.data.LastId;
-//                func(data);
-//            });
-//        }
-//    }
+    var loading = true;
+    func(data);
+    //    ajax(lastID, function (data) {
+    //        lastID = data.data.LastId;
+    //        func(data);
+    //        loading = false;
+    //    });
+    //    document.querySelector(".load-more").onclick = function () {
+    //        if (!loading) {
+    //            loading = true;
+    //            ajax(lastID, function (data) {
+    //                loading = false;
+    //                lastID = data.data.LastId;
+    //                func(data);
+    //            });
+    //        }
+    //    }
 
 </script>
 </body>
