@@ -25,7 +25,7 @@
 </body>
 <script>
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://api.ichuye.cn/protal/v1/realtime?device=iOS&version=3.3&nettp=WIFI&lastId=21", true);
+    xhr.open("GET", "http://api.ichuye.cn/protal/v1/realtime?lastId=21", true);
     xhr.send();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
