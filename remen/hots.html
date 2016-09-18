@@ -150,8 +150,8 @@
                     "WorkId": 43275251,
                     "WorkUrl": "http://chuye.cloud7.com.cn/43275251/",
                     "Title": "遇见真实的自己，最珍贵的 礼物你的笑脸",
-//                "ThumbnailUrl": "test.jpg",
-                    "ThumbnailUrl": "http://img01.cloud7.com.cn/50b9b42236861676e042bad3c8bd399b.jpg!thumbnail",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/ae94e5f64a15d1d4ff6214c615c7ca60.jpg",
+//                    "ThumbnailUrl": "http://img01.cloud7.com.cn/50b9b42236861676e042bad3c8bd399b.jpg!thumbnail",
                     "PublishDate": "2016-08-29T12:38:54",
                     "Author": {
                         "UserId": 15502444,
@@ -480,7 +480,7 @@
                 if (thumbnail.naturalWidth > thumbnail.naturalHeight) {
                     css(thumbnail, {
                         height: "100%",
-                        "margin-left": -(200 / thumbnail.naturalHeight * thumbnail.naturalWidth - 300) / 2 + "px"
+                        "margin-left": -(300 / thumbnail.naturalHeight * thumbnail.naturalWidth - 300) / 2 + "px"
                     });
                 } else if (thumbnail.naturalWidth < thumbnail.naturalHeight) {
                     css(thumbnail, {
@@ -537,22 +537,22 @@
         });
     }
     var lastID;
-    var loading = true;
-    ajax(lastID, function (data) {
-        lastID = data.data.LastId;
-        func(data);
-        loading = false;
-    });
-    document.querySelector(".load-more").onclick = function () {
-        if (!loading) {
-            loading = true;
-            ajax(lastID, function (data) {
-                loading = false;
-                lastID = data.data.LastId;
-                func(data);
-            });
-        }
-    }
+    var loading = true; func(data);
+//    ajax(lastID, function (data) {
+//        lastID = data.data.LastId;
+//        func(data);
+//        loading = false;
+//    });
+//    document.querySelector(".load-more").onclick = function () {
+//        if (!loading) {
+//            loading = true;
+//            ajax(lastID, function (data) {
+//                loading = false;
+//                lastID = data.data.LastId;
+//                func(data);
+//            });
+//        }
+//    }
 
 </script>
 </body>
