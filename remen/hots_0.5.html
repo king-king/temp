@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>热门作品</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background: #fffcf5;
+            font-family: 'helvetica neue', 'hiragino sans gb', arial, tahoma, 'Microsoft Yahei', sans-serif;
+            color: #737373;
+            overflow: auto;
+        }
+
+        .container {
+            width: 940px;
+            margin: 0 auto;
+            padding-top: 68px;
+            box-sizing: border-box;
+        }
+
+        @media screen and (min-width: 1260px) {
+            .container {
+                min-width: 1210px;
+            }
+
+            .bottom {
+                min-width: 936px;
+            }
+        }
+
+        .top {
+            height: 60px;
+            line-height: 60px;
+            position: relative;
+        }
+
+        .top img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+        }
+
+        .top a {
+            margin-left: 80px;
+            text-decoration: none;
+            color: #737373;
+            font-size: 24px;
+            height: 60px;
+            line-height: 60px;
+            display: inline-block;
+        }
+
+        .title {
+            margin-top: 40px;
+            height: 21px;
+            line-height: 21px;
+            border-left: 5px solid #ff4c77;
+            padding-left: 12px;
+            font-size: 21px;
+        }
+
+        .content {
+            position: relative;
+            min-height: 245px;
+            padding-top: 12px;
+            box-sizing: border-box;
+        }
+
+        .content .item {
+            display: inline-block;
+        }
+
+        .content:after {
+            display: block;
+            clear: both;
+            content: '';
+        }
+
+        .bottom {
+            border-top: 1px solid #e4dfd2;
+            height: 300px;
+            width: 620px;
+            position: relative;
+        }
+
+        .bottom .load-more {
+            border: 1px solid #e4dfd2;
+            line-height: 50px;
+            height: 50px;
+            text-align: center;
+            width: 200px;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            margin-left: -130px;
+            background: #ffffff;
+            color: #737373;
+            font-size: 21px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .qr {
+            height: 245px;
+            width: 200px;
+            position: absolute;
+            right: 0;
+            top: 14px;
+        }
+
+        .qr div {
+            height: 22px;
+            line-height: 22px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 11px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="top">
+        <img src="logo.png">
+        <a href="http://ichuye.cn/">返回主页</a>
+    </div>
+    <div class="title">精彩作品</div>
+    <div class="content">
+        <div class="qr">
+            <img src="qr-code.png" style="width: 100%;">
+            <div>扫码下载初页APP</div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="load-more">加载更多</div>
+    </div>
+</div>
+<script>
+    var data = {
+        "code": 200,
+        "data": {
+            "Recommends": [
+                {
+                    "WorkId": 43275251,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43275251/",
+                    "Title": "遇见真实的自己，最珍贵的 礼物你的笑脸",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/ae94e5f64a15d1d4ff6214c615c7ca60.jpg",
+//                    "ThumbnailUrl": "http://img01.cloud7.com.cn/50b9b42236861676e042bad3c8bd399b.jpg!thumbnail",
+                    "PublishDate": "2016-08-29T12:38:54",
+                    "Author": {
+                        "UserId": 15502444,
+                        "Nickname": "胡桃11",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/ajNVdqHZLLDn4oVQGFlD7DN7NCGbwuGuT9G4hckhzZtk4IMiaHAQq5J9t77XyRDQprxhoXPTENeOIIq4VCNicsZQ/0"
+                    }
+                }, {
+                    "WorkId": 42909967,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/42909967/",
+                    "Title": "到森林里去，去寻找一棵松茸，吃掉它！&nbsp;&nbsp;&nbsp",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/bce8b2a82287f7d5089282af7d838132.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-08-15T13:32:48",
+                    "Author": {
+                        "UserId": 427980,
+                        "Nickname": "♉mm♊",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/GibvHudxmlJZulwwPkQTibU5mcMgdibcHEIeBOUiaztOvYK5FrzThdgsCPj9O8LibDiaKweArEC8enltPPR4efkcMz32RtEahhmv6A/0",
+                        "Description": "GAAC"
+                    }
+                }, {
+                    "WorkId": 43426553,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43426553/",
+                    "Title": "萌萌哒的小熊包饭～让宝宝爱上吃饭&nbsp;&nbsp;&nbsp",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/e5ea962b360cda390831b1aeff47141c.jpg",
+                    "PublishDate": "2016-09-05T06:19:31",
+                    "Author": {
+                        "UserId": 16065439,
+                        "Nickname": "蓝冰滢",
+                        "HeadPhotoUrl": "http://tva1.sinaimg.cn/crop.0.0.640.640.180/62ba74c3jw8enqrcj8wsoj20hs0htq4b.jpg",
+                        "Description": "蓝冰滢和大民民的新书《为爱吃狂》正在热销！ 约稿及工作相关沟通 QQ；8105758"
+                    }
+                }, {
+                    "WorkId": 43371168,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43371168/",
+                    "Title": "#小清新的打开方式#灵魂和身体，必须有一个在路上，一起出发吧#小清新的“泰囧”#",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/e0d3a66b7f2486ae23288fd3b4ea5d8d.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-04T09:03:06",
+                    "Author": {
+                        "UserId": 7128559,
+                        "Nickname": "美琳🍧",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/LG4QcZs9rosrPN83q8qkxt83PZ5LPaDOqVyf5Z541B83PiaaXViaHBvNZtkUt7dYgL4df3kDF9UuaDYbrN9mWXHU20tfnP1F1p/0",
+                        "Description": "- 喜欢摄影旅游\n"
+                    }
+                }, {
+                    "WorkId": 43288846,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43288846/",
+                    "Title": "人马恋",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/fe0c85aed49415114b30a78b1ac0c986.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-08-30T04:29:12",
+                    "Author": {
+                        "UserId": 1573054,
+                        "Nickname": "我是我是张杰",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/iajwTFkyW3R5gpRtAia2TkQj1Jz3bQPPxyeySatpMqnic6a8ypOtuu6z4JpC5Liat0ViaXDrJem7I2uHbVwRHuj6BbS3KfaUIMZdH/0"
+                    }
+                }, {
+                    "WorkId": 43048649,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43048649/",
+                    "Title": "『漫画』老师的一天",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/cb2f52ace0e3a4be8ccae2966aa520db.jpg",
+                    "PublishDate": "2016-09-05T08:25:43",
+                    "Author": {
+                        "UserId": 522354,
+                        "Nickname": "蔡守锋",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/29ANnMTN4fUdRgc7FpA8lDFxYB5yAicnEhqvH88kjX1Ft1mzKz2e6gq6mhPjx6HZDoT9fpaBFlbXic1pibxMOcCibEJgGHUGaNwZ/0",
+                        "Description": "人的一生，要么讲究要么将就……"
+                    }
+                }, {
+                    "WorkId": 10417974,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/10417974/",
+                    "Title": "老师您好｜教师节快乐",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/773d9e78b8ded313c2b4f98b62aa72ac.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-07T09:28:37",
+                    "Author": {
+                        "UserId": 607413,
+                        "Nickname": "〖大海〗",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/ccf8d4a35db18a53dcf331cbd4a7e406.jpg",
+                        "Description": "海纳百川 有容乃大"
+                    }
+                }, {
+                    "WorkId": 43435425,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43435425/",
+                    "Title": "中国最美的秋天在鲁朗",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/9937eea04c2c0f7a19e4373f4734d540.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-05T09:49:34",
+                    "Author": {
+                        "UserId": 427980,
+                        "Nickname": "♉mm♊",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/GibvHudxmlJZulwwPkQTibU5mcMgdibcHEIeBOUiaztOvYK5FrzThdgsCPj9O8LibDiaKweArEC8enltPPR4efkcMz32RtEahhmv6A/0",
+                        "Description": "GAAC"
+                    }
+                }, {
+                    "WorkId": 43456869,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43456869/",
+                    "Title": "遇见• 原色",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/efef612b75875a1dd8523d060ee7fec4.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-06T12:52:33",
+                    "Author": {
+                        "UserId": 804217,
+                        "Nickname": "田小七",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/03b284dbe3693776d350c595f5a0e067.jpg",
+                        "Description": "田小七的杂味馆"
+                    }
+                }, {
+                    "WorkId": 43382621,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43382621/",
+                    "Title": "一生所爱『邀您弹幕』",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/dde72ebc88eb130dc48251fae6c6fee3.gif!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-03T06:37:52",
+                    "Author": {
+                        "UserId": 522354,
+                        "Nickname": "蔡守锋",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/29ANnMTN4fUdRgc7FpA8lDFxYB5yAicnEhqvH88kjX1Ft1mzKz2e6gq6mhPjx6HZDoT9fpaBFlbXic1pibxMOcCibEJgGHUGaNwZ/0",
+                        "Description": "人的一生，要么讲究要么将就……"
+                    }
+                }, {
+                    "WorkId": 7508780,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/7508780/",
+                    "Title": "哎呀妈呀女神的初页 #初页情书# 杨洋杨洋生日",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/5770be574c9f560af904e9a0adad084c.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-08-30T01:39:26",
+                    "Author": {
+                        "UserId": 4469792,
+                        "Nickname": "哎呀妈呀女神",
+                        "HeadPhotoUrl": "http://tp1.sinaimg.cn/3563374872/180/5730549575/0",
+                        "Description": "Eddie,咩咩，奥莉，诗爷"
+                    }
+                }, {
+                    "WorkId": 43366668,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43366668/",
+                    "Title": "【经典幽默😊查理·卓别林】（1）",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/849a70a168f3b3b2458f7f47e9bdcb08.gif!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-02T13:27:48",
+                    "Author": {
+                        "UserId": 4425243,
+                        "Nickname": "顺风顺水V",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/2a5818123085924bf68ad05a4d2dc572.jpg",
+                        "Description": "不求与人相比！但求超越自己！交流微信505880406"
+                    }
+                }, {
+                    "WorkId": 43335260,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43335260/",
+                    "Title": "《纪实摄影之父马克·吕布作品回顾》（上集）",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/36c64c0b394e6fba5fadf762e5102475.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-02T16:33:36",
+                    "Author": {
+                        "UserId": 8691341,
+                        "Nickname": "璨墨轩ll轩阳",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/3e9494e085db5a02f1ea66cd920ad998.jpg",
+                        "Description": "清逸窒欲，恬淡悠然......"
+                    }
+                }, {
+                    "WorkId": 42418797,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/42418797/",
+                    "Title": "一个精致女人该坚持一生的东西！",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/949ac29e87ff17ac883148456528789f.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-07-30T06:00:01",
+                    "Author": {
+                        "UserId": 4187060,
+                        "Nickname": "默默momo811",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/51403b7ed3a7e4e61e2e981da6efcfdf.jpg",
+                        "Description": ""
+                    }
+                }, {
+                    "WorkId": 43394117,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43394117/",
+                    "Title": "我该如何存在",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/a01078d6a890f368407257590c6c2815.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-03T12:58:38",
+                    "Author": {
+                        "UserId": 8587019,
+                        "Nickname": "爱琴海摄影_爱琴海户外",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/553dcdf6abe23d53c5ccdc0a3f0537d9.jpg",
+                        "Description": "生活不只是苟且，还有诗和远方。预约电话：13016160778\n"
+                    }
+                }, {
+                    "WorkId": 43369092,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43369092/",
+                    "Title": "大漠飞歌-巴丹吉林沙漠",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/8015705fff77eb97499cef47e8050ff5.jpg",
+                    "PublishDate": "2016-09-02T23:08:21",
+                    "Author": {
+                        "UserId": 714086,
+                        "Nickname": "帆心如水",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/c198235448b9d720dc598ec3f0d125c8.jpg",
+                        "Description": "在路上，遇见不一样的自己"
+                    }
+                }, {
+                    "WorkId": 43097835,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43097835/",
+                    "Title": "《琅琊榜》完美人设之静妃",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/914f55260c8d3bda40145b291741eb47.jpg",
+                    "PublishDate": "2016-09-01T05:23:52",
+                    "Author": {
+                        "UserId": 84254,
+                        "Nickname": "晓点声",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/17685058585f919efb5fd8dc2316c08a.jpg",
+                        "Description": "某个时刻你会想不起我的样子"
+                    }
+                }, {
+                    "WorkId": 43426165,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43426165/",
+                    "Title": "G20文艺晚会，惊艳全世界！中华雄起！",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/0a910dd08d5fc7499f29ec7ce1baf37e.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-05T02:21:21",
+                    "Author": {
+                        "UserId": 7601111,
+                        "Nickname": "泊天涯",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/d4a21c530d24c11520ffa1ffc7f8de07.jpg",
+                        "Description": "无欲则刚，有容乃大！"
+                    }
+                }, {
+                    "WorkId": 43099018,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43099018/",
+                    "Title": "《琅琊榜》完美人设之莅阳长公主",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/54e25170c1265d64b9eb7c43e9320ef4.jpg",
+                    "PublishDate": "2016-08-26T08:42:46",
+                    "Author": {
+                        "UserId": 84254,
+                        "Nickname": "晓点声",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/17685058585f919efb5fd8dc2316c08a.jpg",
+                        "Description": "某个时刻你会想不起我的样子"
+                    }
+                }, {
+                    "WorkId": 43308837,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43308837/",
+                    "Title": "芭蕾舞【胡桃夹子】唯美演出😊",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/b983b65cb30539e9a02fd29bee1dd679.gif!/both/180x180/quality/75",
+                    "PublishDate": "2016-08-31T09:42:13",
+                    "Author": {
+                        "UserId": 4425243,
+                        "Nickname": "顺风顺水V",
+                        "HeadPhotoUrl": "http://img01.cloud7.com.cn/2a5818123085924bf68ad05a4d2dc572.jpg",
+                        "Description": "不求与人相比！但求超越自己！交流微信505880406"
+                    }
+                }, {
+                    "WorkId": 43410490,
+                    "WorkUrl": "http://chuye.cloud7.com.cn/43410490/",
+                    "Title": "G20杭州峰会菜谱",
+                    "ThumbnailUrl": "http://img01.cloud7.com.cn/d1cf5dd961609d4ce34b1fa2ce554287.jpg!/both/180x180/quality/75",
+                    "PublishDate": "2016-09-04T11:28:01",
+                    "Author": {
+                        "UserId": 1840845,
+                        "Nickname": "惊鸿一瞥╭",
+                        "HeadPhotoUrl": "http://wx.qlogo.cn/mmopen/29ANnMTN4fW8icfu5YTYxOZcicpRErmSzAcNm26nayYLIf0rccbFzChWlTSia0ko5ibg82O4sOa7r6FjPLZWbBK6L1OIUDEv7NnA/0",
+                        "Description": "收藏美好，撷取快乐！ヽ(*´з｀*)ﾉ"
+                    }
+                }],
+            "LastId": "42"
+        }
+    };
+    function loopObj(obj, func) {
+        for (var key in obj) {
+            func(key, obj[key]);
+        }
+    }
+    function loopArray(arr, func) {
+        for (var i = 0; i < arr.length; i++) {
+            func(arr[i], i);
+        }
+    }
+    function $(tag, obj, parent) {
+        var dom = document.createElement(tag);
+        loopObj(obj, function (key, value) {
+            if (key == "classList") {
+                loopArray(value, function (klass) {
+                    dom.classList.add(klass);
+                });
+            } else if (key == "css") {
+                loopObj(value, function (n, v) {
+                    dom.style[n] = v;
+                })
+            } else if (key == "children") {
+                loopArray(value, function (child) {
+                    dom.appendChild(child);
+                });
+            } else {
+                dom[key] = value;
+            }
+        });
+        parent && parent.appendChild(dom);
+        return dom;
+    }
+    function css(el, obj) {
+        loopObj(obj, function (key, value) {
+            el.style[key] = value;
+        })
+    }
+</script>
+<script>
+    function ajax(id, callback) {
+        var url = id ? "http://api.ichuye.cn/protal/v1/realtime?lastId=" + id : "http://api.ichuye.cn/protal/v1/realtime";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                callback(JSON.parse(xhr.responseText));
+            }
+        }
+    }
+    var content = document.querySelector(".content");
+
+    function T(text) {
+        var test = $("div", {
+            css: {
+                display: "inline-block",
+                position: "absolute",
+                "line-height": "20px",
+                "font-size": "16px",
+                width: "291px"
+            }
+        }, document.body);
+        test.innerHTML = text;
+        var t;
+        if (test.offsetHeight > 40) {
+            for (var i = 2; i < text.length; i++) {
+                test.innerHTML = text.slice(0, i) + "...";
+                if (test.offsetHeight > 40) {
+                    t = text.slice(0, i - 1) + "...";
+                    break;
+                }
+            }
+            document.body.removeChild(test);
+            return t;
+        } else {
+            document.body.removeChild(test);
+            return text;
+        }
+    }
+
+    function func(data) {
+        loopArray(data.data.Recommends, function (d, i) {
+            var item = $("div", {
+                classList: ["item"],
+                css: {
+                    position: "relative",
+                    width: "300px",
+                    height: "430px",
+                    "margin-right": "15px",
+                    float: "left"
+                }
+            }, content);
+            var imgBorder = $("div", {
+                css: {
+                    height: "300px",
+                    overflow: "hidden"
+                }
+            }, item);
+            var ah = $("a", {}, imgBorder);
+            ah.href = d.WorkUrl;
+            ah.target = "_blank";
+            var thumbnail = $("img", {
+                classList: ["thumbnailUrl"],
+                src: d.ThumbnailUrl
+            }, ah);
+            thumbnail.onload = function () {
+                if (thumbnail.naturalWidth > thumbnail.naturalHeight) {
+                    css(thumbnail, {
+                        height: "100%",
+                        "margin-left": -(300 / thumbnail.naturalHeight * thumbnail.naturalWidth - 300) / 2 + "px"
+                    });
+                } else if (thumbnail.naturalWidth < thumbnail.naturalHeight) {
+                    css(thumbnail, {
+                        width: "100%",
+                        "margin-top": -(300 / thumbnail.naturalWidth * thumbnail.naturalHeight - 300) / 2 + "px"
+                    });
+                } else {
+                    css(thumbnail, {
+                        height: "100%"
+                    });
+                }
+            };
+            var user = $("div", {
+                css: {
+                    position: "relative",
+                    height: "28px",
+                    "line-height": "28px",
+                    "padding-left": "50px",
+                    "font-size": "14px",
+                    color: "#ff829e",
+                    "box-sizing": "border-box",
+                    "margin-top": "12px"
+                },
+                textContent: d.Author.Nickname
+            }, item);
+            $("div", {
+                css: {
+                    height: "28px", width: "28px",
+                    position: "absolute",
+                    top: 0,
+                    left: "9px",
+                    "border-radius": "30px",
+                    overflow: "hidden"
+                },
+                children: [$("img", {
+                    src: d.Author.HeadPhotoUrl,
+                    css: {
+                        height: "28px"
+                    }
+                }, user)]
+            }, user);
+            $("div", {
+                css: {
+                    "margin-top": "13px",
+                    height: "40px",
+                    "line-height": "20px",
+                    "font-size": "16px",
+                    "padding-left": "9px",
+                    "box-sizing": "border-box",
+                    overflow: "hidden"
+                },
+                innerHTML: T(d.Title)
+            }, item);
+        });
+    }
+    var lastID;
+    var loading = true;
+    func(data);
+    //    ajax(lastID, function (data) {
+    //        lastID = data.data.LastId;
+    //        func(data);
+    //        loading = false;
+    //    });
+    //    document.querySelector(".load-more").onclick = function () {
+    //        if (!loading) {
+    //            loading = true;
+    //            ajax(lastID, function (data) {
+    //                loading = false;
+    //                lastID = data.data.LastId;
+    //                func(data);
+    //            });
+    //        }
+    //    }
+
+</script>
+</body>
+</html>
