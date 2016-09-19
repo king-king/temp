@@ -22,16 +22,16 @@
         }
 
         .container {
-            width: 636px;
+            width: 955px;
             margin: 0 auto;
-            padding-top: 34px;
+            padding-top: 51px;
             box-sizing: border-box;
             position: relative;
         }
 
         .top {
-            height: 35px;
-            line-height: 35px;
+            height: 52px;
+            line-height: 52px;
             position: relative;
         }
 
@@ -43,29 +43,29 @@
         }
 
         .top a {
-            margin-left: 43px;
+            margin-left: 65px;
             text-decoration: none;
             color: #737373;
-            font-size: 16px;
-            height: 35px;
-            line-height: 35px;
+            font-size: 24px;
+            height: 52px;
+            line-height: 52px;
             display: inline-block;
         }
 
         .title {
-            margin-top: 33px;
-            height: 21px;
-            line-height: 21px;
-            border-left: 3px solid #ff4c77;
-            padding-left: 12px;
-            font-size: 15px;
+            margin-top: 50px;
+            height: 24px;
+            line-height: 24px;
+            border-left: 4px solid #ff4c77;
+            padding-left: 14px;
+            font-size: 23px;
         }
 
         .content {
-            width: 511px;
+            width: 767px;
             position: relative;
             min-height: 245px;
-            padding-top: 12px;
+            padding-top: 18px;
             box-sizing: border-box;
         }
 
@@ -80,43 +80,43 @@
         }
 
         .bottom {
-            width: 500px;
+            width: 750px;
             border-top: 1px solid #e4dfd2;
-            height: 150px;
+            height: 225px;
             position: relative;
         }
 
         .bottom .load-more {
             border: 1px solid #e4dfd2;
-            line-height: 34px;
-            height: 34px;
+            line-height: 51px;
+            height: 51px;
             text-align: center;
-            width: 130px;
+            width: 196px;
             position: absolute;
-            top: 20px;
+            top: 30px;
             left: 50%;
-            margin-left: -65px;
+            margin-left: -98px;
             background: #ffffff;
             color: #737373;
-            font-size: 15px;
+            font-size: 23px;
             border-radius: 6px;
             cursor: pointer;
         }
 
         .qr {
-            height: 245px;
-            width: 105px;
+            height: 368px;
+            width: 158px;
             position: absolute;
             right: 0;
-            top: 134px;
+            top: 193px;
         }
 
         .qr div {
-            height: 22px;
-            line-height: 22px;
+            height: 33px;
+            line-height: 33px;
             text-align: center;
-            font-size: 11px;
-            margin-top: 3px;
+            font-size: 17px;
+            margin-top: 5px;
         }
 
 
@@ -461,9 +461,9 @@
             css: {
                 display: "inline-block",
                 position: "absolute",
-                "line-height": "18px",
-                "font-size": "12px",
-                width: "156px"
+                "line-height": "27px",
+                "font-size": "18px",
+                width: "234px"
             }
         }, document.body);
         test.innerHTML = text;
@@ -490,15 +490,15 @@
                 classList: ["item"],
                 css: {
                     position: "relative",
-                    width: "160px",
-                    height: "241px",
-                    "margin-right": "8px",
+                    width: "240px",
+                    height: "362px",
+                    "margin-right": "12px",
                     float: "left"
                 }
             }, content);
             var imgBorder = $("div", {
                 css: {
-                    height: "160px",
+                    height: "240px",
                     overflow: "hidden",
                     background: "#dfdbd5"
                 }
@@ -514,12 +514,12 @@
                 if (thumbnail.naturalWidth > thumbnail.naturalHeight) {
                     css(thumbnail, {
                         height: "100%",
-                        "margin-left": -(300 / thumbnail.naturalHeight * thumbnail.naturalWidth - 300) / 2 + "px"
+                        "margin-left": -(240 / thumbnail.naturalHeight * thumbnail.naturalWidth - 240) / 2 + "px"
                     });
                 } else if (thumbnail.naturalWidth < thumbnail.naturalHeight) {
                     css(thumbnail, {
                         width: "100%",
-                        "margin-top": -(300 / thumbnail.naturalWidth * thumbnail.naturalHeight - 300) / 2 + "px"
+                        "margin-top": -(240 / thumbnail.naturalWidth * thumbnail.naturalHeight - 240) / 2 + "px"
                     });
                 } else {
                     css(thumbnail, {
@@ -530,40 +530,40 @@
             var user = $("div", {
                 css: {
                     position: "relative",
-                    height: "18px",
-                    "line-height": "18px",
-                    "padding-left": "28px",
-                    "font-size": "11px",
+                    height: "27px",
+                    "line-height": "27px",
+                    "padding-left": "42px",
+                    "font-size": "17px",
                     color: "#ff829e",
                     "box-sizing": "border-box",
-                    "margin-top": "7px"
+                    "margin-top": "10px"
                 },
                 textContent: d.Author.Nickname
             }, item);
             $("div", {
                 css: {
-                    height: "18px",
-                    width: "18px",
+                    height: "27px",
+                    width: "27px",
                     position: "absolute",
                     top: 0,
-                    left: "4px",
-                    "border-radius": "18px",
+                    left: "6px",
+                    "border-radius": "27px",
                     overflow: "hidden"
                 },
                 children: [$("img", {
                     src: d.Author.HeadPhotoUrl,
                     css: {
-                        height: "28px"
+                        height: "27px"
                     }
                 }, user)]
             }, user);
             $("div", {
                 css: {
-                    "margin-top": "10px",
-                    height: "36px",
-                    "line-height": "18px",
-                    "font-size": "12px",
-                    "padding-left": "4px",
+                    "margin-top": "15px",
+                    height: "54px",
+                    "line-height": "27px",
+                    "font-size": "18px",
+                    "padding-left": "6px",
                     "box-sizing": "border-box",
                     overflow: "hidden"
                 },
