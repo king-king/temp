@@ -438,16 +438,21 @@
     }
 </script>
 <script>
+    //    function ajax(id, callback) {
+    //        var url = id ? "http://api.ichuye.cn/protal/v1/realtime?lastId=" + id : "http://api.ichuye.cn/protal/v1/realtime";
+    //        var xhr = new XMLHttpRequest();
+    //        xhr.open("GET", url, true);
+    //        xhr.send();
+    //        xhr.onreadystatechange = function () {
+    //            if (xhr.readyState == 4 && xhr.status == 200) {
+    //                callback(JSON.parse(xhr.responseText));
+    //            }
+    //        }
+    //    }
     function ajax(id, callback) {
-        var url = id ? "http://api.ichuye.cn/protal/v1/realtime?lastId=" + id : "http://api.ichuye.cn/protal/v1/realtime";
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", url, true);
-        xhr.send();
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4 && xhr.status == 200) {
-                callback(JSON.parse(xhr.responseText));
-            }
-        }
+        setTimeout(function () {
+            callback(data);
+        }, 1000);
     }
     var content = document.querySelector(".content");
 
@@ -568,22 +573,27 @@
     }
     var lastID;
     var loading = true;
-    func(data);
-    //    ajax(lastID, function (data) {
-    //        lastID = data.data.LastId;
-    //        func(data);
-    //        loading = false;
-    //    });
-    //    document.querySelector(".load-more").onclick = function () {
-    //        if (!loading) {
-    //            loading = true;
-    //            ajax(lastID, function (data) {
-    //                loading = false;
-    //                lastID = data.data.LastId;
-    //                func(data);
-    //            });
-    //        }
-    //    }
+    var loadBtn = document.querySelector(".load-more");
+    loadBtn.textContent = "正在加载…";
+    //    func(data);
+    ajax(lastID, function (data) {
+        loadBtn.textContent = "加载更多";
+        lastID = data.data.LastId;
+        func(data);
+        loading = false;
+    });
+    loadBtn.onclick = function () {
+        if (!loading) {
+            loadBtn.textContent = "正在加载…";
+            loading = true;
+            ajax(lastID, function (data) {
+                loadBtn.textContent = "加载更多";
+                loading = false;
+                lastID = data.data.LastId;
+                func(data);
+            });
+        }
+    }
 
 </script>
 </body>
