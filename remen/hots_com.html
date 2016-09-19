@@ -23,7 +23,7 @@
         }
 
         .container {
-            width: 636px;
+            width: 764px;
             margin: 0 auto;
             padding-top: 34px;
             box-sizing: border-box;
@@ -31,8 +31,8 @@
         }
 
         .top {
-            height: 35px;
-            line-height: 35px;
+            height: 42px;
+            line-height: 42px;
             position: relative;
         }
 
@@ -44,29 +44,29 @@
         }
 
         .top a {
-            margin-left: 43px;
+            margin-left: 52px;
             text-decoration: none;
             color: #737373;
-            font-size: 16px;
-            height: 35px;
-            line-height: 35px;
+            font-size: 19px;
+            height: 42px;
+            line-height: 42px;
             display: inline-block;
         }
 
         .title {
-            margin-top: 33px;
-            height: 16px;
-            line-height: 16px;
-            border-left: 3px solid #ff4c77;
-            padding-left: 9px;
-            font-size: 15px;
+            margin-top: 40px;
+            height: 19px;
+            line-height: 19px;
+            border-left: 4px solid #ff4c77;
+            padding-left: 10px;
+            font-size: 18px;
         }
 
         .content {
-            width: 511px;
+            width: 614px;
             position: relative;
             min-height: 245px;
-            padding-top: 12px;
+            padding-top: 14px;
             box-sizing: border-box;
         }
 
@@ -81,7 +81,7 @@
         }
 
         .bottom {
-            width: 500px;
+            width: 600px;
             border-top: 1px solid #e4dfd2;
             height: 150px;
             position: relative;
@@ -89,35 +89,35 @@
 
         .bottom .load-more {
             border: 1px solid #e4dfd2;
-            line-height: 34px;
-            height: 34px;
+            line-height: 40px;
+            height: 40px;
             text-align: center;
-            width: 130px;
+            width: 156px;
             position: absolute;
-            top: 20px;
+            top: 24px;
             left: 50%;
-            margin-left: -65px;
+            margin-left: -78px;
             background: #ffffff;
             color: #737373;
-            font-size: 15px;
-            border-radius: 6px;
+            font-size: 18px;
+            border-radius: 7px;
             cursor: pointer;
         }
 
         .qr {
-            height: 245px;
-            width: 105px;
+            height: 294px;
+            width: 126px;
             position: absolute;
             right: 0;
-            top: 129px;
+            top: 146px;
         }
 
         .qr div {
-            height: 22px;
-            line-height: 22px;
+            height: 26px;
+            line-height: 26px;
             text-align: center;
-            font-size: 11px;
-            margin-top: 3px;
+            font-size: 13px;
+            margin-top: 4px;
         }
 
 
@@ -491,15 +491,15 @@
                 classList: ["item"],
                 css: {
                     position: "relative",
-                    width: "160px",
-                    height: "241px",
-                    "margin-right": "8px",
+                    width: "192px",
+                    height: "290px",
+                    "margin-right": "10px",
                     float: "left"
                 }
             }, content);
             var imgBorder = $("div", {
                 css: {
-                    height: "160px",
+                    height: "192px",
                     overflow: "hidden",
                     background: "#dfdbd5"
                 }
@@ -515,12 +515,12 @@
                 if (thumbnail.naturalWidth > thumbnail.naturalHeight) {
                     css(thumbnail, {
                         height: "100%",
-                        "margin-left": -(160 / thumbnail.naturalHeight * thumbnail.naturalWidth - 160) / 2 + "px"
+                        "margin-left": -(192 / thumbnail.naturalHeight * thumbnail.naturalWidth - 192) / 2 + "px"
                     });
                 } else if (thumbnail.naturalWidth < thumbnail.naturalHeight) {
                     css(thumbnail, {
                         width: "100%",
-                        "margin-top": -(160 / thumbnail.naturalWidth * thumbnail.naturalHeight - 160) / 2 + "px"
+                        "margin-top": -(192 / thumbnail.naturalWidth * thumbnail.naturalHeight - 192) / 2 + "px"
                     });
                 } else {
                     css(thumbnail, {
@@ -531,40 +531,40 @@
             var user = $("div", {
                 css: {
                     position: "relative",
-                    height: "18px",
-                    "line-height": "18px",
-                    "padding-left": "28px",
-                    "font-size": "11px",
+                    height: "22px",
+                    "line-height": "22px",
+                    "padding-left": "33px",
+                    "font-size": "13px",
                     color: "#ff829e",
                     "box-sizing": "border-box",
-                    "margin-top": "7px"
+                    "margin-top": "8px"
                 },
                 textContent: d.Author.Nickname
             }, item);
             $("div", {
                 css: {
-                    height: "18px",
-                    width: "18px",
+                    height: "22px",
+                    width: "22px",
                     position: "absolute",
                     top: 0,
-                    left: "4px",
-                    "border-radius": "18px",
+                    left: "5px",
+                    "border-radius": "22px",
                     overflow: "hidden"
                 },
                 children: [$("img", {
                     src: d.Author.HeadPhotoUrl,
                     css: {
-                        height: "18px"
+                        height: "22px"
                     }
                 }, user)]
             }, user);
             $("div", {
                 css: {
-                    "margin-top": "10px",
-                    height: "36px",
-                    "line-height": "18px",
-                    "font-size": "12px",
-                    "padding-left": "4px",
+                    "margin-top": "12px",
+                    height: "43px",
+                    "line-height": "22px",
+                    "font-size": "14px",
+                    "padding-left": "5px",
                     "box-sizing": "border-box",
                     overflow: "hidden"
                 },
