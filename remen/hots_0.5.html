@@ -22,25 +22,16 @@
         }
 
         .container {
-            width: 940px;
+            width: 636px;
             margin: 0 auto;
-            padding-top: 68px;
+            padding-top: 34px;
             box-sizing: border-box;
-        }
-
-        @media screen and (min-width: 1260px) {
-            .container {
-                min-width: 1210px;
-            }
-
-            .bottom {
-                min-width: 936px;
-            }
+            position: relative;
         }
 
         .top {
-            height: 60px;
-            line-height: 60px;
+            height: 35px;
+            line-height: 35px;
             position: relative;
         }
 
@@ -52,25 +43,26 @@
         }
 
         .top a {
-            margin-left: 80px;
+            margin-left: 43px;
             text-decoration: none;
             color: #737373;
-            font-size: 24px;
-            height: 60px;
-            line-height: 60px;
+            font-size: 16px;
+            height: 35px;
+            line-height: 35px;
             display: inline-block;
         }
 
         .title {
-            margin-top: 40px;
+            margin-top: 33px;
             height: 21px;
             line-height: 21px;
-            border-left: 5px solid #ff4c77;
+            border-left: 3px solid #ff4c77;
             padding-left: 12px;
-            font-size: 21px;
+            font-size: 15px;
         }
 
         .content {
+            width: 511px;
             position: relative;
             min-height: 245px;
             padding-top: 12px;
@@ -88,43 +80,43 @@
         }
 
         .bottom {
+            width: 500px;
             border-top: 1px solid #e4dfd2;
-            height: 300px;
-            width: 620px;
+            height: 150px;
             position: relative;
         }
 
         .bottom .load-more {
             border: 1px solid #e4dfd2;
-            line-height: 50px;
-            height: 50px;
+            line-height: 34px;
+            height: 34px;
             text-align: center;
-            width: 200px;
+            width: 130px;
             position: absolute;
-            top: 40px;
+            top: 20px;
             left: 50%;
-            margin-left: -130px;
+            margin-left: -65px;
             background: #ffffff;
             color: #737373;
-            font-size: 21px;
+            font-size: 15px;
             border-radius: 6px;
             cursor: pointer;
         }
 
         .qr {
             height: 245px;
-            width: 200px;
+            width: 105px;
             position: absolute;
             right: 0;
-            top: 14px;
+            top: 134px;
         }
 
         .qr div {
             height: 22px;
             line-height: 22px;
             text-align: center;
-            font-size: 18px;
-            margin-top: 11px;
+            font-size: 11px;
+            margin-top: 3px;
         }
 
 
@@ -136,12 +128,12 @@
         <img src="logo.png">
         <a href="http://ichuye.cn/">返回主页</a>
     </div>
+    <div class="qr">
+        <img src="qr-code.png" style="width: 100%;">
+        <div>扫码下载初页APP</div>
+    </div>
     <div class="title">精彩作品</div>
     <div class="content">
-        <div class="qr">
-            <img src="qr-code.png" style="width: 100%;">
-            <div>扫码下载初页APP</div>
-        </div>
     </div>
     <div class="bottom">
         <div class="load-more">加载更多</div>
@@ -464,17 +456,17 @@
             css: {
                 display: "inline-block",
                 position: "absolute",
-                "line-height": "20px",
-                "font-size": "16px",
-                width: "291px"
+                "line-height": "18px",
+                "font-size": "12px",
+                width: "156px"
             }
         }, document.body);
         test.innerHTML = text;
         var t;
-        if (test.offsetHeight > 40) {
+        if (test.offsetHeight > 36) {
             for (var i = 2; i < text.length; i++) {
                 test.innerHTML = text.slice(0, i) + "...";
-                if (test.offsetHeight > 40) {
+                if (test.offsetHeight > 36) {
                     t = text.slice(0, i - 1) + "...";
                     break;
                 }
@@ -493,16 +485,17 @@
                 classList: ["item"],
                 css: {
                     position: "relative",
-                    width: "300px",
-                    height: "430px",
-                    "margin-right": "15px",
+                    width: "160px",
+                    height: "241px",
+                    "margin-right": "8px",
                     float: "left"
                 }
             }, content);
             var imgBorder = $("div", {
                 css: {
-                    height: "300px",
-                    overflow: "hidden"
+                    height: "160px",
+                    overflow: "hidden",
+                    background: "#dfdbd5"
                 }
             }, item);
             var ah = $("a", {}, imgBorder);
@@ -532,23 +525,24 @@
             var user = $("div", {
                 css: {
                     position: "relative",
-                    height: "28px",
-                    "line-height": "28px",
-                    "padding-left": "50px",
-                    "font-size": "14px",
+                    height: "18px",
+                    "line-height": "18px",
+                    "padding-left": "28px",
+                    "font-size": "11px",
                     color: "#ff829e",
                     "box-sizing": "border-box",
-                    "margin-top": "12px"
+                    "margin-top": "7px"
                 },
                 textContent: d.Author.Nickname
             }, item);
             $("div", {
                 css: {
-                    height: "28px", width: "28px",
+                    height: "18px",
+                    width: "18px",
                     position: "absolute",
                     top: 0,
-                    left: "9px",
-                    "border-radius": "30px",
+                    left: "4px",
+                    "border-radius": "18px",
                     overflow: "hidden"
                 },
                 children: [$("img", {
@@ -560,11 +554,11 @@
             }, user);
             $("div", {
                 css: {
-                    "margin-top": "13px",
-                    height: "40px",
-                    "line-height": "20px",
-                    "font-size": "16px",
-                    "padding-left": "9px",
+                    "margin-top": "10px",
+                    height: "36px",
+                    "line-height": "18px",
+                    "font-size": "12px",
+                    "padding-left": "4px",
                     "box-sizing": "border-box",
                     overflow: "hidden"
                 },
