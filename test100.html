@@ -24,13 +24,11 @@
 <body>
 </body>
 <script>
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "http://api.ichuye.cn/protal/v1/realtime?lastId=21", true);
-    xhr.send();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
-        }
+    var s = document.createElement("script");
+    s.src = "test.js";
+    document.body.appendChild(s);
+    s.onload = function () {
+        console.log("load");
     }
 </script>
 </html>
