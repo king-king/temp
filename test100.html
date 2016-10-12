@@ -21,12 +21,35 @@
     </style>
 </head>
 <body>
-<div>{{function(){}}}</div>
 </body>
 <script>
-    var div = document.querySelector("div");
-    console.log(div.getAttribute("w-wang") == "");
-    console.log(div.getAttribute("v-wang"));
+    function task(ts, callback) {
+        var index = 0;
+        for (var i = 0; i < ts.length; i++) {
+            ts[i](function () {
+                ++index == ts.length && callback();
+            });
+        }
+    }
+    var s = ["img/1.jpg", "img/1.png"];
+    function map(arr, func) {
+        var narr = [];
+        for (var i = 0; i < arr.length; i++) {
+            narr.push(func(arr[i]));
+        }
+        return narr;
+    }
+
+    task(map(s, function (src) {
+        return function (done) {
+            var img = new Image();
+            img.src = src;
+            img.onload = done;
+            document.body.appendChild(img);
+        }
+    }), function () {
+        console.log("ok");
+    });
 
 </script>
 </html>

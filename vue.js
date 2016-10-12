@@ -28,7 +28,7 @@
      * If the conversion fails, return original string.
      */
     function toNumber(val) {
-        var n = parseFloat(val, 10)
+        var n = parseFloat(val);
         return (n || n === 0) ? n : val
     }
 
@@ -36,18 +36,15 @@
      * Make a map and return a function for checking if a key
      * is in that map.
      */
-    function makeMap(str,
-                     expectsLowerCase) {
-        var map = Object.create(null)
-        var list = str.split(',')
+    function makeMap(str, expectsLowerCase) {
+        var map = Object.create(null);
+        var list = str.split(',');
         for (var i = 0; i < list.length; i++) {
             map[list[i]] = true
         }
-        return expectsLowerCase
-            ? function (val) {
+        return expectsLowerCase ? function (val) {
             return map[val.toLowerCase()];
-        }
-            : function (val) {
+        } : function (val) {
             return map[val];
         }
     }
@@ -55,14 +52,14 @@
     /**
      * Check if a tag is a built-in tag.
      */
-    var isBuiltInTag = makeMap('slot,component', true)
+    var isBuiltInTag = makeMap('slot,component', true);
 
     /**
      * Remove an item from an array
      */
     function remove$1(arr, item) {
         if (arr.length) {
-            var index = arr.indexOf(item)
+            var index = arr.indexOf(item);
             if (index > -1) {
                 return arr.splice(index, 1)
             }
@@ -72,26 +69,26 @@
     /**
      * Check whether the object has the property.
      */
-    var hasOwnProperty = Object.prototype.hasOwnProperty
+    var hasOwnProperty = Object.prototype.hasOwnProperty;
 
     function hasOwn(obj, key) {
-        return hasOwnProperty.call(obj, key)
+        return hasOwnProperty.call(obj, key);
     }
 
     /**
      * Check if value is primitive
      */
     function isPrimitive(value) {
-        return typeof value === 'string' || typeof value === 'number'
+        return typeof value === 'string' || typeof value === 'number';
     }
 
     /**
      * Create a cached version of a pure function.
      */
     function cached(fn) {
-        var cache = Object.create(null)
+        var cache = Object.create(null);
         return function cachedFn(str) {
-            var hit = cache[str]
+            var hit = cache[str];
             return hit || (cache[str] = fn(str))
         }
     }
@@ -99,37 +96,34 @@
     /**
      * Camelize a hyphen-delmited string.
      */
-    var camelizeRE = /-(\w)/g
+    var camelizeRE = /-(\w)/g;
     var camelize = cached(function (str) {
         return str.replace(camelizeRE, function (_, c) {
             return c ? c.toUpperCase() : '';
         })
-    })
+    });
 
     /**
      * Capitalize a string.
      */
     var capitalize = cached(function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1)
-    })
+    });
 
     /**
      * Hyphenate a camelCase string.
      */
-    var hyphenateRE = /([^-])([A-Z])/g
+    var hyphenateRE = /([^-])([A-Z])/g;
     var hyphenate = cached(function (str) {
-        return str
-            .replace(hyphenateRE, '$1-$2')
-            .replace(hyphenateRE, '$1-$2')
-            .toLowerCase()
-    })
+        return str.replace(hyphenateRE, '$1-$2').replace(hyphenateRE, '$1-$2').toLowerCase()
+    });
 
     /**
      * Simple bind, faster than native
      */
     function bind$1(fn, ctx) {
         function boundFn(a) {
-            var l = arguments.length
+            var l = arguments.length;
             return l
                 ? l > 1
                 ? fn.apply(ctx, arguments)
@@ -138,7 +132,7 @@
         }
 
         // record original fn length
-        boundFn._length = fn.length
+        boundFn._length = fn.length;
         return boundFn
     }
 
@@ -146,9 +140,9 @@
      * Convert an Array-like object to a real Array.
      */
     function toArray(list, start) {
-        start = start || 0
-        var i = list.length - start
-        var ret = new Array(i)
+        start = start || 0;
+        var i = list.length - start;
+        var ret = new Array(i);
         while (i--) {
             ret[i] = list[i + start]
         }
@@ -160,9 +154,9 @@
      */
     function extend(to, _from) {
         for (var key in _from) {
-            to[key] = _from[key]
+            to[key] = _from[key];
         }
-        return to
+        return to;
     }
 
     /**
@@ -178,8 +172,8 @@
      * Strict object type check. Only returns true
      * for plain JavaScript objects.
      */
-    var toString = Object.prototype.toString
-    var OBJECT_STRING = '[object Object]'
+    var toString = Object.prototype.toString;
+    var OBJECT_STRING = '[object Object]';
 
     function isPlainObject(obj) {
         return toString.call(obj) === OBJECT_STRING
@@ -189,10 +183,10 @@
      * Merge an Array of Objects into a single Object.
      */
     function toObject(arr) {
-        var res = {}
+        var res = {};
         for (var i = 0; i < arr.length; i++) {
             if (arr[i]) {
-                extend(res, arr[i])
+                extend(res, arr[i]);
             }
         }
         return res
@@ -230,7 +224,7 @@
                 isObject(a) && isObject(b)
                     ? JSON.stringify(a) === JSON.stringify(b)
                     : false
-            )
+            );
         /* eslint-enable eqeqeq */
     }
 
@@ -333,7 +327,7 @@
          * Server rendering?
          */
         _isServer: "client" === 'server'
-    }
+    };
 
     /*  */
 
@@ -341,7 +335,7 @@
      * Check if a string starts with $ or _
      */
     function isReserved(str) {
-        var c = (str + '').charCodeAt(0)
+        var c = (str + '').charCodeAt(0);
         return c === 0x24 || c === 0x5F
     }
 
