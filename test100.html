@@ -24,10 +24,19 @@
 <div>2343</div>
 </body>
 <script>
-    var querySelector = function (s) {
-        return document.querySelector(s);
-    };
-    console.log(querySelector("div"))
+
+    function task(s, func) {
+        var index = 0;
+
+        function t() {
+            index < s.length ? s[index](function () {
+                index++;
+                t();
+            }) : func();
+        }
+
+        t();
+    }
 
 </script>
 </html>
