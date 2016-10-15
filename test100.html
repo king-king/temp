@@ -15,6 +15,12 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        @media (color-gamut: p3) {
+            * {
+                background: black;
+            }
+        }
+
         * {
             font-size: 48px;
             background: red;
@@ -25,19 +31,6 @@
 <div>2343哈哈</div>
 </body>
 <script>
-
-    function task(s, func) {
-        var index = 0;
-
-        function t() {
-            index < s.length ? s[index](function () {
-                index++;
-                t();
-            }) : func();
-        }
-
-        t();
-    }
 
 
 </script>
