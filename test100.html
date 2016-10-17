@@ -9,22 +9,12 @@
             position: absolute;
             left: 0;
             top: 0;
-            bottom: 0;
+            height: 1000px;
             right: 0;
             font-size: 30px;
             -webkit-overflow-scrolling: touch;
         }
 
-        @media (color-gamut: p3) {
-            * {
-                background: black;
-            }
-        }
-
-        * {
-            font-size: 48px;
-            background: red;
-        }
     </style>
 </head>
 <body>
@@ -32,6 +22,9 @@
 </body>
 <script>
 
+    document.onclick = function (e) {
+        console.log(e)
+    }
 
 </script>
 </html>
