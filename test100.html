@@ -15,6 +15,12 @@
             -webkit-overflow-scrolling: touch;
         }
 
+        div {
+            width: 200px;
+            height: 200px;
+            background: #000;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -26,14 +32,20 @@
     var state = {
         name: "wq"
     };
-    document.onclick = function (e) {
-        history.pushState(state, "", "?page=" + index);
-        index++;
+    document.querySelector("div").oncontextmenu = function (e) {
+        e.preventDefault();
+        console.log("lo");
     };
 
-    history.onPopState(function (e) {
-        console.log(e)
-    });
+
+    //    document.onclick = function (e) {
+    //        history.pushState(state, "", "?page=" + index);
+    //        index++;
+    //    };
+    //
+    //    history.onPopState(function (e) {
+    //        console.log(e)
+    //    });
 
 </script>
 </html>
