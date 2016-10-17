@@ -22,9 +22,18 @@
 </body>
 <script>
 
+    var index = 0;
+    var state = {
+        name: "wq"
+    };
     document.onclick = function (e) {
+        history.pushState(state, "", "?page=" + index);
+        index++;
+    };
+
+    history.onPopState(function (e) {
         console.log(e)
-    }
+    });
 
 </script>
 </html>
