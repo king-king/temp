@@ -8,13 +8,15 @@
     </style>
 </head>
 <body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
+<script src="library/jspdf.debug.js"></script>
 <script>
 
-    var doc = new jsPDF();
+//    var doc = new jsPDF();
+//    doc.text('Hello world!', 10, 10);
+//    debugger;
+//    doc.save('a4.pdf');
+var blob = new Blob(["Hello World!"],{type:"text/plain"});
 
-    doc.text('Hello world!', 10, 10);
-    doc.save('a4.pdf')
 </script>
 
 </body>
