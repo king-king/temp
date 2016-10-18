@@ -59,23 +59,17 @@
 <script>
 
     var index = 0;
-    var state = {
-        name: "wq"
-    };
-    document.querySelector("div").oncontextmenu = function (e) {
-        e.preventDefault();
-        console.log("lo");
+    sessionStorage.setItem("index", index);
+
+    document.onclick = function (e) {
+        sessionStorage.setItem("index", index);
+        history.pushState({index: index}, "", "?page=" + index);
+        index++;
     };
 
-
-    //    document.onclick = function (e) {
-    //        history.pushState(state, "", "?page=" + index);
-    //        index++;
-    //    };
-    //
-    //    history.onPopState(function (e) {
-    //        console.log(e)
-    //    });
+    window.onpopstate = function (e) {
+        console.log(e.state.index)
+    };
 
 </script>
 </html>
