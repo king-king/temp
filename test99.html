@@ -8,30 +8,11 @@
     </style>
 </head>
 <body>
-<script src="library/jspdf.debug.js"></script>
-<script>
-
-    var obj = {
-        get num() {
-        },
-        set num(n) {
-        }
-    };
-
-    function Nice() {
-    }
-
-    var n = new Nice();
-    function Good() {
-    }
-    Good.prototype = n;
-    var g = new Good();
-    n.say = function () {
-        console.log("nice")
-    };
-    g.say();
-
-</script>
 
 </body>
+<script>
+
+ document.body.textContent=Array.toString();
+
+</script>
 </html>
