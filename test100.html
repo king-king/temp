@@ -11,64 +11,32 @@
             top: 0;
             height: 1000px;
             right: 0;
-            font-size: 30px;
             -webkit-overflow-scrolling: touch;
+            font-size: 40px;
         }
 
-        div.block {
-            width: 200px;
-            height: 200px;
-            background: #000;
-            color: #fff;
-            float: left;
-        }
-
-        .hello {
-            width: 400px;
-            height: 200px;
-            background: orange;
-            color: #fff;
-            clear: both;
-            font-size: 20px;
-            /*float: left;*/
-        }
-
-        .yes {
-            width: 400px;
-            height: 200px;
-            background: green;
-            color: #fff;
-            font-size: 20px;
-            /*float: left;*/
-        }
-
-        body {
-            font-size: 0;
-        }
     </style>
 </head>
 <body>
-<div class="block">2343哈哈</div>
-<div class="block">2343哈哈</div>
-<div class="block">2343哈哈</div>
-<div class="block">2343哈哈</div>
-<div class="hello">12</div>
-<span>4235</span>
-<div class="yes">12</div>
 </body>
 <script>
 
-    var index = 0;
-    sessionStorage.setItem("index", index);
-
+    var index = sessionStorage.getItem("index") || 0;
+    document.body.textContent = "刷新／进入";
     document.onclick = function (e) {
+        index++;
         sessionStorage.setItem("index", index);
         history.pushState({index: index}, "", "?page=" + index);
-        index++;
     };
 
     window.onpopstate = function (e) {
-        console.log(e.state.index)
+        console.log(e.state.index);
+        if (index < e.state.index) {
+            document.body.textContent = "前进";
+        } else {
+            document.body.textContent = "后退";
+        }
+        index = e.state.index;
     };
 
 </script>
