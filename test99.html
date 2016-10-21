@@ -6,6 +6,7 @@
     <style>
         html, body {
             height: 100%;
+            font-size: 40px;
         }
 
         * {
@@ -16,35 +17,29 @@
         }
 
         div.border {
-            border: 5px solid grey;
-            overflow: hidden;
-            width: 320px;
-            height: 508px;
-            margin: auto;
+            width: 540px;
+            height: 290px;
             position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
+            top: 50%;
+            left: 50%;
+            margin-top: -145px;
+            margin-left: -270px;
+            overflow: hidden;
+            -webkit-mask: url(img/width.png);
+            -webkit-mask-size: 100% 100%;
         }
 
-        .border img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
+        img {
             width: 100%;
+            transform: rotate3d(0, 0, 1, 90deg);
         }
     </style>
 </head>
 <body>
 <div class="border">
-    <img src="img/doubi-0.jpg">
-    <img src="img/doubi-1.jpg">
+    <img src="img/11.jpg">
 </div>
 </body>
 <script>
-
-
 </script>
 </html>
