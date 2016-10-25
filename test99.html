@@ -3,48 +3,19 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <style>
-        html, body {
-            height: 100%;
-            font-size: 40px;
-        }
-
-        * {
-            padding: 0;
-            margin: 0;
-            word-break: break-all;
-            border: none;
-        }
-
-        div.border {
-            display: inline-block;
-            width: 270px;
-            height: 290px;
-            background-image: linear-gradient(350deg, #211c12, #544d4c), linear-gradient(#ffffff, #ffffff);
-        }
-
-        div.border1 {
-            display: inline-block;
-            width: 270px;
-            height: 290px;
-            background-image: linear-gradient(350deg, #211c12, #544d4c), linear-gradient(#ffffff, #ffffff);
-        }
-
-        img {
-            width: 100%;
-            transform: rotate3d(0, 0, 1, 90deg);
-        }
-
-        div {
-            border: 1px solid black;
-            float: left;
-            display: block;
-        }
-    </style>
 </head>
 <body>
-<div>4234234</div><div>1232123</div>
+<div style="width:300px;margin:0 auto; padding:20px 0;">
+    <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010802022184"
+       style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"><img src="" style="float:left;"/>
+        <p style="float:left;height:20px;line-height:20px;margin: 0 0 0 5px; color:#939393;">京公网安备11010802022184号</p>
+    </a>
+</div>
 </body>
 <script>
+    document.addEventListener("mousewheel", function (e) {
+        console.log(e.wheelDelta);
+    }, true);
 </script>
+<div></div>
 </html>
