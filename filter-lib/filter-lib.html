@@ -93,6 +93,10 @@
                 opacity: 0;
             }
         }
+
+        .hide {
+            display: none !important;
+        }
     </style>
 </head>
 <body>
@@ -142,67 +146,67 @@
         <span class="filter-name">模糊<span class="txt"></span></span>
     </div>
 
-    <div class="filter-item">
+    <div class="filter-item hide">
         持续时间：<input type="text" class="duration" value="2">s
     </div>
-    <div class="filter-item">
+    <div class="filter-item hide">
         延迟时间：<input type="text" class="delay" value="0">s
     </div>
 </div>
-<div class="button copy">复制</div>
-<div class="button animate">做动画</div>
+<div class="button copy ">复制</div>
+<div class="button animate hide">做动画</div>
 <script src="ZeroClipboard.min.js"></script>
 <script>
     (function () {
-        function loopArray( arr, func ) {
-            for ( var i = 0; i < arr.length; i++ ) {
-                func( arr[i], i );
+        function loopArray(arr, func) {
+            for (var i = 0; i < arr.length; i++) {
+                func(arr[i], i);
             }
         }
 
         var filterValue = [];
-        var img = document.querySelector( "img.up" );
-        var raw = document.querySelector( "img.down" );
-        var spans = document.querySelectorAll( "span.txt" );
-        var border = document.querySelector( ".img-border" );
-        var fileInput = document.querySelector( "input.file" );
-        var duration = document.querySelector( "input.duration" );
-        var delay = document.querySelector( "input.delay" );
+        var img = document.querySelector("img.up");
+        var raw = document.querySelector("img.down");
+        var spans = document.querySelectorAll("span.txt");
+        var border = document.querySelector(".img-border");
+        var fileInput = document.querySelector("input.file");
+        var duration = document.querySelector("input.duration");
+        var delay = document.querySelector("input.delay");
 
         border.onclick = function () {
             fileInput.click();
         };
 
         fileInput.onchange = function () {
-            raw.src = img.src = window.URL.createObjectURL( fileInput.files[0] );
+            raw.src = img.src = window.URL.createObjectURL(fileInput.files[0]);
         };
 
-        loopArray( document.querySelectorAll( ".filter" ), function ( range, i ) {
+        loopArray(document.querySelectorAll(".filter"), function (range, i) {
             range.onmousemove = function () {
                 var vv = range.value;
-                if ( range.classList[0] == "blur" ) {
+                if (range.classList[0] == "blur") {
                     vv = range.value + "px";
                 }
-                if ( range.classList[0] == "hue-rotate" ) {
+                if (range.classList[0] == "hue-rotate") {
                     vv = range.value + "deg";
                 }
                 filterValue[i] = range.classList[0] + "(" + vv + ")";
                 spans[i].innerText = range.value;
                 var value = "";
-                loopArray( filterValue, function ( v ) {
-                    if ( v ) {
+                loopArray(filterValue, function (v) {
+                    if (v) {
                         value += v;
                     }
-                } );
-                if ( value.length != 0 ) {
+                });
+                if (value.length != 0) {
                     img.style.webkitFilter = value;
                 }
             };
-        } );
+        });
 
 
-        var client = new ZeroClipboard( document.querySelector( ".button.copy" ) );
-        client.on( "copy", function ( event ) {
+        var client = new ZeroClipboard(document.querySelector(".button.copy"));
+        client.on("copy", function (event) {
             var no = [
                 "grayscale(0)",
                 "sepia(0)",
@@ -213,25 +217,25 @@
                 "contrast(1)",
                 "blur(0px)"
             ];
-            var style = document.querySelector( "img.up" ).style.webkitFilter;
+            var style = document.querySelector("img.up").style.webkitFilter;
             var i = 0;
-            while ( style && no[i] ) {
-                if ( style.indexOf( no[i] ) != -1 ) {
-                    style = style.replace( no[i], "" );
+            while (style && no[i]) {
+                if (style.indexOf(no[i]) != -1) {
+                    style = style.replace(no[i], "");
                 }
                 i++;
             }
             var clipboard = event.clipboardData;
 
-            clipboard.setData( "text/plain", "duration: " + (duration.value || 2) + "  delay:" + delay.value + "  filter:" + (style.trim() || "null") );
-        } );
+            clipboard.setData("text/plain", "duration: " + (duration.value || 2) + "  delay:" + delay.value + "  filter:" + (style.trim() || "null"));
+        });
 
 
-        img.addEventListener( "webkitAnimationEnd", function () {
+        img.addEventListener("webkitAnimationEnd", function () {
             img.style.webkitAnimation = "";
-        }, false );
+        }, false);
 
-        document.querySelector( ".button.animate" ).onclick = function () {
+        document.querySelector(".button.animate").onclick = function () {
             img.style.webkitAnimation = ( duration.value || 2) + "s  " + "fade-out " + delay.value + "s linear both";
         }
 

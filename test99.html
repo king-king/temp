@@ -7,18 +7,23 @@
         * {
         }
 
-        img {
-            position: absolute;
-            top: 50px;
-            left: 400px;
-            width: 320px;
+        div.border {
+            width: 200px;
+            height: 320px;
+            display: inline-block;
         }
 
-        img.animate {
-            -webkit-mask: url("img/black-mask.png");
-            -webkit-mask-size: 320px auto;
+        img {
+            width: 100%;
+        }
+
+        img.a {
+            background-color: red;
+            filter: sepia(0.6) grayscale(0.5) invert(0.2) brightness(1.6) contrast(1.8);
+        }
+
+        img.b {
             filter: grayscale(1) brightness(2) saturate(0.5);
-            /*animation: change 3s 1s ease-in-out both;*/
         }
 
         @keyframes change {
@@ -26,11 +31,29 @@
                 -webkit-mask-position: 0 -528px;
             }
         }
+
+        .log {
+            margin-top: 100px;
+            position: absolute;
+            top: 50%;
+        }
     </style>
 </head>
 <body>
-<img src="img/doubi-1.jpg">
-<img src="img/doubi-1.jpg" class="animate">
+<div class="border"><img src="img/doubi-1.jpg"> <span>原图</span></div>
+<div class="border">
+    <img src="img/doubi-1.jpg" class="a">
+    <span>1</span>
+</div>
+<div class="border">
+    <img src="img/doubi-1.jpg" class="b"> <span>2</span>
+</div>
+
+<div class="log">
+    <div>1:sepia(0.6) grayscale(0.5) invert(0.2) brightness(1.6) contrast(1.8)</div>
+    <div>2:grayscale(1) brightness(2) saturate(0.5)</div>
+</div>
+
 </body>
 <script>
 
