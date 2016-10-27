@@ -5,15 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <style>
         * {
-            background: dodgerblue;
+        }
+
+        img {
+            position: absolute;
+            top: 50px;
+            left: 400px;
+            width: 320px;
+        }
+
+        img.animate {
+            -webkit-mask: url("img/black-mask.png");
+            -webkit-mask-size: 320px auto;
+            filter: grayscale(1) brightness(2) saturate(0.5);
+            /*animation: change 3s 1s ease-in-out both;*/
+        }
+
+        @keyframes change {
+            100% {
+                -webkit-mask-position: 0 -528px;
+            }
         }
     </style>
 </head>
 <body>
-<a>测试无效URL</a>
+<img src="img/doubi-1.jpg">
+<img src="img/doubi-1.jpg" class="animate">
 </body>
 <script>
-    console.log(document.querySelector("a").children);
+
 </script>
 <div></div>
 </html>
