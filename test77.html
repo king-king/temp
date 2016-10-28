@@ -23,6 +23,8 @@
             width: 200px;
             height: 200px;
             background-color: #2a6496;
+            padding: 10px;
+            margin: 20px;
         }
 
         @keyframes animate {
@@ -35,21 +37,8 @@
 <body>
 <div></div>
 <script>
-    document.querySelector("div").style.animation = "animate 3s linear both";
-    function big(callback) {
-        for (var i = 0; i < 1000000000; i++) {
-        }
-        callback();
-    }
-    setTimeout(function () {
-        var s = new Date();
-        big(function () {
-            console.log("end    " + ((new Date()) - s) / 1000 + "s");
-        })
-    }, 0);
-    setTimeout(function () {
-        console.log("插播")
-    }, 200);
+    var div = document.querySelector("div");
+    debugger
 </script>
 </body>
 </html>
