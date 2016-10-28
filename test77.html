@@ -19,33 +19,37 @@
             padding: 0;
         }
 
-        input {
-            height: 44px;
-            outline: 0;
-            width: 272px;
-            padding-right: 13px;
-            padding-left: 13px;
-            border: 1px solid black;
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: #2a6496;
         }
 
-        input:focus {
-            border: 1px solid black;
-        }
-
-        img {
-            position: absolute;
-            width: 320px;
-            height: 508px;
-        }
-
-        .a {
-            mix-blend-mode: overlay;
+        @keyframes animate {
+            100% {
+                transform: translate3d(700px, 0, 0);
+            }
         }
     </style>
 </head>
 <body>
 <div></div>
-<img src="img/doubi-0.jpg">
-<img src="img/doubi-1.jpg" class="a">
+<script>
+    document.querySelector("div").style.animation = "animate 3s linear both";
+    function big(callback) {
+        for (var i = 0; i < 1000000000; i++) {
+        }
+        callback();
+    }
+    setTimeout(function () {
+        var s = new Date();
+        big(function () {
+            console.log("end    " + ((new Date()) - s) / 1000 + "s");
+        })
+    }, 0);
+    setTimeout(function () {
+        console.log("插播")
+    }, 200);
+</script>
 </body>
 </html>
