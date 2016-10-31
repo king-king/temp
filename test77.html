@@ -21,40 +21,32 @@
             padding: 0;
         }
 
-        .border {
-            border: 5px solid red;
-        }
-
-        .border:after {
-            content: '';
-            clear: both;
-            display: block;
-        }
-
-        .block {
-            height: 100px;
-            border: 3px solid black;
-        }
-
-        img {
-            height: 100px;
-            float: left;
-        }
-
-        span {
+        .target {
             width: 100px;
             height: 100px;
             background: red;
+            position: absolute;
+            left: 500px;
+            top: 100px;
         }
     </style>
 </head>
 <body>
-<div class="border">
-    <img src="img/1.jpg">
-</div>
-<div class="block"></div>
-<span></span>
+<div class="target"></div>
 <script>
+    (function () {
+        function WQ() {
+            this.name = "wq";
+        }
+
+        WQ.prototype.year = 21;
+
+        var a = new WQ();
+        var b = new WQ();
+        b.year = 34;
+        console.log(a.year, b.year)
+
+    })()
 </script>
 </body>
 </html>
