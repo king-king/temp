@@ -21,57 +21,40 @@
             padding: 0;
         }
 
-        div {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-            width: 200px;
-            height: 200px;
-            background-color: #2a6496;
-            padding: 10px;
-            /*margin: 20px;*/
-            transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1);
-            transition-duration: 0ms;
+        .border {
+            border: 5px solid red;
         }
 
+        .border:after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        .block {
+            height: 100px;
+            border: 3px solid black;
+        }
+
+        img {
+            height: 100px;
+            float: left;
+        }
+
+        span {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
     </style>
 </head>
 <body>
-<div></div>
+<div class="border">
+    <img src="img/1.jpg">
+</div>
+<div class="block"></div>
+<span></span>
 <script>
-    (function () {
-        var div = document.querySelector("div");
-        var max = 400;
-        div.wx = div.wy = 0;
-        div.addEventListener("mousedown", function (e) {
-            var px = e.pageX;
-            div.style.transitionDuration = "0ms";
-            function move(me) {
-                var dx = Math.abs(me.pageX - e.pageX);
-//                if (dx < max) {
-                div.wx += (me.pageX - px) / 3;
-//                    div.wx += (me.pageX - px) * (max - dx) / max;
-                console.log(dx);
-                px = me.pageX;
-                div.style.transform = "translate3d(" + div.wx + "px,0,0)";
-//                }
-            }
-
-            document.addEventListener("mousemove", move);
-            document.addEventListener("mouseup", up);
-            function up() {
-                div.style.transform = "translate3d(0,0,0)";
-                div.wx = 0;
-                div.style.transitionDuration = "400ms";
-                document.removeEventListener("mousemove", move);
-                document.removeEventListener("mouseup", up);
-            }
-
-        });
-    })();
 </script>
 </body>
 </html>
