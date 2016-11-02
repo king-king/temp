@@ -36,10 +36,35 @@
     </style>
 </head>
 <body>
-<div class="target">
-    <img src="img/1.jpg" style="width: 100%;">
-</div>
+<!--<div class="target">-->
+<!--<img src="img/1.jpg" style="width: 100%;">-->
+<!--</div>-->
 <script>
+    (function () {
+        var canvas = document.createElement("canvas");
+        var gc = canvas.getContext("2d");
+        canvas.width = 1136;
+        canvas.height = 640 * 6;
+        canvas.style.width = 1136 + "px";
+        canvas.style.height = 640 * 6 + "px";
+        document.body.appendChild(canvas);
+
+        function loop(n, func) {
+            for (var i = 0; i < n; i++) {
+                func(i);
+            }
+        }
+
+        loop(5, function (i) {
+            var img = new Image();
+            img.src = "tem_image/3_" + i + ".png";
+            img.onload = function () {
+                gc.drawImage(img, 0, (i + 1) * 640, 1136, 640);
+            }
+        });
+
+
+    })()
 </script>
 </body>
 </html>
