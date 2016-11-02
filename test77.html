@@ -14,31 +14,44 @@
         html, body {
             width: 100%;
             height: 100%;
+            padding: 0;
+            margin: 0;
         }
 
-        canvas {
-            border: 2px solid red;
+        .a, .b {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        .a {
+            background: url("img/doubi-0.jpg");
+            background-size: cover;
+        }
+
+        .b {
+            background: url("img/doubi-1.jpg");
+            background-size: cover;
+            -webkit-mask: url(img/cut1.png);
+            -webkit-mask-size: 320px auto;
+            animation: animate 3s linear both;
+        }
+
+        @keyframes animate {
+            0% {
+                -webkit-mask-position: 0 0;
+            }
+            100% {
+                -webkit-mask-position: 0 -100%;
+            }
         }
     </style>
 </head>
 <body>
+<div class="a"></div>
+<div class="b"></div>
 <script>
     (function () {
-        var canvas = document.createElement("canvas");
-        var gc = canvas.getContext("2d");
-        canvas.width = 568 * 2 + 30;
-        canvas.height = 320;
-        canvas.style.width = 568 * 2 + 30 + "px";
-        canvas.style.height = 320 + "px";
-        document.body.appendChild(canvas);
-
-        gc.moveTo(568 + 30, 0);
-        gc.lineTo(568 * 2 + 30, 0);
-        gc.lineTo(568 * 2 + 30, 320);
-        gc.lineTo(568, 320);
-        gc.lineTo(568 + 30, 0);
-        gc.fillStyle = "#000";
-        gc.fill();
 
 
     })()
