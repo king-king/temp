@@ -16,30 +16,18 @@
             height: 100%;
         }
 
-        .target {
-            width: 568px;
-            height: 320px;
-            -webkit-mask: url(img/big0.png);
-            -webkit-mask-size: 568px auto;
-            -webkit-mask-position: 0 0;
-            overflow: hidden;
-            animation: shade 2s steps(4, end) both;
+        img {
+            position: absolute;
         }
 
-        @keyframes shade {
-            0% {
-                -webkit-mask-position: 0 0;
-            }
-            100% {
-                -webkit-mask-position: 0 -400%;
-            }
+        .a {
+            -webkit-mask: url(img/mask.png);
         }
     </style>
 </head>
 <body>
-<div class="target">
-    <img src="img/1.jpg" style="width: 100%;">
-</div>
+<img src="img/doubi-0.jpg">
+<img src="img/doubi-1.jpg" class="a">
 <script>
     //    (function () {
     //        var canvas = document.createElement("canvas");
