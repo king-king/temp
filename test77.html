@@ -16,56 +16,32 @@
             height: 100%;
         }
 
-        .target {
-            width: 568px;
-            height: 320px;
-            -webkit-mask: url(img/big0.png);
-            -webkit-mask-size: 568px auto;
-            -webkit-mask-position: 0 0;
-            overflow: hidden;
-            animation: shade 2s steps(5, end) both;
-        }
-
-        @keyframes shade {
-            0% {
-                -webkit-mask-position: 0 0;
-            }
-            100% {
-                -webkit-mask-position: 0 -500%;
-            }
+        canvas {
+            border: 2px solid red;
         }
     </style>
 </head>
 <body>
-<div class="target">
-    <img src="img/1.jpg" style="width: 100%;">
-</div>
 <script>
-    //    (function () {
-    //        var canvas = document.createElement("canvas");
-    //        var gc = canvas.getContext("2d");
-    //        canvas.width = 1136;
-    //        canvas.height = 640 * 6;
-    //        canvas.style.width = 1136 + "px";
-    //        canvas.style.height = 640 * 6 + "px";
-    //        document.body.appendChild(canvas);
-    //
-    //        function loop(n, func) {
-    //            for (var i = 0; i < n; i++) {
-    //                func(i);
-    //            }
-    //        }
-    //
-    //        loop(5, function (i) {
-    //            var img = new Image();
-    //            img.src = "tem_image/3_" + i + ".png";
-    //            img.onload = function () {
-    //                gc.drawImage(img, 0, (i + 1) * 640, 1136, 640);
-    //            }
-    //        });
-    //
-    //
-    //    })()
+    (function () {
+        var canvas = document.createElement("canvas");
+        var gc = canvas.getContext("2d");
+        canvas.width = 568 * 2 + 30;
+        canvas.height = 320;
+        canvas.style.width = 568 * 2 + 30 + "px";
+        canvas.style.height = 320 + "px";
+        document.body.appendChild(canvas);
+
+        gc.moveTo(568 + 30, 0);
+        gc.lineTo(568 * 2 + 30, 0);
+        gc.lineTo(568 * 2 + 30, 320);
+        gc.lineTo(568, 320);
+        gc.lineTo(568 + 30, 0);
+        gc.fillStyle = "#000";
+        gc.fill();
+
+
+    })()
 </script>
 </body>
 </html>
