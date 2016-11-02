@@ -14,42 +14,58 @@
         html, body {
             width: 100%;
             height: 100%;
-            background-color: #2a6496;
         }
 
-        canvas {
-            border: 2px solid red;
+        .target {
+            width: 568px;
+            height: 320px;
+            -webkit-mask: url(img/big0.png);
+            -webkit-mask-size: 568px auto;
+            -webkit-mask-position: 0 0;
+            overflow: hidden;
+            animation: shade 2s steps(5, end) both;
         }
 
+        @keyframes shade {
+            0% {
+                -webkit-mask-position: 0 0;
+            }
+            100% {
+                -webkit-mask-position: 0 -500%;
+            }
+        }
     </style>
 </head>
 <body>
+<div class="target">
+    <img src="img/1.jpg" style="width: 100%;">
+</div>
 <script>
-    (function () {
-        var canvas = document.createElement("canvas");
-        var gc = canvas.getContext("2d");
-        var imgdata;
-        canvas.width = 568;
-        canvas.height = 320 * 6;
-        canvas.style.width = 568 + "px";
-        canvas.style.height = 320 * 6 + "px";
-        document.body.appendChild(canvas);
-
-
-        var img = new Image();
-        img.src = "img/big3.png";
-        img.onload = function () {
-            gc.drawImage(img, 0, 0);
-            var imgdata = gc.getImageData(0, 0, 568, 320 * 6);
-            for (var i = 0; i < imgdata.data.length; i += 4) {
-                imgdata.data[i] = imgdata.data[i + 1] = imgdata.data[i + 2] = 0;
-                imgdata.data[i + 3] = 255 - imgdata.data[i + 3];
-            }
-            gc.putImageData(imgdata, 0, 0);
-        }
-
-
-    })()
+    //    (function () {
+    //        var canvas = document.createElement("canvas");
+    //        var gc = canvas.getContext("2d");
+    //        canvas.width = 1136;
+    //        canvas.height = 640 * 6;
+    //        canvas.style.width = 1136 + "px";
+    //        canvas.style.height = 640 * 6 + "px";
+    //        document.body.appendChild(canvas);
+    //
+    //        function loop(n, func) {
+    //            for (var i = 0; i < n; i++) {
+    //                func(i);
+    //            }
+    //        }
+    //
+    //        loop(5, function (i) {
+    //            var img = new Image();
+    //            img.src = "tem_image/3_" + i + ".png";
+    //            img.onload = function () {
+    //                gc.drawImage(img, 0, (i + 1) * 640, 1136, 640);
+    //            }
+    //        });
+    //
+    //
+    //    })()
 </script>
 </body>
 </html>
