@@ -29,16 +29,23 @@
 <img src="img/1.jpg">
 <script>
     (function () {
-        document.cookie = "wq=1";
-        console.log(document.cookie);
-        function doit() {
-            setTimeout(function () {
-                console.log(document.cookie);
-                doit();
-            }, 1000);
+
+
+        function loopArray(arr, func) {
+            for (var i = 0; i < arr.length; i++) {
+                func(arr[i], i);
+            }
         }
 
-        doit();
+        // 用法
+        loopArray(["1.png", "2.png", "2.png"], function (src, i) {
+            var img = new Image();
+            img.src = src;
+            img.onload=function () {
+                // 干一些和i相关的事情，比如说根据i的数值在canvas上相应的位置绘制img
+            }
+        });
+
     })()
 </script>
 </body>
