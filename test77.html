@@ -29,7 +29,16 @@
 <img src="img/1.jpg">
 <script>
     (function () {
+        document.cookie = "wq=1";
+        console.log(document.cookie);
+        function doit() {
+            setTimeout(function () {
+                console.log(document.cookie);
+                doit();
+            }, 1000);
+        }
 
+        doit();
     })()
 </script>
 </body>
