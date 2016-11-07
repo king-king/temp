@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="utf-8">
     <meta name="mobileoptimized" content="0"/>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="viewport" content="width=400, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
     <meta name="screen-orientation" content="portrait">
@@ -16,35 +16,16 @@
             height: 100%;
             padding: 0;
             margin: 0;
-        }
-
-        img {
-            width: 200px;
+            font-size: 72px;
         }
 
     </style>
 </head>
 <body>
-<img src="img/1.jpg">
-<img src="img/1.jpg">
+123
 <script>
     (function () {
 
-
-        function loopArray(arr, func) {
-            for (var i = 0; i < arr.length; i++) {
-                func(arr[i], i);
-            }
-        }
-
-        // 用法
-        loopArray(["1.png", "2.png", "2.png"], function (src, i) {
-            var img = new Image();
-            img.src = src;
-            img.onload=function () {
-                // 干一些和i相关的事情，比如说根据i的数值在canvas上相应的位置绘制img
-            }
-        });
 
     })()
 </script>
