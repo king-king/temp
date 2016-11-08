@@ -22,12 +22,22 @@
     </style>
 </head>
 <body>
-<div style="background: blue;font-size: 40px;color: #fff;height: 50px;line-height: 50px">这是个测试</div>
-<input type="text">
 <script>
     (function () {
 
-        document.querySelector("input").value = "1234"
+        var name = "wq";
+
+
+        var context = {
+            name: "hello"
+        };
+        with (context) {
+            function test() {
+                console.log(name);
+            }
+
+            test();
+        }
 
     })()
 </script>
