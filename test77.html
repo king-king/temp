@@ -22,23 +22,11 @@
     </style>
 </head>
 <body>
-<div class="okok"></div>
+<input type="text">
 <script>
     (function () {
 
-        var a = {};
-        Object.defineProperty(a, "name", {
-            set: function (val) {
-                console.log(val)
-            },
-            get: function () {
-                return "fdfd";
-            }
-        });
-        var s = "fdsfd.js";
-        a.name = "name.min.js";
-
-        console.log(a.name)
+        document.querySelector("input").value = "1234"
 
     })()
 </script>
