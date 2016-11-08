@@ -22,10 +22,23 @@
     </style>
 </head>
 <body>
-123
+<div class="okok"></div>
 <script>
     (function () {
 
+        var a = {};
+        Object.defineProperty(a, "name", {
+            set: function (val) {
+                console.log(val)
+            },
+            get: function () {
+                return "fdfd";
+            }
+        });
+
+        a.name = "wq";
+
+        console.log(a.name)
 
     })()
 </script>
