@@ -26,21 +26,14 @@
 <script>
     (function () {
 
-        function task(arr, callback) {
-            var index = 0;
-            arr[index] && arr[index](function () {
-                arr[++index] ? arr[index](arguments.callee) : callback();
-            });
+        setTimeout(function () {
+            console.log("end")
+        }, 0);
+        var time0 = new Date();
+        for (var i = 0; i < 10000000000; i++) {
         }
+        console.log(new Date() - time0);
 
-        function ctask(arr, callback) {
-            var index = 0;
-            for (var i = 0; i < arr.length; i++) {
-                arr[i](function () {
-                    ++index == arr.length && callback();
-                });
-            }
-        }
 
     })()
 </script>
