@@ -25,14 +25,14 @@
 <div></div>
 <script>
     (function () {
-
-        setTimeout(function () {
-            console.log("end")
-        }, 0);
-        var time0 = new Date();
+        var img = new Image();
+        img.src = "img/1.png";
+        img.onload = function () {
+            console.log("load", img.complete);
+        };
         for (var i = 0; i < 10000000000; i++) {
         }
-        console.log(new Date() - time0);
+        console.log("loop end", img.complete);
 
 
     })()
