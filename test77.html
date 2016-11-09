@@ -22,21 +22,24 @@
     </style>
 </head>
 <body>
+<div></div>
 <script>
     (function () {
 
-        var name = "wq";
+        function task(arr, callback) {
+            var index = 0;
+            arr[index] && arr[index](function () {
+                arr[++index] ? arr[index](arguments.callee) : callback();
+            });
+        }
 
-
-        var context = {
-            name: "hello"
-        };
-        with (context) {
-            function test() {
-                console.log(name);
+        function ctask(arr, callback) {
+            var index = 0;
+            for (var i = 0; i < arr.length; i++) {
+                arr[i](function () {
+                    ++index == arr.length && callback();
+                });
             }
-
-            test();
         }
 
     })()
