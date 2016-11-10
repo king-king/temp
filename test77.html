@@ -13,15 +13,23 @@
             font-size: 72px;
         }
 
+        div{
+            border:3px solid red;
+            height:100px;
+            overflow: hidden;
+        }
         img {
-            width: 80%;
-            display: block;
+            width: 200px;
+            float: left;
             margin: 10px auto;
             border: 1px solid black;
         }
     </style>
 </head>
 <body>
+<div>
+    <img src="img/1.jpg">
+</div>
 <script>
     (function () {
 
@@ -59,11 +67,11 @@
             });
         });
 
-        task(loadImage, function () {
-            document.body.onscroll = function () {
-                console.log(document.body.scrollTop)
-            }
-        });
+//        task(loadImage, function () {
+//            document.body.onscroll = function () {
+//                console.log(document.body.scrollTop)
+//            }
+//        });
 
 
     })()
