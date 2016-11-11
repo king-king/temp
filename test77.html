@@ -13,11 +13,12 @@
             font-size: 72px;
         }
 
-        div{
-            border:3px solid red;
-            height:100px;
+        div {
+            border: 3px solid red;
+            height: 100px;
             overflow: hidden;
         }
+
         img {
             width: 200px;
             float: left;
@@ -27,56 +28,55 @@
     </style>
 </head>
 <body>
-<div>
-    <img src="img/1.jpg">
-</div>
 <script>
     (function () {
 
-        function task(arr, callback) {
-            var index = 0;
-            arr[index] && arr[index](function () {
-                ++index === arr.length ? callback() : arr[index](arguments.callee);
-            });
-        }
-
-        function loop(n, func) {
-            for (var i = 0; i < n; i++) {
-                func(i);
-            }
-        }
-
-        function map(arr, func) {
-            var narr = [];
-            for (var i = 0; i < arr.length; i++) {
-                narr.push(func(arr[i]));
-            }
-            return narr;
-        }
-
-        var loadImage = [];
-        loop(5, function (i) {
-            loadImage.push(function (done) {
-                var image = new Image();
-                image.src = "img/" + (i + 1) + ".png";
-                image.onload = function () {
-                    document.body.appendChild(image);
-                    console.log(i, image.offsetHeight, image.offsetTop);
-                    done();
-                };
-            });
-        });
-
-//        task(loadImage, function () {
-//            document.body.onscroll = function () {
-//                console.log(document.body.scrollTop)
+//        function f() {
+//            var sum = 0;
+//            for (var i = 0; i < arguments.length; i++) {
+//                sum += arguments[i];
 //            }
-//        });
+//            return sum;
+//        }
+//
+//        function currying() {
+//            var func = arguments[0];
+//            var already = Array.prototype.slice.call(arguments, 1);
+//            return function () {
+//                var now = Array.prototype.slice.call(arguments, 0);
+//                return func.apply(this, already.concat(now));
+//            }
+//        }
 
-        var div;
-        div.style.setProperty()
+        function f() {
+            var sum = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                sum += arguments[i];
+            }
+            return sum;
+        }
+
+        function currying(func) {
+            var sum = 0;
+            var index = 0;
+
+            function pro(num) {
+                sum = func(sum, num);
+                return ++index == 3 ? sum : pro;
+            }
+
+            return pro;
+        }
+
+        var g = currying(f);
+        console.log(g(1)(2)(3));
+
 
     })()
 </script>
+<script>
+
+</script>
+
 </body>
 </html>
