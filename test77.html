@@ -16,29 +16,20 @@
 
         canvas {
             width: 487px;
-            height: 578px;
+            height: 487px;
         }
     </style>
 </head>
 <body>
-<canvas width="487" height="578"></canvas>
+<canvas width="487" height="487"></canvas>
 <script>
 
     let canvas = document.querySelector("canvas");
     let gc = canvas.getContext("2d");
-    let img = new Image();
-    img.src = "img/border.png";
-    img.onload = function () {
-        document.body.appendChild(img);
-        gc.drawImage(img, 0, 0);
-        let data = gc.getImageData(0, 0, 487, 578);
-        for (let i = 0; i < data.data.length; i += 4) {
-//            if (data.data[i + 3] === 0) {
-                data.data[i] = data.data[i + 1] = data.data[i + 2] = 255;
-//            }
-        }
-        gc.putImageData(data, 0, 0);
-    }
+    gc.arc(487 / 2, 487 / 2, 476 / 2, 0, 2 * Math.PI);
+    gc.fillStyle = "red";
+    gc.fill();
+
 
 </script>
 </body>
