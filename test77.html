@@ -10,26 +10,107 @@
             height: 100%;
             padding: 0;
             margin: 0;
-            font-size: 72px;
+            font-size: 25px;
             background: #000;
+            color: white;
         }
 
         canvas {
             width: 487px;
             height: 487px;
         }
+
+        img {
+            width: 80%;
+            margin: 20px auto 0 auto;
+            display: block;
+        }
+
+        div.log {
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            line-height: 30px;
+            font-size: 25px;
+            text-align: center;
+            height: 30px;
+            width: 100%;
+            background: white;
+            color: #000;
+        }
     </style>
 </head>
 <body>
-<canvas width="487" height="487"></canvas>
+<div class="log"></div>
 <script>
+    var resource = [
+        "http://img01.cloud7.com.cn/fe304065a2685412e3ffa0d6ef9507ec.jpg",
+        "http://img01.cloud7.com.cn/58e759260e8e9d72ce25ce411d175a57.jpg",
+        "http://img01.cloud7.com.cn/78f8960cd4d34c1c6fd1c956ca350492.jpg",
+        "http://img01.cloud7.com.cn/05e2b458a5b58f47bfa3d1469bc44877.jpg",
+        "http://img01.cloud7.com.cn/25cff4751cf64ec6c91ed5cb781f89cd.jpg",
+        "http://img01.cloud7.com.cn/174a2d154739730aca467f7c2a1aa7b6.jpg",
+        "http://img01.cloud7.com.cn/79a8934c6f025372349725282e09e780.jpg",
+        "http://img01.cloud7.com.cn/7e9a031a77cac57cb9c19179838d1ba7.jpg",
+        "http://img01.cloud7.com.cn/f391aa5d9b40645576c4e2bac845c5dc.jpg",
+        "http://img01.cloud7.com.cn/4e8c9193c2b1a01cb157cf6efb8d382a.jpg",
+        "http://img01.cloud7.com.cn/4f24bb8ca62ce1e060e3d09d3e7a933f.jpg",
+        "http://img01.cloud7.com.cn/179c089e5634386ec4580f9c66f9a4d6.jpg",
+        "http://img01.cloud7.com.cn/6aa9762f97647287daedd8cb2b3dcdf6.jpg",
+        "http://img01.cloud7.com.cn/c5c6cd3bf985b607dd6823a8f55cd759.jpg",
+        "http://img01.cloud7.com.cn/6d756681205122ecd9a10540b9f00430.jpg",
+        "http://img01.cloud7.com.cn/56f6669c748c7dc4f584fe48b088f3f9.jpg",
+        "http://img01.cloud7.com.cn/862adf88af4e9570bc9f575ec55b222b.jpg",
+        "http://img01.cloud7.com.cn/477652b0b29ecd3a7dc94e6c25edf82a.jpg",
+        "http://img01.cloud7.com.cn/2c29e0f6c179892c7531f131468f8a69.jpg",
+        "http://img01.cloud7.com.cn/de9cc9f0c9295beecfe9e03542fef2a0.jpg",
+        "http://img01.cloud7.com.cn/d7830281027857e998baa0046de2436e.jpg",
+        "http://img01.cloud7.com.cn/c5653b07af786ec5409dddac8ea1b8ab.jpg",
+        "http://img01.cloud7.com.cn/3cb8239fcafdc680bb8194ab51050592.jpg",
+        "http://img01.cloud7.com.cn/9b9431c48b50f51e4991487734ac6b9d.jpg",
+        "http://img01.cloud7.com.cn/abd95145c37f7c9c3586998a20a9428c.jpg",
+        "http://img01.cloud7.com.cn/7a7dfc4a6682f02b4e37abebfd26a0c4.jpg",
+        "http://img01.cloud7.com.cn/5951d848fd3c142b58527c26cb76149c.jpg",
+        "http://img01.cloud7.com.cn/0d2ca183610313d608cd5928ae9796de.jpg"
+    ];
 
-    let canvas = document.querySelector("canvas");
-    let gc = canvas.getContext("2d");
-    gc.arc(487 / 2, 487 / 2, 476 / 2, 0, 2 * Math.PI);
-    gc.fillStyle = "red";
-    gc.fill();
+    function concurr(arr, callback) {
+        var index = 0;
+        for (var i = 0; i < arr.length; i++) {
+            arr[i](function () {
+                ++index === arr.length && callback();
+            });
+        }
+    }
 
+    var task = [], imgList = [];
+    function loop(n, func) {
+        for (var i = 0; i < n; i++) {
+            func(i);
+        }
+    }
+    loop(resource.length, function (i) {
+        task.push(function (done) {
+            var img = new Image();
+            imgList.push(img);
+            img.src = resource[i];
+            img.onload = done;
+        })
+    });
+    var log = document.querySelector(".log");
+    concurr(task, function () {
+        imgList.forEach(function (img, i) {
+            document.body.appendChild(img);
+            var div = document.createElement("div");
+            div.innerHTML = i;
+            document.body.appendChild(div);
+        });
+    });
+
+    document.onscroll = function () {
+        var d = new Date();
+        log.textContent = d.getHours() + ":" + d.getMinutes()+":"+d.getSeconds();
+    }
 
 </script>
 </body>
