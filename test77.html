@@ -29,11 +29,923 @@
             line-height: 40px;
             font-size: 20px;
         }
+
+        img {
+            display: block;
+            width: 200px;
+        }
     </style>
 </head>
 <body>
 <div class="target">123</div>
 <script>
+    let data = [
+        {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/fe304065a2685412e3ffa0d6ef9507ec.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/fe304065a2685412e3ffa0d6ef9507ec.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 13401195,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "陈伯钦，字百卿(介绍详见百度)\n游艺加拿大部分诗书画作品欣赏",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 29.1,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/58e759260e8e9d72ce25ce411d175a57.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/58e759260e8e9d72ce25ce411d175a57.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928521,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "好鸟枝上杨柳风",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 7,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/78f8960cd4d34c1c6fd1c956ca350492.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/78f8960cd4d34c1c6fd1c956ca350492.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928523,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "虚怀当竹 静处同山",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 8,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/05e2b458a5b58f47bfa3d1469bc44877.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/05e2b458a5b58f47bfa3d1469bc44877.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 90989413,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "暖风初试燕儿归",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 7,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/25cff4751cf64ec6c91ed5cb781f89cd.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/25cff4751cf64ec6c91ed5cb781f89cd.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 23833662,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "稻花香里说丰年 听取蛙声一片",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 13,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/174a2d154739730aca467f7c2a1aa7b6.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/174a2d154739730aca467f7c2a1aa7b6.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 341131,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "东篱雏声",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 4,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/79a8934c6f025372349725282e09e780.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/79a8934c6f025372349725282e09e780.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928531,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "阵阵花香引蜂迷",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 7,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/7e9a031a77cac57cb9c19179838d1ba7.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/7e9a031a77cac57cb9c19179838d1ba7.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 88287985,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "富贵到白头",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 5,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/f391aa5d9b40645576c4e2bac845c5dc.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/f391aa5d9b40645576c4e2bac845c5dc.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 94932525,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "归燕舞和风(赠加国友人)",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 12,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/4e8c9193c2b1a01cb157cf6efb8d382a.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/4e8c9193c2b1a01cb157cf6efb8d382a.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 84390641,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "百花齐放\n香花怒放一酩醇，惜爱和风四季春\n若问桃源在哪里，诗人笔下地球村",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 34.2,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/4f24bb8ca62ce1e060e3d09d3e7a933f.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/4f24bb8ca62ce1e060e3d09d3e7a933f.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928525,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "幽香远布",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 4,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/179c089e5634386ec4580f9c66f9a4d6.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/179c089e5634386ec4580f9c66f9a4d6.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928529,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "雪香",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 2,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/6aa9762f97647287daedd8cb2b3dcdf6.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/6aa9762f97647287daedd8cb2b3dcdf6.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 92014718,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "珠园觅旧巢",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 5,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/c5c6cd3bf985b607dd6823a8f55cd759.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/c5c6cd3bf985b607dd6823a8f55cd759.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 81645097,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "富贵成仙戏蝶忙",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 7,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/6d756681205122ecd9a10540b9f00430.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/6d756681205122ecd9a10540b9f00430.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 58723903,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "听雨",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 2,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/56f6669c748c7dc4f584fe48b088f3f9.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/56f6669c748c7dc4f584fe48b088f3f9.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928551,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "北美观雁\n加国东南有五湖，风光无限客欢呼\n古闸芳草神仙地，尤赛衡阳道不孤",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 34.2,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/862adf88af4e9570bc9f575ec55b222b.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/862adf88af4e9570bc9f575ec55b222b.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 95502049,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "春在枝头",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 4,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/477652b0b29ecd3a7dc94e6c25edf82a.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/477652b0b29ecd3a7dc94e6c25edf82a.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928527,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "春雨淋垂柳树丝，清江水暖鸭先知\n桃红李白游人醉，好鸟摇风唱暖枝",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 29.200000000000003,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/2c29e0f6c179892c7531f131468f8a69.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/2c29e0f6c179892c7531f131468f8a69.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 64578812,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "秋风萧刹白云浮，柿桔青红压远埠\n漫菊丛中藏息鸟，竹林摇曳闻鹧鸪",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 29.200000000000003,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/de9cc9f0c9295beecfe9e03542fef2a0.jpg",
+                    "camera": "0",
+                    "rawUrl": "http://img01.cloud7.com.cn/de9cc9f0c9295beecfe9e03542fef2a0.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 29126206,
+                "pageAnimation": 7,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "三友凌霜",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 4,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/d7830281027857e998baa0046de2436e.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/d7830281027857e998baa0046de2436e.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928535,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "四君子图\n\n～～～～～～～～～～～～～～～\n《客居录事》\n虚斋无客坐闲禅，柱杖漫游野水边。\n作赋初通崇古聖，吟诗久背颂今贤。\n晓晴伴雁同迎日，夜雨和声好促眠。\n童顽未知臘鼓近，殷红萬木盖山川。\n\n巜十月十二日客国孤村隨筆》\n幸运悲哀豈可期，天堂地獄谁能知。\n湖山滿布鸣归雁，草树换装罩彩衣。\n自信飞程跨万里，挥毫秃筆过千支。\n聊将宿墨涂新义，解郁兴怀更赋诗。",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 164.59999999999994,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/c5653b07af786ec5409dddac8ea1b8ab.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/c5653b07af786ec5409dddac8ea1b8ab.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928537,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "感恩(赠白求恩故居)",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 10,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "SingleImage",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/3cb8239fcafdc680bb8194ab51050592.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/3cb8239fcafdc680bb8194ab51050592.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928539,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "",
+                    "hasJump": false,
+                    "isSingleImage": true,
+                    "isCustom": false,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 0,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "SingleImage",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/9b9431c48b50f51e4991487734ac6b9d.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/9b9431c48b50f51e4991487734ac6b9d.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928547,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "",
+                    "hasJump": false,
+                    "isSingleImage": true,
+                    "isCustom": false,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 0,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "SingleImage",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/abd95145c37f7c9c3586998a20a9428c.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/abd95145c37f7c9c3586998a20a9428c.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928541,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "",
+                    "hasJump": false,
+                    "isSingleImage": true,
+                    "isCustom": false,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 0,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/7a7dfc4a6682f02b4e37abebfd26a0c4.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/7a7dfc4a6682f02b4e37abebfd26a0c4.jpg",
+                    "type": "image",
+                    "centerX": 148.182449,
+                    "centerY": 281.132172
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928543,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "纸尽墨干，无书可读\n漫步湖边，仰天唱京剧，以自误耳\n\n東風起矣速归川，客旅昭关苦伍员。\n高举红灯照夜道，朝霞映在澄湖边。\n空城一座迎司马，操举双竿父女拳。\n为报君王武劍器，别窑夺帅喜登天。",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 84.1,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/5951d848fd3c142b58527c26cb76149c.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/5951d848fd3c142b58527c26cb76149c.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928545,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "《客旅杂咏》\n搁筆寒窗獨坐久，心隨暮色惊回首。\n昏鹀压压绕烟林，凍雨凄凄击灰柳。\n忆昔親朋乐雅集，欢歌载舞传杯酒。\n孤鸿失阵莫哀鸣，且看晴时跃九阜。",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 66.80000000000001,
+                    "imageCount": 0
+                }
+            }
+        }, {
+            "layout": {
+                "label": "custom-2",
+                "image": [{
+                    "url": "http://img01.cloud7.com.cn/0d2ca183610313d608cd5928ae9796de.jpg",
+                    "rawUrl": "http://img01.cloud7.com.cn/0d2ca183610313d608cd5928ae9796de.jpg",
+                    "type": "image"
+                }],
+                "text": [],
+                "voice": [],
+                "video": [],
+                "location": [],
+                "actionlinks": [],
+                "position": [],
+                "custom": {"type": "cover", "animationFirst": "image", "performace": "low"},
+                "pid": 98928549,
+                "lid": 257,
+                "analyze": {
+                    "firstText": "巜一七令》\n（二〇一六年十一月六日乗机返乡)\n飞。\n心喜，归思。\n明月亱、厚冬衣。\n行旅拖累，急步恐迟。\n故乡三万里，观影数城旗。\n客加国赋新词，纸完秃笔千支。\n覌窗㚈金光灿起，迷濛云雾罩座机。",
+                    "hasJump": false,
+                    "isSingleImage": false,
+                    "isCustom": true,
+                    "hasFilter": false,
+                    "hasLens": false,
+                    "hasShake": false,
+                    "hasButton": false,
+                    "hasScratch": false,
+                    "readCount": 84.4,
+                    "imageCount": 0
+                }
+            }
+        }];
+
+    for (let i = 0; i < data.length; i++) {
+        let img = new Image();
+        img.src = data[i].layout.image[0].rawUrl;
+        document.body.appendChild(img)
+    }
 </script>
 </body>
 </html>
