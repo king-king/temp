@@ -16,7 +16,6 @@
 
         .target {
             width: 50px;
-            height: 200px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -25,47 +24,16 @@
             background-color: #2a6496;
         }
 
-        @keyframes rotate3d {
-            0% {
-                transform-origin: 50% 0;
-                transform: rotate3d(0, 0, 1, 180deg);
-            }
-            50% {
-                transform-origin: 50% 0;
-                transform: rotate3d(0, 0, 1, 90deg);
-            }
-            100% {
-                transform-origin: 50% 0;
-                transform: rotate3d(0, 0, 1, 0deg);
-            }
-        }
-
-        @keyframes rrotate3d {
-            0% {
-                transform-origin: 50% 0;
-                transform: rotate3d(0, 0, 1, 00deg);
-            }
-            50% {
-                transform-origin: 50% 0;
-                transform: rotate3d(0, 0, 1, 90deg);
-            }
-            100% {
-                transform-origin: 50% 0;
-                transform: rotate3d(0, 0, 1, 180deg);
-            }
+        .target {
+            height: 40px;
+            line-height: 40px;
+            font-size: 20px;
         }
     </style>
 </head>
 <body>
-<div class="target"></div>
+<div class="target">123</div>
 <script>
-    document.body.onload = function () {
-        var tar = document.querySelector(".target");
-        tar.style.animation = "rotate3d 3s linear";
-        tar.addEventListener("webkitAnimationEnd", function () {
-            tar.style.animation = "rrotate3d 3s linear";
-        });
-    }
 </script>
 </body>
 </html>
